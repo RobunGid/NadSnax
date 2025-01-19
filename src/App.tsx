@@ -1,12 +1,21 @@
+import { Navigate, Route, Routes } from 'react-router';
 import './App.css';
-import logo from './assets/logo.png';
+import { Header } from './components/layout/Header';
+import { About } from './components/layout/About';
+import { BestSellers } from './components/layout/BestSellers';
+import { SecretBoxes } from './components/layout/SecretBoxes';
 
 function App() {
 	return (
-		<div className='flex justify-center items-center gap-3'>
-			<img src={logo} alt='logo' width='80' />
-			<h1 className='text-3xl font-bold'>NadSnax - Crunch into happiness!</h1>
-		</div>
+		<>
+			<Header />
+			<Routes>
+				<Route path='/' element={<Navigate to='/about' />} />
+				<Route path='/about' element={<About />} />
+				<Route path='/best-sellers' element={<BestSellers />} />
+				<Route path='/secret-boxes' element={<SecretBoxes />} />
+			</Routes>
+		</>
 	);
 }
 
