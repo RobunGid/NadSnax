@@ -10,28 +10,32 @@ export const NavBar: FC = () => {
 			<NavLink to='/'>
 				<img src={logo} alt='logo' width='80' className='px-2' />
 			</NavLink>
-			<ul className='gap-1 flex-row p-3 items-end hidden md:flex md:gap-3'>
+			<ul className='flex-row items-end hidden md:flex md:gap-3'>
 				<li>
-					<NavBarLink text='About' to='/about' className='text-xl' />
+					<NavBarLink to='/about' text='About' />
 				</li>
 				<NavBarRule />
 				<li>
-					<NavBarLink text='★ Best Sellers ★' to='/best-sellers' />
+					<NavBarLink to='/best-sellers' text='★ Best Sellers ★' />
 				</li>
 				<NavBarRule />
 				<li>
-					<NavBarLink text='✧ Secret Boxes ✧' to='/secret-boxes' />
+					<NavBarLink to='/secret-boxes' text='✧ Secret Boxes ✧' />
 				</li>
 				<NavBarRule />
+
 				<li>
 					<button
 						data-dropdown-toggle='snacks-list'
 						data-dropdown-offset-distance='10'
-						data-dropdown-offset-skidding='10'
+						data-dropdown-offset-skidding='25'
 						data-dropdown-trigger='hover'
 						id='snacks-list-button'
+						className='flex items-center'
 					>
-						<NavBarLink text='Snacks' to='/snacks' />
+						<NavBarLink to='/snacks' className='flex' text='Snacks'>
+							<span className='after:content-ArrowDownIcon after:inline-block after:w-[18px] after:pl-1'></span>
+						</NavBarLink>
 					</button>
 
 					<div
@@ -39,18 +43,18 @@ export const NavBar: FC = () => {
 						id='snacks-list'
 						data-dropdown-trigger='hover'
 					>
-						<ul className='flex flex-col gap-4 p-4'>
+						<ul className='flex flex-col gap-4 p-6 w-36'>
 							<li>
-								<NavBarLink text='Pop Corn' to='/snacks/pop-corn' />
+								<NavBarLink to='/snacks/pop-corn' text='Pop-Corn' />
 							</li>
 							<li>
-								<NavBarLink text='Crackers' to='/snacks/crackers' />
+								<NavBarLink to='/snacks/crackers' text='Crackers' />
 							</li>
 							<li>
-								<NavBarLink text='Chips' to='/snacks/chips' />
+								<NavBarLink to='/snacks/chips' text='Chips' />
 							</li>
 							<li>
-								<NavBarLink text='Croutons' to='/snacks/croutons' />
+								<NavBarLink to='/snacks/croutons' text='Croutons' />
 							</li>
 						</ul>
 					</div>

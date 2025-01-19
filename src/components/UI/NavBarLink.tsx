@@ -1,30 +1,34 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
 type NavBarLinkProps = {
-	text: string;
+	children?: ReactNode;
 	to: string;
 	className?: string;
 	id?: string;
+	text?: string;
 };
 
-export const NavBarLink: FC<NavBarLinkProps> = ({ text, to, className, id }) => {
+export const NavBarLink: FC<NavBarLinkProps> = ({
+	children,
+	to,
+	className,
+	id,
+	text,
+}) => {
 	return (
 		<NavLink
 			id={id}
 			to={to}
 			className={({ isActive }) =>
-				clsx(
-					`hover:border-b-[2px]  border-black text-sm`,
-					isActive
-						? 'border-b-[1px] border-black'
-						: 'text-slate-400 hover:text-slate-600',
-					className
-				)
+				clsx('group flex', isActive && 'active', className)
 			}
 		>
-			{text}
+			<div className='group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-slate-900 group-hover:text-slate-800 text-slate-500 group-[.active]:group-hover:decoration-2'>
+				{text}
+			</div>
+			{children}
 		</NavLink>
 	);
 };

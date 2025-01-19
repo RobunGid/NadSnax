@@ -3,6 +3,9 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			content: {
+				ArrowDownIcon: 'url("/src/assets/ArrowDownIcon.svg")',
+			},
 			fontFamily: {
 				opensans: ['Open Sans', 'sans-serif'],
 			},
