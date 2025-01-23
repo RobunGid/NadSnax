@@ -16,11 +16,11 @@ export const NavBar: FC = () => {
 				</li>
 				<NavBarRule />
 				<li>
-					<NavBarLink to='/best-sellers' text='★ Best Sellers ★' />
+					<NavBarLink to='/best-sellers' text='Best Sellers' />
 				</li>
 				<NavBarRule />
 				<li>
-					<NavBarLink to='/secret-boxes' text='✧ Secret Boxes ✧' />
+					<NavBarLink to='/secret-boxes' text='Secret Boxes' />
 				</li>
 				<NavBarRule />
 
