@@ -1,7 +1,7 @@
 import { ComponentProps, FC } from 'react';
 import { SiteLogo } from '../NavBar/SiteLogo';
 import { GoArrowLeft, GoHome } from 'react-icons/go';
-import { NavBarLink } from '../UI/NavBarLink';
+import { NavBarLink } from '../NavBar/NavBarLink';
 import { CiGift } from 'react-icons/ci';
 import { GiChipsBag } from 'react-icons/gi';
 import { IoIosArrowDown } from 'react-icons/io';

@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { NavBarLink } from '../UI/NavBarLink';
-import { NavBarRule } from '../UI/NavBarRule';
+import { NavBarLink } from '../NavBar/NavBarLink';
+import { NavBarRule } from '../NavBar/NavBarRule';
 import { SnacksDropdown } from '../NavBar/SnacksDropdown';
 import { SnacksButton } from '../NavBar/SnacksButton';
 import { SiteLogo } from '../NavBar/SiteLogo';

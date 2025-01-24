@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { NavBarLink } from '../UI/NavBarLink';
+import { NavBarLink } from './NavBarLink';
 import { GoChevronDown } from 'react-icons/go';
 
 export const SnacksButton: FC = () => {

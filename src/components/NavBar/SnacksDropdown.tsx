@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { NavBarLink } from '../UI/NavBarLink';
+import { NavBarLink } from './NavBarLink';
 
 export const SnacksDropdown: FC = () => {
 	return (
