@@ -8,6 +8,7 @@ type NavBarLinkProps = {
 	className?: string;
 	id?: string;
 	text?: string;
+	isIconOnRight?: boolean;
 };
 
 export const NavBarLink: FC<NavBarLinkProps> = ({
@@ -16,6 +17,7 @@ export const NavBarLink: FC<NavBarLinkProps> = ({
 	className,
 	id,
 	text,
+	isIconOnRight = true,
 }) => {
 	return (
 		<NavLink
@@ -25,10 +27,11 @@ export const NavBarLink: FC<NavBarLinkProps> = ({
 				clsx('group flex', isActive && 'active', className)
 			}
 		>
-			<div className='group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-slate-900 group-hover:text-slate-800 text-slate-500 group-[.active]:group-hover:decoration-2'>
+			{!isIconOnRight && children}
+			<div className='font-medium group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-gray-900 group-hover:text-gray-800 text-gray-500 group-[.active]:group-hover:decoration-2'>
 				{text}
 			</div>
-			{children}
+			{isIconOnRight && children}
 		</NavLink>
 	);
 };
