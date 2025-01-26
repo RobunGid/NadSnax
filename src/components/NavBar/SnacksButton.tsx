@@ -4,14 +4,7 @@ import { GoChevronDown } from 'react-icons/go';
 
 export const SnacksButton: FC = () => {
 	return (
-		<button
-			data-dropdown-toggle='snacks-list'
-			data-dropdown-offset-distance='10'
-			data-dropdown-offset-skidding='25'
-			data-dropdown-trigger='hover'
-			id='snacks-list-button'
-			className='flex items-center'
-		>
+		<button id='snacks-list-button' className='flex items-center peer'>
 			<NavBarLink to='/snacks' className='flex' text='Snacks'>
 				<GoChevronDown className='inline-block mt-1 ml-1' size='20px' />
 			</NavBarLink>

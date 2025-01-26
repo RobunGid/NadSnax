@@ -9,7 +9,7 @@ import { SideBar } from '../SideBar/SideBar';
 export const NavBar: FC = () => {
 	return (
 		<div className='w-full border-b-[1px] flex flex-row items-center'>
-			<SideBar className='flex md:hidden' />
+			<SideBar />
 			<NavBarLink to='/about'>
 				<SiteLogo />
 			</NavBarLink>
