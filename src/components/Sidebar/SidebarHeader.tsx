@@ -1,18 +1,18 @@
 import { FC } from 'react';
-import { SideBarLink } from './SidebarLink';
-import { SiteLogo } from '../NavBar/SiteLogo';
+import { SidebarLink } from './SidebarLink';
+import { SiteLogo } from '../Navbar/SiteLogo';
 
-const SideBarHeader: FC = () => {
+const SidebarHeader: FC = () => {
 	return (
 		<div className='flex items-center justify-start rtl:justify-end'>
-			<SideBarLink to='/about'>
+			<SidebarLink to='/about'>
 				<SiteLogo />
 				<span className='self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white'>
 					NadSnax
 				</span>
-			</SideBarLink>
+			</SidebarLink>
 		</div>
 	);
 };
 
-export default SideBarHeader;
+export default SidebarHeader;

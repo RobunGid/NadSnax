@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
-type NavBarLinkProps = {
+type SideBarLinkProps = {
 	children?: ReactNode;
 	to: string;
 	className?: string;
@@ -11,7 +11,7 @@ type NavBarLinkProps = {
 	isIconOnRight?: boolean;
 };
 
-export const NavBarLink: FC<NavBarLinkProps> = ({
+export const SidebarLink: FC<SideBarLinkProps> = ({
 	children,
 	to,
 	className,

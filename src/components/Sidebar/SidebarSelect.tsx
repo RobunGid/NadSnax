@@ -1,20 +1,20 @@
 import clsx from 'clsx';
 import { FC, ReactNode, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { NavLink } from 'react-router';
+import { SidebarItem } from './SidebarItem';
 
 type option = {
 	to: string;
 	name: string;
 };
 
-interface SideBarSelectProps {
+interface SidebarSelectProps {
 	name: string;
 	icon: ReactNode;
 	options: option[];
 }
 
-export const SideBarSelect: FC<SideBarSelectProps> = ({ name, icon, options }) => {
+export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility = () => {
@@ -42,19 +42,14 @@ export const SideBarSelect: FC<SideBarSelectProps> = ({ name, icon, options }) =
 			<ul
 				id='dropdown-snacks'
 				className={clsx(
-					'scale-y-0 py-2 space-y-2 transition-transform origin-top',
+					'scale-y-0 py-2 space-y-2 transition-transform origin-top pl-3',
 					optionsVisibility ? 'scale-y-100' : 'scale-y-0'
 				)}
 			>
 				{options.map((option) => (
-					<li key={option.name}>
-						<NavLink
-							to={option.to}
-							className='flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
-						>
-							{option.name}
-						</NavLink>
-					</li>
+					<SidebarItem to={option.to} key={option.to}>
+						<span className='pl-5'>{option.name}</span>
+					</SidebarItem>
 				))}
 			</ul>
 		</>

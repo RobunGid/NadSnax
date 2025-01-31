@@ -1,10 +1,13 @@
 import { FC } from 'react';
-import { NavBar } from './NavBar';
+import { Navbar } from './Navbar';
+import { NavbarProvider } from '../../context/NavbarProvider';
 
 export const Header: FC = () => {
 	return (
 		<header>
-			<NavBar />
+			<NavbarProvider>
+				<Navbar />
+			</NavbarProvider>
 		</header>
 	);
 };

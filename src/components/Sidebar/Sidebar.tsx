@@ -1,26 +1,23 @@
-import { FC, useState } from 'react';
+import { FC, useContext } from 'react';
 import { GoArrowLeft, GoHome } from 'react-icons/go';
 import { CiGift } from 'react-icons/ci';
 import { MdMenu, MdStarOutline } from 'react-icons/md';
-import { SideBarItem } from './SideBarItem';
-import SideBarHeader from './SideBarHeader';
-import { SideBarSelect } from './SideBarSelect';
+import { SidebarItem } from './SidebarItem';
+import SidebarHeader from './SidebarHeader';
+import { SidebarSelect } from './SidebarSelect';
 import { GiChipsBag } from 'react-icons/gi';
 import clsx from 'clsx';
+import { NavbarContext } from '../../context/NavbarContext';
 
-export const SideBar: FC = () => {
-	const [navbarVisibility, setNavbarVisibility] = useState<boolean>(false);
-
-	const handleToggleVisibility = () => {
-		setNavbarVisibility((prevVisible) => !prevVisible);
-	};
+export const Sidebar: FC = () => {
+	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
 
 	return (
 		<div className='group flex md:hidden'>
 			<button
 				className='ml-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white peer'
 				type='button'
-				onClick={handleToggleVisibility}
+				onClick={toggleSidebarVisibility}
 			>
 				<span className='sr-only'>Open sidebar panel</span>
 				<MdMenu />
@@ -29,36 +26,36 @@ export const SideBar: FC = () => {
 			<div
 				className={clsx(
 					'peer fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800',
-					navbarVisibility ? 'translate-x-0' : '-translate-x-full'
+					sidebarVisibility ? 'translate-x-0' : '-translate-x-full'
 				)}
 			>
-				<SideBarHeader />
+				<SidebarHeader />
 
 				<button
 					type='button'
 					className='text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white'
-					onClick={handleToggleVisibility}
+					onClick={toggleSidebarVisibility}
 				>
 					<GoArrowLeft />
 					<span className='sr-only'>Close menu</span>
 				</button>
 				<div className='py-4 overflow-y-auto pointer-events-auto'>
 					<ul className='space-y-2 font-medium'>
-						<SideBarItem to='/about'>
+						<SidebarItem to='/about'>
 							<GoHome />
 							<span className='ms-3'>About</span>
-						</SideBarItem>
+						</SidebarItem>
 
-						<SideBarItem to='/best-sellers'>
+						<SidebarItem to='/best-sellers'>
 							<MdStarOutline />
 							<span className='ms-3'>Best Sellers</span>
-						</SideBarItem>
+						</SidebarItem>
 
-						<SideBarItem to='/secret-boxes'>
+						<SidebarItem to='/secret-boxes'>
 							<CiGift />
 							<span className='ms-3'>Secret Boxes</span>
-						</SideBarItem>
-						<SideBarSelect
+						</SidebarItem>
+						<SidebarSelect
 							name='Snacks'
 							icon={<GiChipsBag />}
 							options={[
