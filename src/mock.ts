@@ -32,7 +32,7 @@ export const categories: Record<string, category> = {
 		products: [
 			{ name: 'Juices', to: '/products/drinks/juices' },
 			{ name: 'Milkshakes', to: '/products/drinks/milkshakes' },
-			{ name: 'Sports-drinks', to: '/products/drinks/sports-drinks' },
+			{ name: 'Sport-drinks', to: '/products/drinks/sports-drinks' },
 			{ name: 'Tea', to: '/products/drinks/tea' },
 			{ name: 'Coffee', to: '/products/drinks/coffee' },
 		],
