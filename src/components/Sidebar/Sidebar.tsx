@@ -5,9 +5,9 @@ import { MdMenu, MdStarOutline } from 'react-icons/md';
 import { SidebarItem } from './SidebarItem';
 import SidebarHeader from './SidebarHeader';
 import { SidebarSelect } from './SidebarSelect';
-import { GiChipsBag } from 'react-icons/gi';
 import clsx from 'clsx';
 import { NavbarContext } from '../../context/NavbarContext';
+import { categories } from '../../mock';
 
 export const Sidebar: FC = () => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
@@ -55,16 +55,19 @@ export const Sidebar: FC = () => {
 							<CiGift />
 							<span className='ms-3'>Secret Boxes</span>
 						</SidebarItem>
-						<SidebarSelect
-							name='Snacks'
-							icon={<GiChipsBag />}
-							options={[
-								{ name: 'Pop-Corn', to: '/products/snacks/pop-corn' },
-								{ name: 'Crackers', to: '/products/snacks/crackers' },
-								{ name: ' Chips', to: '/products/snacks/chips' },
-								{ name: 'Croutons', to: '/products/snacks/croutons' },
-							]}
-						/>
+						{Object.entries(categories).map(([name, entries]) => {
+							return (
+								<SidebarSelect
+									key={name}
+									name={name}
+									icon={entries.icon}
+									options={entries.products.map((item) => ({
+										to: item.to,
+										name: item.name,
+									}))}
+								/>
+							);
+						})}
 					</ul>
 				</div>
 			</div>

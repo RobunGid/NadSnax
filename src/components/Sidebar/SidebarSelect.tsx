@@ -1,7 +1,12 @@
 import clsx from 'clsx';
-import { FC, ReactNode, useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
+import { FC, useState } from 'react';
 import { SidebarItem } from './SidebarItem';
+import { GiChipsBag } from 'react-icons/gi';
+import { LuCandy } from 'react-icons/lu';
+import { RiDrinks2Fill } from 'react-icons/ri';
+import { IconType } from 'react-icons';
+import { IoIosArrowDown } from 'react-icons/io';
+import { icon } from '../../mock';
 
 type option = {
 	to: string;
@@ -10,7 +15,7 @@ type option = {
 
 interface SidebarSelectProps {
 	name: string;
-	icon: ReactNode;
+	icon: icon;
 	options: option[];
 }
 
@@ -21,20 +26,28 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) =
 		setOptionsVisibility((prevVisible) => !prevVisible);
 	};
 
+	const icons: Record<icon, IconType> = {
+		'gi/GiChipsBag': GiChipsBag,
+		'lu/LuCandy': LuCandy,
+		'ri/RiDrinks2Fill': RiDrinks2Fill,
+	};
+
+	const IconElement = icons[icon];
+
 	return (
-		<>
+		<li>
 			<button
 				type='button'
 				className='flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
 				onClick={handleToggleVisibility}
 			>
-				{icon}
+				<IconElement />
 				<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap'>
 					{name}
 				</span>
 				<IoIosArrowDown
 					className={clsx(
-						'transition-transform',
+						'transition-transform origin-center',
 						optionsVisibility && 'rotate-180'
 					)}
 				/>
@@ -42,8 +55,8 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) =
 			<ul
 				id='dropdown-snacks'
 				className={clsx(
-					'scale-y-0 py-2 space-y-2 transition-transform origin-top pl-3',
-					optionsVisibility ? 'scale-y-100' : 'scale-y-0'
+					'transition-all pl-3 overflow-hidden space-y-1.5',
+					optionsVisibility ? 'max-h-80' : 'max-h-0'
 				)}
 			>
 				{options.map((option) => (
@@ -52,6 +65,6 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) =
 					</SidebarItem>
 				))}
 			</ul>
-		</>
+		</li>
 	);
 };
