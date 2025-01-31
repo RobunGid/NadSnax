@@ -1,7 +1,7 @@
 export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';
 
-type category = {
-	icon: icon;
+export type category = {
+	icon?: icon;
 	products: { name: string; to: string }[];
 };
 

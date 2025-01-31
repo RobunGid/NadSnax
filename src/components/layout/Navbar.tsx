@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { NavbarLink } from '../Navbar/NavbarLink';
 import { NavbarRule } from '../Navbar/NavbarRule';
-import { SnacksDropdown } from '../Navbar/SnacksDropdown';
-import { SnacksButton } from '../Navbar/SnacksButton';
+import { NavbarDropdown } from '../Navbar/NavbarDropdown';
+import { NavbarDropdownButton } from '../Navbar/NavbarDropdownButton';
 import { SiteLogo } from '../Navbar/SiteLogo';
 import { Sidebar } from '../Sidebar/Sidebar';
+import { categories } from '../../mock';
 
 export const Navbar: FC = () => {
 	return (
@@ -28,10 +29,12 @@ export const Navbar: FC = () => {
 				</li>
 				<NavbarRule />
 
-				<li>
-					<SnacksButton />
-					<SnacksDropdown />
-				</li>
+				{Object.entries(categories).map(([name, category]) => (
+					<li key={name}>
+						<NavbarDropdownButton text={name} />
+						<NavbarDropdown category={category} />
+					</li>
+				))}
 			</ul>
 		</div>
 	);
