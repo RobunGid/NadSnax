@@ -41,9 +41,9 @@ export const Sidebar: FC = () => {
 				</button>
 				<div className='py-4 overflow-y-auto pointer-events-auto'>
 					<ul className='space-y-2 font-medium'>
-						<SidebarItem to='/about'>
+						<SidebarItem to='/home'>
 							<GoHome />
-							<span className='ms-3'>About</span>
+							<span className='ms-3'>Home</span>
 						</SidebarItem>
 
 						<SidebarItem to='/best-sellers'>

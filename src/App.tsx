@@ -1,21 +1,21 @@
 import { Navigate, Route, Routes } from 'react-router';
 import './App.css';
 import { Header } from './components/layout/Header';
-import { About } from './components/layout/About';
-import { BestSellers } from './components/layout/BestSellers';
-import { SecretBoxes } from './components/layout/SecretBoxes';
-import { Products } from './components/layout/Products';
+import { HomePage } from './components/layout/HomePage';
+import { BestSellersPage } from './components/layout/BestSellersPage';
+import { SecretBoxesPage } from './components/layout/SecretBoxesPage';
+import { ProductsPage } from './components/layout/ProductsPage';
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Routes>
-				<Route path='/' element={<Navigate to='/about' />} />
-				<Route path='/about' element={<About />} />
-				<Route path='/best-sellers' element={<BestSellers />} />
-				<Route path='/secret-boxes' element={<SecretBoxes />} />
-				<Route path='/products/:category/:product' element={<Products />} />
+				<Route path='/' element={<Navigate to='/home' />} />
+				<Route path='/home' element={<HomePage />} />
+				<Route path='/best-sellers' element={<BestSellersPage />} />
+				<Route path='/secret-boxes' element={<SecretBoxesPage />} />
+				<Route path='/products/:category/:product' element={<ProductsPage />} />
 			</Routes>
 		</>
 	);

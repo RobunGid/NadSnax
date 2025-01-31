@@ -11,13 +11,13 @@ export const Navbar: FC = () => {
 	return (
 		<div className='w-full border-b-[1px] flex flex-row items-center'>
 			<Sidebar />
-			<NavbarLink to='/about'>
+			<NavbarLink to='/home'>
 				<SiteLogo />
 			</NavbarLink>
 
 			<ul className='flex-row items-end hidden md:flex md:gap-3'>
 				<li>
-					<NavbarLink to='/about' text='About' />
+					<NavbarLink to='/home' text='Home' />
 				</li>
 				<NavbarRule />
 				<li>

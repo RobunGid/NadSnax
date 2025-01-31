@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams } from 'react-router';
 
-export const Products: FC = () => {
+export const ProductsPage: FC = () => {
 	const { category, product } = useParams();
 	return (
 		<div>
