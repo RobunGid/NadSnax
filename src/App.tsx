@@ -4,6 +4,7 @@ import { Header } from './components/layout/Header';
 import { About } from './components/layout/About';
 import { BestSellers } from './components/layout/BestSellers';
 import { SecretBoxes } from './components/layout/SecretBoxes';
+import { Products } from './components/layout/Products';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path='/about' element={<About />} />
 				<Route path='/best-sellers' element={<BestSellers />} />
 				<Route path='/secret-boxes' element={<SecretBoxes />} />
+				<Route path='/products/:category/:product' element={<Products />} />
 			</Routes>
 		</>
 	);

@@ -32,7 +32,12 @@ export const SideBarSelect: FC<SideBarSelectProps> = ({ name, icon, options }) =
 				<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap'>
 					{name}
 				</span>
-				<IoIosArrowDown />
+				<IoIosArrowDown
+					className={clsx(
+						'transition-transform',
+						optionsVisibility && 'rotate-180'
+					)}
+				/>
 			</button>
 			<ul
 				id='dropdown-snacks'

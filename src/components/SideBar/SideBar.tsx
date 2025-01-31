@@ -62,10 +62,10 @@ export const SideBar: FC = () => {
 							name='Snacks'
 							icon={<GiChipsBag />}
 							options={[
-								{ name: 'Pop-Corn', to: '/snacks/pop-corn' },
-								{ name: 'Crackers', to: '/snacks/crackers' },
-								{ name: ' Chips', to: '/snacks/chips' },
-								{ name: 'Croutons', to: '/snacks/croutons' },
+								{ name: 'Pop-Corn', to: '/products/snacks/pop-corn' },
+								{ name: 'Crackers', to: '/products/snacks/crackers' },
+								{ name: ' Chips', to: '/products/snacks/chips' },
+								{ name: 'Croutons', to: '/products/snacks/croutons' },
 							]}
 						/>
 					</ul>
