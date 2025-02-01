@@ -10,7 +10,7 @@ export const ProductsPage: FC = () => {
 
 	productsList = products;
 
-	if (type) {
+	if (category) {
 		productsList = productsList.filter((product) => {
 			return product.category === category;
 		});
