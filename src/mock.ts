@@ -1,10 +1,7 @@
-export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';
-
-export type category = {
-	icon: icon;
-	products: { name: string; to: string }[];
-};
-
+import { category, Product } from './types';
+import catriosChips from './assets/mock/catrios-chips.png';
+import chvatjnersChips from './assets/mock/chvatjners-chips.png';
+import parkOfChips from './assets/mock/park-of-chips.png';
 export const categories: Record<string, category> = {
 	Snacks: {
 		icon: 'gi/GiChipsBag',
@@ -38,3 +35,45 @@ export const categories: Record<string, category> = {
 		],
 	},
 };
+
+export const products: Product[] = [
+	{
+		category: 'snacks',
+		type: 'chips',
+		cost: 8.75,
+		image: catriosChips,
+		imageAlt: 'Catrios Chips Image',
+		label: 'Catrios Chips',
+		rating: 4.5,
+		ratingCount: 14,
+		pageLink: '/products/snacks/chips/catrios-chips',
+		id: '0001',
+		description: 'Spanish salty chips',
+	},
+	{
+		category: 'snacks',
+		type: 'chips',
+		cost: 4.5,
+		image: chvatjnersChips,
+		imageAlt: 'Chvatjners Chips Image',
+		label: 'Chvatjners Chips',
+		rating: 4.75,
+		ratingCount: 9,
+		pageLink: '/products/snacks/chips/chvatjners-chips',
+		id: '0002',
+		description: 'Swedish peppers chips',
+	},
+	{
+		category: 'snacks',
+		type: 'chips',
+		cost: 2.5,
+		image: parkOfChips,
+		imageAlt: 'Park Of Chips Image',
+		label: 'Park Of Chips',
+		rating: 4.25,
+		ratingCount: 19,
+		pageLink: '/products/snacks/chips/park-of-chips',
+		id: '0003',
+		description: 'American corn chips',
+	},
+];

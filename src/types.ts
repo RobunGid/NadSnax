@@ -1,0 +1,27 @@
+type productId = string;
+
+export type Product<C extends keyof AvailableCategories = keyof AvailableCategories> = {
+	category: C;
+	type: AvailableCategories[C];
+	cost: number;
+	image: string;
+	imageAlt: string;
+	label: string;
+	rating: number;
+	ratingCount: number;
+	pageLink: string;
+	id: productId;
+	description: string;
+};
+export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';
+
+export type category = {
+	icon: icon;
+	products: { name: string; to: string }[];
+};
+
+export type AvailableCategories = {
+	snacks: 'chips' | 'pop-corn' | 'crackers' | 'croutons' | 'nuts';
+	sweets: 'candies' | 'cakes' | 'gums' | 'cookies' | 'jelly' | 'bars';
+	wrinks: 'juices' | 'milkshakes' | 'sport-drinks' | 'tea' | 'coffee';
+};
