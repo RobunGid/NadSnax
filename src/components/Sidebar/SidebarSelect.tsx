@@ -6,7 +6,7 @@ import { LuCandy } from 'react-icons/lu';
 import { RiDrinks2Fill } from 'react-icons/ri';
 import { IconType } from 'react-icons';
 import { IoIosArrowDown } from 'react-icons/io';
-import { icon } from '../../mock';
+import { icon } from '../../types';
 
 type option = {
 	to: string;
