@@ -43,8 +43,8 @@ const ProductItem: FC<ProductItemProps> = ({
 				<div className='text-gray-500'>{description}</div>
 				<div>{label}</div>
 				<div className='flex justify-start'>
-					<ProductRating rating={rating} className='flex' />
-					{ratingCount}
+					<ProductRating rating={rating} size='16' className='flex' />
+					<span className='text-gray-500 text-[0.75rem]'>{ratingCount}</span>
 				</div>
 			</div>
 		</Link>
