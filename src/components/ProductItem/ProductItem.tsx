@@ -7,7 +7,7 @@ import { FiPlus } from 'react-icons/fi';
 type ProductItemProps = Product & { pageLink: string };
 
 const ProductItem: FC<ProductItemProps> = ({
-	cost,
+	price,
 	image,
 	imageAlt,
 	label,
@@ -16,17 +16,26 @@ const ProductItem: FC<ProductItemProps> = ({
 	pageLink,
 	description,
 	id,
+	oldPrice,
 }) => {
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
 		console.log(id);
 	};
 
-	const productCost = new Intl.NumberFormat('en-US', {
+	const productPrice = new Intl.NumberFormat('en-US', {
 		style: 'currency',
 		currency: 'USD',
 		minimumFractionDigits: 2,
-	}).format(cost);
+	}).format(price);
+
+	const productOldPrice =
+		oldPrice &&
+		new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 2,
+		}).format(oldPrice);
 
 	return (
 		<Link to={pageLink}>
@@ -39,7 +48,20 @@ const ProductItem: FC<ProductItemProps> = ({
 					<FiPlus />
 					<button>Add</button>
 				</div>
-				<div className='font-bold text-xl'>{productCost}</div>
+				<div className='flex gap-x-2 items-center'>
+					{productOldPrice ? (
+						<>
+							<div className='font-bold text-xl text-lime-600'>
+								Now {productPrice}
+							</div>
+							<div className='font-bold text-md text-gray-500 line-through'>
+								{productOldPrice}
+							</div>
+						</>
+					) : (
+						<div className='font-bold text-xl'>{productPrice}</div>
+					)}
+				</div>
 				<div className='text-gray-500'>{description}</div>
 				<div>{label}</div>
 				<div className='flex justify-start'>

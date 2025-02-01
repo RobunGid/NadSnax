@@ -3,7 +3,8 @@ type productId = string;
 export type Product<C extends keyof AvailableCategories = keyof AvailableCategories> = {
 	category: C;
 	type: AvailableCategories[C];
-	cost: number;
+	price: number;
+	oldPrice?: number;
 	image: string;
 	imageAlt: string;
 	label: string;

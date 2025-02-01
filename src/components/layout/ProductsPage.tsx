@@ -30,13 +30,14 @@ export const ProductsPage: FC = () => {
 					id={product.id}
 					description={product.description}
 					category={product.category}
-					cost={product.cost}
+					price={product.price}
 					image={product.image}
 					imageAlt={product.label}
 					label={product.label}
 					rating={product.rating}
 					type={product.type}
 					pageLink={product.pageLink}
+					oldPrice={product.oldPrice}
 				/>
 			))}
 		</main>
