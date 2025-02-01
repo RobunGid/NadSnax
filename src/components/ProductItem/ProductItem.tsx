@@ -1,9 +1,10 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { Product } from '../../types';
 import { Link } from 'react-router';
 import ProductRating from './ProductRating';
+import { FiPlus } from 'react-icons/fi';
 
-type ProductItemProps = Omit<Product, 'id'> & { pageLink: string };
+type ProductItemProps = Product & { pageLink: string };
 
 const ProductItem: FC<ProductItemProps> = ({
 	cost,
@@ -14,7 +15,13 @@ const ProductItem: FC<ProductItemProps> = ({
 	ratingCount,
 	pageLink,
 	description,
+	id,
 }) => {
+	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
+		event.preventDefault();
+		console.log(id);
+	};
+
 	const productCost = new Intl.NumberFormat('en-US', {
 		style: 'currency',
 		currency: 'USD',
@@ -25,6 +32,13 @@ const ProductItem: FC<ProductItemProps> = ({
 		<Link to={pageLink}>
 			<div>
 				<img src={image} alt={imageAlt} width='240' />
+				<div
+					className='bg-orange-400 flex w-[75px] relative bottom-10 left-2 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					onClick={handleAddProductToCart}
+				>
+					<FiPlus />
+					<button>Add</button>
+				</div>
 				<div className='font-bold text-xl'>{productCost}</div>
 				<div className='text-gray-500'>{description}</div>
 				<div>{label}</div>

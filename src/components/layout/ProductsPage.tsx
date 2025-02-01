@@ -22,11 +22,12 @@ export const ProductsPage: FC = () => {
 	}
 
 	return (
-		<main className='flex flex-wrap p-5 justify-center gap-4 sm:justify-start'>
+		<main className='flex flex-wrap p-5 justify-center gap-4'>
 			{productsList.map((product) => (
 				<ProductItem
 					ratingCount={product.ratingCount}
 					key={product.id}
+					id={product.id}
 					description={product.description}
 					category={product.category}
 					cost={product.cost}
