@@ -4,7 +4,7 @@ export const categories: Record<string, category> = {
 		icon: 'gi/GiChipsBag',
 		to: '/products/snacks',
 		products: [
-			{ name: 'Pop-corn', to: '/products/snacks/pop-corn' },
+			{ name: 'Popcorn', to: '/products/snacks/popcorn' },
 			{ name: 'Crackers', to: '/products/snacks/crackers' },
 			{ name: 'Chips', to: '/products/snacks/chips' },
 			{ name: 'Croutons', to: '/products/snacks/croutons' },

@@ -23,7 +23,7 @@ export type category = {
 };
 
 export type AvailableCategories = {
-	snacks: 'chips' | 'pop-corn' | 'crackers' | 'croutons' | 'nuts';
+	snacks: 'chips' | 'popcorn' | 'crackers' | 'croutons' | 'nuts';
 	sweets: 'candies' | 'cakes' | 'gums' | 'cookies' | 'jelly' | 'bars';
 	wrinks: 'juices' | 'milkshakes' | 'sport-drinks' | 'tea' | 'coffee';
 };
