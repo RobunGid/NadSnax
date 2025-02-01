@@ -24,7 +24,7 @@ export type category = {
 };
 
 export type AvailableCategories = {
-	snacks: 'chips' | 'popcorn' | 'crackers' | 'croutons' | 'nuts';
-	sweets: 'candies' | 'gums' | 'cookies' | 'jelly' | 'bars';
-	wrinks: 'juices' | 'milkshakes' | 'sport-drinks' | 'tea' | 'coffee';
+	snacks: 'chips' | 'popcorn' | 'crackers';
+	sweets: 'candies' | 'gums' | 'cookies';
+	wrinks: 'juices' | 'milkshakes';
 };
