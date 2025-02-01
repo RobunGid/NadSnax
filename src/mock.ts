@@ -16,7 +16,6 @@ export const categories: Record<string, category> = {
 		to: '/products/sweets',
 		products: [
 			{ name: 'Candies', to: '/products/sweets/candies' },
-			{ name: 'Cakes', to: '/products/sweets/cakes' },
 			{ name: 'Gums', to: '/products/sweets/gums' },
 			{ name: 'Cookies', to: '/products/sweets/cookies' },
 			{ name: 'Jelly', to: '/products/sweets/jelly' },
