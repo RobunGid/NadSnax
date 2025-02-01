@@ -5,6 +5,7 @@ import parkOfChips from './assets/mock/park-of-chips.png';
 export const categories: Record<string, category> = {
 	Snacks: {
 		icon: 'gi/GiChipsBag',
+		to: '/products/snacks',
 		products: [
 			{ name: 'Pop-corn', to: '/products/snacks/pop-corn' },
 			{ name: 'Crackers', to: '/products/snacks/crackers' },
@@ -15,6 +16,7 @@ export const categories: Record<string, category> = {
 	},
 	Sweets: {
 		icon: 'lu/LuCandy',
+		to: '/products/sweets',
 		products: [
 			{ name: 'Candies', to: '/products/sweets/candies' },
 			{ name: 'Cakes', to: '/products/sweets/cakes' },
@@ -26,6 +28,7 @@ export const categories: Record<string, category> = {
 	},
 	Drinks: {
 		icon: 'ri/RiDrinks2Fill',
+		to: '/products/drinks',
 		products: [
 			{ name: 'Juices', to: '/products/drinks/juices' },
 			{ name: 'Milkshakes', to: '/products/drinks/milkshakes' },

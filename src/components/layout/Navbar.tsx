@@ -31,7 +31,7 @@ export const Navbar: FC = () => {
 
 				{Object.entries(categories).map(([name, category]) => (
 					<li key={name}>
-						<NavbarDropdownButton text={name} />
+						<NavbarDropdownButton to={category.to} text={name} />
 						<NavbarDropdown category={category} />
 					</li>
 				))}
