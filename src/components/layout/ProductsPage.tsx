@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useParams } from 'react-router';
 import { products } from '../../mock';
 import ProductItem from '../ProductItem/ProductItem';
+import { NoResults } from './NoResults';
 
 export const ProductsPage: FC = () => {
 	const { category, type } = useParams();
@@ -40,6 +41,7 @@ export const ProductsPage: FC = () => {
 					oldPrice={product.oldPrice}
 				/>
 			))}
+			{!productsList.length && <NoResults type={type} category={category} />}
 		</main>
 	);
 };
