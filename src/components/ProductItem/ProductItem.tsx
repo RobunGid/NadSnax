@@ -40,7 +40,11 @@ const ProductItem: FC<ProductItemProps> = ({
 	return (
 		<Link to={pageLink}>
 			<div>
-				<img src={image} alt={imageAlt} width='240' />
+				<img
+					src={image}
+					alt={imageAlt}
+					className='object-cover w-[240px] h-[240px]'
+				/>
 				<div
 					className='bg-orange-400 flex w-[75px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={handleAddProductToCart}
