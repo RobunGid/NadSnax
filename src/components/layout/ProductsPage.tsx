@@ -5,9 +5,22 @@ import ProductItem from '../ProductItem/ProductItem';
 
 export const ProductsPage: FC = () => {
 	const { category, type } = useParams();
-	const productsList = products.filter((product) => {
-		return product.category === category && product.type === type;
-	});
+
+	let productsList;
+
+	productsList = products;
+
+	if (type) {
+		productsList = productsList.filter((product) => {
+			return product.category === category;
+		});
+	}
+	if (category && type) {
+		productsList = productsList.filter((product) => {
+			return product.category === category && product.type === type;
+		});
+	}
+
 	return (
 		<main className='flex flex-wrap p-5 justify-center gap-4 sm:justify-start'>
 			{productsList.map((product) => (
