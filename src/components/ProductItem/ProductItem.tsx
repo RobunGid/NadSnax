@@ -62,7 +62,9 @@ const ProductItem: FC<ProductItemProps> = ({
 						<div className='font-bold text-xl'>{productPrice}</div>
 					)}
 				</div>
-				<div className='text-gray-500'>{description}</div>
+				<div className='text-gray-500 text-ellipsis text-nowrap w-60 overflow-hidden'>
+					{description}
+				</div>
 				<div>{label}</div>
 				<div className='flex justify-start'>
 					<ProductRating rating={rating} size='16' className='flex' />
