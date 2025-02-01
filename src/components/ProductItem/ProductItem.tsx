@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Product } from '../../types';
 import { Link } from 'react-router';
+import ProductRating from './ProductRating';
 
 type ProductItemProps = Omit<Product, 'id'> & { pageLink: string };
 
@@ -27,8 +28,9 @@ const ProductItem: FC<ProductItemProps> = ({
 				<div className='font-bold text-xl'>{productCost}</div>
 				<div className='text-gray-500'>{description}</div>
 				<div>{label}</div>
-				<div>
-					{rating} {ratingCount}
+				<div className='flex justify-start'>
+					<ProductRating rating={rating} className='flex' />
+					{ratingCount}
 				</div>
 			</div>
 		</Link>

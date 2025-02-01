@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams } from 'react-router';
 import { products } from '../../mock';
-import ProductItem from './ProductItem';
+import ProductItem from '../ProductItem/ProductItem';
 
 export const ProductsPage: FC = () => {
 	const { category, type } = useParams();
