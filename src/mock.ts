@@ -1,7 +1,4 @@
 import { category, Product } from './types';
-import catriosChips from './assets/mock/catrios-chips.png';
-import chvatjnersChips from './assets/mock/chvatjners-chips.png';
-import parkOfChips from './assets/mock/park-of-chips.png';
 export const categories: Record<string, category> = {
 	Snacks: {
 		icon: 'gi/GiChipsBag',
@@ -44,7 +41,7 @@ export const products: Product[] = [
 		category: 'snacks',
 		type: 'chips',
 		cost: 8.75,
-		image: catriosChips,
+		image: 'https://i.ibb.co/DfQwbBGS/catrios-chips.png',
 		imageAlt: 'Catrios Chips Image',
 		label: 'Catrios Chips',
 		rating: 4.5,
@@ -57,7 +54,7 @@ export const products: Product[] = [
 		category: 'snacks',
 		type: 'chips',
 		cost: 4.5,
-		image: chvatjnersChips,
+		image: 'https://i.ibb.co/7F6Y020/chvatjners-chips.png',
 		imageAlt: 'Chvatjners Chips Image',
 		label: 'Chvatjners Chips',
 		rating: 4.75,
@@ -70,7 +67,7 @@ export const products: Product[] = [
 		category: 'snacks',
 		type: 'chips',
 		cost: 2.5,
-		image: parkOfChips,
+		image: 'https://i.ibb.co/K1XjKRY/park-of-chips.png',
 		imageAlt: 'Park Of Chips Image',
 		label: 'Park Of Chips',
 		rating: 4.25,
