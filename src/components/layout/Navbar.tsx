@@ -25,7 +25,7 @@ export const Navbar: FC = () => {
 				</li>
 				<NavbarRule />
 				<li>
-					<NavbarLink to='/secret-boxes' text='Secret Boxes' />
+					<NavbarLink to='/products/secret-boxes' text='Secret Boxes' />
 				</li>
 				<NavbarRule />
 

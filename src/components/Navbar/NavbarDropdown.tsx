@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { NavbarLink } from './NavbarLink';
-import { category } from '../../mock';
+import { category } from '../../types';
 
 interface NavbarDropdownProps {
 	category: category;

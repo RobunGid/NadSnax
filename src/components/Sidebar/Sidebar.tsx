@@ -51,7 +51,7 @@ export const Sidebar: FC = () => {
 							<span className='ms-3'>Best Sellers</span>
 						</SidebarItem>
 
-						<SidebarItem to='/secret-boxes'>
+						<SidebarItem to='/products/secret-boxes'>
 							<CiGift />
 							<span className='ms-3'>Secret Boxes</span>
 						</SidebarItem>
