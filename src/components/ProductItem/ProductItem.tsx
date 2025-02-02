@@ -5,7 +5,7 @@ import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
 import { GiStarFormation } from 'react-icons/gi';
 
-type ProductItemProps = Product & { pageLink: string };
+type ProductItemProps = Partial<Product> & { pageLink: string; className?: string };
 
 const ProductItem: FC<ProductItemProps> = ({
 	price,
@@ -20,17 +20,20 @@ const ProductItem: FC<ProductItemProps> = ({
 	oldPrice,
 	isBestseller,
 	category,
+	className,
 }) => {
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
 		console.log(id);
 	};
 
-	const productPrice = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
-		minimumFractionDigits: 2,
-	}).format(price);
+	const productPrice =
+		price &&
+		new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 2,
+		}).format(price);
 
 	const productOldPrice =
 		oldPrice &&
@@ -41,7 +44,7 @@ const ProductItem: FC<ProductItemProps> = ({
 		}).format(oldPrice);
 
 	return (
-		<Link to={pageLink}>
+		<Link to={pageLink} className={className}>
 			<div className='relative z-0 overflow-hidden'>
 				{isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
@@ -91,7 +94,11 @@ const ProductItem: FC<ProductItemProps> = ({
 					{isBestseller && <GiStarFormation className='text-amber-400' />}
 				</div>
 				<div className='flex justify-start'>
-					<ProductRating rating={rating} size='16' className='flex' />
+					<ProductRating
+						rating={rating || 0}
+						size='16'
+						className='flex text-yellow-400'
+					/>
 					<span className='text-gray-500 text-[0.75rem]'>{ratingCount}</span>
 				</div>
 			</div>

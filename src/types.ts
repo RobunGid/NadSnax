@@ -1,4 +1,5 @@
-type productId = string;
+type ProductId = string;
+type ReviewId = string;
 
 export type Product<C extends keyof AvailableCategories = keyof AvailableCategories> = {
 	category: C;
@@ -11,7 +12,7 @@ export type Product<C extends keyof AvailableCategories = keyof AvailableCategor
 	rating: number;
 	ratingCount: number;
 	pageLink: string;
-	id: productId;
+	id: ProductId;
 	description: string;
 	isBestseller?: boolean;
 };
@@ -29,4 +30,13 @@ export type AvailableCategories = {
 	sweets: 'candies' | 'gum' | 'cookies';
 	drinks: 'juices' | 'milkshakes';
 	'secret-boxes': 'all';
+};
+
+export type Review = {
+	id: ReviewId;
+	avatar: string;
+	name: string;
+	text: string;
+	rating: number;
+	productId: ProductId;
 };

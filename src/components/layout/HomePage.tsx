@@ -3,6 +3,8 @@ import ChipsHomeImage from '../../assets/chips-image.png';
 import CrackersHomeImage from '../../assets/crackers-image.png';
 import CookiesHomeImage from '../../assets/cookies-image.png';
 import JuiceHomeImage from '../../assets/juice-image.png';
+import { reviews } from '../../mock';
+import { ReviewElement } from './ReviewElement';
 
 export const HomePage: FC = () => {
 	return (
@@ -37,6 +39,7 @@ export const HomePage: FC = () => {
 					</div>
 				</div>
 			</section>
+			<hr />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<div className='flex flex-col xl:flex-row gap-4'>
 					<div className='max-w-72'>
@@ -68,6 +71,7 @@ export const HomePage: FC = () => {
 					className='p-5'
 				/>
 			</section>
+			<hr />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<img
 					src={CookiesHomeImage}
@@ -98,6 +102,7 @@ export const HomePage: FC = () => {
 					</div>
 				</div>
 			</section>
+			<hr />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<div className='flex flex-col xl:flex-row gap-4'>
 					<div className='max-w-72'>
@@ -129,6 +134,36 @@ export const HomePage: FC = () => {
 					width='400'
 					className='p-5'
 				/>
+			</section>
+			<hr />
+			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around flex-col items-center'>
+				<h2 className='font-bold text-2xl'>Contact details</h2>
+				<div className='bg-gray-200 p-14 mx-24'>
+					<h3 className='text-center font-semibold text-xl mb-5'>Contact us</h3>
+					<p>
+						Thank you for visiting our website! Currently, our contact form is
+						temporarily unavailable. We apologize for any inconvenience this
+						may cause and appreciate your understanding. Please check back
+						soon for updates. In the meantime, feel free to explore our snacks
+						and enjoy browsing our site!
+					</p>
+				</div>
+			</section>
+			<hr />
+			<section className='flex gap-3 py-3 space-x-3 flex-col justify-center align-middle'>
+				<h2 className='font-bold text-2xl text-center'>Out customer's reviews</h2>
+				<ul className='flex gap-5 overflow-hidden justify-center w-full mx-auto'>
+					{reviews.map((review) => (
+						<ReviewElement
+							key={review.id}
+							name={review.name}
+							avatar={review.avatar}
+							rating={review.rating}
+							productId={review.productId}
+							text={review.text}
+						/>
+					))}
+				</ul>
 			</section>
 		</div>
 	);

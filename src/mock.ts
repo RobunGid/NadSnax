@@ -1,4 +1,4 @@
-import { category, Product } from './types';
+import { category, Product, Review } from './types';
 export const categories: Record<string, category> = {
 	Snacks: {
 		icon: 'gi/GiChipsBag',
@@ -1189,5 +1189,32 @@ export const products: Product[] = [
 		pageLink: 'products/secret-boxes/premium',
 		id: '0087',
 		description: 'Premium box with random snacks',
+	},
+];
+
+export const reviews: Review[] = [
+	{
+		avatar: 'https://i.ibb.co/tMdp4zG2/Rita-James.png',
+		name: 'Rite James',
+		rating: 5,
+		text: 'These chips are tasty! The flavor is just right, not too salty, and nice and crisp. Perfect snack!',
+		productId: '0001',
+		id: '0001',
+	},
+	{
+		avatar: 'https://i.ibb.co/99RXpRtN/Jospeh-Warren.png',
+		name: 'Jospeh Warren',
+		rating: 5,
+		text: 'Delicious chocolate cookies with a great balance of soft and crunchy. Perfect for sweet cravings!',
+		productId: '0043',
+		id: '0002',
+	},
+	{
+		avatar: 'https://i.ibb.co/XxfKKcsN/Charles-Frost.png',
+		name: 'Charles Frost',
+		rating: 5,
+		text: 'Refreshing apple juice with natural flavor, not too sweet—perfectly balanced and healthy!',
+		productId: '0084',
+		id: '0003',
 	},
 ];
