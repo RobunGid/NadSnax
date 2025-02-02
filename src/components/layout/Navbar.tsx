@@ -21,7 +21,7 @@ export const Navbar: FC = () => {
 				</li>
 				<NavbarRule />
 				<li>
-					<NavbarLink to='/best-sellers' text='Best Sellers' />
+					<NavbarLink to='/products/best-sellers' text='Best Sellers' />
 				</li>
 				<NavbarRule />
 				<li>

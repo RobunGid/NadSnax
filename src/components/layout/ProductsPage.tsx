@@ -22,6 +22,10 @@ export const ProductsPage: FC = () => {
 		});
 	}
 
+	if (category === 'best-sellers') {
+		productsList = products.filter((product) => product.isBestseller);
+	}
+
 	return (
 		<main className='flex flex-wrap p-5 justify-center gap-4'>
 			{productsList.map((product) => (

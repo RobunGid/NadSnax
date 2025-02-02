@@ -41,7 +41,7 @@ const ProductItem: FC<ProductItemProps> = ({
 
 	return (
 		<Link to={pageLink}>
-			<div className='border-2 relative z-0 overflow-hidden'>
+			<div className='relative z-0 overflow-hidden'>
 				{isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Bestseller

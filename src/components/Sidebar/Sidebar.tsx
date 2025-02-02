@@ -46,7 +46,7 @@ export const Sidebar: FC = () => {
 							<span className='ms-3'>Home</span>
 						</SidebarItem>
 
-						<SidebarItem to='/best-sellers'>
+						<SidebarItem to='/products/best-sellers'>
 							<MdStarOutline />
 							<span className='ms-3'>Best Sellers</span>
 						</SidebarItem>
