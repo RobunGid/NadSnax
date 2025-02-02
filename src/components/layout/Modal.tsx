@@ -1,0 +1,41 @@
+import clsx from 'clsx';
+import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
+import { RxCross1 } from 'react-icons/rx';
+
+interface ModalProps {
+	active: boolean;
+	setActive: Dispatch<SetStateAction<boolean>>;
+	children: ReactNode;
+}
+
+const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
+	return (
+		<div
+			className={clsx(
+				active
+					? 'opacity-100 pointer-events-auto'
+					: 'opacity-0 pointer-events-none',
+				'h-screen w-screen bg-black bg-opacity-40 fixed inset-0 z-50 flex items-center justify-center transition-opacity'
+			)}
+			onClick={() => setActive(false)}
+		>
+			<div
+				className={clsx(
+					'p-5 rounded-xl bg-white transition-transform',
+					active ? 'scale-100' : 'scale-50'
+				)}
+				onClick={(event) => event.stopPropagation()}
+			>
+				<button
+					className='absolute top-1 right-1 hover:scale-110'
+					onClick={() => setActive(false)}
+				>
+					<RxCross1 />
+				</button>
+				{children}
+			</div>
+		</div>
+	);
+};
+
+export default Modal;
