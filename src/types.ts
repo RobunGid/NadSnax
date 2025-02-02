@@ -28,4 +28,5 @@ export type AvailableCategories = {
 	snacks: 'chips' | 'popcorn' | 'crackers';
 	sweets: 'candies' | 'gum' | 'cookies';
 	drinks: 'juices' | 'milkshakes';
+	'secret-boxes': 'all';
 };

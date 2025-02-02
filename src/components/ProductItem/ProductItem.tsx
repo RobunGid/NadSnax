@@ -19,6 +19,7 @@ const ProductItem: FC<ProductItemProps> = ({
 	id,
 	oldPrice,
 	isBestseller,
+	category,
 }) => {
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
@@ -45,6 +46,11 @@ const ProductItem: FC<ProductItemProps> = ({
 				{isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Bestseller
+					</div>
+				)}
+				{category === 'secret-boxes' && (
+					<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
+						Secret Box
 					</div>
 				)}
 				<img
@@ -74,7 +80,10 @@ const ProductItem: FC<ProductItemProps> = ({
 						<div className='font-bold text-xl'>{productPrice}</div>
 					)}
 				</div>
-				<div className='text-gray-500 text-ellipsis text-nowrap w-60 overflow-hidden'>
+				<div
+					className='text-gray-500 text-ellipsis text-nowrap w-60 overflow-hidden'
+					title={description}
+				>
 					{description}
 				</div>
 				<div className='flex space-x-2'>
