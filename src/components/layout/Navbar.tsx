@@ -11,7 +11,7 @@ import Modal from './Modal';
 import Cart from '../Cart/Cart';
 
 export const Navbar: FC = () => {
-	const [isModalActive, setIsModalActive] = useState<boolean>(false);
+	const [isModalActive, setIsModalActive] = useState<boolean>(true);
 	return (
 		<>
 			<div className='w-full border-b-[1px] flex flex-row items-center'>
