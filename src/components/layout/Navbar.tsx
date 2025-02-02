@@ -16,7 +16,7 @@ export const Navbar: FC = () => {
 				<SiteLogo />
 			</NavbarLink>
 
-			<ul className='flex-row items-center md:flex md:gap-3 flex-grow'>
+			<ul className='flex-row items-center hidden md:flex md:gap-3 flex-grow'>
 				<li>
 					<NavbarLink to='/home' text='Home' />
 				</li>
@@ -36,11 +36,10 @@ export const Navbar: FC = () => {
 						<NavbarDropdown category={category} />
 					</li>
 				))}
-
-				<li className='ml-auto'>
-					<NavbarCart />
-				</li>
 			</ul>
+			<div className='ml-auto hover:scale-110 m-1 transition'>
+				<NavbarCart />
+			</div>
 		</div>
 	);
 };

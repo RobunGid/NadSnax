@@ -7,11 +7,29 @@ interface NavbarCartProps {
 }
 
 const NavbarCart: FC<NavbarCartProps> = ({ className }) => {
+	const count = 0;
+
+	const amount = 0;
+
+	const displayAmount = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2,
+	}).format(amount);
+
 	return (
 		<button
-			className={clsx('p-1 flex items-center justify-center size-12', className)}
+			className={clsx(
+				'flex flex-col items-center justify-center size-16',
+				className
+			)}
 		>
-			<PiShoppingCartBold />
+			<div className='absolute mb-8 ml-5 font-bold text-xs bg-amber-500 w-4 h-4 rounded-full border border-amber-800 flex justify-center align-center'>
+				{count}
+			</div>
+			<PiShoppingCartBold size={28} />
+
+			<div className='text-xs font-thin'>{displayAmount}</div>
 		</button>
 	);
 };
