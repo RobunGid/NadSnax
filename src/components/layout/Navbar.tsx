@@ -6,6 +6,7 @@ import { NavbarDropdownButton } from '../Navbar/NavbarDropdownButton';
 import { SiteLogo } from '../Navbar/SiteLogo';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { categories } from '../../mock';
+import NavbarCart from '../Cart/NavbarCart';
 
 export const Navbar: FC = () => {
 	return (
@@ -15,7 +16,7 @@ export const Navbar: FC = () => {
 				<SiteLogo />
 			</NavbarLink>
 
-			<ul className='flex-row items-end hidden md:flex md:gap-3'>
+			<ul className='flex-row items-center md:flex md:gap-3 flex-grow'>
 				<li>
 					<NavbarLink to='/home' text='Home' />
 				</li>
@@ -35,6 +36,10 @@ export const Navbar: FC = () => {
 						<NavbarDropdown category={category} />
 					</li>
 				))}
+
+				<li className='ml-auto'>
+					<NavbarCart />
+				</li>
 			</ul>
 		</div>
 	);
