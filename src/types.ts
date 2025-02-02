@@ -26,5 +26,5 @@ export type category = {
 export type AvailableCategories = {
 	snacks: 'chips' | 'popcorn' | 'crackers';
 	sweets: 'candies' | 'gum' | 'cookies';
-	wrinks: 'juices' | 'milkshakes';
+	drinks: 'juices' | 'milkshakes';
 };
