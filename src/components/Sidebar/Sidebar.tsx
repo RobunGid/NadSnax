@@ -58,6 +58,7 @@ export const Sidebar: FC = () => {
 						{Object.entries(categories).map(([name, entries]) => {
 							return (
 								<SidebarSelect
+									to={entries.to}
 									key={name}
 									name={name}
 									icon={entries.icon}

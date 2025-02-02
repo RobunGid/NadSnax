@@ -17,9 +17,10 @@ interface SidebarSelectProps {
 	name: string;
 	icon: icon;
 	options: option[];
+	to: string;
 }
 
-export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) => {
+export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options, to }) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility = () => {
@@ -38,19 +39,23 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ name, icon, options }) =
 		<li>
 			<button
 				type='button'
-				className='flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
-				onClick={handleToggleVisibility}
+				className='flex items-center justify-between w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
 			>
-				<IconElement />
-				<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap'>
-					{name}
-				</span>
-				<IoIosArrowDown
-					className={clsx(
-						'transition-transform origin-center',
-						optionsVisibility && 'rotate-180'
-					)}
-				/>
+				<SidebarItem to={to} className='p-0'>
+					<IconElement />
+					<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap'>
+						{name}
+					</span>
+				</SidebarItem>
+
+				<div className='w-10' onClick={handleToggleVisibility}>
+					<IoIosArrowDown
+						className={clsx(
+							'transition-transform origin-center float-end',
+							optionsVisibility && 'rotate-180'
+						)}
+					/>
+				</div>
 			</button>
 			<ul
 				id='dropdown-snacks'

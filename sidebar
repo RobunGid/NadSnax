@@ -1,0 +1,47 @@
+* [33mfb38b97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m ⭐ Reviews added to HomePage
+* [33m1af6591[m 🕰️ Secret boxes mock added
+* [33m5206f29[m 🕰️ Secret boxes added
+* [33m1372d1c[m ⭐ Best sellers mock added
+* [33m3ffbbc2[m ⭐ Best sellers page added
+* [33m00243ba[m ⭐ Best seller display added
+* [33mc1f0668[m 🧃 Juices amd milkshakes mock added
+* [33mc5023ff[m 👅 Gum mock added
+* [33m1e7c83d[m 🔧 Fixed gums to gum
+* [33m160be9f[m 🍬 Candies mock
+* [33m56a160e[m 🍪 Crackers mock added
+* [33m99d4e1f[m ❌ No results page added
+* [33m09aa952[m 🔧 Fix ProductsPage
+* [33m0982c1f[m 🍪 Cookies mock added
+* [33m701c084[m ❌ Remove cupcake category
+* [33md0066ba[m 🍿 Popcorn mock added
+* [33m161d47b[m 🔧 Pop-corn fixed to popcorn
+* [33m018c9e7[m 📚 Added oldPrice
+* [33m105e9a5[m 📚 ProductItem button position changed
+* [33mb4636f1[m ⭐ Rating stars size reduced
+* [33m55c6b39[m 📚 ProductItem updated
+* [33m97ce776[m 🔧 Fix type import in SidebarSelect
+* [33mbf14070[m 🧈 ProductsPage mock updated
+* [33m1b23f0d[m 🖼️ Mock images moved to image hosting
+* [33mf2d1882[m ⭐ Rating functionality updated
+* [33m7d24bcd[m 📚 ProductItem rating basic
+* [33m698d59b[m 📚 ProductItem, ProductsPage basic
+* [33m5f22c9d[m 🏠 Home page done
+* [33m78e6167[m 🐋 Added dockerfile, docker compose, dockerignore
+* [33m4b30d70[m 🏠 Home page first version
+* [33m95257b9[m 🍾 Sports-drinks renamed to sport-drinks in mock
+* [33m94a305d[m 🏠 Pages refactoring
+* [33m1511bba[m 📝 Navbar refactoring
+* [33m7570713[m 📝 Sidebar refactoring
+* [33m169fb7d[m 📰 Sidebar refactoring
+* [33mb715246[m 🔧 Added redux toolkit
+* [33mad52d18[m 🛒 Added products page
+* [33m674a215[m 🔧 Fix commit
+* [33m980ea2c[m 🎇 Sidebar improvements
+* [33m30b156c[m 🔧 NavBarLink and NavBarRule moved to NavBar directory
+* [33mf35b6a5[m 🎉 Sidebar improvements
+* [33m7362064[m 🎇 First mobile sidebar version
+* [33m5b5cb9e[m 🔧 Update site logo
+* [33m313ffb2[m 🔨 Remove emojis from navbar
+* [33m3b72e5d[m 🎉 Navbar fixed and upgraded
+* [33mc30d2e4[m ✨ NavBar basics, page routing basics, snacks dropdown menu basics
+* [33m6594f23[m ⭐ Initial project commit
