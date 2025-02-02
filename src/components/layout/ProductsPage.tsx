@@ -39,6 +39,7 @@ export const ProductsPage: FC = () => {
 					type={product.type}
 					pageLink={product.pageLink}
 					oldPrice={product.oldPrice}
+					isBestseller={product.isBestseller}
 				/>
 			))}
 			{!productsList.length && <NoResults type={type} category={category} />}

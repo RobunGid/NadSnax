@@ -30,7 +30,7 @@ export const Navbar: FC = () => {
 				<NavbarRule />
 
 				{Object.entries(categories).map(([name, category]) => (
-					<li key={name}>
+					<li key={name} className='z-10'>
 						<NavbarDropdownButton to={category.to} text={name} />
 						<NavbarDropdown category={category} />
 					</li>

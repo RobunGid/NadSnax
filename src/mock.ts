@@ -42,6 +42,7 @@ export const products: Product[] = [
 		pageLink: '/products/snacks/chips/premium-bl-chips',
 		id: '0004',
 		description: 'Premium quality crispy chips',
+		isBestseller: true,
 	},
 	{
 		category: 'snacks',

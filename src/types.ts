@@ -13,6 +13,7 @@ export type Product<C extends keyof AvailableCategories = keyof AvailableCategor
 	pageLink: string;
 	id: productId;
 	description: string;
+	isBestseller?: boolean;
 };
 
 export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';
