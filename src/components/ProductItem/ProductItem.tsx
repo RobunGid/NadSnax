@@ -5,7 +5,11 @@ import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
 import { GiStarFormation } from 'react-icons/gi';
 
-type ProductItemProps = Partial<Product> & { pageLink: string; className?: string };
+type ProductItemProps = Product & {
+	pageLink: string;
+	className?: string;
+	count?: number;
+};
 
 const ProductItem: FC<ProductItemProps> = ({
 	price,
@@ -21,6 +25,7 @@ const ProductItem: FC<ProductItemProps> = ({
 	isBestseller,
 	category,
 	className,
+	count,
 }) => {
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
@@ -62,13 +67,28 @@ const ProductItem: FC<ProductItemProps> = ({
 					className='object-cover w-[240px] h-[240px]'
 				/>
 
-				<div
-					className='bg-orange-400 flex w-[75px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
-					onClick={handleAddProductToCart}
-				>
-					<FiPlus />
-					<button>Add</button>
-				</div>
+				{!count ? (
+					<div
+						className='bg-orange-400 flex w-[75px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+						onClick={handleAddProductToCart}
+					>
+						<FiPlus />
+						<button>Add</button>
+					</div>
+				) : (
+					<div
+						className='bg-orange-400 flex justify-center w-[100px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition overflow-hidden'
+						onClick={handleAddProductToCart}
+					>
+						<button className='hover:bg-orange-500 absolute inset-0 w-1/3'>
+							+
+						</button>
+						<div className='text-center'>{count}</div>
+						<button className='hover:bg-orange-500 absolute top-0 right-0 bottom-0 w-1/3'>
+							–
+						</button>
+					</div>
+				)}
 				<div className='flex gap-x-2 items-center'>
 					{productOldPrice ? (
 						<>
@@ -90,7 +110,7 @@ const ProductItem: FC<ProductItemProps> = ({
 					{description}
 				</div>
 				<div className='flex space-x-2'>
-					<div>{label}</div>{' '}
+					<div>{label}</div>
 					{isBestseller && <GiStarFormation className='text-amber-400' />}
 				</div>
 				<div className='flex justify-start'>
