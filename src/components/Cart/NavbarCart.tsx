@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 import { PiShoppingCartBold } from 'react-icons/pi';
+import { useSelector } from 'react-redux';
+import { selectAllProducts } from '../../store/cartSelectors';
+import { Product } from '../../types';
 
 interface NavbarCartProps {
 	className?: string;
@@ -8,9 +11,15 @@ interface NavbarCartProps {
 }
 
 const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
-	const count = 0;
+	const productsItems: { product: Product; count: number }[] =
+		useSelector(selectAllProducts);
 
-	const amount = 0;
+	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
+
+	const amount = productsItems.reduce(
+		(acum, value) => acum + value.product.price * value.count,
+		0
+	);
 
 	const displayAmount = new Intl.NumberFormat('en-US', {
 		style: 'currency',
