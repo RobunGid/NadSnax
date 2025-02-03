@@ -5,7 +5,13 @@ import { selectAllProducts } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 
 const Cart: FC = () => {
-	const products: Product[] = useSelector(selectAllProducts);
+	const productsItems: { product: Product; count: number }[] =
+		useSelector(selectAllProducts);
+
+	const products: Product[] = productsItems.map(
+		(item: { product: Product; count: number }) => item.product
+	);
+
 	return (
 		<div className='w-[600px]'>
 			<h1 className='text-center'>Your cart</h1>

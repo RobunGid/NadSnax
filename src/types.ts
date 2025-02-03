@@ -1,5 +1,5 @@
-type ProductId = string;
-type ReviewId = string;
+export type ProductId = string;
+export type ReviewId = string;
 
 export type Product<C extends keyof AvailableCategories = keyof AvailableCategories> = {
 	category: C;
@@ -14,8 +14,7 @@ export type Product<C extends keyof AvailableCategories = keyof AvailableCategor
 	pageLink: string;
 	id: ProductId;
 	description: string;
-	isBestseller?: boolean;
-	count?: number;
+	isBestseller: boolean;
 };
 
 export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';

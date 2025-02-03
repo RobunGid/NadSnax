@@ -30,20 +30,9 @@ export const ProductsPage: FC = () => {
 		<main className='flex flex-wrap p-5 justify-center gap-4'>
 			{productsList.map((product) => (
 				<ProductItem
-					ratingCount={product.ratingCount}
 					key={product.id}
-					id={product.id}
-					description={product.description}
-					category={product.category}
-					price={product.price}
-					image={product.image}
-					imageAlt={product.label}
-					label={product.label}
-					rating={product.rating}
-					type={product.type}
 					pageLink={product.pageLink}
-					oldPrice={product.oldPrice}
-					isBestseller={product.isBestseller}
+					product={product}
 				/>
 			))}
 			{!productsList.length && <NoResults type={type} category={category} />}

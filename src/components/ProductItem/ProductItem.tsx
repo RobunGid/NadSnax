@@ -5,31 +5,29 @@ import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
 import { GiStarFormation } from 'react-icons/gi';
 
-type ProductItemProps = Product & {
-	pageLink: string;
+type ProductItemProps = {
+	product: Product;
 	className?: string;
 	count?: number;
 };
 
-const ProductItem: FC<ProductItemProps> = ({
-	price,
-	image,
-	imageAlt,
-	label,
-	rating,
-	ratingCount,
-	pageLink,
-	description,
-	id,
-	oldPrice,
-	isBestseller,
-	category,
-	className,
-	count,
-}) => {
+const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
+	const {
+		price,
+		image,
+		imageAlt,
+		label,
+		rating,
+		ratingCount,
+		pageLink,
+		description,
+		oldPrice,
+		isBestseller,
+		category,
+	} = product;
+
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
-		console.log(id);
 	};
 
 	const productPrice =

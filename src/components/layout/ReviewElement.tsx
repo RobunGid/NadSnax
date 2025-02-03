@@ -21,7 +21,7 @@ export const ReviewElement: FC<ReviewElementProps> = ({
 			<p>{name}</p>
 			<ProductRating rating={rating} className='flex text-yellow-400' />
 			<p className='text-sm text-center'>{text}</p>
-			{product && <ProductItem {...product} className='scale-75 origin-top' />}
+			{product && <ProductItem product={product} className='scale-75 origin-top' />}
 		</li>
 	);
 };

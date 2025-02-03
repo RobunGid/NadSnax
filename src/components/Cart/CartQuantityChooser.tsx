@@ -1,39 +1,43 @@
-import { ChangeEvent, Dispatch, FC, SetStateAction, useRef, useState } from 'react';
+import { ChangeEvent, EventHandler, FC } from 'react';
 import styles from './CartQuantityChooser.module.css';
 import clsx from 'clsx';
+import { Product } from '../../types';
+import { useSelector } from 'react-redux';
+import { selectProductById } from '../../store/cartSelectors';
+import { RootState, useAppDispatch } from '../../store';
+import { changeProductCount } from '../../store/cartSlice';
 
 interface CartQuantityChooserProps {
-	count: number;
-	setCount: Dispatch<SetStateAction<number>>;
+	product: Product;
 }
 
-export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
-	count,
-	setCount,
-}) => {
-	const [isAddActive, setIsAddActive] = useState<boolean>(true);
-	const [isSubActive, setIsSubActive] = useState<boolean>(false);
+export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) => {
+	const dispatch = useAppDispatch();
 
-	const inputRef = useRef<HTMLInputElement>(null);
+	const productItem = useSelector((state: RootState) =>
+		selectProductById(state, product.id)
+	);
+
+	const productCount = productItem?.count || 1;
 
 	const handleClickSub = () => {
-		if (inputRef?.current) {
-			const currentValue = parseInt(inputRef.current.value);
-
-			setIsSubActive(currentValue > 2);
-			setIsAddActive(currentValue < 12);
-		}
-		setCount((prev) => prev - 1);
+		dispatch(changeProductCount(product, productCount - 1));
 	};
 
 	const handleClickAdd = () => {
-		if (inputRef?.current) {
-			const currentValue = parseInt(inputRef.current.value);
+		dispatch(changeProductCount(product, productCount + 1));
+	};
 
-			setIsSubActive(currentValue > 0);
-			setIsAddActive(currentValue < 9);
-		}
-		setCount((prev) => prev + 1);
+	const handleInputChange: EventHandler<ChangeEvent<HTMLInputElement>> = (
+		event: ChangeEvent<HTMLInputElement>
+	) => {
+		if (Number.isNaN(parseInt(event.target.value))) return;
+		dispatch(changeProductCount(product, parseFloat(event.target.value)));
+	};
+	const handleInputBlur: EventHandler<ChangeEvent<HTMLInputElement>> = (
+		event: ChangeEvent<HTMLInputElement>
+	) => {
+		dispatch(changeProductCount(product, parseFloat(event.target.value)));
 	};
 
 	return (
@@ -41,27 +45,19 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 			<div className='flex flex-row justify-center items-center border border-black'>
 				<button
 					className={clsx(
-						!isSubActive && 'cursor-not-allowed text-gray-300',
+						productCount <= 1 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transtion text-bg font-semibold'
 					)}
 					onClick={handleClickSub}
-					disabled={!isSubActive}
+					disabled={productCount <= 1}
 				>
 					-
 				</button>
 				<input
-					ref={inputRef}
 					type='number'
-					value={count}
-					onChange={(event: ChangeEvent<HTMLInputElement>) => {
-						if (Number.isNaN(parseInt(event.target.value))) return;
-						setCount(parseFloat(event.target.value));
-					}}
-					onBlur={(event: ChangeEvent<HTMLInputElement>) => {
-						setCount(parseFloat(event.target.value));
-						if (parseFloat(event.target.value) > 10) setCount(10);
-						if (parseFloat(event.target.value) < 1) setCount(1);
-					}}
+					value={productCount}
+					onChange={handleInputChange}
+					onBlur={handleInputBlur}
 					className={clsx(
 						styles.input,
 						'transition-colors w-12 h-12 flex justify-center text-center hover:bg-gray-200 box-border focus:outline-none focus:border-2 border-gray-400 focus:scale-125 focus:hover:bg-white'
@@ -69,11 +65,11 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 				/>
 				<button
 					className={clsx(
-						!isAddActive && 'cursor-not-allowed text-gray-300',
+						productCount >= 16 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
 					)}
 					onClick={handleClickAdd}
-					disabled={!isAddActive}
+					disabled={productCount >= 16}
 				>
 					+
 				</button>
