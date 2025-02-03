@@ -13,7 +13,7 @@ const Cart: FC = () => {
 	);
 
 	return (
-		<div className='w-[600px] h-[40rem] overflow-scroll'>
+		<div className='w-[600px] h-[40rem] overflow-auto'>
 			<h1 className='text-center'>Your cart</h1>
 
 			<div className='grid grid-cols-[2fr_1fr_1fr] gap-5'>

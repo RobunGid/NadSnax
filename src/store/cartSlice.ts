@@ -27,6 +27,15 @@ const cartSlice = createSlice({
 				state.productList.push({ product: action.payload.product, count: 1 });
 			}
 		},
+		deleteItemFromCart(state, action: PayloadAction<{ product: Product }>) {
+			const existingCartProductIndex = state.productList.findIndex(
+				(item) => item.product.id === action.payload.product.id
+			);
+
+			if (existingCartProductIndex === -1) return;
+
+			state.productList.splice(existingCartProductIndex, 1);
+		},
 		changeProductCount(
 			state,
 			action: PayloadAction<{ product: Product; count: number }>
@@ -72,6 +81,13 @@ export default cartSlice.reducer;
 export const addProductToCart = (product: Product) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/addProductToCart',
+		payload: { product },
+	});
+};
+
+export const deleteItemFromCart = (product: Product) => (dispatch: AppDispatch) => {
+	dispatch({
+		type: 'cart/deleteItemFromCart',
 		payload: { product },
 	});
 };

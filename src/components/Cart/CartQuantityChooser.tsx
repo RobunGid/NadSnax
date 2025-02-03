@@ -5,7 +5,8 @@ import { Product } from '../../types';
 import { useSelector } from 'react-redux';
 import { selectProductById } from '../../store/cartSelectors';
 import { RootState, useAppDispatch } from '../../store';
-import { changeProductCount } from '../../store/cartSlice';
+import { changeProductCount, deleteItemFromCart } from '../../store/cartSlice';
+import { TfiTrash } from 'react-icons/tfi';
 
 interface CartQuantityChooserProps {
 	product: Product;
@@ -20,12 +21,16 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) =
 
 	const productCount = productItem?.count || 1;
 
-	const handleClickSub = () => {
+	const handleRemoveItem = () => {
 		dispatch(changeProductCount(product, productCount - 1));
 	};
 
-	const handleClickAdd = () => {
+	const handleAddItem = () => {
 		dispatch(changeProductCount(product, productCount + 1));
+	};
+
+	const handleDeleteItem = () => {
+		dispatch(deleteItemFromCart(product));
 	};
 
 	const handleInputChange: EventHandler<ChangeEvent<HTMLInputElement>> = (
@@ -48,7 +53,7 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) =
 						productCount <= 1 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transtion text-bg font-semibold'
 					)}
-					onClick={handleClickSub}
+					onClick={handleRemoveItem}
 					disabled={productCount <= 1}
 				>
 					-
@@ -68,12 +73,18 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) =
 						productCount >= 16 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
 					)}
-					onClick={handleClickAdd}
+					onClick={handleAddItem}
 					disabled={productCount >= 16}
 				>
 					+
 				</button>
 			</div>
+			<button
+				className='w-12 h-12 flex justify-center items-center hover:scale-110'
+				onClick={handleDeleteItem}
+			>
+				<TfiTrash />
+			</button>
 		</div>
 	);
 };
