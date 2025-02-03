@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
 import { GiStarFormation } from 'react-icons/gi';
+import { useAppDispatch } from '../../store';
+import { addProductToCart } from '../../store/cartSlice';
 
 type ProductItemProps = {
 	product: Product;
@@ -12,6 +14,7 @@ type ProductItemProps = {
 };
 
 const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
+	const dispatch = useAppDispatch();
 	const {
 		price,
 		image,
@@ -28,6 +31,7 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
 
 	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
+		dispatch(addProductToCart(product));
 	};
 
 	const productPrice =

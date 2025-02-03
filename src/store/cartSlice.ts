@@ -1,22 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../types';
-import { products } from '../mock';
 import { AppDispatch } from '.';
 
-const getRandomNumber = (min: number, max: number) =>
-	Math.floor(Math.random() * (max - min) + min);
-
-const getRandomId = () => {
-	const randomId = getRandomNumber(0, products.length - 1);
-	return randomId.toString().padStart(4, '0');
-};
-
-const randomIds = [getRandomId(), getRandomId(), getRandomId()];
-
-const randomProducts = products.filter((product) => randomIds.includes(product.id));
-
-const initialState = {
-	productList: randomProducts.map((product) => ({ product, count: 1 })),
+const initialState: { productList: { product: Product; count: number }[] } = {
+	productList: [],
 };
 
 const cartSlice = createSlice({
@@ -32,7 +19,7 @@ const cartSlice = createSlice({
 				const existingCartProduct = state.productList[existingCartProductIndex];
 
 				if (existingCartProduct && existingCartProduct.count) {
-					Math.min(++existingCartProduct.count, 16);
+					existingCartProduct.count = Math.min(++existingCartProduct.count, 16);
 				}
 			}
 
