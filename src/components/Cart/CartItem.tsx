@@ -35,7 +35,7 @@ export const CartItem: FC<CartItemProps> = (product: Product) => {
 
 		return (
 			<>
-				<Link to={pageLink}>
+				<Link to={pageLink} className='overflow-hidden'>
 					<div className='relative z-0 overflow-hidden flex flex-row'>
 						<img
 							src={image}
@@ -55,8 +55,8 @@ export const CartItem: FC<CartItemProps> = (product: Product) => {
 						</div>
 					</div>
 				</Link>
-				<CartQuantityChooser product={product} />
-				<div className='flex items-center justify-center'>
+				<CartQuantityChooser product={product} className='overflow-hidden' />
+				<div className='flex items-center justify-center overflow-hidden'>
 					{displayTotalPrice}
 				</div>
 			</>

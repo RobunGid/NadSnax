@@ -10,9 +10,13 @@ import { TfiTrash } from 'react-icons/tfi';
 
 interface CartQuantityChooserProps {
 	product: Product;
+	className?: string;
 }
 
-export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) => {
+export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
+	product,
+	className,
+}) => {
 	const dispatch = useAppDispatch();
 
 	const productItem = useSelector((state: RootState) =>
@@ -46,7 +50,7 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({ product }) =
 	};
 
 	return (
-		<div className='flex justify-center items-center'>
+		<div className={clsx('flex justify-center items-center', className)}>
 			<div className='flex flex-row justify-center items-center border border-black'>
 				<button
 					className={clsx(
