@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { PiShoppingCartBold } from 'react-icons/pi';
 import { useSelector } from 'react-redux';
-import { selectAllProducts } from '../../store/cartSelectors';
+import { selectAllItems } from '../../store/cartSelectors';
 import { Product } from '../../types';
 
 interface NavbarCartProps {
@@ -12,7 +12,7 @@ interface NavbarCartProps {
 
 const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
 	const productsItems: { product: Product; count: number }[] =
-		useSelector(selectAllProducts);
+		useSelector(selectAllItems);
 
 	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
 

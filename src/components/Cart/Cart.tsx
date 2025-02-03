@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { CartItem } from './CartItem';
 import { Product } from '../../types';
-import { selectAllProducts } from '../../store/cartSelectors';
+import { selectAllItems } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 
 const Cart: FC = () => {
 	const productsItems: { product: Product; count: number }[] =
-		useSelector(selectAllProducts);
+		useSelector(selectAllItems);
 
 	const products: Product[] = productsItems.map(
 		(item: { product: Product; count: number }) => item.product

@@ -3,9 +3,9 @@ import styles from './CartQuantityChooser.module.css';
 import clsx from 'clsx';
 import { Product } from '../../types';
 import { useSelector } from 'react-redux';
-import { selectProductById } from '../../store/cartSelectors';
+import { selectItemById } from '../../store/cartSelectors';
 import { RootState, useAppDispatch } from '../../store';
-import { changeProductCount, deleteItemFromCart } from '../../store/cartSlice';
+import { changeItemCount, deleteItemFromCart } from '../../store/cartSlice';
 import { TfiTrash } from 'react-icons/tfi';
 
 interface CartQuantityChooserProps {
@@ -19,18 +19,16 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 }) => {
 	const dispatch = useAppDispatch();
 
-	const productItem = useSelector((state: RootState) =>
-		selectProductById(state, product.id)
-	);
+	const cartItem = useSelector((state: RootState) => selectItemById(state, product.id));
 
-	const productCount = productItem?.count || 1;
+	const itemCount = cartItem?.count || 1;
 
 	const handleRemoveItem = () => {
-		dispatch(changeProductCount(product, productCount - 1));
+		dispatch(changeItemCount(product, itemCount - 1));
 	};
 
 	const handleAddItem = () => {
-		dispatch(changeProductCount(product, productCount + 1));
+		dispatch(changeItemCount(product, itemCount + 1));
 	};
 
 	const handleDeleteItem = () => {
@@ -41,12 +39,12 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 		event: ChangeEvent<HTMLInputElement>
 	) => {
 		if (Number.isNaN(parseInt(event.target.value))) return;
-		dispatch(changeProductCount(product, parseFloat(event.target.value)));
+		dispatch(changeItemCount(product, parseFloat(event.target.value)));
 	};
 	const handleInputBlur: EventHandler<ChangeEvent<HTMLInputElement>> = (
 		event: ChangeEvent<HTMLInputElement>
 	) => {
-		dispatch(changeProductCount(product, parseFloat(event.target.value)));
+		dispatch(changeItemCount(product, parseFloat(event.target.value)));
 	};
 
 	return (
@@ -54,17 +52,17 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 			<div className='flex flex-row justify-center items-center border border-black'>
 				<button
 					className={clsx(
-						productCount <= 1 && 'cursor-not-allowed text-gray-300',
+						itemCount <= 1 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transtion text-bg font-semibold'
 					)}
 					onClick={handleRemoveItem}
-					disabled={productCount <= 1}
+					disabled={itemCount <= 1}
 				>
 					-
 				</button>
 				<input
 					type='number'
-					value={productCount}
+					value={itemCount}
 					onChange={handleInputChange}
 					onBlur={handleInputBlur}
 					className={clsx(
@@ -74,11 +72,11 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 				/>
 				<button
 					className={clsx(
-						productCount >= 16 && 'cursor-not-allowed text-gray-300',
+						itemCount >= 16 && 'cursor-not-allowed text-gray-300',
 						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
 					)}
 					onClick={handleAddItem}
-					disabled={productCount >= 16}
+					disabled={itemCount >= 16}
 				>
 					+
 				</button>
@@ -87,7 +85,7 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 				className='w-12 h-12 flex justify-center items-center hover:scale-110'
 				onClick={handleDeleteItem}
 			>
-				<TfiTrash />
+				<TfiTrash size='20' />
 			</button>
 		</div>
 	);

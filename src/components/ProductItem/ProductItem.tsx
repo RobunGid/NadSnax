@@ -1,20 +1,37 @@
-import { FC, MouseEventHandler } from 'react';
+import { ChangeEvent, EventHandler, FC, MouseEventHandler } from 'react';
 import { Product } from '../../types';
 import { Link } from 'react-router';
 import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
 import { GiStarFormation } from 'react-icons/gi';
-import { useAppDispatch } from '../../store';
-import { addProductToCart } from '../../store/cartSlice';
+import { RootState, useAppDispatch } from '../../store';
+import {
+	addItemToCart,
+	changeItemCount,
+	removeItemFromCart,
+} from '../../store/cartSlice';
+import { selectItemById } from '../../store/cartSelectors';
+import { useSelector } from 'react-redux';
 
 type ProductItemProps = {
 	product: Product;
 	className?: string;
-	count?: number;
 };
 
-const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
+const ProductItem: FC<ProductItemProps> = ({ product, className }) => {
 	const dispatch = useAppDispatch();
+
+	const productCart = useSelector((state: RootState) =>
+		selectItemById(state, product.id)
+	);
+
+	const handleInputChange: EventHandler<ChangeEvent<HTMLInputElement>> = (event) => {
+		if (Number.isNaN(parseInt(event.target.value))) return;
+		dispatch(changeItemCount(product, parseFloat(event.target.value)));
+	};
+
+	const count = productCart?.count || 0;
+
 	const {
 		price,
 		image,
@@ -29,9 +46,20 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
 		category,
 	} = product;
 
-	const handleAddProductToCart: MouseEventHandler<HTMLDivElement> = (event) => {
+	const handleAddItemToCart: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = (
+		event
+	) => {
 		event.preventDefault();
-		dispatch(addProductToCart(product));
+		dispatch(addItemToCart(product));
+	};
+
+	const handleRemoveProductFromCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+		event.preventDefault();
+		dispatch(removeItemFromCart(product));
+	};
+
+	const handleDivClick: MouseEventHandler<HTMLDivElement> = (event) => {
+		event.preventDefault();
 	};
 
 	const productPrice =
@@ -71,22 +99,32 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
 
 				{!count ? (
 					<div
-						className='bg-orange-400 flex w-[75px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
-						onClick={handleAddProductToCart}
+						className='bg-orange-400 flex w-[100px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+						onClick={handleAddItemToCart}
 					>
 						<FiPlus />
 						<button>Add</button>
 					</div>
 				) : (
-					<div
-						className='bg-orange-400 flex justify-center w-[100px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition overflow-hidden'
-						onClick={handleAddProductToCart}
-					>
-						<button className='hover:bg-orange-500 absolute inset-0 w-1/3'>
+					<div className='bg-orange-400 flex justify-center w-[100px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition'>
+						<button
+							className='hover:bg-orange-500 absolute inset-0 w-1/3 hover:rounded-bl-full hover:rounded-tl-full'
+							onClick={handleAddItemToCart}
+						>
 							+
 						</button>
-						<div className='text-center'>{count}</div>
-						<button className='hover:bg-orange-500 absolute top-0 right-0 bottom-0 w-1/3'>
+						<div className='text-center' onClick={handleDivClick}>
+							<input
+								type='number'
+								value={count}
+								className='bg-transparent w-1/3 text-center box-border outline-none focus:outline-2 focus:scale-125 focus:outline-amber-700'
+								onChange={handleInputChange}
+							/>
+						</div>
+						<button
+							className='hover:bg-orange-500 absolute top-0 right-0 bottom-0 w-1/3 hover:rounded-tr-full hover:rounded-br-full'
+							onClick={handleRemoveProductFromCart}
+						>
 							–
 						</button>
 					</div>
@@ -106,7 +144,7 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, count }) => {
 					)}
 				</div>
 				<div
-					className='text-gray-500 text-ellipsis text-nowrap w-60 overflow-hidden'
+					className='text-gray-500 text-ellipsis text-nowrap w-60'
 					title={description}
 				>
 					{description}

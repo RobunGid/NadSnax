@@ -10,7 +10,7 @@ const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addProductToCart(state, action: PayloadAction<{ product: Product }>) {
+		addItemToCart(state, action: PayloadAction<{ product: Product }>) {
 			const existingCartProductIndex = state.productList.findIndex(
 				(item) => item.product.id === action.payload.product.id
 			);
@@ -27,6 +27,23 @@ const cartSlice = createSlice({
 				state.productList.push({ product: action.payload.product, count: 1 });
 			}
 		},
+		removeItemFromCart(state, action: PayloadAction<{ product: Product }>) {
+			const existingCartProductIndex = state.productList.findIndex(
+				(item) => item.product.id === action.payload.product.id
+			);
+
+			if (existingCartProductIndex !== -1) {
+				const existingCartProduct = state.productList[existingCartProductIndex];
+
+				if (existingCartProduct && existingCartProduct.count) {
+					if (existingCartProduct.count >= 2) {
+						existingCartProduct.count = --existingCartProduct.count;
+					} else {
+						state.productList.splice(existingCartProductIndex, 1);
+					}
+				}
+			}
+		},
 		deleteItemFromCart(state, action: PayloadAction<{ product: Product }>) {
 			const existingCartProductIndex = state.productList.findIndex(
 				(item) => item.product.id === action.payload.product.id
@@ -36,7 +53,7 @@ const cartSlice = createSlice({
 
 			state.productList.splice(existingCartProductIndex, 1);
 		},
-		changeProductCount(
+		changeItemCount(
 			state,
 			action: PayloadAction<{ product: Product; count: number }>
 		) {
@@ -78,9 +95,9 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const addProductToCart = (product: Product) => (dispatch: AppDispatch) => {
+export const addItemToCart = (product: Product) => (dispatch: AppDispatch) => {
 	dispatch({
-		type: 'cart/addProductToCart',
+		type: 'cart/addItemToCart',
 		payload: { product },
 	});
 };
@@ -92,10 +109,17 @@ export const deleteItemFromCart = (product: Product) => (dispatch: AppDispatch) 
 	});
 };
 
-export const changeProductCount =
+export const changeItemCount =
 	(product: Product, count: number) => (dispatch: AppDispatch) => {
 		dispatch({
-			type: 'cart/changeProductCount',
+			type: 'cart/changeItemCount',
 			payload: { product, count },
 		});
 	};
+
+export const removeItemFromCart = (product: Product) => (dispatch: AppDispatch) => {
+	dispatch({
+		type: 'cart/removeItemFromCart',
+		payload: { product },
+	});
+};
