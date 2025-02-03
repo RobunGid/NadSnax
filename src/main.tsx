@@ -4,13 +4,17 @@ import './index.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router';
 import { IconContext } from 'react-icons';
+import { Provider } from 'react-redux';
+import store from './store/index.ts';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<BrowserRouter>
-			<IconContext.Provider value={{ size: '24px' }}>
-				<App />
-			</IconContext.Provider>
-		</BrowserRouter>
+		<Provider store={store}>
+			<BrowserRouter>
+				<IconContext.Provider value={{ size: '24px' }}>
+					<App />
+				</IconContext.Provider>
+			</BrowserRouter>
+		</Provider>
 	</StrictMode>
 );

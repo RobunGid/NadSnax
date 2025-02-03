@@ -15,6 +15,7 @@ export type Product<C extends keyof AvailableCategories = keyof AvailableCategor
 	id: ProductId;
 	description: string;
 	isBestseller?: boolean;
+	count?: number;
 };
 
 export type icon = 'gi/GiChipsBag' | 'lu/LuCandy' | 'ri/RiDrinks2Fill';
