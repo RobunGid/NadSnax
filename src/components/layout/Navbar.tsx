@@ -48,7 +48,7 @@ export const Navbar: FC = () => {
 			</div>
 
 			<Modal active={isModalActive} setActive={setIsModalActive}>
-				<Cart />
+				<Cart setActive={setIsModalActive} />
 			</Modal>
 		</>
 	);
