@@ -18,15 +18,19 @@ const Cart: FC<CartProps> = ({ setActive }) => {
 	);
 
 	return (
-		<div className='w-[600px] h-[40rem] overflow-auto'>
+		<div className='w-[20rem] md:w-[40rem] h-[40rem] overflow-auto'>
 			<h1 className='text-center text-xl font-semibold'>Cart</h1>
 
-			<div className='grid grid-cols-[3fr_2fr_1fr] gap-5 min-w-0'>
-				{!products && (
+			<div className='grid md:grid-cols-[3fr_2fr_1fr] gap-5 min-w-0 grid-cols-3'>
+				{!!products.length && (
 					<>
-						<div className='text-gray-500 text-xs text-left'>Product</div>
-						<div className='text-gray-500 text-xs text-left'>Quantity</div>
-						<div className='text-gray-500 text-xs text-center'>
+						<div className='text-gray-500 text-xs text-left hidden md:block'>
+							Product
+						</div>
+						<div className='text-gray-500 text-xs text-left hidden md:block'>
+							Quantity
+						</div>
+						<div className='text-gray-500 text-xs text-center hidden md:block'>
 							Total price
 						</div>
 					</>

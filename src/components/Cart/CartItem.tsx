@@ -35,8 +35,11 @@ export const CartItem: FC<CartItemProps> = (product: Product) => {
 
 		return (
 			<>
-				<Link to={pageLink} className='overflow-hidden'>
-					<div className='relative z-0 overflow-hidden flex flex-row'>
+				<div className='max-md:col-span-3 relative z-0 overflow-hidden flex flex-col md:flex-row md:items-start'>
+					<Link to={pageLink} className='flex flex-col items-center'>
+						<div className='text-gray-500 text-xs text-center md:text-left mb-3 block md:hidden'>
+							Product
+						</div>
 						<img
 							src={image}
 							alt={imageAlt}
@@ -53,12 +56,23 @@ export const CartItem: FC<CartItemProps> = (product: Product) => {
 								</div>
 							</div>
 						</div>
-					</div>
-				</Link>
-				<CartQuantityChooser product={product} className='overflow-hidden' />
-				<div className='flex items-center justify-center overflow-hidden'>
-					{displayTotalPrice}
+					</Link>
 				</div>
+
+				<div className='md:flex md:items-center max-md:col-span-2'>
+					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
+						Quantity
+					</div>
+					<CartQuantityChooser product={product} className='overflow-hidden' />
+				</div>
+
+				<div className='flex items-center justify-center overflow-hidden flex-col'>
+					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
+						Total price
+					</div>
+					<div>{displayTotalPrice}</div>
+				</div>
+				<hr className='block md:hidden max-md:col-span-3' />
 			</>
 		);
 	}
