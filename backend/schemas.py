@@ -17,3 +17,10 @@ class ReviewSchema(PlainReviewSchema):
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
+class ReviewUpdateSchema(Schema):
+    text = fields.Str()
+    rating = fields.Int()
+    
+class UserUpdateSchema(Schema):
+    username = fields.Str()
+    avatar_url = fields.Str()

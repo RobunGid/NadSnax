@@ -2,7 +2,7 @@ from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from models import ReviewModel
-from schemas import ReviewSchema
+from schemas import ReviewSchema, ReviewUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
@@ -21,6 +21,22 @@ class Review(MethodView):
 		db.session.delete(review)
 		db.session.commit()
 		return {"message": "Review deleted"}
+
+	@blp.response(200, ReviewSchema)        
+	@blp.arguments(ReviewUpdateSchema)
+	def put(self, review_data, review_id):
+		review = ReviewModel.query.get(review_id)
+        
+		if review:
+			review.text = review_data["text"]
+			review.rating = review_data["rating"]
+		else:
+			review = ReviewModel(id = review_id, **review_data)
+            
+		db.session.add(review)
+		db.session.commit()
+        
+		return review
 
 @blp.route('/review')
 class Reviews(MethodView):
