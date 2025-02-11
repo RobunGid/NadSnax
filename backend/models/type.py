@@ -7,7 +7,7 @@ class TypeModel(db.Model):
     name = db.Column(db.String(80), nullable = False)
     icon_url = db.Column(db.String(80), nullable = False)
     
-    category_id = db.Column(db.String(80), db.ForeignKey("category.id"), nullable = False)
+    category_id = db.Column(db.String(80), db.ForeignKey("categories.id"), nullable = False)
     category = db.relationship("CategoryModel", back_populates = "types")
     
     items = db.relationship('ItemModel', back_populates = 'type', lazy = 'dynamic')
