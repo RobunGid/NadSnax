@@ -11,10 +11,16 @@ blp = Blueprint("reviews", __name__, description = "Operations on reviews")
 
 @blp.route('/review/<string:review_id>')
 class Review(MethodView):
-    @blp.response(200, ReviewSchema)
-    def get(self, review_id):
-        review = ReviewModel.query.get_or_404(review_id)
-        return review
+	@blp.response(200, ReviewSchema)
+	def get(self, review_id):
+		review = ReviewModel.query.get_or_404(review_id)
+		return review
+    
+	def delete (self, review_id):
+		review = ReviewModel.query.get_or_404(review_id)
+		db.session.delete(review)
+		db.session.commit()
+		return {"message": "Review deleted"}
 
 @blp.route('/review')
 class Reviews(MethodView):

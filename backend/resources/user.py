@@ -11,10 +11,16 @@ blp = Blueprint("users", __name__, description = "Operations on users")
 
 @blp.route('/user/<string:user_id>')
 class User(MethodView):
-    @blp.response(200, UserSchema)
-    def get(self, user_id):
-        user = UserModel.query.get_or_404(user_id)
-        return user
+	@blp.response(200, UserSchema)
+	def get(self, user_id):
+		user = UserModel.query.get_or_404(user_id)
+		return user
+    
+	def delete (self, user_id):
+		user = UserModel.query.get_or_404(user_id)
+		db.session.delete(user)
+		db.session.commit()
+		return {"message": "User deleted"}
 
 @blp.route('/user')
 class Items(MethodView):
