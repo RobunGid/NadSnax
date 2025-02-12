@@ -29,11 +29,7 @@ export const ProductsPage: FC = () => {
 	return (
 		<main className='flex flex-wrap p-5 justify-center gap-4'>
 			{productsList.map((product) => (
-				<ProductItem
-					key={product.id}
-					pageLink={product.pageLink}
-					product={product}
-				/>
+				<ProductItem key={product.id} product={product} />
 			))}
 			{!productsList.length && <NoResults type={type} category={category} />}
 		</main>
