@@ -68,3 +68,14 @@ class CategorySchema(PlainCategorySchema):
 class CategoryUpdateSchema(Schema):
     name = fields.Str(required = True)
     icon_url = fields.Str(required = True)
+    
+class ItemUpdateSchema(Schema):
+    label = fields.Str(required = True)
+    page_link = fields.Str(required = True)
+    description = fields.Str(required = True)
+    image_url = fields.Str(required = True)
+    price = fields.Float(required = True)
+    old_price = fields.Float(required = True)
+    is_bestseller = fields.Boolean(required = True)
+    category_id = fields.Str(required = True)
+    type_id = fields.Str(required = True)
