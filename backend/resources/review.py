@@ -15,7 +15,7 @@ class Review(MethodView):
 		review = ReviewModel.query.get_or_404(review_id)
 		return review
     
-	def delete (self, review_id):
+	def delete(self, review_id):
 		review = ReviewModel.query.get_or_404(review_id)
 		db.session.delete(review)
 		db.session.commit()
@@ -30,7 +30,7 @@ class Review(MethodView):
 			review.text = review_data["text"]
 			review.rating = review_data["rating"]
 		else:
-			review = ReviewModel(id = review_id, **review_data)
+			review = ReviewModel(**review_data, id = review_id)
             
 		db.session.add(review)
 		db.session.commit()
