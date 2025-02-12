@@ -17,7 +17,7 @@ class PlainCategorySchema(Schema):
     
 class PlainTypeSchema(Schema):
     name = fields.Str(required = True)
-    icon_url = fields.Str()
+    icon_url = fields.Str(required = True)
     id = fields.Str(dump_only = True)
     category_id = fields.Str(required = True)
     
@@ -35,6 +35,12 @@ class PlainItemSchema(Schema):
     
 class TypeSchema(PlainTypeSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only = True)
+    category = fields.Nested(PlainCategorySchema(), dump_only = True) 
+    
+class TypeUpdateSchema(Schema):
+	name = fields.Str(required = True)
+	icon_url = fields.Str(required = True)
+	category_id = fields.Str(required = True)
     
 class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
@@ -48,17 +54,17 @@ class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
 class ReviewUpdateSchema(Schema):
-    text = fields.Str()
-    rating = fields.Int()
+    text = fields.Str(required = True)
+    rating = fields.Int(required = True)
     
 class UserUpdateSchema(Schema):
-    username = fields.Str()
-    avatar_url = fields.Str()
+    username = fields.Str(required = True)
+    avatar_url = fields.Str(required = True)
     
 class CategorySchema(PlainCategorySchema):
     types = fields.List(fields.Nested(PlainTypeSchema()), dump_only = True)
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only = True)
     
 class CategoryUpdateSchema(Schema):
-    name = fields.Str()
-    icon_url = fields.Str()
+    name = fields.Str(required = True)
+    icon_url = fields.Str(required = True)
