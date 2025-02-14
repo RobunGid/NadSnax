@@ -82,8 +82,7 @@ class ItemUpdateSchema(Schema):
     
 class PlainItemDetailsSchema(Schema):
 	full_name = fields.Str(required = True)
-	full_description = fields.Str()
-	id = fields.Str(dump_only = True)
+	full_description = fields.Str(required = True)
 	item_id = fields.Str(required = True)
  
 class ItemDetailsSchema(PlainItemDetailsSchema):
