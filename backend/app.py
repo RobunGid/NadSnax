@@ -9,6 +9,7 @@ from resources.review import blp as ReviewBlueprint
 from resources.category import blp as CategoryBlueprint
 from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
+from resources.item_details import blp as ItemDetailsBlueprint
 
 
 def create_app(db_url = None):
@@ -36,5 +37,6 @@ def create_app(db_url = None):
 	api.register_blueprint(CategoryBlueprint)
 	api.register_blueprint(TypeBlueprint)
 	api.register_blueprint(ItemBlueprint)
+	api.register_blueprint(ItemDetailsBlueprint)
  
 	return app

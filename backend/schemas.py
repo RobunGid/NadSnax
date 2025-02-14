@@ -79,3 +79,12 @@ class ItemUpdateSchema(Schema):
     is_bestseller = fields.Boolean(required = True)
     category_id = fields.Str(required = True)
     type_id = fields.Str(required = True)
+    
+class PlainItemDetailsSchema(Schema):
+	full_name = fields.Str(required = True)
+	full_description = fields.Str()
+	id = fields.Str(dump_only = True)
+	item_id = fields.Str(required = True)
+ 
+class ItemDetailsSchema(PlainItemDetailsSchema):
+    item = fields.Nested(ItemSchema(), dump_only = True)

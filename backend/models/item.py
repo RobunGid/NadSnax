@@ -17,3 +17,5 @@ class ItemModel(db.Model):
     
     category = db.relationship("CategoryModel", back_populates = "items")
     type = db.relationship("TypeModel", back_populates = "items")
+    
+    item_details = db.relationship("ItemDetailsModel", back_populates = "item")
