@@ -84,6 +84,8 @@ class PlainItemDetailsSchema(Schema):
 	full_name = fields.Str(required = True)
 	full_description = fields.Str(required = True)
 	item_id = fields.Str(required = True)
+	ingridients = fields.Str(required = True)
+	supplier = fields.Str(required = True)
  
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)

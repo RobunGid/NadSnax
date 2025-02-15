@@ -48,6 +48,8 @@ class ItemDetail(MethodView):
             item_detail.full_description = item_detail_data["full_description"]
             item_detail.full_name = item_detail_data["full_name"]
             item_detail.item_id = item_detail_data["item_id"]
+            item_detail.ingridients = item_detail_data["ingridients"]
+            item_detail.supplier = item_detail_data["supplier"]
         else:
             item_detail = ItemDetailsModel(**item_detail_data, item_id = item_id)
             
