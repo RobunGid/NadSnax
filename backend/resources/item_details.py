@@ -22,7 +22,7 @@ class ItemDetails(MethodView):
             db.session.add(item_detail)
             db.session.commit()
         except SQLAlchemyError:
-           abort(500, message = "An error occured while inserting the item details")
+            abort(500, message = "An error occured while inserting the item details")
             
         return item_detail
     
@@ -50,6 +50,7 @@ class ItemDetail(MethodView):
             item_detail.item_id = item_detail_data["item_id"]
             item_detail.ingridients = item_detail_data["ingridients"]
             item_detail.supplier = item_detail_data["supplier"]
+            item_detail.nutrition = item_detail_data["nutrition"]
         else:
             item_detail = ItemDetailsModel(**item_detail_data, item_id = item_id)
             

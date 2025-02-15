@@ -41,10 +41,7 @@ class TypeUpdateSchema(Schema):
 	name = fields.Str(required = True)
 	icon_url = fields.Str(required = True)
 	category_id = fields.Str(required = True)
-    
-class ItemSchema(PlainItemSchema):
-    category = fields.Nested(PlainCategorySchema(), dump_only = True) 
-    type = fields.Nested(PlainTypeSchema(), dump_only = True) 
+
 
 class ReviewSchema(PlainReviewSchema):
     user_id = fields.Str(required = True, load_only = True)
@@ -81,11 +78,17 @@ class ItemUpdateSchema(Schema):
     type_id = fields.Str(required = True)
     
 class PlainItemDetailsSchema(Schema):
-	full_name = fields.Str(required = True)
+	full_label = fields.Str(required = True)
 	full_description = fields.Str(required = True)
 	item_id = fields.Str(required = True)
 	ingridients = fields.Str(required = True)
 	supplier = fields.Str(required = True)
+	nutrition = fields.Str(required = True)
  
+class ItemSchema(PlainItemSchema):
+    category = fields.Nested(PlainCategorySchema(), dump_only = True) 
+    type = fields.Nested(PlainTypeSchema(), dump_only = True) 
+    item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
+    
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)
