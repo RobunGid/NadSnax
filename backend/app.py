@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_smorest import Api
 import os
+from flask_cors import CORS
 
 from db import db
 
@@ -14,6 +15,8 @@ from resources.item_details import blp as ItemDetailsBlueprint
 
 def create_app(db_url = None):
 	app = Flask(__name__)
+ 
+	CORS(app, resources={r"/*": {"origins": "http://localhost"}})
 
 	app.config["PROPOGATE_EXCEPTIONS"] = True
 	app.config["API_TITLE"] = "NadSnax REST API"
