@@ -5,6 +5,7 @@ from schemas import CategorySchema, CategoryUpdateSchema
 import uuid
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
+from flask import request
 
 blp = Blueprint("categories", __name__, description = "Operations on categories")
 
@@ -41,9 +42,105 @@ class Category(MethodView):
 
 @blp.route("/category")
 class Categories(MethodView):
-    @blp.response(200, CategorySchema(many = True))
+    @blp.alt_response(200, description = "Categories list")
+    @blp.doc(
+        description="Get categories list with query parameters to manage related items and types",
+        parameters=[
+            {
+                "name": "include_items",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include related items"
+            },
+            {
+                "name": "include_types",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include types"
+            }
+        ],
+        responses={
+            "200": {
+                "description": "Categories list",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "include_items=true&include_types=true": {
+                                "value": [
+                                    {
+                                        "id": 1,
+                                        "name": "Category 1",
+                                        "icon_url": "Icon URL 1",
+                                        "items": ["Item 1", "Item 2"],
+                                        "types": ["Type A", "Type B"]
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "Category 2",
+                                        "icon_url": "Icon URL 2",
+                                        "items": [],
+                                        "types": []
+                                    }
+                                ]
+                            },
+                            "Without query parameters": {
+                                "value": [
+                                    {
+                                        "id": 1,
+                                        "name": "Category 1",
+                                        "icon_url": "Icon URL 1",
+                                    }
+                                ]
+                            },
+                            "include_items=true": {
+                                "value": [
+                                    {
+                                        "id": 1,
+                                        "name": "Category 1",
+                                        "icon_url": "Icon URL 1",
+                                        "items": ["Item 1", "Item 2"],
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "Category 2",
+                                        "icon_url": "Icon URL 2",
+                                        "items": [],
+                                    }
+                                ]
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    )
     def get(self):
-        return CategoryModel.query.all()
+        include_items = request.args.get("include_items", "false").lower() == "true"
+        include_types = request.args.get("include_types", "false").lower() == "true"
+
+        query = CategoryModel.query
+
+        if include_items:
+            query = query.options(db.joinedload(CategoryModel.items))
+        if include_types:
+            query = query.options(db.joinedload(CategoryModel.types))
+
+        categories = query.all()
+
+        if include_items and include_types:
+            schema = CategorySchema(many = True, include_types = True, include_items = True)
+        elif include_items:
+            schema = CategorySchema(many = True, include_items = True)
+        elif include_types:
+            schema = CategorySchema(many = True, include_types = True)
+        else:
+            schema = CategorySchema(many = True)
+            
+        return schema.dump(categories), 200
     
     @blp.arguments(CategorySchema)
     @blp.response(201, CategorySchema)

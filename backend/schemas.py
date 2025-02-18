@@ -62,6 +62,15 @@ class CategorySchema(PlainCategorySchema):
     types = fields.List(fields.Nested(PlainTypeSchema()), dump_only = True)
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only = True)
     
+    def __init__(self, include_types = False, include_items = False, **kwargs):
+        exclude_fields = set()
+        if not include_types:
+            exclude_fields.add("types")
+        if not include_items:
+            exclude_fields.add("items")
+
+        super().__init__(exclude = exclude_fields, **kwargs)
+    
 class CategoryUpdateSchema(Schema):
     name = fields.Str(required = True)
     icon_url = fields.Str(required = True)
