@@ -31,6 +31,7 @@ class Category(MethodView):
         if category:
             category.name = category_data["name"]
             category.icon_url = category_data["icon_url"]
+            category.page_link = category_data["page_link"]
         else:
             category = CategoryModel(**category_data, id = category_id)
             
@@ -75,6 +76,7 @@ class Categories(MethodView):
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
+                                        "page_link": "string",
                                         "items": [{"string": "string"}, {"string": "string"}],
                                         "types": [{"string": "string"}, {"string": "string"}]
                                     },
@@ -82,6 +84,7 @@ class Categories(MethodView):
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
+                                        "page_link": "string",
                                         "items": [],
                                         "types": []
                                     }
@@ -92,7 +95,8 @@ class Categories(MethodView):
                                     {
                                         "id": "string",
                                         "name": "string",
-                                        "icon_url": "string"
+                                        "icon_url": "string",
+                                        "page_link": "string"
                                     }
                                 ]
                             },
@@ -103,12 +107,14 @@ class Categories(MethodView):
                                         "name": "string",
                                         "icon_url": "string",
                                         "items": [{"string": "string"}, {"string": "string"}],
+                                        "page_link": "string"
                                     },
                                     {
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
                                         "items": [],
+                                        "page_link": "string"
                                     }
                                 ]
                             },

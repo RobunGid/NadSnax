@@ -13,11 +13,13 @@ class PlainReviewSchema(Schema):
 class PlainCategorySchema(Schema):
     name = fields.Str(required = True)
     icon_url = fields.Str()
+    page_link = fields.Str()
     id = fields.Str()
     
 class PlainTypeSchema(Schema):
     name = fields.Str(required = True)
     icon_url = fields.Str(required = True)
+    page_link = fields.Str()
     id = fields.Str(dump_only = True)
     category_id = fields.Str(required = True)
     
@@ -52,6 +54,7 @@ class TypeUpdateSchema(Schema):
 	name = fields.Str(required = True)
 	icon_url = fields.Str(required = True)
 	category_id = fields.Str(required = True)
+	page_link = fields.Str(required = True)
 
 
 class ReviewSchema(PlainReviewSchema):

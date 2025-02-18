@@ -32,6 +32,7 @@ class Category(MethodView):
             type.name = type_data["name"]
             type.icon_url = type_data["icon_url"]
             type.category_id = type_data["category_id"]
+            type.page_link = type_data["page_link"]
         else:
             type = TypeModel(**type_data, id = type_id)
             
@@ -76,6 +77,7 @@ class Categories(MethodView):
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
+                                        "page_link": "string",
                                         "items": [{"string": "string"}, {"string": "string"}],
                                         "category_id": "string",
                                         "category": {"string": "string"}
@@ -84,6 +86,7 @@ class Categories(MethodView):
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
+                                        "page_link": "string",
                                         "items": [{"string": "string"}, {"string": "string"}],
                                         "category_id": "ID",
                                         "category": {"string": "string"}
@@ -96,6 +99,7 @@ class Categories(MethodView):
                                         "id": "string",
                                         "name": "string",
                                         "icon_url": "string",
+                                        "page_link": "string",
                                         "category_id": "string",
                                     }
                                 ]
@@ -107,6 +111,7 @@ class Categories(MethodView):
                                         "name": "string",
                                         "icon_url": "string",
                                         "category_id": "string",
+                                        "page_link": "string",
                                         "items": [{"string": "string"}, {"string": "string"}],
                                     },
                                     {
@@ -114,6 +119,7 @@ class Categories(MethodView):
                                         "name": "string",
                                         "icon_url": "string",
                                         "category_id": "string",
+                                        "page_link": "string",
                                         "items": [],
                                     }
                                 ]
