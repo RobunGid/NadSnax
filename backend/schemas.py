@@ -37,6 +37,17 @@ class TypeSchema(PlainTypeSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only = True)
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
     
+    def __init__(self, include_category = False, include_items = False, **kwargs):
+        exclude_fields = set()
+        
+        if not include_category:
+            exclude_fields.add("category")
+            
+        if not include_items:
+            exclude_fields.add("items")
+
+        super().__init__(exclude = exclude_fields, **kwargs)
+    
 class TypeUpdateSchema(Schema):
 	name = fields.Str(required = True)
 	icon_url = fields.Str(required = True)
@@ -64,8 +75,10 @@ class CategorySchema(PlainCategorySchema):
     
     def __init__(self, include_types = False, include_items = False, **kwargs):
         exclude_fields = set()
+        
         if not include_types:
             exclude_fields.add("types")
+            
         if not include_items:
             exclude_fields.add("items")
 
