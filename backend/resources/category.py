@@ -72,16 +72,16 @@ class Categories(MethodView):
                             "include_items=true&include_types=true": {
                                 "value": [
                                     {
-                                        "id": 1,
-                                        "name": "Category 1",
-                                        "icon_url": "Icon URL 1",
-                                        "items": ["Item 1", "Item 2"],
-                                        "types": ["Type A", "Type B"]
+                                        "id": "string",
+                                        "name": "string",
+                                        "icon_url": "string",
+                                        "items": [{"string": "string"}, {"string": "string"}],
+                                        "types": [{"string": "string"}, {"string": "string"}]
                                     },
                                     {
-                                        "id": 2,
-                                        "name": "Category 2",
-                                        "icon_url": "Icon URL 2",
+                                        "id": "string",
+                                        "name": "string",
+                                        "icon_url": "string",
                                         "items": [],
                                         "types": []
                                     }
@@ -90,24 +90,24 @@ class Categories(MethodView):
                             "Without query parameters": {
                                 "value": [
                                     {
-                                        "id": 1,
-                                        "name": "Category 1",
-                                        "icon_url": "Icon URL 1",
+                                        "id": "string",
+                                        "name": "string",
+                                        "icon_url": "string"
                                     }
                                 ]
                             },
                             "include_items=true": {
                                 "value": [
                                     {
-                                        "id": 1,
-                                        "name": "Category 1",
-                                        "icon_url": "Icon URL 1",
-                                        "items": ["Item 1", "Item 2"],
+                                        "id": "string",
+                                        "name": "string",
+                                        "icon_url": "string",
+                                        "items": [{"string": "string"}, {"string": "string"}],
                                     },
                                     {
-                                        "id": 2,
-                                        "name": "Category 2",
-                                        "icon_url": "Icon URL 2",
+                                        "id": "string",
+                                        "name": "string",
+                                        "icon_url": "string",
                                         "items": [],
                                     }
                                 ]
