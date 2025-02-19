@@ -5,9 +5,20 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
+      - ./resources:/app/media
+    networks:
+      - nadsnax-net
   frontend:
     build: ./frontend
     ports: 
       - "80:80"
     depends_on:
       - backend
+    volumes:
+      - ./resources:/usr/share/nginx/html/resources
+    networks:
+      - nadsnax-net
+
+networks:
+  nadsnax-net:
+    driver: bridge

@@ -1,5 +1,5 @@
 import { ChangeEvent, EventHandler, FC, MouseEventHandler } from 'react';
-import { Product } from '../../types';
+import { Item } from '../../types';
 import { Link } from 'react-router';
 import ProductRating from './ProductRating';
 import { FiPlus } from 'react-icons/fi';
@@ -14,7 +14,7 @@ import { selectItemById } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 
 type ProductItemProps = {
-	product: Product;
+	product: Item;
 	className?: string;
 	hideAddButton?: boolean;
 };
@@ -35,11 +35,10 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, hideAddButton }
 
 	const {
 		price,
-		image,
-		imageAlt,
+		imageUrl,
 		label,
-		rating,
-		ratingCount,
+		//rating,
+		//ratingCount,
 		pageLink,
 		description,
 		oldPrice,
@@ -87,14 +86,14 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, hideAddButton }
 						Bestseller
 					</div>
 				)}
-				{category === 'secret-boxes' && (
+				{category.name === 'secret-boxes' && (
 					<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Secret Box
 					</div>
 				)}
 				<img
-					src={image}
-					alt={imageAlt}
+					src={imageUrl}
+					alt={`${label} image`}
 					className='object-cover w-[240px] h-[240px]'
 				/>
 
@@ -157,11 +156,13 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, hideAddButton }
 				</div>
 				<div className='flex justify-start'>
 					<ProductRating
-						rating={rating || 0}
+						rating={/*rating*/ 0}
 						size='16'
 						className='flex text-yellow-400'
 					/>
-					<span className='text-gray-500 text-[0.75rem]'>{ratingCount}</span>
+					<span className='text-gray-500 text-[0.75rem]'>
+						{/*ratingCount*/ 0}
+					</span>
 				</div>
 			</div>
 		</Link>

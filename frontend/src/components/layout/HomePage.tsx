@@ -156,11 +156,11 @@ export const HomePage: FC = () => {
 					{reviews.map((review) => (
 						<ReviewElement
 							key={review.id}
-							name={review.name}
-							avatar={review.avatar}
 							rating={review.rating}
-							productId={review.productId}
 							text={review.text}
+							user={review.user}
+							userId={review.userId}
+							itemId={review.itemId}
 						/>
 					))}
 				</ul>

@@ -1,37 +1,19 @@
 import { FC } from 'react';
 import { useParams } from 'react-router';
-import { products } from '../../mock';
 import ProductItem from '../ProductItem/ProductItem';
 import { NoResults } from './NoResults';
+import { Item } from '../../types';
 
 export const ProductsPage: FC = () => {
+	const items: Item[] = [];
 	const { category, type } = useParams();
-
-	let productsList;
-
-	productsList = products;
-
-	if (category) {
-		productsList = productsList.filter((product) => {
-			return product.category === category;
-		});
-	}
-	if (category && type) {
-		productsList = productsList.filter((product) => {
-			return product.category === category && product.type === type;
-		});
-	}
-
-	if (category === 'best-sellers') {
-		productsList = products.filter((product) => product.isBestseller);
-	}
 
 	return (
 		<main className='flex flex-wrap p-5 justify-center gap-4'>
-			{productsList.map((product) => (
+			{items.map((product) => (
 				<ProductItem key={product.id} product={product} />
 			))}
-			{!productsList.length && <NoResults type={type} category={category} />}
+			{!items.length && <NoResults type={type} category={category} />}
 		</main>
 	);
 };

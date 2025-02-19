@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { NavbarLink } from './NavbarLink';
-import { category } from '../../types';
+import { ItemCategory } from '../../types';
 
 interface NavbarDropdownProps {
-	category: category;
+	category: ItemCategory;
 }
 
 export const NavbarDropdown: FC<NavbarDropdownProps> = ({
@@ -12,9 +12,9 @@ export const NavbarDropdown: FC<NavbarDropdownProps> = ({
 	return (
 		<div className='flex-col absolute bg-white scale-y-0 border peer-hover:scale-y-100 peer-focus-within:scale-y-100 origin-top transition-transform hover:scale-y-100'>
 			<ul className='flex flex-col gap-4 p-6 w-36'>
-				{category.products.map((product) => (
+				{category.types.map((product) => (
 					<li key={product.name}>
-						<NavbarLink to={product.to} text={product.name} />
+						<NavbarLink to={product.pageLink} text={product.name} />
 					</li>
 				))}
 			</ul>

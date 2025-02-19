@@ -1,19 +1,19 @@
 import { FC } from 'react';
-import { Product } from '../../types';
+import { Item } from '../../types';
 import { Link } from 'react-router';
 import { CartQuantityChooser } from './CartQuantityChooser';
 import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
 
-type CartItemProps = Product & {
+type CartItemProps = Item & {
 	pageLink: string;
 	className?: string;
 	totalPrice: number;
 };
 
-export const CartItem: FC<CartItemProps> = (product: Product) => {
-	const { price, image, imageAlt, label, pageLink, id } = product;
+export const CartItem: FC<CartItemProps> = (product: Item) => {
+	const { price, imageUrl, label, pageLink, id } = product;
 	const productCart = useSelector((state: RootState) => selectItemById(state, id));
 	if (productCart) {
 		const totalPrice = productCart?.product.price * productCart.count;
@@ -41,8 +41,8 @@ export const CartItem: FC<CartItemProps> = (product: Product) => {
 							Product
 						</div>
 						<img
-							src={image}
-							alt={imageAlt}
+							src={imageUrl}
+							alt={`${label} image`}
 							className='object-cover w-[120px] h-[120px] aspect-square'
 						/>
 						<div className='flex flex-col justify-center items-start m-5'>

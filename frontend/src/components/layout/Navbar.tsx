@@ -5,13 +5,17 @@ import { NavbarDropdown } from '../Navbar/NavbarDropdown';
 import { NavbarDropdownButton } from '../Navbar/NavbarDropdownButton';
 import { SiteLogo } from '../Navbar/SiteLogo';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { categories } from '../../mock';
 import NavbarCart from '../Cart/NavbarCart';
 import Modal from './Modal';
 import Cart from '../Cart/Cart';
+import { useSelector } from 'react-redux';
+import { selectAllCategories } from '../../store/categorySelectors';
 
 export const Navbar: FC = () => {
 	const [isModalActive, setIsModalActive] = useState<boolean>(false);
+
+	const categories = useSelector(selectAllCategories);
+
 	return (
 		<>
 			<div className='w-full border-b-[1px] flex flex-row items-center'>
@@ -34,9 +38,12 @@ export const Navbar: FC = () => {
 					</li>
 					<NavbarRule />
 
-					{Object.entries(categories).map(([name, category]) => (
-						<li key={name} className='z-10'>
-							<NavbarDropdownButton to={category.to} text={name} />
+					{categories.map((category) => (
+						<li key={category.id} className='z-10'>
+							<NavbarDropdownButton
+								to={category.pageLink}
+								text={category.name}
+							/>
 							<NavbarDropdown category={category} />
 						</li>
 					))}

@@ -7,10 +7,13 @@ import SidebarHeader from './SidebarHeader';
 import { SidebarSelect } from './SidebarSelect';
 import clsx from 'clsx';
 import { NavbarContext } from '../../context/NavbarContext';
-import { categories } from '../../mock';
+import { useSelector } from 'react-redux';
+import { selectAllCategories } from '../../store/categorySelectors';
 
 export const Sidebar: FC = () => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
+
+	const categories = useSelector(selectAllCategories);
 
 	return (
 		<div className='group flex md:hidden'>
@@ -55,17 +58,18 @@ export const Sidebar: FC = () => {
 							<CiGift />
 							<span className='ms-3'>Secret Boxes</span>
 						</SidebarItem>
-						{Object.entries(categories).map(([name, entries]) => {
+						{categories.map((category) => {
 							return (
 								<SidebarSelect
-									to={entries.to}
-									key={name}
-									name={name}
-									icon={entries.icon}
-									options={entries.products.map((item) => ({
-										to: item.to,
-										name: item.name,
+									to={category.pageLink}
+									key={category.id}
+									name={category.name}
+									iconUrl={category.iconUrl}
+									options={category.types.map((type) => ({
+										to: type.pageLink,
+										name: type.name,
 									}))}
+									category={category}
 								/>
 							);
 						})}

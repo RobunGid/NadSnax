@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../types';
+import { Item } from '../types';
 import { AppDispatch } from '.';
 
-const initialState: { productList: { product: Product; count: number }[] } = {
+const initialState: { productList: { product: Item; count: number }[] } = {
 	productList: [],
 };
 
@@ -10,7 +10,7 @@ const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addItemToCart(state, action: PayloadAction<{ product: Product }>) {
+		addItemToCart(state, action: PayloadAction<{ product: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
 				(item) => item.product.id === action.payload.product.id
 			);
@@ -27,7 +27,7 @@ const cartSlice = createSlice({
 				state.productList.push({ product: action.payload.product, count: 1 });
 			}
 		},
-		removeItemFromCart(state, action: PayloadAction<{ product: Product }>) {
+		removeItemFromCart(state, action: PayloadAction<{ product: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
 				(item) => item.product.id === action.payload.product.id
 			);
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
 				}
 			}
 		},
-		deleteItemFromCart(state, action: PayloadAction<{ product: Product }>) {
+		deleteItemFromCart(state, action: PayloadAction<{ product: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
 				(item) => item.product.id === action.payload.product.id
 			);
@@ -53,10 +53,7 @@ const cartSlice = createSlice({
 
 			state.productList.splice(existingCartProductIndex, 1);
 		},
-		changeItemCount(
-			state,
-			action: PayloadAction<{ product: Product; count: number }>
-		) {
+		changeItemCount(state, action: PayloadAction<{ product: Item; count: number }>) {
 			const validatedCount = Math.min(action.payload.count, 16);
 
 			const existingCartProductIndex = state.productList.findIndex(
@@ -95,14 +92,14 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const addItemToCart = (product: Product) => (dispatch: AppDispatch) => {
+export const addItemToCart = (product: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/addItemToCart',
 		payload: { product },
 	});
 };
 
-export const deleteItemFromCart = (product: Product) => (dispatch: AppDispatch) => {
+export const deleteItemFromCart = (product: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/deleteItemFromCart',
 		payload: { product },
@@ -110,14 +107,14 @@ export const deleteItemFromCart = (product: Product) => (dispatch: AppDispatch) 
 };
 
 export const changeItemCount =
-	(product: Product, count: number) => (dispatch: AppDispatch) => {
+	(product: Item, count: number) => (dispatch: AppDispatch) => {
 		dispatch({
 			type: 'cart/changeItemCount',
 			payload: { product, count },
 		});
 	};
 
-export const removeItemFromCart = (product: Product) => (dispatch: AppDispatch) => {
+export const removeItemFromCart = (product: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/removeItemFromCart',
 		payload: { product },

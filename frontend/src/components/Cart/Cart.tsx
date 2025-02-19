@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
-import { Product } from '../../types';
+import { Item } from '../../types';
 import { selectAllItems } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
@@ -10,11 +10,10 @@ interface CartProps {
 }
 
 const Cart: FC<CartProps> = ({ setActive }) => {
-	const productsItems: { product: Product; count: number }[] =
-		useSelector(selectAllItems);
+	const productsItems: { product: Item; count: number }[] = useSelector(selectAllItems);
 
-	const products: Product[] = productsItems.map(
-		(item: { product: Product; count: number }) => item.product
+	const products: Item[] = productsItems.map(
+		(item: { product: Item; count: number }) => item.product
 	);
 
 	return (

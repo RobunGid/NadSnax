@@ -3,8 +3,17 @@ import './App.css';
 import { Header } from './components/layout/Header';
 import { HomePage } from './components/layout/HomePage';
 import { ProductsPage } from './components/layout/ProductsPage';
+import { useAppDispatch } from './store';
+import { fetchCategories } from './store/categorySlice';
+import { useEffect } from 'react';
 
 function App() {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchCategories());
+	}, []);
+
 	return (
 		<>
 			<Header />

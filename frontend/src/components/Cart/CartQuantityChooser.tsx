@@ -1,7 +1,7 @@
 import { ChangeEvent, EventHandler, FC } from 'react';
 import styles from './CartQuantityChooser.module.css';
 import clsx from 'clsx';
-import { Product } from '../../types';
+import { Item } from '../../types';
 import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState, useAppDispatch } from '../../store';
@@ -9,7 +9,7 @@ import { changeItemCount, deleteItemFromCart } from '../../store/cartSlice';
 import { TfiTrash } from 'react-icons/tfi';
 
 interface CartQuantityChooserProps {
-	product: Product;
+	product: Item;
 	className?: string;
 }
 
