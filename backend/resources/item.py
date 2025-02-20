@@ -1,11 +1,12 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 import uuid
-from models import ItemModel
+from models import ItemModel, CategoryModel, TypeModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request
+from sqlalchemy import func
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -67,14 +68,30 @@ class Items(MethodView):
                 "default": "false",
                 "description": "Include related category"
             },
-                        {
+            {
                 "name": "include_item_details",
                 "in": "query",
                 "type": "boolean",
                 "required": False,
                 "default": "false",
                 "description": "Include related item details"
-            }
+            },
+            {
+                "name": "category_name",
+                "in": "query",
+                "type": "string",
+                "required": False,
+                "default": "",
+                "description": "Filter by category name"
+            },
+            {
+                "name": "type_name",
+                "in": "query",
+                "type": "string",
+                "required": False,
+                "default": "",
+                "description": "Filter by type name"
+            },
         ],
         responses={
             "200": {
@@ -165,9 +182,12 @@ class Items(MethodView):
         }
     )
     def get(self):
-        include_type = request.args.get("include_type", "false").lower() == "true"
-        include_category = request.args.get("include_category", "false").lower() == "true"
-        include_item_details = request.args.get("include_item_details", "false").lower() == "true"
+        include_type = request.args.get("include_type", type = bool, default = False)
+        include_category = request.args.get("include_category", type = bool, default = False)
+        include_item_details = request.args.get("include_item_details", type = bool, default = False)
+        
+        category_filter = request.args.get("category_name", "").lower()
+        type_filter = request.args.get("type_name", "").lower()
         
         query = ItemModel.query
         
@@ -177,6 +197,12 @@ class Items(MethodView):
             query = query.options(db.joinedload(ItemModel.category))
         if include_item_details:
             query = query.options(db.joinedload(ItemModel.item_details))
+            
+        query = query.join(ItemModel.category) if category_filter else query
+        query = query.join(ItemModel.type) if type_filter else query
+            
+        query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
+        query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
             
         items = query.all()
         
