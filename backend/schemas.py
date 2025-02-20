@@ -115,5 +115,19 @@ class ItemSchema(PlainItemSchema):
     type = fields.Nested(PlainTypeSchema(), dump_only = True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
     
+    def __init__(self, include_category = False, include_type = False, include_item_details = False, **kwargs):
+        exclude_fields = set()
+        
+        if not include_category:
+            exclude_fields.add("category")
+            
+        if not include_type:
+            exclude_fields.add("type")
+
+        if not include_item_details:
+            exclude_fields.add("item_details")
+
+        super().__init__(exclude = exclude_fields, **kwargs)
+    
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)

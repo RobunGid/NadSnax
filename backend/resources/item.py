@@ -5,6 +5,7 @@ from models import ItemModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
+from flask import request
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -46,9 +47,149 @@ class Item(MethodView):
 
 @blp.route('/item')
 class Items(MethodView):
-    @blp.response(200, ItemSchema(many = True))
+    @blp.alt_response(200, description = "Items list")
+    @blp.doc(
+        description="Get items list with query parameters to manage related type, category and item details",
+        parameters=[
+            {
+                "name": "include_type",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include related type"
+            },
+            {
+                "name": "include_category",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include related category"
+            },
+                        {
+                "name": "include_item_details",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include related item details"
+            }
+        ],
+        responses={
+            "200": {
+                "description": "Items list",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "include_type=true&include_category=true&include_item_details=true": {
+                                "value": [
+                                    {
+                                        "id": "string",
+                                        "label": "string",
+                                        "image_url": "string",
+                                        "page_link": "string",
+                                        "category_id": "string",
+                                        "description": "string",
+                                        "is_bestseller": "boolean",
+                                        "old_price": "float",
+                                        "price": "float",
+                                        "type_id": "string",
+                                        "category": {
+					                        "id": "string",
+                    	                    "name": "string",
+                        	                "icon_url": "string",
+                                	        "page_link": "string"
+										},
+                                        "type": {
+											"category_id": "string",
+											"icon_url": "string",
+											"id": "string",
+											"name": "string",
+											"page_link": "string"
+										},
+                                        "item_details": {
+											"full_description": "string",
+											"full_label": "string",
+											"ingridients": "string",
+											"item_id": "string",
+											"nutrition": "string",
+											"supplier": "string"
+										}
+                                    }
+                                ]
+                            },
+                            "Without query parameters": {
+                                "value": [
+{
+                                        "id": "string",
+                                        "label": "string",
+                                        "image_url": "string",
+                                        "page_link": "string",
+                                        "category_id": "string",
+                                        "description": "string",
+                                        "is_bestseller": "boolean",
+                                        "old_price": "float",
+                                        "price": "float",
+                                        "type_id": "string"
+                                    }
+                                ]
+                            },
+                            "include_type=true": {
+                                "value": [
+                                    {
+                                        "id": "string",
+                                        "label": "string",
+                                        "image_url": "string",
+                                        "page_link": "string",
+                                        "category_id": "string",
+                                        "description": "string",
+                                        "is_bestseller": "boolean",
+                                        "old_price": "float",
+                                        "price": "float",
+                                        "type_id": "string",
+                                        "type": {
+											"category_id": "string",
+											"icon_url": "string",
+											"id": "string",
+											"name": "string",
+											"page_link": "string"
+										}
+                                    }
+                                ]
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    )
     def get(self):
-        return ItemModel.query.all()
+        include_type = request.args.get("include_type", "false").lower() == "true"
+        include_category = request.args.get("include_category", "false").lower() == "true"
+        include_item_details = request.args.get("include_item_details", "false").lower() == "true"
+        
+        query = ItemModel.query
+        
+        if include_type:
+            query = query.options(db.joinedload(ItemModel.type))
+        if include_category:
+            query = query.options(db.joinedload(ItemModel.category))
+        if include_item_details:
+            query = query.options(db.joinedload(ItemModel.item_details))
+            
+        items = query.all()
+        
+        params = {
+			"many": True,
+    		"include_category": include_category,
+    		"include_type": include_type,
+    		"include_item_details": include_item_details
+		}
+        
+        schema = ItemSchema(**params)
+            
+        return schema.dump(items), 200
         
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)
