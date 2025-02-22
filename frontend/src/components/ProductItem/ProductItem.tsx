@@ -14,21 +14,19 @@ import { selectItemById } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 
 type ProductItemProps = {
-	product: Item;
+	item: Item;
 	className?: string;
 	hideAddButton?: boolean;
 };
 
-const ProductItem: FC<ProductItemProps> = ({ product, className, hideAddButton }) => {
+const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) => {
 	const dispatch = useAppDispatch();
 
-	const productCart = useSelector((state: RootState) =>
-		selectItemById(state, product.id)
-	);
+	const productCart = useSelector((state: RootState) => selectItemById(state, item.id));
 
 	const handleInputChange: EventHandler<ChangeEvent<HTMLInputElement>> = (event) => {
 		if (Number.isNaN(parseInt(event.target.value))) return;
-		dispatch(changeItemCount(product, parseFloat(event.target.value)));
+		dispatch(changeItemCount(item, parseFloat(event.target.value)));
 	};
 
 	const count = productCart?.count || 0;
@@ -44,18 +42,18 @@ const ProductItem: FC<ProductItemProps> = ({ product, className, hideAddButton }
 		oldPrice,
 		isBestseller,
 		category,
-	} = product;
+	} = item;
 
 	const handleAddItemToCart: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = (
 		event
 	) => {
 		event.preventDefault();
-		dispatch(addItemToCart(product));
+		dispatch(addItemToCart(item));
 	};
 
 	const handleRemoveProductFromCart: MouseEventHandler<HTMLButtonElement> = (event) => {
 		event.preventDefault();
-		dispatch(removeItemFromCart(product));
+		dispatch(removeItemFromCart(item));
 	};
 
 	const handleDivClick: MouseEventHandler<HTMLDivElement> = (event) => {

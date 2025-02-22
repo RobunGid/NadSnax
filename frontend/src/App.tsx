@@ -5,7 +5,6 @@ import { ProductsPage } from './components/layout/ProductsPage';
 import { useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
-
 function App() {
 	const dispatch = useAppDispatch();
 

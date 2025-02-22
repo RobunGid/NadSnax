@@ -1,17 +1,34 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
 import { NoResults } from './NoResults';
 import { Item } from '../../types';
+import { useSelector } from 'react-redux';
+import { selectAllItems } from '../../store/itemSelectors';
+import { useAppDispatch } from '../../store';
+import { fetchItems } from '../../store/itemSlice';
 
 export const ProductsPage: FC = () => {
-	const items: Item[] = [];
+	const dispatch = useAppDispatch();
+
+	const items: Item[] = useSelector(selectAllItems);
+
 	const { category, type } = useParams();
+	useEffect(() => {
+		dispatch(
+			fetchItems({
+				include_category: true,
+				include_type: true,
+				category_name: category,
+				type_name: type,
+			})
+		);
+	}, [category, type]);
 
 	return (
 		<main className='flex flex-wrap p-5 justify-center gap-4'>
-			{items.map((product) => (
-				<ProductItem key={product.id} product={product} />
+			{items.map((item) => (
+				<ProductItem key={item.id} item={item} />
 			))}
 			{!items.length && <NoResults type={type} category={category} />}
 		</main>
