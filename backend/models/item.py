@@ -1,4 +1,7 @@
 from db import db
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.sql import func
+import models
 
 class ItemModel(db.Model):
     __tablename__ = "items"
@@ -17,5 +20,22 @@ class ItemModel(db.Model):
     
     category = db.relationship("CategoryModel", back_populates = "items")
     type = db.relationship("TypeModel", back_populates = "items")
+    reviews = db.relationship("ReviewModel", back_populates = "item")
     
     item_details = db.relationship("ItemDetailsModel", back_populates = "item", uselist = False)
+    
+    @hybrid_property
+    def average_rating(self):
+        return sum(review.rating for review in self.reviews) / len(self.reviews) if self.reviews else None
+
+    @average_rating.expression
+    def average_rating(cls):
+        return db.select(func.avg(models.ReviewModel.rating)).where(models.ReviewModel.item_id == cls.id).scalar_subquery()
+    
+    @hybrid_property
+    def rating_count(self):
+        return len(list(review for review in self.reviews)) if self.reviews else None
+
+    @rating_count.expression
+    def rating_count(cls):
+        return db.select(func.count(models.ReviewModel)).where(models.ReviewModel.item_id == cls.id).scalar_subquery()

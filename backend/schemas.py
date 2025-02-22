@@ -61,6 +61,9 @@ class ReviewSchema(PlainReviewSchema):
     user_id = fields.Str(required = True, load_only = True)
     user = fields.Nested(PlainUserSchema(), dump_only = True) 
     
+    item_id = fields.Str(required = True, load_only = True)
+    item = fields.Nested(PlainItemSchema(), dump_only = True)
+    
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
@@ -114,8 +117,12 @@ class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
     type = fields.Nested(PlainTypeSchema(), dump_only = True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
+    reviews = fields.Nested(PlainReviewSchema(), dump_only = True, many = True)
     
-    def __init__(self, include_category = False, include_type = False, include_item_details = False, **kwargs):
+    average_rating = fields.Float(dump_only = True)
+    rating_count = fields.Int(dump_only = True)
+    
+    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, **kwargs):
         exclude_fields = set()
         
         if not include_category:
@@ -126,6 +133,9 @@ class ItemSchema(PlainItemSchema):
 
         if not include_item_details:
             exclude_fields.add("item_details")
+            
+        if not include_reviews:
+            exclude_fields.add("reviews")
 
         super().__init__(exclude = exclude_fields, **kwargs)
     

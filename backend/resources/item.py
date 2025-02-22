@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 import uuid
-from models import ItemModel, CategoryModel, TypeModel
+from models import ItemModel, CategoryModel, TypeModel, ReviewModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
@@ -58,7 +58,7 @@ class Items(MethodView):
                 "type": "boolean",
                 "required": False,
                 "default": "false",
-                "description": "Include related type"
+                "description": "Include related item type"
             },
             {
                 "name": "include_category",
@@ -66,7 +66,7 @@ class Items(MethodView):
                 "type": "boolean",
                 "required": False,
                 "default": "false",
-                "description": "Include related category"
+                "description": "Include related item category"
             },
             {
                 "name": "include_item_details",
@@ -75,6 +75,14 @@ class Items(MethodView):
                 "required": False,
                 "default": "false",
                 "description": "Include related item details"
+            },
+            {
+				"name": "include_reviews",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": "false",
+                "description": "Include related item reviews"
             },
             {
                 "name": "category_name",
@@ -148,7 +156,9 @@ class Items(MethodView):
                                         "is_bestseller": "boolean",
                                         "old_price": "float",
                                         "price": "float",
-                                        "type_id": "string"
+                                        "type_id": "string",
+                                        "average_rating": "float",
+                                        "rating_count": "integer"
                                     }
                                 ]
                             },
@@ -165,6 +175,8 @@ class Items(MethodView):
                                         "old_price": "float",
                                         "price": "float",
                                         "type_id": "string",
+                                        "average_rating": "float",
+                                        "rating_count": "integer",
                                         "type": {
 											"category_id": "string",
 											"icon_url": "string",
@@ -185,6 +197,7 @@ class Items(MethodView):
         include_type = request.args.get("include_type", type = bool, default = False)
         include_category = request.args.get("include_category", type = bool, default = False)
         include_item_details = request.args.get("include_item_details", type = bool, default = False)
+        include_reviews = request.args.get("include_reviews", type = bool, default = False)
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
@@ -197,6 +210,8 @@ class Items(MethodView):
             query = query.options(db.joinedload(ItemModel.category))
         if include_item_details:
             query = query.options(db.joinedload(ItemModel.item_details))
+        if include_reviews:
+            query = query.options(db.joinedload(ItemModel.reviews))
             
         query = query.join(ItemModel.category) if category_filter else query
         query = query.join(ItemModel.type) if type_filter else query
@@ -210,7 +225,8 @@ class Items(MethodView):
 			"many": True,
     		"include_category": include_category,
     		"include_type": include_type,
-    		"include_item_details": include_item_details
+    		"include_item_details": include_item_details,
+			"include_reviews": include_reviews
 		}
         
         schema = ItemSchema(**params)
