@@ -3,10 +3,11 @@ import ChipsHomeImage from '../../assets/chips-image.png';
 import CrackersHomeImage from '../../assets/crackers-image.png';
 import CookiesHomeImage from '../../assets/cookies-image.png';
 import JuiceHomeImage from '../../assets/juice-image.png';
-import { reviews } from '../../mock';
 import { ReviewElement } from './ReviewElement';
+import { Review } from '../../types';
 
 export const HomePage: FC = () => {
+	const reviews: Review[] = [];
 	return (
 		<div className='p-3'>
 			<section className='flex justify-center items-center w-full'>
@@ -154,14 +155,7 @@ export const HomePage: FC = () => {
 				<h2 className='font-bold text-2xl text-center'>Out customer's reviews</h2>
 				<ul className='flex gap-5 overflow-hidden justify-center w-full mx-auto'>
 					{reviews.map((review) => (
-						<ReviewElement
-							key={review.id}
-							rating={review.rating}
-							text={review.text}
-							user={review.user}
-							userId={review.userId}
-							itemId={review.itemId}
-						/>
+						<ReviewElement key={review.id} review={review} />
 					))}
 				</ul>
 			</section>

@@ -154,12 +154,12 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 				</div>
 				<div className='flex justify-start'>
 					<ProductRating
-						rating={/*rating*/ 0}
+						rating={item.averageRating}
 						size='16'
 						className='flex text-yellow-400'
 					/>
 					<span className='text-gray-500 text-[0.75rem]'>
-						{/*ratingCount*/ 0}
+						{item.ratingCount}
 					</span>
 				</div>
 			</div>

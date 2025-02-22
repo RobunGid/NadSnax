@@ -28,6 +28,8 @@ export type Item = {
 	pageLink: string;
 	type: ItemType;
 	category: ItemCategory;
+	averageRating: number;
+	ratingCount: number;
 };
 
 export type ItemDetails = {
@@ -42,12 +44,17 @@ export type ItemDetails = {
 export type Review = {
 	id: string;
 	itemId: string;
+	item: Item;
+
 	text: string;
 	rating: number;
+
 	userId: string;
 	user: User;
 };
 
 export type User = {
 	id: string;
+	avatarUrl: string;
+	name: string;
 };
