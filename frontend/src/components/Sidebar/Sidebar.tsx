@@ -43,7 +43,7 @@ export const Sidebar: FC = () => {
 					<span className='sr-only'>Close menu</span>
 				</button>
 				<div className='py-4 overflow-y-auto pointer-events-auto'>
-					<ul className='space-y-2 font-medium'>
+					<ul className='space-y-1 font-medium'>
 						<SidebarItem to='/home'>
 							<GoHome />
 							<span className='ms-3'>Home</span>
