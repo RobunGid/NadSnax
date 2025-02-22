@@ -13,7 +13,7 @@ export const NoResults: FC<NoResultsProps> = ({ category, type }) => {
 					Sorry, there no products for {type} in {category}
 				</h1>
 			)}
-			{!type && (
+			{!type && category && (
 				<h1 className='font-bold'>Sorry, there no products in {category}</h1>
 			)}
 			{!type && !category && (

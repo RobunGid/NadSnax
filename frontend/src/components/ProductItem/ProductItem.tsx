@@ -159,7 +159,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 						className='flex text-yellow-400'
 					/>
 					<span className='text-gray-500 text-[0.75rem]'>
-						{item.ratingCount}
+						{item.ratingCount || 0}
 					</span>
 				</div>
 			</div>
