@@ -201,6 +201,12 @@ class Items(MethodView):
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
+        bestseller_filter = request.args.get("bestseller", "").lower()
+        
+        if bestseller_filter in ["false", "true"]:
+            bestseller_filter = bestseller_filter == "true"
+        else:
+            bestseller_filter = None
         
         query = ItemModel.query
         
@@ -218,7 +224,8 @@ class Items(MethodView):
             
         query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
         query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
-            
+        query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
+        
         items = query.all()
         
         params = {
