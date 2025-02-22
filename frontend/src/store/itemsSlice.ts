@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Item } from '../types';
+import { Item, ItemCategory } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 
 type ItemsState = {

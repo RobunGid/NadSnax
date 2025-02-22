@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ItemCategory } from '../types';
 import camelcaseKeys from 'camelcase-keys';
+import { categoryAxios } from '../api/category';
 
 type CategoriesState = {
 	list: ItemCategory[];
@@ -19,13 +20,15 @@ export const fetchCategories = createAsyncThunk<
 	undefined,
 	{ rejectValue: string }
 >('category/fetchCategories', async (_, { rejectWithValue }) => {
-	const response = await fetch('/api/category?include_types=true');
+	const response = await categoryAxios.get<ItemCategory[]>('/category', {
+		params: { include_types: true },
+	});
 
-	if (!response.ok) {
+	if (response.status != 200) {
 		return rejectWithValue('Server Error!');
 	}
 
-	const categories = await response.json();
+	const categories = response.data;
 
 	const camelCaseCategories = camelcaseKeys(categories, { deep: true });
 

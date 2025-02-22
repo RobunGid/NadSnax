@@ -18,6 +18,8 @@ services:
       - ./resources:/usr/share/nginx/html/resources
     networks:
       - nadsnax-net
+    environment:
+      - NODE_ENV=production
 
 networks:
   nadsnax-net:
