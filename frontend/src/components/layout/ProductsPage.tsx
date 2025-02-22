@@ -21,6 +21,7 @@ export const ProductsPage: FC = () => {
 				include_type: true,
 				category_name: category,
 				type_name: type,
+				is_bestseller: category === 'best-sellers' ? true : undefined,
 			})
 		);
 	}, [category, type]);
