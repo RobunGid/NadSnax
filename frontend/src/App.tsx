@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router';
-import './App.css';
 import { Header } from './components/layout/Header';
 import { HomePage } from './components/layout/HomePage';
 import { ProductsPage } from './components/layout/ProductsPage';
