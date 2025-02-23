@@ -24,6 +24,7 @@ export const ProductsPage: FC = () => {
 				is_bestseller: category === 'best-sellers' ? true : undefined,
 			})
 		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category, type]);
 
 	return (
