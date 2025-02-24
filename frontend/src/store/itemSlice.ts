@@ -68,6 +68,7 @@ export const fetchItems = createAsyncThunk<
 		const fixedItems = camelCaseItems.map((item: Item) => ({
 			...item,
 			imageUrl: `http://localhost${item.imageUrl}`,
+			pageLink: `${item.type.pageLink}${item.pageLink}`,
 		}));
 
 		return fixedItems;
