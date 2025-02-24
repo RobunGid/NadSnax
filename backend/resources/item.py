@@ -102,6 +102,14 @@ class Items(MethodView):
                 "description": "Filter by type name"
             },
             {
+                "name": "page_link",
+                "in": "query",
+                "type": "string",
+                "required": False,
+                "default": "",
+                "description": "Filter by page link (Should return always one item)"
+            },
+            {
 				"name": "bestseller",
                 "in": "query",
                 "type": "boolean",
@@ -134,6 +142,7 @@ class Items(MethodView):
                                         "category_id": "string",
                                         "description": "string",
                                         "is_bestseller": "boolean",
+                                        "is_secretbox": "boolean",
                                         "old_price": "float",
                                         "price": "float",
                                         "type_id": "string",
@@ -171,6 +180,7 @@ class Items(MethodView):
                                         "category_id": "string",
                                         "description": "string",
                                         "is_bestseller": "boolean",
+                                        "is_secretbox": "boolean",
                                         "old_price": "float",
                                         "price": "float",
                                         "type_id": "string",
@@ -189,6 +199,7 @@ class Items(MethodView):
                                         "category_id": "string",
                                         "description": "string",
                                         "is_bestseller": "boolean",
+                                        "is_secretbox": "boolean",
                                         "old_price": "float",
                                         "price": "float",
                                         "type_id": "string",
@@ -220,6 +231,7 @@ class Items(MethodView):
         type_filter = request.args.get("type_name", "").lower()
         bestseller_filter = request.args.get("bestseller", "").lower()
         secretbox_filter = request.args.get("secretbox", "").lower()
+        page_link_filter = request.args.get("page_link", "").lower()
         
         if bestseller_filter in ["false", "true"]:
             bestseller_filter = bestseller_filter == "true"
@@ -247,6 +259,8 @@ class Items(MethodView):
             
         query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
         query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
+        query = query.filter(ItemModel.page_link == page_link_filter) if page_link_filter else query
+        
         query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
         query = query.filter(ItemModel.is_secretbox == secretbox_filter) if secretbox_filter != None else query
         
