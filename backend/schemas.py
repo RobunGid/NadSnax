@@ -26,15 +26,15 @@ class PlainTypeSchema(Schema):
 class PlainItemSchema(Schema):
     id = fields.Str(dump_only = True)
     label = fields.Str(required = True)
-    page_link = fields.Str()
+    page_link = fields.Str(required = True)
     description = fields.Str()
-    image_url = fields.Str()
+    image_url = fields.Str(required = True)
     price = fields.Float(required = True)
     old_price = fields.Float()
     is_bestseller = fields.Boolean()
     is_secretbox = fields.Boolean()
-    category_id = fields.Str(required = True)
-    type_id = fields.Str(required = True)
+    category_id = fields.Str()
+    type_id = fields.Str()
     
 class TypeSchema(PlainTypeSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only = True)
