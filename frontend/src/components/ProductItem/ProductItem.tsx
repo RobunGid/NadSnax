@@ -142,10 +142,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 						<div className='font-bold text-xl'>{productPrice}</div>
 					)}
 				</div>
-				<div
-					className='text-gray-500 text-ellipsis text-nowrap w-60'
-					title={description}
-				>
+				<div className='text-gray-500 w-52 text-sm truncate' title={description}>
 					{description}
 				</div>
 				<div className='flex space-x-2'>
