@@ -57,7 +57,7 @@ class Items(MethodView):
                 "in": "query",
                 "type": "boolean",
                 "required": False,
-                "default": "false",
+                "default": False,
                 "description": "Include related item type"
             },
             {
@@ -65,7 +65,7 @@ class Items(MethodView):
                 "in": "query",
                 "type": "boolean",
                 "required": False,
-                "default": "false",
+                "default": False,
                 "description": "Include related item category"
             },
             {
@@ -73,7 +73,7 @@ class Items(MethodView):
                 "in": "query",
                 "type": "boolean",
                 "required": False,
-                "default": "false",
+                "default": False,
                 "description": "Include related item details"
             },
             {
@@ -81,7 +81,7 @@ class Items(MethodView):
                 "in": "query",
                 "type": "boolean",
                 "required": False,
-                "default": "false",
+                "default": False,
                 "description": "Include related item reviews"
             },
             {
@@ -99,6 +99,22 @@ class Items(MethodView):
                 "required": False,
                 "default": "",
                 "description": "Filter by type name"
+            },
+            {
+				"name": "bestseller",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": False,
+                "description": "Filter by is bestseller"
+            },
+            {
+				"name": "secretbox",
+                "in": "query",
+                "type": "boolean",
+                "required": False,
+                "default": False,
+                "description": "Filter by is secretbox"
             },
         ],
         responses={
@@ -202,11 +218,17 @@ class Items(MethodView):
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
         bestseller_filter = request.args.get("bestseller", "").lower()
+        secretbox_filter = request.args.get("secretbox", "").lower()
         
         if bestseller_filter in ["false", "true"]:
             bestseller_filter = bestseller_filter == "true"
         else:
             bestseller_filter = None
+            
+        if secretbox_filter in ["false", "true"]:
+            secretbox_filter = secretbox_filter == "true"
+        else:
+            secretbox_filter = None
         
         query = ItemModel.query
         
@@ -225,6 +247,7 @@ class Items(MethodView):
         query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
         query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
         query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
+        query = query.filter(ItemModel.is_secretbox == secretbox_filter) if secretbox_filter != None else query
         
         items = query.all()
         
