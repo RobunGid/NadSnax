@@ -36,6 +36,7 @@ class Item(MethodView):
 			item.price = item_data["price"]
 			item.old_price = item_data["old_price"]
 			item.is_bestseller = item_data["is_bestseller"]
+			item.is_secretbox = item_data["is_secretbox"]
 			item.category_id = item_data["category_id"]
 			item.type_id = item_data["type_id"]
 		else:

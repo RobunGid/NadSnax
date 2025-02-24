@@ -65,6 +65,17 @@ class ReviewSchema(PlainReviewSchema):
     item_id = fields.Str(required = True, load_only = True)
     item = fields.Nested(PlainItemSchema(), dump_only = True)
     
+    def __init__(self, include_item = False, include_user = False, **kwargs):
+        exclude_fields = set()
+        
+        if not include_user:
+            exclude_fields.add("user")
+            
+        if not include_item:
+            exclude_fields.add("item")
+
+        super().__init__(exclude = exclude_fields, **kwargs)
+    
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
@@ -103,12 +114,13 @@ class ItemUpdateSchema(Schema):
     price = fields.Float(required = True)
     old_price = fields.Float(required = True)
     is_bestseller = fields.Boolean(required = True)
+    is_secretbox = fields.Boolean(required = True)
     category_id = fields.Str(required = True)
     type_id = fields.Str(required = True)
     
 class PlainItemDetailsSchema(Schema):
 	full_label = fields.Str(required = True)
-	full_description = fields.Str(required = True)
+	full_description = fields.Str()
 	item_id = fields.Str(required = True)
 	ingridients = fields.Str(required = True)
 	supplier = fields.Str(required = True)
@@ -118,7 +130,7 @@ class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
     type = fields.Nested(PlainTypeSchema(), dump_only = True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
-    reviews = fields.Nested(PlainReviewSchema(), dump_only = True, many = True)
+    reviews = fields.Nested(ReviewSchema(include_user = True), dump_only = True, many = True)
     
     average_rating = fields.Float(dump_only = True)
     rating_count = fields.Int(dump_only = True)

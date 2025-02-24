@@ -5,11 +5,11 @@ class ItemDetailsModel(db.Model):
     
     item_id = db.Column(db.String(80), db.ForeignKey("items.id"), primary_key = True)
     
-    full_description = db.Column(db.String(255))
-    full_label = db.Column(db.String(255), nullable = False)
-    supplier = db.Column(db.String(255))
+    full_description = db.Column(db.Text)
+    full_label = db.Column(db.Text, nullable = False)
+    supplier = db.Column(db.Text, nullable = False)
     
-    ingridients = db.Column(db.Text)
-    nutrition = db.Column(db.Text)
+    ingridients = db.Column(db.Text, nullable = False)
+    nutrition = db.Column(db.Text, nullable = False)
     item = db.relationship("ItemModel", back_populates = "item_details")
     
