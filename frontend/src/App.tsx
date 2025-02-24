@@ -5,6 +5,7 @@ import { ProductsPage } from './components/layout/ProductsPage';
 import { useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
+import ProductDetailsPage from './components/layout/ProductDetailsPage';
 function App() {
 	const dispatch = useAppDispatch();
 
@@ -22,6 +23,10 @@ function App() {
 				<Route path='/products/' element={<ProductsPage />} />
 				<Route path='/products/:category/' element={<ProductsPage />} />
 				<Route path='/products/:category/:type/' element={<ProductsPage />} />
+				<Route
+					path='/products/:category/:type/:product'
+					element={<ProductDetailsPage />}
+				/>
 			</Routes>
 		</>
 	);
