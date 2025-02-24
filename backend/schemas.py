@@ -31,7 +31,8 @@ class PlainItemSchema(Schema):
     image_url = fields.Str()
     price = fields.Float(required = True)
     old_price = fields.Float()
-    is_bestseller = fields.Boolean(required = True)
+    is_bestseller = fields.Boolean()
+    is_secretbox = fields.Boolean()
     category_id = fields.Str(required = True)
     type_id = fields.Str(required = True)
     

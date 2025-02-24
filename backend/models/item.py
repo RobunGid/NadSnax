@@ -13,6 +13,7 @@ class ItemModel(db.Model):
     description = db.Column(db.String(80))
     image_url = db.Column(db.String(80), nullable = False)
     is_bestseller = db.Column(db.Boolean())
+    is_secretbox = db.Column(db.Boolean())
     page_link = db.Column(db.String(80), nullable = False)
     
     category_id = db.Column(db.String(80), db.ForeignKey("categories.id"), nullable = False)

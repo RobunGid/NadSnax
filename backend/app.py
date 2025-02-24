@@ -2,6 +2,7 @@ from flask import Flask
 from flask_smorest import Api
 import os
 from flask_cors import CORS
+from flask_migrate import Migrate
 
 from db import db
 
@@ -15,6 +16,8 @@ from resources.item_details import blp as ItemDetailsBlueprint
 
 def create_app(db_url = None):
 	app = Flask(__name__)
+ 
+	migrate = Migrate(app, db)
  
 	CORS(app, resources={r"/*": {"origins": "http://localhost"}})
 

@@ -6,3 +6,4 @@ flask-sqlalchemy
 uuid
 gunicorn
 flask-cors
+flask-migrate
