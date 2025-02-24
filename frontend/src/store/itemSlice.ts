@@ -22,6 +22,7 @@ interface fetchItemsParams {
 	category_name?: string;
 	type_name?: string;
 	is_bestseller?: boolean;
+	is_secretbox?: boolean;
 }
 
 export const fetchItems = createAsyncThunk<
@@ -38,10 +39,12 @@ export const fetchItems = createAsyncThunk<
 			category_name,
 			type_name,
 			is_bestseller,
+			is_secretbox,
 		},
 		{ rejectWithValue }
 	) => {
 		category_name = category_name !== 'best-sellers' ? category_name : undefined;
+		category_name = category_name !== 'secretboxes' ? category_name : undefined;
 		const response = await itemAxios.get<Item[]>('/item', {
 			params: {
 				include_type,
@@ -50,6 +53,7 @@ export const fetchItems = createAsyncThunk<
 				category_name,
 				type_name,
 				bestseller: is_bestseller,
+				secretbox: is_secretbox,
 			},
 		});
 

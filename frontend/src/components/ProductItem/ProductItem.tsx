@@ -84,7 +84,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 						Bestseller
 					</div>
 				)}
-				{category.name === 'secret-boxes' && (
+				{category.name === 'secretboxes' && (
 					<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Secret Box
 					</div>

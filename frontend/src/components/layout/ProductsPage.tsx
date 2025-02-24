@@ -22,6 +22,7 @@ export const ProductsPage: FC = () => {
 				category_name: category,
 				type_name: type,
 				is_bestseller: category === 'best-sellers' ? true : undefined,
+				is_secretbox: category === 'secretboxes' ? true : undefined,
 			})
 		);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
