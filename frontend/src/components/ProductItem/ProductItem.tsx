@@ -35,8 +35,6 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 		price,
 		imageUrl,
 		label,
-		//rating,
-		//ratingCount,
 		pageLink,
 		description,
 		oldPrice,
@@ -75,9 +73,8 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 			currency: 'USD',
 			minimumFractionDigits: 2,
 		}).format(oldPrice);
-
 	return (
-		<Link to={pageLink} className={className}>
+		<Link to={`/products/page${pageLink}`} className={className}>
 			<div className='relative z-0 overflow-hidden'>
 				{isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
