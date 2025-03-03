@@ -1,0 +1,7 @@
+.gallery input[name='select']:checked + label + div {
+	@apply block;
+}
+
+.gallery input[name='select']:checked + label {
+	@apply scale-110 transition-transform;
+}

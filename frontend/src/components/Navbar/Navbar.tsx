@@ -1,12 +1,12 @@
 import { FC, useState } from 'react';
-import { NavbarLink } from '../Navbar/NavbarLink';
-import { NavbarRule } from '../Navbar/NavbarRule';
-import { NavbarDropdown } from '../Navbar/NavbarDropdown';
-import { NavbarDropdownButton } from '../Navbar/NavbarDropdownButton';
-import { SiteLogo } from '../Navbar/SiteLogo';
+import { NavbarLink } from './NavbarLink';
+import { NavbarRule } from './NavbarRule';
+import { NavbarDropdown } from './NavbarDropdown';
+import { NavbarDropdownButton } from './NavbarDropdownButton';
+import { SiteLogo } from './SiteLogo';
 import { Sidebar } from '../Sidebar/Sidebar';
 import NavbarCart from '../Cart/NavbarCart';
-import Modal from './Modal';
+import Modal from '../layout/Modal';
 import Cart from '../Cart/Cart';
 import { useSelector } from 'react-redux';
 import { selectAllCategories } from '../../store/categorySelectors';

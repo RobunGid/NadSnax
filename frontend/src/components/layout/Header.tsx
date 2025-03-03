@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Navbar } from './Navbar';
+import { Navbar } from '../Navbar/Navbar';
 import { NavbarProvider } from '../../context/NavbarProvider';
 
 export const Header: FC = () => {
