@@ -26,6 +26,7 @@ export const ProductDetailsPage: FC = () => {
 				include_item_details: true,
 				include_category: true,
 				include_type: true,
+				include_images: true,
 			})
 		);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,16 +36,7 @@ export const ProductDetailsPage: FC = () => {
 			{!itemDetails && <div>Sorry, product not found</div>}
 			{itemDetails && (
 				<div className='p-3 flex flex-row gap-10 mt-16'>
-					<ProductDetailsImages
-						className='ml-8'
-						images={[
-							{
-								src: item.imageUrl,
-								alt: `${item.label} main picture`,
-								id: item.id,
-							} /* !!!TODO!!! item.images.map(image => image.link)*/,
-						]}
-					/>
+					<ProductDetailsImages className='ml-8' images={item.images} />
 					<div className='flex flex-col mt-20'>
 						<div>
 							<a

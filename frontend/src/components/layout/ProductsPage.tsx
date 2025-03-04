@@ -19,6 +19,7 @@ export const ProductsPage: FC = () => {
 			fetchItems({
 				include_category: true,
 				include_type: true,
+				include_images: true,
 				category_name: category,
 				type_name: type,
 				is_bestseller: category === 'best-sellers' ? true : undefined,

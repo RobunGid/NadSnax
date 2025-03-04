@@ -24,6 +24,7 @@ interface fetchItemsParams {
 	page_link?: string;
 	is_bestseller?: boolean;
 	is_secretbox?: boolean;
+	include_images?: boolean;
 }
 
 export const fetchItems = createAsyncThunk<
@@ -37,6 +38,7 @@ export const fetchItems = createAsyncThunk<
 			include_type,
 			include_category,
 			include_item_details,
+			include_images,
 			category_name,
 			type_name,
 			page_link,
@@ -52,6 +54,7 @@ export const fetchItems = createAsyncThunk<
 				include_type,
 				include_category,
 				include_item_details,
+				include_images,
 				category_name,
 				type_name,
 				page_link,
@@ -67,10 +70,15 @@ export const fetchItems = createAsyncThunk<
 		const items = response.data;
 
 		const camelCaseItems = camelcaseKeys(items, { deep: true });
-		const fixedItems = camelCaseItems.map((item: Item) => ({
+
+		const fixedItems = camelCaseItems.map((item) => ({
 			...item,
-			imageUrl: `http://localhost${item.imageUrl}`,
+			images: item.images.map((image) => ({
+				...image,
+				url: 'http://localhost' + image.url,
+			})),
 		}));
+
 		return fixedItems;
 	}
 );

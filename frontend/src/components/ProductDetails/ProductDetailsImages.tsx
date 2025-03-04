@@ -1,13 +1,10 @@
 import { FC, Fragment } from 'react';
 import classes from './ProductDetailsImages.module.css';
 import clsx from 'clsx';
-
-type image = {
-	id: string;
-} & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+import { Image } from '../../types';
 
 interface ProductDetailsImagesProps {
-	images: image[];
+	images: Image[];
 	className?: string;
 }
 
@@ -34,11 +31,11 @@ export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
 					/>
 					<label
 						htmlFor={`img-tab-${index}`}
-						style={{ backgroundImage: `url(${image.src})` }}
+						style={{ backgroundImage: `url(${image.url})` }}
 						className='block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md'
 					></label>
 					<div className='hidden col-start-2 col-end-2 row-start-1 row-end-5'>
-						<img src={image.src} />
+						<img src={image.url} />
 					</div>
 				</Fragment>
 			))}

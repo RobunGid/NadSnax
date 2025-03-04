@@ -13,10 +13,19 @@ type CartItemProps = Item & {
 };
 
 export const CartItem: FC<CartItemProps> = (product: Item) => {
-	const { price, imageUrl, label, pageLink, id } = product;
+	const { price, images, label, pageLink, id } = product;
 	const productCart = useSelector((state: RootState) => selectItemById(state, id));
 	if (productCart) {
 		const totalPrice = productCart?.product.price * productCart.count;
+
+		const mainImage = images.find((image) => image.isMain);
+
+		let mainImageUrl = '';
+
+		if (mainImage) {
+			mainImageUrl = mainImage.url;
+		}
+
 		const productPrice =
 			price &&
 			new Intl.NumberFormat('en-US', {
@@ -41,7 +50,7 @@ export const CartItem: FC<CartItemProps> = (product: Item) => {
 							Product
 						</div>
 						<img
-							src={imageUrl}
+							src={mainImageUrl}
 							alt={`${label} image`}
 							className='object-cover w-[120px] h-[120px] aspect-square'
 						/>

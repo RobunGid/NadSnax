@@ -15,11 +15,20 @@ export type ItemType = {
 	category: ItemCategory;
 };
 
+export type Image = {
+	id: string;
+	alt: string;
+	fileName: string;
+	isMain?: boolean;
+	title: string;
+	url: string;
+	itemId: string;
+};
+
 export type Item = {
 	categoryId: string;
 	description: string;
 	id: string;
-	imageUrl: string;
 	isBestseller: boolean;
 	itemDetails: ItemDetails;
 	label: string;
@@ -30,6 +39,7 @@ export type Item = {
 	category: ItemCategory;
 	averageRating: number;
 	ratingCount: number;
+	images: Image[];
 };
 
 export type ItemDetails = {

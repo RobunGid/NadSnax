@@ -33,7 +33,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 
 	const {
 		price,
-		imageUrl,
+		images,
 		label,
 		pageLink,
 		description,
@@ -41,6 +41,16 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 		isBestseller,
 		category,
 	} = item;
+
+	const mainImage = images.find((image) => image.isMain);
+
+	let imageURL = '';
+
+	if (mainImage) {
+		imageURL = mainImage.url;
+	} else {
+		imageURL = images[0].url;
+	}
 
 	const handleAddItemToCart: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = (
 		event
@@ -87,7 +97,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 					</div>
 				)}
 				<img
-					src={imageUrl}
+					src={imageURL}
 					alt={`${label} image`}
 					className='object-cover w-[240px] h-[240px]'
 				/>
