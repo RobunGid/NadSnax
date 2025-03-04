@@ -35,9 +35,9 @@ export const ProductDetailsPage: FC = () => {
 		<>
 			{!itemDetails && <div>Sorry, product not found</div>}
 			{itemDetails && (
-				<div className='p-3 flex flex-row gap-10 mt-16'>
+				<div className='p-3 flex flex-row gap-10 mt-16 flex-wrap justify-center md:justify-start'>
 					<ProductDetailsImages className='ml-8' images={item.images} />
-					<div className='flex flex-col mt-20'>
+					<div className='flex flex-col md:mt-20'>
 						<div>
 							<a
 								href={
@@ -57,7 +57,7 @@ export const ProductDetailsPage: FC = () => {
 							/>
 							<div>{item.ratingCount}</div>
 						</div>
-						<div className='mt-14'>
+						<div className='md:mt-14 mt-6'>
 							<hr />
 							<ProductDetailsDropdown
 								text='About this item'

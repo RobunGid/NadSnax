@@ -17,7 +17,7 @@ export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
 			className={clsx(
 				className,
 				classes.gallery,
-				'grid grid-cols-[100px_500px] grid-rows-4 gap-5'
+				'grid md:grid-cols-[100px_500px] md:grid-rows-[100px_100px_100px_100px] gap-5 grid-rows-[500px_100px] grid-cols-[100px_100px_100px_100px] '
 			)}
 		>
 			{images.map((image, index) => (
@@ -34,7 +34,7 @@ export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
 						style={{ backgroundImage: `url(${image.url})` }}
 						className='block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md'
 					></label>
-					<div className='hidden col-start-2 col-end-2 row-start-1 row-end-5'>
+					<div className='hidden md:col-start-2 md:col-end-2 md:row-start-1 md:row-end-5 col-start-1 col-end-5 row-start-1 row-end-1'>
 						<img src={image.url} />
 					</div>
 				</Fragment>
