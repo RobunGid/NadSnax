@@ -3,8 +3,6 @@ import classes from './ProductDetailsImages.module.css';
 import clsx from 'clsx';
 
 type image = {
-	src: string;
-	alt: string;
 	id: string;
 } & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
@@ -29,7 +27,7 @@ export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
 				<Fragment key={image.id}>
 					<input
 						type='radio'
-						defaultChecked={true}
+						defaultChecked={index === 0}
 						name='select'
 						id={`img-tab-${index}`}
 						className='hidden peer'
