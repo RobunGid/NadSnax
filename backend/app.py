@@ -12,6 +12,7 @@ from resources.category import blp as CategoryBlueprint
 from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.item_details import blp as ItemDetailsBlueprint
+from resources.image import blp as ImageBlueprint
 
 
 def create_app(db_url = None):
@@ -38,6 +39,7 @@ def create_app(db_url = None):
 	with app.app_context():
 		db.create_all()
 
+	api.register_blueprint(ImageBlueprint)
 	api.register_blueprint(UserBlueprint)
 	api.register_blueprint(ReviewBlueprint)
 	api.register_blueprint(CategoryBlueprint)

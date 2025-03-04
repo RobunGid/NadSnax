@@ -4,3 +4,4 @@ from models.category import CategoryModel
 from models.user import UserModel
 from models.review import ReviewModel
 from models.item_details import ItemDetailsModel
+from models.image import ImageModel

@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 import uuid
-from models import ItemModel, CategoryModel, TypeModel, ReviewModel
+from models import ItemModel, CategoryModel, TypeModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
@@ -32,7 +32,6 @@ class Item(MethodView):
 			item.label = item_data["label"]
 			item.page_link = item_data["page_link"]
 			item.description = item_data["description"]
-			item.image_url = item_data["image_url"]
 			item.price = item_data["price"]
 			item.old_price = item_data["old_price"]
 			item.is_bestseller = item_data["is_bestseller"]
@@ -137,7 +136,6 @@ class Items(MethodView):
                                     {
                                         "id": "string",
                                         "label": "string",
-                                        "image_url": "string",
                                         "page_link": "string",
                                         "category_id": "string",
                                         "description": "string",
@@ -175,7 +173,6 @@ class Items(MethodView):
 {
                                         "id": "string",
                                         "label": "string",
-                                        "image_url": "string",
                                         "page_link": "string",
                                         "category_id": "string",
                                         "description": "string",
@@ -194,7 +191,6 @@ class Items(MethodView):
                                     {
                                         "id": "string",
                                         "label": "string",
-                                        "image_url": "string",
                                         "page_link": "string",
                                         "category_id": "string",
                                         "description": "string",
@@ -226,6 +222,7 @@ class Items(MethodView):
         include_category = request.args.get("include_category", type = bool, default = False)
         include_item_details = request.args.get("include_item_details", type = bool, default = False)
         include_reviews = request.args.get("include_reviews", type = bool, default = False)
+        include_images = request.args.get("include_images", type = bool, default = False)
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
@@ -253,6 +250,8 @@ class Items(MethodView):
             query = query.options(db.joinedload(ItemModel.item_details))
         if include_reviews:
             query = query.options(db.joinedload(ItemModel.reviews))
+        if include_images:
+            query = query.options(db.joinedload(ItemModel.images))
             
         query = query.join(ItemModel.category) if category_filter else query
         query = query.join(ItemModel.type) if type_filter else query
@@ -271,7 +270,8 @@ class Items(MethodView):
     		"include_category": include_category,
     		"include_type": include_type,
     		"include_item_details": include_item_details,
-			"include_reviews": include_reviews
+			"include_reviews": include_reviews,
+			"include_images": include_images
 		}
         
         schema = ItemSchema(**params)

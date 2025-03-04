@@ -11,7 +11,6 @@ class ItemModel(db.Model):
     price = db.Column(db.Float(precision = 2), nullable = False)
     old_price = db.Column(db.String(80))
     description = db.Column(db.String(80))
-    image_url = db.Column(db.String(80), nullable = False)
     is_bestseller = db.Column(db.Boolean())
     is_secretbox = db.Column(db.Boolean())
     page_link = db.Column(db.String(80), nullable = False, unique = True)
@@ -22,6 +21,7 @@ class ItemModel(db.Model):
     category = db.relationship("CategoryModel", back_populates = "items")
     type = db.relationship("TypeModel", back_populates = "items")
     reviews = db.relationship("ReviewModel", back_populates = "item")
+    images = db.relationship("ImageModel", back_populates = "item", lazy = "select")
     
     item_details = db.relationship("ItemDetailsModel", back_populates = "item", uselist = False)
     

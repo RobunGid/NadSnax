@@ -28,7 +28,6 @@ class PlainItemSchema(Schema):
     label = fields.Str(required = True)
     page_link = fields.Str(required = True)
     description = fields.Str()
-    image_url = fields.Str(required = True)
     price = fields.Float(required = True)
     old_price = fields.Float()
     is_bestseller = fields.Boolean()
@@ -110,7 +109,6 @@ class ItemUpdateSchema(Schema):
     label = fields.Str(required = True)
     page_link = fields.Str(required = True)
     description = fields.Str(required = True)
-    image_url = fields.Str(required = True)
     price = fields.Float(required = True)
     old_price = fields.Float(required = True)
     is_bestseller = fields.Boolean(required = True)
@@ -126,16 +124,27 @@ class PlainItemDetailsSchema(Schema):
 	supplier = fields.Str(required = True)
 	nutrition = fields.Str(required = True)
  
+    
+class PlainImageSchema(Schema):
+    id = fields.Str(dump_only = True)
+    title = fields.Str(required = True)
+    alt = fields.Str(required = True)
+    url = fields.Str(required = True)
+    is_main = fields.Boolean()
+    file_name = fields.Str(required = True)
+    item_id = fields.Str(required = True)
+ 
 class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
     type = fields.Nested(PlainTypeSchema(), dump_only = True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
     reviews = fields.Nested(ReviewSchema(include_user = True), dump_only = True, many = True)
+    images = fields.Nested(PlainImageSchema(), dump_only = True, many = True)
     
     average_rating = fields.Float(dump_only = True)
     rating_count = fields.Int(dump_only = True)
     
-    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, **kwargs):
+    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, include_images = False, **kwargs):
         exclude_fields = set()
         
         if not include_category:
@@ -149,8 +158,14 @@ class ItemSchema(PlainItemSchema):
             
         if not include_reviews:
             exclude_fields.add("reviews")
+            
+        if not include_images:
+            exclude_fields.add("images")
 
         super().__init__(exclude = exclude_fields, **kwargs)
+    
+class ImageSchema(PlainImageSchema):
+    item = fields.Nested(ItemSchema(), dump_only = True)
     
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)
