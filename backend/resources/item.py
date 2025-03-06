@@ -48,175 +48,6 @@ class Item(MethodView):
 
 @blp.route('/item')
 class Items(MethodView):
-    @blp.alt_response(200, description = "Items list")
-    @blp.doc(
-        description="Get items list with query parameters to manage related type, category and item details",
-        parameters=[
-            {
-                "name": "include_type",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Include related item type"
-            },
-            {
-                "name": "include_category",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Include related item category"
-            },
-            {
-                "name": "include_item_details",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Include related item details"
-            },
-            {
-				"name": "include_reviews",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Include related item reviews"
-            },
-            {
-                "name": "category_name",
-                "in": "query",
-                "type": "string",
-                "required": False,
-                "default": "",
-                "description": "Filter by category name"
-            },
-            {
-                "name": "type_name",
-                "in": "query",
-                "type": "string",
-                "required": False,
-                "default": "",
-                "description": "Filter by type name"
-            },
-            {
-                "name": "page_link",
-                "in": "query",
-                "type": "string",
-                "required": False,
-                "default": "",
-                "description": "Filter by page link (Should return always one item)"
-            },
-            {
-				"name": "bestseller",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Filter by is bestseller"
-            },
-            {
-				"name": "secretbox",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": False,
-                "description": "Filter by is secretbox"
-            },
-        ],
-        responses={
-            "200": {
-                "description": "Items list",
-                "content": {
-                    "application/json": {
-                        "examples": {
-                            "include_type=true&include_category=true&include_item_details=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "label": "string",
-                                        "page_link": "string",
-                                        "category_id": "string",
-                                        "description": "string",
-                                        "is_bestseller": "boolean",
-                                        "is_secretbox": "boolean",
-                                        "old_price": "float",
-                                        "price": "float",
-                                        "type_id": "string",
-                                        "category": {
-					                        "id": "string",
-                    	                    "name": "string",
-                        	                "icon_url": "string",
-                                	        "page_link": "string"
-										},
-                                        "type": {
-											"category_id": "string",
-											"icon_url": "string",
-											"id": "string",
-											"name": "string",
-											"page_link": "string"
-										},
-                                        "item_details": {
-											"full_description": "string",
-											"full_label": "string",
-											"ingridients": "string",
-											"item_id": "string",
-											"nutrition": "string",
-											"supplier": "string"
-										}
-                                    }
-                                ]
-                            },
-                            "Without query parameters": {
-                                "value": [
-{
-                                        "id": "string",
-                                        "label": "string",
-                                        "page_link": "string",
-                                        "category_id": "string",
-                                        "description": "string",
-                                        "is_bestseller": "boolean",
-                                        "is_secretbox": "boolean",
-                                        "old_price": "float",
-                                        "price": "float",
-                                        "type_id": "string",
-                                        "average_rating": "float",
-                                        "rating_count": "integer"
-                                    }
-                                ]
-                            },
-                            "include_type=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "label": "string",
-                                        "page_link": "string",
-                                        "category_id": "string",
-                                        "description": "string",
-                                        "is_bestseller": "boolean",
-                                        "is_secretbox": "boolean",
-                                        "old_price": "float",
-                                        "price": "float",
-                                        "type_id": "string",
-                                        "average_rating": "float",
-                                        "rating_count": "integer",
-                                        "type": {
-											"category_id": "string",
-											"icon_url": "string",
-											"id": "string",
-											"name": "string",
-											"page_link": "string"
-										}
-                                    }
-                                ]
-                            },
-                        }
-                    }
-                }
-            }
-        }
-    )
     def get(self):
         include_type = request.args.get("include_type", type = bool, default = False)
         include_category = request.args.get("include_category", type = bool, default = False)
@@ -229,6 +60,7 @@ class Items(MethodView):
         bestseller_filter = request.args.get("bestseller", "").lower()
         secretbox_filter = request.args.get("secretbox", "").lower()
         page_link_filter = request.args.get("page_link", "").lower()
+        simillar_id_filter = request.args.get("simillar_id")
         
         if bestseller_filter in ["false", "true"]:
             bestseller_filter = bestseller_filter == "true"
@@ -262,6 +94,13 @@ class Items(MethodView):
         
         query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
         query = query.filter(ItemModel.is_secretbox == secretbox_filter) if secretbox_filter != None else query
+        
+        if simillar_id_filter:
+            simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
+            
+            query = query.filter(ItemModel.category_id == simillar_item.category_id)
+            query = query.filter(ItemModel.price >= simillar_item.price * 0.9)
+            query = query.filter(ItemModel.price <= simillar_item.price * 1.1)
         
         items = query.all()
         
