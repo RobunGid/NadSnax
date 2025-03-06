@@ -10,7 +10,7 @@ import { ProductDetailsImages } from './ProductDetailsImages';
 import { selectItemById } from '../../store/cartSelectors';
 
 import { ProductDetailsPageQuantityChooser } from './ProductDetailsPageQuantityChooser';
-import AddToFavourite from '../layout/AddToFavourite';
+import { AddToFavourite } from '../layout/AddToFavourite';
 
 export const ProductDetailsPage: FC = () => {
 	const { product: product_page_link } = useParams();
@@ -112,7 +112,7 @@ export const ProductDetailsPage: FC = () => {
 							<hr />
 						</div>
 					</div>
-					<div>
+					<div className='my-44'>
 						{formattedPrice !== formattedOldPrice ? (
 							<div className='flex gap-2 justify-center items-center'>
 								<div className='font-bold text-xl text-lime-600'>
@@ -127,6 +127,9 @@ export const ProductDetailsPage: FC = () => {
 						)}
 
 						<ProductDetailsPageQuantityChooser item={item} count={count} />
+
+						<hr className='my-4' />
+
 						<AddToFavourite />
 					</div>
 				</div>
