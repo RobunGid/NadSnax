@@ -9,37 +9,11 @@ import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from './ProductDetailsImages';
 import { selectItemById } from '../../store/cartSelectors';
 
-import { Item } from '../../types';
 import { ProductDetailsPageQuantityChooser } from './ProductDetailsPageQuantityChooser';
-
-function assertItem(item: Item | undefined): asserts item is Item {
-	if (!item) throw new Error('Item not found');
-}
+import AddToFavourite from '../layout/AddToFavourite';
 
 export const ProductDetailsPage: FC = () => {
 	const { product: product_page_link } = useParams();
-
-	const items = useSelector(selectAllItems);
-
-	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
-
-	assertItem(item);
-
-	const itemDetails = item.itemDetails;
-
-	const productCart = useSelector((state: RootState) => selectItemById(state, item.id));
-	const count = productCart?.count || 0;
-
-	const dispatch = useAppDispatch();
-
-	const intlFormatPrice = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
-		minimumFractionDigits: 2,
-	});
-
-	const formattedPrice = intlFormatPrice.format(item.price);
-	const formattedOldPrice = intlFormatPrice.format(item.oldPrice || item.price);
 
 	useEffect(() => {
 		dispatch(
@@ -53,10 +27,31 @@ export const ProductDetailsPage: FC = () => {
 		);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_page_link]);
+
+	const items = useSelector(selectAllItems);
+
+	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
+
+	const productCart = useSelector((state: RootState) =>
+		selectItemById(state, item?.id || '')
+	);
+	const count = productCart?.count || 0;
+
+	const dispatch = useAppDispatch();
+
+	const intlFormatPrice = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2,
+	});
+
+	const formattedPrice = intlFormatPrice.format(item?.price || 0);
+	const formattedOldPrice = intlFormatPrice.format(item?.oldPrice || item?.price || 0);
+
 	return (
 		<>
-			{!itemDetails && <div>Sorry, product not found</div>}
-			{itemDetails && (
+			{!item && <div>Sorry, product not found</div>}
+			{item && (
 				<div className='p-3 flex flex-row gap-10 mt-16 flex-wrap justify-center md:justify-start'>
 					<ProductDetailsImages className='ml-8' images={item.images} />
 					<div className='flex flex-col md:mt-20 w-64'>
@@ -71,7 +66,7 @@ export const ProductDetailsPage: FC = () => {
 								Visit the supplier site
 							</a>
 						</div>
-						<div>{itemDetails.fullLabel}</div>
+						<div>{item?.itemDetails?.fullLabel}</div>
 						<div className='flex'>
 							<ProductRating
 								rating={item.averageRating}
@@ -86,7 +81,7 @@ export const ProductDetailsPage: FC = () => {
 								className='my-3'
 							>
 								<div className='text-gray-500'>
-									{itemDetails.fullDescription}
+									{item?.itemDetails?.fullDescription}
 								</div>
 							</ProductDetailsDropdown>
 
@@ -94,7 +89,7 @@ export const ProductDetailsPage: FC = () => {
 
 							<ProductDetailsDropdown text='Ingridients' className='my-3'>
 								<div className='text-gray-500'>
-									{itemDetails.ingridients}
+									{item?.itemDetails?.ingridients}
 								</div>
 							</ProductDetailsDropdown>
 
@@ -102,7 +97,7 @@ export const ProductDetailsPage: FC = () => {
 
 							<ProductDetailsDropdown text='Supplier' className='my-3'>
 								<div className='text-gray-500'>
-									{itemDetails.supplier}
+									{item?.itemDetails?.supplier}
 								</div>
 							</ProductDetailsDropdown>
 
@@ -110,7 +105,7 @@ export const ProductDetailsPage: FC = () => {
 
 							<ProductDetailsDropdown text='Nutrition' className='my-3'>
 								<div className='text-gray-500'>
-									{itemDetails.nutrition}
+									{item?.itemDetails?.nutrition}
 								</div>
 							</ProductDetailsDropdown>
 
@@ -132,6 +127,7 @@ export const ProductDetailsPage: FC = () => {
 						)}
 
 						<ProductDetailsPageQuantityChooser item={item} count={count} />
+						<AddToFavourite />
 					</div>
 				</div>
 			)}
