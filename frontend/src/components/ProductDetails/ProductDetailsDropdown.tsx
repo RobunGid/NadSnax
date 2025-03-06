@@ -8,7 +8,7 @@ interface ProductDetailsDropdownProps {
 	className?: string;
 }
 
-const ProductDetailsDropdown: FC<ProductDetailsDropdownProps> = ({
+export const ProductDetailsDropdown: FC<ProductDetailsDropdownProps> = ({
 	children,
 	text,
 	className,
@@ -37,18 +37,14 @@ const ProductDetailsDropdown: FC<ProductDetailsDropdownProps> = ({
 				<span className='ml-1'>{text}</span>
 			</div>
 
-			{
-				<div
-					className={clsx(
-						'transition-all duration-300 pl-3 overflow-hidden',
-						optionsVisibility ? 'max-h-8' : 'max-h-0'
-					)}
-				>
-					{children}
-				</div>
-			}
+			<div
+				className={clsx(
+					'transition-all duration-300 pl-3 overflow-hidden',
+					optionsVisibility ? 'max-h-52' : 'max-h-0'
+				)}
+			>
+				{children}
+			</div>
 		</div>
 	);
 };
-
-export default ProductDetailsDropdown;

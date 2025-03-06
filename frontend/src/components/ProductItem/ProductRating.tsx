@@ -9,7 +9,7 @@ interface ProductRatingProps {
 	size?: string | number;
 }
 
-const ProductRating: FC<ProductRatingProps> = ({ rating, className, size }) => {
+export const ProductRating: FC<ProductRatingProps> = ({ rating, className, size }) => {
 	const ratingCount = getRatingStar(rating);
 
 	return (
@@ -27,5 +27,3 @@ const ProductRating: FC<ProductRatingProps> = ({ rating, className, size }) => {
 		</div>
 	);
 };
-
-export default ProductRating;

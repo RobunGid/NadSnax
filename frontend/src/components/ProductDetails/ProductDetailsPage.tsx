@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectAllItems } from '../../store/itemSelectors';
 import { useParams } from 'react-router';
 import { fetchItems } from '../../store/itemSlice';
-import ProductDetailsDropdown from './ProductDetailsDropdown';
-import ProductRating from '../ProductItem/ProductRating';
+import { ProductDetailsDropdown } from './ProductDetailsDropdown';
+import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from './ProductDetailsImages';
 import { selectItemById } from '../../store/cartSelectors';
 
