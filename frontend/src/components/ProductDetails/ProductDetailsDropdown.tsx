@@ -40,7 +40,7 @@ export const ProductDetailsDropdown: FC<ProductDetailsDropdownProps> = ({
 			<div
 				className={clsx(
 					'transition-all duration-300 pl-3 overflow-hidden',
-					optionsVisibility ? 'max-h-52' : 'max-h-0'
+					optionsVisibility ? 'max-h-80' : 'max-h-0'
 				)}
 			>
 				{children}
