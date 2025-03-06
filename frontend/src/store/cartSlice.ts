@@ -92,14 +92,14 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const addItemToCart = (product: Item) => (dispatch: AppDispatch) => {
+export const addItemToCart = (product?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/addItemToCart',
 		payload: { product },
 	});
 };
 
-export const deleteItemFromCart = (product: Item) => (dispatch: AppDispatch) => {
+export const deleteItemFromCart = (product?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/deleteItemFromCart',
 		payload: { product },
@@ -107,14 +107,14 @@ export const deleteItemFromCart = (product: Item) => (dispatch: AppDispatch) => 
 };
 
 export const changeItemCount =
-	(product: Item, count: number) => (dispatch: AppDispatch) => {
+	(product: Item | undefined, count: number) => (dispatch: AppDispatch) => {
 		dispatch({
 			type: 'cart/changeItemCount',
 			payload: { product, count },
 		});
 	};
 
-export const removeItemFromCart = (product: Item) => (dispatch: AppDispatch) => {
+export const removeItemFromCart = (product?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/removeItemFromCart',
 		payload: { product },
