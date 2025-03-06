@@ -14,59 +14,48 @@ type ProductItemProps = {
 };
 
 const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) => {
-	const {
-		price,
-		images,
-		label,
-		pageLink,
-		description,
-		oldPrice,
-		isBestseller,
-		category,
-	} = item;
-
-	const mainImage = images.find((image) => image.isMain);
+	const mainImage = item.images.find((image) => image.isMain);
 
 	let imageURL = '';
 
 	if (mainImage) {
 		imageURL = mainImage.url;
 	} else {
-		imageURL = images[0].url;
+		imageURL = item.images[0].url;
 	}
 
 	const productPrice =
-		price &&
+		item.price &&
 		new Intl.NumberFormat('en-US', {
 			style: 'currency',
 			currency: 'USD',
 			minimumFractionDigits: 2,
-		}).format(price);
+		}).format(item.price);
 
 	const productOldPrice =
-		oldPrice &&
+		item.oldPrice &&
 		new Intl.NumberFormat('en-US', {
 			style: 'currency',
 			currency: 'USD',
 			minimumFractionDigits: 2,
-		}).format(oldPrice);
+		}).format(item.oldPrice);
 
 	return (
-		<Link to={`/products/page${pageLink}`} className={className}>
+		<Link to={`/products/page${item.pageLink}`} className={className}>
 			<div className='relative z-0 overflow-hidden'>
-				{isBestseller && (
+				{item.isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Bestseller
 					</div>
 				)}
-				{category.name === 'secretboxes' && (
+				{item.category.name === 'secretboxes' && (
 					<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Secret Box
 					</div>
 				)}
 				<img
 					src={imageURL}
-					alt={`${label} image`}
+					alt={`${item.label} image`}
 					className='object-cover w-[240px] h-[240px]'
 				/>
 
@@ -85,12 +74,15 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 						<div className='font-bold text-xl'>{productPrice}</div>
 					)}
 				</div>
-				<div className='text-gray-500 w-52 text-sm truncate' title={description}>
-					{description}
+				<div
+					className='text-gray-500 w-52 text-sm truncate'
+					title={item.description}
+				>
+					{item.description}
 				</div>
 				<div className='flex space-x-2'>
-					<div>{label}</div>
-					{isBestseller && <GiStarFormation className='text-amber-400' />}
+					<div>{item.label}</div>
+					{item.isBestseller && <GiStarFormation className='text-amber-400' />}
 				</div>
 				<div className='flex justify-start'>
 					<ProductRating
