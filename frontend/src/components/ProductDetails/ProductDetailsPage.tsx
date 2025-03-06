@@ -123,7 +123,9 @@ export const ProductDetailsPage: FC = () => {
 								</div>
 							</div>
 						) : (
-							<div>{formattedPrice}</div>
+							<div className='font-bold text-xl text-center'>
+								{formattedPrice}
+							</div>
 						)}
 
 						<ProductDetailsPageQuantityChooser item={item} count={count} />
