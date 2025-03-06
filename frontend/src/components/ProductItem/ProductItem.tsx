@@ -1,6 +1,6 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
-import ProductRating from './ProductRating';
+import { ProductRating } from './ProductRating';
 
 import { GiStarFormation } from 'react-icons/gi';
 

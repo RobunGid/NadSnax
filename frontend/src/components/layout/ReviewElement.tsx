@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Review } from '../../types';
-import ProductRating from '../ProductItem/ProductRating';
+import { ProductRating } from '../ProductItem/ProductRating';
 
 type ReviewElementProps = { review: Review };
 
