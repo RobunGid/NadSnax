@@ -19,29 +19,13 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
 		const mainImage = item.images.find((image) => image.isMain);
 
-		let mainImageUrl = '';
+		const mainImageUrl = mainImage ? mainImage.url : item.images[0].url;
 
-		if (mainImage) {
-			mainImageUrl = mainImage.url;
-		} else {
-			mainImageUrl = item.images[0].url;
-		}
-
-		const productPrice =
-			item.price &&
-			new Intl.NumberFormat('en-US', {
-				style: 'currency',
-				currency: 'USD',
-				minimumFractionDigits: 2,
-			}).format(item.price);
-
-		const displayTotalPrice =
-			totalPrice &&
-			new Intl.NumberFormat('en-US', {
-				style: 'currency',
-				currency: 'USD',
-				minimumFractionDigits: 2,
-			}).format(totalPrice);
+		const priceIntl = new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 2,
+		});
 
 		return (
 			<>
@@ -65,7 +49,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
 							<div className='flex gap-x-2 items-center'>
 								<div className='font-bold text-sm text-gray-400'>
-									{productPrice}
+									{priceIntl.format(item.price)}
 								</div>
 							</div>
 						</div>
@@ -83,7 +67,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
 						Total price
 					</div>
-					<div>{displayTotalPrice}</div>
+					<div>{priceIntl.format(totalPrice)}</div>
 				</div>
 				<hr className='block md:hidden max-md:col-span-3' />
 			</>
