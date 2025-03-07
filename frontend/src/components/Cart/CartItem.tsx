@@ -6,38 +6,37 @@ import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
 
-type CartItemProps = Item & {
-	pageLink: string;
+type CartItemProps = {
 	className?: string;
+	item: Item;
 	totalPrice: number;
 };
 
-export const CartItem: FC<CartItemProps> = (product: Item) => {
-	const { price, images, label, pageLink, id } = product;
-	const productCart = useSelector((state: RootState) => selectItemById(state, id));
+export const CartItem: FC<CartItemProps> = ({ item }) => {
+	const productCart = useSelector((state: RootState) => selectItemById(state, item.id));
 	if (productCart) {
 		const totalPrice = productCart?.product.price * productCart.count;
 
-		const mainImage = images.find((image) => image.isMain);
+		const mainImage = item.images.find((image) => image.isMain);
 
 		let mainImageUrl = '';
 
 		if (mainImage) {
 			mainImageUrl = mainImage.url;
 		} else {
-			mainImageUrl = images[0].url;
+			mainImageUrl = item.images[0].url;
 		}
 
 		const productPrice =
-			price &&
+			item.price &&
 			new Intl.NumberFormat('en-US', {
 				style: 'currency',
 				currency: 'USD',
 				minimumFractionDigits: 2,
-			}).format(price);
+			}).format(item.price);
 
 		const displayTotalPrice =
-			price &&
+			totalPrice &&
 			new Intl.NumberFormat('en-US', {
 				style: 'currency',
 				currency: 'USD',
@@ -47,18 +46,21 @@ export const CartItem: FC<CartItemProps> = (product: Item) => {
 		return (
 			<>
 				<div className='max-md:col-span-3 relative z-0 overflow-hidden flex flex-col md:flex-row md:items-start'>
-					<Link to={pageLink} className='flex flex-col items-center'>
+					<Link
+						to={`/products/page${item.pageLink}`}
+						className='flex flex-col items-center'
+					>
 						<div className='text-gray-500 text-xs text-center md:text-left mb-3 block md:hidden'>
 							Product
 						</div>
 						<img
 							src={mainImageUrl}
-							alt={`${label} image`}
+							alt={`${item.label} image`}
 							className='object-cover w-[120px] h-[120px] aspect-square'
 						/>
 						<div className='flex flex-col justify-center items-start m-5'>
 							<div className='flex space-x-2'>
-								<div className='text-xl'>{label}</div>
+								<div className='text-xl'>{item.label}</div>
 							</div>
 
 							<div className='flex gap-x-2 items-center'>
@@ -74,7 +76,7 @@ export const CartItem: FC<CartItemProps> = (product: Item) => {
 					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
 						Quantity
 					</div>
-					<CartQuantityChooser product={product} className='overflow-hidden' />
+					<CartQuantityChooser product={item} className='overflow-hidden' />
 				</div>
 
 				<div className='flex items-center justify-center overflow-hidden flex-col'>

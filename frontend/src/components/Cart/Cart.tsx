@@ -35,12 +35,8 @@ const Cart: FC<CartProps> = ({ setActive }) => {
 					</>
 				)}
 
-				{products.map((randomProduct) => (
-					<CartItem
-						totalPrice={randomProduct.price}
-						{...randomProduct}
-						key={randomProduct.id}
-					/>
+				{products.map((item) => (
+					<CartItem totalPrice={item.price} item={item} />
 				))}
 				{!products.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
