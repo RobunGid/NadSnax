@@ -6,6 +6,7 @@ import { useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/ProductDetails/ProductDetailsPage';
+import { ScrollToTop } from './components/layout/ScrollToTop';
 function App() {
 	const dispatch = useAppDispatch();
 
@@ -17,6 +18,7 @@ function App() {
 	return (
 		<>
 			<Header />
+			<ScrollToTop />
 			<Routes>
 				<Route path='/' element={<Navigate to='/home' />} />
 				<Route path='/home' element={<HomePage />} />
