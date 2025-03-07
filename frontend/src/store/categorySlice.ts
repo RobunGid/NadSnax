@@ -34,10 +34,10 @@ export const fetchCategories = createAsyncThunk<
 
 	const fixedUrlCategories = camelCaseCategories.map((category: ItemCategory) => ({
 		...category,
-		iconUrl: `http://192.168.31.121${category.iconUrl}`,
+		iconUrl: `http://localhost${category.iconUrl}`,
 		types: category.types.map((type) => ({
 			...type,
-			iconUrl: `http://192.168.31.121${type.iconUrl}`,
+			iconUrl: `http://localhost${type.iconUrl}`,
 		})),
 	}));
 

@@ -78,7 +78,7 @@ export const fetchItems = createAsyncThunk<
 			...item,
 			images: item.images.map((image) => ({
 				...image,
-				url: `http://192.168.31.121${image.url}`,
+				url: 'http://localhost' + image.url,
 			})),
 		}));
 
