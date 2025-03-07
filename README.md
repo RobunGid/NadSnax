@@ -6,8 +6,9 @@ Commercial snacks store
 
 # Screenshots
 
-![](https://i.ibb.co/nNkPWDNX/image.png)
-![](https://i.ibb.co/mFFcPGkP/image.png)
+![Standard site screenshot](https://i.ibb.co/nNkPWDNX/image.png)
+
+![Mobile site screenshot](https://i.ibb.co/mFFcPGkP/image.png)  
 
 # Technologies
 
@@ -23,6 +24,7 @@ Frontend:
 - React Icons
 - Axios
 - ESLint
+- Prettier
 
 Backend:
 
