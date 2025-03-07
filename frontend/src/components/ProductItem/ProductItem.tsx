@@ -40,8 +40,6 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 			minimumFractionDigits: 2,
 		}).format(item.oldPrice);
 
-	console.log(item);
-
 	return (
 		<Link to={`/products/page${item.pageLink}`} className={className}>
 			<div className='relative z-0 overflow-hidden'>

@@ -25,6 +25,7 @@ interface fetchItemsParams {
 	is_bestseller?: boolean;
 	is_secretbox?: boolean;
 	include_images?: boolean;
+	simillar_id?: string;
 }
 
 export const fetchItems = createAsyncThunk<
@@ -44,6 +45,7 @@ export const fetchItems = createAsyncThunk<
 			page_link,
 			is_bestseller,
 			is_secretbox,
+			simillar_id,
 		},
 		{ rejectWithValue }
 	) => {
@@ -60,6 +62,7 @@ export const fetchItems = createAsyncThunk<
 				page_link,
 				bestseller: is_bestseller,
 				secretbox: is_secretbox,
+				simillar_id,
 			},
 		});
 

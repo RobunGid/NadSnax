@@ -11,9 +11,12 @@ import { selectItemById } from '../../store/cartSelectors';
 
 import { ProductDetailsPageQuantityChooser } from './ProductDetailsPageQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
+import ProductItem from '../ProductItem/ProductItem';
 
 export const ProductDetailsPage: FC = () => {
 	const { product: product_page_link } = useParams();
+
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(
@@ -32,12 +35,23 @@ export const ProductDetailsPage: FC = () => {
 
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
+	useEffect(() => {
+		dispatch(
+			fetchItems({
+				include_item_details: true,
+				include_category: true,
+				include_type: true,
+				include_images: true,
+				simillar_id: item?.id,
+			})
+		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [item?.id]);
+
 	const productCart = useSelector((state: RootState) =>
 		selectItemById(state, item?.id || '')
 	);
 	const count = productCart?.count || 0;
-
-	const dispatch = useAppDispatch();
 
 	const intlFormatPrice = new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -136,6 +150,19 @@ export const ProductDetailsPage: FC = () => {
 					</div>
 				</div>
 			)}
+			<hr className='my-4' />
+			<div className='m-5'>
+				<span className='text-2xl font-bold'>Simillar items you might like</span>
+				<ul className='flex mt-3 gap-4'>
+					{items
+						.filter((simmilarItem) => simmilarItem != item)
+						.map((item) => (
+							<li key={item.id}>
+								<ProductItem item={item} hideAddButton={true} />
+							</li>
+						))}
+				</ul>
+			</div>
 		</>
 	);
 };
