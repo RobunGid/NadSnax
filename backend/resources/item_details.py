@@ -2,7 +2,6 @@ from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-import uuid
 from models import ItemDetailsModel
 from schemas import ItemDetailsSchema
 
@@ -46,10 +45,11 @@ class ItemDetail(MethodView):
         
         if item_detail:
             item_detail.full_description = item_detail_data["full_description"]
-            item_detail.full_name = item_detail_data["full_name"]
+            item_detail.full_label = item_detail_data["full_label"]
             item_detail.item_id = item_detail_data["item_id"]
             item_detail.ingridients = item_detail_data["ingridients"]
             item_detail.supplier = item_detail_data["supplier"]
+            item_detail.supplier_link = item_detail_data["supplier_link"]
             item_detail.nutrition = item_detail_data["nutrition"]
         else:
             item_detail = ItemDetailsModel(**item_detail_data, item_id = item_id)

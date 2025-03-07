@@ -122,6 +122,7 @@ class PlainItemDetailsSchema(Schema):
 	item_id = fields.Str(required = True)
 	ingridients = fields.Str(required = True)
 	supplier = fields.Str(required = True)
+	supplier_link = fields.Str(required = True)
 	nutrition = fields.Str(required = True)
  
     
