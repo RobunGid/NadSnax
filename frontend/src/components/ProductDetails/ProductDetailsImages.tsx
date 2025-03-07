@@ -17,7 +17,7 @@ export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
 			className={clsx(
 				className,
 				classes.gallery,
-				'grid md:grid-cols-[100px_500px] md:grid-rows-[100px_100px_100px_100px] gap-5 grid-rows-[500px_100px] grid-cols-[100px_100px_100px_100px] '
+				'grid md:grid-cols-[100px_500px] md:grid-rows-[100px_100px_100px_100px] gap-5 grid-rows-[350px_65px] grid-cols-[repeat(4,_65px)] '
 			)}
 		>
 			{images.map((image, index) => (

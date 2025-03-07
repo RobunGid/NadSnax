@@ -67,7 +67,7 @@ export const ProductDetailsPage: FC = () => {
 			{!item && <div>Sorry, product not found</div>}
 			{item && (
 				<div className='p-3 flex flex-row gap-10 mt-16 flex-wrap justify-center md:justify-start'>
-					<ProductDetailsImages className='ml-8' images={item.images} />
+					<ProductDetailsImages className='md:ml-8' images={item.images} />
 					<div className='flex flex-col md:mt-20 w-64'>
 						<div>
 							<a
@@ -151,7 +151,7 @@ export const ProductDetailsPage: FC = () => {
 			<hr className='my-4' />
 			<div className='m-5'>
 				<span className='text-2xl font-bold'>Simillar items you might like</span>
-				<ul className='flex mt-3 gap-4'>
+				<ul className='flex mt-3 gap-4 flex-wrap justify-center'>
 					{items
 						.filter((simmilarItem) => simmilarItem != item)
 						.map((item) => (
