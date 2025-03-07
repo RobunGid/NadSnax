@@ -24,6 +24,8 @@ export const CartItem: FC<CartItemProps> = (product: Item) => {
 
 		if (mainImage) {
 			mainImageUrl = mainImage.url;
+		} else {
+			mainImageUrl = images[0].url;
 		}
 
 		const productPrice =
