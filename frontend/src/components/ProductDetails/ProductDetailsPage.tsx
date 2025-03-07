@@ -71,9 +71,7 @@ export const ProductDetailsPage: FC = () => {
 					<div className='flex flex-col md:mt-20 w-64'>
 						<div>
 							<a
-								href={
-									'https://google.com' /* !!!TODO!!! item.itemDetails.supplierLink*/
-								}
+								href={item?.itemDetails?.supplierLink}
 								target='_blank'
 								className='font-thin underline underline-offset-2'
 							>

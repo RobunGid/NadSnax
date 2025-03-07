@@ -49,6 +49,7 @@ export type ItemDetails = {
 	itemId: string;
 	nutrition: string;
 	supplier: string;
+	supplierLink: string;
 };
 
 export type Review = {
