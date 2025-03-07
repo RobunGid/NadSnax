@@ -30,11 +30,11 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 
 	return (
 		<div className={clsx('flex justify-center items-center', className)}>
-			<div className='flex flex-row justify-center items-center border border-black'>
+			<div className='flex flex-row w-36 items-center border border-black justify-center'>
 				<button
 					className={clsx(
 						itemCount <= 1 && 'cursor-not-allowed text-gray-300',
-						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transtion text-bg font-semibold'
+						'w-1/3 h-12 hover:bg-gray-200 disabled:hover:bg-white transtion text-bg font-semibold'
 					)}
 					onClick={handleRemoveProductFromCart}
 					disabled={itemCount <= 1}
@@ -47,13 +47,13 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 					onChange={handleInputChange}
 					className={clsx(
 						styles.input,
-						'transition-colors w-12 h-12 flex justify-center text-center hover:bg-gray-200 box-border focus:outline-none focus:border-2 border-gray-400 focus:scale-125 focus:hover:bg-white'
+						'absolute transition-colors w-12 h-12 flex justify-center text-center hover:bg-gray-200 box-border focus:outline-none focus:border-2 border-gray-400 focus:scale-125 focus:hover:bg-white'
 					)}
 				/>
 				<button
 					className={clsx(
 						itemCount >= 16 && 'cursor-not-allowed text-gray-300',
-						'w-12 h-12 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
+						'ml-auto w-1/3 h-12 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
 					)}
 					onClick={handleAddItemToCart}
 					disabled={itemCount >= 16}
@@ -62,7 +62,7 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 				</button>
 			</div>
 			<button
-				className='w-12 h-12 flex justify-center items-center hover:scale-110'
+				className='w-12 h-12 flex justify-center items-center hover:scale-110 transition-transform origin-center'
 				onClick={handleDeleteItemFromCart}
 			>
 				<TfiTrash size='20' />
