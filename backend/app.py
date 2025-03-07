@@ -20,7 +20,7 @@ def create_app(db_url = None):
  
 	migrate = Migrate(app, db)
  
-	CORS(app, resources={r"/*": {"origins": "http://localhost"}})
+	CORS(app, resources={r"/*": {"origins": "*"}})
 
 	app.config["PROPOGATE_EXCEPTIONS"] = True
 	app.config["API_TITLE"] = "NadSnax REST API"
