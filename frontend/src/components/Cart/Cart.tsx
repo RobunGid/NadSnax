@@ -36,7 +36,7 @@ const Cart: FC<CartProps> = ({ setActive }) => {
 				)}
 
 				{products.map((item) => (
-					<CartItem totalPrice={item.price} item={item} />
+					<CartItem totalPrice={item.price} item={item} key={item.id} />
 				))}
 				{!products.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
