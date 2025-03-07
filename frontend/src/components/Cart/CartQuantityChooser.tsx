@@ -29,7 +29,12 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 	} = useItemQuantityChooser({ item: product });
 
 	return (
-		<div className={clsx('flex justify-center items-center', className)}>
+		<div
+			className={clsx(
+				'flex justify-center items-center overflow-visible',
+				className
+			)}
+		>
 			<div className='flex flex-row w-36 items-center border border-black justify-center'>
 				<button
 					className={clsx(
@@ -47,7 +52,7 @@ export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
 					onChange={handleInputChange}
 					className={clsx(
 						styles.input,
-						'absolute transition-colors w-12 h-12 flex justify-center text-center hover:bg-gray-200 box-border focus:outline-none focus:border-2 border-gray-400 focus:scale-125 focus:hover:bg-white'
+						'transition-colors w-12 h-12 flex text-center hover:bg-gray-200 focus:border-2 border-gray-400 focus:scale-125 focus:outline-none focus:hover:bg-white'
 					)}
 				/>
 				<button
