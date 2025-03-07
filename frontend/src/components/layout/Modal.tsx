@@ -27,7 +27,7 @@ const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
 				onClick={(event) => event.stopPropagation()}
 			>
 				<button
-					className='absolute top-1 right-1 hover:scale-110'
+					className='absolute top-3 right-3 hover:scale-110'
 					onClick={() => setActive(false)}
 				>
 					<RxCross1 />
