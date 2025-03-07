@@ -11,25 +11,12 @@ import { selectItemById } from '../../store/cartSelectors';
 
 import { ProductDetailsPageQuantityChooser } from './ProductDetailsPageQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
-import ProductItem from '../ProductItem/ProductItem';
+import { SimillarItems } from './SimillarItems';
 
 export const ProductDetailsPage: FC = () => {
 	const { product: product_page_link } = useParams();
 
 	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		dispatch(
-			fetchItems({
-				page_link: `/${product_page_link}`,
-				include_item_details: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-			})
-		);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [product_page_link]);
 
 	const items = useSelector(selectAllItems);
 
@@ -151,15 +138,9 @@ export const ProductDetailsPage: FC = () => {
 			<hr className='my-4' />
 			<div className='m-5'>
 				<span className='text-2xl font-bold'>Simillar items you might like</span>
-				<ul className='flex mt-3 gap-4 flex-wrap justify-center'>
-					{items
-						.filter((simmilarItem) => simmilarItem != item)
-						.map((item) => (
-							<li key={item.id}>
-								<ProductItem item={item} hideAddButton={true} />
-							</li>
-						))}
-				</ul>
+				<SimillarItems
+					items={items.filter((simmilarItem) => simmilarItem != item)}
+				/>
 			</div>
 		</>
 	);
