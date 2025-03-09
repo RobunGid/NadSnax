@@ -68,4 +68,5 @@ export type User = {
 	id: string;
 	avatarUrl: string;
 	name: string;
+	email: string;
 };

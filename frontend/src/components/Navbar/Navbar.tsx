@@ -54,7 +54,7 @@ export const Navbar: FC = () => {
 					className='ml-auto hover:scale-110 m-1 transition'
 					onClick={() => setIsModalActive(true)}
 				/>
-				<UserProfile />
+				<UserProfile className='m-2' />
 			</div>
 
 			<Modal active={isModalActive} setActive={setIsModalActive}>
