@@ -10,6 +10,7 @@ import Modal from '../layout/Modal';
 import Cart from '../Cart/Cart';
 import { useSelector } from 'react-redux';
 import { selectAllCategories } from '../../store/categorySelectors';
+import UserProfile from '../layout/UserProfile';
 
 export const Navbar: FC = () => {
 	const [isModalActive, setIsModalActive] = useState<boolean>(false);
@@ -48,10 +49,12 @@ export const Navbar: FC = () => {
 						</li>
 					))}
 				</ul>
+
 				<NavbarCart
 					className='ml-auto hover:scale-110 m-1 transition'
 					onClick={() => setIsModalActive(true)}
 				/>
+				<UserProfile />
 			</div>
 
 			<Modal active={isModalActive} setActive={setIsModalActive}>
