@@ -15,6 +15,16 @@ function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	useEffect(() => {
+		const theme = localStorage.getItem('theme');
+
+		document.documentElement.classList.toggle(
+			'dark',
+			theme === 'dark' ||
+				(!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		);
+	});
+
 	return (
 		<>
 			<Header />
