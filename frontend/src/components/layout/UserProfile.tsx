@@ -32,7 +32,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 			</div>
 
 			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[300px] absolute right-2 top-16 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
-				<ThemeSwitcher />
+				<ThemeSwitcher className='m-2' />
 				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user.name}</div>
 					<div className='font-medium truncate'>{user.email}</div>
