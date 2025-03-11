@@ -16,7 +16,7 @@ export const SidebarItem: FC<SideBarItemProps> = ({ children, to, className }) =
 			<NavLink
 				to={to}
 				className={clsx(
-					'flex items-center p-2.5 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group',
+					'flex items-center p-2.5 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group',
 					className
 				)}
 			>

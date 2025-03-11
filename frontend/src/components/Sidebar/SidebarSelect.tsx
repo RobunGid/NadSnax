@@ -31,21 +31,21 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ category }) => {
 			<SidebarItem to={category.pageLink} className='m-0 py-1.5'>
 				<button
 					type='button'
-					className='flex items-center justify-between w-full text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
+					className='flex items-center justify-between w-full text-base text-gray-900 transition duration-75 rounded-lg dark:text-white'
 				>
 					<img
 						src={category.iconUrl}
 						alt={`${category.name} icon`}
-						className='size-6'
+						className='size-6 invert dark:filter-none'
 					></img>
-					<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap'>
+					<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap transition'>
 						{category.name}
 					</span>
 
 					<div className='w-10' onClick={handleToggleVisibility}>
 						<IoIosArrowDown
 							className={clsx(
-								'transition-transform origin-center float-end m-2',
+								'transition-transform duration-[250ms] origin-center float-end m-2',
 								optionsVisibility && 'rotate-180'
 							)}
 						/>

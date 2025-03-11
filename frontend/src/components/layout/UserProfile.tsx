@@ -31,7 +31,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 				</label>
 			</div>
 
-			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[300px] absolute right-2 top-16 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
+			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[300px] absolute right-2 top-16 z-10 bg-slate-100 divide-y divide-gray-200 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
 				<ThemeSwitcher className='m-2' />
 				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user.name}</div>
@@ -41,7 +41,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 					<li>
 						<a
 							href='#'
-							className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 						>
 							Order History
 						</a>
@@ -49,7 +49,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 					<li>
 						<a
 							href='#'
-							className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 						>
 							Settings
 						</a>
@@ -57,7 +57,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 					<li>
 						<a
 							href='#'
-							className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 						>
 							My Reviews
 						</a>
@@ -66,7 +66,7 @@ const UserProfile: FC<UserProfileProps> = ({ className }) => {
 				<div className='py-1'>
 					<a
 						href='#'
-						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
 					>
 						Sign out
 					</a>
