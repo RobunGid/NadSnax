@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
 
 	return (
 		<>
-			<div className='w-full border-b-[1px] flex flex-row items-center'>
+			<div className='w-full border-b-[1px] flex flex-row items-center dark:bg-gray-800 dark:border-gray-700'>
 				<Sidebar />
 				<NavbarLink to='/home'>
 					<SiteLogo />
