@@ -9,7 +9,7 @@ import { Review } from '../../types';
 export const HomePage: FC = () => {
 	const reviews: Review[] = [];
 	return (
-		<div className='p-3'>
+		<div className='p-3 dark:bg-gray-900 dark:text-white '>
 			<section className='flex justify-center items-center w-full'>
 				<h1 className='text-3xl font-bold m-3'>
 					NadSnax - Crunch into happiness!
@@ -40,7 +40,7 @@ export const HomePage: FC = () => {
 					</div>
 				</div>
 			</section>
-			<hr />
+			<hr className='border-gray-800' />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<div className='flex flex-col xl:flex-row gap-4'>
 					<div className='max-w-72'>
@@ -72,7 +72,7 @@ export const HomePage: FC = () => {
 					className='p-5'
 				/>
 			</section>
-			<hr />
+			<hr className='border-gray-800' />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<img
 					src={CookiesHomeImage}
@@ -103,7 +103,7 @@ export const HomePage: FC = () => {
 					</div>
 				</div>
 			</section>
-			<hr />
+			<hr className='border-gray-800' />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around'>
 				<div className='flex flex-col xl:flex-row gap-4'>
 					<div className='max-w-72'>
@@ -136,7 +136,7 @@ export const HomePage: FC = () => {
 					className='p-5'
 				/>
 			</section>
-			<hr />
+			<hr className='border-gray-800' />
 			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around flex-col items-center'>
 				<h2 className='font-bold text-2xl'>Contact details</h2>
 				<div className='bg-gray-200 p-14 mx-24'>
@@ -150,7 +150,7 @@ export const HomePage: FC = () => {
 					</p>
 				</div>
 			</section>
-			<hr />
+			<hr className='border-gray-800' />
 			<section className='flex gap-3 py-3 space-x-3 flex-col justify-center align-middle'>
 				<h2 className='font-bold text-2xl text-center'>Out customer's reviews</h2>
 				<ul className='flex gap-5 overflow-hidden justify-center w-full mx-auto'>
