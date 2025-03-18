@@ -11,7 +11,7 @@ export const NavbarDropdownButton: FC<NavbarDropdownButtonProps> = ({ text, to }
 	return (
 		<button id='snacks-list-button' className='flex items-center peer'>
 			<NavbarLink to={to} className='flex' text={text}>
-				<GoChevronDown className='inline-block mt-1 ml-1' size='20px' />
+				<GoChevronDown className='inline-block m-1 bg-transparent' size='20px' />
 			</NavbarLink>
 		</button>
 	);

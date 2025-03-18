@@ -60,7 +60,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 				/>
 
 				{!hideAddButton && <ProductItemQuantityChooser item={item} />}
-				<div className='flex gap-x-2 items-center'>
+				<div className='flex gap-x-2 items-center dark:text-white'>
 					{productOldPrice ? (
 						<>
 							<div className='font-bold text-xl text-lime-600'>
@@ -75,12 +75,12 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 					)}
 				</div>
 				<div
-					className='text-gray-500 w-52 text-sm truncate'
+					className='text-gray-500 w-52 text-sm truncate dark:text-gray-300'
 					title={item.description}
 				>
 					{item.description}
 				</div>
-				<div className='flex space-x-2'>
+				<div className='flex space-x-2 dark:text-gray-600'>
 					<div>{item.label}</div>
 					{item.isBestseller && <GiStarFormation className='text-amber-400' />}
 				</div>

@@ -30,7 +30,7 @@ export const ProductsPage: FC = () => {
 	}, [category, type]);
 
 	return (
-		<main className='flex flex-wrap p-5 justify-center gap-4'>
+		<main className='flex flex-wrap p-5 justify-center gap-4 dark:bg-gray-900 min-h-[calc(100vh-4.54em)]'>
 			{items.map((item) => (
 				<ProductItem key={item.id} item={item} />
 			))}
