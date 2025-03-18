@@ -25,7 +25,7 @@ export const Navbar: FC = () => {
 					<SiteLogo />
 				</NavbarLink>
 
-				<ul className='flex-row items-center hidden md:flex md:gap-3 flex-grow'>
+				<ul className='flex-row items-center hidden md:flex md:gap-3 flex-grow dark:text-gray-200'>
 					<li>
 						<NavbarLink to='/home' text='Home' />
 					</li>
