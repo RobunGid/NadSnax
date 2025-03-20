@@ -75,12 +75,12 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 					)}
 				</div>
 				<div
-					className='text-gray-500 w-52 text-sm truncate dark:text-gray-300'
+					className='text-gray-500 w-52 truncate dark:text-gray-300'
 					title={item.description}
 				>
 					{item.description}
 				</div>
-				<div className='flex space-x-2 dark:text-gray-600'>
+				<div className='flex text-xs space-x-2 dark:text-gray-600 items-center h-5'>
 					<div>{item.label}</div>
 					{item.isBestseller && <GiStarFormation className='text-amber-400' />}
 				</div>
