@@ -5,7 +5,7 @@ import { NavbarDropdown } from './NavbarDropdown';
 import { NavbarDropdownButton } from './NavbarDropdownButton';
 import { SiteLogo } from './SiteLogo';
 import { Sidebar } from '../Sidebar/Sidebar';
-import NavbarCart from '../Cart/NavbarCart';
+import { NavbarCart } from '../Cart/NavbarCart';
 import Modal from '../layout/Modal';
 import Cart from '../Cart/Cart';
 import { useSelector } from 'react-redux';

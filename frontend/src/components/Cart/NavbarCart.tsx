@@ -10,7 +10,7 @@ interface NavbarCartProps {
 	onClick: () => unknown;
 }
 
-const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
+export const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
 	const productsItems: { product: Item; count: number }[] = useSelector(selectAllItems);
 
 	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
@@ -34,14 +34,12 @@ const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
 			)}
 			onClick={onClick}
 		>
-			<div className='absolute mb-8 ml-5 font-bold text-xs bg-amber-500 w-4 h-4 rounded-full border border-amber-800 flex justify-center align-center'>
+			<div className='absolute mb-8 ml-5 font-bold text-xs bg-amber-500 dark:bg-sky-600 dark:border-sky-800 w-4 h-4 rounded-full border border-amber-800 flex justify-center align-center'>
 				{count}
 			</div>
-			<PiShoppingCartBold size={28} />
+			<PiShoppingCartBold size={28} color='white' />
 
 			<div className='text-xs font-thin'>{displayAmount}</div>
 		</button>
 	);
 };
-
-export default NavbarCart;
