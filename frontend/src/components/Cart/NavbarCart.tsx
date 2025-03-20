@@ -39,7 +39,7 @@ export const NavbarCart: FC<NavbarCartProps> = ({ className, onClick }) => {
 			</div>
 			<PiShoppingCartBold size={28} color='white' />
 
-			<div className='text-xs font-thin'>{displayAmount}</div>
+			<div className='text-xs font-thin dark:text-white'>{displayAmount}</div>
 		</button>
 	);
 };

@@ -51,7 +51,7 @@ export const Navbar: FC = () => {
 				</ul>
 
 				<NavbarCart
-					className='ml-auto hover:scale-110 m-1 transition'
+					className='ml-auto hover:scale-110 mt-1 transition'
 					onClick={() => setIsModalActive(true)}
 				/>
 				<UserProfile className='m-2' />
