@@ -53,7 +53,7 @@ export const ProductDetailsPage: FC = () => {
 		<div className='dark:bg-gray-800'>
 			{!item && <div>Sorry, product not found</div>}
 			{item && (
-				<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:bg-gray-800 dark:text-gray-200'>
+				<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:bg-gray-900 dark:text-gray-200'>
 					<ProductDetailsImages className='md:ml-8' images={item.images} />
 					<div className='flex flex-col md:mt-20 w-64'>
 						<div>
@@ -136,7 +136,7 @@ export const ProductDetailsPage: FC = () => {
 				</div>
 			)}
 			<hr className='my-4' />
-			<div className='p-5 dark:bg-gray-800'>
+			<div className='p-5 dark:bg-gray-900'>
 				<span className='text-2xl font-bold dark:text-gray-300'>
 					Simillar items you might like
 				</span>
