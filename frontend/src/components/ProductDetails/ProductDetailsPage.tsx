@@ -65,7 +65,7 @@ export const ProductDetailsPage: FC = () => {
 								Visit the supplier site
 							</a>
 						</div>
-						<div>{item?.itemDetails?.fullLabel}</div>
+						<div className='text-nowrap'>{item?.itemDetails?.fullLabel}</div>
 						<div className='flex'>
 							<ProductRating
 								rating={item.averageRating}
@@ -73,47 +73,9 @@ export const ProductDetailsPage: FC = () => {
 							/>
 							<div>{item.ratingCount}</div>
 						</div>
-						<div className='md:mt-14 mt-6'>
-							<hr />
-							<ProductDetailsDropdown
-								text='About this item'
-								className='my-3'
-							>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.fullDescription}
-								</div>
-							</ProductDetailsDropdown>
 
-							<hr />
-
-							<ProductDetailsDropdown text='Ingridients' className='my-3'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.ingridients}
-								</div>
-							</ProductDetailsDropdown>
-
-							<hr />
-
-							<ProductDetailsDropdown text='Supplier' className='my-3'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.supplier}
-								</div>
-							</ProductDetailsDropdown>
-
-							<hr />
-
-							<ProductDetailsDropdown text='Nutrition' className='my-3'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.nutrition}
-								</div>
-							</ProductDetailsDropdown>
-
-							<hr />
-						</div>
-					</div>
-					<div className='md:my-44'>
 						{formattedPrice !== formattedOldPrice ? (
-							<div className='flex gap-2 justify-center items-center'>
+							<div className='flex gap-2 mt-4 -mb-8 items-center'>
 								<div className='font-bold text-xl text-lime-600'>
 									Now {formattedPrice}
 								</div>
@@ -122,20 +84,72 @@ export const ProductDetailsPage: FC = () => {
 								</div>
 							</div>
 						) : (
-							<div className='font-bold text-xl text-center'>
+							<div className='font-bold text-xl mt-4 -mb-8'>
 								{formattedPrice}
 							</div>
 						)}
 
-						<ProductDetailsPageQuantityChooser item={item} count={count} />
+						<div className='md:mt-14 mt-6 space-y-3'>
+							<hr />
+							<ProductDetailsDropdown text='About this item'>
+								<div className='text-gray-500'>
+									{item?.itemDetails?.fullDescription}
+								</div>
+							</ProductDetailsDropdown>
 
-						<hr className='my-4' />
+							<hr />
 
-						<AddToFavourite />
+							<ProductDetailsDropdown text='Ingridients'>
+								<div className='text-gray-500'>
+									{item?.itemDetails?.ingridients}
+								</div>
+							</ProductDetailsDropdown>
+
+							<hr />
+
+							<ProductDetailsDropdown text='Supplier'>
+								<div className='text-gray-500'>
+									{item?.itemDetails?.supplier}
+								</div>
+							</ProductDetailsDropdown>
+
+							<hr />
+
+							<ProductDetailsDropdown text='Nutrition'>
+								<div className='text-gray-500'>
+									{item?.itemDetails?.nutrition}
+								</div>
+							</ProductDetailsDropdown>
+
+							<hr />
+
+							<div className='hidden md:block'>
+								<ProductDetailsPageQuantityChooser
+									item={item}
+									count={count}
+									className='flex justify-center'
+								/>
+
+								<hr className='my-4' />
+
+								<AddToFavourite />
+							</div>
+						</div>
+					</div>
+					<div className='md:my-44'>
+						<div className='md:hidden'>
+							<ProductDetailsPageQuantityChooser
+								item={item}
+								count={count}
+							/>
+
+							<hr className='my-4' />
+
+							<AddToFavourite />
+						</div>
 					</div>
 				</div>
 			)}
-			<hr className='my-4' />
 			<div className='p-5 dark:bg-gray-900'>
 				<span className='text-2xl font-bold dark:text-gray-300'>
 					Simillar items you might like
