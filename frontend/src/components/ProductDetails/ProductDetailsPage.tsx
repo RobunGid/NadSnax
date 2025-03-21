@@ -53,97 +53,106 @@ export const ProductDetailsPage: FC = () => {
 		<div>
 			{!item && <div>Sorry, product not found</div>}
 			{item && (
-				<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
-					<ProductDetailsImages className='md:ml-8' images={item.images} />
-					<div className='flex flex-col md:mt-20 w-64'>
+				<>
+					<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
 						<div>
-							<a
-								href={item?.itemDetails?.supplierLink}
-								target='_blank'
-								className='font-thin underline underline-offset-2'
-							>
-								Visit the supplier site
-							</a>
-						</div>
-						<div className='text-nowrap'>{item?.itemDetails?.fullLabel}</div>
-						<div className='flex'>
-							<ProductRating
-								rating={item.averageRating}
-								className='flex text-yellow-500'
+							<ProductDetailsImages
+								className='md:ml-8'
+								images={item.images}
 							/>
-							<div>{item.ratingCount}</div>
+							<div className='md:hidden mr-auto'>
+								<div className='flex justify-center flex-col w-52 mx-16 my-8'>
+									<ProductDetailsPageQuantityChooser
+										item={item}
+										count={count}
+									/>
+
+									<hr className='my-4' />
+
+									<AddToFavourite />
+								</div>
+							</div>
 						</div>
-
-						{formattedPrice !== formattedOldPrice ? (
-							<div className='flex gap-2 mt-4 -mb-8 items-center'>
-								<div className='font-bold text-xl text-lime-600'>
-									Now {formattedPrice}
-								</div>
-								<div className='font-bold text-md text-gray-500 line-through'>
-									{formattedOldPrice}
-								</div>
+						<div className='flex flex-col md:mt-20 w-64'>
+							<div>
+								<a
+									href={item?.itemDetails?.supplierLink}
+									target='_blank'
+									className='font-thin underline underline-offset-2'
+								>
+									Visit the supplier site
+								</a>
 							</div>
-						) : (
-							<div className='font-bold text-xl mt-4 -mb-8'>
-								{formattedPrice}
+							<div className='text-nowrap'>
+								{item?.itemDetails?.fullLabel}
 							</div>
-						)}
-
-						<div className='md:mt-14 mt-6 space-y-3 h-80'>
-							<div className='hidden md:block'>
-								<ProductDetailsPageQuantityChooser
-									item={item}
-									count={count}
-									className='flex justify-center'
+							<div className='flex'>
+								<ProductRating
+									rating={item.averageRating}
+									className='flex text-yellow-500'
 								/>
-
-								<AddToFavourite />
+								<div>{item.ratingCount}</div>
 							</div>
-							<hr />
-							<ProductDetailsDropdown text='About this item'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.fullDescription}
+
+							{formattedPrice !== formattedOldPrice ? (
+								<div className='flex gap-2 mt-4 -mb-4 md:-mb-8 items-center'>
+									<div className='font-bold text-xl text-lime-600'>
+										Now {formattedPrice}
+									</div>
+									<div className='font-bold text-md text-gray-500 line-through'>
+										{formattedOldPrice}
+									</div>
 								</div>
-							</ProductDetailsDropdown>
-
-							<hr />
-
-							<ProductDetailsDropdown text='Ingridients'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.ingridients}
+							) : (
+								<div className='font-bold text-xl -mb-4 mt-4 -md:mb-8'>
+									{formattedPrice}
 								</div>
-							</ProductDetailsDropdown>
+							)}
 
-							<hr />
+							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
+								<div className='hidden md:block'>
+									<ProductDetailsPageQuantityChooser
+										item={item}
+										count={count}
+										className='flex justify-center'
+									/>
 
-							<ProductDetailsDropdown text='Supplier'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.supplier}
+									<AddToFavourite />
 								</div>
-							</ProductDetailsDropdown>
+								<hr />
+								<ProductDetailsDropdown text='About this item'>
+									<div className='text-gray-500'>
+										{item?.itemDetails?.fullDescription}
+									</div>
+								</ProductDetailsDropdown>
 
-							<hr />
+								<hr />
 
-							<ProductDetailsDropdown text='Nutrition'>
-								<div className='text-gray-500'>
-									{item?.itemDetails?.nutrition}
-								</div>
-							</ProductDetailsDropdown>
+								<ProductDetailsDropdown text='Ingridients'>
+									<div className='text-gray-500'>
+										{item?.itemDetails?.ingridients}
+									</div>
+								</ProductDetailsDropdown>
+
+								<hr />
+
+								<ProductDetailsDropdown text='Supplier'>
+									<div className='text-gray-500'>
+										{item?.itemDetails?.supplier}
+									</div>
+								</ProductDetailsDropdown>
+
+								<hr />
+
+								<ProductDetailsDropdown text='Nutrition'>
+									<div className='text-gray-500'>
+										{item?.itemDetails?.nutrition}
+									</div>
+								</ProductDetailsDropdown>
+							</div>
 						</div>
 					</div>
-					<div className='md:my-44'>
-						<div className='md:hidden'>
-							<ProductDetailsPageQuantityChooser
-								item={item}
-								count={count}
-							/>
-
-							<hr className='my-4' />
-
-							<AddToFavourite />
-						</div>
-					</div>
-				</div>
+				</>
 			)}
 			<div className='p-5'>
 				<span className='text-2xl font-bold dark:text-gray-300'>
