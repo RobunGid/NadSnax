@@ -31,7 +31,7 @@ export const ProductDetailsPageQuantityChooser: FC<
 			) : (
 				<div className='dark:bg-sky-800 bg-orange-400 w-[200px] h-[50px] relative flex justify-center rounded-3xl px-3 py-1 font-bold transition'>
 					<button
-						className='hover:bg-orange-500 dark:hover:bg-sky-900 absolute inset-0 w-1/3 hover:rounded-bl-full hover:rounded-tl-full'
+						className='dark:hover:bg-sky-900 hover:bg-orange-500 absolute inset-0 w-1/3 hover:rounded-bl-full hover:rounded-tl-full'
 						onClick={handleAddItemToCart}
 					>
 						+
