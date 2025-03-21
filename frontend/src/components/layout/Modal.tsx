@@ -21,7 +21,7 @@ const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
 		>
 			<div
 				className={clsx(
-					'p-5 rounded-xl bg-white transition-transform',
+					'p-5 rounded-xl bg-white dark:bg-slate-800 transition-transform',
 					active ? 'scale-100' : 'scale-50'
 				)}
 				onClick={(event) => event.stopPropagation()}
