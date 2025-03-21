@@ -7,7 +7,7 @@ interface NoResultsProps {
 
 export const NoResults: FC<NoResultsProps> = ({ category, type }) => {
 	return (
-		<div className='text-xl dark:text-white'>
+		<div className='text-xl'>
 			{category && type && (
 				<h1 className='font-bold'>
 					Sorry, there no products for {type} in {category}

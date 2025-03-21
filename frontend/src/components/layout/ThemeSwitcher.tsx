@@ -23,7 +23,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
 				/>
 				<span className='peer-checked:bg-amber-500 peer-focus:shadow-sm peer-checked:before:translate-x-6 rounded-3xl before:rounded-2xl absolute cursor-pointer inset-0 bg-gray-500 transition before:absolute before:h-6 before:w-6 before:left-1 before:bottom-1 before:bg-white before:transition' />
 			</label>
-			<div className='dark:text-white text-xs'>Change App Theme</div>
+			<div className='text-xs'>Change App Theme</div>
 		</div>
 	);
 };

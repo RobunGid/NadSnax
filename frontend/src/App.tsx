@@ -23,7 +23,9 @@ function App() {
 			theme === 'dark' ||
 				(!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
 		);
-	});
+		document.body.classList.add('dark:bg-gray-900');
+		document.body.classList.add('dark:text-white');
+	}, []);
 
 	return (
 		<>

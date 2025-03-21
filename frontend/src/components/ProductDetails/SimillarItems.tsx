@@ -8,7 +8,7 @@ interface SimillarItemsProps {
 
 export const SimillarItems: FC<SimillarItemsProps> = ({ items }) => {
 	return (
-		<ul className='flex pt-3 gap-4 flex-wrap justify-center md:justify-start dark:bg-gray-900'>
+		<ul className='flex pt-3 gap-4 flex-wrap justify-center md:justify-start'>
 			{items.map((item) => (
 				<li key={item.id}>
 					<ProductItem item={item} hideAddButton={true} />

@@ -60,7 +60,7 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 				/>
 
 				{!hideAddButton && <ProductItemQuantityChooser item={item} />}
-				<div className='flex gap-x-2 items-center dark:text-white'>
+				<div className='flex gap-x-2 items-center'>
 					{productOldPrice ? (
 						<>
 							<div className='font-bold text-xl text-lime-600'>

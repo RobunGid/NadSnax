@@ -9,7 +9,7 @@ import { Review } from '../../types';
 export const HomePage: FC = () => {
 	const reviews: Review[] = [];
 	return (
-		<div className='p-3 dark:bg-gray-900 dark:text-white '>
+		<div className='p-3'>
 			<section className='flex justify-center items-center w-full'>
 				<h1 className='text-3xl font-bold m-3'>
 					NadSnax - Crunch into happiness!

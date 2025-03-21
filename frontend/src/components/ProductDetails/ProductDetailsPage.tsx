@@ -50,10 +50,10 @@ export const ProductDetailsPage: FC = () => {
 	const formattedOldPrice = intlFormatPrice.format(item?.oldPrice || item?.price || 0);
 
 	return (
-		<div className='dark:bg-gray-800'>
+		<div>
 			{!item && <div>Sorry, product not found</div>}
 			{item && (
-				<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:bg-gray-900 dark:text-gray-200'>
+				<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
 					<ProductDetailsImages className='md:ml-8' images={item.images} />
 					<div className='flex flex-col md:mt-20 w-64'>
 						<div>
@@ -150,7 +150,7 @@ export const ProductDetailsPage: FC = () => {
 					</div>
 				</div>
 			)}
-			<div className='p-5 dark:bg-gray-900'>
+			<div className='p-5'>
 				<span className='text-2xl font-bold dark:text-gray-300'>
 					Simillar items you might like
 				</span>
