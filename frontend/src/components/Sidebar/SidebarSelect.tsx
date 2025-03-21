@@ -31,7 +31,7 @@ export const SidebarSelect: FC<SidebarSelectProps> = ({ category }) => {
 			<SidebarItem to={category.pageLink} className='m-0 py-1.5'>
 				<button
 					type='button'
-					className='flex items-center justify-between w-full text-base text-gray-900 transition duration-75 rounded-lg'
+					className='flex items-center justify-between w-full text-base text-gray-900 dark:text-white transition duration-75 rounded-lg'
 				>
 					<img
 						src={category.iconUrl}
