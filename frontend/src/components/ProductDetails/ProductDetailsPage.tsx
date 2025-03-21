@@ -90,6 +90,15 @@ export const ProductDetailsPage: FC = () => {
 						)}
 
 						<div className='md:mt-14 mt-6 space-y-3'>
+							<div className='hidden md:block'>
+								<ProductDetailsPageQuantityChooser
+									item={item}
+									count={count}
+									className='flex justify-center'
+								/>
+
+								<AddToFavourite />
+							</div>
 							<hr />
 							<ProductDetailsDropdown text='About this item'>
 								<div className='text-gray-500'>
@@ -120,20 +129,6 @@ export const ProductDetailsPage: FC = () => {
 									{item?.itemDetails?.nutrition}
 								</div>
 							</ProductDetailsDropdown>
-
-							<hr />
-
-							<div className='hidden md:block'>
-								<ProductDetailsPageQuantityChooser
-									item={item}
-									count={count}
-									className='flex justify-center'
-								/>
-
-								<hr className='my-4' />
-
-								<AddToFavourite />
-							</div>
 						</div>
 					</div>
 					<div className='md:my-44'>
