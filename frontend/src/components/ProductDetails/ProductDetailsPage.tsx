@@ -89,7 +89,7 @@ export const ProductDetailsPage: FC = () => {
 							</div>
 						)}
 
-						<div className='md:mt-14 mt-6 space-y-3'>
+						<div className='md:mt-14 mt-6 space-y-3 h-80'>
 							<div className='hidden md:block'>
 								<ProductDetailsPageQuantityChooser
 									item={item}
