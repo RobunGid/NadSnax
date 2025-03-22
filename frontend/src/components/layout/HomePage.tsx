@@ -137,9 +137,9 @@ export const HomePage: FC = () => {
 				/>
 			</section>
 			<hr className='border-gray-800' />
-			<section className='flex gap-3 py-3 space-x-3 w-full flex-wrap justify-around flex-col items-center'>
+			<section className='flex gap-3 py-5 space-x-3 w-full flex-wrap justify-around flex-col items-center'>
 				<h2 className='font-bold text-2xl'>Contact details</h2>
-				<div className='bg-gray-200 p-14 mx-24'>
+				<div className='bg-gray-200 dark:bg-inherit p-14 mx-24'>
 					<h3 className='text-center font-semibold text-xl mb-5'>Contact us</h3>
 					<p>
 						Thank you for visiting our website! Currently, our contact form is
