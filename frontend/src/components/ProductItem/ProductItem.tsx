@@ -1,11 +1,12 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
 import { ProductRating } from './ProductRating';
-
+import styles from './ProductItem.module.css';
 import { GiStarFormation } from 'react-icons/gi';
 
 import ProductItemQuantityChooser from './ProductItemQuantityChooser';
 import { FC } from 'react';
+import clsx from 'clsx';
 
 type ProductItemProps = {
 	item: Item;
@@ -41,7 +42,10 @@ const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) =
 		}).format(item.oldPrice);
 
 	return (
-		<Link to={`/products/page${item.pageLink}`} className={className}>
+		<Link
+			to={`/products/page${item.pageLink}`}
+			className={clsx(className, styles['product-item'])}
+		>
 			<div className='relative z-0 overflow-hidden'>
 				{item.isBestseller && (
 					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
