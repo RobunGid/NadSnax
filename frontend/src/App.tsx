@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/layout/Header';
-import { HomePage } from './components/layout/HomePage';
-import { ProductsPage } from './components/layout/ProductsPage';
+import { HomePage } from './components/Pages/HomePage';
+import { ProductsPage } from './components/Pages/ProductsPage';
 import { useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
-import { ProductDetailsPage } from './components/ProductDetails/ProductDetailsPage';
+import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 function App() {
 	const dispatch = useAppDispatch();

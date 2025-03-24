@@ -3,7 +3,7 @@ import ChipsHomeImage from '../../assets/chips-image.png';
 import CrackersHomeImage from '../../assets/crackers-image.png';
 import CookiesHomeImage from '../../assets/cookies-image.png';
 import JuiceHomeImage from '../../assets/juice-image.png';
-import { ReviewElement } from './ReviewElement';
+import { ReviewElement } from '../layout/ReviewElement';
 import { Review } from '../../types';
 
 export const HomePage: FC = () => {

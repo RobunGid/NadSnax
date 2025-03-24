@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
-import { NoResults } from './NoResults';
+import { NoResults } from '../layout/NoResults';
 import { Item } from '../../types';
 import { useSelector } from 'react-redux';
 import { selectAllItems } from '../../store/itemSelectors';

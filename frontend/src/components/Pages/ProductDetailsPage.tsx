@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { selectAllItems } from '../../store/itemSelectors';
 import { useParams } from 'react-router';
 import { fetchItems } from '../../store/itemSlice';
-import { ProductDetailsDropdown } from './ProductDetailsDropdown';
+import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../ProductItem/ProductRating';
-import { ProductDetailsImages } from './ProductDetailsImages';
+import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { selectItemById } from '../../store/cartSelectors';
 
-import { ProductDetailsPageQuantityChooser } from './ProductDetailsPageQuantityChooser';
+import { ProductDetailsPageQuantityChooser } from '../ProductDetails/ProductDetailsPageQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
-import { SimillarItems } from './SimillarItems';
+import { SimillarItems } from '../ProductDetails/SimillarItems';
 
 export const ProductDetailsPage: FC = () => {
 	const { product: product_page_link } = useParams();
