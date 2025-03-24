@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
-import { QuantityChooser } from '../QuantityChooser/QuantityChooser';
+import { CartQuantityChooser } from '../QuantityChooser/CartQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 
 type CartItemProps = {
@@ -68,7 +68,7 @@ export const CartItem = ({ item }: CartItemProps) => {
 					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
 						Quantity
 					</div>
-					<QuantityChooser
+					<CartQuantityChooser
 						cartItem={cartItem}
 						onAdd={handleAddItemToCart}
 						onDelete={handleDeleteItemFromCart}

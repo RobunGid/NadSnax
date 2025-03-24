@@ -4,8 +4,13 @@ import { ProductRating } from './ProductRating';
 import styles from './ProductItem.module.css';
 import { GiStarFormation } from 'react-icons/gi';
 
-import ProductItemQuantityChooser from './ProductItemQuantityChooser';
 import clsx from 'clsx';
+import { ProductsPageQuantityChooser } from '../QuantityChooser/productsPageQuantityChooser';
+import { selectItemById } from '../../store/cartSelectors';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
+import { FiPlus } from 'react-icons/fi';
 
 type ProductItemProps = {
 	item: Item;
@@ -13,8 +18,13 @@ type ProductItemProps = {
 	hideAddButton?: boolean;
 };
 
-const ProductItem = ({ item, className, hideAddButton }: ProductItemProps) => {
+const ProductItem = ({ item, className }: ProductItemProps) => {
 	const mainImage = item.images.find((image) => image.isMain);
+
+	const cartItem = useSelector((state: RootState) => selectItemById(state, item.id));
+
+	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
+		useItemQuantityChooser({ item });
 
 	let imageURL = '';
 
@@ -62,7 +72,24 @@ const ProductItem = ({ item, className, hideAddButton }: ProductItemProps) => {
 					className='object-cover w-[240px] h-[240px]'
 				/>
 
-				{!hideAddButton && <ProductItemQuantityChooser item={item} />}
+				{cartItem && cartItem.count && (
+					<ProductsPageQuantityChooser
+						cartItem={cartItem}
+						onAdd={handleAddItemToCart}
+						onDelete={handleRemoveProductFromCart}
+						onInputChange={handleInputChange}
+						onRemove={handleRemoveProductFromCart}
+					/>
+				)}
+				{(!cartItem || !cartItem.count) && (
+					<div
+						className='dark:bg-sky-800 bg-orange-400 flex w-[100px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+						onClick={handleAddItemToCart}
+					>
+						<FiPlus />
+						<button>Add</button>
+					</div>
+				)}
 				<div className='flex gap-x-2 items-center'>
 					{productOldPrice ? (
 						<>

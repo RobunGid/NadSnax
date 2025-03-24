@@ -4,7 +4,7 @@ import styles from './QuantityChooser.module.css';
 import { TfiTrash } from 'react-icons/tfi';
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 
-export type QuantityChooserProps = {
+export type CartQuantityChooserProps = {
 	cartItem: CartItemType;
 	className?: string;
 	onAdd: MouseEventHandler;
@@ -13,14 +13,14 @@ export type QuantityChooserProps = {
 	onInputChange: EventHandler<ChangeEvent<HTMLInputElement>>;
 };
 
-export const QuantityChooser = ({
+export const CartQuantityChooser = ({
 	className,
 	cartItem,
 	onAdd,
 	onDelete,
 	onRemove,
 	onInputChange,
-}: QuantityChooserProps) => {
+}: CartQuantityChooserProps) => {
 	return (
 		<div
 			className={clsx(

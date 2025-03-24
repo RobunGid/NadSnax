@@ -5,4 +5,5 @@
 }
 .quantity-chooser-input {
 	appearance: textfield;
+	-moz-appearance: textfield;
 }
