@@ -1,9 +1,10 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
-import { CartQuantityChooser } from './CartQuantityChooser';
 import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
+import { QuantityChooser } from '../QuantityChooser/QuantityChooser';
+import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 
 type CartItemProps = {
 	className?: string;
@@ -12,9 +13,17 @@ type CartItemProps = {
 };
 
 export const CartItem = ({ item }: CartItemProps) => {
-	const productCart = useSelector((state: RootState) => selectItemById(state, item.id));
-	if (productCart) {
-		const totalPrice = productCart?.product.price * productCart.count;
+	const cartItem = useSelector((state: RootState) => selectItemById(state, item.id));
+
+	const {
+		handleAddItemToCart,
+		handleRemoveProductFromCart,
+		handleInputChange,
+		handleDeleteItemFromCart,
+	} = useItemQuantityChooser({ item: cartItem?.item });
+
+	if (cartItem) {
+		const totalPrice = cartItem?.item.price * cartItem.count;
 
 		const mainImage = item.images.find((image) => image.isMain);
 
@@ -59,7 +68,13 @@ export const CartItem = ({ item }: CartItemProps) => {
 					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
 						Quantity
 					</div>
-					<CartQuantityChooser product={item} className='overflow-hidden' />
+					<QuantityChooser
+						cartItem={cartItem}
+						onAdd={handleAddItemToCart}
+						onDelete={handleDeleteItemFromCart}
+						onInputChange={handleInputChange}
+						onRemove={handleRemoveProductFromCart}
+					/>
 				</div>
 
 				<div className='flex items-center justify-center overflow-hidden flex-col'>

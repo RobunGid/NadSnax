@@ -9,15 +9,13 @@ import { useAppDispatch } from '../store';
 import { Item } from '../types';
 
 interface useItemQuantityChooserParams {
-	item: Item;
+	item?: Item;
 }
 
 export const useItemQuantityChooser = ({ item }: useItemQuantityChooserParams) => {
 	const dispatch = useAppDispatch();
 
-	const handleAddItemToCart: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = (
-		event
-	) => {
+	const handleAddItemToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
 		event.preventDefault();
 		dispatch(addItemToCart(item));
 	};

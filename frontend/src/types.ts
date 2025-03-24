@@ -70,3 +70,8 @@ export type User = {
 	name: string;
 	email: string;
 };
+
+export type CartItemType = {
+	item: Item;
+	count: number;
+};

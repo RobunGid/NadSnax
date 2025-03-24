@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import { AppDispatch } from '.';
 
-const initialState: { productList: { product: Item; count: number }[] } = {
+const initialState: { productList: { item: Item; count: number }[] } = {
 	productList: [],
 };
 
@@ -10,9 +10,9 @@ const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addItemToCart(state, action: PayloadAction<{ product: Item }>) {
+		addItemToCart(state, action: PayloadAction<{ item: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
-				(item) => item.product.id === action.payload.product.id
+				(cartItem) => cartItem.item.id === action.payload.item.id
 			);
 
 			if (existingCartProductIndex !== -1) {
@@ -24,12 +24,12 @@ const cartSlice = createSlice({
 			}
 
 			if (existingCartProductIndex === -1) {
-				state.productList.push({ product: action.payload.product, count: 1 });
+				state.productList.push({ item: action.payload.item, count: 1 });
 			}
 		},
-		removeItemFromCart(state, action: PayloadAction<{ product: Item }>) {
+		removeItemFromCart(state, action: PayloadAction<{ item: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
-				(item) => item.product.id === action.payload.product.id
+				(cartItem) => cartItem.item.id === action.payload.item.id
 			);
 
 			if (existingCartProductIndex !== -1) {
@@ -44,20 +44,20 @@ const cartSlice = createSlice({
 				}
 			}
 		},
-		deleteItemFromCart(state, action: PayloadAction<{ product: Item }>) {
+		deleteItemFromCart(state, action: PayloadAction<{ item: Item }>) {
 			const existingCartProductIndex = state.productList.findIndex(
-				(item) => item.product.id === action.payload.product.id
+				(cartItem) => cartItem.item.id === action.payload.item.id
 			);
 
 			if (existingCartProductIndex === -1) return;
 
 			state.productList.splice(existingCartProductIndex, 1);
 		},
-		changeItemCount(state, action: PayloadAction<{ product: Item; count: number }>) {
+		changeItemCount(state, action: PayloadAction<{ item: Item; count: number }>) {
 			const validatedCount = Math.min(action.payload.count, 16);
 
 			const existingCartProductIndex = state.productList.findIndex(
-				(item) => item.product.id === action.payload.product.id
+				(cartItem) => cartItem.item.id === action.payload.item.id
 			);
 			if (existingCartProductIndex !== -1) {
 				const existingCartProduct = state.productList[existingCartProductIndex];
@@ -76,12 +76,12 @@ const cartSlice = createSlice({
 			if (existingCartProductIndex === -1) {
 				if (validatedCount < 1) {
 					state.productList.push({
-						product: action.payload.product,
+						item: action.payload.item,
 						count: 1,
 					});
 				} else {
 					state.productList.push({
-						product: action.payload.product,
+						item: action.payload.item,
 						count: validatedCount,
 					});
 				}
@@ -92,31 +92,31 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const addItemToCart = (product?: Item) => (dispatch: AppDispatch) => {
+export const addItemToCart = (item?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/addItemToCart',
-		payload: { product },
+		payload: { item },
 	});
 };
 
-export const deleteItemFromCart = (product?: Item) => (dispatch: AppDispatch) => {
+export const deleteItemFromCart = (item?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/deleteItemFromCart',
-		payload: { product },
+		payload: { item },
 	});
 };
 
 export const changeItemCount =
-	(product: Item | undefined, count: number) => (dispatch: AppDispatch) => {
+	(item: Item | undefined, count: number) => (dispatch: AppDispatch) => {
 		dispatch({
 			type: 'cart/changeItemCount',
-			payload: { product, count },
+			payload: { item, count },
 		});
 	};
 
-export const removeItemFromCart = (product?: Item) => (dispatch: AppDispatch) => {
+export const removeItemFromCart = (item?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/removeItemFromCart',
-		payload: { product },
+		payload: { item },
 	});
 };

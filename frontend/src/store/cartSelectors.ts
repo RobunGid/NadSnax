@@ -5,5 +5,5 @@ export const selectAllItems = (state: RootState) => {
 };
 
 export const selectItemById = (state: RootState, id: string) => {
-	return state.cart.productList.find((item) => item.product.id === id);
+	return state.cart.productList.find((cartItem) => cartItem.item.id === id);
 };
