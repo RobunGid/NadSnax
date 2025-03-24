@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { ChangeEvent, EventHandler, FC } from 'react';
+import { ChangeEvent, EventHandler } from 'react';
 
 interface ThemeSwitcherProps {
 	className: string;
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
 	const handleChangeTheme: EventHandler<ChangeEvent<HTMLInputElement>> = (event) => {
 		const isLightTheme = event.target.checked;
 		localStorage.theme = isLightTheme ? 'light' : 'dark';

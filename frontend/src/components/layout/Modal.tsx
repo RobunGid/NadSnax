@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 
 interface ModalProps {
@@ -8,7 +8,7 @@ interface ModalProps {
 	children: ReactNode;
 }
 
-const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
+export const Modal = ({ active, setActive, children }: ModalProps) => {
 	return (
 		<div
 			className={clsx(
@@ -37,5 +37,3 @@ const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
 		</div>
 	);
 };
-
-export default Modal;

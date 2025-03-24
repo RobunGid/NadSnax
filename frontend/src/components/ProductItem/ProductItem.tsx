@@ -5,7 +5,6 @@ import styles from './ProductItem.module.css';
 import { GiStarFormation } from 'react-icons/gi';
 
 import ProductItemQuantityChooser from './ProductItemQuantityChooser';
-import { FC } from 'react';
 import clsx from 'clsx';
 
 type ProductItemProps = {
@@ -14,7 +13,7 @@ type ProductItemProps = {
 	hideAddButton?: boolean;
 };
 
-const ProductItem: FC<ProductItemProps> = ({ item, className, hideAddButton }) => {
+const ProductItem = ({ item, className, hideAddButton }: ProductItemProps) => {
 	const mainImage = item.images.find((image) => image.isMain);
 
 	let imageURL = '';

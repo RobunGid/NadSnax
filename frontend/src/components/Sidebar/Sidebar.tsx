@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react';
+import { useContext } from 'react';
 import { GoArrowLeft, GoHome } from 'react-icons/go';
 import { CiGift } from 'react-icons/ci';
 import { MdMenu, MdStarOutline } from 'react-icons/md';
@@ -10,7 +10,7 @@ import { NavbarContext } from '../../context/NavbarContext';
 import { useSelector } from 'react-redux';
 import { selectAllCategories } from '../../store/categorySelectors';
 
-export const Sidebar: FC = () => {
+export const Sidebar = () => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
 
 	const categories = useSelector(selectAllCategories);

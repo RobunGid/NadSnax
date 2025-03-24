@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
 import { Item } from '../../types';
 import { selectAllItems } from '../../store/cartSelectors';
@@ -9,7 +9,7 @@ interface CartProps {
 	setActive: Dispatch<SetStateAction<boolean>>;
 }
 
-const Cart: FC<CartProps> = ({ setActive }) => {
+export const Cart = ({ setActive }: CartProps) => {
 	const productsItems: { product: Item; count: number }[] = useSelector(selectAllItems);
 
 	const products: Item[] = productsItems.map(
@@ -55,5 +55,3 @@ const Cart: FC<CartProps> = ({ setActive }) => {
 		</div>
 	);
 };
-
-export default Cart;

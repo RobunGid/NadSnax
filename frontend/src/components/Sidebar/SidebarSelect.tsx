@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { SidebarItem } from './SidebarItem';
 import { IoIosArrowDown } from 'react-icons/io';
 import { ItemCategory } from '../../types';
@@ -17,7 +17,7 @@ interface SidebarSelectProps {
 	category: ItemCategory;
 }
 
-export const SidebarSelect: FC<SidebarSelectProps> = ({ category }) => {
+export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility: MouseEventHandler<HTMLDivElement> = (event) => {

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { getRatingStar } from '../../logic/getRatingStar';
 import clsx from 'clsx';
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io';
@@ -9,7 +8,7 @@ interface ProductRatingProps {
 	size?: string | number;
 }
 
-export const ProductRating: FC<ProductRatingProps> = ({ rating, className, size }) => {
+export const ProductRating = ({ rating, className, size }: ProductRatingProps) => {
 	const ratingCount = getRatingStar(rating);
 
 	return (

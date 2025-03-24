@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Item } from '../../types';
 import { Link } from 'react-router';
 import { CartQuantityChooser } from './CartQuantityChooser';
@@ -12,7 +11,7 @@ type CartItemProps = {
 	totalPrice: number;
 };
 
-export const CartItem: FC<CartItemProps> = ({ item }) => {
+export const CartItem = ({ item }: CartItemProps) => {
 	const productCart = useSelector((state: RootState) => selectItemById(state, item.id));
 	if (productCart) {
 		const totalPrice = productCart?.product.price * productCart.count;

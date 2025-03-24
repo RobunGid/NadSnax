@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { SidebarLink } from './SidebarLink';
 import { SiteLogo } from '../Navbar/SiteLogo';
 
-const SidebarHeader: FC = () => {
+const SidebarHeader = () => {
 	return (
 		<div className='flex items-center justify-start rtl:justify-end'>
 			<SidebarLink to='/home'>

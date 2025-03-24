@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Item } from '../../types';
 import { BiHeart, BiSolidHeart } from 'react-icons/bi';
 import clsx from 'clsx';
@@ -8,7 +7,7 @@ interface AddToFavouriteProps {
 	className?: string;
 }
 
-export const AddToFavourite: FC<AddToFavouriteProps> = ({ className }) => {
+export const AddToFavourite = ({ className }: AddToFavouriteProps) => {
 	return (
 		<div
 			className={clsx(

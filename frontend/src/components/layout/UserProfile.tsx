@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { UserProfileAvatar } from '../UserProfile/UserProfileAvatar';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
@@ -6,7 +5,7 @@ interface UserProfileProps {
 	className?: string;
 }
 
-const UserProfile: FC<UserProfileProps> = ({ className }) => {
+const UserProfile = ({ className }: UserProfileProps) => {
 	const user = {
 		name: 'John Doe',
 		email: 'email@example.com',

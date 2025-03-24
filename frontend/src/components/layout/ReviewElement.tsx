@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import { Review } from '../../types';
 import { ProductRating } from '../ProductItem/ProductRating';
 
 type ReviewElementProps = { review: Review };
 
-export const ReviewElement: FC<ReviewElementProps> = ({ review }) => {
+export const ReviewElement = ({ review }: ReviewElementProps) => {
 	return (
 		<li className='flex flex-col items-center w-60 gap-y-3 -mb-24'>
 			<img

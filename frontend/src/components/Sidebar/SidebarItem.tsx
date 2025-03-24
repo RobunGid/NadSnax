@@ -1,4 +1,4 @@
-import { FC, ReactNode, useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import { NavLink } from 'react-router';
 import { NavbarContext } from '../../context/NavbarContext';
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ interface SideBarItemProps {
 	className?: string;
 }
 
-export const SidebarItem: FC<SideBarItemProps> = ({ children, to, className }) => {
+export const SidebarItem = ({ children, to, className }: SideBarItemProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	return (
 		<li onClick={toggleSidebarVisibility}>

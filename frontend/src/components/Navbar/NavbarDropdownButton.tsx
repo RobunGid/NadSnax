@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { NavbarLink } from './NavbarLink';
 import { GoChevronDown } from 'react-icons/go';
 
@@ -7,7 +6,7 @@ interface NavbarDropdownButtonProps {
 	to: string;
 }
 
-export const NavbarDropdownButton: FC<NavbarDropdownButtonProps> = ({ text, to }) => {
+export const NavbarDropdownButton = ({ text, to }: NavbarDropdownButtonProps) => {
 	return (
 		<button id='snacks-list-button' className='flex items-center peer'>
 			<NavbarLink to={to} className='flex' text={text}>

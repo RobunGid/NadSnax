@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 interface NoResultsProps {
 	category?: string;
 	type?: string;
 }
 
-export const NoResults: FC<NoResultsProps> = ({ category, type }) => {
+export const NoResults = ({ category, type }: NoResultsProps) => {
 	return (
 		<div className='text-xl'>
 			{category && type && (

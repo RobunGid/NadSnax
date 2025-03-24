@@ -1,11 +1,10 @@
-import { FC } from 'react';
 import { User } from '../../types';
 
 interface UserProfileAvatarProps {
 	user: User;
 }
 
-export const UserProfileAvatar: FC<UserProfileAvatarProps> = ({ user }) => {
+export const UserProfileAvatar = ({ user }: UserProfileAvatarProps) => {
 	return !user.avatarUrl ? (
 		<div className='rounded-full bg-gray-300'>
 			<svg

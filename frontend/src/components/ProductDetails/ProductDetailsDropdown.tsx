@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, MouseEventHandler, ReactNode, useState } from 'react';
+import { MouseEventHandler, ReactNode, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 interface ProductDetailsDropdownProps {
@@ -8,11 +8,11 @@ interface ProductDetailsDropdownProps {
 	className?: string;
 }
 
-export const ProductDetailsDropdown: FC<ProductDetailsDropdownProps> = ({
+export const ProductDetailsDropdown = ({
 	children,
 	text,
 	className,
-}) => {
+}: ProductDetailsDropdownProps) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility: MouseEventHandler<HTMLDivElement> = (event) => {

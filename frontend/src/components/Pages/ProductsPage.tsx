@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
 import { NoResults } from '../layout/NoResults';
@@ -8,7 +8,7 @@ import { selectAllItems } from '../../store/itemSelectors';
 import { useAppDispatch } from '../../store';
 import { fetchItems } from '../../store/itemSlice';
 
-export const ProductsPage: FC = () => {
+export const ProductsPage = () => {
 	const dispatch = useAppDispatch();
 
 	const items: Item[] = useSelector(selectAllItems);

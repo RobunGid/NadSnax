@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styles from './CartQuantityChooser.module.css';
 import clsx from 'clsx';
 import { Item } from '../../types';
@@ -13,10 +12,7 @@ interface CartQuantityChooserProps {
 	className?: string;
 }
 
-export const CartQuantityChooser: FC<CartQuantityChooserProps> = ({
-	product,
-	className,
-}) => {
+export const CartQuantityChooser = ({ product, className }: CartQuantityChooserProps) => {
 	const cartItem = useSelector((state: RootState) => selectItemById(state, product.id));
 
 	const itemCount = cartItem?.count || 1;

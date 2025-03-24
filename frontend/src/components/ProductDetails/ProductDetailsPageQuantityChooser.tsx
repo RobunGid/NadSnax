@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { Item } from '../../types';
 import { FiPlus } from 'react-icons/fi';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
@@ -9,11 +9,14 @@ interface ProductDetailsPageQuantityChooserProps {
 	className?: string;
 }
 
-export const ProductDetailsPageQuantityChooser: FC<
-	ProductDetailsPageQuantityChooserProps
-> = ({ item, count, className }) => {
+export const ProductDetailsPageQuantityChooser = ({
+	item,
+	count,
+	className,
+}: ProductDetailsPageQuantityChooserProps) => {
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
+
 	const handleDivClick: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
 	};

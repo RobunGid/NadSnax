@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import { Fragment } from 'react';
 import classes from './ProductDetailsImages.module.css';
 import clsx from 'clsx';
 import { Image } from '../../types';
@@ -8,10 +8,10 @@ interface ProductDetailsImagesProps {
 	className?: string;
 }
 
-export const ProductDetailsImages: FC<ProductDetailsImagesProps> = ({
+export const ProductDetailsImages = ({
 	images,
 	className,
-}) => {
+}: ProductDetailsImagesProps) => {
 	return (
 		<div
 			className={clsx(

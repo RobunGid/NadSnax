@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
 type NavBarLinkProps = {
@@ -11,14 +11,14 @@ type NavBarLinkProps = {
 	isIconOnRight?: boolean;
 };
 
-export const NavbarLink: FC<NavBarLinkProps> = ({
+export const NavbarLink = ({
 	children,
 	to,
 	className,
 	id,
 	text,
 	isIconOnRight = true,
-}) => {
+}: NavBarLinkProps) => {
 	return (
 		<NavLink
 			id={id}

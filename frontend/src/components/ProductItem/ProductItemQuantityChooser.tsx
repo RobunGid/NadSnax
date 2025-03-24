@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { RootState } from '../../store';
 
@@ -11,7 +11,7 @@ interface ProductItemQuantityChooserProps {
 	item: Item;
 }
 
-const ProductItemQuantityChooser: FC<ProductItemQuantityChooserProps> = ({ item }) => {
+const ProductItemQuantityChooser = ({ item }: ProductItemQuantityChooserProps) => {
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 

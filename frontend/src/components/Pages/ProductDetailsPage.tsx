@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { RootState, useAppDispatch } from '../../store';
 import { useSelector } from 'react-redux';
 import { selectAllItems } from '../../store/itemSelectors';
@@ -13,7 +13,7 @@ import { ProductDetailsPageQuantityChooser } from '../ProductDetails/ProductDeta
 import { AddToFavourite } from '../layout/AddToFavourite';
 import { SimillarItems } from '../ProductDetails/SimillarItems';
 
-export const ProductDetailsPage: FC = () => {
+export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
 	const dispatch = useAppDispatch();
