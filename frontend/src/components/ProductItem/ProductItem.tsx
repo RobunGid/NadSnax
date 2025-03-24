@@ -5,7 +5,7 @@ import styles from './ProductItem.module.css';
 import { GiStarFormation } from 'react-icons/gi';
 
 import clsx from 'clsx';
-import { ProductsPageQuantityChooser } from '../QuantityChooser/productsPageQuantityChooser';
+import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { selectItemById } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -73,7 +73,7 @@ const ProductItem = ({ item, className }: ProductItemProps) => {
 				/>
 
 				{cartItem && cartItem.count && (
-					<ProductsPageQuantityChooser
+					<ProductItemQuantityChooser
 						cartItem={cartItem}
 						onAdd={handleAddItemToCart}
 						onDelete={handleRemoveProductFromCart}

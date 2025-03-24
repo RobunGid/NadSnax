@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectItemById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
-import { CartQuantityChooser } from '../QuantityChooser/CartQuantityChooser';
+import { CartQuantityChooser } from './CartQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 
 type CartItemProps = {

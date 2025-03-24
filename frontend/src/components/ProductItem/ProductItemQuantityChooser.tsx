@@ -1,10 +1,10 @@
 import { CartItemType } from '../../types';
-import styles from './QuantityChooser.module.css';
+import styles from './ProductItemQuantityChooser.module.css';
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import clsx from 'clsx';
 
-export type ProductsPageQuantityChooserProps = {
+export type ProductItemQuantityChooserProps = {
 	cartItem: CartItemType;
 	className?: string;
 	onAdd: MouseEventHandler;
@@ -13,13 +13,13 @@ export type ProductsPageQuantityChooserProps = {
 	onInputChange: EventHandler<ChangeEvent<HTMLInputElement>>;
 };
 
-export const ProductsPageQuantityChooser = ({
+export const ProductItemQuantityChooser = ({
 	className,
 	cartItem,
 	onAdd,
 	onRemove,
 	onInputChange,
-}: ProductsPageQuantityChooserProps) => {
+}: ProductItemQuantityChooserProps) => {
 	return (
 		<div className={className}>
 			{!cartItem.count ? (
