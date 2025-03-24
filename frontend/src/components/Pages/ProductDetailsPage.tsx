@@ -7,7 +7,7 @@ import { fetchItems } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
-import { selectItemById } from '../../store/cartSelectors';
+import { selectItemFromCartById } from '../../store/cartSelectors';
 
 import { ProductDetailsPageQuantityChooser } from '../ProductDetails/ProductDetailsPageQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
@@ -36,7 +36,7 @@ export const ProductDetailsPage = () => {
 	}, [item?.id]);
 
 	const productCart = useSelector((state: RootState) =>
-		selectItemById(state, item?.id || '')
+		selectItemFromCartById(state, item?.id || '')
 	);
 	const count = productCart?.count || 0;
 

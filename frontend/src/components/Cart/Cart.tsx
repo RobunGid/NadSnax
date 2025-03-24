@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
 import { CartItemType, Item } from '../../types';
-import { selectAllItems } from '../../store/cartSelectors';
+import { selectAllItemsFromCart } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
@@ -10,7 +10,7 @@ interface CartProps {
 }
 
 export const Cart = ({ setActive }: CartProps) => {
-	const items: CartItemType[] = useSelector(selectAllItems);
+	const items: CartItemType[] = useSelector(selectAllItemsFromCart);
 
 	const cartItems: Item[] = items.map((item: CartItemType) => item.item);
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { PiShoppingCartBold } from 'react-icons/pi';
 import { useSelector } from 'react-redux';
-import { selectAllItems } from '../../store/cartSelectors';
+import { selectAllItemsFromCart } from '../../store/cartSelectors';
 import { CartItemType } from '../../types';
 
 interface NavbarCartProps {
@@ -10,7 +10,7 @@ interface NavbarCartProps {
 }
 
 export const NavbarCart = ({ className, onClick }: NavbarCartProps) => {
-	const productsItems: CartItemType[] = useSelector(selectAllItems);
+	const productsItems: CartItemType[] = useSelector(selectAllItemsFromCart);
 
 	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
 

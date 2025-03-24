@@ -6,7 +6,7 @@ import { GiStarFormation } from 'react-icons/gi';
 
 import clsx from 'clsx';
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
-import { selectItemById } from '../../store/cartSelectors';
+import { selectItemFromCartById } from '../../store/cartSelectors';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
@@ -21,7 +21,9 @@ type ProductItemProps = {
 const ProductItem = ({ item, className }: ProductItemProps) => {
 	const mainImage = item.images.find((image) => image.isMain);
 
-	const cartItem = useSelector((state: RootState) => selectItemById(state, item.id));
+	const cartItem = useSelector((state: RootState) =>
+		selectItemFromCartById(state, item.id)
+	);
 
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });

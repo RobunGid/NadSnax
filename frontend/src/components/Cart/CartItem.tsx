@@ -1,7 +1,7 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
-import { selectItemById } from '../../store/cartSelectors';
+import { selectItemFromCartById } from '../../store/cartSelectors';
 import { RootState } from '../../store';
 import { CartQuantityChooser } from './CartQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
@@ -13,7 +13,9 @@ type CartItemProps = {
 };
 
 export const CartItem = ({ item }: CartItemProps) => {
-	const cartItem = useSelector((state: RootState) => selectItemById(state, item.id));
+	const cartItem = useSelector((state: RootState) =>
+		selectItemFromCartById(state, item.id)
+	);
 
 	const {
 		handleAddItemToCart,
