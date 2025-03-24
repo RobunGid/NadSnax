@@ -1,0 +1,9 @@
+.quantity-chooser-input::-webkit-outer-spin-button,
+.quantity-chooser-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.quantity-chooser-input {
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
