@@ -15,12 +15,12 @@ interface useItemQuantityChooserParams {
 export const useItemQuantityChooser = ({ item }: useItemQuantityChooserParams) => {
 	const dispatch = useAppDispatch();
 
-	const handleAddItemToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+	const handleAddItemToCart: MouseEventHandler = (event) => {
 		event.preventDefault();
 		dispatch(addItemToCart(item));
 	};
 
-	const handleRemoveProductFromCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+	const handleRemoveProductFromCart: MouseEventHandler = (event) => {
 		event.preventDefault();
 		dispatch(removeItemFromCart(item));
 	};
@@ -30,7 +30,7 @@ export const useItemQuantityChooser = ({ item }: useItemQuantityChooserParams) =
 		dispatch(changeItemCount(item, parseFloat(event.target.value)));
 	};
 
-	const handleDeleteItemFromCart: MouseEventHandler<HTMLButtonElement> = () => {
+	const handleDeleteItemFromCart: MouseEventHandler = () => {
 		dispatch(deleteItemFromCart(item));
 	};
 
