@@ -39,9 +39,9 @@ export const Cart = ({ setActive }: CartProps) => {
 				{!cartItems.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
 						<div className='text-2xl text-center'>Your cart is empty</div>
-						<Link to='/products'>
+						<Link to='/products' className='mt-10'>
 							<button
-								className='mt-10 bg-amber-400 hover:bg-amber-500 dark:bg-sky-800 dark:hover:bg-sky-900 w-36 p-3 hover:scale-105 transition'
+								className='bg-amber-400 hover:bg-amber-500 dark:bg-sky-800 dark:hover:bg-sky-900 w-36 p-3 hover:scale-105 transition'
 								onClick={() => setActive(false)}
 							>
 								Go shopping
