@@ -3,16 +3,14 @@ import { ItemCategory } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { categoryAxios } from '../api/category';
 
-type CategoriesState = {
-	list: ItemCategory[];
-	error: null | string;
-	loading: boolean;
+type CategoryState = {
+	categoryList: ItemCategory[];
+	status: 'init' | 'loading' | 'error' | 'success';
 };
 
-const initialState: CategoriesState = {
-	list: [],
-	error: null,
-	loading: false,
+const initialState: CategoryState = {
+	categoryList: [],
+	status: 'init',
 };
 
 export const fetchCategories = createAsyncThunk<
@@ -44,20 +42,19 @@ export const fetchCategories = createAsyncThunk<
 	return fixedUrlCategories;
 });
 
-const categorySlice = createSlice({
+const slice = createSlice({
 	name: 'category',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCategories.pending, (state) => {
-			state.loading = true;
-			state.error = null;
+			state.status = 'loading';
 		});
 		builder.addCase(fetchCategories.fulfilled, (state, action) => {
-			state.list = action.payload;
-			state.loading = false;
+			state.categoryList = action.payload;
+			state.status = 'success';
 		});
 	},
 });
 
-export default categorySlice.reducer;
+export const { reducer: categoryReducer, actions: categoryActions } = slice;

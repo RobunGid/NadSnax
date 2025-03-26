@@ -2,11 +2,22 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import { AppDispatch } from '.';
 
-const initialState: { productList: { item: Item; count: number }[] } = {
-	productList: [],
+type ProductItem = {
+	item: Item;
+	count: number;
 };
 
-const cartSlice = createSlice({
+interface CartState {
+	productList: ProductItem[];
+	status: 'init' | 'loading' | 'error' | 'success';
+}
+
+const initialState: CartState = {
+	productList: [],
+	status: 'init',
+};
+
+const slice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
@@ -90,7 +101,7 @@ const cartSlice = createSlice({
 	},
 });
 
-export default cartSlice.reducer;
+export const { reducer: cartReducer, actions: cartActions } = slice;
 
 export const addItemToCart = (item?: Item) => (dispatch: AppDispatch) => {
 	dispatch({

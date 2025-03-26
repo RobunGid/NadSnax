@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import { cartReducer } from './cartSlice';
+import { categoryReducer } from './categorySlice';
+import { itemReducer } from './itemSlice';
 
-import cartReducer from './cartSlice';
-import categoryReducer from './categorySlice';
-import itemReducer from './itemSlice';
+export * from './cartSlice';
+export * from './itemSlice';
+export * from './categorySlice';
 
 const store = configureStore({
 	reducer: {

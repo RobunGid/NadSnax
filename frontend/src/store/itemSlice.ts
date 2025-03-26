@@ -4,15 +4,13 @@ import camelcaseKeys from 'camelcase-keys';
 import { itemAxios } from '../api/item';
 
 type ItemsState = {
-	list: Item[];
-	error: null | string;
-	loading: boolean;
+	itemList: Item[];
+	status: 'init' | 'loading' | 'error' | 'success';
 };
 
 const initialState: ItemsState = {
-	list: [],
-	error: null,
-	loading: false,
+	itemList: [],
+	status: 'init',
 };
 
 interface fetchItemsParams {
@@ -86,20 +84,19 @@ export const fetchItems = createAsyncThunk<
 	}
 );
 
-const itemsSlice = createSlice({
+const slice = createSlice({
 	name: 'item',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItems.pending, (state) => {
-			state.loading = true;
-			state.error = null;
+			state.status = 'loading';
 		});
 		builder.addCase(fetchItems.fulfilled, (state, action) => {
-			state.list = action.payload;
-			state.loading = false;
+			state.itemList = action.payload;
+			state.status = 'success';
 		});
 	},
 });
 
-export default itemsSlice.reducer;
+export const { reducer: itemReducer, actions: todoActions } = slice;
