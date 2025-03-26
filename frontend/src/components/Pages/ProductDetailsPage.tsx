@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { RootState, useAppDispatch } from '../../store';
 import { useSelector } from 'react-redux';
-import { selectAllItems } from '../../store/itemSelectors';
+import { selectAllItems, selectItemByPageLink } from '../../store/itemSelectors';
 import { useParams } from 'react-router';
 import { fetchItems } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
@@ -9,18 +9,21 @@ import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { selectItemFromCartById } from '../../store/cartSelectors';
 
-import { ProductDetailsPageQuantityChooser } from '../ProductDetails/ProductDetailsPageQuantityChooser';
+import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
 import { SimillarItems } from '../ProductDetails/SimillarItems';
+import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
 	const dispatch = useAppDispatch();
 
-	const items = useSelector(selectAllItems);
+	const items = useSelector((state: RootState) => selectAllItems(state));
 
-	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
+	const item = useSelector((state: RootState) =>
+		selectItemByPageLink(state, `/${product_page_link}`)
+	);
 
 	useEffect(() => {
 		dispatch(
@@ -35,10 +38,12 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
-	const productCart = useSelector((state: RootState) =>
+	const cartItem = useSelector((state: RootState) =>
 		selectItemFromCartById(state, item?.id || '')
 	);
-	const count = productCart?.count || 0;
+
+	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
+		useItemQuantityChooser({ item });
 
 	const intlFormatPrice = new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -62,9 +67,12 @@ export const ProductDetailsPage = () => {
 							/>
 							<div className='md:hidden mr-auto'>
 								<div className='flex justify-center flex-col w-52 mx-16 my-8'>
-									<ProductDetailsPageQuantityChooser
+									<ProductDetailsQuantityChooser
+										cartItem={cartItem}
 										item={item}
-										count={count}
+										onAdd={handleAddItemToCart}
+										onInputChange={handleInputChange}
+										onDelete={handleRemoveProductFromCart}
 									/>
 
 									<hr className='my-4' />
@@ -111,10 +119,13 @@ export const ProductDetailsPage = () => {
 
 							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
 								<div className='hidden md:block'>
-									<ProductDetailsPageQuantityChooser
-										item={item}
-										count={count}
+									<ProductDetailsQuantityChooser
 										className='flex justify-center'
+										cartItem={cartItem}
+										item={item}
+										onAdd={handleAddItemToCart}
+										onInputChange={handleInputChange}
+										onDelete={handleRemoveProductFromCart}
 									/>
 
 									<AddToFavourite />

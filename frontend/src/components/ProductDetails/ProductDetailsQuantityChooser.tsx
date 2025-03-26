@@ -1,62 +1,59 @@
-import { CartItemType } from '../../types';
-import styles from './ProductDetailsQuantityChooser.module.css';
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
+import { CartItemType, Item } from '../../types';
+import styles from './ProductDetailsQuantityChooser.module.css';
 import clsx from 'clsx';
 
-export type ProductDetailsQuantityChooserProps = {
-	cartItem: CartItemType;
+interface ProductDetailsQuantityChooserProps {
+	cartItem?: CartItemType;
+	item: Item;
 	className?: string;
 	onAdd: MouseEventHandler;
 	onDelete: MouseEventHandler;
-	onRemove: MouseEventHandler;
 	onInputChange: EventHandler<ChangeEvent<HTMLInputElement>>;
-};
+}
 
 export const ProductDetailsQuantityChooser = ({
-	className,
 	cartItem,
+	className,
 	onAdd,
-	onRemove,
+	onDelete,
 	onInputChange,
 }: ProductDetailsQuantityChooserProps) => {
 	return (
-		<div className={className}>
-			{!cartItem.count ? (
+		<div className={clsx('text-2xl', className)}>
+			{!cartItem?.count ? (
 				<div
-					className='dark:bg-sky-800 bg-orange-400 flex w-[100px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					className='text-xl dark:bg-sky-800 bg-orange-400 flex w-[225px] cursor-pointer h-[60px] justify-center items-center gap-2 rounded-full px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
 				>
 					<FiPlus />
-					<button>Add</button>
+					<button>Add to cart</button>
 				</div>
 			) : (
-				<div className='dark:bg-sky-800 bg-orange-400 flex justify-center w-[100px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition'>
+				<div className='dark:bg-sky-800 bg-orange-400 w-[225px] h-[60px] relative flex justify-center rounded-full font-bold transition'>
 					<button
-						className='dark:hover:bg-sky-900 hover:bg-orange-500 absolute inset-0 w-1/3 hover:rounded-bl-full hover:rounded-tl-full'
-						onClick={onAdd}
+						className='hover:bg-orange-500 dark:hover:bg-sky-900 mr-auto w-3/4 hover:rounded-tl-full hover:rounded-bl-full'
+						onClick={onDelete}
 					>
-						+
+						–
 					</button>
-					<div
-						className='text-center'
-						onClick={(event) => event.preventDefault()}
-					>
+					<div className='text-center flex justify-center'>
 						<input
 							type='number'
 							value={cartItem.count}
 							className={clsx(
-								styles['quantity-chooser-input'],
-								'bg-transparent w-1/3 text-center box-border outline-none focus:outline-2 focus:scale-125 focus:outline-amber-700 dark:focus:outline-cyan-700'
+								'bg-transparent w-2/3 text-center box-border focus:outline-none border-0 focus:border-4 focus:scale-125 dark:border-cyan-700 border-amber-700',
+								styles['quantity-chooser-input']
 							)}
 							onChange={onInputChange}
 						/>
 					</div>
 					<button
-						className='dark:hover:bg-sky-900 hover:bg-orange-500 absolute top-0 right-0 bottom-0 w-1/3 hover:rounded-tr-full hover:rounded-br-full'
-						onClick={onRemove}
+						className='ml-auto dark:hover:bg-sky-900 hover:bg-orange-500 w-3/4 hover:rounded-br-full hover:rounded-tr-full'
+						onClick={onAdd}
 					>
-						–
+						+
 					</button>
 				</div>
 			)}
