@@ -24,16 +24,16 @@ export const ProductItemQuantityChooser = ({
 		<div className={className}>
 			{!cartItem.count ? (
 				<div
-					className='dark:bg-sky-800 bg-orange-400 flex w-[100px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					className='dark:bg-sky-800 bg-orange-400 flex w-[100px] h-[30px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
 				>
 					<FiPlus />
 					<button>Add</button>
 				</div>
 			) : (
-				<div className='dark:bg-sky-800 bg-orange-400 flex justify-center w-[100px] absolute translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition'>
+				<div className='dark:bg-sky-800 bg-orange-400 flex justify-center w-[100px] h-[30px] absolute translate-x-2 -translate-y-10 rounded-3xl font-bold transition'>
 					<button
-						className='dark:hover:bg-sky-900 hover:bg-orange-500 absolute inset-0 w-1/3 hover:rounded-bl-full hover:rounded-tl-full'
+						className='mr-auto dark:hover:bg-sky-900 hover:bg-orange-500 w-[125px] hover:rounded-bl-full hover:rounded-tl-full'
 						onClick={onAdd}
 					>
 						+
@@ -47,13 +47,13 @@ export const ProductItemQuantityChooser = ({
 							value={cartItem.count}
 							className={clsx(
 								styles['quantity-chooser-input'],
-								'bg-transparent w-1/3 text-center box-border outline-none focus:outline-2 focus:scale-125 focus:outline-amber-700 dark:focus:outline-cyan-700'
+								'bg-transparent w-2/3 h-full text-center box-border outline-none focus:outline-2 focus:scale-125 focus:outline-amber-700 dark:focus:outline-cyan-700'
 							)}
 							onChange={onInputChange}
 						/>
 					</div>
 					<button
-						className='dark:hover:bg-sky-900 hover:bg-orange-500 absolute top-0 right-0 bottom-0 w-1/3 hover:rounded-tr-full hover:rounded-br-full'
+						className='ml-auto dark:hover:bg-sky-900 hover:bg-orange-500 w-[125px] hover:rounded-tr-full hover:rounded-br-full'
 						onClick={onRemove}
 					>
 						–
