@@ -99,4 +99,4 @@ const slice = createSlice({
 	},
 });
 
-export const { reducer: itemReducer, actions: todoActions } = slice;
+export const { reducer: itemReducer, actions: itemActions } = slice;

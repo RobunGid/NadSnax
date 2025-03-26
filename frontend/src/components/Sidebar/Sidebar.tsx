@@ -7,13 +7,12 @@ import SidebarHeader from './SidebarHeader';
 import { SidebarSelect } from './SidebarSelect';
 import clsx from 'clsx';
 import { NavbarContext } from '../../context/NavbarContext';
-import { useSelector } from 'react-redux';
-import { selectAllCategories } from '../../store/categorySelectors';
+import { useStateSelector } from '../../store';
 
 export const Sidebar = () => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
 
-	const categories = useSelector(selectAllCategories);
+	const categories = useStateSelector((state) => state.category.categoryList);
 
 	return (
 		<div className='group flex md:hidden'>

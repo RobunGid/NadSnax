@@ -1,10 +1,8 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
-import { useSelector } from 'react-redux';
-import { selectItemFromCartById } from '../../store/cartSelectors';
-import { RootState } from '../../store';
 import { CartQuantityChooser } from './CartQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
+import { useStateSelector } from '../../store';
 
 type CartItemProps = {
 	className?: string;
@@ -13,8 +11,8 @@ type CartItemProps = {
 };
 
 export const CartItem = ({ item }: CartItemProps) => {
-	const cartItem = useSelector((state: RootState) =>
-		selectItemFromCartById(state, item.id)
+	const cartItem = useStateSelector((state) =>
+		state.cart.productList.find((cartItem) => cartItem.item.id === item.id)
 	);
 
 	const {

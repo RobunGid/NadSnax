@@ -1,16 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
 import { CartItemType, Item } from '../../types';
-import { selectAllItemsFromCart } from '../../store/cartSelectors';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
+import { useStateSelector } from '../../store';
 
 interface CartProps {
 	setActive: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Cart = ({ setActive }: CartProps) => {
-	const items: CartItemType[] = useSelector(selectAllItemsFromCart);
+	const items = useStateSelector((state) => state.cart.productList);
 
 	const cartItems: Item[] = items.map((item: CartItemType) => item.item);
 

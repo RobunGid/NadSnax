@@ -3,15 +3,14 @@ import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
 import { NoResults } from '../layout/NoResults';
 import { Item } from '../../types';
-import { useSelector } from 'react-redux';
-import { selectAllItems } from '../../store/itemSelectors';
-import { useAppDispatch } from '../../store';
 import { fetchItems } from '../../store/itemSlice';
+
+import { useAppDispatch, useStateSelector } from '../../store';
 
 export const ProductsPage = () => {
 	const dispatch = useAppDispatch();
 
-	const items: Item[] = useSelector(selectAllItems);
+	const items: Item[] = useStateSelector((state) => state.item.itemList);
 
 	const { category, type } = useParams();
 	useEffect(() => {

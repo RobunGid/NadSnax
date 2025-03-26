@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import { PiShoppingCartBold } from 'react-icons/pi';
-import { useSelector } from 'react-redux';
-import { selectAllItemsFromCart } from '../../store/cartSelectors';
-import { CartItemType } from '../../types';
+import { useStateSelector } from '../../store';
 
 interface NavbarCartProps {
 	className?: string;
@@ -10,7 +8,7 @@ interface NavbarCartProps {
 }
 
 export const NavbarCart = ({ className, onClick }: NavbarCartProps) => {
-	const productsItems: CartItemType[] = useSelector(selectAllItemsFromCart);
+	const productsItems = useStateSelector((state) => state.cart.productList);
 
 	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
 

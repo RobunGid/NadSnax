@@ -1,45 +1,39 @@
 import { useEffect } from 'react';
-import { RootState, useAppDispatch } from '../../store';
-import { useSelector } from 'react-redux';
-import { selectAllItems, selectItemByPageLink } from '../../store/itemSelectors';
 import { useParams } from 'react-router';
-import { fetchItems } from '../../store/itemSlice';
+import { itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
-import { selectItemFromCartById } from '../../store/cartSelectors';
 
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
 import { AddToFavourite } from '../layout/AddToFavourite';
 import { SimillarItems } from '../ProductDetails/SimillarItems';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
+import { cartActions, useActionCreators, useStateSelector } from '../../store';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
-	const dispatch = useAppDispatch();
+	const actions = useActionCreators({ ...itemActions, ...cartActions });
 
-	const items = useSelector((state: RootState) => selectAllItems(state));
+	const items = useStateSelector((state) => state.item.itemList);
 
-	const item = useSelector((state: RootState) =>
-		selectItemByPageLink(state, `/${product_page_link}`)
-	);
+	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
 	useEffect(() => {
-		dispatch(
-			fetchItems({
-				include_item_details: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: item?.id,
-			})
-		);
+		actions.fetchItems({
+			include_item_details: true,
+			include_category: true,
+			include_type: true,
+			include_images: true,
+			simillar_id: item?.id,
+		});
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
-	const cartItem = useSelector((state: RootState) =>
-		selectItemFromCartById(state, item?.id || '')
+	const cartItem = useStateSelector((state) =>
+		state.cart.productList.find((cartItem) => cartItem.item.id === item?.id)
 	);
 
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =

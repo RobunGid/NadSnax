@@ -8,14 +8,13 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { NavbarCart } from './NavbarCart';
 import { Modal } from '../layout/Modal';
 import { Cart } from '../Cart/Cart';
-import { useSelector } from 'react-redux';
-import { selectAllCategories } from '../../store/categorySelectors';
 import UserProfile from '../layout/UserProfile';
+import { useStateSelector } from '../../store';
 
 export const Navbar = () => {
 	const [isModalActive, setIsModalActive] = useState<boolean>(false);
 
-	const categories = useSelector(selectAllCategories);
+	const categories = useStateSelector((state) => state.category.categoryList);
 
 	return (
 		<>
