@@ -32,7 +32,7 @@ export const ProductsPage = () => {
 	}, [category, type]);
 
 	return (
-		<main className='flex flex-wrap p-5 justify-center gap-4 min-h-[calc(100vh-4.54em)]'>
+		<main className='flex flex-wrap p-5 justify-center gap-4'>
 			{items.map((item) => (
 				<ProductItem key={item.id} item={item} />
 			))}
@@ -45,7 +45,13 @@ export const ProductsPage = () => {
 					<ProductItemSkeletonLoader />
 				</>
 			)}
-			{!items.length && <NoResults category={category} type={type} />}
+			{status !== 'loading' && !items.length && (
+				<NoResults
+					category={category}
+					type={type}
+					className='h-[calc(100vh-20rem)]'
+				/>
+			)}
 		</main>
 	);
 };
