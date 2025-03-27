@@ -7,7 +7,6 @@ import { GiStarFormation } from 'react-icons/gi';
 import clsx from 'clsx';
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
-import { FiPlus } from 'react-icons/fi';
 import { useStateSelector } from '../../store';
 
 type ProductItemProps = {
@@ -78,7 +77,7 @@ const ProductItem = ({ item, className }: ProductItemProps) => {
 					)}
 				</div>
 
-				{cartItem && cartItem.count && (
+				{
 					<ProductItemQuantityChooser
 						cartItem={cartItem}
 						onAdd={handleAddItemToCart}
@@ -86,16 +85,7 @@ const ProductItem = ({ item, className }: ProductItemProps) => {
 						onInputChange={handleInputChange}
 						onRemove={handleRemoveProductFromCart}
 					/>
-				)}
-				{(!cartItem || !cartItem.count) && (
-					<div
-						className='dark:bg-sky-800 bg-orange-400 flex w-[100px] absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
-						onClick={handleAddItemToCart}
-					>
-						<FiPlus />
-						<button>Add</button>
-					</div>
-				)}
+				}
 				<div className='flex gap-x-2 items-center'>
 					{productOldPrice ? (
 						<>
