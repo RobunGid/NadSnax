@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/layout/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
-import { useAppDispatch } from './store';
+import { useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
@@ -10,8 +10,10 @@ import { ScrollToTop } from './components/layout/ScrollToTop';
 function App() {
 	const dispatch = useAppDispatch();
 
+	const status = useStateSelector((state) => state.category.status);
+
 	useEffect(() => {
-		dispatch(fetchCategories());
+		if (status === 'init') dispatch(fetchCategories());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
