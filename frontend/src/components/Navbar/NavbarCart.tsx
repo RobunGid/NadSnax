@@ -31,7 +31,7 @@ export const NavbarCart = ({ className, onClick }: NavbarCartProps) => {
 			)}
 			onClick={onClick}
 		>
-			<div className='absolute mb-8 ml-5 font-bold text-xs bg-amber-500 dark:bg-sky-600 dark:border-sky-800 w-4 h-4 rounded-full border border-amber-800 flex justify-center align-center'>
+			<div className='absolute mb-8 ml-5 font-bold text-xs bg-amber-500 dark:bg-sky-600 dark:border-sky-800 min-w-4 min-h-4 rounded-full border border-amber-800 flex justify-center align-center'>
 				{count}
 			</div>
 			<PiShoppingCartBold size={28} />
