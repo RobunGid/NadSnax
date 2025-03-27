@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
-import { NoResults } from '../layout/NoResults';
 import { Item } from '../../types';
 import { fetchItems } from '../../store/itemSlice';
 
 import { useAppDispatch, useStateSelector } from '../../store';
+import { ProductItemSkeletonLoader } from '../ProductItem/ProductItemSkeletonLoader';
 
 export const ProductsPage = () => {
 	const dispatch = useAppDispatch();
@@ -33,7 +33,15 @@ export const ProductsPage = () => {
 			{items.map((item) => (
 				<ProductItem key={item.id} item={item} />
 			))}
-			{!items.length && <NoResults type={type} category={category} />}
+			{!items.length && (
+				<>
+					<ProductItemSkeletonLoader />
+					<ProductItemSkeletonLoader />
+					<ProductItemSkeletonLoader />
+					<ProductItemSkeletonLoader />
+					<ProductItemSkeletonLoader />
+				</>
+			)}
 		</main>
 	);
 };
