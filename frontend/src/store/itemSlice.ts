@@ -90,6 +90,7 @@ const slice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItemsThunk.pending, (state) => {
+			state.itemList = [];
 			state.status = 'loading';
 		});
 		builder.addCase(fetchItemsThunk.fulfilled, (state, action) => {
