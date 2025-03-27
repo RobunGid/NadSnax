@@ -2,29 +2,31 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductItem from '../ProductItem/ProductItem';
 import { Item } from '../../types';
-import { fetchItems } from '../../store/itemSlice';
+import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 
-import { useAppDispatch, useStateSelector } from '../../store';
+import { useActionCreators, useStateSelector } from '../../store';
 import { ProductItemSkeletonLoader } from '../ProductItem/ProductItemSkeletonLoader';
 
 export const ProductsPage = () => {
-	const dispatch = useAppDispatch();
-
 	const items: Item[] = useStateSelector((state) => state.item.itemList);
+	const status = useStateSelector((state) => state.item.status);
+
+	const actions = useActionCreators({
+		...itemActions,
+		fetchItems: fetchItemsThunk,
+	});
 
 	const { category, type } = useParams();
 	useEffect(() => {
-		dispatch(
-			fetchItems({
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				category_name: category,
-				type_name: type,
-				is_bestseller: category === 'best-sellers' ? true : undefined,
-				is_secretbox: category === 'secretboxes' ? true : undefined,
-			})
-		);
+		actions.fetchItems({
+			include_category: true,
+			include_type: true,
+			include_images: true,
+			category_name: category,
+			type_name: type,
+			is_bestseller: category === 'best-sellers' ? true : undefined,
+			is_secretbox: category === 'secretboxes' ? true : undefined,
+		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category, type]);
 
@@ -33,7 +35,7 @@ export const ProductsPage = () => {
 			{items.map((item) => (
 				<ProductItem key={item.id} item={item} />
 			))}
-			{!items.length && (
+			{status === 'loading' && (
 				<>
 					<ProductItemSkeletonLoader />
 					<ProductItemSkeletonLoader />

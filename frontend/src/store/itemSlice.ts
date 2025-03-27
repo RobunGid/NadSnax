@@ -26,7 +26,7 @@ interface fetchItemsParams {
 	simillar_id?: string;
 }
 
-export const fetchItems = createAsyncThunk<
+export const fetchItemsThunk = createAsyncThunk<
 	Item[],
 	fetchItemsParams,
 	{ rejectValue: string }
@@ -89,10 +89,10 @@ const slice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(fetchItems.pending, (state) => {
+		builder.addCase(fetchItemsThunk.pending, (state) => {
 			state.status = 'loading';
 		});
-		builder.addCase(fetchItems.fulfilled, (state, action) => {
+		builder.addCase(fetchItemsThunk.fulfilled, (state, action) => {
 			state.itemList = action.payload;
 			state.status = 'success';
 		});

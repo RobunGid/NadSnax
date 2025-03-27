@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { itemActions } from '../../store/itemSlice';
+import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
@@ -14,7 +14,11 @@ import { cartActions, useActionCreators, useStateSelector } from '../../store';
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
-	const actions = useActionCreators({ ...itemActions, ...cartActions });
+	const actions = useActionCreators({
+		...itemActions,
+		...cartActions,
+		fetchItems: fetchItemsThunk,
+	});
 
 	const items = useStateSelector((state) => state.item.itemList);
 
