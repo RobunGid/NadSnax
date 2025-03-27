@@ -53,24 +53,30 @@ const ProductItem = ({ item, className }: ProductItemProps) => {
 	return (
 		<Link
 			to={`/products/page${item.pageLink}`}
-			className={clsx(className, styles['product-item'])}
+			className={clsx(
+				'shadow-xl h-[360px] p-2 w-60',
+				className,
+				styles['product-item']
+			)}
 		>
-			<div className='relative z-0 overflow-hidden'>
-				{item.isBestseller && (
-					<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
-						Bestseller
-					</div>
-				)}
+			<div className='z-0'>
 				{item.category.name === 'secretboxes' && (
 					<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 						Secret Box
 					</div>
 				)}
-				<img
-					src={imageURL}
-					alt={`${item.label} image`}
-					className='object-cover w-[240px] h-[240px]'
-				/>
+				<div className='relative overflow-hidden'>
+					<img
+						src={imageURL}
+						alt={`${item.label} image`}
+						className='object-cover w-[240px] h-[240px] rounded-md'
+					/>
+					{item.isBestseller && (
+						<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center -rotate-45 top-[25px] left-[-45px]'>
+							Bestseller
+						</div>
+					)}
+				</div>
 
 				{cartItem && cartItem.count && (
 					<ProductItemQuantityChooser
