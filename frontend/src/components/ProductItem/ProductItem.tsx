@@ -53,7 +53,7 @@ const ProductItem = ({ item, className }: ProductItemProps) => {
 		<Link
 			to={`/products/page${item.pageLink}`}
 			className={clsx(
-				'shadow-xl h-[360px] p-2 w-60',
+				'shadow-xl dark:shadow-gray-950 h-[360px] p-2 w-60',
 				className,
 				styles['product-item']
 			)}
