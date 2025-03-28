@@ -26,55 +26,60 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 				</label>
 			</div>
 
-			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
-				<ThemeSwitcher className='m-2' />
-				<div>
+			<ul className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
+				<li>
+					<ThemeSwitcher className='m-2' />
+				</li>
+				<li>
 					<Link
 						to='/account'
 						className='block text-sm px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 					>
 						My Account
 					</Link>
-				</div>
-				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
+				</li>
+				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user?.name}</div>
 					<div className='font-medium truncate'>{user?.email}</div>
-				</div>
-				<ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
-					<li>
-						<a
-							href='#'
-							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-						>
-							Order History
-						</a>
-					</li>
-					<li>
-						<a
-							href='#'
-							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-						>
-							Settings
-						</a>
-					</li>
-					<li>
-						<a
-							href='#'
-							className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-						>
-							My Reviews
-						</a>
-					</li>
-				</ul>
-				<div className='py-1'>
+				</li>
+				<li>
+					<ul>
+						<li>
+							<a
+								href='#'
+								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+							>
+								Order History
+							</a>
+						</li>
+						<li>
+							<a
+								href='#'
+								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+							>
+								Settings
+							</a>
+						</li>
+						<li>
+							<a
+								href='#'
+								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+							>
+								My Reviews
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li className='py-1'>
 					<a
 						href='#'
 						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
 					>
 						Sign out
 					</a>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 	);
 };
