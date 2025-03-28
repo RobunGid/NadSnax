@@ -56,6 +56,7 @@ _(Strikethrough features are in progress)_
 - Rest API integration: Fetching products, categories, types from backend
 - Customizible API: Rest API with multiple query parameters
 - Best Sellers Support: Supporting best sellers page
+- Dark Theme dupport: Supporting changing theme between light and dark
 - ~~Multilingual Support: Language selection for international users~~
 - ~~Order History: Access to past orders with re-order functionality~~
 - ~~Favorites: Option to save items for future purchases~~
