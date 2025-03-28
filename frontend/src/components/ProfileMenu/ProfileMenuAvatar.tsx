@@ -1,12 +1,14 @@
+import clsx from 'clsx';
 import { User } from '../../types';
 
 interface ProfileMenuProps {
-	user: User;
+	user: User | null;
+	className?: string;
 }
 
-export const ProfileMenuAvatar = ({ user }: ProfileMenuProps) => {
-	return !user.avatarUrl ? (
-		<div className='rounded-full bg-gray-300'>
+export const ProfileMenuAvatar = ({ user, className }: ProfileMenuProps) => {
+	return !user?.avatarUrl ? (
+		<div className={clsx('rounded-full bg-gray-300', className)}>
 			<svg
 				className='text-gray-400 block'
 				fill='currentColor'
@@ -21,6 +23,6 @@ export const ProfileMenuAvatar = ({ user }: ProfileMenuProps) => {
 			</svg>
 		</div>
 	) : (
-		<img src={user.avatarUrl} alt={`${user.name} Avatar`} />
+		<img src={user.avatarUrl} alt={`${user.name} Avatar`} className={className} />
 	);
 };

@@ -1,19 +1,14 @@
 import { Link } from 'react-router';
 import { ProfileMenuAvatar } from './ProfileMenuAvatar';
 import { ThemeSwitcher } from '../layout/ThemeSwitcher';
+import { useStateSelector } from '../../store';
 
 interface ProfileMenuProps {
 	className?: string;
 }
 
 export const ProfileMenu = ({ className }: ProfileMenuProps) => {
-	const user = {
-		name: 'John Doe',
-		email: 'email@example.com',
-		id: 'wsfc3843',
-		avatarUrl: 'http://localhost/resources/images/avatar.jpeg',
-	};
-
+	const user = useStateSelector((state) => state.user.user);
 	return (
 		<div className={className}>
 			<div className='overflow-hidden rounded-full w-12 h-12 peer transition-transform hover:scale-105'>
@@ -42,8 +37,8 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 					</Link>
 				</div>
 				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
-					<div>{user.name}</div>
-					<div className='font-medium truncate'>{user.email}</div>
+					<div>{user?.name}</div>
+					<div className='font-medium truncate'>{user?.email}</div>
 				</div>
 				<ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
 					<li>

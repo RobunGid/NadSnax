@@ -7,7 +7,7 @@ import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/layout/ScrollToTop';
-import { ProfilePage } from './components/Pages/ProfilePage';
+import { UserProfilePage } from './components/Pages/UserProfilePage';
 function App() {
 	const dispatch = useAppDispatch();
 
@@ -35,8 +35,8 @@ function App() {
 			<Header />
 			<ScrollToTop />
 			<Routes>
-				<Route path='/profile' element={<ProfilePage />} />
 				<Route path='/' element={<Navigate to='/home' />} />
+				<Route path='/profile' element={<UserProfilePage />} />
 				<Route path='/home' element={<HomePage />} />
 				<Route path='/products/' element={<ProductsPage />} />
 				<Route path='/products/:category/' element={<ProductsPage />} />
