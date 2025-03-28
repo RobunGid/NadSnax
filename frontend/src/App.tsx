@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/layout/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
-import { useAppDispatch, useStateSelector } from './store';
+import { fetchUser, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
@@ -11,10 +11,16 @@ import { UserProfilePage } from './components/Pages/UserProfilePage';
 function App() {
 	const dispatch = useAppDispatch();
 
-	const status = useStateSelector((state) => state.category.status);
+	const categoriesStatus = useStateSelector((state) => state.category.status);
+	const userStatus = useStateSelector((state) => state.user.status);
 
 	useEffect(() => {
-		if (status === 'init') dispatch(fetchCategories());
+		if (categoriesStatus === 'init') dispatch(fetchCategories());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		if (userStatus === 'init') dispatch(fetchUser());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

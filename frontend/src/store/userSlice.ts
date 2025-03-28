@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
 import { userAxios } from '../api/user';
+import { user } from '../mock';
 
 type UserState = {
 	user: User | null;
@@ -13,16 +14,15 @@ const initialState: UserState = {
 };
 
 export const fetchUser = createAsyncThunk<User, undefined, { rejectValue: string }>(
-	'category/fetchCategories',
+	'user/fetchUser',
 	async (_, { rejectWithValue }) => {
-		const response = await userAxios.get<User>('/user', {});
+		// const response = await userAxios.get<User>('/user', {});
 
-		if (response.status != 200) {
-			return rejectWithValue('Server Error!');
-		}
+		// if (response.status != 200) {
+		// 	return rejectWithValue('Server Error!');
+		// }
 
-		const user = response.data;
-
+		// const user = response.data;
 		return user;
 	}
 );
@@ -31,6 +31,15 @@ const slice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {},
+	extraReducers: (builder) => {
+		builder.addCase(fetchUser.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(fetchUser.fulfilled, (state, action) => {
+			state.user = action.payload;
+			state.status = 'success';
+		});
+	},
 });
 
 export const { reducer: userReducer, actions: userActions } = slice;
