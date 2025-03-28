@@ -30,10 +30,10 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 				<ThemeSwitcher className='m-2' />
 				<div>
 					<Link
-						to='/profile'
+						to='/account'
 						className='block text-sm px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 					>
-						My profile
+						My Account
 					</Link>
 				</div>
 				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
