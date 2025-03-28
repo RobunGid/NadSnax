@@ -8,7 +8,7 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { NavbarCart } from './NavbarCart';
 import { Modal } from '../layout/Modal';
 import { Cart } from '../Cart/Cart';
-import UserProfile from '../layout/UserProfile';
+import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { useStateSelector } from '../../store';
 
 export const Navbar = () => {
@@ -53,7 +53,7 @@ export const Navbar = () => {
 					className='ml-auto hover:scale-110 mt-1 transition'
 					onClick={() => setIsModalActive(true)}
 				/>
-				<UserProfile className='m-2' />
+				<ProfileMenu className='m-2' />
 			</div>
 
 			<Modal active={isModalActive} setActive={setIsModalActive}>

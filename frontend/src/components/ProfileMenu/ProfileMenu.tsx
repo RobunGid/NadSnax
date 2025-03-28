@@ -1,11 +1,12 @@
-import { UserProfileAvatar } from '../UserProfile/UserProfileAvatar';
-import { ThemeSwitcher } from './ThemeSwitcher';
+import { Link } from 'react-router';
+import { ProfileMenuAvatar } from './ProfileMenuAvatar';
+import { ThemeSwitcher } from '../layout/ThemeSwitcher';
 
-interface UserProfileProps {
+interface ProfileMenuProps {
 	className?: string;
 }
 
-const UserProfile = ({ className }: UserProfileProps) => {
+export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 	const user = {
 		name: 'John Doe',
 		email: 'email@example.com',
@@ -26,12 +27,20 @@ const UserProfile = ({ className }: UserProfileProps) => {
 					htmlFor='user-profile-avatar'
 					className='block bg-cover bg-no-repeat cursor-pointer'
 				>
-					<UserProfileAvatar user={user} />
+					<ProfileMenuAvatar user={user} />
 				</label>
 			</div>
 
-			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[300px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
+			<div className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
 				<ThemeSwitcher className='m-2' />
+				<div>
+					<Link
+						to='/profile'
+						className='block text-sm px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+					>
+						My profile
+					</Link>
+				</div>
 				<div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user.name}</div>
 					<div className='font-medium truncate'>{user.email}</div>
@@ -74,5 +83,3 @@ const UserProfile = ({ className }: UserProfileProps) => {
 		</div>
 	);
 };
-
-export default UserProfile;

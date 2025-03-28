@@ -1,10 +1,10 @@
 import { User } from '../../types';
 
-interface UserProfileAvatarProps {
+interface ProfileMenuProps {
 	user: User;
 }
 
-export const UserProfileAvatar = ({ user }: UserProfileAvatarProps) => {
+export const ProfileMenuAvatar = ({ user }: ProfileMenuProps) => {
 	return !user.avatarUrl ? (
 		<div className='rounded-full bg-gray-300'>
 			<svg
