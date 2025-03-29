@@ -1,4 +1,4 @@
-import { BiHelpCircle, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
+import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
 import { AccountMenuItem } from './AccountMenuItem';
 import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 import { IoSettingsOutline } from 'react-icons/io5';
@@ -10,12 +10,15 @@ export const AccountMenu = () => {
 		<div className='rounded-[40px] bg-gray-800 w-96'>
 			<ul className='divide-y divide-gray-900'>
 				<AccountMenuUserInfo />
-
+				<AccountMenuItem to='/account/orders'>
+					<BiUser />
+					Profile
+				</AccountMenuItem>
 				<li>
 					<ul>
 						<AccountMenuItem to='/account/orders'>
-							<BiUser />
-							Orders
+							<BiHistory />
+							Order History
 						</AccountMenuItem>
 						<AccountMenuItem to='/account/reviews'>
 							<BiStar />
