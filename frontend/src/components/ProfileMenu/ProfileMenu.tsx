@@ -1,7 +1,7 @@
-import { Link } from 'react-router';
 import { ProfileMenuAvatar } from './ProfileMenuAvatar';
 import { ThemeSwitcher } from '../layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
+import { ProfileMenuItem } from './ProfileMenuItem';
 
 interface ProfileMenuProps {
 	className?: string;
@@ -26,59 +26,31 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 				</label>
 			</div>
 
-			<ul className='overflow-hidden transition-all duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
+			<ul className='overflow-hidden duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
 				<li>
 					<ThemeSwitcher className='m-2' />
 				</li>
-				<li>
-					<Link
-						to='/account/profile'
-						className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-					>
-						My Profile
-					</Link>
-				</li>
+				<ProfileMenuItem to='/account/profile'>My Profile</ProfileMenuItem>
 				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user?.name}</div>
 					<div className='font-medium truncate'>{user?.email}</div>
 				</li>
 				<li>
 					<ul>
-						<li>
-							<Link
-								to='/account/order_history'
-								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-							>
-								Order History
-							</Link>
-						</li>
-						<li>
-							<Link
-								to='/account/settings'
-								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-							>
-								Settings
-							</Link>
-						</li>
-						<li>
-							<Link
-								to='/account/reviews'
-								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-							>
-								My Reviews
-							</Link>
-						</li>
+						<ProfileMenuItem to='/account/order_history'>
+							Order History
+						</ProfileMenuItem>
+						<ProfileMenuItem to='/account/settings'>Settings</ProfileMenuItem>
+
+						<ProfileMenuItem to='/account/reviews'>
+							My reviews
+						</ProfileMenuItem>
 					</ul>
 				</li>
 
-				<li className='py-1'>
-					<Link
-						to='/account/signout'
-						className='block px-4 py-1 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-					>
-						Sign out
-					</Link>
-				</li>
+				<ProfileMenuItem to='/account/signout' type='secondary'>
+					Sign out
+				</ProfileMenuItem>
 			</ul>
 		</div>
 	);

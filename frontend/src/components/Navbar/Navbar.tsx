@@ -50,7 +50,7 @@ export const Navbar = () => {
 				</ul>
 
 				<NavbarCart
-					className='ml-auto hover:scale-110 mt-1 transition'
+					className='ml-auto hover:scale-110 mt-1 transition-transform'
 					onClick={() => setIsModalActive(true)}
 				/>
 				<ProfileMenu className='m-2' />
