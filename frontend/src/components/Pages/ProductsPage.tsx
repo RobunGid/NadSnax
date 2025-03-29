@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import ProductItem from '../ProductItem/ProductItem';
+import { ProductItem } from '../ProductItem/ProductItem';
 import { Item } from '../../types';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 

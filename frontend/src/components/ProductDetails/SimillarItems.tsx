@@ -1,5 +1,5 @@
 import { Item } from '../../types';
-import ProductItem from '../ProductItem/ProductItem';
+import { ProductItem } from '../ProductItem/ProductItem';
 
 interface SimillarItemsProps {
 	items: Item[];
