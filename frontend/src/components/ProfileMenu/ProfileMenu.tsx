@@ -32,10 +32,10 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 				</li>
 				<li>
 					<Link
-						to='/account'
-						className='block text-sm px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+						to='/account/profile'
+						className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 					>
-						My Account
+						My Profile
 					</Link>
 				</li>
 				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
@@ -45,39 +45,39 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 				<li>
 					<ul>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='/account/order_history'
 								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 							>
 								Order History
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='/account/settings'
 								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 							>
 								Settings
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='/account/reviews'
 								className='block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
 							>
 								My Reviews
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</li>
 
 				<li className='py-1'>
-					<a
-						href='#'
-						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+					<Link
+						to='/account/signout'
+						className='block px-4 py-1 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
 					>
 						Sign out
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</div>
