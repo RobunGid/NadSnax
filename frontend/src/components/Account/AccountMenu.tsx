@@ -10,13 +10,13 @@ export const AccountMenu = () => {
 		<div className='rounded-[40px] bg-gray-800 w-96'>
 			<ul className='divide-y divide-gray-900'>
 				<AccountMenuUserInfo />
-				<AccountMenuItem to='/account/orders'>
+				<AccountMenuItem to='/account/profile'>
 					<BiUser />
 					Profile
 				</AccountMenuItem>
 				<li>
 					<ul>
-						<AccountMenuItem to='/account/orders'>
+						<AccountMenuItem to='/account/order_history'>
 							<BiHistory />
 							Order History
 						</AccountMenuItem>
@@ -26,7 +26,7 @@ export const AccountMenu = () => {
 						</AccountMenuItem>
 					</ul>
 				</li>
-				<AccountMenuItem to='/account/settings'>
+				<AccountMenuItem to='/account/recently_viewed'>
 					<FaMagnifyingGlass />
 					Recently viewed
 				</AccountMenuItem>
@@ -46,7 +46,7 @@ export const AccountMenu = () => {
 						</AccountMenuItem>
 					</ul>
 				</li>
-				<AccountMenuItem to='/account/settings' last>
+				<AccountMenuItem to='/account/signout' last>
 					<FaSignOutAlt />
 					Sign out
 				</AccountMenuItem>

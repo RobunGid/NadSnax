@@ -43,6 +43,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Navigate to='/home' />} />
 				<Route path='/account' element={<AccountPage />} />
+				<Route path='/account/:section' element={<AccountPage />} />
 				<Route path='/home' element={<HomePage />} />
 				<Route path='/products/' element={<ProductsPage />} />
 				<Route path='/products/:category/' element={<ProductsPage />} />

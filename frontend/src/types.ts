@@ -75,3 +75,34 @@ export type CartItemType = {
 	item: Item;
 	count: number;
 };
+
+export type Section =
+	| 'profile'
+	| 'order_history'
+	| 'reviews'
+	| 'recently_viewed'
+	| 'settings'
+	| 'statistics'
+	| 'help'
+	| 'signout'
+	| 'undefined';
+
+export const predicateSection = (value?: string): value is Section => {
+	if (
+		![
+			'profile',
+			'order_history',
+			'reviews',
+			'recently_viewed',
+			'settings',
+			'statistics',
+			'help',
+			'signout',
+			undefined,
+		].includes(value)
+	) {
+		return false;
+	} else {
+		return true;
+	}
+};
