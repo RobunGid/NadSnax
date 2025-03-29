@@ -8,37 +8,41 @@ import { FaSignOutAlt } from 'react-icons/fa';
 export const AccountMenu = () => {
 	return (
 		<div className='rounded-[40px] bg-gray-800 w-96'>
-			<ul>
+			<ul className='divide-y divide-gray-900'>
 				<AccountMenuUserInfo />
-				<AccountMenuItem to='/account/orders'>
-					<BiUser />
-					Orders
-				</AccountMenuItem>
-				<AccountMenuItem to='/account/orders'>
-					<BiStar />
-					Reviews
-				</AccountMenuItem>
-				<hr className='border-gray-900' />
+
+				<li>
+					<ul>
+						<AccountMenuItem to='/account/orders'>
+							<BiUser />
+							Orders
+						</AccountMenuItem>
+						<AccountMenuItem to='/account/reviews'>
+							<BiStar />
+							Reviews
+						</AccountMenuItem>
+					</ul>
+				</li>
 				<AccountMenuItem to='/account/settings'>
 					<FaMagnifyingGlass />
 					Recently viewed
 				</AccountMenuItem>
-				<hr className='border-gray-900' />
 				<AccountMenuItem to='/account/settings'>
 					<IoSettingsOutline />
 					Settings
 				</AccountMenuItem>
-				<AccountMenuItem to='/account/statistics'>
-					<BiInfoCircle />
-					Statistics
-				</AccountMenuItem>
-				<hr className='border-gray-900' />
-				<AccountMenuItem to='/account/help'>
-					<BiHelpCircle />
-					Help
-				</AccountMenuItem>
-				<hr className='border-gray-900' />
-
+				<li>
+					<ul>
+						<AccountMenuItem to='/account/statistics'>
+							<BiInfoCircle />
+							Statistics
+						</AccountMenuItem>
+						<AccountMenuItem to='/account/help'>
+							<BiHelpCircle />
+							Help
+						</AccountMenuItem>
+					</ul>
+				</li>
 				<AccountMenuItem to='/account/settings' last>
 					<FaSignOutAlt />
 					Sign out
