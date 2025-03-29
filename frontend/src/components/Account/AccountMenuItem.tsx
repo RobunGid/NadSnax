@@ -18,7 +18,7 @@ export const AccountMenuItem = ({
 	return (
 		<li
 			className={clsx(
-				'hover:bg-gray-700',
+				'hover:bg-gray-300 dark:hover:bg-gray-700',
 				className,
 				last && 'rounded-b-[40px] pb-1'
 			)}

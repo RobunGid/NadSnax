@@ -8,7 +8,9 @@ export const AccountMenuUserInfo = () => {
 			<ProfileMenuAvatar user={user} className='w-20 rounded-full' />
 			<div className='p-4'>
 				<div className='text-xl'>{user?.name}</div>
-				<div className='text-sm text-gray-400'>{user?.email}</div>
+				<div className='text-sm text-gray-600 dark:text-gray-400'>
+					{user?.email}
+				</div>
 			</div>
 		</li>
 	);

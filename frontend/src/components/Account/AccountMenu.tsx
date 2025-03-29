@@ -7,7 +7,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 
 export const AccountMenu = () => {
 	return (
-		<div className='rounded-[40px] bg-gray-800 w-96'>
+		<div className='rounded-[40px] dark:bg-gray-800 bg-gray-200 w-96'>
 			<ul className='divide-y divide-gray-900'>
 				<AccountMenuUserInfo />
 				<AccountMenuItem to='/account/profile'>
