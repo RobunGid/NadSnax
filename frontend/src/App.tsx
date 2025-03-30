@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
+import { getAppTheme } from './logic/getAppTheme';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -26,13 +27,10 @@ export const App = () => {
 	}, []);
 
 	useEffect(() => {
-		const theme = localStorage.getItem('theme');
+		const theme = getAppTheme();
 
-		document.documentElement.classList.toggle(
-			'dark',
-			theme === 'dark' ||
-				(!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
-		);
+		document.documentElement.classList.add(theme);
+
 		document.body.classList.add('dark:bg-gray-900');
 		document.body.classList.add('dark:text-white');
 	}, []);
