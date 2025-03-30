@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router';
-import { Header } from './components/layout/Header';
+import { Header } from './components/Header/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
 import { fetchUser, useAppDispatch, useStateSelector } from './store';
