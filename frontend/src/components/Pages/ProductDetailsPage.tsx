@@ -6,10 +6,10 @@ import { ProductRating } from '../ProductItem/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
-import { AddToFavourite } from '../layout/AddToFavourite';
 import { SimillarItems } from '../ProductDetails/SimillarItems';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
+import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -79,7 +79,7 @@ export const ProductDetailsPage = () => {
 
 									<hr className='my-4' />
 
-									<AddToFavourite />
+									<ProductDetailsAddToFavourite />
 								</div>
 							</div>
 						</div>
@@ -130,7 +130,7 @@ export const ProductDetailsPage = () => {
 										onDelete={handleRemoveProductFromCart}
 									/>
 
-									<AddToFavourite />
+									<ProductDetailsAddToFavourite />
 								</div>
 								<hr />
 								<ProductDetailsDropdown text='About this item'>
