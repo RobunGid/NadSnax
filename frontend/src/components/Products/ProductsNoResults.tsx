@@ -1,13 +1,17 @@
 import clsx from 'clsx';
-import { ShoppingButton } from './ShoppingButton';
+import { ShoppingButton } from '../layout/ShoppingButton';
 
-interface NoResultsProps {
+interface ProductsNoResultsProps {
 	category?: string;
 	type?: string;
 	className?: string;
 }
 
-export const NoResults = ({ category, type, className }: NoResultsProps) => {
+export const ProductsNoResults = ({
+	category,
+	type,
+	className,
+}: ProductsNoResultsProps) => {
 	return (
 		<div
 			className={clsx(

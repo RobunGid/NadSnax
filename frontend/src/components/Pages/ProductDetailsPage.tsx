@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
-import { ProductRating } from '../ProductItem/ProductRating';
+import { ProductRating } from '../layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';

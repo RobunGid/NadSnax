@@ -6,7 +6,7 @@ import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
 import { ProductItemSkeletonLoader } from '../ProductItem/ProductItemSkeletonLoader';
-import { NoResults } from '../layout/NoResults';
+import { ProductsNoResults } from '../Products/ProductsNoResults';
 
 export const ProductsPage = () => {
 	const items: Item[] = useStateSelector((state) => state.item.itemList);
@@ -46,7 +46,7 @@ export const ProductsPage = () => {
 				</>
 			)}
 			{status !== 'loading' && !items.length && (
-				<NoResults
+				<ProductsNoResults
 					category={category}
 					type={type}
 					className='h-[calc(100vh-20rem)]'
