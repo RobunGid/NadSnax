@@ -8,7 +8,8 @@ import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
-function App() {
+
+export const App = () => {
 	const dispatch = useAppDispatch();
 
 	const categoriesStatus = useStateSelector((state) => state.category.status);
@@ -52,6 +53,4 @@ function App() {
 			</Routes>
 		</>
 	);
-}
-
-export default App;
+};
