@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ShoppingButton } from '../layout/ShoppingButton';
+import { UIShoppingButton } from '../UI/UIShoppingButton';
 
 interface ProductsNoResultsProps {
 	category?: string;
@@ -32,7 +32,7 @@ export const ProductsNoResults = ({
 				</h1>
 			)}
 			{!type && !category && <h1>Sorry, there no products</h1>}
-			<ShoppingButton>Open main products page</ShoppingButton>
+			<UIShoppingButton>Open main products page</UIShoppingButton>
 		</div>
 	);
 };

@@ -1,12 +1,12 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import { Link } from 'react-router';
 
-interface ShoppingButtonProps {
+interface UIShoppingButtonProps {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	children: ReactNode;
 }
 
-export const ShoppingButton = ({ onClick, children }: ShoppingButtonProps) => {
+export const UIShoppingButton = ({ onClick, children }: UIShoppingButtonProps) => {
 	return (
 		<Link to='/products' className='mt-10'>
 			<button
