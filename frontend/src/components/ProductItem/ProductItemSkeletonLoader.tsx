@@ -1,6 +1,6 @@
 export const ProductItemSkeletonLoader = () => {
 	return (
-		<div className='h-[360px] p-2 shadow-xl w-60 animate-fade'>
+		<div className='h-[360px] p-2 shadow-xl w-60 animate-skeleton opacity-0 '>
 			<div className='relative flex items-center justify-center h-60 mb-4 bg-gray-300 rounded-sm dark:bg-gray-700'>
 				<svg
 					className='w-10 h-10 text-gray-200 dark:text-gray-600'

@@ -12,14 +12,19 @@ export default {
 				'gray-250': 'oklch(0.9 0.008 261.435)',
 			},
 			animation: {
-				fade: 'fadeIn 0.5s ease-in-out',
+				skeleton:
+					'skeletonFadeIn 0.4s ease-in-out 0.4s 1 normal forwards, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.2s infinite;',
 			},
 
 			keyframes: () => ({
-				fadeIn: {
+				skeletonFadeIn: {
 					'0%': { opacity: 0 },
-					'30%': { opacity: 0 },
 					'100%': { opacity: 1 },
+				},
+				pulse: {
+					'50%': {
+						opacity: 0.65,
+					},
 				},
 			}),
 		},
