@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { ProductItem } from '../ProductItem/ProductItem';
 import { Item } from '../../types';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
-import { ProductItemSkeletonLoader } from '../ProductItem/ProductItemSkeletonLoader';
 import { ProductsNoResults } from '../Products/ProductsNoResults';
+import { ProductsList } from '../Products/ProductsList';
+import { ProductsLoading } from '../Products/ProductsLoading';
 
 export const ProductsPage = () => {
 	const items: Item[] = useStateSelector((state) => state.item.itemList);
@@ -34,18 +34,8 @@ export const ProductsPage = () => {
 	return (
 		<>
 			<div className='flex flex-wrap p-5 justify-center gap-4'>
-				{items.map((item) => (
-					<ProductItem key={item.id} item={item} />
-				))}
-				{status === 'loading' && (
-					<>
-						<ProductItemSkeletonLoader />
-						<ProductItemSkeletonLoader />
-						<ProductItemSkeletonLoader />
-						<ProductItemSkeletonLoader />
-						<ProductItemSkeletonLoader />
-					</>
-				)}
+				{status === 'success' && <ProductsList items={items} />}
+				{status === 'loading' && <ProductsLoading />}
 			</div>
 			{status !== 'loading' && !items.length && (
 				<ProductsNoResults
