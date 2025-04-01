@@ -6,7 +6,7 @@ import { fetchUser, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
-import { ScrollToTop } from './components/layout/ScrollToTop';
+import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
 import { getAppTheme } from './logic/getAppTheme';
 

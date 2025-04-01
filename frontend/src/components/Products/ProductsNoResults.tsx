@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ToProductsButton } from '../layout/ToProductsButton';
+import { ToProductsButton } from '../Layout/ToProductsButton';
 
 interface ProductsNoResultsProps {
 	category?: string;

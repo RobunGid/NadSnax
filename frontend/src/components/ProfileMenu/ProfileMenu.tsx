@@ -1,5 +1,5 @@
 import { ProfileMenuAvatar } from './ProfileMenuAvatar';
-import { ThemeSwitcher } from '../layout/ThemeSwitcher';
+import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
 

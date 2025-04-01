@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
 import { CartItemType, Item } from '../../types';
 import { useStateSelector } from '../../store';
-import { ToProductsButton } from '../layout/ToProductsButton';
+import { ToProductsButton } from '../Layout/ToProductsButton';
 
 interface CartProps {
 	setActive: Dispatch<SetStateAction<boolean>>;

@@ -1,6 +1,6 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
-import { ProductRating } from '../layout/ProductRating';
+import { ProductRating } from '../Layout/ProductRating';
 import styles from './ProductItem.module.css';
 import { GiStarFormation } from 'react-icons/gi';
 
