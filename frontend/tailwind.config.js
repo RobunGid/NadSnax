@@ -13,7 +13,8 @@ export default {
 			},
 			animation: {
 				skeleton:
-					'skeletonFadeIn 0.4s ease-in-out 0.4s 1 normal forwards, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.2s infinite;',
+					'skeletonFadeIn 0.4s ease-in-out 0.4s 1 normal forwards, skeletonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.2s infinite;',
+				fadeIn: 'fadeIn 0.15s ease-in-out 0s forwards;',
 			},
 
 			keyframes: () => ({
@@ -21,9 +22,17 @@ export default {
 					'0%': { opacity: 0 },
 					'100%': { opacity: 1 },
 				},
-				pulse: {
+				skeletonPulse: {
 					'50%': {
 						opacity: 0.65,
+					},
+				},
+				fadeIn: {
+					'0%': {
+						opacity: 0,
+					},
+					'100%': {
+						opacity: 1,
 					},
 				},
 			}),
