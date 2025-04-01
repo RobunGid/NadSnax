@@ -32,19 +32,21 @@ export const ProductsPage = () => {
 	}, [category, type]);
 
 	return (
-		<div className='flex flex-wrap p-5 justify-center gap-4'>
-			{items.map((item) => (
-				<ProductItem key={item.id} item={item} />
-			))}
-			{status === 'loading' && (
-				<>
-					<ProductItemSkeletonLoader />
-					<ProductItemSkeletonLoader />
-					<ProductItemSkeletonLoader />
-					<ProductItemSkeletonLoader />
-					<ProductItemSkeletonLoader />
-				</>
-			)}
+		<>
+			<div className='flex flex-wrap p-5 justify-center gap-4'>
+				{items.map((item) => (
+					<ProductItem key={item.id} item={item} />
+				))}
+				{status === 'loading' && (
+					<>
+						<ProductItemSkeletonLoader />
+						<ProductItemSkeletonLoader />
+						<ProductItemSkeletonLoader />
+						<ProductItemSkeletonLoader />
+						<ProductItemSkeletonLoader />
+					</>
+				)}
+			</div>
 			{status !== 'loading' && !items.length && (
 				<ProductsNoResults
 					category={category}
@@ -52,6 +54,6 @@ export const ProductsPage = () => {
 					className='h-[calc(100vh-20rem)]'
 				/>
 			)}
-		</div>
+		</>
 	);
 };
