@@ -3,13 +3,13 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createPortal } from 'react-dom';
 import { RxCross1 } from 'react-icons/rx';
 
-interface ModalProps {
-	active: boolean;
+interface UIModalProps {
+	active?: boolean;
 	setActive: Dispatch<SetStateAction<boolean>>;
-	children: ReactNode;
+	children?: ReactNode;
 }
 
-export const Modal = ({ active, setActive, children }: ModalProps) => {
+export const UIModal = ({ active, setActive, children }: UIModalProps) => {
 	return createPortal(
 		<div
 			className={clsx(

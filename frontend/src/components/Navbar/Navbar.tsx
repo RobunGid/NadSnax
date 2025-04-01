@@ -5,21 +5,21 @@ import { NavbarDropdown } from './NavbarDropdown';
 import { NavbarDropdownButton } from './NavbarDropdownButton';
 import { SiteLogo } from './SiteLogo';
 import { NavbarCart } from './NavbarCart';
-import { Modal } from '../layout/Modal';
 import { Cart } from '../Cart/Cart';
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { MdMenu } from 'react-icons/md';
 import { ItemCategory } from '../../types';
 import { NavbarContext } from '../../context/NavbarContext';
+import { UIModal } from '../UI/UIModal';
 
 interface NavbarProps {
 	categories: ItemCategory[];
 }
 
 export const Navbar = ({ categories }: NavbarProps) => {
-	const [isModalActive, setIsModalActive] = useState<boolean>(false);
-
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
+
+	const [isModalActive, setIsModalActive] = useState<boolean>(false);
 
 	return (
 		<>
@@ -69,9 +69,9 @@ export const Navbar = ({ categories }: NavbarProps) => {
 				<ProfileMenu className='m-2' />
 			</div>
 
-			<Modal active={isModalActive} setActive={setIsModalActive}>
+			<UIModal active={isModalActive} setActive={setIsModalActive}>
 				<Cart setActive={setIsModalActive} />
-			</Modal>
+			</UIModal>
 		</>
 	);
 };
