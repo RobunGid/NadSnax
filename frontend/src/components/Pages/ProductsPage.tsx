@@ -32,7 +32,7 @@ export const ProductsPage = () => {
 	}, [category, type]);
 
 	return (
-		<main className='flex flex-wrap p-5 justify-center gap-4'>
+		<div className='flex flex-wrap p-5 justify-center gap-4'>
 			{items.map((item) => (
 				<ProductItem key={item.id} item={item} />
 			))}
@@ -52,6 +52,6 @@ export const ProductsPage = () => {
 					className='h-[calc(100vh-20rem)]'
 				/>
 			)}
-		</main>
+		</div>
 	);
 };
