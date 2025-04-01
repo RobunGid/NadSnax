@@ -1,6 +1,6 @@
 import { ChangeEvent, EventHandler } from 'react';
 import { getAppTheme } from '../../logic/getAppTheme';
-import { UIThemeSwitcher } from '../UI/UIThemeSwitcher';
+import { UISwitcher } from '../UI/UISwitcher';
 
 interface ThemeSwitcherProps {
 	className?: string;
@@ -17,7 +17,7 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
 	};
 
 	return (
-		<UIThemeSwitcher
+		<UISwitcher
 			defaultChecked={defaultTheme == 'light'}
 			onChange={handleChangeTheme}
 			className={className}

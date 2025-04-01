@@ -1,16 +1,12 @@
 import clsx from 'clsx';
 import { ChangeEventHandler } from 'react';
 
-interface UIThemeSwitcherProps {
+interface UISwitcherProps {
 	className?: string;
 	onChange: ChangeEventHandler<HTMLInputElement>;
 	defaultChecked: boolean;
 }
-export const UIThemeSwitcher = ({
-	className,
-	onChange,
-	defaultChecked,
-}: UIThemeSwitcherProps) => {
+export const UISwitcher = ({ className, onChange, defaultChecked }: UISwitcherProps) => {
 	return (
 		<div className='flex items-center'>
 			<label className={clsx('relative inline-block w-14 h-8', className)}>
