@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
 import { CartItemType, Item } from '../../types';
 import { useStateSelector } from '../../store';
-import { UIShoppingButton } from '../UI/UIShoppingButton';
+import { ToProductsButton } from '../layout/ToProductsButton';
 
 interface CartProps {
 	setActive: Dispatch<SetStateAction<boolean>>;
@@ -38,9 +38,9 @@ export const Cart = ({ setActive }: CartProps) => {
 				{!cartItems.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
 						<div className='text-2xl text-center'>Your cart is empty</div>
-						<UIShoppingButton onClick={() => setActive(false)}>
+						<ToProductsButton onClick={() => setActive(false)}>
 							Go shopping
-						</UIShoppingButton>
+						</ToProductsButton>
 					</div>
 				)}
 			</div>
