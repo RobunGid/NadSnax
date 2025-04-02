@@ -1,27 +1,26 @@
-type rating = 'empty' | 'half' | 'full';
+type Rating = 'empty' | 'half' | 'full';
+type FullRating = [Rating, Rating, Rating, Rating, Rating];
 
-export const getRatingStar = (ratingCount: number): rating[] => {
-	let flooredRatingCount = Math.floor(ratingCount * 20);
-
-	if (flooredRatingCount > 100) return ['full', 'full', 'full', 'full', 'full'];
-
-	if (flooredRatingCount < 10) return ['empty', 'empty', 'empty', 'empty', 'empty'];
-
-	const resultRatingArray: Array<string> = [];
-
-	while (flooredRatingCount > 10) {
-		resultRatingArray.push('full');
-		flooredRatingCount -= 20;
+export const getRatingStar = (ratingCount: number): FullRating => {
+	if (ratingCount >= 5) {
+		return Array.from({ length: 5 }, () => 'full') as FullRating;
+	}
+	if (ratingCount <= 0) {
+		return Array.from({ length: 5 }, () => 'empty') as FullRating;
 	}
 
-	while (flooredRatingCount > 5) {
-		resultRatingArray.push('half');
-		flooredRatingCount -= 10;
-	}
+	const fullStars: Rating[] = Array.from(
+		{ length: Math.round(ratingCount) },
+		() => 'full'
+	);
 
-	while (resultRatingArray.length < 5) {
-		resultRatingArray.push('empty');
-	}
+	const halfStar: Rating = Math.round(ratingCount % 1) ? 'half' : 'empty';
 
-	return resultRatingArray as ['full', 'full', 'full', 'full', 'full'];
+	const fullAndHalfStars = fullStars.concat(halfStar);
+
+	const resultStars: FullRating = fullAndHalfStars.concat(
+		Array.from({ length: 5 - fullAndHalfStars.length }, () => 'empty')
+	) as FullRating;
+
+	return resultStars;
 };
