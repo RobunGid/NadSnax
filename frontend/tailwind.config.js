@@ -10,6 +10,8 @@ export default {
 			colors: {
 				'gray-650': 'oklch(0.4095 0.032 258.268)',
 				'gray-250': 'oklch(0.9 0.008 261.435)',
+				'gray-825': 'oklch(0.25125 0.03425 261.462)',
+				'gray-750': 'oklch(0.3255 0.0355 258.159)',
 			},
 			animation: {
 				skeleton:

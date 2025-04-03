@@ -5,7 +5,7 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 export const AccountMenuItem = {
 	Settings: () => (
-		<AccountMenuItemContainer to='/account/settings'>
+		<AccountMenuItemContainer to='/account/settings' isLast>
 			<IoSettingsOutline />
 			Settings
 		</AccountMenuItemContainer>
