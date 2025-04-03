@@ -1,18 +1,25 @@
-import { ReactNode, useContext } from 'react';
-import { NavbarContext } from '../../context/NavbarContext';
-import { UISidebarItem } from '../UI/UISidebarItem';
+import { GoHome } from 'react-icons/go';
+import { SidebarItemContainer } from './SidebarItemContainer';
+import { CiGift } from 'react-icons/ci';
+import { MdStarOutline } from 'react-icons/md';
 
-interface SideBarItemProps {
-	children: ReactNode;
-	to: string;
-	className?: string;
-}
-
-export const SidebarItem = ({ children, to, className }: SideBarItemProps) => {
-	const { toggleSidebarVisibility } = useContext(NavbarContext);
-	return (
-		<li onClick={toggleSidebarVisibility}>
-			<UISidebarItem to={to} children={children} className={className} />
-		</li>
-	);
+export const SidebarItem = {
+	Home: () => (
+		<SidebarItemContainer to='/home'>
+			<GoHome />
+			<span className='ms-3'>Home</span>
+		</SidebarItemContainer>
+	),
+	SecretBoxes: () => (
+		<SidebarItemContainer to='/products/secretboxes'>
+			<CiGift />
+			<span className='ms-3'>Secret Boxes</span>
+		</SidebarItemContainer>
+	),
+	BestSellers: () => (
+		<SidebarItemContainer to='/products/best-sellers'>
+			<MdStarOutline />
+			<span className='ms-3'>Best Sellers</span>
+		</SidebarItemContainer>
+	),
 };

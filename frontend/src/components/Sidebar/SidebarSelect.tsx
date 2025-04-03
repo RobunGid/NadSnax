@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { MouseEventHandler, useState } from 'react';
-import { SidebarItem } from './SidebarItem';
 import { IoIosArrowDown } from 'react-icons/io';
 import { ItemCategory } from '../../types';
+import { SidebarItemContainer } from './SidebarItemContainer';
 
 type option = {
 	to: string;
@@ -28,7 +28,7 @@ export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 
 	return (
 		<>
-			<SidebarItem to={category.pageLink} className='m-0 py-1.5'>
+			<SidebarItemContainer to={category.pageLink} className='m-0 py-1.5'>
 				<button
 					type='button'
 					className='flex items-center justify-between w-full text-base text-gray-900 dark:text-white transition duration-75 rounded-lg'
@@ -51,7 +51,7 @@ export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 						/>
 					</div>
 				</button>
-			</SidebarItem>
+			</SidebarItemContainer>
 			<ul
 				id='dropdown-snacks'
 				className={clsx(
@@ -60,14 +60,14 @@ export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 				)}
 			>
 				{category.types.map((type) => (
-					<SidebarItem to={type.pageLink} key={type.id}>
+					<SidebarItemContainer to={type.pageLink} key={type.id}>
 						<img
 							src={type.iconUrl}
 							alt={`${type.name} icon`}
 							className='size-6'
 						></img>
 						<span className='pl-5'>{type.name}</span>
-					</SidebarItem>
+					</SidebarItemContainer>
 				))}
 			</ul>
 		</>
