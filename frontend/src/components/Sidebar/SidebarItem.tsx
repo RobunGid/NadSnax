@@ -1,7 +1,6 @@
 import { ReactNode, useContext } from 'react';
-import { NavLink } from 'react-router';
 import { NavbarContext } from '../../context/NavbarContext';
-import clsx from 'clsx';
+import { UISidebarItem } from '../UI/UISidebarItem';
 
 interface SideBarItemProps {
 	children: ReactNode;
@@ -13,15 +12,7 @@ export const SidebarItem = ({ children, to, className }: SideBarItemProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	return (
 		<li onClick={toggleSidebarVisibility}>
-			<NavLink
-				to={to}
-				className={clsx(
-					'flex items-center p-2.5 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 group',
-					className
-				)}
-			>
-				{children}
-			</NavLink>
+			<UISidebarItem to={to} children={children} className={className} />
 		</li>
 	);
 };
