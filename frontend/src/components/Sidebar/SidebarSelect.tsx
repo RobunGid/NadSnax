@@ -1,8 +1,7 @@
-import clsx from 'clsx';
 import { MouseEventHandler, useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
 import { ItemCategory } from '../../types';
-import { SidebarItemContainer } from './SidebarItemContainer';
+import { SidebarSelectOptions } from './SidebarSelectOptions';
+import { SidebarCategory } from './SidebarCategory';
 
 type option = {
 	to: string;
@@ -28,48 +27,15 @@ export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 
 	return (
 		<>
-			<SidebarItemContainer to={category.pageLink} className='m-0 py-1.5'>
-				<button
-					type='button'
-					className='flex items-center justify-between w-full text-base text-gray-900 dark:text-white transition duration-75 rounded-lg'
-				>
-					<img
-						src={category.iconUrl}
-						alt={`${category.name} icon`}
-						className='size-6 invert dark:filter-none'
-					></img>
-					<span className='flex-1 ms-3 text-left rtl:text-right whitespace-nowrap transition'>
-						{category.name}
-					</span>
-
-					<div className='w-10' onClick={handleToggleVisibility}>
-						<IoIosArrowDown
-							className={clsx(
-								'transition-transform duration-[250ms] origin-center float-end m-2',
-								optionsVisibility && 'rotate-180'
-							)}
-						/>
-					</div>
-				</button>
-			</SidebarItemContainer>
-			<ul
-				id='dropdown-snacks'
-				className={clsx(
-					'transition-all pl-3 overflow-hidden space-y-2',
-					optionsVisibility ? 'max-h-80' : 'max-h-0'
-				)}
-			>
-				{category.types.map((type) => (
-					<SidebarItemContainer to={type.pageLink} key={type.id}>
-						<img
-							src={type.iconUrl}
-							alt={`${type.name} icon`}
-							className='size-6'
-						></img>
-						<span className='pl-5'>{type.name}</span>
-					</SidebarItemContainer>
-				))}
-			</ul>
+			<SidebarCategory
+				arrowClassName={optionsVisibility ? 'rotate-180' : ''}
+				category={category}
+				onClick={handleToggleVisibility}
+			/>
+			<SidebarSelectOptions
+				options={category.types}
+				className={optionsVisibility ? 'max-h-80' : 'max-h-0'}
+			/>
 		</>
 	);
 };
