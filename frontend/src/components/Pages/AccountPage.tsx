@@ -17,7 +17,7 @@ export const AccountPage = () => {
 	}, [section]);
 
 	return (
-		<div className='p-8'>
+		<div className='p-8 flex gap-8'>
 			<AccountMenu />
 			{predicateSection(section) && <AccountSection section={section} />}
 		</div>

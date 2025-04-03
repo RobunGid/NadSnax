@@ -1,34 +1,49 @@
-import { ReactNode } from 'react';
-import clsx from 'clsx';
-import { NavLink } from 'react-router';
+import { IoSettingsOutline } from 'react-icons/io5';
+import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
+import { AccountMenuItemContainer } from './AccountMenuContainer';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-interface AccountMenuItemProps {
-	children: ReactNode;
-	className?: string;
-	to: string;
-	last?: boolean;
-}
-
-export const AccountMenuItem = ({
-	children,
-	className,
-	to,
-	last,
-}: AccountMenuItemProps) => {
-	return (
-		<li
-			className={clsx(
-				'hover:bg-gray-300 dark:hover:bg-gray-700',
-				className,
-				last && 'rounded-b-[40px] pb-1'
-			)}
-		>
-			<NavLink
-				className={clsx('w-full flex py-4 px-8 gap-2 shadow-gray-950 ')}
-				to={to}
-			>
-				{children}
-			</NavLink>
-		</li>
-	);
+export const AccountMenuItem = {
+	Settings: () => (
+		<AccountMenuItemContainer to='/account/settings'>
+			<IoSettingsOutline />
+			Settings
+		</AccountMenuItemContainer>
+	),
+	Statistics: () => (
+		<AccountMenuItemContainer to='/account/statistics'>
+			<BiInfoCircle />
+			Statistics
+		</AccountMenuItemContainer>
+	),
+	Help: () => (
+		<AccountMenuItemContainer to='/account/help'>
+			<BiHelpCircle />
+			Help
+		</AccountMenuItemContainer>
+	),
+	RecentlyViewed: () => (
+		<AccountMenuItemContainer to='/account/recently_viewed'>
+			<FaMagnifyingGlass />
+			Recently viewed
+		</AccountMenuItemContainer>
+	),
+	OrderHistory: () => (
+		<AccountMenuItemContainer to='/account/order_history'>
+			<BiHistory />
+			Order History
+		</AccountMenuItemContainer>
+	),
+	Reviews: () => (
+		<AccountMenuItemContainer to='/account/reviews'>
+			<BiStar />
+			Reviews
+		</AccountMenuItemContainer>
+	),
+	Profile: () => (
+		<AccountMenuItemContainer to='/account/profile'>
+			<BiUser />
+			Profile
+		</AccountMenuItemContainer>
+	),
 };
