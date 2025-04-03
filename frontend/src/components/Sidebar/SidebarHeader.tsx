@@ -1,9 +1,17 @@
 import { SidebarLink } from './SidebarLink';
 import { SiteLogo } from '../Navbar/SiteLogo';
+import { MouseEventHandler } from 'react';
 
-const SidebarHeader = () => {
+interface SidebarHeaderProps {
+	onClick?: MouseEventHandler<HTMLDivElement>;
+}
+
+export const SidebarHeader = ({ onClick }: SidebarHeaderProps) => {
 	return (
-		<div className='flex items-center justify-start rtl:justify-end'>
+		<div
+			onClick={onClick}
+			className='flex items-center justify-start rtl:justify-end'
+		>
 			<SidebarLink to='/home'>
 				<SiteLogo />
 				<span className='self-center text-xl font-semibold sm:text-2xl whitespace-nowrap'>
@@ -13,5 +21,3 @@ const SidebarHeader = () => {
 		</div>
 	);
 };
-
-export default SidebarHeader;

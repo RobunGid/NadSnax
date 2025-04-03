@@ -1,5 +1,5 @@
 import { SidebarItem } from './SidebarItem';
-import SidebarHeader from './SidebarHeader';
+import { SidebarHeader } from './SidebarHeader';
 import { ItemCategory } from '../../types';
 import { useContext } from 'react';
 import { NavbarContext } from '../../context/NavbarContext';
@@ -15,7 +15,7 @@ export const Sidebar = ({ categories }: SidebarProps) => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
 	return (
 		<UISidebar className={sidebarVisibility ? 'translate-x-0' : '-translate-x-full'}>
-			<SidebarHeader />
+			<SidebarHeader onClick={toggleSidebarVisibility} />
 
 			<SidebarCloseMenuButton onClick={toggleSidebarVisibility} />
 			<div className='py-4 overflow-y-auto pointer-events-auto'>
