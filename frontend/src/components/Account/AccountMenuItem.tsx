@@ -1,7 +1,7 @@
 import { IoSettingsOutline } from 'react-icons/io5';
 import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-import { UIAccountMenuItem } from '../UI/UIAccountMenuItem';
+import { UIAccountMenuItem } from './UI/UIAccountMenuItem';
 import { PiSignOut } from 'react-icons/pi';
 
 export const AccountMenuItem = {

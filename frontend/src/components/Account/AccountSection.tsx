@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Section } from '../../types';
 import { AccountProfile } from './AccountProfile';
 import { AccountSettings } from './AccountSettings';
-import { UIAccountSection } from '../UI/UIAccountSection';
+import { UIAccountSection } from './UI/UIAccountSection';
 
 interface AccountSectionProps {
 	section: Section;
