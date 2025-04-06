@@ -1,49 +1,49 @@
 import { IoSettingsOutline } from 'react-icons/io5';
 import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
-import { AccountMenuItemContainer } from './AccountMenuItemContainer';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { UIAccountMenuItem } from '../UI/UIAccountMenuItem';
 
 export const AccountMenuItem = {
 	Settings: () => (
-		<AccountMenuItemContainer to='/account/settings' isLast>
+		<UIAccountMenuItem to='/account/settings' isLast>
 			<IoSettingsOutline />
 			Settings
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	Statistics: () => (
-		<AccountMenuItemContainer to='/account/statistics'>
+		<UIAccountMenuItem to='/account/statistics'>
 			<BiInfoCircle />
 			Statistics
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	Help: () => (
-		<AccountMenuItemContainer to='/account/help'>
+		<UIAccountMenuItem to='/account/help'>
 			<BiHelpCircle />
 			Help
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	RecentlyViewed: () => (
-		<AccountMenuItemContainer to='/account/recently_viewed'>
+		<UIAccountMenuItem to='/account/recently_viewed'>
 			<FaMagnifyingGlass />
 			Recently viewed
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	OrderHistory: () => (
-		<AccountMenuItemContainer to='/account/order_history'>
+		<UIAccountMenuItem to='/account/order_history'>
 			<BiHistory />
 			Order History
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	Reviews: () => (
-		<AccountMenuItemContainer to='/account/reviews'>
+		<UIAccountMenuItem to='/account/reviews'>
 			<BiStar />
 			Reviews
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 	Profile: () => (
-		<AccountMenuItemContainer to='/account/profile'>
+		<UIAccountMenuItem to='/account/profile'>
 			<BiUser />
 			Profile
-		</AccountMenuItemContainer>
+		</UIAccountMenuItem>
 	),
 };

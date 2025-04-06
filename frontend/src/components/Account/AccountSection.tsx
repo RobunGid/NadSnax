@@ -1,4 +1,7 @@
+import { ReactNode } from 'react';
 import { Section } from '../../types';
+import { UIAccountSection } from '../UI/UIAccountSection';
+import { AccountProfile } from './AccountProfile';
 import { AccountSettings } from './AccountSettings';
 
 interface AccountSectionProps {
@@ -6,11 +9,17 @@ interface AccountSectionProps {
 }
 
 export const AccountSection = ({ section }: AccountSectionProps) => {
+	let sectionElement: ReactNode;
 	switch (section) {
 		case 'settings':
-			return <AccountSettings />;
+			sectionElement = <AccountSettings />;
+			break;
+		case 'profile':
+			sectionElement = <AccountProfile />;
+			break;
 
 		default:
-			return <></>;
+			<></>;
 	}
+	return <UIAccountSection>{sectionElement}</UIAccountSection>;
 };
