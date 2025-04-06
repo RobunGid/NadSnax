@@ -22,6 +22,7 @@ export const AccountMenu = () => {
 					</ul>
 				</li>
 				<AccountMenuItem.Settings />
+				<AccountMenuItem.Signout />
 			</ul>
 		</div>
 	);
