@@ -85,7 +85,7 @@ export type Section =
 	| 'statistics'
 	| 'help'
 	| 'signout'
-	| 'undefined';
+	| undefined;
 
 export const predicateSection = (value?: string): value is Section => {
 	if (

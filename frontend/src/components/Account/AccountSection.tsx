@@ -1,25 +1,27 @@
 import { ReactNode } from 'react';
 import { Section } from '../../types';
-import { UIAccountSection } from '../UI/UIAccountSection';
 import { AccountProfile } from './AccountProfile';
 import { AccountSettings } from './AccountSettings';
 
 interface AccountSectionProps {
-	section: Section;
+	section?: Section;
 }
 
 export const AccountSection = ({ section }: AccountSectionProps) => {
-	let sectionElement: ReactNode;
-	switch (section) {
-		case 'settings':
-			sectionElement = <AccountSettings />;
-			break;
-		case 'profile':
-			sectionElement = <AccountProfile />;
-			break;
+	const sections: Record<Exclude<Section, undefined>, ReactNode> = {
+		settings: <AccountSettings />,
+		profile: <AccountProfile />,
+		help: <></>,
+		order_history: <></>,
+		recently_viewed: <></>,
+		reviews: <></>,
+		signout: <></>,
+		statistics: <></>,
+	};
 
-		default:
-			<></>;
+	if (section == undefined) {
+		return <>test</>;
+	} else {
+		return sections[section];
 	}
-	return <UIAccountSection>{sectionElement}</UIAccountSection>;
 };
