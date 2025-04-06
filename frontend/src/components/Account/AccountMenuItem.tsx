@@ -1,6 +1,6 @@
 import { IoSettingsOutline } from 'react-icons/io5';
 import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-icons/bi';
-import { AccountMenuItemContainer } from './AccountMenuContainer';
+import { AccountMenuItemContainer } from './AccountMenuItemContainer';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 export const AccountMenuItem = {
