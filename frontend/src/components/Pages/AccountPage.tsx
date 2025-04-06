@@ -9,7 +9,6 @@ export const AccountPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log(section, predicateSection(section));
 		if (!predicateSection(section)) {
 			navigate('/account');
 		}
