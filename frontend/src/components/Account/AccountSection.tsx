@@ -2,9 +2,10 @@ import { ReactNode } from 'react';
 import { Section } from '../../types';
 import { AccountProfile } from './AccountProfile';
 import { AccountSettings } from './AccountSettings';
+import { UIAccountSection } from '../UI/UIAccountSection';
 
 interface AccountSectionProps {
-	section?: Section;
+	section: Section;
 }
 
 export const AccountSection = ({ section }: AccountSectionProps) => {
@@ -22,6 +23,6 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 	if (section == undefined) {
 		return <>test</>;
 	} else {
-		return sections[section];
+		return <UIAccountSection>{sections[section]}</UIAccountSection>;
 	}
 };

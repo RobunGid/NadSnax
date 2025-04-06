@@ -3,7 +3,7 @@ import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 
 export const AccountMenu = () => {
 	return (
-		<div className='rounded-[40px] dark:bg-gray-800 bg-gray-200 w-96'>
+		<div className='rounded-[40px] dark:bg-gray-800 bg-gray-200 w-[600px]'>
 			<ul className='divide-y divide-gray-900'>
 				<AccountMenuUserInfo />
 				<AccountMenuItem.Profile />
