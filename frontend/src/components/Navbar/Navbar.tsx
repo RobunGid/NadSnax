@@ -1,15 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { NavbarCart } from './NavbarCart';
-import { Cart } from '../Cart/Cart';
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { ItemCategory } from '../../types';
 import { NavbarContext } from '../../context/NavbarContext';
-import { UIModal } from '../UI/UIModal';
 import { UINavbarOpenSidebarButton } from './UI/UINavbarOpenSidebarButton';
 import { NavbarCategories } from './NavbarCategories';
 import { UINavbarSiteLogo } from './UI/UINavbarSiteLogo';
 import { NavbarItem } from './NavbarItem';
 import { UINavbarNavigation } from './UI/UINavbarNavigation';
+import { ModalContext } from '../../context/ModalContext';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -17,8 +16,7 @@ interface NavbarProps {
 
 export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
-
-	const [isModalActive, setIsModalActive] = useState<boolean>(false);
+	const { toggleModalVisibility } = useContext(ModalContext);
 
 	return (
 		<>
@@ -35,14 +33,10 @@ export const Navbar = ({ categories }: NavbarProps) => {
 					<NavbarCategories categories={categories} />
 				</UINavbarNavigation>
 
-				<NavbarCart onClick={() => setIsModalActive(true)} />
+				<NavbarCart onClick={() => toggleModalVisibility()} />
 
 				<ProfileMenu className='m-2' />
 			</div>
-
-			<UIModal active={isModalActive} setActive={setIsModalActive}>
-				<Cart setActive={setIsModalActive} />
-			</UIModal>
 		</>
 	);
 };

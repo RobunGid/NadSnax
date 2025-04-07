@@ -4,17 +4,22 @@ import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
 import { fetchUser, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
 import { getAppTheme } from './logic/getAppTheme';
+import { UIModal } from './components/UI/UIModal';
+import { Cart } from './components/Cart/Cart';
+import { ModalContext } from './context/ModalContext';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
 
 	const categoriesStatus = useStateSelector((state) => state.category.status);
 	const userStatus = useStateSelector((state) => state.user.status);
+
+	const { modalVisibility, toggleModalVisibility } = useContext(ModalContext);
 
 	useEffect(() => {
 		if (categoriesStatus === 'init') dispatch(fetchCategories());
@@ -39,6 +44,9 @@ export const App = () => {
 		<>
 			<Header />
 			<ScrollToTop />
+			<UIModal active={modalVisibility} setActive={toggleModalVisibility}>
+				<Cart setActive={toggleModalVisibility} />
+			</UIModal>
 			<main>
 				<Routes>
 					<Route path='/' element={<Navigate to='/home' />} />
