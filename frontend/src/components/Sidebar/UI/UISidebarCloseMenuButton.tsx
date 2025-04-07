@@ -1,11 +1,11 @@
 import { MouseEventHandler } from 'react';
 import { GoArrowLeft } from 'react-icons/go';
 
-interface SidebarCloseMenuButton {
+interface UISidebarCloseMenuButton {
 	onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const SidebarCloseMenuButton = ({ onClick }: SidebarCloseMenuButton) => {
+export const UISidebarCloseMenuButton = ({ onClick }: UISidebarCloseMenuButton) => {
 	return (
 		<button
 			type='button'

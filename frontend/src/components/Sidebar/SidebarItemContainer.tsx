@@ -1,5 +1,5 @@
 import { ReactNode, useContext } from 'react';
-import { UISidebarItem } from '../UI/UISidebarItem';
+import { UISidebarItem } from './UI/UISidebarItem';
 import { NavbarContext } from '../../context/NavbarContext';
 
 interface SidebarItemContainerProps {
