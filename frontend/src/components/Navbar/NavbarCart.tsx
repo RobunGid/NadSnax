@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { formatPrice } from '../../logic/formatPrice';
 import { useStateSelector } from '../../store';
 import { UINavbarCart } from './UI/UINavbarCart';
@@ -23,7 +24,10 @@ export const NavbarCart = ({ className, onClick }: NavbarCartProps) => {
 		<UINavbarCart
 			amount={displayAmount}
 			count={count}
-			className={className}
+			className={clsx(
+				'ml-auto hover:scale-110 mt-1 transition-transform',
+				className
+			)}
 			onClick={onClick}
 		/>
 	);

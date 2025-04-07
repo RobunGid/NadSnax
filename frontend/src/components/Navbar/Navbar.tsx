@@ -9,6 +9,7 @@ import { UINavbarOpenSidebarButton } from './UI/UINavbarOpenSidebarButton';
 import { NavbarCategories } from './NavbarCategories';
 import { UINavbarSiteLogo } from './UI/UINavbarSiteLogo';
 import { NavbarItem } from './NavbarItem';
+import { UINavbarNavigation } from './UI/UINavbarNavigation';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -26,18 +27,15 @@ export const Navbar = ({ categories }: NavbarProps) => {
 
 				<UINavbarSiteLogo />
 
-				<ul className='flex-row hidden md:flex md:gap-3 flex-grow dark:text-gray-200 divide-x-[1px] divide-gray-500'>
+				<UINavbarNavigation>
 					<NavbarItem.Home />
 					<NavbarItem.BestSellers />
 					<NavbarItem.SecretBoxes />
 
 					<NavbarCategories categories={categories} />
-				</ul>
+				</UINavbarNavigation>
 
-				<NavbarCart
-					className='ml-auto hover:scale-110 mt-1 transition-transform'
-					onClick={() => setIsModalActive(true)}
-				/>
+				<NavbarCart onClick={() => setIsModalActive(true)} />
 
 				<ProfileMenu className='m-2' />
 			</div>
