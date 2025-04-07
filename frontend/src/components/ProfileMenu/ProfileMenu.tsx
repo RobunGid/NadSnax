@@ -2,6 +2,7 @@ import { ProfileMenuAvatar } from './ProfileMenuAvatar';
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
+import clsx from 'clsx';
 
 interface ProfileMenuProps {
 	className?: string;
@@ -10,7 +11,7 @@ interface ProfileMenuProps {
 export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 	const user = useStateSelector((state) => state.user.user);
 	return (
-		<div className={className}>
+		<div className={clsx('m-2', className)}>
 			<div className='overflow-hidden rounded-full w-12 h-12 peer transition-transform hover:scale-105'>
 				<input
 					type='checkbox'

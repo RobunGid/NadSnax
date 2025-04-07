@@ -35,7 +35,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 
 			<NavbarCart onClick={() => toggleModalVisibility()} />
 
-			<ProfileMenu className='m-2' />
+			<ProfileMenu />
 		</UINavbar>
 	);
 };
