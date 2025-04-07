@@ -1,8 +1,6 @@
 import { useContext, useState } from 'react';
 import { NavbarLink } from './NavbarLink';
 import { NavbarRule } from './NavbarRule';
-import { NavbarDropdown } from './NavbarDropdown';
-import { NavbarDropdownButton } from './NavbarDropdownButton';
 import { SiteLogo } from './SiteLogo';
 import { NavbarCart } from './NavbarCart';
 import { Cart } from '../Cart/Cart';
@@ -11,6 +9,7 @@ import { ItemCategory } from '../../types';
 import { NavbarContext } from '../../context/NavbarContext';
 import { UIModal } from '../UI/UIModal';
 import { UINavbarOpenSidebarButton } from './UI/UINavbarOpenSidebarButton';
+import { NavbarCategories } from './NavbarCategories';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -43,15 +42,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 					</li>
 					<NavbarRule />
 
-					{categories.map((category) => (
-						<li key={category.id} className='z-10'>
-							<NavbarDropdownButton
-								to={category.pageLink}
-								text={category.name}
-							/>
-							<NavbarDropdown category={category} />
-						</li>
-					))}
+					<NavbarCategories categories={categories} />
 				</ul>
 
 				<NavbarCart
