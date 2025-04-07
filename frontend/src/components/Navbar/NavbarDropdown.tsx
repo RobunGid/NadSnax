@@ -3,16 +3,19 @@ import { UINavbarItem } from './UI/UINavbarItem';
 
 interface NavbarDropdownProps {
 	category: ItemCategory;
-	to: string;
 	text: string;
 }
 
-export const NavbarDropdown = ({ category, text, to }: NavbarDropdownProps) => {
+export const NavbarDropdown = ({ category, text }: NavbarDropdownProps) => {
 	return (
 		<>
-			<button className='flex items-center peer pl-6'>
-				<UINavbarItem to={to} className='flex' text={text} iconPosition='right' />
-			</button>
+			<UINavbarItem
+				to={category.pageLink}
+				className='flex peer peer pl-6'
+				text={text}
+				iconPosition='right'
+			/>
+
 			<div className='flex-col absolute bg-white dark:bg-gray-700 scale-y-0 border dark:border-gray-500 peer-hover:scale-y-100 peer-focus-within:scale-y-100 origin-top transition-transform hover:scale-y-100'>
 				<ul className='flex flex-col gap-4 p-6 w-36'>
 					{category.types.map((product) => (

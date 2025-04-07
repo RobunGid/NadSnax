@@ -9,11 +9,7 @@ export const NavbarCategories = ({ categories }: NavbarCategoriesProps) => {
 		<>
 			{categories.map((category) => (
 				<li key={category.id} className='z-10'>
-					<NavbarDropdown
-						to={category.pageLink}
-						text={category.name}
-						category={category}
-					/>
+					<NavbarDropdown text={category.name} category={category} />
 				</li>
 			))}
 		</>
