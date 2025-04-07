@@ -9,6 +9,7 @@ import { UINavbarSiteLogo } from './UI/UINavbarSiteLogo';
 import { NavbarItem } from './NavbarItem';
 import { UINavbarNavigation } from './UI/UINavbarNavigation';
 import { ModalContext } from '../../context/ModalContext';
+import { UINavbar } from './UI/UINavbar';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -19,24 +20,22 @@ export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleModalVisibility } = useContext(ModalContext);
 
 	return (
-		<>
-			<div className='w-full border-b-[1px] flex flex-row items-center dark:bg-gray-800 dark:border-gray-700'>
-				<UINavbarOpenSidebarButton onClick={toggleSidebarVisibility} />
+		<UINavbar>
+			<UINavbarOpenSidebarButton onClick={toggleSidebarVisibility} />
 
-				<UINavbarSiteLogo />
+			<UINavbarSiteLogo />
 
-				<UINavbarNavigation>
-					<NavbarItem.Home />
-					<NavbarItem.BestSellers />
-					<NavbarItem.SecretBoxes />
+			<UINavbarNavigation>
+				<NavbarItem.Home />
+				<NavbarItem.BestSellers />
+				<NavbarItem.SecretBoxes />
 
-					<NavbarCategories categories={categories} />
-				</UINavbarNavigation>
+				<NavbarCategories categories={categories} />
+			</UINavbarNavigation>
 
-				<NavbarCart onClick={() => toggleModalVisibility()} />
+			<NavbarCart onClick={() => toggleModalVisibility()} />
 
-				<ProfileMenu className='m-2' />
-			</div>
-		</>
+			<ProfileMenu className='m-2' />
+		</UINavbar>
 	);
 };
