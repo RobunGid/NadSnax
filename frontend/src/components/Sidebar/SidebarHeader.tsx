@@ -1,5 +1,5 @@
 import { SidebarLink } from './SidebarLink';
-import { SiteLogo } from '../Navbar/SiteLogo';
+import { SiteLogo } from '../UI/UISiteLogo';
 import { MouseEventHandler } from 'react';
 
 interface SidebarHeaderProps {
