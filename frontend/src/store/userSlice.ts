@@ -24,10 +24,7 @@ export const fetchUser = createAsyncThunk<User, undefined, { rejectValue: string
 		// }
 
 		// const user = response.data;
-		const us = await new Promise<typeof user>((resolve) =>
-			setTimeout(() => resolve(user), 900)
-		);
-		return us;
+		return user;
 	}
 );
 
