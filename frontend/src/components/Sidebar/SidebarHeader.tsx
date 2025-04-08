@@ -1,5 +1,5 @@
+import { UISiteLogo } from '../UI/UISiteLogo';
 import { SidebarLink } from './SidebarLink';
-import { SiteLogo } from '../UI/UISiteLogo';
 import { MouseEventHandler } from 'react';
 
 interface SidebarHeaderProps {
@@ -13,7 +13,7 @@ export const SidebarHeader = ({ onClick }: SidebarHeaderProps) => {
 			className='flex items-center justify-start rtl:justify-end'
 		>
 			<SidebarLink to='/home'>
-				<SiteLogo />
+				<UISiteLogo />
 				<span className='self-center text-xl font-semibold sm:text-2xl whitespace-nowrap'>
 					NadSnax
 				</span>

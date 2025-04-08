@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router';
-import { SiteLogo } from '../../UI/UISiteLogo';
+import { UISiteLogo } from '../../UI/UISiteLogo';
 
 export const UINavbarSiteLogo = () => {
 	return (
 		<NavLink to='/home'>
-			<SiteLogo />
+			<UISiteLogo />
 		</NavLink>
 	);
 };
