@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 import { ItemCategory } from '../../types';
 import { SidebarCategory } from './UI/UISidebarCategory';
-import { SidebarSelectOptions } from './UISidebarSelectOptions';
+import { SidebarSelectOptions } from './SidebarSelectOptions';
 
 type option = {
 	to: string;
