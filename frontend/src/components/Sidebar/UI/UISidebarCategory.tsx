@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
-import { ItemCategory } from '../../types';
-import { SidebarItemContainer } from './SidebarItemContainer';
+import { ItemCategory } from '../../../types';
+import { SidebarItemContainer } from '../SidebarItemContainer';
 import clsx from 'clsx';
 import { IoIosArrowDown } from 'react-icons/io';
 

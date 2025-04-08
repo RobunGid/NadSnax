@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { SidebarItemContainer } from './SidebarItemContainer';
 import { ItemType } from '../../types';
+import { UISidebarSelectOption } from './UI/UISidebarSelectOption';
 
 interface SidebarSelectOptionsProps {
 	className?: string;
@@ -17,14 +17,12 @@ export const SidebarSelectOptions = ({
 			className={clsx('transition-all pl-3 overflow-hidden space-y-2', className)}
 		>
 			{options.map((type) => (
-				<SidebarItemContainer to={type.pageLink} key={type.id}>
-					<img
-						src={type.iconUrl}
-						alt={`${type.name} icon`}
-						className='size-6'
-					></img>
-					<span className='pl-5'>{type.name}</span>
-				</SidebarItemContainer>
+				<UISidebarSelectOption
+					text={type.name}
+					to={type.pageLink}
+					iconUrl={type.iconUrl}
+					key={type.id}
+				/>
 			))}
 		</ul>
 	);

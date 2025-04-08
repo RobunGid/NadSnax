@@ -1,12 +1,12 @@
-import { UISiteLogo } from '../UI/UISiteLogo';
-import { SidebarLink } from './SidebarLink';
+import { UISiteLogo } from '../../UI/UISiteLogo';
+import { SidebarLink } from '../SidebarLink';
 import { MouseEventHandler } from 'react';
 
-interface SidebarHeaderProps {
+interface UISidebarHeaderProps {
 	onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-export const SidebarHeader = ({ onClick }: SidebarHeaderProps) => {
+export const UISidebarHeader = ({ onClick }: UISidebarHeaderProps) => {
 	return (
 		<div
 			onClick={onClick}
