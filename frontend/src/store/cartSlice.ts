@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import { AppDispatch } from '.';
+import { Status } from './types';
 
 type ProductItem = {
 	item: Item;
@@ -9,7 +10,7 @@ type ProductItem = {
 
 interface CartState {
 	productList: ProductItem[];
-	status: 'init' | 'loading' | 'error' | 'success';
+	status: Status;
 }
 
 const initialState: CartState = {

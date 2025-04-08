@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ItemCategory } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { categoryAxios } from '../api/category';
+import { Status } from './types';
 
 type CategoryState = {
 	categoryList: ItemCategory[];
-	status: 'init' | 'loading' | 'error' | 'success';
+	status: Status;
 };
 
 const initialState: CategoryState = {

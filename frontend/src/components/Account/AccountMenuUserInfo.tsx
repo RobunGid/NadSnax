@@ -1,7 +1,18 @@
-import { useStateSelector } from '../../store';
+import { Status } from '../../store/types';
+import { User } from '../../types';
 import { UIAccountUserInfo } from './UI/UIAccountUserInfo';
+import { UIAccountUserInfoLoader } from './UI/UIAccountUserInfoLoader';
 
-export const AccountMenuUserInfo = () => {
-	const user = useStateSelector((state) => state.user.user);
-	return user && <UIAccountUserInfo user={user} />;
+interface AccountMenuUserInfoProps {
+	user: User | null;
+	status: Status;
+}
+
+export const AccountMenuUserInfo = ({ user, status }: AccountMenuUserInfoProps) => {
+	return (
+		<>
+			{user && status == 'success' && <UIAccountUserInfo user={user} />}
+			{(!user || status == 'loading') && <UIAccountUserInfoLoader />}
+		</>
+	);
 };

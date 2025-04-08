@@ -1,11 +1,13 @@
+import { useStateSelector } from '../../store';
 import { AccountMenuItem } from './AccountMenuItem';
 import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 import { UIAccountMenu } from './UI/UIAccountMenu';
 
 export const AccountMenu = () => {
+	const user = useStateSelector((state) => state.user);
 	return (
 		<UIAccountMenu>
-			<AccountMenuUserInfo />
+			<AccountMenuUserInfo user={user.user} status={user.status} />
 			<AccountMenuItem.Profile />
 			<li>
 				<ul>

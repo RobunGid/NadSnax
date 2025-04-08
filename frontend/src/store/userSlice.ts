@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
 import { userAxios } from '../api/user';
 import { user } from '../mock';
+import { Status } from './types';
 
 type UserState = {
 	user: User | null;
-	status: 'init' | 'loading' | 'error' | 'success';
+	status: Status;
 };
 
 const initialState: UserState = {
@@ -23,7 +24,10 @@ export const fetchUser = createAsyncThunk<User, undefined, { rejectValue: string
 		// }
 
 		// const user = response.data;
-		return user;
+		const us = await new Promise<typeof user>((resolve) =>
+			setTimeout(() => resolve(user), 900)
+		);
+		return us;
 	}
 );
 

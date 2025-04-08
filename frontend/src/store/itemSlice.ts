@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { itemAxios } from '../api/item';
+import { Status } from './types';
 
 type ItemsState = {
 	itemList: Item[];
-	status: 'init' | 'loading' | 'error' | 'success';
+	status: Status;
 };
 
 const initialState: ItemsState = {
