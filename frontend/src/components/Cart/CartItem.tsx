@@ -1,8 +1,8 @@
-import { Item } from '../../types';
-import { Link } from 'react-router';
-import { CartQuantityChooser } from './CartQuantityChooser';
-import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
+import { formatPrice } from '../../logic/formatPrice';
 import { useStateSelector } from '../../store';
+import { Item } from '../../types';
+import { UICartItem } from './UI/UICartItem';
+import { UICartItemLoader } from './UI/UICartItemLoader';
 
 type CartItemProps = {
 	className?: string;
@@ -15,76 +15,22 @@ export const CartItem = ({ item }: CartItemProps) => {
 		state.cart.productList.find((cartItem) => cartItem.item.id === item.id)
 	);
 
-	const {
-		handleAddItemToCart,
-		handleRemoveProductFromCart,
-		handleInputChange,
-		handleDeleteItemFromCart,
-	} = useItemQuantityChooser({ item: cartItem?.item });
+	const totalPrice = cartItem ? cartItem?.item.price * cartItem.count : 0;
 
-	if (cartItem) {
-		const totalPrice = cartItem?.item.price * cartItem.count;
+	const mainImage = item.images.find((image) => image.isMain) || item.images[0];
 
-		const mainImage = item.images.find((image) => image.isMain);
+	const price = formatPrice(totalPrice);
 
-		const mainImageUrl = mainImage ? mainImage.url : item.images[0].url;
-
-		const priceIntl = new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: 'USD',
-			minimumFractionDigits: 2,
-		});
-
-		return (
-			<>
-				<div className='max-md:col-span-3 relative z-0 overflow-hidden flex flex-col md:flex-row md:items-start'>
-					<Link
-						to={`/products/page${item.pageLink}`}
-						className='flex flex-col items-center'
-					>
-						<div className='text-gray-500 text-xs text-center md:text-left mb-3 block md:hidden'>
-							Product
-						</div>
-						<img
-							src={mainImageUrl}
-							alt={`${item.label} image`}
-							className='object-cover w-[120px] h-[120px] aspect-square'
-						/>
-						<div className='flex flex-col justify-center items-start m-5'>
-							<div className='flex space-x-2'>
-								<div className='text-xl'>{item.label}</div>
-							</div>
-
-							<div className='flex gap-x-2 items-center'>
-								<div className='font-bold text-sm text-gray-400'>
-									{priceIntl.format(item.price)}
-								</div>
-							</div>
-						</div>
-					</Link>
-				</div>
-
-				<div className='md:flex md:items-center max-md:col-span-2'>
-					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
-						Quantity
-					</div>
-					<CartQuantityChooser
-						cartItem={cartItem}
-						onAdd={handleAddItemToCart}
-						onDelete={handleDeleteItemFromCart}
-						onInputChange={handleInputChange}
-						onRemove={handleRemoveProductFromCart}
-					/>
-				</div>
-
-				<div className='flex items-center justify-center overflow-hidden flex-col'>
-					<div className='text-gray-500 text-xs text-center mb-3 block md:hidden'>
-						Total price
-					</div>
-					<div>{priceIntl.format(totalPrice)}</div>
-				</div>
-				<hr className='block md:hidden max-md:col-span-3' />
-			</>
-		);
-	}
+	return (
+		<>
+			{cartItem && (
+				<UICartItem
+					item={cartItem.item}
+					mainImageUrl={mainImage.url}
+					totalPrice={price}
+				/>
+			)}
+			{!cartItem && <UICartItemLoader />}
+		</>
+	);
 };
