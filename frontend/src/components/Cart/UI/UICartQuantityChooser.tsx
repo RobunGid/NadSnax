@@ -1,6 +1,6 @@
 import { CartItemType } from '../../../types';
 import clsx from 'clsx';
-import styles from '../CartQuantityChooser.module.css';
+import styles from './UICartQuantityChooser.module.css';
 import { TfiTrash } from 'react-icons/tfi';
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 

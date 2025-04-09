@@ -1,3 +1,4 @@
+import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { formatPrice } from '../../logic/formatPrice';
 import { CartItemType } from '../../types';
 import { UICartItem } from './UI/UICartItem';
@@ -15,11 +16,22 @@ export const CartItem = ({ cartItem }: CartItemProps) => {
 
 	const price = formatPrice(totalPrice);
 
+	const {
+		handleAddItemToCart,
+		handleRemoveProductFromCart,
+		handleInputChange,
+		handleDeleteItemFromCart,
+	} = useItemQuantityChooser({ item: cartItem.item });
+
 	return (
 		<UICartItem
-			item={cartItem.item}
+			cartItem={cartItem}
 			mainImageUrl={mainImage.url}
 			totalPrice={price}
+			handleAddItemToCart={handleAddItemToCart}
+			handleRemoveProductFromCart={handleRemoveProductFromCart}
+			handleInputChange={handleInputChange}
+			handleDeleteItemFromCart={handleDeleteItemFromCart}
 		/>
 	);
 };
