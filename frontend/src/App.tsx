@@ -45,7 +45,7 @@ export const App = () => {
 			<Header />
 			<ScrollToTop />
 			<UIModal active={modalVisibility} setActive={toggleModalVisibility}>
-				<Cart setActive={toggleModalVisibility} />
+				<Cart />
 			</UIModal>
 			<main>
 				<Routes>
