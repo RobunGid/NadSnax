@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { CartItem } from './CartItem';
-import { CartItemType, Item } from '../../types';
 import { useStateSelector } from '../../store';
 import { ToProductsButton } from '../Layout/ToProductsButton';
 
@@ -9,9 +8,7 @@ interface CartProps {
 }
 
 export const Cart = ({ setActive }: CartProps) => {
-	const items = useStateSelector((state) => state.cart.productList);
-
-	const cartItems: Item[] = items.map((item: CartItemType) => item.item);
+	const cartItems = useStateSelector((state) => state.cart.productList);
 
 	return (
 		<div className='w-[20rem] md:w-[40rem] h-[40rem] overflow-auto'>
@@ -32,8 +29,8 @@ export const Cart = ({ setActive }: CartProps) => {
 					</>
 				)}
 
-				{cartItems.map((item) => (
-					<CartItem totalPrice={item.price} item={item} key={item.id} />
+				{cartItems.map((cartItem) => (
+					<CartItem cartItem={cartItem} key={cartItem.item.id} />
 				))}
 				{!cartItems.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
