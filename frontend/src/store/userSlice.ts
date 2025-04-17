@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
-import { userAxios } from '../api/user';
+// import { userAxios } from '../api/user';
 import { user } from '../mock';
 import { Status } from './types';
 
@@ -16,7 +16,12 @@ const initialState: UserState = {
 
 export const fetchUser = createAsyncThunk<User, undefined, { rejectValue: string }>(
 	'user/fetchUser',
-	async (_, { rejectWithValue }) => {
+	async (
+		_,
+		{
+			/*rejectWithValue*/
+		}
+	) => {
 		// const response = await userAxios.get<User>('/user', {});
 
 		// if (response.status != 200) {
