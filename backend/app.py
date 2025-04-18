@@ -48,3 +48,5 @@ def create_app(db_url = None):
 	api.register_blueprint(ItemDetailsBlueprint)
  
 	return app
+
+app = create_app()
