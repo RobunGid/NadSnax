@@ -4,12 +4,11 @@ import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
-
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
-import { SimillarItems } from '../ProductDetails/SimillarItems';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
+import { ProductsList } from '../Products/ProductsList';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -171,9 +170,12 @@ export const ProductDetailsPage = () => {
 				<span className='text-2xl font-bold dark:text-gray-300'>
 					Simillar items you might like
 				</span>
-				<SimillarItems
-					items={items.filter((simmilarItem) => simmilarItem != item)}
-				/>
+
+				<div className='flex gap-4'>
+					<ProductsList
+						items={items.filter((simmilarItem) => simmilarItem != item)}
+					/>
+				</div>
 			</div>
 		</div>
 	);
