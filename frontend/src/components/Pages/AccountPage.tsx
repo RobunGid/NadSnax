@@ -10,7 +10,7 @@ export const AccountPage = () => {
 
 	useEffect(() => {
 		if (!predicateSection(section)) {
-			navigate('/account');
+			navigate('/account/profile');
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [section]);

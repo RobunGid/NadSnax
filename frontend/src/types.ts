@@ -84,11 +84,11 @@ export type Section =
 	| 'settings'
 	| 'statistics'
 	| 'help'
-	| 'signout'
-	| undefined;
+	| 'signout';
 
 export const predicateSection = (value?: string): value is Section => {
 	if (
+		value &&
 		![
 			'profile',
 			'order_history',
@@ -98,7 +98,6 @@ export const predicateSection = (value?: string): value is Section => {
 			'statistics',
 			'help',
 			'signout',
-			undefined,
 		].includes(value)
 	) {
 		return false;

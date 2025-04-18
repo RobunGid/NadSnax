@@ -20,9 +20,5 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 		statistics: <></>,
 	};
 
-	if (section == undefined) {
-		return <>test</>;
-	} else {
-		return <UIAccountSection>{sections[section]}</UIAccountSection>;
-	}
+	return <UIAccountSection>{sections[section]}</UIAccountSection>;
 };
