@@ -22,23 +22,19 @@ export const ProductDetailsPage = () => {
 
 	const items = useStateSelector((state) => state.item.itemList);
 
-	const status = useStateSelector((state) => state.item.status);
-
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
 	useEffect(() => {
-		if (status === 'init') {
-			actions.fetchItems({
-				include_item_details: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: item?.id,
-			});
-		}
+		actions.fetchItems({
+			include_item_details: true,
+			include_category: true,
+			include_type: true,
+			include_images: true,
+			simillar_id: item?.id,
+		});
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [item?.id]);
+	}, []);
 
 	const formattedPrice = formatPrice(item?.price || 0);
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
