@@ -10,6 +10,7 @@ import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
 import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
+import { ProductDetailsPrice } from '../ProductDetails/ProductDetailsPrice';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -98,20 +99,10 @@ export const ProductDetailsPage = () => {
 								<div>{item.ratingCount}</div>
 							</div>
 
-							{formattedPrice !== formattedOldPrice ? (
-								<div className='flex gap-2 mt-4 -mb-4 md:-mb-8 items-center'>
-									<div className='font-bold text-xl text-lime-600'>
-										Now {formattedPrice}
-									</div>
-									<div className='font-bold text-md text-gray-500 line-through'>
-										{formattedOldPrice}
-									</div>
-								</div>
-							) : (
-								<div className='font-bold text-xl -mb-4 mt-4 -md:mb-8'>
-									{formattedPrice}
-								</div>
-							)}
+							<ProductDetailsPrice
+								price={formattedPrice}
+								oldPrice={formattedOldPrice}
+							/>
 
 							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
 								<div className='hidden md:block'>
