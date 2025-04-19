@@ -4,10 +4,10 @@ import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
-import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
+import { UIProductDetailsQuantityChooser } from '../ProductDetails/UI/UIProductDetailsQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
-import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
+import { UIProductDetailsAddToFavourite } from '../ProductDetails/UI/UIProductDetailsAddToFavourite';
 import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductDetailsPrice } from '../ProductDetails/UI/UIProductDetailsPrice';
@@ -64,7 +64,7 @@ export const ProductDetailsPage = () => {
 							/>
 							<div className='md:hidden mr-auto'>
 								<div className='flex justify-center flex-col w-52 mx-16 my-8'>
-									<ProductDetailsQuantityChooser
+									<UIProductDetailsQuantityChooser
 										cartItem={cartItem}
 										item={item}
 										onAdd={handleAddItemToCart}
@@ -74,7 +74,7 @@ export const ProductDetailsPage = () => {
 
 									<hr className='my-4' />
 
-									<ProductDetailsAddToFavourite />
+									<UIProductDetailsAddToFavourite />
 								</div>
 							</div>
 						</div>
@@ -106,7 +106,7 @@ export const ProductDetailsPage = () => {
 
 							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
 								<div className='hidden md:block'>
-									<ProductDetailsQuantityChooser
+									<UIProductDetailsQuantityChooser
 										className='flex justify-center'
 										cartItem={cartItem}
 										item={item}
@@ -115,7 +115,7 @@ export const ProductDetailsPage = () => {
 										onDelete={handleRemoveProductFromCart}
 									/>
 
-									<ProductDetailsAddToFavourite />
+									<UIProductDetailsAddToFavourite />
 								</div>
 								<hr />
 								<ProductDetailsDropdown text='About this item'>

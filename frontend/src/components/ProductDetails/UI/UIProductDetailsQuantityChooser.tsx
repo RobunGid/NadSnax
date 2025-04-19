@@ -1,10 +1,10 @@
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { CartItemType, Item } from '../../types';
-import styles from './ProductDetailsQuantityChooser.module.css';
+import { CartItemType, Item } from '../../../types';
+import styles from './UIProductDetailsQuantityChooser.module.css';
 import clsx from 'clsx';
 
-interface ProductDetailsQuantityChooserProps {
+interface UIProductDetailsQuantityChooserProps {
 	cartItem?: CartItemType;
 	item: Item;
 	className?: string;
@@ -13,13 +13,13 @@ interface ProductDetailsQuantityChooserProps {
 	onInputChange: EventHandler<ChangeEvent<HTMLInputElement>>;
 }
 
-export const ProductDetailsQuantityChooser = ({
+export const UIProductDetailsQuantityChooser = ({
 	cartItem,
 	className,
 	onAdd,
 	onDelete,
 	onInputChange,
-}: ProductDetailsQuantityChooserProps) => {
+}: UIProductDetailsQuantityChooserProps) => {
 	return (
 		<div className={clsx('text-2xl', className)}>
 			{!cartItem?.count ? (
