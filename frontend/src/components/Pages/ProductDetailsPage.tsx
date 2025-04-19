@@ -10,7 +10,7 @@ import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
 import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
-import { ProductDetailsPrice } from '../ProductDetails/ProductDetailsPrice';
+import { UIProductDetailsPrice } from '../ProductDetails/UI/UIProductDetailsPrice';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -99,7 +99,7 @@ export const ProductDetailsPage = () => {
 								<div>{item.ratingCount}</div>
 							</div>
 
-							<ProductDetailsPrice
+							<UIProductDetailsPrice
 								price={formattedPrice}
 								oldPrice={formattedOldPrice}
 							/>
