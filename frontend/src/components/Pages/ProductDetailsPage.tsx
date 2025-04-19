@@ -9,6 +9,7 @@ import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { ProductDetailsAddToFavourite } from '../ProductDetails/ProductDetailsAddToFavourite';
 import { ProductsList } from '../Products/ProductsList';
+import { formatPrice } from '../../logic/formatPrice';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -46,14 +47,8 @@ export const ProductDetailsPage = () => {
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
-	const intlFormatPrice = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
-		minimumFractionDigits: 2,
-	});
-
-	const formattedPrice = intlFormatPrice.format(item?.price || 0);
-	const formattedOldPrice = intlFormatPrice.format(item?.oldPrice || item?.price || 0);
+	const formattedPrice = formatPrice(item?.price || 0);
+	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
 
 	return (
 		<div>
