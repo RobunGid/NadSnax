@@ -24,7 +24,7 @@ export const ProductDetailsDropdown = ({
 	return (
 		<div className={className}>
 			<div
-				className='flex flex-row cursor-pointer items-center'
+				className='flex flex-row cursor-pointer items-center mt-4'
 				onClick={handleToggleVisibility}
 			>
 				<IoIosArrowDown

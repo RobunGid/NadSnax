@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
-import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
@@ -10,6 +9,7 @@ import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductDetailsPrice } from '../ProductDetails/UI/UIProductDetailsPrice';
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
+import { UIProductDetailsPageItemDetails } from '../ProductDetails/UI/UIProductDetailsPageItemDetails';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -84,42 +84,19 @@ export const ProductDetailsPage = () => {
 								oldPrice={formattedOldPrice}
 							/>
 
-							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
+							<div className='md:mt-14 mt-6 md:h-80'>
 								<div className='hidden md:block'>
 									<ProductDetailsQuantityChooser item={item} />
 
 									<UIProductDetailsAddToFavourite />
 								</div>
 								<hr />
-								<ProductDetailsDropdown text='About this item'>
-									<div className='text-gray-500'>
-										{item?.itemDetails?.fullDescription}
-									</div>
-								</ProductDetailsDropdown>
-
-								<hr />
-
-								<ProductDetailsDropdown text='Ingridients'>
-									<div className='text-gray-500'>
-										{item?.itemDetails?.ingridients}
-									</div>
-								</ProductDetailsDropdown>
-
-								<hr />
-
-								<ProductDetailsDropdown text='Supplier'>
-									<div className='text-gray-500'>
-										{item?.itemDetails?.supplier}
-									</div>
-								</ProductDetailsDropdown>
-
-								<hr />
-
-								<ProductDetailsDropdown text='Nutrition'>
-									<div className='text-gray-500'>
-										{item?.itemDetails?.nutrition}
-									</div>
-								</ProductDetailsDropdown>
+								<UIProductDetailsPageItemDetails
+									fullDescription={item.itemDetails.fullDescription}
+									ingridients={item.itemDetails.ingridients}
+									nutrition={item.itemDetails.ingridients}
+									supplier={item.itemDetails.supplier}
+								/>
 							</div>
 						</div>
 					</div>
