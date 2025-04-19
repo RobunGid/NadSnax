@@ -14,6 +14,16 @@ import { UIProductDetailsPageItemDetails } from '../ProductDetails/UI/UIProductD
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
+	useEffect(() => {
+		actions.fetchItems({
+			include_item_details: true,
+			include_category: true,
+			include_type: true,
+			include_images: true,
+			page_link: `/${product_page_link}`,
+		});
+	}, [product_page_link]);
+
 	const actions = useActionCreators({
 		...itemActions,
 		...cartActions,
@@ -24,25 +34,13 @@ export const ProductDetailsPage = () => {
 
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
-	useEffect(() => {
-		actions.fetchItems({
-			include_item_details: true,
-			include_category: true,
-			include_type: true,
-			include_images: true,
-			simillar_id: item?.id,
-		});
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	const formattedPrice = formatPrice(item?.price || 0);
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
 
 	return (
 		<div>
 			{!item && <div>Sorry, product not found</div>}
-			{item && (
+			{item && item.itemDetails && (
 				<>
 					<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
 						<div>
