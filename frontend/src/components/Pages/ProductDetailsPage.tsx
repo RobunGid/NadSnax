@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductRating } from '../Layout/ProductRating';
@@ -14,7 +14,18 @@ import { UIProductDetailsPageItemDetails } from '../ProductDetails/UI/UIProductD
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
+	const actions = useActionCreators({
+		...itemActions,
+		...cartActions,
+		fetchItems: fetchItemsThunk,
+	});
+
+	const items = useStateSelector((state) => state.item.itemList);
+
+	const fetchedSimillars = useRef(false);
+
 	useEffect(() => {
+		fetchedSimillars.current = false;
 		actions.fetchItems({
 			include_item_details: true,
 			include_category: true,
@@ -24,15 +35,21 @@ export const ProductDetailsPage = () => {
 		});
 	}, [product_page_link]);
 
-	const actions = useActionCreators({
-		...itemActions,
-		...cartActions,
-		fetchItems: fetchItemsThunk,
-	});
-
-	const items = useStateSelector((state) => state.item.itemList);
-
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
+
+	useEffect(() => {
+		console.log('simillar fetching tryy...');
+		if (!item?.id || fetchedSimillars.current) return;
+		console.log('success!', item.id);
+		actions.fetchItems({
+			include_item_details: true,
+			include_category: true,
+			include_type: true,
+			include_images: true,
+			simillar_id: item.id,
+		});
+		fetchedSimillars.current = true;
+	}, [item?.id]);
 
 	const formattedPrice = formatPrice(item?.price || 0);
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
