@@ -4,13 +4,12 @@ import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { ProductDetailsDropdown } from '../ProductDetails/ProductDetailsDropdown';
 import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
-import { UIProductDetailsQuantityChooser } from '../ProductDetails/UI/UIProductDetailsQuantityChooser';
-import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { UIProductDetailsAddToFavourite } from '../ProductDetails/UI/UIProductDetailsAddToFavourite';
 import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductDetailsPrice } from '../ProductDetails/UI/UIProductDetailsPrice';
+import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -41,13 +40,6 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
-	const cartItem = useStateSelector((state) =>
-		state.cart.productList.find((cartItem) => cartItem.item.id === item?.id)
-	);
-
-	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
-		useItemQuantityChooser({ item });
-
 	const formattedPrice = formatPrice(item?.price || 0);
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
 
@@ -64,14 +56,6 @@ export const ProductDetailsPage = () => {
 							/>
 							<div className='md:hidden mr-auto'>
 								<div className='flex justify-center flex-col w-52 mx-16 my-8'>
-									<UIProductDetailsQuantityChooser
-										cartItem={cartItem}
-										item={item}
-										onAdd={handleAddItemToCart}
-										onInputChange={handleInputChange}
-										onDelete={handleRemoveProductFromCart}
-									/>
-
 									<hr className='my-4' />
 
 									<UIProductDetailsAddToFavourite />
@@ -106,14 +90,7 @@ export const ProductDetailsPage = () => {
 
 							<div className='md:mt-14 mt-6 space-y-3 md:h-80'>
 								<div className='hidden md:block'>
-									<UIProductDetailsQuantityChooser
-										className='flex justify-center'
-										cartItem={cartItem}
-										item={item}
-										onAdd={handleAddItemToCart}
-										onInputChange={handleInputChange}
-										onDelete={handleRemoveProductFromCart}
-									/>
+									<ProductDetailsQuantityChooser item={item} />
 
 									<UIProductDetailsAddToFavourite />
 								</div>

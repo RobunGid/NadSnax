@@ -1,12 +1,10 @@
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { CartItemType, Item } from '../../../types';
 import styles from './UIProductDetailsQuantityChooser.module.css';
 import clsx from 'clsx';
 
 interface UIProductDetailsQuantityChooserProps {
-	cartItem?: CartItemType;
-	item: Item;
+	count?: number;
 	className?: string;
 	onAdd: MouseEventHandler;
 	onDelete: MouseEventHandler;
@@ -14,7 +12,7 @@ interface UIProductDetailsQuantityChooserProps {
 }
 
 export const UIProductDetailsQuantityChooser = ({
-	cartItem,
+	count,
 	className,
 	onAdd,
 	onDelete,
@@ -22,7 +20,7 @@ export const UIProductDetailsQuantityChooser = ({
 }: UIProductDetailsQuantityChooserProps) => {
 	return (
 		<div className={clsx('text-2xl', className)}>
-			{!cartItem?.count ? (
+			{!count ? (
 				<div
 					className='text-xl dark:bg-sky-800 bg-orange-400 flex w-[225px] cursor-pointer h-[60px] justify-center items-center gap-2 rounded-full px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
@@ -41,7 +39,7 @@ export const UIProductDetailsQuantityChooser = ({
 					<div className='text-center flex justify-center'>
 						<input
 							type='number'
-							value={cartItem.count}
+							value={count}
 							className={clsx(
 								'bg-transparent w-2/3 text-center box-border focus:outline-none border-0 focus:border-4 focus:scale-125 dark:border-cyan-700 border-amber-700',
 								styles['quantity-chooser-input']

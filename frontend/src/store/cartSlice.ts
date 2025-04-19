@@ -1,15 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Item } from '../types';
+import { CartItemType, Item } from '../types';
 import { AppDispatch } from '.';
 import { Status } from './types';
 
-type ProductItem = {
-	item: Item;
-	count: number;
-};
-
 interface CartState {
-	productList: ProductItem[];
+	productList: CartItemType[];
 	status: Status;
 }
 
