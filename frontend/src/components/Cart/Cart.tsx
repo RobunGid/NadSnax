@@ -11,7 +11,7 @@ export const Cart = () => {
 			<h1 className='text-center text-xl font-semibold'>Cart</h1>
 
 			<div className='grid md:grid-cols-[3fr_2fr_1fr] gap-5 min-w-0 grid-cols-3'>
-				{cartItems.length && <UICartHeader />}
+				{cartItems.length != 0 && <UICartHeader />}
 
 				{cartItems.map((cartItem) => (
 					<CartItem cartItem={cartItem} key={cartItem.item.id} />
