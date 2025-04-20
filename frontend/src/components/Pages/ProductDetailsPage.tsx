@@ -33,14 +33,13 @@ export const ProductDetailsPage = () => {
 			include_images: true,
 			page_link: `/${product_page_link}`,
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_page_link]);
 
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
 	useEffect(() => {
-		console.log('simillar fetching tryy...');
 		if (!item?.id || fetchedSimillars.current) return;
-		console.log('success!', item.id);
 		actions.fetchItems({
 			include_item_details: true,
 			include_category: true,
@@ -49,6 +48,7 @@ export const ProductDetailsPage = () => {
 			simillar_id: item.id,
 		});
 		fetchedSimillars.current = true;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
 	const formattedPrice = formatPrice(item?.price || 0);
