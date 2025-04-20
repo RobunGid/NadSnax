@@ -35,18 +35,16 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<UIProductDetailsPrice price={formattedPrice} oldPrice={formattedOldPrice} />
 
-			<div className='md:mt-14 mt-6 md:h-80'>
-				<ProductDetailsQuantityChooser item={item} />
+			<ProductDetailsQuantityChooser item={item} />
 
-				<UIProductDetailsAddToFavourite />
+			<UIProductDetailsAddToFavourite />
 
-				<UIProductDetailsPageItemDetails
-					fullDescription={item.itemDetails.fullDescription}
-					ingridients={item.itemDetails.ingridients}
-					nutrition={item.itemDetails.ingridients}
-					supplier={item.itemDetails.supplier}
-				/>
-			</div>
+			<UIProductDetailsPageItemDetails
+				fullDescription={item.itemDetails.fullDescription}
+				ingridients={item.itemDetails.ingridients}
+				nutrition={item.itemDetails.ingridients}
+				supplier={item.itemDetails.supplier}
+			/>
 		</div>
 	);
 };
