@@ -51,6 +51,6 @@ export const ProductDetailsPage = () => {
 
 	if (status === 'error' || !item) return <div>Sorry, product not found</div>;
 
-	if (status === 'success' && item)
+	if (status === 'success' && item && item.itemDetails)
 		return <ProductDetails item={item} itemList={items} />;
 };
