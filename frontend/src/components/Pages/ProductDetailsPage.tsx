@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
-import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
-import { ProductDetailsSimillarItems } from '../ProductDetails/ProductDetailsSimillarItems';
-import { ProductDetailsInfo } from '../ProductDetails/ProductDetailsInfo';
 import { UIproductDetailsLoader } from '../ProductDetails/UI/UIProductDetailsLoader';
+import { ProductDetails } from '../ProductDetails/ProductDetails';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -54,11 +52,5 @@ export const ProductDetailsPage = () => {
 	if (status === 'error' || !item) return <div>Sorry, product not found</div>;
 
 	if (status === 'success' && item)
-		return (
-			<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
-				<ProductDetailsImages className='md:ml-8' images={item.images} />
-				<ProductDetailsInfo item={item} />
-				<ProductDetailsSimillarItems item={item} itemList={items} />
-			</div>
-		);
+		return <ProductDetails item={item} itemList={items} />;
 };
