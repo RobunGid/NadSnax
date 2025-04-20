@@ -5,6 +5,7 @@ import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { ProductDetailsSimillarItems } from '../ProductDetails/ProductDetailsSimillarItems';
 import { ProductDetailsInfo } from '../ProductDetails/ProductDetailsInfo';
+import { UIproductDetailsLoader } from '../ProductDetails/UI/UIProductDetailsLoader';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -16,6 +17,8 @@ export const ProductDetailsPage = () => {
 	});
 
 	const items = useStateSelector((state) => state.item.itemList);
+
+	const status = useStateSelector((state) => state.item.status);
 
 	const fetchedSimillars = useRef(false);
 
@@ -46,15 +49,16 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
-	return !item ? (
-		<div>Sorry, product not found</div>
-	) : (
-		item.itemDetails && (
+	if (status === 'loading') return <UIproductDetailsLoader />;
+
+	if (status === 'error' || !item) return <div>Sorry, product not found</div>;
+
+	if (status === 'success' && item)
+		return (
 			<div className='p-3 flex flex-row gap-10 pt-16 flex-wrap justify-center md:justify-start dark:text-gray-200'>
 				<ProductDetailsImages className='md:ml-8' images={item.images} />
 				<ProductDetailsInfo item={item} />
 				<ProductDetailsSimillarItems item={item} itemList={items} />
 			</div>
-		)
-	);
+		);
 };
