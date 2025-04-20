@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io';
 
 interface ProductRatingProps {
-	rating: number;
+	rating: number | null;
 	className?: string;
 	size?: string | number;
 }

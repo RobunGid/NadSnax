@@ -12,7 +12,7 @@ export type ItemType = {
 	pageLink: string;
 	id: string;
 	categoryId: string;
-	category: ItemCategory;
+	category: Omit<ItemCategory, 'types'>;
 };
 
 export type Image = {
@@ -30,15 +30,17 @@ export type Item = {
 	description: string;
 	id: string;
 	isBestseller: boolean;
+	isSecretbox?: boolean;
 	itemDetails: ItemDetails;
 	label: string;
 	price: number;
-	oldPrice?: number;
+	oldPrice?: number | null;
 	pageLink: string;
-	type: ItemType;
-	category: ItemCategory;
-	averageRating: number;
-	ratingCount: number;
+	type: Omit<ItemType, 'category'>;
+	typeId: string;
+	category: Omit<ItemCategory, 'types'>;
+	averageRating: number | null;
+	ratingCount: number | null;
 	images: Image[];
 };
 

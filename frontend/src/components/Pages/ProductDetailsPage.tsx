@@ -49,7 +49,7 @@ export const ProductDetailsPage = () => {
 
 	if (status === 'loading') return <UIproductDetailsLoader />;
 
-	if (status === 'error' || !item) return <div>Sorry, product not found</div>;
+	if (status === 'error') return <div>Sorry, product not found</div>;
 
 	if (status === 'success' && item && item.itemDetails)
 		return <ProductDetails item={item} itemList={items} />;
