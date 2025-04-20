@@ -12,7 +12,7 @@ interface ProductDetailsProps {
 export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 	return (
 		<UIProductDetails>
-			<ProductDetailsGallery className='md:ml-8' images={item.images} />
+			<ProductDetailsGallery images={item.images} />
 			<ProductDetailsInfo item={item} />
 			<ProductDetailsSimillarItems item={item} itemList={itemList} />
 		</UIProductDetails>
