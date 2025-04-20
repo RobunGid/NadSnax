@@ -65,13 +65,6 @@ export const ProductDetailsPage = () => {
 								className='md:ml-8'
 								images={item.images}
 							/>
-							<div className='md:hidden mr-auto'>
-								<div className='flex justify-center flex-col w-52 mx-16 my-8'>
-									<hr className='my-4' />
-
-									<UIProductDetailsAddToFavourite />
-								</div>
-							</div>
 						</div>
 						<div className='flex flex-col md:mt-20 w-64'>
 							<div>
@@ -100,7 +93,7 @@ export const ProductDetailsPage = () => {
 							/>
 
 							<div className='md:mt-14 mt-6 md:h-80'>
-								<div className='hidden md:block'>
+								<div className=''>
 									<ProductDetailsQuantityChooser item={item} />
 
 									<UIProductDetailsAddToFavourite />
