@@ -5,7 +5,7 @@ import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
 import { ProductsNoResults } from '../Products/ProductsNoResults';
-import { ProductsList } from '../Products/ProductsList';
+import { ProductsList } from '../Layout/ProductsList';
 import { ProductsLoading } from '../Products/ProductsLoading';
 
 export const ProductsPage = () => {
