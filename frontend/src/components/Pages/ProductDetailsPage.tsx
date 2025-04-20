@@ -5,11 +5,11 @@ import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsImages } from '../ProductDetails/ProductDetailsImages';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
 import { UIProductDetailsAddToFavourite } from '../ProductDetails/UI/UIProductDetailsAddToFavourite';
-import { ProductsList } from '../Products/ProductsList';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductDetailsPrice } from '../ProductDetails/UI/UIProductDetailsPrice';
 import { ProductDetailsQuantityChooser } from '../ProductDetails/ProductDetailsQuantityChooser';
 import { UIProductDetailsPageItemDetails } from '../ProductDetails/UI/UIProductDetailsPageItemDetails';
+import { ProductDetailsSimillarItems } from '../ProductDetails/ProductDetailsSimillarItems';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -93,12 +93,10 @@ export const ProductDetailsPage = () => {
 							/>
 
 							<div className='md:mt-14 mt-6 md:h-80'>
-								<div className=''>
-									<ProductDetailsQuantityChooser item={item} />
+								<ProductDetailsQuantityChooser item={item} />
 
-									<UIProductDetailsAddToFavourite />
-								</div>
-								<hr />
+								<UIProductDetailsAddToFavourite />
+
 								<UIProductDetailsPageItemDetails
 									fullDescription={item.itemDetails.fullDescription}
 									ingridients={item.itemDetails.ingridients}
@@ -108,19 +106,9 @@ export const ProductDetailsPage = () => {
 							</div>
 						</div>
 					</div>
+					<ProductDetailsSimillarItems item={item} itemList={items} />
 				</>
 			)}
-			<div className='p-5'>
-				<span className='text-2xl font-bold dark:text-gray-300'>
-					Simillar items you might like
-				</span>
-
-				<div className='flex gap-4'>
-					<ProductsList
-						items={items.filter((simmilarItem) => simmilarItem != item)}
-					/>
-				</div>
-			</div>
 		</div>
 	);
 };
