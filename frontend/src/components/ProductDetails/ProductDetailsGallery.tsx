@@ -7,6 +7,12 @@ interface ProductDetailsGalleryProps {
 }
 
 export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) => {
+	const mainImage = images.find((image) => image.isMain);
+
+	if (!mainImage) {
+		images = [{ ...images[0], isMain: true }, ...images.slice(1)];
+	}
+
 	return (
 		<UIProductDetailsGallery>
 			{images.map((image) => (
