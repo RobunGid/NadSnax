@@ -17,14 +17,14 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 		<div className='flex flex-col md:mt-20 w-64'>
 			<div>
 				<a
-					href={item?.itemDetails?.supplierLink}
+					href={item?.itemDetails.supplierLink}
 					target='_blank'
 					className='font-thin underline underline-offset-2'
 				>
 					Visit the supplier site
 				</a>
 			</div>
-			<div className='text-nowrap'>{item?.itemDetails?.fullLabel}</div>
+			<div className='text-nowrap'>{item.itemDetails.fullLabel}</div>
 
 			<ProductDetailsRating
 				ratingCount={item.ratingCount}
