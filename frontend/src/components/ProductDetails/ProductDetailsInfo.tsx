@@ -3,7 +3,7 @@ import { Item } from '../../types';
 import { ProductRating } from '../Layout/ProductRating';
 import { ProductDetailsQuantityChooser } from './ProductDetailsQuantityChooser';
 import { UIProductDetailsAddToFavourite } from './UI/UIProductDetailsAddToFavourite';
-import { UIProductDetailsItemDetails } from './UI/UIProductDetailsItemDetails';
+import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
 
 interface ProductDetailsInfo {
@@ -39,7 +39,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<UIProductDetailsAddToFavourite />
 
-			<UIProductDetailsItemDetails
+			<ProductDetailsItemDetails
 				fullDescription={item.itemDetails.fullDescription}
 				ingridients={item.itemDetails.ingridients}
 				nutrition={item.itemDetails.ingridients}

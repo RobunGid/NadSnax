@@ -39,7 +39,7 @@ export const ProductDetailsDropdown = ({
 
 			<div
 				className={clsx(
-					'transition-all duration-300 pl-3 overflow-hidden',
+					'transition-all duration-300 pl-3 mt-1 overflow-hidden text-gray-500',
 					optionsVisibility ? 'max-h-80' : 'max-h-0'
 				)}
 			>

@@ -10,7 +10,6 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
-	console.log(item, itemList);
 	return (
 		<UIProductDetails>
 			<ProductDetailsGallery images={item.images} />
