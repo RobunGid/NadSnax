@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
@@ -7,6 +7,17 @@ import { ProductDetails } from '../ProductDetails/ProductDetails';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
+
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'l') setShow((prev) => !prev);
+		};
+
+		window.addEventListener('keydown', handleKeyDown);
+		return () => window.removeEventListener('keydown', handleKeyDown);
+	}, []);
 
 	const actions = useActionCreators({
 		...itemActions,
@@ -47,7 +58,7 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id]);
 
-	if (status === 'loading') return <UIproductDetailsLoader />;
+	if (status === 'loading' || show) return <UIproductDetailsLoader />;
 
 	if (status === 'error') return <div>Sorry, product not found</div>;
 
