@@ -5,6 +5,7 @@ import { UIProductDetailsAddToFavourite } from './UI/UIProductDetailsAddToFavour
 import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
 import { ProductDetailsRating } from './UI/ProductDetailsRating';
+import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 
 interface ProductDetailsInfo {
 	item: Item;
@@ -24,7 +25,9 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 					Visit the supplier site
 				</a>
 			</div>
-			<div className='text-nowrap'>{item.itemDetails.fullLabel}</div>
+			<UIProductDetailsFullLabel>
+				{item.itemDetails.fullLabel}
+			</UIProductDetailsFullLabel>
 
 			<ProductDetailsRating
 				ratingCount={item.ratingCount}
