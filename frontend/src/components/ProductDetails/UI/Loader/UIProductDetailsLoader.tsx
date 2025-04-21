@@ -1,4 +1,4 @@
-import { UIProductDetails } from './UIProductDetails';
+import { UIProductDetails } from '../UIProductDetails';
 import { UIProductDetailsLoaderGallery } from './UIProductDetailsLoaderGallery';
 
 export const UIproductDetailsLoader = () => {

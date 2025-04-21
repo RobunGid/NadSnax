@@ -1,4 +1,4 @@
-import { UIProductDetailsGallery } from './UIProductDetailsGallery';
+import { UIProductDetailsGallery } from '../UIProductDetailsGallery';
 import { UIproductDetailsLoaderImage } from './UIProductDetailsLoaderImage';
 import { UIProductDetailsLoaderMainImage } from './UIProductDetailsLoaderMainImage';
 

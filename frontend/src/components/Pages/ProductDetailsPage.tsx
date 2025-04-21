@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
 import { cartActions, useActionCreators, useStateSelector } from '../../store';
-import { UIproductDetailsLoader } from '../ProductDetails/UI/UIProductDetailsLoader';
+import { UIproductDetailsLoader } from '../ProductDetails/UI/Loader/UIProductDetailsLoader';
 import { ProductDetails } from '../ProductDetails/ProductDetails';
 
 export const ProductDetailsPage = () => {
