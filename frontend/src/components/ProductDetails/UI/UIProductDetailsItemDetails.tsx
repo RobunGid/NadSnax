@@ -1,17 +1,17 @@
 import { ProductDetailsDropdown } from '../ProductDetailsDropdown';
 
-interface UIProductDetailsPageItemDetailsProps {
+interface UIProductDetailsItemDetailsProps {
 	fullDescription: string;
 	ingridients: string;
 	supplier: string;
 	nutrition: string;
 }
-export const UIProductDetailsPageItemDetails = ({
+export const UIProductDetailsItemDetails = ({
 	fullDescription,
 	ingridients,
 	supplier,
 	nutrition,
-}: UIProductDetailsPageItemDetailsProps) => {
+}: UIProductDetailsItemDetailsProps) => {
 	return (
 		<div className='flex flex-col gap-y-4 divide-gray-400 divide-y-2'>
 			<ProductDetailsDropdown text='About this item'>
