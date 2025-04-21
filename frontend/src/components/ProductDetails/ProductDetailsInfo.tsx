@@ -6,6 +6,7 @@ import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
 import { ProductDetailsRating } from './UI/ProductDetailsRating';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
+import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 
 interface ProductDetailsInfo {
 	item: Item;
@@ -16,15 +17,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
 	return (
 		<div className='flex flex-col md:mt-20 w-64'>
-			<div>
-				<a
-					href={item?.itemDetails.supplierLink}
-					target='_blank'
-					className='font-thin underline underline-offset-2'
-				>
-					Visit the supplier site
-				</a>
-			</div>
+			<UIProductDetailsSupplier supplierLink={item.itemDetails.supplier} />
 			<UIProductDetailsFullLabel>
 				{item.itemDetails.fullLabel}
 			</UIProductDetailsFullLabel>
