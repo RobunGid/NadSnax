@@ -12,7 +12,7 @@ export const ProductDetailsPage = () => {
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'l') setShow((prev) => !prev);
+			if (e.key === 'q') setShow((prev) => !prev);
 		};
 
 		window.addEventListener('keydown', handleKeyDown);

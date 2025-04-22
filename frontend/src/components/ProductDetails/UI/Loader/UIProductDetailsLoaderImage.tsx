@@ -10,7 +10,7 @@ export const UIproductDetailsLoaderImage = ({
 	return (
 		<div
 			className={clsx(
-				'rounded-md shadow-sm shadow-black flex items-center justify-center animate-skeleton opacity-0',
+				'rounded-md shadow-sm shadow-black flex items-center justify-center opacity-0 animate-skeleton',
 				className
 			)}
 		>
