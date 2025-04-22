@@ -15,8 +15,12 @@ export const AccountMenu = () => {
 					<AccountMenuItem.Reviews />
 				</ul>
 			</li>
-			<AccountMenuItem.RecentlyViewed />
-
+			<li>
+				<ul>
+					<AccountMenuItem.RecentlyViewed />
+					<AccountMenuItem.Favourites />
+				</ul>
+			</li>
 			<li>
 				<ul>
 					<AccountMenuItem.Help />

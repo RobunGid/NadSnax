@@ -18,6 +18,7 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 		reviews: <></>,
 		signout: <></>,
 		statistics: <></>,
+		favourites: <></>,
 	};
 
 	return <UIAccountSection>{sections[section]}</UIAccountSection>;
