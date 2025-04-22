@@ -1,26 +1,13 @@
-import { ProfileMenuAvatar } from './ProfileMenuAvatar';
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
+import { ProfileMenuButton } from './ProfileMenuButton';
 
 export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
 	return (
 		<div className='m-2'>
-			<div className='overflow-hidden rounded-full w-12 h-12 peer transition-transform hover:scale-105'>
-				<input
-					type='checkbox'
-					id='user-profile-avatar'
-					className='hidden'
-				></input>
-
-				<label
-					htmlFor='user-profile-avatar'
-					className='block bg-cover bg-no-repeat cursor-pointer'
-				>
-					<ProfileMenuAvatar user={user} />
-				</label>
-			</div>
+			<ProfileMenuButton user={user} />
 
 			<ul className='overflow-hidden duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
 				<li className='flex items-center'>
