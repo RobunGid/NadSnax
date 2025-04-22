@@ -2,16 +2,11 @@ import { ProfileMenuAvatar } from './ProfileMenuAvatar';
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
-import clsx from 'clsx';
 
-interface ProfileMenuProps {
-	className?: string;
-}
-
-export const ProfileMenu = ({ className }: ProfileMenuProps) => {
+export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
 	return (
-		<div className={clsx('m-2', className)}>
+		<div className='m-2'>
 			<div className='overflow-hidden rounded-full w-12 h-12 peer transition-transform hover:scale-105'>
 				<input
 					type='checkbox'
@@ -32,28 +27,22 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 					<ThemeSwitcher className='m-2' />
 					<div className='text-xs'>Change App Theme</div>
 				</li>
-				<ProfileMenuItem to='/account/profile'>My Profile</ProfileMenuItem>
-				<ProfileMenuItem to='/account/favourites'>Favourites</ProfileMenuItem>
+				<ProfileMenuItem.Profile />
+				<ProfileMenuItem.Favourites />
+
 				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user?.name}</div>
 					<div className='font-medium truncate'>{user?.email}</div>
 				</li>
 				<li>
 					<ul>
-						<ProfileMenuItem to='/account/order_history'>
-							Order History
-						</ProfileMenuItem>
-						<ProfileMenuItem to='/account/settings'>Settings</ProfileMenuItem>
-
-						<ProfileMenuItem to='/account/reviews'>
-							My reviews
-						</ProfileMenuItem>
+						<ProfileMenuItem.OrderHistory />
+						<ProfileMenuItem.Settings />
+						<ProfileMenuItem.Reviews />
 					</ul>
 				</li>
 
-				<ProfileMenuItem to='/account/signout' type='secondary'>
-					Sign out
-				</ProfileMenuItem>
+				<ProfileMenuItem.SignOut />
 			</ul>
 		</div>
 	);
