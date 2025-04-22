@@ -3,7 +3,7 @@ export type ItemCategory = {
 	iconUrl: string;
 	pageLink: string;
 	id: string;
-	types: ItemType[];
+	types: Omit<ItemType, 'category'>[];
 };
 
 export type ItemType = {
@@ -31,7 +31,7 @@ export type Item = {
 	id: string;
 	isBestseller: boolean;
 	isSecretbox?: boolean;
-	itemDetails: ItemDetails;
+	itemDetails?: ItemDetails;
 	label: string;
 	price: number;
 	oldPrice?: number | null;

@@ -80,7 +80,6 @@ export const fetchItemsThunk = createAsyncThunk<
 				url: 'http://localhost' + image.url,
 			})),
 		}));
-
 		return fixedItems;
 	}
 );
