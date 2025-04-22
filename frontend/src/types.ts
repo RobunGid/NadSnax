@@ -101,6 +101,7 @@ export const predicateSection = (value?: string): value is Section => {
 			'statistics',
 			'help',
 			'signout',
+			'favourites',
 		].includes(value)
 	) {
 		return false;

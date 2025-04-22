@@ -33,6 +33,7 @@ export const ProfileMenu = ({ className }: ProfileMenuProps) => {
 					<div className='text-xs'>Change App Theme</div>
 				</li>
 				<ProfileMenuItem to='/account/profile'>My Profile</ProfileMenuItem>
+				<ProfileMenuItem to='/account/favourites'>Favourites</ProfileMenuItem>
 				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
 					<div>{user?.name}</div>
 					<div className='font-medium truncate'>{user?.email}</div>
