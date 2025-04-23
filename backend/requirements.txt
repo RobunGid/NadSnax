@@ -10,3 +10,5 @@ flask-migrate==4.1.0
 alembic==1.15.2
 psycopg2-binary==2.9.10
 psycopg2==2.9.10
+flask-jwt-extended==4.7.1
+passlib=1.7.4

@@ -5,6 +5,9 @@ from schemas import UserSchema, UserUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
+from flask_jwt_extended import create_access_token
+from flask import request
+from passlib.hash import pbkdf2_sha512
 
 blp = Blueprint("users", __name__, description = "Operations on users")
 
@@ -38,7 +41,7 @@ class User(MethodView):
 		return user
 
 @blp.route('/user')
-class Items(MethodView):
+class Users(MethodView):
 	@blp.response(200, UserSchema(many = True))
 	def get(self):
 		return UserModel.query.all()
@@ -46,8 +49,8 @@ class Items(MethodView):
        
 	@blp.arguments(UserSchema)
 	@blp.response(201, UserSchema)    
-	def post(self, item_data):
-		user = UserModel(**item_data, id = str(uuid.uuid4()))
+	def post(self, user_data):
+		user = UserModel(username=user_data["username"], password=pbkdf2_sha512.hash(user_data["password"]), avatar_url=user_data["avatar_url"], id = str(uuid.uuid4()))
 		try:
 			db.session.add(user)
 			db.session.commit()
@@ -55,3 +58,9 @@ class Items(MethodView):
 			abort(500, message = "An error occured while inserting the user")
     
 		return user
+@blp.route('/token')
+class Token(MethodView):
+    @blp.arguments(UserSchema)
+    def post(self, user_data):
+        username = request.json.get("username", None)
+        password = request.json.get("password", None)
