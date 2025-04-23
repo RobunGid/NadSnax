@@ -1,17 +1,19 @@
 services:
   postgres:
-      image: postgres:latest
-      container_name: nadsnax-database
-      environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: nadsnax
-        PGDATA: /var/lib/postgresql/data/pgdata
-      ports:
-        - "5432:5432"
-      volumes:
-        - ./pgdata:/var/lib/postgresql/data/pgdata
-      privileged: true
+    image: postgres:latest
+    container_name: nadsnax-database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nadsnax
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    privileged: true
+    networks:
+      - nadsnax-net
   backend:
     build: ./backend
     ports: 
@@ -24,6 +26,8 @@ services:
     privileged: true
     depends_on:
       - postgres
+    env_file:
+      - ./backend/.env
   frontend:
     build: ./frontend
     ports: 

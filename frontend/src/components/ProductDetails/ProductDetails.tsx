@@ -5,7 +5,7 @@ import { ProductDetailsSimillarItems } from './ProductDetailsSimillarItems';
 import { UIProductDetails } from './UI/UIProductDetails';
 
 interface ProductDetailsProps {
-	item: Item;
+	item: Required<Pick<Item, 'itemDetails'>> & Item;
 	itemList: Item[];
 }
 

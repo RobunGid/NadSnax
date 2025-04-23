@@ -10,7 +10,7 @@ import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 import { UIProductDetailsInfo } from './UI/UIProductDetailsInfo';
 
 interface ProductDetailsInfo {
-	item: Item;
+	item: Required<Pick<Item, 'itemDetails'>> & Item;
 }
 
 export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {

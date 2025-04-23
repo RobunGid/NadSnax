@@ -4,7 +4,7 @@ import { UISidebarSelectOption } from './UI/UISidebarSelectOption';
 
 interface SidebarSelectOptionsProps {
 	className?: string;
-	options: ItemType[];
+	options: Omit<ItemType, 'category'>[];
 }
 
 export const SidebarSelectOptions = ({

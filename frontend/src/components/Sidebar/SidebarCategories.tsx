@@ -11,15 +11,9 @@ export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
 			{categories.map((category) => {
 				return (
 					<SidebarSelect
-						to={category.pageLink}
 						key={category.id}
-						name={category.name}
-						iconUrl={category.iconUrl}
-						options={category.types.map((type) => ({
-							to: type.pageLink,
-							name: type.name,
-						}))}
 						category={category}
+						types={category.types}
 					/>
 				);
 			})}

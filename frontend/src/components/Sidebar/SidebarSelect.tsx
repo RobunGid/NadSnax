@@ -1,22 +1,14 @@
 import { MouseEventHandler, useState } from 'react';
-import { ItemCategory } from '../../types';
+import { ItemCategory, ItemType } from '../../types';
 import { SidebarCategory } from './UI/UISidebarCategory';
 import { SidebarSelectOptions } from './SidebarSelectOptions';
 
-type option = {
-	to: string;
-	name: string;
-};
-
 interface SidebarSelectProps {
-	name: string;
-	iconUrl: string;
-	options: option[];
-	to: string;
+	types: Omit<ItemType, 'category'>[];
 	category: ItemCategory;
 }
 
-export const SidebarSelect = ({ category }: SidebarSelectProps) => {
+export const SidebarSelect = ({ types, category }: SidebarSelectProps) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility: MouseEventHandler<HTMLDivElement> = (event) => {
@@ -33,7 +25,7 @@ export const SidebarSelect = ({ category }: SidebarSelectProps) => {
 				onClick={handleToggleVisibility}
 			/>
 			<SidebarSelectOptions
-				options={category.types}
+				options={types}
 				className={optionsVisibility ? 'max-h-80' : 'max-h-0'}
 			/>
 		</>
