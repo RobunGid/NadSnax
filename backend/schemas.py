@@ -3,7 +3,6 @@ from marshmallow import Schema, fields
 class PlainUserSchema(Schema):
     id = fields.Str(dump_only = True)
     username = fields.Str(required = True)
-    avatar_url = fields.Str(required = True)
     password = fields.Str(required = True, load_only=True)
     
 class PlainReviewSchema(Schema):
@@ -78,6 +77,7 @@ class ReviewSchema(PlainReviewSchema):
     
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
+    avatar_url = fields.Str(required = True)
     
 class ReviewUpdateSchema(Schema):
     text = fields.Str(required = True)

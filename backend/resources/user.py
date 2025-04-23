@@ -1,11 +1,12 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from models import UserModel
-from schemas import UserSchema, UserUpdateSchema
+from schemas import UserSchema, UserUpdateSchema, PlainUserSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
 from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_refresh_token
 from flask import request
 from passlib.hash import pbkdf2_sha512
 
@@ -47,6 +48,8 @@ class Users(MethodView):
 		return UserModel.query.all()
 	
        
+@blp.route('/register')
+class UserRegister(MethodView):
 	@blp.arguments(UserSchema)
 	@blp.response(201, UserSchema)    
 	def post(self, user_data):
@@ -58,9 +61,19 @@ class Users(MethodView):
 			abort(500, message = "An error occured while inserting the user")
     
 		return user
-@blp.route('/token')
-class Token(MethodView):
-    @blp.arguments(UserSchema)
+
+
+@blp.route('/login')
+class UserLogin(MethodView):
+    @blp.arguments(PlainUserSchema)
     def post(self, user_data):
-        username = request.json.get("username", None)
-        password = request.json.get("password", None)
+        user = UserModel.query.filter(
+			UserModel.username == user_data["username"]
+		).first()
+        
+        if user and pbkdf2_sha512.verify(user_data["password"], user.password):
+            access_token = create_access_token(identity = str(user.id), fresh = True)
+            refresh_token = create_refresh_token(identity = str(user.id))
+            return {"access_token": access_token, "refresh_token": refresh_token}
+    
+        abort(401, description = "Invalid credentials")
