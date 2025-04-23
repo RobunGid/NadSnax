@@ -39,4 +39,4 @@ class ItemModel(db.Model):
 
     @rating_count.expression
     def rating_count(cls):
-        return db.select(func.count(models.ReviewModel)).where(models.ReviewModel.item_id == cls.id).scalar_subquery()
+        return db.select(func.count()).where(models.ReviewModel.item_id == cls.id).scalar_subquery()
