@@ -23,7 +23,7 @@ class User(MethodView):
 		user = UserModel.query.get_or_404(user_id)
 		db.session.delete(user)
 		db.session.commit()
-		return {"message": "User deleted"}
+		return {"message": "User deleted", "code": 202}
 
 	@blp.response(200, UserSchema)        
 	@blp.arguments(UserUpdateSchema)
