@@ -4,6 +4,7 @@ import os
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from dotenv import load_dotenv
 
 from db import db
 
@@ -19,7 +20,13 @@ from resources.image import blp as ImageBlueprint
 def create_app(db_url = None):
 	app = Flask(__name__)
  
+	env = os.getenv('APP_ENV', 'prod')
+	env_file = '.env.local' if env == 'dev' else '.env'
+	load_dotenv(env_file, override=True)	
+ 
 	migrate = Migrate(app, db)
+	jwt = JWTManager(app)	
+ 
  
 	CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -33,7 +40,6 @@ def create_app(db_url = None):
 	app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 	app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET')
  
-	jwt = JWTManager(app)	
 
 	db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
 
