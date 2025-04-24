@@ -33,6 +33,9 @@ class User(MethodView):
 		if user:
 			user.username = user_data["username"]
 			user.avatar_url = user_data["avatar_url"]
+			user.fisrt_name = user_data["first_name"]
+			user.last_name = user_data["last_name"]
+			user.role = user_data["role"]
 		else:
 			user = UserModel(id = user_id, **user_data)
             
@@ -53,7 +56,15 @@ class UserRegister(MethodView):
 	@blp.arguments(UserSchema)
 	@blp.response(201, UserSchema)    
 	def post(self, user_data):
-		user = UserModel(username=user_data["username"], password=pbkdf2_sha512.hash(user_data["password"]), avatar_url=user_data["avatar_url"], id = str(uuid.uuid4()))
+		user = UserModel(
+      id = str(uuid.uuid4()),
+      username=user_data["username"], 
+      password=pbkdf2_sha512.hash(user_data["password"]), 
+      avatar_url=user_data["avatar_url"],
+      first_name=user_data["first_name"],
+      last_name=user_data["last_name"],
+      role=user_data["role"],
+      )
 		try:
 			db.session.add(user)
 			db.session.commit()
