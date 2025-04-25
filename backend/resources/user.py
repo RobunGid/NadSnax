@@ -14,9 +14,13 @@ blp = Blueprint("users", __name__, description = "Operations on users")
 @blp.route('/user/<string:user_id>')
 class User(MethodView):
 	@blp.response(200, UserSchema)
+	@jwt_required()
 	def get(self, user_id):
-		user = UserModel.query.get_or_404(user_id)
-		return user
+		identity = get_jwt_identity()
+		if identity == user_id:
+			user = UserModel.query.get_or_404(user_id)
+			return user
+		abort(403, message = "You dant have permission to check this user data.")
     
 	def delete(self, user_id):
 		user = UserModel.query.get_or_404(user_id)
@@ -47,7 +51,19 @@ class User(MethodView):
 class Users(MethodView):
 	@blp.response(200, UserSchema(many = True))
 	def get(self):
-		return UserModel.query.all()
+		username_filter = request.args.get("username")
+		first_name_filter = request.args.get("first_name")
+		last_name_filter = request.args.get("last_name")
+		avatar_url_filter = request.args.get("avatar_url")
+  
+		query = UserModel.query
+  
+		query = query.filter(UserModel.username==username_filter) if username_filter else query
+		query = query.filter(UserModel.first_name==last_name_filter) if first_name_filter else query
+		query = query.filter(UserModel.last_name==first_name_filter) if last_name_filter else query
+		query = query.filter(UserModel.avatar_url==avatar_url_filter) if avatar_url_filter else query
+  
+		return query.all()
 	
        
 @blp.route('/register')
