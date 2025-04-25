@@ -19,17 +19,20 @@ class User(MethodView):
 	@jwt_required()
 	def get(self, user_id):
 		identity = get_jwt_identity()
-		if identity == user_id:
+		user = UserModel.get_or_404(identity)
+		if identity == user_id or user.role.value in ["admin", "moderator"]:
 			user = UserModel.query.get_or_404(user_id)
 			return user
-		abort(403, message = "You don't have permission to check this user data.")
+		abort(403, message="You don't have permission to check this user data.")
 	
+	@role_required(['admin', 'moderator'])
 	def delete(self, user_id):
 		user = UserModel.query.get_or_404(user_id)
 		db.session.delete(user)
 		db.session.commit()
 		return {"message": "User deleted", "code": 202}
 
+	@role_required(['admin', 'moderator'])
 	@blp.response(200, UserSchema)        
 	@blp.arguments(UserUpdateSchema)
 	def put(self, user_data, user_id):

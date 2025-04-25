@@ -12,7 +12,7 @@ def role_required(roles: List[Role]):
 			identity = get_jwt_identity()
 			user = UserModel.query.get_or_404(identity)
 			if user.role.value not in roles:
-				abort(403, message = "You don't have permission to get all users data.")
+				abort(403, message="You don't have permission to get all users data.")
 			return fn(*args, **kwargs)
 		return wrapper
 	return decorator
