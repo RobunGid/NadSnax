@@ -16,6 +16,7 @@ from resources.item import blp as ItemBlueprint
 from resources.item_details import blp as ItemDetailsBlueprint
 from resources.image import blp as ImageBlueprint
 
+from datetime import timedelta
 
 def create_app(db_url = None):
 	app = Flask(__name__)
@@ -39,6 +40,12 @@ def create_app(db_url = None):
 	app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
 	app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 	app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET')
+	app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies"]
+	app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=5)
+	app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+	app.config["JWT_COOKIE_SECURE"] = True
+	app.config["JWT_COOKIE_SAMESITE"] = "Strict"
+	app.config["JWT_COOKIE_CSRF_PROTECT"] = False
  
 
 	db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
