@@ -6,3 +6,4 @@ export * from './cartSlice';
 export * from './itemSlice';
 export * from './categorySlice';
 export * from './userSlice';
+export * from './authSlice';

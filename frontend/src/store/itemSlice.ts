@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import camelcaseKeys from 'camelcase-keys';
-import { itemAxios } from '../api/item';
 import { Status } from './types';
+import { Axios } from '../api';
 
 type ItemsState = {
 	itemList: Item[];
@@ -50,7 +50,7 @@ export const fetchItemsThunk = createAsyncThunk<
 	) => {
 		category_name = category_name !== 'best-sellers' ? category_name : undefined;
 		category_name = category_name !== 'secretboxes' ? category_name : undefined;
-		const response = await itemAxios.get<Item[]>('/item', {
+		const response = await Axios.get<Item[]>('/item', {
 			params: {
 				include_type,
 				include_category,
