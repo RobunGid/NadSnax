@@ -8,6 +8,8 @@ import uuid
 from flask_jwt_extended import create_access_token, set_refresh_cookies, create_refresh_token, jwt_required, get_jwt_identity
 from flask import request, jsonify
 from passlib.hash import pbkdf2_sha512
+from utils import role_required
+
 
 blp = Blueprint("users", __name__, description = "Operations on users")
 
@@ -20,8 +22,8 @@ class User(MethodView):
 		if identity == user_id:
 			user = UserModel.query.get_or_404(user_id)
 			return user
-		abort(403, message = "You dant have permission to check this user data.")
-    
+		abort(403, message = "You don't have permission to check this user data.")
+	
 	def delete(self, user_id):
 		user = UserModel.query.get_or_404(user_id)
 		db.session.delete(user)
@@ -32,7 +34,7 @@ class User(MethodView):
 	@blp.arguments(UserUpdateSchema)
 	def put(self, user_data, user_id):
 		user = UserModel.query.get(user_id)
-        
+		
 		if user:
 			user.username = user_data["username"]
 			user.avatar_url = user_data["avatar_url"]
@@ -41,15 +43,18 @@ class User(MethodView):
 			user.role = user_data["role"]
 		else:
 			user = UserModel(id = user_id, **user_data)
-            
+			
 		db.session.add(user)
 		db.session.commit()
-        
+		
 		return user
+
 
 @blp.route('/user')
 class Users(MethodView):
 	@blp.response(200, UserSchema(many = True))
+	@jwt_required()
+	@role_required(['moderator', 'admin'])
 	def get(self):
 		username_filter = request.args.get("username")
 		first_name_filter = request.args.get("first_name")
@@ -65,47 +70,47 @@ class Users(MethodView):
   
 		return query.all()
 	
-       
+	   
 @blp.route('/register')
 class UserRegister(MethodView):
 	@blp.arguments(UserSchema)
 	@blp.response(201, UserSchema)    
 	def post(self, user_data):
 		user = UserModel(
-      id = str(uuid.uuid4()),
-      username=user_data["username"], 
-      password=pbkdf2_sha512.hash(user_data["password"]), 
-      avatar_url=user_data["avatar_url"],
-      first_name=user_data["first_name"],
-      last_name=user_data["last_name"],
-      role=user_data["role"],
-      )
+	  id = str(uuid.uuid4()),
+	  username=user_data["username"], 
+	  password=pbkdf2_sha512.hash(user_data["password"]), 
+	  avatar_url=user_data["avatar_url"],
+	  first_name=user_data["first_name"],
+	  last_name=user_data["last_name"],
+	  role=user_data["role"],
+	  )
 		try:
 			db.session.add(user)
 			db.session.commit()
 		except SQLAlchemyError:
 			abort(500, message = "An error occured while inserting the user")
-    
+	
 		return user
 
 
 @blp.route('/login')
 class UserLogin(MethodView):
-    @blp.arguments(PlainUserSchema)
-    def post(self, user_data):
-        user = UserModel.query.filter(
+	@blp.arguments(PlainUserSchema)
+	def post(self, user_data):
+		user = UserModel.query.filter(
 			UserModel.username == user_data["username"]
 		).first()
-        
-        if user and pbkdf2_sha512.verify(user_data["password"], user.password):
-            access_token = create_access_token(identity = str(user.id), fresh = True)
-            refresh_token = create_refresh_token(identity = str(user.id))
-            response = jsonify({"access_token": access_token})
-            set_refresh_cookies(response, refresh_token)
-            return response
-    
-        abort(401, description = "Invalid credentials")
-        
+		
+		if user and pbkdf2_sha512.verify(user_data["password"], user.password):
+			access_token = create_access_token(identity = str(user.id), fresh = True)
+			refresh_token = create_refresh_token(identity = str(user.id))
+			response = jsonify({"access_token": access_token})
+			set_refresh_cookies(response, refresh_token)
+			return response
+	
+		abort(401, description = "Invalid credentials")
+		
 @blp.route('/refresh')
 class TokenRefresh(MethodView):
 	@jwt_required(refresh=True)
