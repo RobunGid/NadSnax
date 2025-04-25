@@ -16,23 +16,29 @@ const initialState: AuthState = {
 	error: {},
 };
 
-export const loginThunk = createAsyncThunk('auth/login', async (credentials) => {
-	const response = await Axios.post<{ access_token: string; refresh_token: string }>(
-		'/login',
-		credentials,
-		{
-			headers: {
-				'Content-Type': 'apllication/json',
-			},
-		}
-	);
-	const data = response.data;
+export const loginThunk = createAsyncThunk(
+	'auth/login',
+	async ({ username, password }: { username: string; password: string }) => {
+		const response = await Axios.post<{
+			access_token: string;
+			refresh_token: string;
+		}>(
+			'/login',
+			{ username, password },
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		const data = response.data;
 
-	if (data.access_token && data.refresh_token) {
-		return { accessToken: data.access_token, refreshToken: data.refresh_token };
+		if (data.access_token) {
+			return { accessToken: data.access_token };
+		}
+		throw new Error('Failed to login');
 	}
-	throw new Error('Failed to login');
-});
+);
 
 export const refreshThunk = createAsyncThunk('auth/refresh', async () => {
 	const response = await Axios.post<{ access_token: string }>('/login', {
@@ -71,7 +77,6 @@ const slice = createSlice({
 		builder.addCase(loginThunk.fulfilled, (state, action) => {
 			state.status = 'success';
 			state.accessToken = action.payload.accessToken;
-			state.refreshToken = action.payload.refreshToken;
 		});
 		builder.addCase(loginThunk.rejected, (state, action) => {
 			state.status = 'error';

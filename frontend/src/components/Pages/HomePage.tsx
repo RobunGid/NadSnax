@@ -7,6 +7,7 @@ import { Review } from '../../types';
 
 export const HomePage = () => {
 	const reviews: Review[] = [];
+
 	return (
 		<div className='p-3'>
 			<section className='flex justify-center items-center w-full'>
