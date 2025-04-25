@@ -5,9 +5,8 @@ from schemas import UserSchema, UserUpdateSchema, PlainUserSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import create_refresh_token
-from flask import request
+from flask_jwt_extended import create_access_token, set_refresh_cookies, create_refresh_token, jwt_required, get_jwt_identity
+from flask import request, jsonify
 from passlib.hash import pbkdf2_sha512
 
 blp = Blueprint("users", __name__, description = "Operations on users")
@@ -85,6 +84,16 @@ class UserLogin(MethodView):
         if user and pbkdf2_sha512.verify(user_data["password"], user.password):
             access_token = create_access_token(identity = str(user.id), fresh = True)
             refresh_token = create_refresh_token(identity = str(user.id))
-            return {"access_token": access_token, "refresh_token": refresh_token}
+            response = jsonify({"access_token": access_token})
+            set_refresh_cookies(response, refresh_token)
+            return response
     
         abort(401, description = "Invalid credentials")
+        
+@blp.route('/refresh')
+class TokenRefresh(MethodView):
+	@jwt_required(refresh=True)
+	def post(self):
+		identity = get_jwt_identity()
+		access_token = create_access_token(identity=identity)
+		return jsonify(access_token=access_token)
