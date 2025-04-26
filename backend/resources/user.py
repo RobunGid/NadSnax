@@ -17,12 +17,12 @@ blp = Blueprint("users", __name__, description = "Operations on users")
 class User(MethodView):
 	@blp.response(200, UserSchema)
 	@jwt_required()
+	@role_required(['admin', 'moderator'])
 	def get(self, user_id):
 		identity = get_jwt_identity()
 		user = UserModel.get_or_404(identity)
-		if identity == user_id or user.role.value in ["admin", "moderator"]:
-			user = UserModel.query.get_or_404(user_id)
-			return user
+		user = UserModel.query.get_or_404(user_id)
+		return user
 		abort(403, message="You don't have permission to check this user data.")
 	
 	@role_required(['admin', 'moderator'])
