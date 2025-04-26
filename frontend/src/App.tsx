@@ -19,6 +19,8 @@ export const App = () => {
 	const categoriesStatus = useStateSelector((state) => state.category.status);
 	const userStatus = useStateSelector((state) => state.user.status);
 
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
+
 	const { modalVisibility, toggleModalVisibility } = useContext(ModalContext);
 
 	useEffect(() => {
@@ -27,7 +29,7 @@ export const App = () => {
 	}, []);
 
 	useEffect(() => {
-		if (userStatus === 'init') dispatch(fetchUser());
+		if (userStatus === 'init' && accessToken) dispatch(fetchUser(accessToken));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

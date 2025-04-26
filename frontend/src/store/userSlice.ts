@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
-// import { userAxios } from '../api/user';
-import { user } from '../mock';
 import { Status } from './types';
+import { Axios } from '../api';
 
 type UserState = {
 	user: User | null;
@@ -14,21 +13,21 @@ const initialState: UserState = {
 	status: 'init',
 };
 
-export const fetchUser = createAsyncThunk<User, undefined, { rejectValue: string }>(
+export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>(
 	'user/fetchUser',
-	async (
-		_,
-		{
-			/*rejectWithValue*/
+	async (accessToken, { rejectWithValue }) => {
+		const response = await Axios.get<User>('/user', {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json',
+			},
+		});
+
+		if (response.status != 200) {
+			return rejectWithValue('Server Error!');
 		}
-	) => {
-		// const response = await userAxios.get<User>('/user', {});
 
-		// if (response.status != 200) {
-		// 	return rejectWithValue('Server Error!');
-		// }
-
-		// const user = response.data;
+		const user = response.data;
 		return user;
 	}
 );
