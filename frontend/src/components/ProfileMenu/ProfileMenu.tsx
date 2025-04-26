@@ -2,9 +2,13 @@ import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
 import { ProfileMenuButton } from './ProfileMenuButton';
+import { UIProfileMenuItem } from './UI/UIProfileMenuItem';
 
 export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
+
+	const userStatus = useStateSelector((state) => state.user.status);
+
 	return (
 		<div className='m-2'>
 			<ProfileMenuButton user={user} />
@@ -14,24 +18,32 @@ export const ProfileMenu = () => {
 					<ThemeSwitcher className='m-2' />
 					<div className='text-xs'>Change App Theme</div>
 				</li>
-				<ProfileMenuItem.Profile />
-				<ProfileMenuItem.Favourites />
+				{userStatus === 'success' ? (
+					<>
+						<ProfileMenuItem.Profile />
+						<ProfileMenuItem.Favourites />
 
-				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
-					<div>
-						{user?.firstName} {user?.lastName}
-					</div>
-					<div className='font-medium truncate'>{user?.role}</div>
-				</li>
-				<li>
-					<ul>
-						<ProfileMenuItem.OrderHistory />
-						<ProfileMenuItem.Settings />
-						<ProfileMenuItem.Reviews />
-					</ul>
-				</li>
+						<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
+							<div>
+								{user?.firstName} {user?.lastName}
+							</div>
+							<div className='font-medium truncate'>{user?.role}</div>
+						</li>
+						<li>
+							<ul>
+								<ProfileMenuItem.OrderHistory />
+								<ProfileMenuItem.Settings />
+								<ProfileMenuItem.Reviews />
+							</ul>
+						</li>
 
-				<ProfileMenuItem.SignOut />
+						<ProfileMenuItem.SignOut />
+					</>
+				) : (
+					<>
+						<UIProfileMenuItem to='/login'>Log in</UIProfileMenuItem>
+					</>
+				)}
 			</ul>
 		</div>
 	);

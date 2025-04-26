@@ -41,13 +41,14 @@ export const loginThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk(
 	'auth/refresh',
 	async (_, { rejectWithValue }) => {
-		const response = await Axios.post('/refresh', {}, { withCredentials: true });
+		const response = await fetch('/refresh');
 
 		if (response.status != 200) {
-			rejectWithValue(response.statusText);
+			return rejectWithValue(response.statusText);
 		}
 
-		return response.data.access_token;
+		const refreshToken = await response.json();
+		return refreshToken;
 	}
 );
 
