@@ -12,6 +12,8 @@ import { getAppTheme } from './logic/getAppTheme';
 import { UIModal } from './components/UI/UIModal';
 import { Cart } from './components/Cart/Cart';
 import { ModalContext } from './context/ModalContext';
+import { LoginModalContext } from './context/LoginModalContext';
+import { Login } from './components/Login/Login';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -23,6 +25,8 @@ export const App = () => {
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const { modalVisibility, toggleModalVisibility } = useContext(ModalContext);
+	const { loginModalVisibility, toggleLoginModalVisibility } =
+		useContext(LoginModalContext);
 
 	useEffect(() => {
 		if (categoriesStatus === 'init') dispatch(fetchCategories());
@@ -54,6 +58,9 @@ export const App = () => {
 			<ScrollToTop />
 			<UIModal active={modalVisibility} setActive={toggleModalVisibility}>
 				<Cart />
+			</UIModal>
+			<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
+				<Login />
 			</UIModal>
 			<main>
 				<Routes>

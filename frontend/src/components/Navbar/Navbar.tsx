@@ -10,6 +10,9 @@ import { NavbarItem } from './NavbarItem';
 import { UINavbarNavigation } from './UI/UINavbarNavigation';
 import { ModalContext } from '../../context/ModalContext';
 import { UINavbar } from './UI/UINavbar';
+import { useStateSelector } from '../../store';
+import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
+import { NavbarLoginButton } from './NavbarLoginButton';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -18,6 +21,8 @@ interface NavbarProps {
 export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	const { toggleModalVisibility } = useContext(ModalContext);
+
+	const authStatus = useStateSelector((state) => state.auth.status);
 
 	return (
 		<UINavbar>
@@ -35,7 +40,14 @@ export const Navbar = ({ categories }: NavbarProps) => {
 
 			<NavbarCart onClick={() => toggleModalVisibility()} />
 
-			<ProfileMenu />
+			{authStatus === 'success' ? (
+				<ProfileMenu />
+			) : (
+				<>
+					<ThemeSwitcher />
+					<NavbarLoginButton />
+				</>
+			)}
 		</UINavbar>
 	);
 };
