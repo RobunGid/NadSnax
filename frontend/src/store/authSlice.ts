@@ -4,14 +4,12 @@ import { Status } from './types';
 
 type AuthState = {
 	accessToken: string;
-	refreshToken: string;
 	status: Status;
 	error: SerializedError;
 };
 
 const initialState: AuthState = {
 	accessToken: '',
-	refreshToken: '',
 	status: 'init',
 	error: {},
 };
@@ -41,7 +39,7 @@ export const loginThunk = createAsyncThunk(
 );
 
 export const refreshThunk = createAsyncThunk('auth/refresh', async () => {
-	const response = await Axios.post<{ access_token: string }>('/login', {
+	const response = await Axios.post<{ access_token: string }>('/refresh', {
 		headers: {
 			'Content-Type': 'apllication/json',
 			credentials: 'include',
@@ -62,12 +60,8 @@ const slice = createSlice({
 		setAccessToken: (state, action) => {
 			state.accessToken = action.payload;
 		},
-		setRefreshToken: (state, action) => {
-			state.refreshToken = action.payload;
-		},
 		clearTokens: (state) => {
 			state.accessToken = '';
-			state.refreshToken = '';
 		},
 	},
 	extraReducers: (builder) => {
