@@ -68,9 +68,12 @@ export type Review = {
 
 export type User = {
 	id: string;
-	avatarUrl: string;
-	name: string;
-	email: string;
+	avatarUrl?: string;
+	firstName: string;
+	lastName: string;
+	reviews?: Review[];
+	role: string;
+	username: string;
 };
 
 export type CartItemType = {

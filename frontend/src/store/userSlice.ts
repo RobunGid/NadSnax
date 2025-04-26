@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
 import { Status } from './types';
 import { Axios } from '../api';
+import camelcaseKeys from 'camelcase-keys';
 
 type UserState = {
 	user: User | null;
@@ -16,7 +17,7 @@ const initialState: UserState = {
 export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>(
 	'user/fetchUser',
 	async (accessToken, { rejectWithValue }) => {
-		const response = await Axios.get<User>('/user', {
+		const response = await Axios.get<User>('/user/me', {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 				'Content-Type': 'application/json',
@@ -28,7 +29,8 @@ export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>
 		}
 
 		const user = response.data;
-		return user;
+		const camelcaseUser = camelcaseKeys(user, { deep: true });
+		return camelcaseUser;
 	}
 );
 

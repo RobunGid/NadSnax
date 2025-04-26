@@ -38,20 +38,18 @@ export const loginThunk = createAsyncThunk(
 	}
 );
 
-export const refreshThunk = createAsyncThunk('auth/refresh', async () => {
-	const response = await Axios.post<{ access_token: string }>('/refresh', {
-		headers: {
-			'Content-Type': 'apllication/json',
-			credentials: 'include',
-		},
-	});
-	const data = response.data;
+export const refreshThunk = createAsyncThunk(
+	'auth/refresh',
+	async (_, { rejectWithValue }) => {
+		const response = await Axios.post('/refresh', {}, { withCredentials: true });
 
-	if (data.access_token) {
-		return { accessToken: data.access_token };
+		if (response.status != 200) {
+			rejectWithValue(response.statusText);
+		}
+
+		return response.data.access_token;
 	}
-	throw new Error('Failed to login');
-});
+);
 
 const slice = createSlice({
 	name: 'auth',

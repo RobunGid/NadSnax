@@ -18,8 +18,10 @@ export const ProfileMenu = () => {
 				<ProfileMenuItem.Favourites />
 
 				<li className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
-					<div>{user?.name}</div>
-					<div className='font-medium truncate'>{user?.email}</div>
+					<div>
+						{user?.firstName} {user?.lastName}
+					</div>
+					<div className='font-medium truncate'>{user?.role}</div>
 				</li>
 				<li>
 					<ul>
