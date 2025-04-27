@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode, useContext } from 'react';
 import { Link } from 'react-router';
 import { UIButton } from '../UI/UIButton';
-import { ModalContext } from '../../context/ModalContext';
+import { CartModalContext } from '../../context/CartModalContext';
 
 interface ToProductsButtonProps {
 	children: ReactNode;
@@ -9,11 +9,16 @@ interface ToProductsButtonProps {
 }
 
 export const ToProductsButton = ({ children, onClick }: ToProductsButtonProps) => {
-	const { toggleModalVisibility } = useContext(ModalContext);
+	const { toggleCartModalVisibility } = useContext(CartModalContext);
+
+	const handleButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+		toggleCartModalVisibility();
+		if (onClick) onClick(event);
+	};
 
 	return (
 		<Link to='/products' className='mt-10'>
-			<UIButton onClick={onClick && toggleModalVisibility}>{children}</UIButton>
+			<UIButton onClick={handleButtonClick}>{children}</UIButton>
 		</Link>
 	);
 };

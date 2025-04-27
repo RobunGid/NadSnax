@@ -6,14 +6,14 @@ import { BrowserRouter } from 'react-router';
 import { IconContext } from 'react-icons';
 import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
-import { ModalProvider } from './context/ModalProvider.tsx';
+import { CartModalProvider } from './context/CartModalProvider.tsx';
 import { NavbarProvider } from './context/NavbarProvider.tsx';
 import { LoginModalProvider } from './context/LoginModalProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Provider store={store}>
-			<ModalProvider>
+			<CartModalProvider>
 				<LoginModalProvider>
 					<NavbarProvider>
 						<BrowserRouter>
@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
 						</BrowserRouter>
 					</NavbarProvider>
 				</LoginModalProvider>
-			</ModalProvider>
+			</CartModalProvider>
 		</Provider>
 	</StrictMode>
 );

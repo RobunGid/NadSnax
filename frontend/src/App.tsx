@@ -4,16 +4,13 @@ import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
 import { fetchUser, refreshThunk, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
 import { getAppTheme } from './logic/getAppTheme';
-import { UIModal } from './components/UI/UIModal';
-import { Cart } from './components/Cart/Cart';
-import { ModalContext } from './context/ModalContext';
-import { LoginModalContext } from './context/LoginModalContext';
-import { Login } from './components/Login/Login';
+import { LoginModal } from './components/LoginModal/LoginModal';
+import { CartModal } from './components/CartModal/CartModal';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -23,10 +20,6 @@ export const App = () => {
 	const authStatus = useStateSelector((state) => state.auth.status);
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
-	const { modalVisibility, toggleModalVisibility } = useContext(ModalContext);
-	const { loginModalVisibility, toggleLoginModalVisibility } =
-		useContext(LoginModalContext);
 
 	useEffect(() => {
 		if (categoriesStatus === 'init') dispatch(fetchCategories());
@@ -56,12 +49,8 @@ export const App = () => {
 		<>
 			<Header />
 			<ScrollToTop />
-			<UIModal active={modalVisibility} setActive={toggleModalVisibility}>
-				<Cart />
-			</UIModal>
-			<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
-				<Login />
-			</UIModal>
+			<CartModal />
+			<LoginModal />
 			<main>
 				<Routes>
 					<Route path='/' element={<Navigate to='/home' />} />

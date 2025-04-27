@@ -8,7 +8,7 @@ import { NavbarCategories } from './NavbarCategories';
 import { UINavbarSiteLogo } from './UI/UINavbarSiteLogo';
 import { NavbarItem } from './NavbarItem';
 import { UINavbarNavigation } from './UI/UINavbarNavigation';
-import { ModalContext } from '../../context/ModalContext';
+import { CartModalContext } from '../../context/CartModalContext';
 import { UINavbar } from './UI/UINavbar';
 import { useStateSelector } from '../../store';
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
@@ -20,7 +20,7 @@ interface NavbarProps {
 
 export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
-	const { toggleModalVisibility } = useContext(ModalContext);
+	const { toggleCartModalVisibility } = useContext(CartModalContext);
 
 	const authStatus = useStateSelector((state) => state.auth.status);
 
@@ -38,7 +38,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 				<NavbarCategories categories={categories} />
 			</UINavbarNavigation>
 
-			<NavbarCart onClick={() => toggleModalVisibility()} />
+			<NavbarCart onClick={() => toggleCartModalVisibility()} />
 
 			{authStatus === 'success' ? (
 				<ProfileMenu />
