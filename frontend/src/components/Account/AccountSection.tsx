@@ -9,14 +9,13 @@ interface AccountSectionProps {
 }
 
 export const AccountSection = ({ section }: AccountSectionProps) => {
-	const sections: Record<Exclude<Section, undefined>, ReactNode> = {
+	const sections: Record<Section, ReactNode> = {
 		settings: <AccountSettings />,
 		profile: <AccountProfile />,
 		help: <></>,
 		order_history: <></>,
 		recently_viewed: <></>,
 		reviews: <></>,
-		signout: <></>,
 		statistics: <></>,
 		favourites: <></>,
 	};

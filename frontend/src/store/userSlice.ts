@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
-import { Status } from './types';
+import { AppDispatch, Status } from './types';
 import { Axios } from '../api';
 import camelcaseKeys from 'camelcase-keys';
 
@@ -37,7 +37,14 @@ export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>
 const slice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+		setUser: (state, action) => {
+			state.user = action.payload;
+		},
+		clearUser: (state) => {
+			state.user = null;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchUser.pending, (state) => {
 			state.status = 'loading';
@@ -48,5 +55,11 @@ const slice = createSlice({
 		});
 	},
 });
+
+export const clearUser = () => (dispatch: AppDispatch) => {
+	dispatch({
+		type: 'user/clearUser',
+	});
+};
 
 export const { reducer: userReducer, actions: userActions } = slice;

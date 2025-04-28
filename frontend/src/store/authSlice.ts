@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, SerializedError } from '@reduxjs/toolkit';
 import { Axios } from '../api';
 import { Status } from './types';
+import { fetchUser, userActions } from './userSlice';
 
 type AuthState = {
 	accessToken: string;
@@ -16,7 +17,10 @@ const initialState: AuthState = {
 
 export const loginThunk = createAsyncThunk(
 	'auth/login',
-	async ({ username, password }: { username: string; password: string }) => {
+	async (
+		{ username, password }: { username: string; password: string },
+		{ dispatch }
+	) => {
 		const response = await Axios.post<{
 			access_token: string;
 			refresh_token: string;
@@ -32,6 +36,7 @@ export const loginThunk = createAsyncThunk(
 		const data = response.data;
 
 		if (data.access_token) {
+			dispatch(fetchUser(data.access_token));
 			return { accessToken: data.access_token };
 		}
 		throw new Error('Failed to login');
@@ -40,28 +45,34 @@ export const loginThunk = createAsyncThunk(
 
 export const refreshThunk = createAsyncThunk(
 	'auth/refresh',
-	async (_, { rejectWithValue }) => {
-		const response = await fetch('/refresh');
-
+	async (_, { rejectWithValue, dispatch }) => {
+		const response = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
+			method: 'POST',
+			credentials: 'include',
+		});
 		if (response.status != 200) {
 			return rejectWithValue(response.statusText);
 		}
 
-		const refreshToken = await response.json();
-		return refreshToken;
+		const data = await response.json();
+		const accessToken = data.access_token;
+		dispatch(fetchUser(accessToken));
+		return data;
 	}
 );
 
 export const signoutThunk = createAsyncThunk(
 	'auth/signout',
-	async (_, { rejectWithValue }) => {
-		const response = await fetch('/signout');
+	async (_, { rejectWithValue, dispatch }) => {
+		const response = await fetch(import.meta.env.VITE_API_URL + '/signout', {
+			method: 'POST',
+		});
 
 		if (response.status != 200) {
 			return rejectWithValue(response.statusText);
 		}
-
-		return true;
+		dispatch(authActions.clearTokens());
+		dispatch(userActions.clearUser());
 	}
 );
 

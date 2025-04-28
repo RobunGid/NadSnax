@@ -89,7 +89,6 @@ export type Section =
 	| 'settings'
 	| 'statistics'
 	| 'help'
-	| 'signout'
 	| 'favourites';
 
 export const predicateSection = (value?: string): value is Section => {

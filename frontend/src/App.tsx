@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/Header/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
-import { fetchUser, refreshThunk, useAppDispatch, useStateSelector } from './store';
+import { refreshThunk, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
@@ -16,10 +16,6 @@ export const App = () => {
 	const dispatch = useAppDispatch();
 
 	const categoriesStatus = useStateSelector((state) => state.category.status);
-	const userStatus = useStateSelector((state) => state.user.status);
-	const authStatus = useStateSelector((state) => state.auth.status);
-
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	useEffect(() => {
 		if (categoriesStatus === 'init') dispatch(fetchCategories());
@@ -27,12 +23,7 @@ export const App = () => {
 	}, []);
 
 	useEffect(() => {
-		if (userStatus === 'init' && accessToken) dispatch(fetchUser(accessToken));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [accessToken]);
-
-	useEffect(() => {
-		if (authStatus === 'init') dispatch(refreshThunk());
+		dispatch(refreshThunk());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

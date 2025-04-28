@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { useAppDispatch, useStateSelector } from '../../store';
+import { signoutThunk, useAppDispatch, useStateSelector } from '../../store';
 import { AccountMenuItem } from './AccountMenuItem';
 import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 import { UIAccountMenu } from './UI/UIAccountMenu';
@@ -9,8 +9,9 @@ export const AccountMenu = () => {
 
 	const dispatch = useAppDispatch();
 
-	const handleSignout: MouseEventHandler<HTMLAnchorElement> = () => {
-		dispatch(() => {});
+	const handleSignout: MouseEventHandler<HTMLAnchorElement> = (event) => {
+		event.preventDefault();
+		dispatch(signoutThunk());
 	};
 
 	return (
