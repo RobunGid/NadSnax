@@ -129,13 +129,13 @@ class TokenRefresh(MethodView):
         access_token = create_access_token(identity=identity)
         return jsonify(access_token=access_token)
 
-@blp.route('/logout')
-class Logout(MethodView):
+@blp.route('/signout')
+class Signout(MethodView):
     @jwt_required(refresh=True)
     def post(self):
         jti = get_jwt()["jti"]
         BLOCKLIST.add(jti)
-        response = jsonify(msg="Logout successful")
+        response = jsonify(msg="Signout successful")
         response.set_cookie('refresh_token_cookie', '', expires=0, path='/refresh', httponly=True)
         response.set_cookie('access_token_cookie', '', expires=0, path='/', httponly=True)
         return response
