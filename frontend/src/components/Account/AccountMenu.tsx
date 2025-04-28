@@ -3,15 +3,19 @@ import { signoutThunk, useAppDispatch, useStateSelector } from '../../store';
 import { AccountMenuItem } from './AccountMenuItem';
 import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 import { UIAccountMenu } from './UI/UIAccountMenu';
+import { useNavigate } from 'react-router';
 
 export const AccountMenu = () => {
 	const user = useStateSelector((state) => state.user);
 
 	const dispatch = useAppDispatch();
 
+	const navigate = useNavigate();
+
 	const handleSignout: MouseEventHandler<HTMLAnchorElement> = (event) => {
 		event.preventDefault();
 		dispatch(signoutThunk());
+		navigate('/products');
 	};
 
 	return (
