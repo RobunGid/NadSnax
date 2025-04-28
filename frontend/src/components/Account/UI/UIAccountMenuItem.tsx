@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
 interface UIAccountMenuItem {
@@ -7,6 +7,7 @@ interface UIAccountMenuItem {
 	className?: string;
 	children: ReactNode;
 	isLast?: boolean;
+	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export const UIAccountMenuItem = ({
@@ -14,6 +15,7 @@ export const UIAccountMenuItem = ({
 	className,
 	children,
 	isLast,
+	onClick,
 }: UIAccountMenuItem) => {
 	return (
 		<li>
@@ -27,6 +29,7 @@ export const UIAccountMenuItem = ({
 					)
 				}
 				to={to}
+				onClick={onClick}
 			>
 				{children}
 			</NavLink>

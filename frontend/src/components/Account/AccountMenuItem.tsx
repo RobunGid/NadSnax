@@ -3,6 +3,11 @@ import { BiHelpCircle, BiHistory, BiInfoCircle, BiStar, BiUser } from 'react-ico
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { UIAccountMenuItem } from './UI/UIAccountMenuItem';
 import { PiSignOut, PiStar } from 'react-icons/pi';
+import { MouseEventHandler } from 'react';
+
+interface SignoutProps {
+	onClick?: MouseEventHandler<HTMLAnchorElement>;
+}
 
 export const AccountMenuItem = {
 	Profile: () => (
@@ -54,8 +59,8 @@ export const AccountMenuItem = {
 			Settings
 		</UIAccountMenuItem>
 	),
-	Signout: () => (
-		<UIAccountMenuItem to='/account/signout' isLast>
+	Signout: ({ onClick }: SignoutProps) => (
+		<UIAccountMenuItem to='/account/signout' isLast onClick={onClick}>
 			<PiSignOut />
 			Signout
 		</UIAccountMenuItem>

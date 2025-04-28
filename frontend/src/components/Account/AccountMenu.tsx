@@ -1,10 +1,18 @@
-import { useStateSelector } from '../../store';
+import { MouseEventHandler } from 'react';
+import { useAppDispatch, useStateSelector } from '../../store';
 import { AccountMenuItem } from './AccountMenuItem';
 import { AccountMenuUserInfo } from './AccountMenuUserInfo';
 import { UIAccountMenu } from './UI/UIAccountMenu';
 
 export const AccountMenu = () => {
 	const user = useStateSelector((state) => state.user);
+
+	const dispatch = useAppDispatch();
+
+	const handleSignout: MouseEventHandler<HTMLAnchorElement> = () => {
+		dispatch(() => {});
+	};
+
 	return (
 		<UIAccountMenu>
 			<AccountMenuUserInfo user={user.user} status={user.status} />
@@ -28,7 +36,7 @@ export const AccountMenu = () => {
 				</ul>
 			</li>
 			<AccountMenuItem.Settings />
-			<AccountMenuItem.Signout />
+			<AccountMenuItem.Signout onClick={handleSignout} />
 		</UIAccountMenu>
 	);
 };
