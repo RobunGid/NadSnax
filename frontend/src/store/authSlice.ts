@@ -52,6 +52,19 @@ export const refreshThunk = createAsyncThunk(
 	}
 );
 
+export const signoutThunk = createAsyncThunk(
+	'auth/signout',
+	async (_, { rejectWithValue }) => {
+		const response = await fetch('/signout');
+
+		if (response.status != 200) {
+			return rejectWithValue(response.statusText);
+		}
+
+		return true;
+	}
+);
+
 const slice = createSlice({
 	name: 'auth',
 	initialState,
@@ -86,6 +99,16 @@ const slice = createSlice({
 		builder.addCase(refreshThunk.rejected, (state, action) => {
 			state.status = 'error';
 			state.error = action.error;
+		});
+
+		builder.addCase(signoutThunk.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(signoutThunk.fulfilled, (state) => {
+			state.status = 'success';
+		});
+		builder.addCase(signoutThunk.rejected, (state) => {
+			state.status = 'error';
 		});
 	},
 });
