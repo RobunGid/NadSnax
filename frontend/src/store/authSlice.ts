@@ -46,18 +46,22 @@ export const loginThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk(
 	'auth/refresh',
 	async (_, { rejectWithValue, dispatch }) => {
-		const response = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
-			method: 'POST',
-			credentials: 'include',
-		});
-		if (response.status != 200) {
-			return rejectWithValue(response.statusText);
-		}
+		try {
+			const response = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
+				method: 'POST',
+				credentials: 'include',
+			});
+			if (response.status != 200) {
+				return rejectWithValue(response.statusText);
+			}
 
-		const data = await response.json();
-		const accessToken = data.access_token;
-		dispatch(fetchUser(accessToken));
-		return data;
+			const data = await response.json();
+			const accessToken = data.access_token;
+			dispatch(fetchUser(accessToken));
+			return data;
+		} catch (error) {
+			return rejectWithValue(error);
+		}
 	}
 );
 

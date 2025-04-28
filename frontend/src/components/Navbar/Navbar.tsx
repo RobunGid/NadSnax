@@ -22,7 +22,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	const { toggleCartModalVisibility } = useContext(CartModalContext);
 
-	const authStatus = useStateSelector((state) => state.auth.status);
+	const user = useStateSelector((state) => state.user.user);
 
 	return (
 		<UINavbar>
@@ -40,7 +40,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 
 			<NavbarCart onClick={() => toggleCartModalVisibility()} />
 
-			{authStatus === 'success' ? (
+			{user ? (
 				<ProfileMenu />
 			) : (
 				<>
