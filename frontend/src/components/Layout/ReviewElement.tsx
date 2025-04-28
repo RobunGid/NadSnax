@@ -8,10 +8,12 @@ export const ReviewElement = ({ review }: ReviewElementProps) => {
 		<li className='flex flex-col items-center w-60 gap-y-3 -mb-24'>
 			<img
 				src={review.user.avatarUrl}
-				alt={`${review.user.name} Avatar`}
+				alt={`${review.user.username} Avatar`}
 				className='w-20 rounded-full'
 			/>
-			<p>{review.user.name}</p>
+			<p>
+				{review.user.firstName} {review.user.lastName}
+			</p>
 			<ProductRating rating={review.rating} className='flex text-yellow-400' />
 			<p className='text-sm text-center'>{review.text}</p>
 			{/*item && (
