@@ -5,6 +5,7 @@ import { MouseEventHandler } from 'react';
 import { useNavigate } from 'react-router';
 import { ProfileMenuThemeSwitcher } from './ProfileMenuThemeSwitcher';
 import { UIProfileMenuUserInfo } from './UI/UIProfileMenuUserInfo';
+import { UIProfileMenu } from './UI/UIProfileMenu';
 
 export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
@@ -23,13 +24,17 @@ export const ProfileMenu = () => {
 		<div className='m-2'>
 			<ProfileMenuButton user={user} />
 
-			<ul className='overflow-hidden duration-200 max-h-0 peer-has-[:checked]:max-h-[350px] absolute right-2 top-16 z-10 bg-gray-200 divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600'>
+			<UIProfileMenu>
 				<ProfileMenuThemeSwitcher />
 
 				<ProfileMenuItem.Profile />
 				<ProfileMenuItem.Favourites />
 
-				<UIProfileMenuUserInfo />
+				<UIProfileMenuUserInfo
+					firstName={user?.firstName}
+					lastName={user?.lastName}
+					username={user?.username}
+				/>
 				<li>
 					<ul>
 						<ProfileMenuItem.OrderHistory />
@@ -39,7 +44,7 @@ export const ProfileMenu = () => {
 				</li>
 
 				<ProfileMenuItem.SignOut onClick={handleSignout} />
-			</ul>
+			</UIProfileMenu>
 		</div>
 	);
 };
