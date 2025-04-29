@@ -102,7 +102,6 @@ export const predicateSection = (value?: string): value is Section => {
 			'settings',
 			'statistics',
 			'help',
-			'signout',
 			'favourites',
 		].includes(value)
 	) {
