@@ -1,10 +1,22 @@
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
-import { useStateSelector } from '../../store';
+import { signoutThunk, useAppDispatch, useStateSelector } from '../../store';
 import { ProfileMenuItem } from './ProfileMenuItem';
 import { ProfileMenuButton } from './ProfileMenuButton';
+import { MouseEventHandler } from 'react';
+import { useNavigate } from 'react-router';
 
 export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
+
+	const dispatch = useAppDispatch();
+
+	const navigate = useNavigate();
+
+	const handleSignout: MouseEventHandler<HTMLAnchorElement> = (event) => {
+		event.preventDefault();
+		dispatch(signoutThunk());
+		navigate('/products');
+	};
 
 	return (
 		<div className='m-2'>
@@ -33,7 +45,7 @@ export const ProfileMenu = () => {
 					</ul>
 				</li>
 
-				<ProfileMenuItem.SignOut />
+				<ProfileMenuItem.SignOut onClick={handleSignout} />
 			</ul>
 		</div>
 	);

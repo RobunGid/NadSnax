@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { Link } from 'react-router';
 
 interface UIProfileMenuItemProps {
@@ -7,6 +7,7 @@ interface UIProfileMenuItemProps {
 	children: ReactNode;
 	className?: string;
 	type?: 'primary' | 'secondary';
+	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export const UIProfileMenuItem = ({
@@ -14,6 +15,7 @@ export const UIProfileMenuItem = ({
 	children,
 	className,
 	type,
+	onClick,
 }: UIProfileMenuItemProps) => {
 	return (
 		<li>
@@ -27,6 +29,7 @@ export const UIProfileMenuItem = ({
 					className
 				)}
 				to={to}
+				onClick={onClick}
 			>
 				{children}
 			</Link>

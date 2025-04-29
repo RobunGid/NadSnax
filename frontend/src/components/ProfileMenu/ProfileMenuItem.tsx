@@ -1,4 +1,9 @@
+import { MouseEventHandler } from 'react';
 import { UIProfileMenuItem } from './UI/UIProfileMenuItem';
+
+interface SignOutProps {
+	onClick?: MouseEventHandler<HTMLAnchorElement>;
+}
 
 export const ProfileMenuItem = {
 	Profile: () => (
@@ -16,8 +21,8 @@ export const ProfileMenuItem = {
 	Reviews: () => (
 		<UIProfileMenuItem to='/account/reviews'>My reviews</UIProfileMenuItem>
 	),
-	SignOut: () => (
-		<UIProfileMenuItem to='/account/signout' type='secondary'>
+	SignOut: ({ onClick }: SignOutProps) => (
+		<UIProfileMenuItem to='/account/signout' type='secondary' onClick={onClick}>
 			Sign out
 		</UIProfileMenuItem>
 	),
