@@ -10,4 +10,37 @@
 		margin: 0;
 		padding: 0;
 	}
+
+	html {
+		font-family: sans-serif;
+		color: #333;
+	}
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--animate-fadeIn: fadeIn 0.15s ease-in-out 0s forwards;
+	--animate-skeleton: fadeIn 0.4s ease-in-out 0.25s 1 normal forwards,
+		skeletonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.2s infinite;
+
+	--gray-650: oklch(0.4095 0.032 258.268);
+	--gray-250: oklch(0.9 0.008 261.435);
+	--gray-825: oklch(0.25125 0.03425 261.462);
+	--gray-750: oklch(0.3255 0.0355 258.159);
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes skeletonPulse {
+		50% {
+			opacity: 0.65;
+		}
+	}
 }
