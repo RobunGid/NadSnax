@@ -50,7 +50,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 		}).format(item.oldPrice);
 
 	return (
-		<div className='hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0'>
+		<div className='hover:scale-[102.5%] transition-transform animate-fadeIn '>
 			<Link
 				to={`/products/page${item.pageLink}`}
 				className={clsx(
