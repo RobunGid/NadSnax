@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-type UILoginModalInputProps = {
+type UIAuthozationModalInputProps = {
 	children?: ReactNode;
 	error?: boolean;
 	errorMessage?: string;
 } & Partial<JSX.IntrinsicElements['input']>;
 
-export const UILoginModalInput = (props: UILoginModalInputProps) => {
+export const UIAuthozationModalInput = (props: UIAuthozationModalInputProps) => {
 	const { errorMessage, error, placeholder } = props;
 	return (
 		<label className='relative flex flex-col-reverse'>

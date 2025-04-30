@@ -5,12 +5,12 @@ import {
 	LoginFormValue,
 } from '../../logic/loginFormConfig';
 import { loginThunk, useAppDispatch } from '../../store';
-import { UILoginModalInput } from './UI/UILoginModalInput';
-import { UILoginForm } from './UI/UILoginForm';
+import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
+import { UIAuthozationModalInput } from './UI/UIAuthozationModalInput';
 
-export const LoginForm = () => {
+export const AuthozationModalLoginForm = () => {
 	const [loginFormState, setLoginFormState] =
 		useState<LoginFormValue>(loginFormInitialState);
 
@@ -35,12 +35,12 @@ export const LoginForm = () => {
 			<span className='text-lg'>Login</span>
 			<UILoginForm onSubmit={onSubmit} className='text-black'>
 				{loginFormConfig.map((conf) => (
-					<UILoginModalInput
+					<UIAuthozationModalInput
 						{...conf}
 						onChange={onChange}
 						key={conf.name}
 						value={loginFormState[conf.name]}
-					></UILoginModalInput>
+					></UIAuthozationModalInput>
 				))}
 				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
 					Login
