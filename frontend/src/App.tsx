@@ -9,7 +9,7 @@ import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
 import { getAppTheme } from './logic/getAppTheme';
-import { LoginModal } from './components/LoginModal/LoginModal';
+import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 
 export const App = () => {
