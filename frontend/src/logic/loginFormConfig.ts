@@ -9,7 +9,7 @@ export const loginFormConfig: FormConfig[] = [
 		placeholder: 'Username',
 		required: true,
 		autoComplete: 'username',
-		minLength: 4,
+		minLength: 8,
 	},
 	{
 		name: 'password',

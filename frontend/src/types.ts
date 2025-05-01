@@ -76,6 +76,8 @@ export type User = {
 	username: string;
 };
 
+export type Role = 'user' | 'admin' | 'moderator';
+
 export type CartItemType = {
 	item: Item;
 	count: number;

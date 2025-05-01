@@ -4,6 +4,7 @@ import { LoginModalContext } from '../../context/LoginModalContext';
 import { AuthozationModalLoginForm } from './AuthozationModalLoginForm';
 import { UIAuthozationModalButtonToSignup } from './UI/UIAuthozationModalButtonToSignup';
 import { UIAuthozationModalButtonToLogin } from './UI/UIAuthozationModalButtonToLogin';
+import { AuthorizationModalRegisterForm } from './AuthozationModalRegisterForm';
 
 export const LoginModal = () => {
 	const { loginModalVisibility, toggleLoginModalVisibility } =
@@ -13,11 +14,20 @@ export const LoginModal = () => {
 
 	return (
 		<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
-			<AuthozationModalLoginForm />
 			{isLoginForm ? (
-				<UIAuthozationModalButtonToSignup onClick={() => setIsLoginForm(false)} />
+				<>
+					<AuthozationModalLoginForm />
+					<UIAuthozationModalButtonToSignup
+						onClick={() => setIsLoginForm(false)}
+					/>
+				</>
 			) : (
-				<UIAuthozationModalButtonToLogin onClick={() => setIsLoginForm(true)} />
+				<>
+					<AuthorizationModalRegisterForm />
+					<UIAuthozationModalButtonToLogin
+						onClick={() => setIsLoginForm(true)}
+					/>
+				</>
 			)}
 		</UIModal>
 	);

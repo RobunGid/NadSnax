@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, SerializedError } from '@reduxjs/toolkit
 import { Axios } from '../api';
 import { Status } from './types';
 import { fetchUser, userActions } from './userSlice';
+import { User } from '../types';
 
 type AuthState = {
 	accessToken: string;
@@ -40,6 +41,44 @@ export const loginThunk = createAsyncThunk(
 			return { accessToken: data.access_token };
 		}
 		throw new Error('Failed to login');
+	}
+);
+
+export const registerThunk = createAsyncThunk(
+	'auth/register',
+	async (
+		{
+			username,
+			password,
+			firstName,
+			lastName,
+			role,
+			avatarUrl,
+		}: Omit<User, 'id'> & { password: string },
+		{ dispatch }
+	) => {
+		const response = await Axios.post(
+			'/register',
+			{
+				username,
+				password,
+				first_name: firstName,
+				last_name: lastName,
+				role,
+				avatar_url: avatarUrl,
+			},
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		const data = response.data;
+
+		if (data && response.status === 201) {
+			dispatch(loginThunk({ username, password }));
+		}
+		throw new Error('Failed to register');
 	}
 );
 
