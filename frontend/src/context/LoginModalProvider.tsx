@@ -6,9 +6,15 @@ export const LoginModalProvider = ({ children }: { children: ReactNode }) => {
 
 	const toggleLoginModalVisibility = () => setLoginModalVisibility((prev) => !prev);
 
+	const disableLoginModalVisibility = () => setLoginModalVisibility(false);
+
 	return (
 		<LoginModalContext.Provider
-			value={{ loginModalVisibility, toggleLoginModalVisibility }}
+			value={{
+				loginModalVisibility,
+				toggleLoginModalVisibility,
+				disableLoginModalVisibility,
+			}}
 		>
 			{children}
 		</LoginModalContext.Provider>

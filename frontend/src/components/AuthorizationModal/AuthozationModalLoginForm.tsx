@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import {
 	loginFormConfig,
 	loginFormInitialState,
 	LoginFormValue,
 } from '../../logic/loginFormConfig';
-import { loginThunk, useAppDispatch } from '../../store';
+import { loginThunk, useAppDispatch, useStateSelector } from '../../store';
 import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
@@ -16,7 +16,7 @@ export const AuthozationModalLoginForm = () => {
 
 	const dispatch = useAppDispatch();
 
-	const { toggleLoginModalVisibility } = useContext(LoginModalContext);
+	const { disableLoginModalVisibility } = useContext(LoginModalContext);
 
 	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
@@ -24,24 +24,48 @@ export const AuthozationModalLoginForm = () => {
 		setLoginFormState((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const loginStatus = useStateSelector((state) => state.auth.status);
+	const loginError = useStateSelector((state) => state.auth.error);
+
+	const errorMessage =
+		loginError.message === 'Request failed with status code 401' &&
+		loginStatus === 'error' &&
+		'Wrong login of password';
+
+	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		toggleLoginModalVisibility();
 		dispatch(loginThunk(loginFormState));
 	};
 
+	useEffect(() => {
+		if (loginStatus === 'success') {
+			disableLoginModalVisibility();
+			setLoginFormState(loginFormInitialState);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [loginStatus]);
+
 	return (
 		<div>
-			<span className='text-lg'>Login</span>
+			<div className='text-lg'>Login</div>
 			<UILoginForm onSubmit={onSubmit} className='text-black'>
-				{loginFormConfig.map((conf) => (
-					<UIAuthozationModalInput
-						{...conf}
-						onChange={onChange}
-						key={conf.name}
-						value={loginFormState[conf.name]}
-					></UIAuthozationModalInput>
-				))}
+				<label className='text-orange-600 flex justify-center mb-2'>
+					{errorMessage}
+				</label>
+				{loginFormConfig.map((conf) => {
+					const { name, ...rest } = conf;
+					return (
+						<UIAuthozationModalInput
+							{...rest}
+							onChange={onChange}
+							key={name}
+							name={name}
+							value={loginFormState[name]}
+							isLoading={loginStatus === 'loading'}
+							isInvalid={!!errorMessage}
+						></UIAuthozationModalInput>
+					);
+				})}
 				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
 					Login
 				</UIButton>

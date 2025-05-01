@@ -1,5 +1,6 @@
 type FormConfig = {
 	name: keyof LoginFormValue;
+	validate?: (error: LoginFormValue) => string;
 } & JSX.IntrinsicElements['input'];
 
 export const loginFormConfig: FormConfig[] = [
@@ -7,13 +8,16 @@ export const loginFormConfig: FormConfig[] = [
 		name: 'username',
 		placeholder: 'Username',
 		required: true,
+		autoComplete: 'username',
+		minLength: 4,
 	},
 	{
 		name: 'password',
 		placeholder: 'Password',
 		required: true,
 		type: 'password',
-		minLength: 4,
+		autoComplete: 'current-password',
+		minLength: 8,
 	},
 ];
 
