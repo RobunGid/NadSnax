@@ -26,12 +26,12 @@ class MyUser(MethodView):
 @blp.route('/user/<string:user_id>')
 class User(MethodView):
     @blp.response(200, UserSchema)
-    @jwt_required()
     @role_required(['admin', 'moderator'])
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         return user
     
+    @jwt_required()
     @role_required(['admin', 'moderator'])
     def delete(self, user_id):
         user = UserModel.query.get_or_404(user_id)
@@ -39,9 +39,10 @@ class User(MethodView):
         db.session.commit()
         return {"message": "User deleted", "code": 202}
 
-    @role_required(['admin', 'moderator'])
     @blp.response(200, UserSchema)        
     @blp.arguments(UserUpdateSchema)
+    @jwt_required()
+    @role_required(['admin', 'moderator'])
     def put(self, user_data, user_id):
         user = UserModel.query.get(user_id)
         
