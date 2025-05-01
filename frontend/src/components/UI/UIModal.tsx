@@ -16,7 +16,7 @@ export const UIModal = ({ active, setActive, children }: UIModalProps) => {
 				active
 					? 'opacity-100 pointer-events-auto'
 					: 'opacity-0 pointer-events-none',
-				'h-screen w-screen bg-black bg-opacity-40 fixed inset-0 z-50 flex items-center justify-center transition-opacity'
+				'h-screen w-screen bg-black/40 fixed inset-0 z-50 flex items-center justify-center transition-opacity'
 			)}
 			onClick={() => setActive(false)}
 		>

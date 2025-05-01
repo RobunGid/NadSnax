@@ -61,7 +61,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 			>
 				<div className='z-0'>
 					{item.category.name === 'secretboxes' && (
-						<div className='absolute bg-purple-300 px-2 bg-opacity-70 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
+						<div className='absolute bg-purple-300/70 px-2 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
 							Secret Box
 						</div>
 					)}
@@ -72,7 +72,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 							className='object-cover w-[240px] h-[240px] rounded-md'
 						/>
 						{item.isBestseller && (
-							<div className='absolute bg-blue-200 px-2 bg-opacity-70 text-blue-900 font-bold w-40 text-center -rotate-45 top-[25px] left-[-45px]'>
+							<div className='absolute bg-blue-200/70 px-2 text-blue-900 font-bold w-40 text-center -rotate-45 top-[25px] left-[-45px]'>
 								Bestseller
 							</div>
 						)}
