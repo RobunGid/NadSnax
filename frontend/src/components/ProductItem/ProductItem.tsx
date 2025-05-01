@@ -60,12 +60,12 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 				)}
 			>
 				<div className='z-0'>
-					{item.category.name === 'secretboxes' && (
-						<div className='absolute bg-purple-300/70 px-2 text-purple-900 font-bold w-40 text-center rotate-[-45deg] top-[25px] left-[-45px]'>
-							Secret Box
-						</div>
-					)}
 					<div className='relative overflow-hidden'>
+						{item.isSecretbox && (
+							<div className='absolute bg-purple-300/70 px-2 text-purple-900 font-bold w-52 text-center rotate-[-45deg] top-[47px] left-[-45px]'>
+								Secret Box
+							</div>
+						)}
 						<img
 							src={imageURL}
 							alt={`${item.label} image`}
