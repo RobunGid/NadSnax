@@ -24,7 +24,7 @@ export const ProductItemQuantityChooser = ({
 		<div className={className}>
 			{!cartItem?.count ? (
 				<div
-					className='dark:bg-sky-800 bg-orange-400 flex w-24 h-8 absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					className='dark:bg-sky-800 dark:hover:bg-sky-900 bg-orange-400 flex w-24 h-8 absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
 				>
 					<FiPlus />
