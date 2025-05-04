@@ -87,6 +87,9 @@ class UserRegister(MethodView):
     @blp.arguments(UserSchema)
     @blp.response(201, UserSchema)    
     def post(self, user_data):
+        existing_user = UserModel.query.filter_by(username=user_data["username"]).first()
+        if existing_user:
+            abort(400, message = "Username already exists.")
         user = UserModel(
       id = str(uuid.uuid4()),
       username=user_data["username"], 
@@ -100,7 +103,7 @@ class UserRegister(MethodView):
             db.session.add(user)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the user")
+            abort(500, message = "An error occured while inserting the user.")
     
         return user
 

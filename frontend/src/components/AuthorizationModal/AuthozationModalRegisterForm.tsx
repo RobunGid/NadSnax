@@ -29,9 +29,9 @@ export const AuthorizationModalRegisterForm = () => {
 	const loginError = useStateSelector((state) => state.auth.error);
 
 	const errorMessage =
-		loginError.message === 'Request failed with status code 401' &&
+		loginError.message !== 'Rejected' &&
 		loginStatus === 'error' &&
-		'Wrong login of password';
+		loginError.message;
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

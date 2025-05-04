@@ -3,6 +3,7 @@ import { Axios } from '../api';
 import { Status } from './types';
 import { fetchUser, userActions } from './userSlice';
 import { User } from '../types';
+import { AxiosError } from 'axios';
 
 type AuthState = {
 	accessToken: string;
@@ -55,30 +56,38 @@ export const registerThunk = createAsyncThunk(
 			role,
 			avatarUrl,
 		}: Omit<User, 'id'> & { password: string },
-		{ dispatch }
+		{ dispatch, rejectWithValue }
 	) => {
-		const response = await Axios.post(
-			'/register',
-			{
-				username,
-				password,
-				first_name: firstName,
-				last_name: lastName,
-				role,
-				avatar_url: avatarUrl,
-			},
-			{
-				headers: {
-					'Content-Type': 'application/json',
+		try {
+			const response = await Axios.post(
+				'/register',
+				{
+					username,
+					password,
+					first_name: firstName,
+					last_name: lastName,
+					role,
+					avatar_url: avatarUrl,
 				},
-			}
-		);
-		const data = response.data;
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			const data = response.data;
 
-		if (data && response.status === 201) {
-			dispatch(loginThunk({ username, password }));
+			if (data && response.status === 201) {
+				dispatch(loginThunk({ username, password }));
+			} else {
+				return rejectWithValue(response.data);
+			}
+		} catch (error) {
+			if (error instanceof AxiosError)
+				return rejectWithValue(
+					error.response ? error.response.data : error.message
+				);
 		}
-		throw new Error('Failed to register');
 	}
 );
 
@@ -131,6 +140,21 @@ const slice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		builder.addCase(registerThunk.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(registerThunk.fulfilled, (state) => {
+			state.status = 'success';
+		});
+		builder.addCase(registerThunk.rejected, (state, action) => {
+			state.status = 'error';
+			if (action.payload) {
+				state.error = action.payload;
+			} else {
+				state.error = action.error;
+			}
+		});
+
 		builder.addCase(loginThunk.pending, (state) => {
 			state.status = 'loading';
 		});
