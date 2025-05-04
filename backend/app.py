@@ -33,6 +33,13 @@ def create_app(db_url = None):
     @jwt.token_in_blocklist_loader
     def check_if_token_revoked(jwt_header, jwt_payload):
         return jwt_payload['jti'] in BLOCKLIST
+    
+    @jwt.unauthorized_loader
+    def check_if_token_exists(error):
+         return ({
+        'message': 'Token is missing or invalid',
+        'error': 'Unauthorized'
+    }), 401
  
  
     CORS(app, resources={r"/*": {"origins": "*"}})
