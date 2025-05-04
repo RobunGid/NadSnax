@@ -15,6 +15,7 @@ from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.item_details import blp as ItemDetailsBlueprint
 from resources.image import blp as ImageBlueprint
+from resources.avatar import blp as AvatarBlueprint
 
 from datetime import timedelta
 
@@ -59,6 +60,11 @@ def create_app(db_url = None):
     app.config["JWT_COOKIE_SECURE"] = True
     app.config["JWT_COOKIE_SAMESITE"] = "Strict"
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
+    
+    
+    UPLOAD_FOLDER = '/app/media/avatars'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
  
 
     db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
@@ -82,6 +88,7 @@ def create_app(db_url = None):
     api.register_blueprint(TypeBlueprint)
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(ItemDetailsBlueprint)
+    api.register_blueprint(AvatarBlueprint)
  
     return app
 

@@ -5,6 +5,7 @@ from flask_jwt_extended import get_jwt_identity
 from models import UserModel
 from flask_smorest import abort
 
+
 def role_required(roles: List[Role]):
 	def decorator(fn):
 		@wraps(fn)
@@ -16,3 +17,7 @@ def role_required(roles: List[Role]):
 			return fn(*args, **kwargs)
 		return wrapper
 	return decorator
+
+def allowed_file(filename): 
+    from app import app
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']

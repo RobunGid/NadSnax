@@ -131,7 +131,7 @@ class TokenRefresh(MethodView):
     def post(self):
         identity = get_jwt_identity()
         access_token = create_access_token(identity=identity)
-        return jsonify(access_token=access_token)
+        return {"access_token": access_token}
 
 @blp.route('/signout')
 class Signout(MethodView):
