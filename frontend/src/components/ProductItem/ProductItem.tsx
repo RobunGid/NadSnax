@@ -80,7 +80,10 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 					<div className='flex text-xs space-x-2 dark:text-gray-600 items-center h-5'>
 						<div>{item.label}</div>
 						{item.isBestseller && (
-							<GiStarFormation className='text-amber-400' />
+							<GiStarFormation
+								className='text-amber-400'
+								title="Customer's choice - Bestseller"
+							/>
 						)}
 					</div>
 					<div className='flex justify-start'>
