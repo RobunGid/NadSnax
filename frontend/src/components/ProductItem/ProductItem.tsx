@@ -1,8 +1,5 @@
 import { Item } from '../../types';
-import { Link } from 'react-router';
-import styles from './ProductItem.module.css';
 
-import clsx from 'clsx';
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { useStateSelector } from '../../store';
@@ -12,6 +9,7 @@ import { UIProductItemLabel } from './UI/UIProductItemLabel';
 import { UIProductItemImage } from './UI/UIProductItemImage';
 import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
+import { UIProductItem } from './UI/UIProductItem';
 
 type ProductItemProps = {
 	item: Item;
@@ -34,14 +32,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
 
 	return (
-		<Link
-			to={`/products/page${item.pageLink}`}
-			className={clsx(
-				'shadow-xl h-[360px] p-2 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
-				className,
-				styles['product-item']
-			)}
-		>
+		<UIProductItem pageLink={item.pageLink} className={className}>
 			<UIProductItemImage
 				imageURL={imageURL}
 				isBestseller={item.isBestseller}
@@ -67,6 +58,6 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 				ratingCount={item.ratingCount}
 				averageRating={item.averageRating}
 			/>
-		</Link>
+		</UIProductItem>
 	);
 };
