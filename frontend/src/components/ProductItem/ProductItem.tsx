@@ -8,6 +8,8 @@ import clsx from 'clsx';
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { useStateSelector } from '../../store';
+import { formatPrice } from '../../logic/formatPrice';
+import { UIProductItemPrice } from './UI/UIProductItemPrice';
 
 type ProductItemProps = {
 	item: Item;
@@ -27,21 +29,9 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 
 	const imageURL = mainImage ? mainImage.url : item.images[0].url;
 
-	const productPrice =
-		item.price &&
-		new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: 'USD',
-			minimumFractionDigits: 2,
-		}).format(item.price);
+	const price = formatPrice(item.price);
 
-	const productOldPrice =
-		item.oldPrice &&
-		new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: 'USD',
-			minimumFractionDigits: 2,
-		}).format(item.oldPrice);
+	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
 
 	return (
 		<div className='hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0'>
@@ -80,20 +70,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 						onRemove={handleRemoveProductFromCart}
 					/>
 
-					<div className='flex gap-x-2 items-center'>
-						{productOldPrice ? (
-							<>
-								<div className='font-bold text-xl text-lime-600'>
-									Now {productPrice}
-								</div>
-								<div className='font-bold text-md text-gray-500 line-through'>
-									{productOldPrice}
-								</div>
-							</>
-						) : (
-							<div className='font-bold text-xl'>{productPrice}</div>
-						)}
-					</div>
+					<UIProductItemPrice price={price} oldPrice={oldPrice} />
 					<div
 						className='text-gray-500 w-52 truncate dark:text-gray-300'
 						title={item.description}
