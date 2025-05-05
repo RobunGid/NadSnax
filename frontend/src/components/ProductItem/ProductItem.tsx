@@ -1,6 +1,5 @@
 import { Item } from '../../types';
 import { Link } from 'react-router';
-import { ProductRating } from '../Layout/ProductRating';
 import styles from './ProductItem.module.css';
 
 import clsx from 'clsx';
@@ -10,6 +9,8 @@ import { useStateSelector } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
+import { UIProductItemImage } from './UI/UIProductItemImage';
+import { UIProductItemRating } from './UI/UIProductItemRating';
 
 type ProductItemProps = {
 	item: Item;
@@ -43,24 +44,13 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 					styles['product-item']
 				)}
 			>
-				<div className='z-0'>
-					<div className='relative overflow-hidden'>
-						{item.isSecretbox && (
-							<div className='absolute bg-purple-300/70 px-2 text-purple-900 font-bold w-52 text-center rotate-[-45deg] top-[47px] left-[-45px]'>
-								Secret Box
-							</div>
-						)}
-						<img
-							src={imageURL}
-							alt={`${item.label} image`}
-							className='object-cover w-[240px] h-[240px] rounded-md'
-						/>
-						{item.isBestseller && (
-							<div className='absolute bg-blue-200/70 px-2 text-blue-900 font-bold w-40 text-center -rotate-45 top-[25px] left-[-45px]'>
-								Bestseller
-							</div>
-						)}
-					</div>
+				<div>
+					<UIProductItemImage
+						imageURL={imageURL}
+						isBestseller={item.isBestseller}
+						isSecretbox={!!item.isSecretbox}
+						label={item.label}
+					/>
 
 					<ProductItemQuantityChooser
 						cartItem={cartItem}
@@ -76,16 +66,10 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 						label={item.label}
 						isBestseller={item.isBestseller}
 					/>
-					<div className='flex justify-start'>
-						<ProductRating
-							rating={item.averageRating}
-							size='16'
-							className='flex text-yellow-400'
-						/>
-						<span className='text-gray-500 text-[0.75rem]'>
-							{item.ratingCount || 0}
-						</span>
-					</div>
+					<UIProductItemRating
+						ratingCount={item.ratingCount}
+						averageRating={item.averageRating}
+					/>
 				</div>
 			</Link>
 		</div>
