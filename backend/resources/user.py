@@ -48,7 +48,6 @@ class User(MethodView):
         
         if user:
             user.username = user_data["username"]
-            user.avatar_url = user_data["avatar_url"]
             user.fisrt_name = user_data["first_name"]
             user.last_name = user_data["last_name"]
             user.role = user_data["role"]
@@ -70,14 +69,12 @@ class Users(MethodView):
         username_filter = request.args.get("username")
         first_name_filter = request.args.get("first_name")
         last_name_filter = request.args.get("last_name")
-        avatar_url_filter = request.args.get("avatar_url")
   
         query = UserModel.query
   
         query = query.filter(UserModel.username==username_filter) if username_filter else query
         query = query.filter(UserModel.first_name==last_name_filter) if first_name_filter else query
         query = query.filter(UserModel.last_name==first_name_filter) if last_name_filter else query
-        query = query.filter(UserModel.avatar_url==avatar_url_filter) if avatar_url_filter else query
   
         return query.all()
     
@@ -94,7 +91,6 @@ class UserRegister(MethodView):
       id = str(uuid.uuid4()),
       username=user_data["username"], 
       password=pbkdf2_sha512.hash(user_data["password"]), 
-      avatar_url=user_data["avatar_url"],
       first_name=user_data["first_name"],
       last_name=user_data["last_name"],
       role=user_data["role"],

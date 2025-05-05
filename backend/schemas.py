@@ -81,7 +81,6 @@ class UserSchema(PlainUserSchema):
     first_name = fields.Str(required = True)
     last_name = fields.Str(required = True)
     role = EnumField(Role)
-    avatar_url = fields.Str(required = True)
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
 class ReviewUpdateSchema(Schema):
@@ -90,7 +89,6 @@ class ReviewUpdateSchema(Schema):
     
 class UserUpdateSchema(Schema):
     username = fields.Str(required = True)
-    avatar_url = fields.Str(required = True)
     first_name = fields.Str(required = True)
     last_name = fields.Str(required = True)
     role = fields.Enum(Role)

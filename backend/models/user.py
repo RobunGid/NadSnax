@@ -19,6 +19,4 @@ class UserModel(db.Model):
     first_name = db.Column(db.String(32), nullable = False)
     last_name = db.Column(db.String(32), nullable = False)
     
-    avatar_url = db.Column(db.String(255))
-    
     reviews = db.relationship('ReviewModel', back_populates = 'user')
