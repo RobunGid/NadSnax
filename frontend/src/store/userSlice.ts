@@ -30,7 +30,11 @@ export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>
 
 		const user = response.data;
 		const camelcaseUser = camelcaseKeys(user, { deep: true });
-		return camelcaseUser;
+		const userWithAvatarUrl = {
+			...camelcaseUser,
+			avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
+		};
+		return userWithAvatarUrl;
 	}
 );
 

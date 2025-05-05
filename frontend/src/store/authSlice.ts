@@ -54,7 +54,6 @@ export const registerThunk = createAsyncThunk(
 			firstName,
 			lastName,
 			role,
-			avatarUrl,
 		}: Omit<User, 'id'> & { password: string },
 		{ dispatch, rejectWithValue }
 	) => {
@@ -67,7 +66,6 @@ export const registerThunk = createAsyncThunk(
 					first_name: firstName,
 					last_name: lastName,
 					role,
-					avatar_url: avatarUrl,
 				},
 				{
 					headers: {

@@ -43,7 +43,7 @@ def create_app(db_url = None):
     }), 401
  
  
-    CORS(app, resources={r"/*": {"origins": "*"}})
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     app.config["PROPOGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "NadSnax REST API"
