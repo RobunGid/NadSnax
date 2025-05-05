@@ -26,17 +26,17 @@ class Avatar(MethodView):
 
 
 
-@blp.route('/avatar/<string:avatar_url>')
+@blp.route('/avatar/<string:avatar_name>')
 class Avatars(MethodView):
-	def get(self, avatar_url):
+	def get(self, avatar_name):
 		from app import app
-		return send_from_directory(app.config["UPLOAD_FOLDER"], avatar_url)
+		return send_from_directory(app.config["UPLOAD_FOLDER"], avatar_name)
 	
-	def delete(self, avatar_url):
+	def delete(self, avatar_name):
 		from app import app
-		file_path = os.path.join(app.config['UPLOAD_FOLDER'], avatar_url)
+		file_path = os.path.join(app.config['UPLOAD_FOLDER'], avatar_name)
 		if os.path.exists(file_path):
 			os.remove(file_path)
-			return {"message": "Avatar deleted successfully", "avatar_url": file_path}
+			return {"message": "Avatar deleted successfully", "avatar_name": file_path}
 		else:
 			abort(404, description="Avatar not found")
