@@ -62,9 +62,9 @@ def create_app(db_url = None):
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     
     
-    UPLOAD_FOLDER = '/app/media/avatars'
+    UPLOAD_FOLDER = "/app/media/avatars" if env == 'prod' else "../resources/avatars"
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
+    app.config['ALLOWED_EXTENSIONS'] = {'png'}
  
 
     db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
