@@ -10,7 +10,7 @@ class PlainUserSchema(Schema):
 class PlainReviewSchema(Schema):
     id = fields.Str(dump_only = True)
     text = fields.Str(required = True)
-    rating = fields.Int()
+    rating = fields.Int(required = True)
     
 class PlainCategorySchema(Schema):
     name = fields.Str(required = True)
@@ -65,7 +65,7 @@ class ReviewSchema(PlainReviewSchema):
     
     item_id = fields.Str(required = True, load_only = True)
     item = fields.Nested(PlainItemSchema(), dump_only = True)
-    
+        
     def __init__(self, include_item = False, include_user = False, **kwargs):
         exclude_fields = set()
         
