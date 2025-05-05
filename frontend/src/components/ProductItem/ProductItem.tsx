@@ -2,7 +2,6 @@ import { Item } from '../../types';
 import { Link } from 'react-router';
 import { ProductRating } from '../Layout/ProductRating';
 import styles from './ProductItem.module.css';
-import { GiStarFormation } from 'react-icons/gi';
 
 import clsx from 'clsx';
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
@@ -10,6 +9,7 @@ import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import { useStateSelector } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
+import { UIProductItemLabel } from './UI/UIProductItemLabel';
 
 type ProductItemProps = {
 	item: Item;
@@ -71,21 +71,11 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 					/>
 
 					<UIProductItemPrice price={price} oldPrice={oldPrice} />
-					<div
-						className='text-gray-500 w-52 truncate dark:text-gray-300'
-						title={item.description}
-					>
-						{item.description}
-					</div>
-					<div className='flex text-xs space-x-2 dark:text-gray-600 items-center h-5'>
-						<div>{item.label}</div>
-						{item.isBestseller && (
-							<GiStarFormation
-								className='text-amber-400'
-								title="Customer's choice - Bestseller"
-							/>
-						)}
-					</div>
+					<UIProductItemLabel
+						description={item.description}
+						label={item.label}
+						isBestseller={item.isBestseller}
+					/>
 					<div className='flex justify-start'>
 						<ProductRating
 							rating={item.averageRating}
