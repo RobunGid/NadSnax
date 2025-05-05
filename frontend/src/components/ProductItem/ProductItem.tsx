@@ -11,6 +11,7 @@ import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
 import { UIProductItemImage } from './UI/UIProductItemImage';
 import { UIProductItemRating } from './UI/UIProductItemRating';
+import { getMainImageURL } from '../../logic/getMainImageURL';
 
 type ProductItemProps = {
 	item: Item;
@@ -19,8 +20,6 @@ type ProductItemProps = {
 };
 
 export const ProductItem = ({ item, className }: ProductItemProps) => {
-	const mainImage = item.images.find((image) => image.isMain);
-
 	const cartItem = useStateSelector((state) => state.cart.productList).find(
 		(cartItem) => cartItem.item.id === item.id
 	);
@@ -28,7 +27,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
-	const imageURL = mainImage ? mainImage.url : item.images[0].url;
+	const imageURL = getMainImageURL(item);
 
 	const price = formatPrice(item.price);
 
