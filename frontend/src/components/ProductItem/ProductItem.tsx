@@ -25,13 +25,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
-	let imageURL = '';
-
-	if (mainImage) {
-		imageURL = mainImage.url;
-	} else {
-		imageURL = item.images[0].url;
-	}
+	const imageURL = mainImage ? mainImage.url : item.images[0].url;
 
 	const productPrice =
 		item.price &&
