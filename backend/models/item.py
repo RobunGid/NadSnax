@@ -21,7 +21,7 @@ class ItemModel(db.Model):
     category = db.relationship("CategoryModel", back_populates = "items")
     type = db.relationship("TypeModel", back_populates = "items")
     reviews = db.relationship("ReviewModel", back_populates = "item")
-    images = db.relationship("ImageModel", back_populates = "item", lazy = "select")
+    images = db.relationship("ItemImageModel", back_populates = "item", lazy = "select")
     
     item_details = db.relationship("ItemDetailsModel", back_populates = "item", uselist = False)
     

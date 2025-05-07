@@ -133,11 +133,10 @@ class PlainItemDetailsSchema(Schema):
 	nutrition = fields.Str(required = True)
  
     
-class PlainImageSchema(Schema):
+class PlainItemImageSchema(Schema):
     id = fields.Str(dump_only = True)
     title = fields.Str(required = True)
     alt = fields.Str(required = True)
-    url = fields.Str(required = True)
     is_main = fields.Boolean()
     file_name = fields.Str(required = True)
     item_id = fields.Str(required = True)
@@ -147,7 +146,7 @@ class ItemSchema(PlainItemSchema):
     type = fields.Nested(PlainTypeSchema(), dump_only = True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only = True)
     reviews = fields.Nested(ReviewSchema(include_user = True), dump_only = True, many = True)
-    images = fields.Nested(PlainImageSchema(), dump_only = True, many = True)
+    images = fields.Nested(PlainItemImageSchema(), dump_only = True, many = True)
     
     average_rating = fields.Float(dump_only = True)
     rating_count = fields.Int(dump_only = True)
@@ -172,7 +171,7 @@ class ItemSchema(PlainItemSchema):
 
         super().__init__(exclude = exclude_fields, **kwargs)
     
-class ImageSchema(PlainImageSchema):
+class ItemImageSchema(PlainItemImageSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)
     
 class ItemDetailsSchema(PlainItemDetailsSchema):

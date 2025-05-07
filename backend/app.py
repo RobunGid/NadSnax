@@ -14,7 +14,7 @@ from resources.category import blp as CategoryBlueprint
 from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.item_details import blp as ItemDetailsBlueprint
-from resources.image import blp as ImageBlueprint
+from resources.item_image import blp as ImageBlueprint
 from resources.avatar import blp as AvatarBlueprint
 
 from datetime import timedelta
