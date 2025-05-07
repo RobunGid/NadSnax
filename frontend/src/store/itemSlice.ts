@@ -77,9 +77,14 @@ export const fetchItemsThunk = createAsyncThunk<
 			...item,
 			images: item.images.map((image) => ({
 				...image,
-				url: import.meta.env.VITE_API_URL + '/resources/images/' + image.fileName,
+				url:
+					import.meta.env.VITE_API_URL +
+					'/resources/images/' +
+					image.fileName +
+					'.png',
 			})),
 		}));
+		console.log(fixedItems);
 		return fixedItems;
 	}
 );
