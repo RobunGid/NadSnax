@@ -4,7 +4,7 @@ from functools import wraps
 from flask_jwt_extended import get_jwt_identity
 from models import UserModel
 from flask_smorest import abort
-
+from flask import request
 
 def role_required(roles: List[Role]):
 	def decorator(fn):
@@ -21,3 +21,15 @@ def role_required(roles: List[Role]):
 def allowed_file(filename): 
     from app import app
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+def content_type_required(content_types):
+    def decorator(fn):
+        @wraps(fn)
+        def wrapper(*args, **kwargs):
+            content_type = request.content_type
+            print(content_type)
+            if content_type not in content_types:
+                abort(400, message="Wrong body type")
+            return fn(*args, **kwargs)
+        return wrapper
+    return decorator

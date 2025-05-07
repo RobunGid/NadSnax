@@ -10,6 +10,8 @@ from flask import request, jsonify
 from passlib.hash import pbkdf2_sha512
 from utils import role_required
 from blocklist import BLOCKLIST	
+import os
+from utils import allowed_file, content_type_required
 
 blp = Blueprint("users", __name__, description = "Operations on users")
 
@@ -81,25 +83,39 @@ class Users(MethodView):
        
 @blp.route('/register')
 class UserRegister(MethodView):
-    @blp.arguments(UserSchema)
-    @blp.response(201, UserSchema)    
-    def post(self, user_data):
-        existing_user = UserModel.query.filter_by(username=user_data["username"]).first()
+    @blp.arguments(UserSchema, location="form")
+    @blp.response(201, UserSchema)
+    @content_type_required(["multipart/form-data"])    
+    def post(self):
+        from app import app
+        existing_user = UserModel.query.filter_by(username=request.form["username"]).first()
         if existing_user:
             abort(400, message = "Username already exists.")
         user = UserModel(
       id = str(uuid.uuid4()),
-      username=user_data["username"], 
-      password=pbkdf2_sha512.hash(user_data["password"]), 
-      first_name=user_data["first_name"],
-      last_name=user_data["last_name"],
-      role=user_data["role"],
+      username=request.form.get("username"), 
+      password=pbkdf2_sha512.hash(request.form.get("password")), 
+      first_name=request.form.get("first_name"),
+      last_name=request.form.get("last_name"),
+      role=request.form.get("role"),
       )
         try:
             db.session.add(user)
             db.session.commit()
         except SQLAlchemyError:
             abort(500, message = "An error occured while inserting the user.")
+    
+        if 'avatar' in request.files:
+            avatar_file = request.files['file']
+            username = request.form.get("username")
+            
+            filename = os.path.splitext(avatar_file.filename)[0]
+    
+            if not allowed_file(avatar_file.filename):
+                abort(400, description="Invalid avatar file format")
+    
+            filename = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], username + ".png")
+            avatar_file.save(filename)
     
         return user
 
@@ -131,7 +147,7 @@ class TokenRefresh(MethodView):
 
 @blp.route('/signout')
 class Signout(MethodView):
-    @jwt_required(refresh=True)
+    @jwt_required()
     def post(self):
         jti = get_jwt()["jti"]
         BLOCKLIST.add(jti)
