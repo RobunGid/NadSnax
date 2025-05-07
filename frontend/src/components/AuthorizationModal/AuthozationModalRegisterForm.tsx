@@ -15,6 +15,8 @@ export const AuthorizationModalRegisterForm = () => {
 		registerFormInitialState
 	);
 
+	const [avatarFile, setAvatarFile] = useState<undefined | File>(undefined);
+
 	const dispatch = useAppDispatch();
 
 	const { disableLoginModalVisibility } = useContext(LoginModalContext);
@@ -35,7 +37,12 @@ export const AuthorizationModalRegisterForm = () => {
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(registerThunk(registerFormState));
+		dispatch(
+			registerThunk({
+				...registerFormState,
+				avatarFile: avatarFile,
+			})
+		);
 	};
 
 	useEffect(() => {
@@ -64,9 +71,20 @@ export const AuthorizationModalRegisterForm = () => {
 							value={registerFormState[name]}
 							isLoading={loginStatus === 'loading'}
 							isInvalid={!!errorMessage}
-						></UIAuthozationModalInput>
+						/>
 					);
 				})}
+				<UIAuthozationModalInput
+					name='avatarFile'
+					isLoading={loginStatus === 'loading'}
+					isInvalid={!!errorMessage}
+					type='file'
+					onChange={(event) =>
+						setAvatarFile(
+							event.target.files ? event.target.files[0] : undefined
+						)
+					}
+				/>
 				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
 					Register
 				</UIButton>

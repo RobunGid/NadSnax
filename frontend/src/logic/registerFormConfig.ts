@@ -47,7 +47,6 @@ export type RegisterFormValue = {
 	role: Role;
 	username: string;
 	password: string;
-	avatarUrl?: string;
 };
 
 export const registerFormInitialState: RegisterFormValue = {
@@ -56,5 +55,4 @@ export const registerFormInitialState: RegisterFormValue = {
 	role: 'user',
 	firstName: '',
 	lastName: '',
-	avatarUrl: '',
 };

@@ -55,7 +55,8 @@ export const registerThunk = createAsyncThunk(
 			firstName,
 			lastName,
 			role,
-		}: Omit<User, 'id'> & { password: string },
+			avatarFile,
+		}: Omit<User, 'id'> & { password: string; avatarFile?: File },
 		{ dispatch, rejectWithValue }
 	) => {
 		try {
@@ -65,6 +66,7 @@ export const registerThunk = createAsyncThunk(
 			formData.append('first_name', firstName);
 			formData.append('last_name', lastName);
 			formData.append('role', role);
+			if (avatarFile) formData.append('avatar', avatarFile);
 			const response = await Axios.post('/register', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
