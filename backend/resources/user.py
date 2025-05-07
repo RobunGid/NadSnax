@@ -106,7 +106,7 @@ class UserRegister(MethodView):
             abort(500, message = "An error occured while inserting the user.")
     
         if 'avatar' in request.files:
-            avatar_file = request.files['file']
+            avatar_file = request.files.get('avatar')
             username = request.form.get("username")
             
             filename = os.path.splitext(avatar_file.filename)[0]
