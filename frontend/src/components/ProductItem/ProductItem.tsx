@@ -6,10 +6,10 @@ import { useStateSelector } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
-import { UIProductItemImage } from './UI/UIProductItemImage';
 import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
+import { ProductItemImage } from './ProductItemImage';
 
 type ProductItemProps = {
 	item: Item;
@@ -33,7 +33,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 
 	return (
 		<UIProductItem pageLink={item.pageLink} className={className}>
-			<UIProductItemImage
+			<ProductItemImage
 				imageURL={imageURL}
 				isBestseller={item.isBestseller}
 				isSecretbox={!!item.isSecretbox}
