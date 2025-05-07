@@ -77,7 +77,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			...item,
 			images: item.images.map((image) => ({
 				...image,
-				url: 'http://localhost' + image.url,
+				url: import.meta.env.VITE_API_URL + '/resources/images/' + image.fileName,
 			})),
 		}));
 		return fixedItems;
