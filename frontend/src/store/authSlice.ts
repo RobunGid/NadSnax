@@ -113,8 +113,22 @@ export const refreshThunk = createAsyncThunk(
 export const signoutThunk = createAsyncThunk(
 	'auth/signout',
 	async (_, { rejectWithValue, dispatch }) => {
+		const accessResponse = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
+			method: 'POST',
+			credentials: 'include',
+		});
+		if (accessResponse.status != 200) {
+			return rejectWithValue(accessResponse.statusText);
+		}
+
+		const data = await accessResponse.json();
+		const accessToken = data.access_token;
 		const response = await fetch(import.meta.env.VITE_API_URL + '/signout', {
 			method: 'POST',
+			credentials: 'include',
+			headers: {
+				authorization: `Bearer ${accessToken}`,
+			},
 		});
 
 		if (response.status != 200) {
