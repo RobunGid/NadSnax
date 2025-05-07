@@ -14,8 +14,9 @@ from resources.category import blp as CategoryBlueprint
 from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.item_details import blp as ItemDetailsBlueprint
-from resources.item_image import blp as ImageBlueprint
+from resources.item_image import blp as ItemImageBlueprint
 from resources.avatar import blp as AvatarBlueprint
+from resources.image import blp as ImageBlueprint
 
 from datetime import timedelta
 
@@ -62,8 +63,10 @@ def create_app(db_url = None):
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     
     
-    UPLOAD_FOLDER = "/app/media/avatars" if env == 'prod' else "../resources/avatars"
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    AVATAR_UPLOAD_FOLDER = "/app/media/avatars" if env == 'prod' else "../resources/avatars"
+    IMAGE_UPLOAD_FOLDER = "/app/media/images" if env == 'prod' else "../resources/images"
+    app.config['AVATAR_UPLOAD_FOLDER'] = AVATAR_UPLOAD_FOLDER
+    app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
     app.config['ALLOWED_EXTENSIONS'] = {'png'}
  
 
@@ -81,7 +84,7 @@ def create_app(db_url = None):
     with app.app_context():
         db.create_all()
 
-    api.register_blueprint(ImageBlueprint)
+    api.register_blueprint(ItemImageBlueprint)
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ReviewBlueprint)
     api.register_blueprint(CategoryBlueprint)
@@ -89,6 +92,7 @@ def create_app(db_url = None):
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(ItemDetailsBlueprint)
     api.register_blueprint(AvatarBlueprint)
+    api.register_blueprint(ImageBlueprint)
  
     return app
 

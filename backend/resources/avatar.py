@@ -31,12 +31,12 @@ class Avatar(MethodView):
         if not user:
             abort(404, description="User not found")
    
-        filename = os.path.join(app.config['UPLOAD_FOLDER'], username + ".png")
+        filename = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], username + ".png")
         avatar_file.save(filename)
         return {"message": "Avatar uploaded successfully", "avatar_url": username + ".png"}
     def get(self):
         from app import app
-        avatars = [f for f in os.listdir(app.config['UPLOAD_FOLDER']) if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], f))]
+        avatars = [f for f in os.listdir(app.config['AVATAR_UPLOAD_FOLDER']) if os.path.isfile(os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], f))]
         return {"avatars": avatars}
 
 
@@ -45,11 +45,11 @@ class Avatar(MethodView):
 class Avatars(MethodView):
     def get(self, avatar_name):
         from app import app
-        return send_from_directory(app.config["UPLOAD_FOLDER"], avatar_name)
+        return send_from_directory(app.config["AVATAR_UPLOAD_FOLDER"], avatar_name)
     
     def delete(self, avatar_name):
         from app import app
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], avatar_name)
+        file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], avatar_name)
         if os.path.exists(file_path):
             os.remove(file_path)
             return {"message": "Avatar deleted successfully", "avatar_name": file_path}
