@@ -86,18 +86,18 @@ class UserRegister(MethodView):
     @blp.arguments(UserSchema, location="form")
     @blp.response(201, UserSchema)
     @content_type_required(["multipart/form-data"])    
-    def post(self):
+    def post(self, user_data):
         from app import app
-        existing_user = UserModel.query.filter_by(username=request.form["username"]).first()
+        existing_user = UserModel.query.filter_by(username=user_data["username"]).first()
         if existing_user:
             abort(400, message = "Username already exists.")
         user = UserModel(
       id = str(uuid.uuid4()),
-      username=request.form.get("username"), 
-      password=pbkdf2_sha512.hash(request.form.get("password")), 
-      first_name=request.form.get("first_name"),
-      last_name=request.form.get("last_name"),
-      role=request.form.get("role"),
+      username=user_data["username"], 
+      password=pbkdf2_sha512.hash(user_data["password"]), 
+      first_name=user_data["first_name"],
+      last_name=user_data["last_name"],
+      role=user_data["role"],
       )
         try:
             db.session.add(user)

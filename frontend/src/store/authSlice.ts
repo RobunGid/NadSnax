@@ -58,21 +58,19 @@ export const registerThunk = createAsyncThunk(
 		{ dispatch, rejectWithValue }
 	) => {
 		try {
-			const response = await Axios.post(
-				'/register',
-				{
-					username,
-					password,
-					first_name: firstName,
-					last_name: lastName,
-					role,
+			const formData = new FormData();
+			formData.append('username', username);
+			formData.append('password', password);
+			formData.append('first_name', firstName);
+			formData.append('last_name', lastName);
+			formData.append('role', role);
+			const response = await Axios.post('/register', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					credentials: 'include',
 				},
-				{
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				}
-			);
+				withCredentials: true,
+			});
 			const data = response.data;
 
 			if (data && response.status === 201) {

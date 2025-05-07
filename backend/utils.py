@@ -27,8 +27,7 @@ def content_type_required(content_types):
         @wraps(fn)
         def wrapper(*args, **kwargs):
             content_type = request.content_type
-            print(content_type)
-            if content_type not in content_types:
+            if not any(item in content_type for item in content_types):
                 abort(400, message="Wrong body type")
             return fn(*args, **kwargs)
         return wrapper

@@ -84,7 +84,6 @@ export const fetchItemsThunk = createAsyncThunk<
 					'.png',
 			})),
 		}));
-		console.log(fixedItems);
 		return fixedItems;
 	}
 );
