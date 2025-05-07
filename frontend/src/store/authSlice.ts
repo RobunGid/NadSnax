@@ -33,6 +33,7 @@ export const loginThunk = createAsyncThunk(
 				headers: {
 					'Content-Type': 'application/json',
 				},
+				withCredentials: true,
 			}
 		);
 		const data = response.data;
