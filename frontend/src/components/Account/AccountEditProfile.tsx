@@ -1,11 +1,16 @@
-import { ChangeEventHandler, useRef } from 'react';
+import { ChangeEventHandler, useRef, useState } from 'react';
 import { Axios } from '../../api';
 import { fetchUser, useAppDispatch, useStateSelector } from '../../store';
 import { UIAccountEditProfile } from './UI/UIAccountEditProfile';
+import { AxiosError } from 'axios';
 
 export const AccountEditProfile = () => {
 	const dispatch = useAppDispatch();
 	const user = useStateSelector((state) => state.user.user);
+
+	const [avatarErrorMessage, setAvatarErrorMessage] = useState<string | undefined>(
+		undefined
+	);
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
@@ -31,18 +36,25 @@ export const AccountEditProfile = () => {
 		if (avatarInputRef.current) avatarInputRef.current.click();
 	};
 
-	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = async (
+		event
+	) => {
 		const file = event.target.files && event.target.files[0];
 		if (!file) return;
 		const formData = new FormData();
 		formData.append('avatar', file);
-
-		Axios.put('/avatar/me', formData, {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
+		try {
+			await Axios.put('/avatar/me', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${accessToken}`,
+				},
+			});
+			setAvatarErrorMessage(undefined);
+		} catch (error) {
+			if (error instanceof AxiosError)
+				setAvatarErrorMessage(error.response?.data.message);
+		}
 		dispatch(fetchUser(accessToken));
 	};
 
@@ -54,6 +66,7 @@ export const AccountEditProfile = () => {
 				onEditClick={handleChangeAvatar}
 				onAvatarInputChange={handleAvatarInputChange}
 				avatarInputRef={avatarInputRef}
+				avatarErrorMessage={avatarErrorMessage}
 			/>
 		)
 	);
