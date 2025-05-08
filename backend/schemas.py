@@ -60,10 +60,10 @@ class TypeUpdateSchema(Schema):
 
 
 class ReviewSchema(PlainReviewSchema):
-    user_id = fields.Str(required = True, load_only = True)
+    user_id = fields.Str(required = True)
     user = fields.Nested(PlainUserSchema(), dump_only = True) 
     
-    item_id = fields.Str(required = True, load_only = True)
+    item_id = fields.Str(required = True)
     item = fields.Nested(PlainItemSchema(), dump_only = True)
         
     def __init__(self, include_item = False, include_user = False, **kwargs):
