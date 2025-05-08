@@ -26,7 +26,7 @@ export const ProfileMenuAvatar = ({ user, className }: ProfileMenuProps) => {
 		<img
 			src={user.avatarUrl + '?t=' + Date.now()}
 			alt={`${user.username} Avatar`}
-			className={clsx('w-24 h-24 object-cover', className)}
+			className={className}
 		/>
 	);
 };

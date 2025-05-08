@@ -8,7 +8,10 @@ interface UIAccountUserInfo {
 export const UIAccountUserInfo = ({ user }: UIAccountUserInfo) => {
 	return (
 		<li className='flex shadow-lg dark:shadow-gray-950 rounded-[40px] p-4 mb-4'>
-			<ProfileMenuAvatar user={user} className='w-20 rounded-full' />
+			<ProfileMenuAvatar
+				user={user}
+				className='rounded-full w-24 h-24 object-cover'
+			/>
 			<div className='p-4'>
 				<div className='text-xl'>
 					{user.firstName} {user.lastName}
