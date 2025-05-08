@@ -7,7 +7,7 @@ export const UIAccountProfile = ({ user }: UIAccountProfileProps) => {
 	return (
 		<div className='flex gap-4'>
 			<img
-				src={user?.avatarUrl}
+				src={user.avatarUrl}
 				alt={`${user.username} Avatar`}
 				width='400'
 				className='rounded-2xl w-48 h-64 object-cover'
