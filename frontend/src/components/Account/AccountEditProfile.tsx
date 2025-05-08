@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { useStateSelector } from '../../store';
-import { ProfileMenuAvatar } from '../ProfileMenu/ProfileMenuAvatar';
 import { AccountEditProfileAvatarControls } from './AccountEditProfileAvatarControls';
 import { UIAccountEditProfileAvatarErrorMessage } from './UI/UIAccountEditProfileAvatarErrorMessage';
 import { UIAccountEditProfileInfo } from './UI/UIAccountEditProfileInfo';
+import { UIAccountEditProfileAvatar } from './UI/UIAccountEditProfileAvatar';
 
 export const AccountEditProfile = () => {
 	const user = useStateSelector((state) => state.user.user);
@@ -17,10 +17,7 @@ export const AccountEditProfile = () => {
 	return (
 		user && (
 			<div className='flex gap-4 relative'>
-				<ProfileMenuAvatar
-					user={user}
-					className='w-48 h-64 rounded-2xl object-cover'
-				/>
+				<UIAccountEditProfileAvatar user={user} />
 				<UIAccountEditProfileAvatarErrorMessage
 					avatarErrorMessage={avatarErrorMessage}
 				/>
