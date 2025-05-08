@@ -43,6 +43,7 @@ export const AccountEditProfile = () => {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
+		dispatch(fetchUser(accessToken));
 	};
 
 	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = async (
