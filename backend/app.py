@@ -67,9 +67,9 @@ def create_app(db_url = None):
     IMAGE_UPLOAD_FOLDER = "/app/media/images" if env == 'prod' else "../resources/images"
     app.config['AVATAR_UPLOAD_FOLDER'] = AVATAR_UPLOAD_FOLDER
     app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
-    app.config['ALLOWED_EXTENSIONS'] = {'png'}
- 
-
+    app.config['ALLOWED_AVATAR_EXTENSIONS'] = {'png', 'jpeg', 'jpg'}
+    app.config['MAX_AVATAR_SIZE'] = 1 * 1024 * 1024 # 1 Mb
+    
     db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
 
     if db_url is not None:

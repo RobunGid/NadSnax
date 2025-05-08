@@ -18,9 +18,11 @@ def role_required(roles: List[Role]):
 		return wrapper
 	return decorator
 
-def allowed_file(filename): 
+def allowed_avatar_file(file): 
     from app import app
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+    file_size = len(file.read())
+    file.seek(0)
+    return '.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_AVATAR_EXTENSIONS'] and file_size <= app.config['MAX_AVATAR_SIZE']
 
 def content_type_required(content_types):
     def decorator(fn):

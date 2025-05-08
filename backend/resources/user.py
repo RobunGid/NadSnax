@@ -11,7 +11,7 @@ from passlib.hash import pbkdf2_sha512
 from utils import role_required
 from blocklist import BLOCKLIST	
 import os
-from utils import allowed_file, content_type_required
+from utils import allowed_avatar_file, content_type_required
 
 blp = Blueprint("users", __name__, description = "Operations on users")
 
@@ -111,8 +111,8 @@ class UserRegister(MethodView):
             
             filename = os.path.splitext(avatar_file.filename)[0]
     
-            if not allowed_file(avatar_file.filename):
-                abort(400, description="Invalid avatar file format")
+            if not allowed_avatar_file(avatar_file.filename):
+                abort(400, description="Invalid avatar file format or file size")
     
             filename = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], username + ".png")
             avatar_file.save(filename)

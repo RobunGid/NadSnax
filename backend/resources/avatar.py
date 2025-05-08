@@ -2,7 +2,7 @@ import os
 from flask_smorest import Blueprint, abort
 from flask import request, send_from_directory
 from flask.views import MethodView
-from utils import allowed_file
+from utils import allowed_avatar_file
 from models import UserModel
 from db import db
 from utils import content_type_required
@@ -51,8 +51,8 @@ class AvatarMe(MethodView):
 		
 		avatar_file = request.files.get('avatar')
 
-		if not allowed_file(avatar_file.filename):
-			abort(400, description="Invalid avatar file format")
+		if not allowed_avatar_file(avatar_file):
+			abort(400, message="Invalid avatar file format or file size")
 			
 		if os.path.exists(file_path):
 			os.remove(file_path)
