@@ -105,7 +105,7 @@ export const refreshThunk = createAsyncThunk(
 			const data = await response.json();
 			const accessToken = data.access_token;
 			dispatch(fetchUser(accessToken));
-			return data;
+			return accessToken;
 		} catch (error) {
 			return rejectWithValue(error);
 		}
@@ -185,7 +185,7 @@ const slice = createSlice({
 		});
 		builder.addCase(refreshThunk.fulfilled, (state, action) => {
 			state.status = 'success';
-			state.accessToken = action.payload.accessToken;
+			state.accessToken = action.payload;
 		});
 		builder.addCase(refreshThunk.rejected, (state, action) => {
 			state.status = 'error';

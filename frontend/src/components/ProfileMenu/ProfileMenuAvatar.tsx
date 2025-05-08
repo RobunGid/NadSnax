@@ -23,6 +23,10 @@ export const ProfileMenuAvatar = ({ user, className }: ProfileMenuProps) => {
 			</svg>
 		</div>
 	) : (
-		<img src={user.avatarUrl} alt={`${user.username} Avatar`} className={className} />
+		<img
+			src={user.avatarUrl + '?t=' + Date.now()}
+			alt={`${user.username} Avatar`}
+			className={clsx('w-24 h-24 object-cover', className)}
+		/>
 	);
 };

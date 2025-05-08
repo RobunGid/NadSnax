@@ -1,26 +1,29 @@
-import { MouseEventHandler } from 'react';
+import { ChangeEventHandler, LegacyRef, MouseEventHandler } from 'react';
 import { User } from '../../../types';
 import { BiEdit, BiSolidDownload, BiTrash } from 'react-icons/bi';
+import { ProfileMenuAvatar } from '../../ProfileMenu/ProfileMenuAvatar';
 
 interface UIAccountEditProfileProps {
 	user: User;
 	onDownloadClick?: MouseEventHandler<HTMLDivElement>;
 	onDeleteClick?: MouseEventHandler<HTMLDivElement>;
 	onEditClick?: MouseEventHandler<HTMLDivElement>;
+	avatarInputRef?: LegacyRef<HTMLInputElement>;
+	onAvatarInputChange?: ChangeEventHandler<HTMLInputElement>;
 }
 export const UIAccountEditProfile = ({
 	user,
 	onDownloadClick,
 	onEditClick,
 	onDeleteClick,
+	avatarInputRef,
+	onAvatarInputChange,
 }: UIAccountEditProfileProps) => {
 	return (
 		<div className='flex gap-4'>
-			<img
-				src={user.avatarUrl}
-				alt={`${user.username} Avatar`}
-				width='400'
-				className='rounded-2xl w-48 h-64 object-cover'
+			<ProfileMenuAvatar
+				user={user}
+				className='w-48 h-64 rounded-2xl object-cover'
 			/>
 			<div className='absolute flex gap-2 p-2'>
 				<div
@@ -28,6 +31,12 @@ export const UIAccountEditProfile = ({
 					onClick={onEditClick}
 				>
 					<BiEdit />
+					<input
+						type='file'
+						className='hidden'
+						ref={avatarInputRef}
+						onChange={onAvatarInputChange}
+					/>
 				</div>
 				<div
 					className='hover:cursor-pointer hover:scale-105'
