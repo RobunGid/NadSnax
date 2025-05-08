@@ -1,84 +1,47 @@
-import { ChangeEventHandler, useRef, useState } from 'react';
-import { Axios } from '../../api';
-import { fetchUser, useAppDispatch, useStateSelector } from '../../store';
-import { UIAccountEditProfile } from './UI/UIAccountEditProfile';
-import { AxiosError } from 'axios';
+import { useRef, useState } from 'react';
+import { useStateSelector } from '../../store';
+import { ProfileMenuAvatar } from '../ProfileMenu/ProfileMenuAvatar';
+import clsx from 'clsx';
+import { AccountEditProfileAvatarControls } from './AccountEditProfileAvatarControls';
 
 export const AccountEditProfile = () => {
-	const dispatch = useAppDispatch();
 	const user = useStateSelector((state) => state.user.user);
 
 	const [avatarErrorMessage, setAvatarErrorMessage] = useState<string | undefined>(
 		undefined
 	);
 
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
 	const avatarInputRef = useRef<null | HTMLInputElement>(null);
-
-	const handleDownloadAvatar = async () => {
-		const response = await Axios.get(`${user?.avatarUrl}`, {
-			responseType: 'blob',
-		});
-
-		const blobUrl = URL.createObjectURL(response.data);
-
-		const link = document.createElement('a');
-		link.href = blobUrl;
-		link.download = user?.username + ' Avatar';
-		document.body.append(link);
-		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(blobUrl);
-	};
-
-	const handleChangeAvatar = () => {
-		if (avatarInputRef.current) avatarInputRef.current.click();
-	};
-
-	const handleDeleteAvatar = async () => {
-		await Axios.delete('/avatar/me', {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		dispatch(fetchUser(accessToken));
-	};
-
-	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = async (
-		event
-	) => {
-		const file = event.target.files && event.target.files[0];
-		if (!file) return;
-		const formData = new FormData();
-		formData.append('avatar', file);
-		try {
-			await Axios.put('/avatar/me', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					Authorization: `Bearer ${accessToken}`,
-				},
-			});
-			setAvatarErrorMessage(undefined);
-		} catch (error) {
-			if (error instanceof AxiosError)
-				setAvatarErrorMessage(error.response?.data.message);
-		}
-		dispatch(fetchUser(accessToken));
-	};
 
 	return (
 		user && (
-			<UIAccountEditProfile
-				user={user}
-				onDownloadClick={handleDownloadAvatar}
-				onEditClick={handleChangeAvatar}
-				onAvatarInputChange={handleAvatarInputChange}
-				avatarInputRef={avatarInputRef}
-				avatarErrorMessage={avatarErrorMessage}
-				onDeleteClick={handleDeleteAvatar}
-			/>
+			<div className='flex gap-4 relative'>
+				<ProfileMenuAvatar
+					user={user}
+					className='w-48 h-64 rounded-2xl object-cover'
+				/>
+				<div
+					className={clsx(
+						'bg-orange-600 shadow-2xl p-2 absolute rounded-xl -top-12 -left-4 opacity-0',
+						avatarErrorMessage && 'animate-fadeOut'
+					)}
+				>
+					{avatarErrorMessage}
+					<div className='absolute border-orange-600 top-10 left-5 border-x-transparent border-t-[16px] border-x-[16px]'></div>
+				</div>
+				<AccountEditProfileAvatarControls
+					avatarInputRef={avatarInputRef}
+					setAvatarErrorMessage={setAvatarErrorMessage}
+					user={user}
+				/>
+
+				<div className='p-4 flex flex-col gap-2'>
+					<div className='text-3xl font-bold'>
+						{user.firstName} {user.lastName}
+					</div>
+					<div className='dark:text-gray-500'>@{user.username}</div>
+				</div>
+			</div>
 		)
 	);
 };
