@@ -1,4 +1,5 @@
 from db import db
+from sqlalchemy import UniqueConstraint
 
 class ReviewModel(db.Model):
     __tablename__ = "reviews"
@@ -12,3 +13,7 @@ class ReviewModel(db.Model):
     
     item_id = db.Column(db.String(80), db.ForeignKey("items.id"), nullable = False)
     item = db.relationship("ItemModel", back_populates = "reviews")
+    
+    __table_args__ = (
+		UniqueConstraint('user_id', 'item_id', name='uix_user_item'),
+	)
