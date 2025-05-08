@@ -43,8 +43,8 @@ export const AccountEditProfile = () => {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
-		console.log(clearUser());
-		console.log(dispatch(fetchUser(accessToken)));
+		clearUser();
+		dispatch(fetchUser(accessToken));
 	};
 
 	return (
