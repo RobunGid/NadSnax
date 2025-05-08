@@ -1,10 +1,19 @@
+import { MouseEventHandler } from 'react';
 import { User } from '../../../types';
 import { BiEdit, BiSolidDownload, BiTrash } from 'react-icons/bi';
 
 interface UIAccountEditProfileProps {
 	user: User;
+	onDownloadClick?: MouseEventHandler<HTMLDivElement>;
+	onDeleteClick?: MouseEventHandler<HTMLDivElement>;
+	onEditClick?: MouseEventHandler<HTMLDivElement>;
 }
-export const UIAccountEditProfile = ({ user }: UIAccountEditProfileProps) => {
+export const UIAccountEditProfile = ({
+	user,
+	onDownloadClick,
+	onEditClick,
+	onDeleteClick,
+}: UIAccountEditProfileProps) => {
 	return (
 		<div className='flex gap-4'>
 			<img
@@ -14,13 +23,22 @@ export const UIAccountEditProfile = ({ user }: UIAccountEditProfileProps) => {
 				className='rounded-2xl w-48 h-64 object-cover'
 			/>
 			<div className='absolute flex gap-2 p-2'>
-				<div className='hover:cursor-pointer hover:scale-105'>
+				<div
+					className='hover:cursor-pointer hover:scale-105'
+					onClick={onEditClick}
+				>
 					<BiEdit />
 				</div>
-				<div className='hover:cursor-pointer hover:scale-105'>
+				<div
+					className='hover:cursor-pointer hover:scale-105'
+					onClick={onDeleteClick}
+				>
 					<BiTrash />
 				</div>
-				<div className='hover:cursor-pointer hover:scale-105'>
+				<div
+					className='hover:cursor-pointer hover:scale-105'
+					onClick={onDownloadClick}
+				>
 					<BiSolidDownload />
 				</div>
 			</div>
