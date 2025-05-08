@@ -21,7 +21,8 @@ class Avatar(MethodView):
 class Avatars(MethodView):
     def get(self, avatar_name):
         from app import app
-        return send_from_directory(app.config["AVATAR_UPLOAD_FOLDER"], avatar_name)
+        as_attachment = request.args.get("as_attachment", type = bool, default = False)
+        return send_from_directory(app.config["AVATAR_UPLOAD_FOLDER"], avatar_name, as_attachment=as_attachment)
     
     def delete(self, avatar_name):
         from app import app
