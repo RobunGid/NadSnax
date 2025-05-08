@@ -1,6 +1,6 @@
 import { ChangeEventHandler, useRef } from 'react';
 import { Axios } from '../../api';
-import { clearUser, fetchUser, useAppDispatch, useStateSelector } from '../../store';
+import { fetchUser, useAppDispatch, useStateSelector } from '../../store';
 import { UIAccountEditProfile } from './UI/UIAccountEditProfile';
 
 export const AccountEditProfile = () => {
@@ -43,7 +43,6 @@ export const AccountEditProfile = () => {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
-		clearUser();
 		dispatch(fetchUser(accessToken));
 	};
 
