@@ -3,6 +3,7 @@ import { useStateSelector } from '../../store';
 import { ProfileMenuAvatar } from '../ProfileMenu/ProfileMenuAvatar';
 import { AccountEditProfileAvatarControls } from './AccountEditProfileAvatarControls';
 import { UIAccountEditProfileAvatarErrorMessage } from './UI/UIAccountEditProfileAvatarErrorMessage';
+import { UIAccountEditProfileInfo } from './UI/UIAccountEditProfileInfo';
 
 export const AccountEditProfile = () => {
 	const user = useStateSelector((state) => state.user.user);
@@ -29,12 +30,11 @@ export const AccountEditProfile = () => {
 					user={user}
 				/>
 
-				<div className='p-4 flex flex-col gap-2'>
-					<div className='text-3xl font-bold'>
-						{user.firstName} {user.lastName}
-					</div>
-					<div className='dark:text-gray-500'>@{user.username}</div>
-				</div>
+				<UIAccountEditProfileInfo
+					lastName={user.lastName}
+					firstName={user.firstName}
+					username={user.username}
+				/>
 			</div>
 		)
 	);
