@@ -4,6 +4,7 @@ import { AccountEditProfileAvatarControls } from './AccountEditProfileAvatarCont
 import { UIAccountEditProfileAvatarErrorMessage } from './UI/UIAccountEditProfileAvatarErrorMessage';
 import { UIAccountEditProfileInfo } from './UI/UIAccountEditProfileInfo';
 import { UIAccountEditProfileAvatar } from './UI/UIAccountEditProfileAvatar';
+import { UIAccountEditProfile } from './UI/UIAccountEditProfile';
 
 export const AccountEditProfile = () => {
 	const user = useStateSelector((state) => state.user.user);
@@ -16,7 +17,7 @@ export const AccountEditProfile = () => {
 
 	return (
 		user && (
-			<div className='flex gap-4 relative'>
+			<UIAccountEditProfile>
 				<UIAccountEditProfileAvatar user={user} />
 				<UIAccountEditProfileAvatarErrorMessage
 					avatarErrorMessage={avatarErrorMessage}
@@ -32,7 +33,7 @@ export const AccountEditProfile = () => {
 					firstName={user.firstName}
 					username={user.username}
 				/>
-			</div>
+			</UIAccountEditProfile>
 		)
 	);
 };
