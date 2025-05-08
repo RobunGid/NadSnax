@@ -62,3 +62,15 @@ class AvatarMe(MethodView):
 		avatar_file.save(filename)
 		
 		return {"message": "Avatar changed successfully", "avatar_name": file_path}
+
+	@jwt_required()
+	def delete(self):
+		from app import app
+		identity = get_jwt_identity()
+		user = UserModel.query.get_or_404(identity)
+		file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], user.username) + '.png'
+		if os.path.exists(file_path):
+			os.remove(file_path)
+			return {"message": "Avatar deleted successfully", "avatar_name": file_path}
+		else:
+			abort(404, description="Avatar not found")
