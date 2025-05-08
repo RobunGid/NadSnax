@@ -36,6 +36,15 @@ export const AccountEditProfile = () => {
 		if (avatarInputRef.current) avatarInputRef.current.click();
 	};
 
+	const handleDeleteAvatar = async () => {
+		await Axios.delete('/avatar/me', {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+	};
+
 	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = async (
 		event
 	) => {
@@ -67,6 +76,7 @@ export const AccountEditProfile = () => {
 				onAvatarInputChange={handleAvatarInputChange}
 				avatarInputRef={avatarInputRef}
 				avatarErrorMessage={avatarErrorMessage}
+				onDeleteClick={handleDeleteAvatar}
 			/>
 		)
 	);
