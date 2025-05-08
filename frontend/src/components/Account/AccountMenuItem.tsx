@@ -4,6 +4,7 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { UIAccountMenuItem } from './UI/UIAccountMenuItem';
 import { PiSignOut, PiStar } from 'react-icons/pi';
 import { MouseEventHandler } from 'react';
+import { CiEdit } from 'react-icons/ci';
 
 interface SignoutProps {
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
@@ -39,6 +40,12 @@ export const AccountMenuItem = {
 		<UIAccountMenuItem to='/account/favourites'>
 			<PiStar />
 			Favourites
+		</UIAccountMenuItem>
+	),
+	EditProfile: () => (
+		<UIAccountMenuItem to='/account/edit_profile'>
+			<CiEdit />
+			Edit profile
 		</UIAccountMenuItem>
 	),
 	Help: () => (

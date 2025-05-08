@@ -12,6 +12,7 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 	const sections: Record<Section, ReactNode> = {
 		settings: <AccountSettings />,
 		profile: <AccountProfile />,
+		editProfile: <></>,
 		help: <></>,
 		order_history: <></>,
 		recently_viewed: <></>,
