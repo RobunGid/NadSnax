@@ -2,18 +2,17 @@ from marshmallow import Schema, fields
 from models.user import Role
 from marshmallow_enum import EnumField
 
+# For authentification
 class PlainUserSchema(Schema):
     id = fields.Str(dump_only = True)
     username = fields.Str(required = True)
     password = fields.Str(required = True, load_only=True)
-    first_name = fields.Str(required = True)
-    last_name = fields.Str(required = True)
-    role = EnumField(Role)
     
 class PlainReviewSchema(Schema):
     id = fields.Str(dump_only = True)
     text = fields.Str(required = True)
     rating = fields.Int(required = True)
+    created_at = fields.DateTime(required = True, dump_only=True)
     
 class PlainCategorySchema(Schema):
     name = fields.Str(required = True)
@@ -63,6 +62,9 @@ class TypeUpdateSchema(Schema):
     
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
+    first_name = fields.Str(required = True)
+    last_name = fields.Str(required = True)
+    role = EnumField(Role)
     
     
 class ReviewSchema(PlainReviewSchema):
