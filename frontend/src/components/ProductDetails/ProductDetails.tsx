@@ -1,6 +1,7 @@
 import { Item } from '../../types';
 import { ProductDetailsGallery } from './ProductDetailsGallery';
 import { ProductDetailsInfo } from './ProductDetailsInfo';
+import { ProductDetailsReviews } from './ProductDetailsReviews';
 import { ProductDetailsSimillarItems } from './ProductDetailsSimillarItems';
 import { UIProductDetails } from './UI/UIProductDetails';
 
@@ -10,11 +11,11 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
-	console.log(item);
 	return (
 		<UIProductDetails>
 			<ProductDetailsGallery images={item.images} />
 			<ProductDetailsInfo item={item} />
+			<ProductDetailsReviews reviews={item.reviews} />
 			<ProductDetailsSimillarItems item={item} itemList={itemList} />
 		</UIProductDetails>
 	);

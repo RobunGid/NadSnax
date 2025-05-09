@@ -42,6 +42,7 @@ export type Item = {
 	averageRating: number | null;
 	ratingCount: number | null;
 	images: Image[];
+	reviews: Review[];
 };
 
 export type ItemDetails = {
