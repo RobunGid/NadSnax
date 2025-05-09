@@ -24,6 +24,7 @@ interface fetchItemsParams {
 	is_bestseller?: boolean;
 	is_secretbox?: boolean;
 	include_images?: boolean;
+	include_reviews?: boolean;
 	simillar_id?: string;
 }
 
@@ -39,6 +40,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			include_category,
 			include_item_details,
 			include_images,
+			include_reviews,
 			category_name,
 			type_name,
 			page_link,
@@ -61,6 +63,7 @@ export const fetchItemsThunk = createAsyncThunk<
 				page_link,
 				bestseller: is_bestseller,
 				secretbox: is_secretbox,
+				include_reviews,
 				simillar_id,
 			},
 		});

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
-import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
-import { cartActions, useActionCreators, useStateSelector } from '../../store';
+import { fetchItemsThunk } from '../../store/itemSlice';
+import { useActionCreators, useStateSelector } from '../../store';
 import { UIproductDetailsLoader } from '../ProductDetails/UI/Loader/UIProductDetailsLoader';
 import { ProductDetails } from '../ProductDetails/ProductDetails';
 
@@ -9,8 +9,6 @@ export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
 
 	const actions = useActionCreators({
-		...itemActions,
-		...cartActions,
 		fetchItems: fetchItemsThunk,
 	});
 
@@ -27,6 +25,7 @@ export const ProductDetailsPage = () => {
 			include_category: true,
 			include_type: true,
 			include_images: true,
+			include_reviews: true,
 			page_link: `/${product_page_link}`,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,6 +37,7 @@ export const ProductDetailsPage = () => {
 		if (!item?.id || fetchedSimillars.current) return;
 		actions.fetchItems({
 			include_item_details: true,
+			include_reviews: true,
 			include_category: true,
 			include_type: true,
 			include_images: true,
