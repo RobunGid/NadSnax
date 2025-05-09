@@ -6,6 +6,9 @@ class PlainUserSchema(Schema):
     id = fields.Str(dump_only = True)
     username = fields.Str(required = True)
     password = fields.Str(required = True, load_only=True)
+    first_name = fields.Str(required = True)
+    last_name = fields.Str(required = True)
+    role = EnumField(Role)
     
 class PlainReviewSchema(Schema):
     id = fields.Str(dump_only = True)
@@ -57,8 +60,11 @@ class TypeUpdateSchema(Schema):
 	icon_url = fields.Str(required = True)
 	category_id = fields.Str(required = True)
 	page_link = fields.Str(required = True)
-
-
+    
+class UserSchema(PlainUserSchema):
+    reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
+    
+    
 class ReviewSchema(PlainReviewSchema):
     user_id = fields.Str(required = True)
     user = fields.Nested(PlainUserSchema(), dump_only = True) 
@@ -77,11 +83,6 @@ class ReviewSchema(PlainReviewSchema):
 
         super().__init__(exclude = exclude_fields, **kwargs)
     
-class UserSchema(PlainUserSchema):
-    first_name = fields.Str(required = True)
-    last_name = fields.Str(required = True)
-    role = EnumField(Role)
-    reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only = True)
     
 class ReviewUpdateSchema(Schema):
     text = fields.Str(required = True)
