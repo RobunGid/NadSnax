@@ -24,7 +24,7 @@ export const ProductDetailsDropdown = ({
 	return (
 		<div className={className}>
 			<div
-				className='flex flex-row cursor-pointer items-center mt-4'
+				className='flex flex-row cursor-pointer items-center my-2'
 				onClick={handleToggleVisibility}
 			>
 				<IoIosArrowDown
@@ -39,7 +39,7 @@ export const ProductDetailsDropdown = ({
 
 			<div
 				className={clsx(
-					'transition-all duration-300 pl-3 mt-1 overflow-hidden text-gray-500',
+					'transition-all duration-300 pl-3 mt-1 mb-2 overflow-hidden text-gray-500',
 					optionsVisibility ? 'max-h-80' : 'max-h-0'
 				)}
 			>

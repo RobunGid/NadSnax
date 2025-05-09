@@ -8,6 +8,6 @@ export const UIProductDetailsItemDetails = ({
 	children,
 }: UIProductDetailsItemDetailsProps) => {
 	return (
-		<div className='flex flex-col gap-y-4 divide-gray-400 divide-y-2'>{children}</div>
+		<div className='flex flex-col gap-y-2 divide-gray-400 divide-y-2'>{children}</div>
 	);
 };
