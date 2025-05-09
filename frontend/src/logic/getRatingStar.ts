@@ -1,5 +1,5 @@
 type Rating = 'empty' | 'half' | 'full';
-type FullRating = [Rating, Rating, Rating, Rating, Rating];
+export type FullRating = [Rating, Rating, Rating, Rating, Rating];
 
 export const getRatingStar = (ratingCount: number | null): FullRating => {
 	if (ratingCount == null || ratingCount <= 0) {

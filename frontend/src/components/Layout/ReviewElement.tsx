@@ -1,28 +1,10 @@
 import { Review } from '../../types';
-import { ProductRating } from './ProductRating';
+import { UIReviewElement } from '../UI/UIReviewElement';
 
-type ReviewElementProps = { review: Review };
+interface ReviewProps {
+	review: Review;
+}
 
-export const ReviewElement = ({ review }: ReviewElementProps) => {
-	return (
-		<li className='flex flex-col items-center w-60 gap-y-3 -mb-24'>
-			<img
-				src={review.user.avatarUrl}
-				alt={`${review.user.username} Avatar`}
-				className='w-20 rounded-full'
-			/>
-			<p>
-				{review.user.firstName} {review.user.lastName}
-			</p>
-			<ProductRating rating={review.rating} className='flex text-yellow-400' />
-			<p className='text-sm text-center'>{review.text}</p>
-			{/*item && (
-				<ProductItem
-					hideAddButton={true}
-					product={item}
-					className='scale-75 origin-top'
-				/>
-			)*/}
-		</li>
-	);
+export const ReviewElement = ({ review }: ReviewProps) => {
+	return <UIReviewElement review={review} />;
 };
