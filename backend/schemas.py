@@ -18,6 +18,7 @@ class PlainReviewSchema(Schema):
     text = fields.Str(required = True)
     rating = fields.Int(required = True)
     created_at = fields.DateTime(required = True, dump_only=True)
+    item_id = fields.Str(required = True)
     
 class PlainCategorySchema(Schema):
     name = fields.Str(required = True)
@@ -73,7 +74,7 @@ class ReviewSchema(PlainReviewSchema):
     user_id = fields.Str(required = True)
     user = fields.Nested(PlainUserSchema(), dump_only = True) 
     
-    item_id = fields.Str(required = True)
+    
     item = fields.Nested(PlainItemSchema(), dump_only = True)
         
     def __init__(self, include_item = False, include_user = False, **kwargs):

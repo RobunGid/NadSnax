@@ -1,10 +1,11 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from models import ReviewModel
-from schemas import ReviewSchema, ReviewUpdateSchema
+from schemas import ReviewSchema, ReviewUpdateSchema, PlainReviewSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 blp = Blueprint("reviews", __name__, description = "Operations on reviews")
 
@@ -43,10 +44,12 @@ class Reviews(MethodView):
 	def get(self):
 		return ReviewModel.query.all()
 	   
-	@blp.arguments(ReviewSchema)
-	@blp.response(201, ReviewSchema)    
+	@blp.arguments(PlainReviewSchema)
+	@blp.response(201, ReviewSchema)
+	@jwt_required()
 	def post(self, review_data):
-		review = ReviewModel(**review_data, id = str(uuid.uuid4()))
+		identity = get_jwt_identity()
+		review = ReviewModel(**review_data, id=str(uuid.uuid4()), user_id=identity)
   
 		try:
 			db.session.add(review)
