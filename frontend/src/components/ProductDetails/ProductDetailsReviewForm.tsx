@@ -5,7 +5,7 @@ export const ProductDetailsReviewForm = () => {
 	return (
 		<form className='shadow-lg dark:shadow-gray-600 p-8 gap-y-4 flex flex-col items-center'>
 			<div>Rate this item</div>
-			<div className='flex flex-row-reverse justify-end items-center'>
+			<div className='flex flex-row-reverse justify-end items-center text-gray-300 dark:text-neutral-600'>
 				<input
 					id='hs-ratings-readonly-1'
 					type='radio'
@@ -15,7 +15,7 @@ export const ProductDetailsReviewForm = () => {
 				/>
 				<label
 					htmlFor='hs-ratings-readonly-1'
-					className='peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600'
+					className='peer-checked:text-yellow-400 pointer-events-none dark:peer-checked:text-yellow-600'
 				>
 					<GoStarFill />
 				</label>
@@ -28,7 +28,7 @@ export const ProductDetailsReviewForm = () => {
 				/>
 				<label
 					htmlFor='hs-ratings-readonly-2'
-					className='peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600'
+					className='peer-checked:text-yellow-400 pointer-events-none dark:peer-checked:text-yellow-600'
 				>
 					<GoStarFill />
 				</label>
@@ -41,7 +41,7 @@ export const ProductDetailsReviewForm = () => {
 				/>
 				<label
 					htmlFor='hs-ratings-readonly-3'
-					className='peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600'
+					className='peer-checked:text-yellow-400 pointer-events-none dark:peer-checked:text-yellow-600'
 				>
 					<GoStarFill />
 				</label>
@@ -54,7 +54,7 @@ export const ProductDetailsReviewForm = () => {
 				/>
 				<label
 					htmlFor='hs-ratings-readonly-4'
-					className='peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600'
+					className='peer-checked:text-yellow-400 pointer-events-none dark:peer-checked:text-yellow-600'
 				>
 					<GoStarFill />
 				</label>
@@ -67,7 +67,7 @@ export const ProductDetailsReviewForm = () => {
 				/>
 				<label
 					htmlFor='hs-ratings-readonly-5'
-					className='peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600'
+					className='peer-checked:text-yellow-400 pointer-events-none dark:peer-checked:text-yellow-600'
 				>
 					<GoStarFill />
 				</label>
