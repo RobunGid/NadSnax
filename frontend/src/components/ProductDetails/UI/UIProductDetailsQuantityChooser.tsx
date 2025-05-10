@@ -22,16 +22,16 @@ export const UIProductDetailsQuantityChooser = ({
 		<div className={clsx('text-2xl', className)}>
 			{!count ? (
 				<div
-					className='text-xl dark:bg-sky-800 bg-orange-400 flex cursor-pointer h-[60px] justify-center items-center gap-2 rounded-full px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					className='text-xl dark:bg-sky-800 bg-orange-400 dark:hover:bg-sky-900 flex cursor-pointer h-[60px] justify-center items-center gap-2 rounded-full px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
 				>
 					<FiPlus />
 					<button>Add to cart</button>
 				</div>
 			) : (
-				<div className='dark:bg-sky-800 bg-orange-400 h-[60px] relative flex justify-center rounded-full font-bold transition'>
+				<div className='dark:bg-sky-800 bg-orange-400 hover:bg-orange-500 dark:hover:bg-sky-900 h-[60px] relative flex justify-center rounded-full font-bold transition'>
 					<button
-						className='hover:bg-orange-500 dark:hover:bg-sky-900 mr-auto w-3/4 hover:rounded-tl-full hover:rounded-bl-full'
+						className='mr-auto w-3/4 hover:rounded-tl-full hover:rounded-bl-full'
 						onClick={onDelete}
 					>
 						–
