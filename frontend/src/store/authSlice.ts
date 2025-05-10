@@ -33,7 +33,6 @@ export const loginThunk = createAsyncThunk(
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				withCredentials: true,
 			}
 		);
 		const data = response.data;
@@ -70,9 +69,7 @@ export const registerThunk = createAsyncThunk(
 			const response = await Axios.post('/register', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
-					credentials: 'include',
 				},
-				withCredentials: true,
 			});
 			const data = response.data;
 
@@ -94,16 +91,12 @@ export const refreshThunk = createAsyncThunk(
 	'auth/refresh',
 	async (_, { rejectWithValue, dispatch }) => {
 		try {
-			const response = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
-				method: 'POST',
-				credentials: 'include',
-			});
+			const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
 			if (response.status != 200) {
 				return rejectWithValue(response.statusText);
 			}
 
-			const data = await response.json();
-			const accessToken = data.access_token;
+			const accessToken = response.data.access_token;
 			dispatch(fetchUser(accessToken));
 			return accessToken;
 		} catch (error) {
@@ -115,23 +108,23 @@ export const refreshThunk = createAsyncThunk(
 export const signoutThunk = createAsyncThunk(
 	'auth/signout',
 	async (_, { rejectWithValue, dispatch }) => {
-		const accessResponse = await fetch(import.meta.env.VITE_API_URL + '/refresh', {
-			method: 'POST',
-			credentials: 'include',
-		});
+		const accessResponse = await Axios.post(
+			import.meta.env.VITE_API_URL + '/refresh'
+		);
 		if (accessResponse.status != 200) {
 			return rejectWithValue(accessResponse.statusText);
 		}
 
-		const data = await accessResponse.json();
-		const accessToken = data.access_token;
-		const response = await fetch(import.meta.env.VITE_API_URL + '/signout', {
-			method: 'POST',
-			credentials: 'include',
-			headers: {
-				authorization: `Bearer ${accessToken}`,
-			},
-		});
+		const accessToken = accessResponse.data.access_token;
+		const response = await Axios.post(
+			import.meta.env.VITE_API_URL + '/signout',
+			{},
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
 
 		if (response.status != 200) {
 			return rejectWithValue(response.statusText);
