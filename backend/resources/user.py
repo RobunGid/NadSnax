@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from models import UserModel
-from schemas import UserSchema, UserUpdateSchema, PlainUserSchema
+from schemas import UserSchema, UserUpdateSchema, PlainUserSchema, AuthUserSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
@@ -122,7 +122,7 @@ class UserRegister(MethodView):
 
 @blp.route('/login')
 class UserLogin(MethodView):
-    @blp.arguments(PlainUserSchema)
+    @blp.arguments(AuthUserSchema)
     def post(self, user_data):
         user = UserModel.query.filter(
             UserModel.username == user_data["username"]
