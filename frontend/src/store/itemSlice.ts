@@ -78,6 +78,7 @@ export const fetchItemsThunk = createAsyncThunk<
 
 		const fixedItems: Item[] = camelCaseItems.map((item) => ({
 			...item,
+
 			images: item.images.map((image) => ({
 				...image,
 				url:

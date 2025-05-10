@@ -65,6 +65,7 @@ export type Review = {
 
 	userId: string;
 	user: User;
+	createdAt: string;
 };
 
 export type User = {
