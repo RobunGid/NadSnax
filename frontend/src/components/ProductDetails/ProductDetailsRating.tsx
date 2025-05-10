@@ -1,4 +1,4 @@
-import { ProductRating } from '../../Layout/ProductRating';
+import { RatingElement } from '../Layout/RatingElement';
 
 interface ProductDetailsRatingProps {
 	averageRating: number | null;
@@ -11,7 +11,7 @@ export const ProductDetailsRating = ({
 }: ProductDetailsRatingProps) => {
 	return (
 		<div className='flex'>
-			<ProductRating rating={averageRating} className='flex text-yellow-500' />
+			<RatingElement rating={averageRating} className='flex text-yellow-500' />
 			<div>{ratingCount}</div>
 		</div>
 	);

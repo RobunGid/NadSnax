@@ -1,14 +1,15 @@
 import { getRatingStar } from '../../logic/getRatingStar';
 import clsx from 'clsx';
-import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io';
+import { GoStar, GoStarFill } from 'react-icons/go';
+import { IoMdStarHalf } from 'react-icons/io';
 
-interface ProductRatingProps {
+interface RatingElementProps {
 	rating: number | null;
 	className?: string;
 	size?: string | number;
 }
 
-export const ProductRating = ({ rating, className, size }: ProductRatingProps) => {
+export const RatingElement = ({ rating, className, size }: RatingElementProps) => {
 	const ratingCount = getRatingStar(rating);
 
 	return (
@@ -16,11 +17,11 @@ export const ProductRating = ({ rating, className, size }: ProductRatingProps) =
 			{ratingCount.map((rating, index) => {
 				switch (rating) {
 					case 'full':
-						return <IoMdStar key={index} size={size} />;
+						return <GoStarFill key={index} size={size} />;
 					case 'half':
 						return <IoMdStarHalf key={index} size={size} />;
 					case 'empty':
-						return <IoMdStarOutline key={index} size={size} />;
+						return <GoStar key={index} size={size} />;
 				}
 			})}
 		</div>

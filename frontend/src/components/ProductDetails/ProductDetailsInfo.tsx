@@ -4,7 +4,7 @@ import { ProductDetailsQuantityChooser } from './ProductDetailsQuantityChooser';
 import { UIProductDetailsAddToFavourite } from './UI/UIProductDetailsAddToFavourite';
 import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
-import { ProductDetailsRating } from './UI/ProductDetailsRating';
+import { ProductDetailsRating } from './ProductDetailsRating';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 import { UIProductDetailsInfo } from './UI/UIProductDetailsInfo';

@@ -2,7 +2,7 @@ import { formatReviewDate } from '../../logic/formatReviewDate';
 import { Review } from '../../types';
 import { ProfileMenuAvatar } from '../ProfileMenu/ProfileMenuAvatar';
 import { UIReviewElement } from '../UI/UIReviewElement';
-import { ProductRating } from './ProductRating';
+import { RatingElement } from './RatingElement';
 
 interface ReviewProps {
 	review: Review;
@@ -18,7 +18,7 @@ export const ReviewElement = ({ review }: ReviewProps) => {
 					className='w-16 h-16 rounded-full '
 				/>
 				{review.user.firstName} {review.user.lastName}
-				<ProductRating rating={review.rating} className='flex text-yellow-400' />
+				<RatingElement rating={review.rating} className='flex text-yellow-400' />
 			</div>
 			<div>{review.text}</div>
 			<div className='dark:text-gray-500 text-sm'>{createdAt}</div>

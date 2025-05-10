@@ -1,4 +1,4 @@
-import { ProductRating } from '../../Layout/ProductRating';
+import { RatingElement } from '../../Layout/RatingElement';
 
 interface UIProductItemRatingProps {
 	ratingCount: number | null;
@@ -11,7 +11,7 @@ export const UIProductItemRating = ({
 }: UIProductItemRatingProps) => {
 	return (
 		<div className='flex justify-start'>
-			<ProductRating
+			<RatingElement
 				rating={averageRating}
 				size='16'
 				className='flex text-yellow-400'
