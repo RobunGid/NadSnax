@@ -30,7 +30,6 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const price = formatPrice(item.price);
 
 	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
-
 	return (
 		<UIProductItem pageLink={item.pageLink} className={className}>
 			<ProductItemImage

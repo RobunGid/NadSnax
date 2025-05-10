@@ -78,19 +78,6 @@ export const fetchItemsThunk = createAsyncThunk<
 
 		const fixedItems: Item[] = camelCaseItems.map((item) => ({
 			...item,
-			reviews: [
-				...item.reviews.map((review) => ({
-					...review,
-					user: {
-						...review.user,
-						avatarUrl:
-							import.meta.env.VITE_API_URL +
-							'/avatar/' +
-							review.user.username +
-							'.png',
-					},
-				})),
-			],
 			images: item.images.map((image) => ({
 				...image,
 				url:

@@ -69,7 +69,7 @@ export type Review = {
 
 export type User = {
 	id: string;
-	avatarUrl?: string;
+	avatarUrl: string;
 	firstName: string;
 	lastName: string;
 	reviews?: Review[];
