@@ -16,7 +16,7 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 		<UIProductDetails>
 			<ProductDetailsGallery images={item.images} />
 			<ProductDetailsInfo item={item} />
-			<ProductDetailsReviewForm />
+			<ProductDetailsReviewForm itemId={item.id} />
 			<ProductDetailsReviews reviews={item.reviews} />
 			<ProductDetailsSimillarItems item={item} itemList={itemList} />
 		</UIProductDetails>

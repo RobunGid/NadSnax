@@ -4,6 +4,7 @@ import { UIProductDetailsRatingInputs } from './UI/UIProductDetailsRatingInputs'
 import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
 import { UIProductDetailsTextArea } from './UI/UIProductDetailsTextArea';
 import { useStateSelector } from '../../store';
+import { Axios } from '../../api';
 
 interface ReviewFormState {
 	text: string;
@@ -14,17 +15,19 @@ const initialReviewFormState = {
 	text: '',
 	rating: 0,
 };
+interface ProductDetailsReviewFormProps {
+	itemId: string;
+}
 
-export const ProductDetailsReviewForm = () => {
+export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormProps) => {
 	const [formValue, setFormValue] = useState<ReviewFormState>(initialReviewFormState);
 
 	const formRef = useRef<HTMLFormElement | null>(null);
 
-	const user = useStateSelector((state) => state.user.user);
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
-	const handleSendReview: MouseEventHandler<HTMLButtonElement> = (event) => {
+	const handleSendReview: MouseEventHandler<HTMLButtonElement> = async (event) => {
 		event.preventDefault();
-		if (!user) return;
 		if (formRef.current && !formValue.rating) {
 			formRef.current.reportValidity();
 			return;
@@ -32,9 +35,14 @@ export const ProductDetailsReviewForm = () => {
 		const review = {
 			text: formValue.text,
 			rating: formValue.rating,
-			user_id: user.id,
+			item_id: itemId,
 		};
-		console.log(review);
+		Axios.post('/review', review, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json',
+			},
+		});
 	};
 	return (
 		<UIProductDetailsReviewForm
