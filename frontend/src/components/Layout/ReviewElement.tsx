@@ -1,17 +1,54 @@
+import { Axios } from '../../api';
 import { formatReviewDate } from '../../logic/formatReviewDate';
+import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
 import { Review } from '../../types';
 import { UIAvatar } from '../UI/UIAvatar';
 import { UIReviewElement } from '../UI/UIReviewElement';
 import { RatingElement } from './RatingElement';
+import { TfiTrash } from 'react-icons/tfi';
 
 interface ReviewProps {
 	review: Review;
+	displayControls?: boolean;
 }
 
-export const ReviewElement = ({ review }: ReviewProps) => {
+export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 	const createdAt = formatReviewDate(review.createdAt);
+
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
+
+	const actions = useActionCreators({
+		fetchItems: fetchItemsThunk,
+	});
+
+	const handleDeleteReview = async () => {
+		const response = await Axios.delete(`/review/${review.id}`, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+
+		if (response.status === 200) {
+			actions.fetchItems({
+				include_item_details: true,
+				include_reviews: true,
+				include_category: true,
+				include_type: true,
+				include_images: true,
+				simillar_id: review.itemId,
+			});
+		}
+	};
+
 	return (
 		<UIReviewElement>
+			{displayControls && (
+				<TfiTrash
+					onClick={handleDeleteReview}
+					className='absolute cursor-pointer hover:scale-105 bottom-2 right-2'
+					title='Delete this review'
+				/>
+			)}
 			<div className='flex flex-row items-center gap-4'>
 				<UIAvatar
 					username={review.user.username}

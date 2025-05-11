@@ -20,7 +20,7 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 			<ProductDetailsGallery images={item.images} />
 			<ProductDetailsInfo item={item} />
 			{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
-			<ProductDetailsReviews reviews={item.reviews} />
+			<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
 			<ProductDetailsSimillarItems item={item} itemList={itemList} />
 		</UIProductDetails>
 	);
