@@ -3,7 +3,7 @@ import { UIButton } from '../UI/UIButton';
 import { UIProductDetailsRatingInputs } from './UI/UIProductDetailsRatingInputs';
 import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
 import { UIProductDetailsTextArea } from './UI/UIProductDetailsTextArea';
-import { useStateSelector } from '../../store';
+import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
 import { Axios } from '../../api';
 
 interface ReviewFormState {
@@ -24,6 +24,10 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 
 	const formRef = useRef<HTMLFormElement | null>(null);
 
+	const actions = useActionCreators({
+		fetchItems: fetchItemsThunk,
+	});
+
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const handleSendReview: MouseEventHandler<HTMLButtonElement> = async (event) => {
@@ -37,12 +41,24 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 			rating: formValue.rating,
 			item_id: itemId,
 		};
-		Axios.post('/review', review, {
+
+		const response = await Axios.post('/review', review, {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 				'Content-Type': 'application/json',
 			},
 		});
+
+		if (response.status === 201) {
+			actions.fetchItems({
+				include_item_details: true,
+				include_reviews: true,
+				include_category: true,
+				include_type: true,
+				include_images: true,
+				simillar_id: review.item_id,
+			});
+		}
 	};
 	return (
 		<UIProductDetailsReviewForm
