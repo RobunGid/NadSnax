@@ -1,13 +1,13 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi';
 import clsx from 'clsx';
 
-interface UIProductDetailsAddToFavouriteProps {
+interface UIProductDetailsAddToFavoriteProps {
 	className?: string;
 }
 
-export const UIProductDetailsAddToFavourite = ({
+export const UIProductDetailsAddToFavorite = ({
 	className,
-}: UIProductDetailsAddToFavouriteProps) => {
+}: UIProductDetailsAddToFavoriteProps) => {
 	return (
 		<div
 			className={clsx(

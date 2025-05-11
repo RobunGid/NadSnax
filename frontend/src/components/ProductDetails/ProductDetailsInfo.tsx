@@ -1,13 +1,13 @@
 import { formatPrice } from '../../logic/formatPrice';
 import { Item } from '../../types';
 import { ProductDetailsQuantityChooser } from './ProductDetailsQuantityChooser';
-import { UIProductDetailsAddToFavourite } from './UI/UIProductDetailsAddToFavourite';
 import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
 import { ProductDetailsRating } from './ProductDetailsRating';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 import { UIProductDetailsInfo } from './UI/UIProductDetailsInfo';
+import { UIProductDetailsAddToFavorite } from './UI/UIProductDetailsAddToFavorite';
 
 interface ProductDetailsInfo {
 	item: Required<Pick<Item, 'itemDetails'>> & Item;
@@ -16,9 +16,11 @@ interface ProductDetailsInfo {
 export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 	const formattedPrice = formatPrice(item?.price || 0);
 	const formattedOldPrice = formatPrice(item?.oldPrice || item?.price || 0);
+
 	return (
 		<UIProductDetailsInfo>
 			<UIProductDetailsSupplier supplierLink={item.itemDetails.supplier} />
+
 			<UIProductDetailsFullLabel>
 				{item.itemDetails.fullLabel}
 			</UIProductDetailsFullLabel>
@@ -32,7 +34,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<ProductDetailsQuantityChooser item={item} />
 
-			<UIProductDetailsAddToFavourite />
+			<UIProductDetailsAddToFavorite />
 
 			<ProductDetailsItemDetails
 				fullDescription={item.itemDetails.fullDescription}
