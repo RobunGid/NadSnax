@@ -182,3 +182,8 @@ class ItemImageSchema(PlainItemImageSchema):
     
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested(ItemSchema(), dump_only = True)
+    
+class FavoriteSchema(Schema):
+    item_id = fields.Str(required=True)
+    user_id = fields.Str(required=True, dump_only=True)
+    id = fields.Str(required=True, dump_only=True)
