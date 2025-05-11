@@ -10,15 +10,23 @@ export const ProductDetailsReviews = ({
 	reviews,
 	userId,
 }: ProductDetailsReviewsProps) => {
+	const ownReview = reviews.find((review) => review.userId === userId);
 	return (
 		<UIProductDetailsReviews>
-			{reviews.map((review) => (
-				<ReviewElement
-					review={review}
-					key={review.id}
-					displayControls={review.userId === userId}
-				/>
-			))}
+			{!ownReview &&
+				reviews.map((review) => (
+					<ReviewElement review={review} key={review.id} />
+				))}
+			{ownReview && (
+				<>
+					<ReviewElement review={ownReview} displayControls />
+					{reviews
+						.filter((review) => review.userId != userId)
+						.map((review) => (
+							<ReviewElement review={review} key={review.id} />
+						))}
+				</>
+			)}
 		</UIProductDetailsReviews>
 	);
 };
