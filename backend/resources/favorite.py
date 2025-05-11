@@ -23,7 +23,7 @@ class Favorites(MethodView):
     @blp.response(201, FavoriteSchema)
     @blp.arguments(FavoriteSchema)
     
-    @jwt_required(fresh=True)
+    @jwt_required()
     def post(self, favorite_data):
         identity = get_jwt_identity()
         favorite = FavoriteModel(**favorite_data, id=str(uuid4()), user_id=identity)
