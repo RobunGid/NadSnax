@@ -1,16 +1,15 @@
 import { UIButton } from '../UI/UIButton';
 import { UIProductDetailsRatingInput } from './UI/UIProductDetailsRatingInput';
+import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
+import { UIProductDetailsTextArea } from './UI/UIProductDetailsTextArea';
 
 export const ProductDetailsReviewForm = () => {
 	return (
-		<form className='shadow-lg dark:shadow-gray-600 p-8 gap-y-4 flex flex-col items-center'>
-			<div>Rate this item</div>
+		<UIProductDetailsReviewForm>
+			<label>Rate this item</label>
 			<UIProductDetailsRatingInput />
-			<textarea
-				className='resize-none shadow-lg outline-none p-4'
-				placeholder='Tell us about your opinion!'
-			></textarea>
+			<UIProductDetailsTextArea />
 			<UIButton className='w-28'>Send</UIButton>
-		</form>
+		</UIProductDetailsReviewForm>
 	);
 };
