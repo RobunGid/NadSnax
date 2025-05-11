@@ -21,30 +21,32 @@ export const ProfileMenu = () => {
 	};
 
 	return (
-		<div className='m-2'>
-			<ProfileMenuButton user={user} />
+		user && (
+			<div className='m-2'>
+				<ProfileMenuButton user={user} />
 
-			<UIProfileMenu>
-				<ProfileMenuThemeSwitcher />
+				<UIProfileMenu>
+					<ProfileMenuThemeSwitcher />
 
-				<ProfileMenuItem.Profile />
-				<ProfileMenuItem.Favourites />
+					<ProfileMenuItem.Profile />
+					<ProfileMenuItem.Favourites />
 
-				<UIProfileMenuUserInfo
-					firstName={user?.firstName}
-					lastName={user?.lastName}
-					username={user?.username}
-				/>
-				<li>
-					<ul>
-						<ProfileMenuItem.OrderHistory />
-						<ProfileMenuItem.Settings />
-						<ProfileMenuItem.Reviews />
-					</ul>
-				</li>
+					<UIProfileMenuUserInfo
+						firstName={user?.firstName}
+						lastName={user?.lastName}
+						username={user?.username}
+					/>
+					<li>
+						<ul>
+							<ProfileMenuItem.OrderHistory />
+							<ProfileMenuItem.Settings />
+							<ProfileMenuItem.Reviews />
+						</ul>
+					</li>
 
-				<ProfileMenuItem.SignOut onClick={handleSignout} />
-			</UIProfileMenu>
-		</div>
+					<ProfileMenuItem.SignOut onClick={handleSignout} />
+				</UIProfileMenu>
+			</div>
+		)
 	);
 };

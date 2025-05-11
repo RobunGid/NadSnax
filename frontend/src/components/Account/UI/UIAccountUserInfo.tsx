@@ -1,5 +1,5 @@
 import { User } from '../../../types';
-import { ProfileMenuAvatar } from '../../ProfileMenu/ProfileMenuAvatar';
+import { UIAvatar } from '../../UI/UIAvatar';
 
 interface UIAccountUserInfo {
 	user: User;
@@ -8,8 +8,9 @@ interface UIAccountUserInfo {
 export const UIAccountUserInfo = ({ user }: UIAccountUserInfo) => {
 	return (
 		<li className='flex shadow-lg dark:shadow-gray-950 rounded-[40px] p-4 mb-4'>
-			<ProfileMenuAvatar
-				user={user}
+			<UIAvatar
+				username={user.username}
+				avatarUrl={user.avatarUrl}
 				className='rounded-full w-24 h-24 object-cover'
 			/>
 			<div className='p-4'>

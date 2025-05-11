@@ -1,6 +1,6 @@
 import { formatReviewDate } from '../../logic/formatReviewDate';
 import { Review } from '../../types';
-import { ProfileMenuAvatar } from '../ProfileMenu/ProfileMenuAvatar';
+import { UIAvatar } from '../UI/UIAvatar';
 import { UIReviewElement } from '../UI/UIReviewElement';
 import { RatingElement } from './RatingElement';
 
@@ -13,8 +13,9 @@ export const ReviewElement = ({ review }: ReviewProps) => {
 	return (
 		<UIReviewElement>
 			<div className='flex flex-row items-center gap-4'>
-				<ProfileMenuAvatar
-					user={review.user}
+				<UIAvatar
+					username={review.user.username}
+					avatarUrl={review.user.avatarUrl}
 					className='w-16 h-16 rounded-full '
 				/>
 				{review.user.firstName} {review.user.lastName}

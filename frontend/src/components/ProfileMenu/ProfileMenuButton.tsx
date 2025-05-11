@@ -1,8 +1,8 @@
 import { User } from '../../types';
-import { ProfileMenuAvatar } from './ProfileMenuAvatar';
+import { UIAvatar } from '../UI/UIAvatar';
 
 interface ProfileMenuButtonProps {
-	user: User | null;
+	user: User;
 }
 
 export const ProfileMenuButton = ({ user }: ProfileMenuButtonProps) => {
@@ -14,7 +14,7 @@ export const ProfileMenuButton = ({ user }: ProfileMenuButtonProps) => {
 				htmlFor='user-profile-avatar'
 				className='block bg-cover bg-no-repeat cursor-pointer'
 			>
-				<ProfileMenuAvatar user={user} />
+				<UIAvatar username={user.username} avatarUrl={user.avatarUrl} />
 			</label>
 		</div>
 	);

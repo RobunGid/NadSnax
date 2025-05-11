@@ -1,5 +1,5 @@
 import { User } from '../../../types';
-import { ProfileMenuAvatar } from '../../ProfileMenu/ProfileMenuAvatar';
+import { UIAvatar } from '../../UI/UIAvatar';
 
 interface UIAccountEditProfileAvatarProps {
 	user: User;
@@ -7,6 +7,10 @@ interface UIAccountEditProfileAvatarProps {
 
 export const UIAccountEditProfileAvatar = ({ user }: UIAccountEditProfileAvatarProps) => {
 	return (
-		<ProfileMenuAvatar user={user} className='w-48 h-64 rounded-2xl object-cover' />
+		<UIAvatar
+			username={user.username}
+			avatarUrl={user.avatarUrl}
+			className='w-48 h-64 rounded-2xl object-cover'
+		/>
 	);
 };
