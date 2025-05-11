@@ -3,6 +3,7 @@ export const UIProductDetailsTextArea = () => {
 		<textarea
 			className='resize-none shadow-lg outline-none p-4'
 			placeholder='Tell us about your opinion!'
+			name='text'
 		></textarea>
 	);
 };
