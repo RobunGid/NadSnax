@@ -17,11 +17,19 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
 	return (
 		<UIProductDetails>
-			<ProductDetailsGallery images={item.images} />
-			<ProductDetailsInfo item={item} />
-			{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
-			<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
-			<ProductDetailsSimillarItems item={item} itemList={itemList} />
+			<div className='flex flex-row'>
+				<ProductDetailsGallery images={item.images} />
+				<ProductDetailsInfo item={item} />
+			</div>
+			<div className='flex flex-row gap-8'>
+				<div className='flex flex-col gap-8'>
+					{!hasOwnReview && user && (
+						<ProductDetailsReviewForm itemId={item.id} />
+					)}
+					<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
+				</div>
+				<ProductDetailsSimillarItems item={item} itemList={itemList} />
+			</div>
 		</UIProductDetails>
 	);
 };
