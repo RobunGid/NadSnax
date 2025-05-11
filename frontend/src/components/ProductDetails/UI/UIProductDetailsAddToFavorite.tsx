@@ -1,12 +1,15 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi';
 import clsx from 'clsx';
+import { MouseEventHandler } from 'react';
 
 interface UIProductDetailsAddToFavoriteProps {
 	className?: string;
+	onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export const UIProductDetailsAddToFavorite = ({
 	className,
+	onClick,
 }: UIProductDetailsAddToFavoriteProps) => {
 	return (
 		<div
@@ -14,6 +17,7 @@ export const UIProductDetailsAddToFavorite = ({
 				'flex gap-2 m-3 justify-center cursor-pointer transition-transform group',
 				className
 			)}
+			onClick={onClick}
 		>
 			<div className='relative w-6 h-6'>
 				<BiHeart className='absolute scale-100 group-hover:scale-0 block transition-all duration-200' />

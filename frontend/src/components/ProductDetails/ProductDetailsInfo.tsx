@@ -7,7 +7,7 @@ import { ProductDetailsRating } from './ProductDetailsRating';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 import { UIProductDetailsInfo } from './UI/UIProductDetailsInfo';
-import { UIProductDetailsAddToFavorite } from './UI/UIProductDetailsAddToFavorite';
+import { ProductDetailsAddToFavorite } from './ProductDetailsAddToFavorite';
 
 interface ProductDetailsInfo {
 	item: Required<Pick<Item, 'itemDetails'>> & Item;
@@ -34,7 +34,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<ProductDetailsQuantityChooser item={item} />
 
-			<UIProductDetailsAddToFavorite />
+			<ProductDetailsAddToFavorite item={item} />
 
 			<ProductDetailsItemDetails
 				fullDescription={item.itemDetails.fullDescription}
