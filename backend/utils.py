@@ -6,14 +6,14 @@ from models import UserModel
 from flask_smorest import abort
 from flask import request
 
-def role_required(roles: List[Role]):
+def role_required(roles: List[Role], message=None):
 	def decorator(fn):
 		@wraps(fn)
 		def wrapper(*args, **kwargs):
 			identity = get_jwt_identity()
 			user = UserModel.query.get_or_404(identity)
 			if user.role.value not in roles:
-				abort(403, message="You don't have permission to get all users data.")
+				abort(403, message="You don't have permission to get users data" if not message else message)
 			return fn(*args, **kwargs)
 		return wrapper
 	return decorator
