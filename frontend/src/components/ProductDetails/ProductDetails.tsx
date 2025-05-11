@@ -1,3 +1,4 @@
+import { useStateSelector } from '../../store';
 import { Item } from '../../types';
 import { ProductDetailsGallery } from './ProductDetailsGallery';
 import { ProductDetailsInfo } from './ProductDetailsInfo';
@@ -12,11 +13,13 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
+	const user = useStateSelector((state) => state.user.user);
+	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
 	return (
 		<UIProductDetails>
 			<ProductDetailsGallery images={item.images} />
 			<ProductDetailsInfo item={item} />
-			<ProductDetailsReviewForm itemId={item.id} />
+			{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
 			<ProductDetailsReviews reviews={item.reviews} />
 			<ProductDetailsSimillarItems item={item} itemList={itemList} />
 		</UIProductDetails>
