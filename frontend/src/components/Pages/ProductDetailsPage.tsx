@@ -12,6 +12,8 @@ export const ProductDetailsPage = () => {
 		fetchItems: fetchItemsThunk,
 	});
 
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
+
 	const items = useStateSelector((state) => state.item.itemList);
 
 	const status = useStateSelector((state) => state.item.status);
@@ -27,9 +29,10 @@ export const ProductDetailsPage = () => {
 			include_images: true,
 			include_reviews: true,
 			page_link: `/${product_page_link}`,
+			accessToken,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [product_page_link]);
+	}, [product_page_link, accessToken]);
 
 	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
 
@@ -42,10 +45,11 @@ export const ProductDetailsPage = () => {
 			include_type: true,
 			include_images: true,
 			simillar_id: item.id,
+			accessToken,
 		});
 		fetchedSimillars.current = true;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [item?.id]);
+	}, [item?.id, accessToken]);
 
 	if (status === 'loading') return <UIproductDetailsLoader />;
 

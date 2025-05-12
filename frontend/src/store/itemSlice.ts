@@ -26,6 +26,7 @@ interface fetchItemsParams {
 	include_images?: boolean;
 	include_reviews?: boolean;
 	simillar_id?: string;
+	accessToken?: string;
 }
 
 export const fetchItemsThunk = createAsyncThunk<
@@ -47,6 +48,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			is_bestseller,
 			is_secretbox,
 			simillar_id,
+			accessToken,
 		},
 		{ rejectWithValue }
 	) => {
@@ -65,6 +67,9 @@ export const fetchItemsThunk = createAsyncThunk<
 				secretbox: is_secretbox,
 				include_reviews,
 				simillar_id,
+			},
+			headers: {
+				Authorization: accessToken ? `Bearer ${accessToken}` : '',
 			},
 		});
 
@@ -88,6 +93,7 @@ export const fetchItemsThunk = createAsyncThunk<
 					'.png',
 			})),
 		}));
+
 		return fixedItems;
 	}
 );

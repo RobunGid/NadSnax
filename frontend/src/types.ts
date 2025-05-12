@@ -43,6 +43,7 @@ export type Item = {
 	ratingCount: number | null;
 	images: Image[];
 	reviews: Review[];
+	favoriteId?: string;
 };
 
 export type ItemDetails = {

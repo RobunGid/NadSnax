@@ -24,6 +24,10 @@ export const ProductDetailsAddToFavorite = ({
 			}
 		);
 	};
-
-	return <UIProductDetailsAddToFavorite onClick={handleAddToFavorite} />;
+	return (
+		<UIProductDetailsAddToFavorite
+			onClick={handleAddToFavorite}
+			isFavorite={!!item.favoriteId}
+		/>
+	);
 };
