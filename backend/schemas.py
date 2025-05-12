@@ -156,11 +156,10 @@ class ItemSchema(PlainItemSchema):
     
     average_rating = fields.Float(dump_only = True)
     rating_count = fields.Int(dump_only = True)
-    is_favorite = fields.Boolean()
+    favorite_id = fields.Str(dump_only=True, required=True)
     
-    def __init__(self, include_favorite=True, include_category = False, include_type = False, include_item_details = False, include_reviews = False, include_images = False, **kwargs):
+    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, include_images = False, include_favorite=False, **kwargs):
         exclude_fields = set()
-        
         if not include_category:
             exclude_fields.add("category")
             
@@ -177,7 +176,7 @@ class ItemSchema(PlainItemSchema):
             exclude_fields.add("images")
         
         if not include_favorite:
-            exclude_fields.add("favorite")
+            exclude_fields.add("favorite_id")
 
         super().__init__(exclude = exclude_fields, **kwargs)
     

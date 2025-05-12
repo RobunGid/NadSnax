@@ -6,10 +6,10 @@ from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request
-from sqlalchemy import func
+from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from models import FavoriteModel, UserModel
-from sqlalchemy.orm import aliased
+from sqlalchemy.orm import aliased, contains_eager
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -112,17 +112,20 @@ class Items(MethodView):
             token = auth_header[7:]
             try:
                 decoded_token = decode_token(token)
-                identity = decoded_token["jti"]
+                identity = decoded_token["sub"]
                 include_favorite = True
-                query = query.outerjoin(FavoriteModel, ItemModel.id == FavoriteModel.item_id)
-                query = query.add_column((FavoriteModel.id.isnot(None)).label('is_favorite'))
-                print(query.statement.compile())
-                                
+                query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
+                query = query.add_columns(FavoriteModel.id.label("favorite_id"))
             except SQLAlchemyError:
                 abort(500, message = "An error occured while getting the items with favorites")
-    
-        
-        items = query.all()
+                
+            items_favorites = query.all()
+            items = [item for item, _ in items_favorites]
+            for item, favorite_id in items_favorites:
+                item.favorite_id = favorite_id
+        else:
+            items = query.all()
+
         
         params = {
             "many": True,
@@ -131,7 +134,7 @@ class Items(MethodView):
             "include_item_details": include_item_details,
             "include_reviews": include_reviews,
             "include_images": include_images,
-            "include_favorite": include_favorite
+            "include_favorite": include_favorite,
         }
         schema = ItemSchema(**params)
             
