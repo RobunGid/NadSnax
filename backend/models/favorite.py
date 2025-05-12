@@ -4,7 +4,7 @@ from sqlalchemy import DateTime, UniqueConstraint
 from datetime import datetime
 
 class FavoriteModel(db.Model):
-    __table_name__ = 'favorites'
+    __tablename__ = 'favorites'
     
     id = db.Column(db.String(80), primary_key = True)
     
