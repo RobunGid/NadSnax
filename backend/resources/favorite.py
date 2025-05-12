@@ -46,7 +46,7 @@ class Favorite(MethodView):
             abort(401, message='You can\'t get this favorite')
         return favorite
     
-    @jwt_required(fresh=True)
+    @jwt_required()
     def delete(self, favorite_id):
         favorite = FavoriteModel.query.get_or_404(favorite_id)
         identity = get_jwt_identity()
