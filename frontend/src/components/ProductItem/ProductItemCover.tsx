@@ -1,5 +1,6 @@
 import { ProductItemImage } from './ProductItemImage';
 import { UIProductItemBadges } from './UI/UIProductItemBadges';
+import { UIProductItemCover } from './UI/UIProductItemCover';
 
 interface ProductItemCoverProps {
 	imageURL: string;
@@ -15,9 +16,9 @@ export const ProductItemCover = ({
 	isSecretbox,
 }: ProductItemCoverProps) => {
 	return (
-		<div className='relative overflow-hidden'>
+		<UIProductItemCover>
 			<ProductItemImage imageURL={imageURL} label={label} />
 			<UIProductItemBadges isBestseller={isBestseller} isSecretbox={isSecretbox} />
-		</div>
+		</UIProductItemCover>
 	);
 };
