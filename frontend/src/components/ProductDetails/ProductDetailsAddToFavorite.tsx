@@ -1,4 +1,4 @@
-import { Axios } from '../../api';
+import { handleAddToFavorite, handleDeleteFromFavorite } from '../../api';
 import { Item } from '../../types';
 import { UIProductDetailsAddToFavorite } from './UI/UIProductDetailsAddToFavorite';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
@@ -16,55 +16,24 @@ export const ProductDetailsAddToFavorite = ({
 		fetchItems: fetchItemsThunk,
 	});
 
-	const handleAddToFavorite = async () => {
-		const response = await Axios.post(
-			'/favorite',
-			{
-				item_id: item.id,
-			},
-			{
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			}
-		);
-		if (response.status === 201) {
-			actions.fetchItems({
-				include_item_details: true,
-				include_reviews: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: item.id,
-				accessToken,
-			});
-		}
-	};
-
-	const handleDeleteFromFavorite = async (favoriteId: string) => {
-		const response = await Axios.delete(`/favorite/${favoriteId}`, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		if (response.status === 200) {
-			actions.fetchItems({
-				include_item_details: true,
-				include_reviews: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: item.id,
-				accessToken,
-			});
-		}
-	};
-
 	return (
 		<UIProductDetailsAddToFavorite
-			onAddClick={handleAddToFavorite}
+			onAddClick={() =>
+				handleAddToFavorite({
+					accessToken,
+					fetchItems: actions.fetchItems,
+					itemId: item.id,
+				})
+			}
 			onDeleteClick={() => {
-				if (item.favoriteId) handleDeleteFromFavorite(item.favoriteId);
+				if (item.favoriteId) {
+					handleDeleteFromFavorite({
+						favoriteId: item.favoriteId,
+						fetchItems: actions.fetchItems,
+						accessToken,
+						itemId: item.id,
+					});
+				}
 			}}
 			isFavorite={!!item.favoriteId}
 		/>
