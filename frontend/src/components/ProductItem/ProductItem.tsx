@@ -9,7 +9,7 @@ import { UIProductItemLabel } from './UI/UIProductItemLabel';
 import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
-import { ProductItemImage } from './ProductItemImage';
+import { ProductItemCover } from './ProductItemCover';
 
 type ProductItemProps = {
 	item: Item;
@@ -32,13 +32,12 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
 	return (
 		<UIProductItem pageLink={item.pageLink} className={className}>
-			<ProductItemImage
+			<ProductItemCover
 				imageURL={imageURL}
 				isBestseller={item.isBestseller}
-				isSecretbox={!!item.isSecretbox}
+				isSecretbox={item.isSecretbox}
 				label={item.label}
 			/>
-
 			<ProductItemQuantityChooser
 				cartItem={cartItem}
 				onAdd={handleAddItemToCart}

@@ -30,7 +30,7 @@ export type Item = {
 	description: string;
 	id: string;
 	isBestseller: boolean;
-	isSecretbox?: boolean;
+	isSecretbox: boolean;
 	itemDetails?: ItemDetails;
 	label: string;
 	price: number;
