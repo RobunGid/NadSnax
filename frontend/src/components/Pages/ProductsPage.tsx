@@ -11,6 +11,7 @@ import { ProductsLoading } from '../Products/ProductsLoading';
 export const ProductsPage = () => {
 	const items: Item[] = useStateSelector((state) => state.item.itemList);
 	const status = useStateSelector((state) => state.item.status);
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const actions = useActionCreators({
 		...itemActions,
@@ -27,9 +28,10 @@ export const ProductsPage = () => {
 			type_name: type,
 			is_bestseller: category === 'best-sellers' ? true : undefined,
 			is_secretbox: category === 'secretboxes' ? true : undefined,
+			accessToken: accessToken,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [category, type]);
+	}, [category, type, accessToken]);
 
 	return (
 		<>

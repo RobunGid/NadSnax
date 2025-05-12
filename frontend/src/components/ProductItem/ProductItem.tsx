@@ -2,7 +2,7 @@ import { Item } from '../../types';
 
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
-import { useStateSelector } from '../../store';
+import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
@@ -10,6 +10,7 @@ import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
+import { handleAddToFavorite, handleDeleteFromFavorite } from '../../api';
 
 type ProductItemProps = {
 	item: Item;
@@ -21,6 +22,10 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 	const cartItem = useStateSelector((state) => state.cart.productList).find(
 		(cartItem) => cartItem.item.id === item.id
 	);
+
+	const actions = useActionCreators({ fetchItems: fetchItemsThunk });
+
+	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
@@ -37,6 +42,25 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 				isBestseller={item.isBestseller}
 				isSecretbox={item.isSecretbox}
 				label={item.label}
+				isFavorite={!!item.favoriteId}
+				onAddClick={(event) => {
+					event.preventDefault();
+					handleAddToFavorite({
+						accessToken,
+						fetchItems: actions.fetchItems,
+						itemId: item.id,
+					});
+				}}
+				onDeleteClick={(event) => {
+					event.preventDefault();
+					if (item.favoriteId)
+						handleDeleteFromFavorite({
+							accessToken,
+							fetchItems: actions.fetchItems,
+							favoriteId: item.favoriteId,
+							itemId: item.id,
+						});
+				}}
 			/>
 			<ProductItemQuantityChooser
 				cartItem={cartItem}
