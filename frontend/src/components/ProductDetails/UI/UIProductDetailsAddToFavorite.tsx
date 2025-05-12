@@ -4,13 +4,15 @@ import { MouseEventHandler } from 'react';
 
 interface UIProductDetailsAddToFavoriteProps {
 	className?: string;
-	onClick?: MouseEventHandler<HTMLDivElement>;
+	onAddClick?: MouseEventHandler<HTMLDivElement>;
+	onDeleteClick?: MouseEventHandler<HTMLDivElement>;
 	isFavorite?: boolean;
 }
 
 export const UIProductDetailsAddToFavorite = ({
 	className,
-	onClick,
+	onAddClick,
+	onDeleteClick,
 	isFavorite,
 }: UIProductDetailsAddToFavoriteProps) => {
 	return (
@@ -19,7 +21,7 @@ export const UIProductDetailsAddToFavorite = ({
 				'flex gap-2 m-3 justify-center cursor-pointer transition-transform group',
 				className
 			)}
-			onClick={onClick}
+			onClick={isFavorite ? onDeleteClick : onAddClick}
 		>
 			<div className='relative w-6 h-6'>
 				<BiHeart
