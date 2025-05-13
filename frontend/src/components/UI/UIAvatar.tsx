@@ -23,6 +23,10 @@ export const UIAvatar = ({ avatarUrl, username, className }: UIAvatarProps) => {
 			</svg>
 		</div>
 	) : (
-		<img alt={`${username} Avatar`} className={className} src={avatarUrl} />
+		<img
+			alt={`${username} Avatar`}
+			className={className}
+			src={`${avatarUrl}?_=${Date.now()}`}
+		/>
 	);
 };
