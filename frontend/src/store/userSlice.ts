@@ -7,11 +7,13 @@ import camelcaseKeys from 'camelcase-keys';
 type UserState = {
 	user: User | null;
 	status: Status;
+	avatarRefreshVersion: number;
 };
 
 const initialState: UserState = {
 	user: null,
 	status: 'init',
+	avatarRefreshVersion: 0,
 };
 
 export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>(

@@ -1,15 +1,19 @@
-import { User } from '../../../../types';
 import { UIAvatar } from '../../../UI/UIAvatar';
+
 interface UIAccountSettingsAvatarProps {
-	user: User;
+	username: string;
+	avatarUrl: string;
 }
 
-export const UIAccountSettingsAvatar = ({ user }: UIAccountSettingsAvatarProps) => {
+export const UIAccountSettingsAvatar = ({
+	username,
+	avatarUrl,
+}: UIAccountSettingsAvatarProps) => {
 	return (
 		<div className='w-48'>
 			<UIAvatar
-				username={user.username}
-				avatarUrl={user.avatarUrl}
+				username={username}
+				avatarUrl={avatarUrl}
 				className='rounded-2xl object-cover'
 			/>
 		</div>
