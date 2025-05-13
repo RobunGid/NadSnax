@@ -1,5 +1,5 @@
-import { User } from '../../../types';
-import { UIAvatar } from '../../UI/UIAvatar';
+import { User } from '../../../../types';
+import { UIAvatar } from '../../../UI/UIAvatar';
 
 interface UIAccountSettingsAvatarProps {
 	user: User;

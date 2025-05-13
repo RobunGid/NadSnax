@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useStateSelector } from '../../store';
+import { useStateSelector } from '../../../store';
 import { UIAccountSettings } from './UI/UIAccountSettings';
 import { UIAccountSettingsAvatar } from './UI/UIAccountSettingsAvatar';
 import { UIAccountSettingsAvatarErrorMessage } from './UI/UIAccountSettingsAvatarErrorMessage';
