@@ -1,14 +1,16 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 
 interface UIAvatarProps {
 	className?: string;
-	avatarUrl: string;
+	avatarUrl?: string;
 	username: string;
 }
 
 export const UIAvatar = ({ avatarUrl, username, className }: UIAvatarProps) => {
-	return !avatarUrl ? (
-		<div className={clsx('rounded-full bg-gray-300', className)}>
+	const [error, setError] = useState<boolean>(false);
+	return !avatarUrl || error ? (
+		<div className={clsx('rounded-full bg-gray-300 overflow-hidden', className)}>
 			<svg
 				className='text-gray-400 block'
 				fill='currentColor'
@@ -27,6 +29,7 @@ export const UIAvatar = ({ avatarUrl, username, className }: UIAvatarProps) => {
 			alt={`${username} Avatar`}
 			className={className}
 			src={`${avatarUrl}?_=${Date.now()}`}
+			onError={() => setError(true)}
 		/>
 	);
 };

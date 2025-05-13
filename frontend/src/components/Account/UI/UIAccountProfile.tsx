@@ -1,4 +1,5 @@
 import { User } from '../../../types';
+import { UIAvatar } from '../../UI/UIAvatar';
 
 interface UIAccountProfileProps {
 	user: User;
@@ -6,12 +7,14 @@ interface UIAccountProfileProps {
 export const UIAccountProfile = ({ user }: UIAccountProfileProps) => {
 	return (
 		<div className='flex gap-4'>
-			<img
-				src={user.avatarUrl}
-				alt={`${user.username} Avatar`}
-				width='400'
-				className='rounded-2xl w-48 h-64 object-cover'
-			/>
+			<div className='w-48'>
+				<UIAvatar
+					avatarUrl={user.avatarUrl}
+					username={user.username}
+					className='rounded-2xl object-cover'
+				/>
+			</div>
+
 			<div className='p-4 flex flex-col gap-2'>
 				<div className='text-3xl font-bold'>
 					{user.firstName} {user.lastName}
