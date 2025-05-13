@@ -55,7 +55,7 @@ export const registerThunk = createAsyncThunk(
 			lastName,
 			role,
 			avatarFile,
-		}: Omit<User, 'id'> & { password: string; avatarFile?: File },
+		}: Omit<User, 'id' | 'avatarUrl'> & { password: string; avatarFile?: File },
 		{ dispatch, rejectWithValue }
 	) => {
 		try {
