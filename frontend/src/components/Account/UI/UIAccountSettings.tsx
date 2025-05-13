@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
-interface UIAccountEditProfileProps {
+interface UIAccountSettingsProps {
 	children: ReactNode;
 }
 
-export const UIAccountEditProfile = ({ children }: UIAccountEditProfileProps) => {
+export const UIAccountSettings = ({ children }: UIAccountSettingsProps) => {
 	return <div className='flex gap-4 relative'>{children}</div>;
 };

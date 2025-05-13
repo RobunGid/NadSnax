@@ -1,7 +1,7 @@
 import { ChangeEventHandler, LegacyRef, MouseEventHandler } from 'react';
 import { BiEdit, BiSolidDownload, BiTrash } from 'react-icons/bi';
 
-interface UIAccountEditProfileAvatarControlsProps {
+interface UIAccountSettingsAvatarControlsProps {
 	onDownloadClick?: MouseEventHandler<HTMLDivElement>;
 	onDeleteClick?: MouseEventHandler<HTMLDivElement>;
 	onEditClick?: MouseEventHandler<HTMLDivElement>;
@@ -9,13 +9,13 @@ interface UIAccountEditProfileAvatarControlsProps {
 	onAvatarInputChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const UIAccountEditProfileAvatarControls = ({
+export const UIAccountSettingsAvatarControls = ({
 	onEditClick,
 	avatarInputRef,
 	onAvatarInputChange,
 	onDeleteClick,
 	onDownloadClick,
-}: UIAccountEditProfileAvatarControlsProps) => {
+}: UIAccountSettingsAvatarControlsProps) => {
 	return (
 		<div className='absolute flex gap-2 p-2'>
 			<div

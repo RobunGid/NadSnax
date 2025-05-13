@@ -22,7 +22,6 @@ export const AccountMenu = () => {
 		<UIAccountMenu>
 			<AccountMenuUserInfo user={user.user} status={user.status} />
 			<AccountMenuItem.Profile />
-			<AccountMenuItem.EditProfile />
 			<li>
 				<ul>
 					<AccountMenuItem.OrderHistory />

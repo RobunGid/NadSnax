@@ -1,11 +1,11 @@
 import { User } from '../../../types';
 import { UIAvatar } from '../../UI/UIAvatar';
 
-interface UIAccountEditProfileAvatarProps {
+interface UIAccountSettingsAvatarProps {
 	user: User;
 }
 
-export const UIAccountEditProfileAvatar = ({ user }: UIAccountEditProfileAvatarProps) => {
+export const UIAccountSettingsAvatar = ({ user }: UIAccountSettingsAvatarProps) => {
 	return (
 		<UIAvatar
 			username={user.username}

@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 
-interface UIAccountEditProfileAvatarErrorMessagePrps {
+interface UIAccountSettingsAvatarErrorMessagePrps {
 	avatarErrorMessage?: string;
 }
 
-export const UIAccountEditProfileAvatarErrorMessage = ({
+export const UIAccountSettingsAvatarErrorMessage = ({
 	avatarErrorMessage,
-}: UIAccountEditProfileAvatarErrorMessagePrps) => {
+}: UIAccountSettingsAvatarErrorMessagePrps) => {
 	return (
 		<div
 			className={clsx(

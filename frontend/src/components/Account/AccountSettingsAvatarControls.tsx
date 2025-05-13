@@ -1,21 +1,21 @@
 import { ChangeEventHandler, Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { fetchUser, useAppDispatch, useStateSelector } from '../../store';
-import { UIAccountEditProfileAvatarControls } from './UI/UIAccountEditProfileAvatarControls';
+import { UIAccountSettingsAvatarControls } from './UI/UIAccountSettingsAvatarControls';
 import { Axios } from '../../api';
 import { AxiosError } from 'axios';
 import { User } from '../../types';
 
-interface AccountEditProfileAvatarControlsProps {
+interface AccountSettingsAvatarControlsProps {
 	setAvatarErrorMessage: Dispatch<SetStateAction<string | undefined>>;
 	avatarInputRef: MutableRefObject<null | HTMLInputElement>;
 	user: User;
 }
 
-export const AccountEditProfileAvatarControls = ({
+export const AccountSettingsAvatarControls = ({
 	setAvatarErrorMessage,
 	avatarInputRef,
 	user,
-}: AccountEditProfileAvatarControlsProps) => {
+}: AccountSettingsAvatarControlsProps) => {
 	const dispatch = useAppDispatch();
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
@@ -71,7 +71,7 @@ export const AccountEditProfileAvatarControls = ({
 		dispatch(fetchUser(accessToken));
 	};
 	return (
-		<UIAccountEditProfileAvatarControls
+		<UIAccountSettingsAvatarControls
 			onAvatarInputChange={handleAvatarInputChange}
 			onEditClick={handleChangeAvatar}
 			onDeleteClick={handleDeleteAvatar}
