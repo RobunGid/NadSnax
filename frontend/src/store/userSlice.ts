@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types';
-import { AppDispatch, Status } from './types';
+import { AppDispatch, RootStore, Status } from './types';
 import { Axios } from '../api';
 import camelcaseKeys from 'camelcase-keys';
 
@@ -16,29 +16,32 @@ const initialState: UserState = {
 	avatarRefreshVersion: 0,
 };
 
-export const fetchUser = createAsyncThunk<User, string, { rejectValue: string }>(
-	'user/fetchUser',
-	async (accessToken, { rejectWithValue }) => {
-		const response = await Axios.get<User>('/user/me', {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				'Content-Type': 'application/json',
-			},
-		});
+export const fetchUser = createAsyncThunk<
+	User,
+	string,
+	{ rejectValue: string; state: RootStore }
+>('user/fetchUser', async (_, { rejectWithValue, getState }) => {
+	const accessToken = getState().auth.accessToken;
+	if (!accessToken) return rejectWithValue('No access token');
+	const response = await Axios.get<User>('/user/me', {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			'Content-Type': 'application/json',
+		},
+	});
 
-		if (response.status != 200) {
-			return rejectWithValue('Server Error!');
-		}
-
-		const user = response.data;
-		const camelcaseUser = camelcaseKeys(user, { deep: true });
-		const userWithAvatarUrl = {
-			...camelcaseUser,
-			avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
-		};
-		return userWithAvatarUrl;
+	if (response.status != 200) {
+		return rejectWithValue('Server Error!');
 	}
-);
+
+	const user = response.data;
+	const camelcaseUser = camelcaseKeys(user, { deep: true });
+	const userWithAvatarUrl = {
+		...camelcaseUser,
+		avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
+	};
+	return userWithAvatarUrl;
+});
 
 const slice = createSlice({
 	name: 'user',
