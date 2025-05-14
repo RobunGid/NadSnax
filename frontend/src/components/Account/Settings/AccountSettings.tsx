@@ -10,7 +10,7 @@ export const AccountSettings = () => {
 
 	return user && status === 'success' ? (
 		<UIAccountSettings>
-			<UIAccountSettingsTitle />x
+			<UIAccountSettingsTitle />
 			<AccountSettingsAvatar user={user} />
 			<UIAccountSettingsInfo
 				lastName={user.lastName}
