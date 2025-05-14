@@ -17,7 +17,7 @@ export const UIAccountSettingsAvatarControls = ({
 	onDownloadClick,
 }: UIAccountSettingsAvatarControlsProps) => {
 	return (
-		<div className='absolute flex gap-2 p-2'>
+		<div className='absolute flex gap-2 p-2 top-14'>
 			<div
 				className='hover:cursor-pointer hover:scale-105'
 				onClick={onEditClick}

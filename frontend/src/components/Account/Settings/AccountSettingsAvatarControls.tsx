@@ -1,75 +1,30 @@
-import { ChangeEventHandler, Dispatch, MutableRefObject, SetStateAction } from 'react';
-import { fetchUser, useAppDispatch, useStateSelector } from '../../../store';
-import { AxiosError } from 'axios';
+import { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { UIAccountSettingsAvatarControls } from './UI/UIAccountSettingsAvatarControls';
-import { Axios } from '../../../api';
 import { User } from '../../../types';
+import { useEditUserAvatar } from '../../../hooks/useEditUserAvatar';
 
 interface AccountSettingsAvatarControlsProps {
 	setAvatarErrorMessage: Dispatch<SetStateAction<string | undefined>>;
 	avatarInputRef: MutableRefObject<null | HTMLInputElement>;
 	user: User;
+	avatarErrorMessage?: string;
 }
 
 export const AccountSettingsAvatarControls = ({
-	setAvatarErrorMessage,
 	avatarInputRef,
 	user,
+	setAvatarErrorMessage,
 }: AccountSettingsAvatarControlsProps) => {
-	const dispatch = useAppDispatch();
-
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
-	const handleAvatarInputChange: ChangeEventHandler<HTMLInputElement> = async (
-		event
-	) => {
-		const file = event.target.files && event.target.files[0];
-		if (!file) return;
-		const formData = new FormData();
-		formData.append('avatar', file);
-		try {
-			await Axios.put('/avatar/me', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					Authorization: `Bearer ${accessToken}`,
-				},
-			});
-			setAvatarErrorMessage(undefined);
-		} catch (error) {
-			if (error instanceof AxiosError)
-				setAvatarErrorMessage(error.response?.data.message);
-		}
-		dispatch(fetchUser(accessToken));
-	};
-	const handleDownloadAvatar = async () => {
-		const response = await Axios.get(`${user?.avatarUrl}`, {
-			responseType: 'blob',
-		});
-
-		const blobUrl = URL.createObjectURL(response.data);
-
-		const link = document.createElement('a');
-		link.href = blobUrl;
-		link.download = user?.username + ' Avatar';
-		document.body.append(link);
-		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(blobUrl);
-	};
-
-	const handleChangeAvatar = () => {
-		if (avatarInputRef?.current) avatarInputRef.current.click();
-	};
-
-	const handleDeleteAvatar = async () => {
-		await Axios.delete('/avatar/me', {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		dispatch(fetchUser(accessToken));
-	};
+	const {
+		handleChangeAvatar,
+		handleDeleteAvatar,
+		handleDownloadAvatar,
+		handleAvatarInputChange,
+	} = useEditUserAvatar({
+		user,
+		avatarInputRef,
+		setAvatarErrorMessage,
+	});
 	return (
 		<UIAccountSettingsAvatarControls
 			onAvatarInputChange={handleAvatarInputChange}
