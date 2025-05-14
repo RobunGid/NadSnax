@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, SerializedError } from '@reduxjs/toolkit';
 import { Axios } from '../api';
-import { Status } from './types';
+import { AppDispatch, Status } from './types';
 import { fetchUser, userActions } from './userSlice';
 import { User } from '../types';
 import { AxiosError } from 'axios';
@@ -17,45 +17,40 @@ const initialState: AuthState = {
 	error: {},
 };
 
-export const loginThunk = createAsyncThunk(
-	'auth/login',
-	async (
-		{ username, password }: { username: string; password: string },
-		{ dispatch }
-	) => {
-		const response = await Axios.post<{
-			access_token: string;
-			refresh_token: string;
-		}>(
-			'/login',
-			{ username, password },
-			{
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		);
-		const data = response.data;
-
-		if (data.access_token) {
-			dispatch(fetchUser(data.access_token));
-			return { accessToken: data.access_token };
+export const loginThunk = createAsyncThunk<
+	{ accessToken: string },
+	{ username: string; password: string },
+	{ dispatch: AppDispatch }
+>('auth/login', async ({ username, password }, { dispatch, rejectWithValue }) => {
+	const response = await Axios.post<{
+		access_token: string;
+		refresh_token: string;
+	}>(
+		'/login',
+		{ username, password },
+		{
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		}
-		throw new Error('Failed to login');
-	}
-);
+	);
+	const data = response.data;
 
-export const registerThunk = createAsyncThunk(
+	if (data.access_token) {
+		dispatch(fetchUser());
+		return { accessToken: data.access_token };
+	}
+	return rejectWithValue('Failed to login');
+});
+
+export const registerThunk = createAsyncThunk<
+	undefined,
+	Omit<User, 'id' | 'avatarUrl'> & { password: string; avatarFile?: File },
+	{ dispatch: AppDispatch }
+>(
 	'auth/register',
 	async (
-		{
-			username,
-			password,
-			firstName,
-			lastName,
-			role,
-			avatarFile,
-		}: Omit<User, 'id' | 'avatarUrl'> & { password: string; avatarFile?: File },
+		{ username, password, firstName, lastName, role, avatarFile },
 		{ dispatch, rejectWithValue }
 	) => {
 		try {
@@ -87,23 +82,24 @@ export const registerThunk = createAsyncThunk(
 	}
 );
 
-export const refreshThunk = createAsyncThunk(
-	'auth/refresh',
-	async (_, { rejectWithValue, dispatch }) => {
-		try {
-			const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
-			if (response.status != 200) {
-				return rejectWithValue(response.statusText);
-			}
-
-			const accessToken = response.data.access_token;
-			dispatch(fetchUser(accessToken));
-			return accessToken;
-		} catch (error) {
-			return rejectWithValue(error);
+export const refreshThunk = createAsyncThunk<
+	string,
+	undefined,
+	{ dispatch: AppDispatch }
+>('auth/refresh', async (_, { rejectWithValue, dispatch }) => {
+	try {
+		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
+		if (response.status != 200) {
+			return rejectWithValue(response.statusText);
 		}
+
+		const accessToken = response.data.access_token;
+		dispatch(fetchUser());
+		return accessToken;
+	} catch (error) {
+		return rejectWithValue(error);
 	}
-);
+});
 
 export const signoutThunk = createAsyncThunk(
 	'auth/signout',

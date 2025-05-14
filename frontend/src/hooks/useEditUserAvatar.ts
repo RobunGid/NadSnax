@@ -37,7 +37,7 @@ export const useEditUserAvatar = ({
 			if (error instanceof AxiosError)
 				setAvatarErrorMessage(error.response?.data.message);
 		}
-		dispatch(fetchUser(accessToken));
+		dispatch(fetchUser());
 	};
 	const handleDownloadAvatar = async () => {
 		const response = await Axios.get(`${user?.avatarUrl}`, {
@@ -66,7 +66,7 @@ export const useEditUserAvatar = ({
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
-		dispatch(fetchUser(accessToken));
+		dispatch(fetchUser());
 	};
 
 	return {

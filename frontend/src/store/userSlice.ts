@@ -18,10 +18,11 @@ const initialState: UserState = {
 
 export const fetchUser = createAsyncThunk<
 	User,
-	string,
+	undefined,
 	{ rejectValue: string; state: RootStore }
 >('user/fetchUser', async (_, { rejectWithValue, getState }) => {
 	const accessToken = getState().auth.accessToken;
+
 	if (!accessToken) return rejectWithValue('No access token');
 	const response = await Axios.get<User>('/user/me', {
 		headers: {
