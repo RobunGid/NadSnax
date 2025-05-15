@@ -3,6 +3,7 @@ import { Section } from '../../types';
 import { AccountProfile } from './AccountProfile';
 import { AccountSettings } from './Settings/AccountSettings';
 import { UIAccountSection } from './UI/UIAccountSection';
+import { AccountFavourites } from './Favourites/AccountFavourites';
 
 interface AccountSectionProps {
 	section: Section;
@@ -17,7 +18,7 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 		recently_viewed: <></>,
 		reviews: <></>,
 		statistics: <></>,
-		favourites: <></>,
+		favourites: <AccountFavourites />,
 	};
 
 	return <UIAccountSection>{sections[section]}</UIAccountSection>;

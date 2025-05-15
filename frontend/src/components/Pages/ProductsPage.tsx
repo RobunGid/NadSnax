@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Item } from '../../types';
-import { fetchItemsThunk, itemActions } from '../../store/itemSlice';
+import { fetchItemsThunk } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
 import { ProductsNoResults } from '../Products/ProductsNoResults';
@@ -9,18 +8,17 @@ import { ProductsList } from '../Layout/ProductsList';
 import { ProductsLoading } from '../Products/ProductsLoading';
 
 export const ProductsPage = () => {
-	const items: Item[] = useStateSelector((state) => state.item.itemList);
+	const items = useStateSelector((state) => state.item.itemList);
 	const status = useStateSelector((state) => state.item.status);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
-	const actions = useActionCreators({
-		...itemActions,
+	const { fetchItems } = useActionCreators({
 		fetchItems: fetchItemsThunk,
 	});
 
 	const { category, type } = useParams();
 	useEffect(() => {
-		actions.fetchItems({
+		fetchItems({
 			include_category: true,
 			include_type: true,
 			include_images: true,
