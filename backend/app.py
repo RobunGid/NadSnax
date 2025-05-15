@@ -26,8 +26,8 @@ from blocklist import BLOCKLIST
 def create_app(db_url = None):
     app = Flask(__name__)
  
-    env = os.getenv('APP_ENV', 'prod')
-    env_file = '.env.local' if env == 'dev' else '.env'
+    env = os.getenv('APP_ENV', 'dev')
+    env_file = '.env' if env == 'prod' else '.env.local'
     load_dotenv(env_file, override=True)	
  
     migrate = Migrate(app, db)

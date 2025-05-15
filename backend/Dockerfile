@@ -8,4 +8,5 @@ RUN \
  python3 -m pip install -r requirements.txt --no-cache-dir && \
  apk --purge del .build-deps
 COPY . .
+ENV APP_ENV=prod
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
