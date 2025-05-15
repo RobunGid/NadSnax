@@ -26,10 +26,10 @@ export const AuthozationModalLoginForm = () => {
 
 	const loginStatus = useStateSelector((state) => state.auth.status);
 	const loginError = useStateSelector((state) => state.auth.error);
-
 	const errorMessage =
 		loginError.message === 'Request failed with status code 401' &&
 		loginStatus === 'error' &&
+		loginError.data?.message !== 'Token is missing or invalid' &&
 		'Wrong login of password';
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {

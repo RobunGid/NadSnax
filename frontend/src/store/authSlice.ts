@@ -9,7 +9,10 @@ type AuthError = {
 	message?: string;
 	code?: string;
 	status?: number;
-	data?: object;
+	data?: {
+		error: string;
+		message: string;
+	};
 };
 
 type AuthState = {
