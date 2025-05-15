@@ -7,5 +7,5 @@ export const PrivateRoutes = () => {
 	if (accessToken || accessTokenStatus == 'success') {
 		return <Outlet />;
 	}
-	<Navigate to='/home' replace />;
+	if (accessTokenStatus == 'error') return <Navigate to='/home' replace />;
 };

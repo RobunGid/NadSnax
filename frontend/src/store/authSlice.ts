@@ -1,14 +1,21 @@
-import { createAsyncThunk, createSlice, SerializedError } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Axios } from '../api';
 import { AppDispatch, Status } from './types';
 import { fetchUser, userActions } from './userSlice';
 import { User } from '../types';
-import { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
+
+type AuthError = {
+	message?: string;
+	code?: string;
+	status?: number;
+	data?: object;
+};
 
 type AuthState = {
 	accessToken: string;
 	status: Status;
-	error: SerializedError;
+	error: AuthError;
 };
 
 const initialState: AuthState = {
@@ -20,33 +27,42 @@ const initialState: AuthState = {
 export const loginThunk = createAsyncThunk<
 	{ accessToken: string },
 	{ username: string; password: string },
-	{ dispatch: AppDispatch }
+	{ dispatch: AppDispatch; rejectValue: AuthError }
 >('auth/login', async ({ username, password }, { dispatch, rejectWithValue }) => {
-	const response = await Axios.post<{
-		access_token: string;
-		refresh_token: string;
-	}>(
-		'/login',
-		{ username, password },
-		{
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		}
-	);
-	const data = response.data;
+	try {
+		const response = await Axios.post<{
+			access_token: string;
+			refresh_token: string;
+		}>(
+			'/login',
+			{ username, password },
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		const data = response.data;
 
-	if (data.access_token) {
 		dispatch(fetchUser());
 		return { accessToken: data.access_token };
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
-	return rejectWithValue('Failed to login');
 });
 
 export const registerThunk = createAsyncThunk<
 	undefined,
 	Omit<User, 'id' | 'avatarUrl'> & { password: string; avatarFile?: File },
-	{ dispatch: AppDispatch }
+	{ dispatch: AppDispatch; rejectValue: AuthError }
 >(
 	'auth/register',
 	async (
@@ -74,10 +90,15 @@ export const registerThunk = createAsyncThunk<
 				return rejectWithValue(response.data);
 			}
 		} catch (error) {
-			if (error instanceof AxiosError)
-				return rejectWithValue(
-					error.response ? error.response.data : error.message
-				);
+			if (isAxiosError(error)) {
+				return rejectWithValue({
+					message: error.message,
+					code: error.code,
+					status: error.response?.status,
+					data: error.response?.data,
+				});
+			}
+			return rejectWithValue({ message: 'Unknown error' });
 		}
 	}
 );
@@ -85,48 +106,62 @@ export const registerThunk = createAsyncThunk<
 export const refreshThunk = createAsyncThunk<
 	string,
 	undefined,
-	{ dispatch: AppDispatch }
+	{ dispatch: AppDispatch; rejectValue: AuthError }
 >('auth/refresh', async (_, { rejectWithValue, dispatch }) => {
 	try {
 		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
-		if (response.status != 200) {
-			return rejectWithValue(response.statusText);
-		}
 
 		const accessToken = response.data.access_token;
 		dispatch(fetchUser());
 		return accessToken;
 	} catch (error) {
-		return rejectWithValue(error);
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
 });
 
 export const signoutThunk = createAsyncThunk(
 	'auth/signout',
 	async (_, { rejectWithValue, dispatch }) => {
-		const accessResponse = await Axios.post(
-			import.meta.env.VITE_API_URL + '/refresh'
-		);
-		if (accessResponse.status != 200) {
-			return rejectWithValue(accessResponse.statusText);
-		}
+		try {
+			const accessResponse = await Axios.post(
+				import.meta.env.VITE_API_URL + '/refresh'
+			);
 
-		const accessToken = accessResponse.data.access_token;
-		const response = await Axios.post(
-			import.meta.env.VITE_API_URL + '/signout',
-			{},
-			{
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
+			const accessToken = accessResponse.data.access_token;
+			const response = await Axios.post(
+				import.meta.env.VITE_API_URL + '/signout',
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			);
+
+			if (response.status != 200) {
+				return rejectWithValue(response.statusText);
 			}
-		);
-
-		if (response.status != 200) {
-			return rejectWithValue(response.statusText);
+			dispatch(authActions.clearTokens());
+			dispatch(userActions.clearUser());
+		} catch (error) {
+			if (isAxiosError(error)) {
+				return rejectWithValue({
+					message: error.message,
+					code: error.code,
+					status: error.response?.status,
+					data: error.response?.data,
+				});
+			}
+			return rejectWithValue({ message: 'Unknown error' });
 		}
-		dispatch(authActions.clearTokens());
-		dispatch(userActions.clearUser());
 	}
 );
 
@@ -150,11 +185,7 @@ const slice = createSlice({
 		});
 		builder.addCase(registerThunk.rejected, (state, action) => {
 			state.status = 'error';
-			if (action.payload) {
-				state.error = action.payload;
-			} else {
-				state.error = action.error;
-			}
+			state.error = action.payload ? action.payload : {};
 		});
 
 		builder.addCase(loginThunk.pending, (state) => {
@@ -166,7 +197,7 @@ const slice = createSlice({
 		});
 		builder.addCase(loginThunk.rejected, (state, action) => {
 			state.status = 'error';
-			state.error = action.error;
+			state.error = action.payload ? action.payload : {};
 		});
 
 		builder.addCase(refreshThunk.pending, (state) => {
@@ -178,7 +209,7 @@ const slice = createSlice({
 		});
 		builder.addCase(refreshThunk.rejected, (state, action) => {
 			state.status = 'error';
-			state.error = action.error;
+			state.error = action.payload ? action.payload : {};
 		});
 
 		builder.addCase(signoutThunk.pending, (state) => {
@@ -187,8 +218,9 @@ const slice = createSlice({
 		builder.addCase(signoutThunk.fulfilled, (state) => {
 			state.status = 'success';
 		});
-		builder.addCase(signoutThunk.rejected, (state) => {
+		builder.addCase(signoutThunk.rejected, (state, action) => {
 			state.status = 'error';
+			state.error = action.payload ? action.payload : {};
 		});
 	},
 });
