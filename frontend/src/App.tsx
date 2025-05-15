@@ -11,6 +11,7 @@ import { AccountPage } from './components/Pages/AccountPage';
 import { getAppTheme } from './logic/getAppTheme';
 import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
+import { PrivateRoutes } from './components/Layout/PrivateRoutes';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -45,8 +46,11 @@ export const App = () => {
 			<main>
 				<Routes>
 					<Route path='/' element={<Navigate to='/home' />} />
-					<Route path='/account' element={<AccountPage />} />
-					<Route path='/account/:section' element={<AccountPage />} />
+					<Route element={<PrivateRoutes />}>
+						<Route path='/account' element={<AccountPage />} />
+						<Route path='/account/:section' element={<AccountPage />} />
+					</Route>
+
 					<Route path='/home' element={<HomePage />} />
 					<Route path='/products/' element={<ProductsPage />} />
 					<Route path='/products/:category/' element={<ProductsPage />} />
