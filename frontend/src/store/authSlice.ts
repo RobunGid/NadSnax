@@ -30,8 +30,8 @@ const initialState: AuthState = {
 export const loginThunk = createAsyncThunk<
 	{ accessToken: string },
 	{ username: string; password: string },
-	{ dispatch: AppDispatch; rejectValue: AuthError }
->('auth/login', async ({ username, password }, { dispatch, rejectWithValue }) => {
+	{ rejectValue: AuthError }
+>('auth/login', async ({ username, password }, { rejectWithValue }) => {
 	try {
 		const response = await Axios.post<{
 			access_token: string;
@@ -47,7 +47,6 @@ export const loginThunk = createAsyncThunk<
 		);
 		const data = response.data;
 
-		dispatch(fetchUser());
 		return { accessToken: data.access_token };
 	} catch (error) {
 		if (isAxiosError(error)) {

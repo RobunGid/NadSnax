@@ -4,7 +4,7 @@ import {
 	loginFormInitialState,
 	LoginFormValue,
 } from '../../logic/loginFormConfig';
-import { loginThunk, useAppDispatch, useStateSelector } from '../../store';
+import { fetchUser, loginThunk, useAppDispatch, useStateSelector } from '../../store';
 import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
@@ -34,7 +34,8 @@ export const AuthozationModalLoginForm = () => {
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(loginThunk(loginFormState));
+		await dispatch(loginThunk(loginFormState));
+		dispatch(fetchUser());
 	};
 
 	useEffect(() => {
