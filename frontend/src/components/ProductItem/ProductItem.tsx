@@ -2,7 +2,12 @@ import { Item } from '../../types';
 
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
-import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
+import {
+	fetchItemsParams,
+	fetchItemsThunk,
+	useActionCreators,
+	useStateSelector,
+} from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
@@ -16,9 +21,10 @@ type ProductItemProps = {
 	item: Item;
 	className?: string;
 	hideAddButton?: boolean;
+	params: fetchItemsParams;
 };
 
-export const ProductItem = ({ item, className }: ProductItemProps) => {
+export const ProductItem = ({ item, className, params }: ProductItemProps) => {
 	const cartItem = useStateSelector((state) => state.cart.productList).find(
 		(cartItem) => cartItem.item.id === item.id
 	);
@@ -49,6 +55,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 						accessToken,
 						fetchItems: actions.fetchItems,
 						itemId: item.id,
+						params: params,
 					});
 				}}
 				onDeleteClick={(event) => {
@@ -58,7 +65,7 @@ export const ProductItem = ({ item, className }: ProductItemProps) => {
 							accessToken,
 							fetchItems: actions.fetchItems,
 							favoriteId: item.favoriteId,
-							itemId: item.id,
+							params: params,
 						});
 				}}
 			/>

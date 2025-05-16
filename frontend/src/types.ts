@@ -36,8 +36,8 @@ export type Item = {
 	price: number;
 	oldPrice?: number | null;
 	pageLink: string;
-	type: Omit<ItemType, 'category'>;
-	typeId: string;
+	type?: Omit<ItemType, 'category'>;
+	typeId?: string;
 	category: Omit<ItemCategory, 'types'>;
 	averageRating: number | null;
 	ratingCount: number | null;

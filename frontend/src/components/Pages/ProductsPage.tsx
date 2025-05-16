@@ -17,24 +17,29 @@ export const ProductsPage = () => {
 	});
 
 	const { category, type } = useParams();
+
+	const fetchItemsParams = {
+		include_category: true,
+		include_type: true,
+		include_images: true,
+		category_name: category,
+		type_name: type,
+		is_bestseller: category === 'best-sellers' ? true : undefined,
+		is_secretbox: category === 'secretboxes' ? true : undefined,
+		accessToken: accessToken,
+	};
+
 	useEffect(() => {
-		fetchItems({
-			include_category: true,
-			include_type: true,
-			include_images: true,
-			category_name: category,
-			type_name: type,
-			is_bestseller: category === 'best-sellers' ? true : undefined,
-			is_secretbox: category === 'secretboxes' ? true : undefined,
-			accessToken: accessToken,
-		});
+		fetchItems(fetchItemsParams);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category, type, accessToken]);
 
 	return (
 		<>
 			<div className='flex flex-wrap p-5 justify-center gap-4'>
-				{status === 'success' && <ProductsList items={items} />}
+				{status === 'success' && (
+					<ProductsList items={items} params={fetchItemsParams} />
+				)}
 				{status === 'loading' && <ProductsLoading />}
 			</div>
 			{status !== 'loading' && !items.length && (

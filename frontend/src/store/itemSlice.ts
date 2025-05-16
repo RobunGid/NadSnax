@@ -14,7 +14,7 @@ const initialState: ItemsState = {
 	status: 'init',
 };
 
-interface fetchItemsParams {
+export interface fetchItemsParams {
 	include_type?: boolean;
 	include_category?: boolean;
 	include_item_details?: boolean;

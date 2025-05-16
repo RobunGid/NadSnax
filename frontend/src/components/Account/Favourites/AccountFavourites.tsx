@@ -11,14 +11,16 @@ export const AccountFavourites = () => {
 		fetchItems: fetchItemsThunk,
 	});
 
+	const fetchItemsParams = {
+		include_category: true,
+		include_type: true,
+		include_images: true,
+		accessToken: accessToken,
+	};
+
 	useEffect(() => {
-		fetchItems({
-			include_category: true,
-			include_type: true,
-			include_images: true,
-			accessToken: accessToken,
-		});
+		fetchItems(fetchItemsParams);
 	}, []);
 
-	return <ProductsList items={favoriteItems} />;
+	return <ProductsList items={favoriteItems} params={fetchItemsParams} />;
 };
