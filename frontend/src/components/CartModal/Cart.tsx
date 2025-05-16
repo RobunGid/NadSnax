@@ -1,7 +1,7 @@
 import { CartItem } from './CartItem';
 import { useStateSelector } from '../../store';
 import { UICartHeader } from './UI/UICartHeader';
-import { ToProductsButton } from '../Layout/ToProductsButton';
+import { CartToProductsButton } from './CartToProductsButton';
 
 export const Cart = () => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
@@ -19,7 +19,7 @@ export const Cart = () => {
 				{!cartItems.length && (
 					<div className='col-span-3 flex flex-col items-center mt-48'>
 						<div className='text-2xl text-center'>Your cart is empty</div>
-						<ToProductsButton>Go shopping</ToProductsButton>
+						<CartToProductsButton>Go shopping</CartToProductsButton>
 					</div>
 				)}
 			</div>

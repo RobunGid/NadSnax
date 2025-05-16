@@ -2,11 +2,11 @@ import { ReactNode, useContext } from 'react';
 import { UIToProductsButton } from '../UI/UIToProductsButton';
 import { CartModalContext } from '../../context/CartModalContext';
 
-interface ToProductsButtonProps {
+interface CartToProductsButtonProps {
 	children: ReactNode;
 }
 
-export const ToProductsButton = ({ children }: ToProductsButtonProps) => {
+export const CartToProductsButton = ({ children }: CartToProductsButtonProps) => {
 	const { toggleCartModalVisibility } = useContext(CartModalContext);
 
 	const handleButtonClick = () => {
