@@ -1,17 +1,20 @@
 import clsx from 'clsx';
-import { ToProductsButton } from '../Layout/ToProductsButton';
+import { UIToProductsButton } from './UIToProductsButton';
+import { MouseEventHandler } from 'react';
 
-interface ProductsNoResultsProps {
+interface UIProductsNoResultsProps {
 	category?: string;
 	type?: string;
 	className?: string;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const ProductsNoResults = ({
+export const UIProductsNoResults = ({
 	category,
 	type,
 	className,
-}: ProductsNoResultsProps) => {
+	onClick,
+}: UIProductsNoResultsProps) => {
 	return (
 		<div
 			className={clsx(
@@ -32,7 +35,7 @@ export const ProductsNoResults = ({
 				</h1>
 			)}
 			{!type && !category && <h1>Sorry, there no products</h1>}
-			<ToProductsButton>Open products page</ToProductsButton>
+			<UIToProductsButton onClick={onClick}>Open products page</UIToProductsButton>
 		</div>
 	);
 };

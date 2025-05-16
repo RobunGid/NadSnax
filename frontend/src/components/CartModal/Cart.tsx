@@ -1,7 +1,7 @@
 import { CartItem } from './CartItem';
 import { useStateSelector } from '../../store';
-import { ToProductsButton } from '../Layout/ToProductsButton';
 import { UICartHeader } from './UI/UICartHeader';
+import { ToProductsButton } from '../Layout/ToProductsButton';
 
 export const Cart = () => {
 	const cartItems = useStateSelector((state) => state.cart.productList);

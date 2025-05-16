@@ -3,9 +3,9 @@ import { useParams } from 'react-router';
 import { fetchItemsThunk } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
-import { ProductsNoResults } from '../Products/ProductsNoResults';
 import { ProductsList } from '../Layout/ProductsList';
 import { ProductsLoading } from '../Products/ProductsLoading';
+import { UIProductsNoResults } from '../UI/UIProductsNoResults';
 
 export const ProductsPage = () => {
 	const items = useStateSelector((state) => state.item.itemList);
@@ -43,7 +43,7 @@ export const ProductsPage = () => {
 				{status === 'loading' && <ProductsLoading />}
 			</div>
 			{status !== 'loading' && !items.length && (
-				<ProductsNoResults
+				<UIProductsNoResults
 					category={category}
 					type={type}
 					className='h-[calc(100vh-20rem)]'
