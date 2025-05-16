@@ -7,13 +7,11 @@ import camelcaseKeys from 'camelcase-keys';
 type UserState = {
 	user: User | null;
 	status: Status;
-	avatarRefreshVersion: number;
 };
 
 const initialState: UserState = {
 	user: null,
 	status: 'init',
-	avatarRefreshVersion: 0,
 };
 
 export const fetchUser = createAsyncThunk<
@@ -25,6 +23,40 @@ export const fetchUser = createAsyncThunk<
 
 	if (!accessToken) return rejectWithValue('No access token');
 	const response = await Axios.get<User>('/user/me', {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			'Content-Type': 'application/json',
+		},
+	});
+
+	if (response.status != 200) {
+		return rejectWithValue('Server Error!');
+	}
+
+	const user = response.data;
+	const camelcaseUser = camelcaseKeys(user, { deep: true });
+	const userWithAvatarUrl = {
+		...camelcaseUser,
+		avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
+	};
+	return userWithAvatarUrl;
+});
+
+export const updateUser = createAsyncThunk<
+	User,
+	Pick<User, 'firstName' | 'lastName' | 'username'>,
+	{ rejectValue: string; state: RootStore }
+>('user/updateUser', async (userData, { getState, rejectWithValue }) => {
+	const accessToken = getState().auth.accessToken;
+
+	const fixedUserData = {
+		...(userData.firstName && { first_name: userData.firstName }),
+		...(userData.lastName && { last_name: userData.lastName }),
+		...(userData.username && { username: userData.username }),
+	};
+
+	if (!accessToken) return rejectWithValue('No access token');
+	const response = await Axios.patch<User>('/user/me', fixedUserData, {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
 			'Content-Type': 'application/json',
@@ -62,6 +94,20 @@ const slice = createSlice({
 		builder.addCase(fetchUser.fulfilled, (state, action) => {
 			state.user = action.payload;
 			state.status = 'success';
+		});
+		builder.addCase(fetchUser.rejected, (state) => {
+			state.status = 'error';
+		});
+
+		builder.addCase(updateUser.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(updateUser.fulfilled, (state, action) => {
+			state.user = action.payload;
+			state.status = 'success';
+		});
+		builder.addCase(updateUser.rejected, (state) => {
+			state.status = 'error';
 		});
 	},
 });

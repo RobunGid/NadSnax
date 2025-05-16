@@ -1,13 +1,19 @@
+import { ChangeEventHandler } from 'react';
+
 interface UIAccountSettingsInfoInputProps {
-	defaultValue?: string;
 	label?: string;
 	isUsername?: boolean;
+	name?: string;
+	value: string;
+	onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const UIAccountSettingsInfoInput = ({
-	defaultValue,
 	label,
 	isUsername,
+	name,
+	value,
+	onChange,
 }: UIAccountSettingsInfoInputProps) => {
 	return (
 		<div className='flex flex-col'>
@@ -17,13 +23,17 @@ export const UIAccountSettingsInfoInput = ({
 					<span className='text-gray-500 mr-0.5'>@</span>
 					<input
 						className='text-xl font-bold outline-0'
-						defaultValue={defaultValue}
+						name={name}
+						value={value}
+						onChange={onChange}
 					/>
 				</div>
 			) : (
 				<input
 					className='text-xl font-bold border-1 border-gray-600 rounded-md py-0.5 px-2'
-					defaultValue={defaultValue}
+					name={name}
+					value={value}
+					onChange={onChange}
 				/>
 			)}
 		</div>

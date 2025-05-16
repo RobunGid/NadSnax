@@ -1,9 +1,9 @@
 import { useStateSelector } from '../../../store';
 import { UIAccountSettings } from './UI/UIAccountSettings';
-import { UIAccountSettingsInfo } from './UI/UIAccountSettingsInfo';
 import { UIAccountUserInfoLoader } from '../UI/UIAccountUserInfoLoader';
 import { UIAccountSettingsTitle } from './UI/UIAccountSettingsTitle';
 import { AccountSettingsAvatar } from './AccountSettingsAvatar';
+import { AccountSettingsForm } from './AccountSettingsForm';
 
 export const AccountSettings = () => {
 	const { user, status } = useStateSelector((state) => state.user);
@@ -12,11 +12,7 @@ export const AccountSettings = () => {
 		<UIAccountSettings>
 			<UIAccountSettingsTitle />
 			<AccountSettingsAvatar user={user} />
-			<UIAccountSettingsInfo
-				lastName={user.lastName}
-				firstName={user.firstName}
-				username={user.username}
-			/>
+			<AccountSettingsForm user={user} />
 		</UIAccountSettings>
 	) : (
 		<UIAccountUserInfoLoader />
