@@ -21,7 +21,7 @@ export const ProductsNoResults = ({
 		>
 			{category && type && (
 				<h1>
-					Sorry, there no products for <span className='font-bold'>{type}</span>{' '}
+					Sorry, there no products for <span className='font-bold'>{type}</span>
 					in <span className='font-bold'>{category}</span>
 				</h1>
 			)}
@@ -32,7 +32,7 @@ export const ProductsNoResults = ({
 				</h1>
 			)}
 			{!type && !category && <h1>Sorry, there no products</h1>}
-			<ToProductsButton>Open main products page</ToProductsButton>
+			<ToProductsButton>Open products page</ToProductsButton>
 		</div>
 	);
 };

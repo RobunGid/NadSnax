@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../../store';
 import { ProductsList } from '../../Layout/ProductsList';
+import { UIAccountFavorites } from './UI/UIAccountFavorites';
+import { AccountFavoritesNoResults } from './AccountFavoritesNoResults';
 
 export const AccountFavourites = () => {
 	const items = useStateSelector((state) => state.item.itemList);
@@ -20,7 +22,15 @@ export const AccountFavourites = () => {
 
 	useEffect(() => {
 		fetchItems(fetchItemsParams);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	return <ProductsList items={favoriteItems} params={fetchItemsParams} />;
+	return (
+		<UIAccountFavorites>
+			{favoriteItems.length !== 0 ? (
+				<ProductsList items={favoriteItems} params={fetchItemsParams} />
+			) : (
+				<AccountFavoritesNoResults />
+			)}
+		</UIAccountFavorites>
+	);
 };
