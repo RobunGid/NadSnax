@@ -30,7 +30,7 @@ export const ProfileMenu = () => {
 					<ProfileMenuThemeSwitcher />
 
 					<ProfileMenuItem.Profile />
-					<ProfileMenuItem.Favourites />
+					<ProfileMenuItem.Favorites />
 
 					<UIProfileMenuUserInfo
 						firstName={user?.firstName}

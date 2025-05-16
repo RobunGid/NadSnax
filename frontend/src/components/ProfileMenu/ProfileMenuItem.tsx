@@ -9,8 +9,8 @@ export const ProfileMenuItem = {
 	Profile: () => (
 		<UIProfileMenuItem to='/account/profile'>My Profile</UIProfileMenuItem>
 	),
-	Favourites: () => (
-		<UIProfileMenuItem to='/account/favourites'>Favourites</UIProfileMenuItem>
+	Favorites: () => (
+		<UIProfileMenuItem to='/account/favorites'>Favorites</UIProfileMenuItem>
 	),
 	OrderHistory: () => (
 		<UIProfileMenuItem to='/account/order_history'>Order History</UIProfileMenuItem>

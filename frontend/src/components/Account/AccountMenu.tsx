@@ -31,7 +31,7 @@ export const AccountMenu = () => {
 			<li>
 				<ul>
 					<AccountMenuItem.RecentlyViewed />
-					<AccountMenuItem.Favourites />
+					<AccountMenuItem.Favorites />
 				</ul>
 			</li>
 			<li>

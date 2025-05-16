@@ -35,10 +35,10 @@ export const AccountMenuItem = {
 			Recently viewed
 		</UIAccountMenuItem>
 	),
-	Favourites: () => (
-		<UIAccountMenuItem to='/account/favourites'>
+	Favorites: () => (
+		<UIAccountMenuItem to='/account/favorites'>
 			<PiStar />
-			Favourites
+			Favorites
 		</UIAccountMenuItem>
 	),
 	Help: () => (

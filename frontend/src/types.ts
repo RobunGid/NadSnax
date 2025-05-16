@@ -94,7 +94,7 @@ export type Section =
 	| 'settings'
 	| 'statistics'
 	| 'help'
-	| 'favourites';
+	| 'favorites';
 
 export const predicateSection = (value?: string): value is Section => {
 	if (
@@ -107,7 +107,7 @@ export const predicateSection = (value?: string): value is Section => {
 			'settings',
 			'statistics',
 			'help',
-			'favourites',
+			'favorites',
 		].includes(value)
 	) {
 		return false;
