@@ -1,9 +1,9 @@
 import { ChangeEventHandler, useState } from 'react';
 import { UIAccountSettingsForm } from './UI/UIAccountSettingsForm';
 import { User } from '../../../types';
-import { UIAccountSettingsInfoInput } from './UI/UIAccountSettingsInfoInput';
 import { updateUser, useAppDispatch } from '../../../store';
 import { UIButton } from '../../UI/UIButton';
+import { UIAccountSettingsInput } from './UI/UIAccountSettingsInput';
 
 export type SettingsFormValue = {
 	firstName: string;
@@ -39,19 +39,19 @@ export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 
 	return (
 		<UIAccountSettingsForm>
-			<UIAccountSettingsInfoInput
+			<UIAccountSettingsInput
 				label='First name'
 				value={settingsFormState.firstName}
 				name='firstName'
 				onChange={handleChangeSettingsForm}
 			/>
-			<UIAccountSettingsInfoInput
+			<UIAccountSettingsInput
 				label='Last name'
 				value={settingsFormState.lastName}
 				name='lastName'
 				onChange={handleChangeSettingsForm}
 			/>
-			<UIAccountSettingsInfoInput
+			<UIAccountSettingsInput
 				label='Username'
 				isUsername
 				value={settingsFormState.username}

@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 
-interface UIAccountSettingsInfoInputProps {
+interface UIAccountSettingsInputProps {
 	label?: string;
 	isUsername?: boolean;
 	name?: string;
@@ -8,13 +8,13 @@ interface UIAccountSettingsInfoInputProps {
 	onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const UIAccountSettingsInfoInput = ({
+export const UIAccountSettingsInput = ({
 	label,
 	isUsername,
 	name,
 	value,
 	onChange,
-}: UIAccountSettingsInfoInputProps) => {
+}: UIAccountSettingsInputProps) => {
 	return (
 		<div className='flex flex-col'>
 			<label className='text-sm text-gray-500'>{label}</label>
