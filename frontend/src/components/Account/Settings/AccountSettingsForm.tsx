@@ -1,8 +1,9 @@
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import { UIAccountSettingsForm } from './UI/UIAccountSettingsForm';
 import { User } from '../../../types';
 import { UIAccountSettingsInfoInput } from './UI/UIAccountSettingsInfoInput';
 import { updateUser, useAppDispatch } from '../../../store';
+import { UIButton } from '../../UI/UIButton';
 
 export type SettingsFormValue = {
 	firstName: string;
@@ -16,7 +17,6 @@ interface AccountSettingsFormProps {
 
 export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 	const dispatch = useAppDispatch();
-	const debounceTimeout = useRef<null | number>(null);
 	const settingsFormInitialState: SettingsFormValue = {
 		firstName: user.firstName,
 		lastName: user.lastName,
@@ -33,24 +33,9 @@ export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 		}));
 	};
 
-	useEffect(() => {
-		if (debounceTimeout.current) {
-			clearTimeout(debounceTimeout.current);
-		}
-
-		debounceTimeout.current = setTimeout(() => {
-			if (
-				user.firstName === settingsFormState.firstName &&
-				user.lastName === settingsFormState.lastName &&
-				user.username === settingsFormState.username
-			)
-				return;
-			dispatch(updateUser(settingsFormState));
-		}, 300);
-
-		return () =>
-			debounceTimeout.current ? clearTimeout(debounceTimeout.current) : undefined;
-	}, [settingsFormState]);
+	const handleUpdateData = () => {
+		dispatch(updateUser(settingsFormState));
+	};
 
 	return (
 		<UIAccountSettingsForm>
@@ -73,6 +58,7 @@ export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 				name='username'
 				onChange={handleChangeSettingsForm}
 			/>
+			<UIButton onClick={handleUpdateData}>Change data</UIButton>
 		</UIAccountSettingsForm>
 	);
 };
