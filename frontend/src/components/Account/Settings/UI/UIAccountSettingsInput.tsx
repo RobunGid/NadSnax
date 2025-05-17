@@ -1,19 +1,22 @@
 import { ChangeEventHandler } from 'react';
 
-interface UIAccountSettingsInputProps {
+type UIAccountSettingsInputProps = {
 	label?: string;
 	isUsername?: boolean;
 	name?: string;
 	value: string;
 	onChange: ChangeEventHandler<HTMLInputElement>;
-}
-
+	minLength?: number;
+	required?: boolean;
+};
 export const UIAccountSettingsInput = ({
 	label,
 	isUsername,
 	name,
 	value,
 	onChange,
+	minLength,
+	required,
 }: UIAccountSettingsInputProps) => {
 	return (
 		<div className='flex flex-col'>
@@ -26,6 +29,8 @@ export const UIAccountSettingsInput = ({
 						name={name}
 						value={value}
 						onChange={onChange}
+						minLength={minLength}
+						required={required}
 					/>
 				</div>
 			) : (
@@ -34,6 +39,8 @@ export const UIAccountSettingsInput = ({
 					name={name}
 					value={value}
 					onChange={onChange}
+					minLength={minLength}
+					required={required}
 				/>
 			)}
 		</div>

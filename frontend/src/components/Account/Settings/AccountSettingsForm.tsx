@@ -38,18 +38,20 @@ export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 	};
 
 	return (
-		<UIAccountSettingsForm>
+		<UIAccountSettingsForm onSubmit={handleUpdateData}>
 			<UIAccountSettingsInput
 				label='First name'
 				value={settingsFormState.firstName}
 				name='firstName'
 				onChange={handleChangeSettingsForm}
+				minLength={2}
 			/>
 			<UIAccountSettingsInput
 				label='Last name'
 				value={settingsFormState.lastName}
 				name='lastName'
 				onChange={handleChangeSettingsForm}
+				minLength={2}
 			/>
 			<UIAccountSettingsInput
 				label='Username'
@@ -57,8 +59,9 @@ export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
 				value={settingsFormState.username}
 				name='username'
 				onChange={handleChangeSettingsForm}
+				minLength={4}
 			/>
-			<UIButton onClick={handleUpdateData}>Change data</UIButton>
+			<UIButton>Change data</UIButton>
 		</UIAccountSettingsForm>
 	);
 };
