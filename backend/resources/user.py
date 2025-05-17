@@ -33,6 +33,9 @@ class MyUser(MethodView):
             user_data = request.get_json()
             
             if username := user_data.get("username", None):
+                is_username_busy = UserModel.query.filter_by(username=username).first() is not None
+                if is_username_busy and user.username != username:
+                    abort(409, message="Username already exists")
                 user.username = username
             if first_name := user_data.get("first_name", None):
                 user.first_name = first_name
@@ -117,7 +120,7 @@ class UserRegister(MethodView):
         from app import app
         existing_user = UserModel.query.filter_by(username=user_data["username"]).first()
         if existing_user:
-            abort(400, message = "Username already exists.")
+            abort(400, message = "Username already exists")
         user = UserModel(
       id = str(uuid.uuid4()),
       username=user_data["username"], 
