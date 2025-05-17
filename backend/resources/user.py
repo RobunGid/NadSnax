@@ -27,22 +27,26 @@ class MyUser(MethodView):
     @blp.response(200, UserSchema)
     @jwt_required()
     def patch(self):
-        identity = get_jwt_identity()
-        user = UserModel.query.get_or_404(identity)
-        user_data = request.get_json()
+        try:
+            identity = get_jwt_identity()
+            user = UserModel.query.get_or_404(identity)
+            user_data = request.get_json()
+            
+            if username := user_data.get("username", None):
+                user.username = username
+            if first_name := user_data.get("first_name", None):
+                user.first_name = first_name
+            if last_name := user_data.get("last_name", None):
+                user.last_name = last_name
+            if role := user_data.get("role", None):
+                user.role = role
         
-        if username := user_data.get("username", None):
-            user.username = username
-        if first_name := user_data.get("first_name", None):
-            user.first_name = first_name
-        if last_name := user_data.get("last_name", None):
-            user.last_name = last_name
-        if role := user_data.get("role", None):
-            user.role = role
-
-        db.session.add(user)
-        db.session.commit()
+            db.session.add(user)
+            db.session.commit()
+        except ValueError as error:
+            abort(400, message=str(error))
     
+ 
         return user
             
 
