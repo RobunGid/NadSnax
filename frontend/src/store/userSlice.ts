@@ -35,11 +35,7 @@ export const fetchUser = createAsyncThunk<
 
 	const user = response.data;
 	const camelcaseUser = camelcaseKeys(user, { deep: true });
-	const userWithAvatarUrl = {
-		...camelcaseUser,
-		avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
-	};
-	return userWithAvatarUrl;
+	return camelcaseUser;
 });
 
 export const updateUser = createAsyncThunk<
@@ -69,11 +65,8 @@ export const updateUser = createAsyncThunk<
 
 	const user = response.data;
 	const camelcaseUser = camelcaseKeys(user, { deep: true });
-	const userWithAvatarUrl = {
-		...camelcaseUser,
-		avatarUrl: import.meta.env.VITE_API_URL + '/avatar/' + user.username + '.png',
-	};
-	return userWithAvatarUrl;
+
+	return camelcaseUser;
 });
 
 const slice = createSlice({

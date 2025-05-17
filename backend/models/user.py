@@ -52,4 +52,4 @@ class UserModel(db.Model):
     
     @hybrid_property
     def avatar_url(self):
-        return f'{request.host_url}/avatar/{self.username}.png'
+        return f'{request.host_url}avatar/{self.id}.png'

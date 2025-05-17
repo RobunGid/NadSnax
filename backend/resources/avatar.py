@@ -43,7 +43,7 @@ class AvatarMe(MethodView):
 		from app import app
 		identity = get_jwt_identity()
 		user = UserModel.query.get_or_404(identity)
-		avatar_name = user.username + '.png'
+		avatar_name = user.id + '.png'
 		file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], avatar_name)
 		
 		if 'avatar' not in request.files:
@@ -68,7 +68,7 @@ class AvatarMe(MethodView):
 		from app import app
 		identity = get_jwt_identity()
 		user = UserModel.query.get_or_404(identity)
-		file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], user.username) + '.png'
+		file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], user.id) + '.png'
 		if os.path.exists(file_path):
 			os.remove(file_path)
 			return {"message": "Avatar deleted successfully", "avatar_name": file_path}
