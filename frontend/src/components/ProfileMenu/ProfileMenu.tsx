@@ -8,7 +8,7 @@ import { UIProfileMenuUserInfo } from './UI/UIProfileMenuUserInfo';
 import { UIProfileMenu } from './UI/UIProfileMenu';
 
 export const ProfileMenu = () => {
-	const { user, status } = useStateSelector((state) => state.user);
+	const { user } = useStateSelector((state) => state.user);
 
 	const dispatch = useAppDispatch();
 
@@ -21,8 +21,7 @@ export const ProfileMenu = () => {
 	};
 
 	return (
-		user &&
-		status === 'success' && (
+		user && (
 			<div className='m-2'>
 				<ProfileMenuButton user={user} />
 

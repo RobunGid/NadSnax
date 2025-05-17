@@ -70,7 +70,6 @@ export const updateUser = createAsyncThunk<
 				'Content-Type': 'application/json',
 			},
 		});
-
 		const user = response.data;
 		const camelcaseUser = camelcaseKeys(user, { deep: true });
 		return camelcaseUser;
@@ -105,6 +104,7 @@ const slice = createSlice({
 		builder.addCase(fetchUser.fulfilled, (state, action) => {
 			state.user = action.payload;
 			state.status = 'success';
+			state.error = {};
 		});
 		builder.addCase(fetchUser.rejected, (state) => {
 			state.status = 'error';
@@ -116,6 +116,7 @@ const slice = createSlice({
 		builder.addCase(updateUser.fulfilled, (state, action) => {
 			state.user = action.payload;
 			state.status = 'success';
+			state.error = {};
 		});
 		builder.addCase(updateUser.rejected, (state, action) => {
 			state.status = 'error';
