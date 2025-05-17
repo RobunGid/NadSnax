@@ -2,23 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Axios } from '../api';
 import { AppDispatch, Status } from './types';
 import { fetchUser, userActions } from './userSlice';
-import { User } from '../types';
+import { StoreError, User } from '../types';
 import { isAxiosError } from 'axios';
-
-type AuthError = {
-	message?: string;
-	code?: string;
-	status?: number;
-	data?: {
-		error: string;
-		message: string;
-	};
-};
 
 type AuthState = {
 	accessToken: string;
 	status: Status;
-	error: AuthError;
+	error: StoreError;
 };
 
 const initialState: AuthState = {
@@ -30,7 +20,7 @@ const initialState: AuthState = {
 export const loginThunk = createAsyncThunk<
 	{ accessToken: string },
 	{ username: string; password: string },
-	{ rejectValue: AuthError }
+	{ rejectValue: StoreError }
 >('auth/login', async ({ username, password }, { rejectWithValue }) => {
 	try {
 		const response = await Axios.post<{
@@ -64,7 +54,7 @@ export const loginThunk = createAsyncThunk<
 export const registerThunk = createAsyncThunk<
 	undefined,
 	Omit<User, 'id' | 'avatarUrl'> & { password: string; avatarFile?: File },
-	{ dispatch: AppDispatch; rejectValue: AuthError }
+	{ dispatch: AppDispatch; rejectValue: StoreError }
 >(
 	'auth/register',
 	async (
@@ -108,7 +98,7 @@ export const registerThunk = createAsyncThunk<
 export const refreshThunk = createAsyncThunk<
 	string,
 	undefined,
-	{ dispatch: AppDispatch; rejectValue: AuthError }
+	{ dispatch: AppDispatch; rejectValue: StoreError }
 >('auth/refresh', async (_, { rejectWithValue, dispatch }) => {
 	try {
 		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');

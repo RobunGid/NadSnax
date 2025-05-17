@@ -79,6 +79,16 @@ export type User = {
 	username: string;
 };
 
+export type StoreError = {
+	message?: string;
+	code?: string;
+	status?: number;
+	data?: {
+		error: string;
+		message: string;
+	};
+};
+
 export type Role = 'user' | 'admin' | 'moderator';
 
 export type CartItemType = {

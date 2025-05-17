@@ -1,72 +1,92 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { User } from '../types';
+import { StoreError, User } from '../types';
 import { AppDispatch, RootStore, Status } from './types';
 import { Axios } from '../api';
 import camelcaseKeys from 'camelcase-keys';
+import { isAxiosError } from 'axios';
 
 type UserState = {
 	user: User | null;
 	status: Status;
+	error: StoreError;
 };
 
 const initialState: UserState = {
 	user: null,
 	status: 'init',
+	error: {},
 };
 
 export const fetchUser = createAsyncThunk<
 	User,
 	undefined,
-	{ rejectValue: string; state: RootStore }
+	{ rejectValue: StoreError; state: RootStore }
 >('user/fetchUser', async (_, { rejectWithValue, getState }) => {
-	const accessToken = getState().auth.accessToken;
+	try {
+		const accessToken = getState().auth.accessToken;
 
-	if (!accessToken) return rejectWithValue('No access token');
-	const response = await Axios.get<User>('/user/me', {
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-			'Content-Type': 'application/json',
-		},
-	});
+		if (!accessToken) return rejectWithValue({ message: 'No access token' });
+		const response = await Axios.get<User>('/user/me', {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json',
+			},
+		});
 
-	if (response.status != 200) {
-		return rejectWithValue('Server Error!');
+		const user = response.data;
+		const camelcaseUser = camelcaseKeys(user, { deep: true });
+		return camelcaseUser;
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
-
-	const user = response.data;
-	const camelcaseUser = camelcaseKeys(user, { deep: true });
-	return camelcaseUser;
 });
 
 export const updateUser = createAsyncThunk<
 	User,
 	Pick<User, 'firstName' | 'lastName' | 'username'>,
-	{ rejectValue: string; state: RootStore }
->('user/updateUser', async (userData, { getState, rejectWithValue }) => {
-	const accessToken = getState().auth.accessToken;
+	{ rejectValue: StoreError; state: RootStore }
+>('user/updateUser', async (userData, { getState, rejectWithValue, dispatch }) => {
+	try {
+		const accessToken = getState().auth.accessToken;
 
-	const fixedUserData = {
-		...(userData.firstName && { first_name: userData.firstName }),
-		...(userData.lastName && { last_name: userData.lastName }),
-		...(userData.username && { username: userData.username }),
-	};
+		const fixedUserData = {
+			...(userData.firstName && { first_name: userData.firstName }),
+			...(userData.lastName && { last_name: userData.lastName }),
+			...(userData.username && { username: userData.username }),
+		};
 
-	if (!accessToken) return rejectWithValue('No access token');
-	const response = await Axios.patch<User>('/user/me', fixedUserData, {
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-			'Content-Type': 'application/json',
-		},
-	});
+		if (!accessToken) return rejectWithValue({ message: 'No access token' });
+		const response = await Axios.patch<User>('/user/me', fixedUserData, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json',
+			},
+		});
 
-	if (response.status != 200) {
-		return rejectWithValue('Server Error!');
+		const user = response.data;
+		const camelcaseUser = camelcaseKeys(user, { deep: true });
+
+		return camelcaseUser;
+	} catch (error) {
+		dispatch(fetchUser());
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
-
-	const user = response.data;
-	const camelcaseUser = camelcaseKeys(user, { deep: true });
-
-	return camelcaseUser;
 });
 
 const slice = createSlice({
