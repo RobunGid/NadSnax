@@ -53,7 +53,7 @@ export const updateUser = createAsyncThunk<
 	User,
 	Pick<User, 'firstName' | 'lastName' | 'username'>,
 	{ rejectValue: StoreError; state: RootStore }
->('user/updateUser', async (userData, { getState, rejectWithValue, dispatch }) => {
+>('user/updateUser', async (userData, { getState, rejectWithValue }) => {
 	try {
 		const accessToken = getState().auth.accessToken;
 
@@ -73,10 +73,8 @@ export const updateUser = createAsyncThunk<
 
 		const user = response.data;
 		const camelcaseUser = camelcaseKeys(user, { deep: true });
-
 		return camelcaseUser;
 	} catch (error) {
-		dispatch(fetchUser());
 		if (isAxiosError(error)) {
 			return rejectWithValue({
 				message: error.message,
@@ -119,8 +117,9 @@ const slice = createSlice({
 			state.user = action.payload;
 			state.status = 'success';
 		});
-		builder.addCase(updateUser.rejected, (state) => {
+		builder.addCase(updateUser.rejected, (state, action) => {
 			state.status = 'error';
+			state.error = action.payload ? action.payload : {};
 		});
 	},
 });

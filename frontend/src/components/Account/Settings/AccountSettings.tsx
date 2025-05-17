@@ -6,9 +6,9 @@ import { AccountSettingsAvatar } from './AccountSettingsAvatar';
 import { AccountSettingsForm } from './AccountSettingsForm';
 
 export const AccountSettings = () => {
-	const { user, status } = useStateSelector((state) => state.user);
+	const { user } = useStateSelector((state) => state.user);
 
-	return user && status === 'success' ? (
+	return user ? (
 		<UIAccountSettings>
 			<UIAccountSettingsTitle />
 			<AccountSettingsAvatar user={user} />
