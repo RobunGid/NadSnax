@@ -1,7 +1,7 @@
-import { handleAddToFavorite, handleDeleteFromFavorite } from '../../api';
+import { handleAddToFavorite, handleDeleteItemFromFavorite } from '../../api';
 import { Item } from '../../types';
 import { UIProductDetailsAddToFavorite } from './UI/UIProductDetailsAddToFavorite';
-import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
+import { itemActions, useAppDispatch, useStateSelector } from '../../store';
 
 interface ProductDetailsAddToFavoriteProps {
 	item: Item;
@@ -12,26 +12,27 @@ export const ProductDetailsAddToFavorite = ({
 }: ProductDetailsAddToFavoriteProps) => {
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
-	const actions = useActionCreators({
-		fetchItems: fetchItemsThunk,
-	});
+	const { addItemToFavorite, deleteItemFromFavorite } = itemActions;
+
+	const dispatch = useAppDispatch();
 
 	return (
 		<UIProductDetailsAddToFavorite
 			onAddClick={() =>
 				handleAddToFavorite({
 					accessToken,
-					fetchItems: actions.fetchItems,
 					itemId: item.id,
+					dispatch,
+					addItemToFavorite,
 				})
 			}
 			onDeleteClick={() => {
 				if (item.favoriteId) {
-					handleDeleteFromFavorite({
+					handleDeleteItemFromFavorite({
 						favoriteId: item.favoriteId,
-						fetchItems: actions.fetchItems,
 						accessToken,
-						itemId: item.id,
+						deleteItemFromFavorite,
+						dispatch,
 					});
 				}
 			}}

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { RootStore, Status } from './types';
@@ -103,7 +103,18 @@ export const fetchItemsThunk = createAsyncThunk<
 const slice = createSlice({
 	name: 'item',
 	initialState,
-	reducers: {},
+	reducers: {
+		addItemToFavorite: (state, action: PayloadAction<string>) => {
+			const item = state.itemList.find((item) => item.id === action.payload);
+			if (item) item.favoriteId = 'temp';
+		},
+		deleteItemFromFavorite: (state, action: PayloadAction<string>) => {
+			const item = state.itemList.find(
+				(item) => item.favoriteId === action.payload
+			);
+			if (item) item.favoriteId = undefined;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItemsThunk.pending, (state) => {
 			state.itemList = [];

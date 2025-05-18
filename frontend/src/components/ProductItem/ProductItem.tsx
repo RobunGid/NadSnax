@@ -2,12 +2,7 @@ import { Item } from '../../types';
 
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
-import {
-	fetchItemsParams,
-	fetchItemsThunk,
-	useActionCreators,
-	useStateSelector,
-} from '../../store';
+import { itemActions, useAppDispatch, useStateSelector } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
@@ -15,21 +10,19 @@ import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
-import { handleAddToFavorite, handleDeleteFromFavorite } from '../../api';
+import { handleAddToFavorite, handleDeleteItemFromFavorite } from '../../api';
 
 type ProductItemProps = {
 	item: Item;
 	className?: string;
 	hideAddButton?: boolean;
 	hideInfo?: boolean;
-	params: fetchItemsParams;
 	isSmall?: boolean;
 };
 
 export const ProductItem = ({
 	item,
 	className,
-	params,
 	hideAddButton,
 	hideInfo,
 }: ProductItemProps) => {
@@ -37,7 +30,9 @@ export const ProductItem = ({
 		(cartItem) => cartItem.item.id === item.id
 	);
 
-	const actions = useActionCreators({ fetchItems: fetchItemsThunk });
+	const dispatch = useAppDispatch();
+
+	const { addItemToFavorite, deleteItemFromFavorite } = itemActions;
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
@@ -61,19 +56,19 @@ export const ProductItem = ({
 					event.preventDefault();
 					handleAddToFavorite({
 						accessToken,
-						fetchItems: actions.fetchItems,
 						itemId: item.id,
-						params: params,
+						addItemToFavorite,
+						dispatch,
 					});
 				}}
 				onDeleteClick={(event) => {
 					event.preventDefault();
 					if (item.favoriteId)
-						handleDeleteFromFavorite({
+						handleDeleteItemFromFavorite({
 							accessToken,
-							fetchItems: actions.fetchItems,
 							favoriteId: item.favoriteId,
-							params: params,
+							deleteItemFromFavorite,
+							dispatch,
 						});
 				}}
 			/>

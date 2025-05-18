@@ -26,14 +26,7 @@ export const AccountReviews = () => {
 				const item = items.find((item) => item.id === review.itemId);
 				return (
 					<div key={review.id} className='flex flex-col items-center gap-4'>
-						{item && (
-							<ProductItem
-								item={item}
-								params={{ include_images: true }}
-								hideAddButton
-								hideInfo
-							/>
-						)}
+						{item && <ProductItem item={item} hideAddButton hideInfo />}
 						<ReviewElement review={review} />
 					</div>
 				);

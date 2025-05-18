@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { Item } from './types';
-import { ActionCreator } from '@reduxjs/toolkit';
-import { fetchItemsParams } from './store';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { AppDispatch } from './store';
 
 export const Axios = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
@@ -13,16 +13,16 @@ export const fetchSimillarItems = async (item: Item, parameters?: AxiosRequestCo
 
 interface HandleAddToFavoriteParams {
 	accessToken: string;
-	fetchItems: ActionCreator<unknown, unknown[]>;
 	itemId: string;
-	params: fetchItemsParams;
+	addItemToFavorite: ActionCreatorWithPayload<string, 'item/addItemToFavorite'>;
+	dispatch: AppDispatch;
 }
 
 export const handleAddToFavorite = async ({
 	accessToken,
-	fetchItems,
 	itemId,
-	params,
+	addItemToFavorite,
+	dispatch,
 }: HandleAddToFavoriteParams) => {
 	const response = await Axios.post(
 		'/favorite',
@@ -36,29 +36,32 @@ export const handleAddToFavorite = async ({
 		}
 	);
 	if (response.status === 201) {
-		fetchItems(params);
+		dispatch(addItemToFavorite(itemId));
 	}
 };
 
-interface HandleDeleteFromFavoriteParams {
+interface HandleDeleteItemFromFavoriteParams {
 	accessToken: string;
-	fetchItems: ActionCreator<unknown, unknown[]>;
 	favoriteId: string;
-	params: fetchItemsParams;
+	deleteItemFromFavorite: ActionCreatorWithPayload<
+		string,
+		'item/deleteItemFromFavorite'
+	>;
+	dispatch: AppDispatch;
 }
 
-export const handleDeleteFromFavorite = async ({
+export const handleDeleteItemFromFavorite = async ({
 	accessToken,
-	fetchItems,
 	favoriteId,
-	params,
-}: HandleDeleteFromFavoriteParams) => {
+	deleteItemFromFavorite,
+	dispatch,
+}: HandleDeleteItemFromFavoriteParams) => {
 	const response = await Axios.delete(`/favorite/${favoriteId}`, {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
 		},
 	});
 	if (response.status === 200) {
-		fetchItems(params);
+		dispatch(deleteItemFromFavorite(favoriteId));
 	}
 };
