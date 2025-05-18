@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import camelcaseKeys from 'camelcase-keys';
-import { Status } from './types';
+import { RootStore, Status } from './types';
 import { Axios } from '../api';
 
 type ItemsState = {
@@ -27,12 +27,13 @@ export interface fetchItemsParams {
 	include_reviews?: boolean;
 	simillar_id?: string;
 	accessToken?: string;
+	item_ids?: string[];
 }
 
 export const fetchItemsThunk = createAsyncThunk<
 	Item[],
 	fetchItemsParams,
-	{ rejectValue: string }
+	{ rejectValue: string; state: RootStore }
 >(
 	'item/fetchItems',
 	async (
@@ -48,12 +49,13 @@ export const fetchItemsThunk = createAsyncThunk<
 			is_bestseller,
 			is_secretbox,
 			simillar_id,
-			accessToken,
+			item_ids,
 		},
-		{ rejectWithValue }
+		{ rejectWithValue, getState }
 	) => {
 		category_name = category_name !== 'best-sellers' ? category_name : undefined;
 		category_name = category_name !== 'secretboxes' ? category_name : undefined;
+		const accessToken = getState().auth.accessToken;
 		const response = await Axios.get<Item[]>('/item', {
 			params: {
 				include_type,
@@ -67,6 +69,7 @@ export const fetchItemsThunk = createAsyncThunk<
 				secretbox: is_secretbox,
 				include_reviews,
 				simillar_id,
+				item_ids: item_ids?.join(','),
 			},
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
@@ -93,7 +96,6 @@ export const fetchItemsThunk = createAsyncThunk<
 					'.png',
 			})),
 		}));
-
 		return fixedItems;
 	}
 );

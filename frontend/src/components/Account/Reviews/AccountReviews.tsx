@@ -1,19 +1,43 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useStateSelector } from '../../../store';
+import { fetchItemsThunk, useAppDispatch, useStateSelector } from '../../../store';
 import { ReviewElement } from '../../Layout/ReviewElement';
 import { fetchSelfReviews } from '../../../store/reviewSlice';
+import { ProductItem } from '../../ProductItem/ProductItem';
 
 export const AccountReviews = () => {
 	const reviews = useStateSelector((state) => state.review.reviews);
+	const items = useStateSelector((state) => state.item.itemList);
+
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		dispatch(fetchSelfReviews({ includeUser: true }));
+		dispatch(fetchSelfReviews({ includeUser: true, includeItem: true }));
+		dispatch(
+			fetchItemsThunk({
+				include_category: true,
+				include_images: true,
+				item_ids: reviews.map((review) => review.itemId),
+			})
+		);
+		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
-		<div>
-			{reviews.map((review) => (
-				<ReviewElement review={review} key={review.id} />
-			))}
+		<div className='flex gap-4'>
+			{reviews.map((review) => {
+				const item = items.find((item) => item.id === review.itemId);
+				return (
+					<div key={review.id} className='flex flex-col items-center gap-4'>
+						{item && (
+							<ProductItem
+								item={item}
+								params={{ include_images: true }}
+								hideAddButton
+								hideInfo
+							/>
+						)}
+						<ReviewElement review={review} />
+					</div>
+				);
+			})}
 		</div>
 	);
 };

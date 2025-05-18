@@ -19,41 +19,46 @@ const initialState: ReviewState = {
 
 type fetchSelfReviewsParams = {
 	includeUser?: boolean;
+	includeItem?: boolean;
 };
 
 export const fetchSelfReviews = createAsyncThunk<
 	Review[],
 	fetchSelfReviewsParams,
 	{ rejectValue: StoreError; state: RootStore }
->('item/fetchItems', async ({ includeUser }, { rejectWithValue, getState }) => {
-	const accessToken = getState().auth.accessToken;
-	try {
-		const response = await Axios.get<Review[]>('/review/self', {
-			params: {
-				include_user: includeUser,
-			},
-			headers: {
-				Authorization: accessToken ? `Bearer ${accessToken}` : '',
-			},
-		});
-
-		const reviews = response.data;
-
-		const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
-
-		return camelCaseReviews;
-	} catch (error) {
-		if (isAxiosError(error)) {
-			return rejectWithValue({
-				message: error.message,
-				code: error.code,
-				status: error.response?.status,
-				data: error.response?.data,
+>(
+	'review/fetchReviews',
+	async ({ includeUser, includeItem }, { rejectWithValue, getState }) => {
+		const accessToken = getState().auth.accessToken;
+		try {
+			const response = await Axios.get<Review[]>('/review/self', {
+				params: {
+					include_user: includeUser,
+					include_item: includeItem,
+				},
+				headers: {
+					Authorization: accessToken ? `Bearer ${accessToken}` : '',
+				},
 			});
+
+			const reviews = response.data;
+
+			const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
+
+			return camelCaseReviews;
+		} catch (error) {
+			if (isAxiosError(error)) {
+				return rejectWithValue({
+					message: error.message,
+					code: error.code,
+					status: error.response?.status,
+					data: error.response?.data,
+				});
+			}
+			return rejectWithValue({ message: 'Unknown error' });
 		}
-		return rejectWithValue({ message: 'Unknown error' });
 	}
-});
+);
 
 const slice = createSlice({
 	name: 'review',

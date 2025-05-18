@@ -21,10 +21,18 @@ type ProductItemProps = {
 	item: Item;
 	className?: string;
 	hideAddButton?: boolean;
+	hideInfo?: boolean;
 	params: fetchItemsParams;
+	isSmall?: boolean;
 };
 
-export const ProductItem = ({ item, className, params }: ProductItemProps) => {
+export const ProductItem = ({
+	item,
+	className,
+	params,
+	hideAddButton,
+	hideInfo,
+}: ProductItemProps) => {
 	const cartItem = useStateSelector((state) => state.cart.productList).find(
 		(cartItem) => cartItem.item.id === item.id
 	);
@@ -42,7 +50,7 @@ export const ProductItem = ({ item, className, params }: ProductItemProps) => {
 
 	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
 	return (
-		<UIProductItem pageLink={item.pageLink} className={className}>
+		<UIProductItem pageLink={item.pageLink} className={className} isSmall={hideInfo}>
 			<ProductItemCover
 				imageURL={imageURL}
 				isBestseller={item.isBestseller}
@@ -69,24 +77,29 @@ export const ProductItem = ({ item, className, params }: ProductItemProps) => {
 						});
 				}}
 			/>
-			<ProductItemQuantityChooser
-				cartItem={cartItem}
-				onAdd={handleAddItemToCart}
-				onDelete={handleRemoveProductFromCart}
-				onInputChange={handleInputChange}
-				onRemove={handleRemoveProductFromCart}
-			/>
-
-			<UIProductItemPrice price={price} oldPrice={oldPrice} />
-			<UIProductItemLabel
-				description={item.description}
-				label={item.label}
-				isBestseller={item.isBestseller}
-			/>
-			<UIProductItemRating
-				ratingCount={item.ratingCount}
-				averageRating={item.averageRating}
-			/>
+			{!hideAddButton && (
+				<ProductItemQuantityChooser
+					cartItem={cartItem}
+					onAdd={handleAddItemToCart}
+					onDelete={handleRemoveProductFromCart}
+					onInputChange={handleInputChange}
+					onRemove={handleRemoveProductFromCart}
+				/>
+			)}
+			{!hideInfo && (
+				<>
+					<UIProductItemPrice price={price} oldPrice={oldPrice} />
+					<UIProductItemLabel
+						description={item.description}
+						label={item.label}
+						isBestseller={item.isBestseller}
+					/>
+					<UIProductItemRating
+						ratingCount={item.ratingCount}
+						averageRating={item.averageRating}
+					/>
+				</>
+			)}
 		</UIProductItem>
 	);
 };

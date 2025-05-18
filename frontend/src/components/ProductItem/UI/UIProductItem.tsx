@@ -7,16 +7,23 @@ interface UIProductItemProps {
 	className?: string;
 	pageLink: string;
 	children: ReactNode;
+	isSmall?: boolean;
 }
 
-export const UIProductItem = ({ pageLink, className, children }: UIProductItemProps) => {
+export const UIProductItem = ({
+	pageLink,
+	className,
+	children,
+	isSmall,
+}: UIProductItemProps) => {
 	return (
 		<Link
 			to={`/products/page${pageLink}`}
 			className={clsx(
-				'shadow-xl h-[360px] p-2 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
-				className,
-				styles['product-item']
+				'shadow-xl p-2 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
+				styles['product-item'],
+				isSmall ? 'h-60' : 'h-[360px]',
+				className
 			)}
 		>
 			{children}

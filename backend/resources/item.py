@@ -110,6 +110,9 @@ class Items(MethodView):
             query = query.filter(ItemModel.price >= simillar_item.price * 0.9)
             query = query.filter(ItemModel.price <= simillar_item.price * 1.1)
         
+        if item_ids:
+            query = query.filter(ItemModel.id.in_(item_ids.split(',')))
+        
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]
             try:
@@ -125,13 +128,10 @@ class Items(MethodView):
             items = [item for item, _ in items_favorites]
             for item, favorite_id in items_favorites:
                 item.favorite_id = favorite_id
-        
-        
+        else:
+            items = query.all()
 
-        if item_ids:
-            query = query.filter(ItemModel.id.in_(item_ids.split(',')))
-            
-        items = query.all()
+        
         
         params = {
             "many": True,
