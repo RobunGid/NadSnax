@@ -6,6 +6,7 @@ from db import db
 from sqlalchemy.exc import SQLAlchemyError
 import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask import request
 
 blp = Blueprint("reviews", __name__, description = "Operations on reviews")
 
@@ -44,13 +45,30 @@ class Review(MethodView):
 
 @blp.route('/review/self')
 class SelfReviews(MethodView):
-    @blp.response(200, ReviewSchema(many=True))
     @jwt_required()
     def get(self):
         identity = get_jwt_identity()
-        self_reviews = ReviewModel.query.filter_by(user_id=identity).all()
-        return self_reviews
-
+        include_user = request.args.get("include_user", type=bool, default=False)
+        include_item = request.args.get("include_item", type=bool, default=False)
+        query = ReviewModel.query.filter_by(user_id=identity)
+        
+        if include_user:
+            query = query.options(db.joinedload(ReviewModel.user))
+        
+        if include_item:
+            query = query.options(db.joinedload(ReviewModel.item))
+            
+        reviews = query.all()
+            
+        params = {
+            "many": True,
+            "include_item": include_item,
+            "include_user": include_user
+        }
+        schema = ReviewSchema(**params)
+            
+        return schema.dump(reviews), 200
+            
 @blp.route('/review')
 class Reviews(MethodView):
     @blp.response(200, ReviewSchema(many=True))
