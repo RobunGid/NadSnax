@@ -42,9 +42,18 @@ class Review(MethodView):
         
         return review
 
+@blp.route('/review/self')
+class SelfReviews(MethodView):
+    @blp.response(200, ReviewSchema(many=True))
+    @jwt_required()
+    def get(self):
+        identity = get_jwt_identity()
+        self_reviews = ReviewModel.query.filter_by(user_id=identity).all()
+        return self_reviews
+
 @blp.route('/review')
 class Reviews(MethodView):
-    @blp.response(200, ReviewSchema(many = True))
+    @blp.response(200, ReviewSchema(many=True))
     def get(self):
         return ReviewModel.query.all()
        
