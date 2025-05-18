@@ -67,7 +67,8 @@ class Items(MethodView):
         secretbox_filter = request.args.get("secretbox", "").lower()
         page_link_filter = request.args.get("page_link", "").lower()
         simillar_id_filter = request.args.get("simillar_id")
-        
+        item_ids = request.args.get('item_ids')
+  
         if bestseller_filter in ["false", "true"]:
             bestseller_filter = bestseller_filter == "true"
         else:
@@ -77,7 +78,7 @@ class Items(MethodView):
             secretbox_filter = secretbox_filter == "true"
         else:
             secretbox_filter = None
-        
+            
         query = ItemModel.query
         
         if include_type:
@@ -90,6 +91,7 @@ class Items(MethodView):
             query = query.options(db.joinedload(ItemModel.reviews))
         if include_images:
             query = query.options(db.joinedload(ItemModel.images))
+        
             
         query = query.join(ItemModel.category) if category_filter else query
         query = query.join(ItemModel.type) if type_filter else query
@@ -123,9 +125,13 @@ class Items(MethodView):
             items = [item for item, _ in items_favorites]
             for item, favorite_id in items_favorites:
                 item.favorite_id = favorite_id
-        else:
-            items = query.all()
+        
+        
 
+        if item_ids:
+            query = query.filter(ItemModel.id.in_(item_ids.split(',')))
+            
+        items = query.all()
         
         params = {
             "many": True,
