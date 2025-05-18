@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Item } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { RootStore, Status } from './types';
@@ -13,6 +13,47 @@ const initialState: ItemsState = {
 	itemList: [],
 	status: 'init',
 };
+
+interface addFavoriteThunkParams {
+	itemId: string;
+}
+
+export const addFavoriteThunk = createAsyncThunk<
+	{ favoriteId: string; itemId: string },
+	addFavoriteThunkParams,
+	{ state: RootStore }
+>('item/addFavorite', async ({ itemId }, { getState }) => {
+	const accessToken = getState().auth.accessToken;
+	const response = await Axios.post<{ id: string }>(
+		'/favorite',
+		{ item_id: itemId },
+		{
+			headers: {
+				Authorization: accessToken ? `Bearer ${accessToken}` : '',
+			},
+		}
+	);
+	const favoriteId = response.data.id;
+	return { favoriteId, itemId };
+});
+
+interface deleteFavoriteThunkParams {
+	favoriteId: string;
+}
+
+export const deleteFavoriteThunk = createAsyncThunk<
+	string,
+	deleteFavoriteThunkParams,
+	{ state: RootStore }
+>('item/deleteFavorite', async ({ favoriteId }, { getState }) => {
+	const accessToken = getState().auth.accessToken;
+	await Axios.delete<{ id: string }>(`/favorite/${favoriteId}`, {
+		headers: {
+			Authorization: accessToken ? `Bearer ${accessToken}` : '',
+		},
+	});
+	return favoriteId;
+});
 
 export interface fetchItemsParams {
 	include_type?: boolean;
@@ -103,18 +144,7 @@ export const fetchItemsThunk = createAsyncThunk<
 const slice = createSlice({
 	name: 'item',
 	initialState,
-	reducers: {
-		addItemToFavorite: (state, action: PayloadAction<string>) => {
-			const item = state.itemList.find((item) => item.id === action.payload);
-			if (item) item.favoriteId = 'temp';
-		},
-		deleteItemFromFavorite: (state, action: PayloadAction<string>) => {
-			const item = state.itemList.find(
-				(item) => item.favoriteId === action.payload
-			);
-			if (item) item.favoriteId = undefined;
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItemsThunk.pending, (state) => {
 			state.itemList = [];
@@ -123,6 +153,16 @@ const slice = createSlice({
 		builder.addCase(fetchItemsThunk.fulfilled, (state, action) => {
 			state.itemList = action.payload;
 			state.status = 'success';
+		});
+		builder.addCase(addFavoriteThunk.fulfilled, (state, action) => {
+			const item = state.itemList.find((item) => item.id === action.payload.itemId);
+			if (item) item.favoriteId = action.payload.favoriteId;
+		});
+		builder.addCase(deleteFavoriteThunk.fulfilled, (state, action) => {
+			const item = state.itemList.find(
+				(item) => item.favoriteId === action.payload
+			);
+			if (item) item.favoriteId = undefined;
 		});
 	},
 });

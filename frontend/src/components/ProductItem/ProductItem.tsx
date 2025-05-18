@@ -2,7 +2,12 @@ import { Item } from '../../types';
 
 import { ProductItemQuantityChooser } from './ProductItemQuantityChooser';
 import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
-import { itemActions, useAppDispatch, useStateSelector } from '../../store';
+import {
+	addFavoriteThunk,
+	deleteFavoriteThunk,
+	useAppDispatch,
+	useStateSelector,
+} from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
 import { UIProductItemPrice } from './UI/UIProductItemPrice';
 import { UIProductItemLabel } from './UI/UIProductItemLabel';
@@ -10,7 +15,6 @@ import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
-import { handleAddToFavorite, handleDeleteItemFromFavorite } from '../../api';
 
 type ProductItemProps = {
 	item: Item;
@@ -32,10 +36,6 @@ export const ProductItem = ({
 
 	const dispatch = useAppDispatch();
 
-	const { addItemToFavorite, deleteItemFromFavorite } = itemActions;
-
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
@@ -54,22 +54,12 @@ export const ProductItem = ({
 				isFavorite={!!item.favoriteId}
 				onAddClick={(event) => {
 					event.preventDefault();
-					handleAddToFavorite({
-						accessToken,
-						itemId: item.id,
-						addItemToFavorite,
-						dispatch,
-					});
+					dispatch(addFavoriteThunk({ itemId: item.id }));
 				}}
 				onDeleteClick={(event) => {
 					event.preventDefault();
 					if (item.favoriteId)
-						handleDeleteItemFromFavorite({
-							accessToken,
-							favoriteId: item.favoriteId,
-							deleteItemFromFavorite,
-							dispatch,
-						});
+						dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
 				}}
 			/>
 			{!hideAddButton && (
