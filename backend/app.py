@@ -18,6 +18,7 @@ from resources.item_image import blp as ItemImageBlueprint
 from resources.avatar import blp as AvatarBlueprint
 from resources.image import blp as ImageBlueprint
 from resources.favorite import blp as FavoriteBlueprint
+from resources.orders import blp as OrderBlueprint
 
 from datetime import timedelta
 
@@ -95,6 +96,7 @@ def create_app(db_url = None):
     api.register_blueprint(AvatarBlueprint)
     api.register_blueprint(ImageBlueprint)
     api.register_blueprint(FavoriteBlueprint)
+    api.register_blueprint(OrderBlueprint)
  
     return app
 
