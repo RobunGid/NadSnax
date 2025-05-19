@@ -16,7 +16,7 @@ class UserModel(db.Model):
     id = db.Column(db.String(80), primary_key = True)
     
     username = db.Column(db.String(80), nullable = False, unique = True)
-    password = db.Column(db.String(128), nullable = False)
+    password = db.Column(db.String(256), nullable = False)
     
     role = db.Column(db.Enum(Role), default=Role.user)
     

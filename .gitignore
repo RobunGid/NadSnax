@@ -1,3 +1,7 @@
 .venv
 /resources
 pgdata/
+*.sql
+*.dump
+*.tar
+*.gz
