@@ -127,25 +127,25 @@ class UserRegister(MethodView):
       password=pbkdf2_sha512.hash(user_data["password"]), 
       first_name=user_data["first_name"],
       last_name=user_data["last_name"],
-      role=user_data["role"],
       )
         try:
+            if 'avatar' in request.files:
+                avatar_file = request.files.get('avatar')
+                username = request.form.get("username")
+                
+                filename = os.path.splitext(avatar_file.filename)[0]
+        
+                if not allowed_avatar_file(avatar_file):
+                    abort(400, description="Invalid avatar file format or file size")
+        
+                filename = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], user.id + ".png")
+                avatar_file.save(filename)
             db.session.add(user)
             db.session.commit()
         except SQLAlchemyError:
             abort(500, message = "An error occured while inserting the user.")
     
-        if 'avatar' in request.files:
-            avatar_file = request.files.get('avatar')
-            username = request.form.get("username")
-            
-            filename = os.path.splitext(avatar_file.filename)[0]
-    
-            if not allowed_avatar_file(avatar_file.filename):
-                abort(400, description="Invalid avatar file format or file size")
-    
-            filename = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], username + ".png")
-            avatar_file.save(filename)
+
     
         return user
 

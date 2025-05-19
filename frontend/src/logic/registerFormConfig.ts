@@ -10,7 +10,7 @@ export const registerFormConfig: FormConfig[] = [
 		placeholder: 'Username',
 		required: true,
 		autoComplete: 'username',
-		minLength: 8,
+		minLength: 5,
 	},
 	{
 		name: 'firstName',
@@ -24,12 +24,6 @@ export const registerFormConfig: FormConfig[] = [
 		placeholder: 'Last name',
 		autoComplete: 'name',
 		minLength: 3,
-	},
-	{
-		name: 'role',
-		placeholder: 'Role (TEMP)',
-		autoComplete: 'off',
-		minLength: 4,
 	},
 	{
 		name: 'password',

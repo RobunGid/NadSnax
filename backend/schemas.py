@@ -11,7 +11,7 @@ class PlainUserSchema(AuthUserSchema):
     first_name = fields.Str(required = True)
     last_name = fields.Str(required = True)
     role = EnumField(Role)
-    avatar_url = fields.Str(required=True)
+    avatar_url = fields.Str(required=True, dump_only=True)
     
 class PlainReviewSchema(Schema):
     id = fields.Str(dump_only = True)

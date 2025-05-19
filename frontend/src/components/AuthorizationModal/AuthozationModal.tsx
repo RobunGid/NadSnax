@@ -12,6 +12,8 @@ export const LoginModal = () => {
 
 	const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
 
+	console.log(loginModalVisibility);
+
 	return (
 		<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
 			{isLoginForm ? (

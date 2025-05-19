@@ -23,7 +23,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 	const { toggleCartModalVisibility } = useContext(CartModalContext);
 
 	const user = useStateSelector((state) => state.user.user);
-
+	console.log(user);
 	return (
 		<UINavbar>
 			<UINavbarOpenSidebarButton onClick={toggleSidebarVisibility} />

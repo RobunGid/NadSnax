@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
-import { registerThunk, useAppDispatch, useStateSelector } from '../../store';
+import { fetchUser, registerThunk, useAppDispatch, useStateSelector } from '../../store';
 import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
@@ -37,12 +37,13 @@ export const AuthorizationModalRegisterForm = () => {
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(
+		await dispatch(
 			registerThunk({
 				...registerFormState,
 				avatarFile: avatarFile,
 			})
 		);
+		await dispatch(fetchUser());
 	};
 
 	useEffect(() => {
