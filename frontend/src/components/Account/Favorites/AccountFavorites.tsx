@@ -27,7 +27,7 @@ export const AccountFavorites = () => {
 	return (
 		<UIAccountFavorites>
 			{favoriteItems.length !== 0 ? (
-				<ProductsList items={favoriteItems} params={fetchItemsParams} />
+				<ProductsList items={favoriteItems} />
 			) : (
 				<AccountFavoritesNoResults />
 			)}
