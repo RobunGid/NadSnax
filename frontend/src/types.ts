@@ -79,6 +79,15 @@ export type User = {
 	username: string;
 };
 
+export type Order = {
+	id: string;
+	userId: string;
+	itemId: string;
+	quantity: number;
+	user: User;
+	item: Item;
+};
+
 export type StoreError = {
 	message?: string;
 	code?: string;
