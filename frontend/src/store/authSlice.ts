@@ -77,7 +77,7 @@ export const registerThunk = createAsyncThunk<
 			const data = response.data;
 
 			if (data && response.status === 201) {
-				dispatch(loginThunk({ username, password }));
+				await dispatch(loginThunk({ username, password }));
 			} else {
 				return rejectWithValue(response.data);
 			}
