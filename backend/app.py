@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 
+
 from db import db
 
 from resources.user import blp as UserBlueprint
@@ -64,9 +65,9 @@ def create_app(db_url = None):
     app.config["JWT_COOKIE_SAMESITE"] = "Strict"
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     
-    
-    AVATAR_UPLOAD_FOLDER = "/app/media/avatars" if env == 'prod' else "../resources/avatars"
-    IMAGE_UPLOAD_FOLDER = "/app/media/images" if env == 'prod' else "../resources/images"
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    AVATAR_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/avatars")
+    IMAGE_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/images")
     app.config['AVATAR_UPLOAD_FOLDER'] = AVATAR_UPLOAD_FOLDER
     app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
     app.config['ALLOWED_AVATAR_EXTENSIONS'] = {'png', 'jpeg', 'jpg'}

@@ -20,7 +20,7 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
-      - ./resources:/app/media
+      - ./resources:/resources
     networks:
       - nadsnax-net
     privileged: true

@@ -129,7 +129,6 @@ const slice = createSlice({
 			state.status = 'loading';
 		});
 		builder.addCase(fetchUser.fulfilled, (state, action) => {
-			console.log(action.payload);
 			state.user = action.payload;
 			state.status = 'success';
 			state.error = {};

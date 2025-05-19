@@ -45,7 +45,6 @@ class AvatarMe(MethodView):
 		user = UserModel.query.get_or_404(identity)
 		avatar_name = user.id + '.png'
 		file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], avatar_name)
-		
 		if 'avatar' not in request.files:
 			abort(400, description="No avatar file found")
 		
