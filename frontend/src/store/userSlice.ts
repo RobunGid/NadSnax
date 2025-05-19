@@ -86,6 +86,33 @@ export const updateUser = createAsyncThunk<
 	}
 });
 
+export const deleteUser = createAsyncThunk<
+	void,
+	void,
+	{ rejectValue: StoreError; state: RootStore }
+>('user/deleteUser', async (_, { getState, rejectWithValue }) => {
+	try {
+		const accessToken = getState().auth.accessToken;
+
+		if (!accessToken) return rejectWithValue({ message: 'No access token' });
+		await Axios.delete<User>('/user/me', {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
+	}
+});
+
 const slice = createSlice({
 	name: 'user',
 	initialState,
@@ -120,6 +147,19 @@ const slice = createSlice({
 			state.error = {};
 		});
 		builder.addCase(updateUser.rejected, (state, action) => {
+			state.status = 'error';
+			state.error = action.payload ? action.payload : {};
+		});
+
+		builder.addCase(deleteUser.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(deleteUser.fulfilled, (state) => {
+			state.user = null;
+			state.status = 'success';
+			state.error = {};
+		});
+		builder.addCase(deleteUser.rejected, (state, action) => {
 			state.status = 'error';
 			state.error = action.payload ? action.payload : {};
 		});
