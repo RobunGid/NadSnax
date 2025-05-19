@@ -37,9 +37,7 @@ export const ProductsPage = () => {
 	return (
 		<>
 			<div className='flex flex-wrap p-5 justify-center gap-4'>
-				{status === 'success' && (
-					<ProductsList items={items} params={fetchItemsParams} />
-				)}
+				{status === 'success' && <ProductsList items={items} />}
 				{status === 'loading' && <ProductsLoading />}
 			</div>
 			{status !== 'loading' && !items.length && (
