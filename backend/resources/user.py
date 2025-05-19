@@ -24,6 +24,14 @@ class MyUser(MethodView):
         user = UserModel.query.get_or_404(identity)
         return user
     
+    @jwt_required()
+    def delete(self):
+        identity = get_jwt_identity()
+        user = UserModel.query.get_or_404(identity)
+        db.session.delete(user)
+        db.session.commit()
+        return {"message": "User deleted", "code": 202}
+    
     @blp.response(200, UserSchema)
     @jwt_required()
     def patch(self):
