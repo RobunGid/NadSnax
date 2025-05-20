@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Axios } from '../api';
 import { AppDispatch, Status } from './types';
-import { fetchUser, userActions } from './userSlice';
+import { userActions } from './userSlice';
 import { StoreError, User } from '../types';
 import { isAxiosError } from 'axios';
 
@@ -99,12 +99,11 @@ export const refreshThunk = createAsyncThunk<
 	string,
 	undefined,
 	{ dispatch: AppDispatch; rejectValue: StoreError }
->('auth/refresh', async (_, { rejectWithValue, dispatch }) => {
+>('auth/refresh', async (_, { rejectWithValue }) => {
 	try {
 		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
 
 		const accessToken = response.data.access_token;
-		dispatch(fetchUser());
 		return accessToken;
 	} catch (error) {
 		if (isAxiosError(error)) {

@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/Header/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
-import { refreshThunk, useAppDispatch, useStateSelector } from './store';
+import { fetchUser, refreshThunk, useAppDispatch, useStateSelector } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
@@ -24,7 +24,10 @@ export const App = () => {
 	}, []);
 
 	useEffect(() => {
-		dispatch(refreshThunk());
+		(async () => {
+			await dispatch(refreshThunk());
+			await dispatch(fetchUser());
+		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
