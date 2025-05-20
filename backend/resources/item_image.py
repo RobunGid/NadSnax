@@ -33,9 +33,9 @@ class Images(MethodView):
         return ItemImageModel.query.all()
     
 @blp.route('/item_image/<string:item_image_id>')
-@jwt_required()
-@role_required(["admin", "moderator"])
 class Image(MethodView):
+    @jwt_required()
+    @role_required(["admin", "moderator"])
     def delete(self, item_image_id):
         item_image = ItemImageModel.query.get_or_404(item_image_id)
         db.session.delete(item_image)
