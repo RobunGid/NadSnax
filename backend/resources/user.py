@@ -58,7 +58,6 @@ class MyUser(MethodView):
             db.session.commit()
         except ValueError as error:
             abort(400, message=str(error))
-    
  
         return user
             
