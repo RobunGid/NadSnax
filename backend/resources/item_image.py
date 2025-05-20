@@ -5,13 +5,18 @@ from flask.views import MethodView
 from schemas import ItemImageSchema
 from models import ItemImageModel, ItemModel
 from sqlalchemy.exc import SQLAlchemyError
+from flask_jwt_extended import jwt_required
+from utils import role_required
 
 blp = Blueprint("item_images", __name__, description = "Operations on item images")
 
 @blp.route('/item_image')
-class Image(MethodView):
+
+class Images(MethodView):
     @blp.arguments(ItemImageSchema)
     @blp.response(201, ItemImageSchema)
+    @jwt_required()
+    @role_required(["admin", "moderator"])
     def post(self, image_data):
         image = ItemImageModel(**image_data, id = str(uuid.uuid4()))
         
@@ -26,3 +31,14 @@ class Image(MethodView):
     @blp.response(200, ItemImageSchema(many = True))
     def get(self):
         return ItemImageModel.query.all()
+    
+@blp.route('/item_image/<string:item_image_id>')
+@jwt_required()
+@role_required(["admin", "moderator"])
+class Image(MethodView):
+    def delete(self, item_image_id):
+        item_image = ItemImageModel.query.get_or_404(item_image_id)
+        db.session.delete(item_image)
+        db.session.commit()
+        
+        return {"message": "Item image deleted"}
