@@ -9,7 +9,8 @@ from flask import request
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from models import FavoriteModel, UserModel
-from sqlalchemy.orm import aliased, contains_eager
+from flask_jwt_extended import jwt_required
+from utils import role_required
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -19,7 +20,8 @@ class Item(MethodView):
     def get(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         return item
-
+    @jwt_required()
+    @role_required(['admin', 'moderator'])
     def delete(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -28,6 +30,8 @@ class Item(MethodView):
 
     @blp.response(200, ItemSchema)
     @blp.arguments(ItemUpdateSchema)
+    @jwt_required()
+    @role_required(['admin', 'moderator'])
     def put(self, item_data, item_id):
         item = ItemModel.query.get(item_id)
   
@@ -148,6 +152,8 @@ class Items(MethodView):
         
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)
+    @jwt_required()
+    @role_required(['admin', 'moderator'])
     def post(self, item_data):
         item = ItemModel(**item_data, id = str(uuid.uuid4()))
         
