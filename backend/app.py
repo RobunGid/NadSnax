@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+import logging
 
 
 from db import db
@@ -26,8 +27,10 @@ from datetime import timedelta
 from blocklist import BLOCKLIST
 
 def create_app(db_url = None):
+    logging.basicConfig(level=logging.INFO)
+	
     app = Flask(__name__)
- 
+    app.logger.info("App started")
     env = os.getenv('APP_ENV', 'dev')
     env_file = '.env' if env == 'prod' else '.env.local'
     load_dotenv(env_file, override=True)	
