@@ -28,6 +28,7 @@ class Item(MethodView):
         db.session.commit()
         return {"message": "Item deleted"}
 
+    @blp.response(200, ItemSchema)
     @jwt_required()
     @role_required(['admin', 'moderator'])
     def patch(self, item_id):
