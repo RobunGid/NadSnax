@@ -51,6 +51,8 @@ class MyUser(MethodView):
                 user.last_name = last_name
             if role := user_data.get("role", None):
                 user.role = role
+            if password := user_data.get("password", None):
+                user.password = pbkdf2_sha512.hash(password)
         
             db.session.add(user)
             db.session.commit()
