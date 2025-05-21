@@ -17,11 +17,11 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
 	return (
 		<UIProductDetails>
-			<div className='flex flex-row'>
+			<div className='flex lg:flex-row flex-col items-center w-full lg:w-auto '>
 				<ProductDetailsGallery images={item.images} />
 				<ProductDetailsInfo item={item} />
 			</div>
-			<div className='flex flex-row gap-8'>
+			<div className='flex flex-col lg:flex-row gap-8'>
 				<div className='flex flex-col gap-8'>
 					{!hasOwnReview && user && (
 						<ProductDetailsReviewForm itemId={item.id} />
