@@ -31,16 +31,7 @@ export const fetchCategories = createAsyncThunk<
 
 	const camelCaseCategories = camelcaseKeys(categories, { deep: true });
 
-	const fixedUrlCategories = camelCaseCategories.map((category: ItemCategory) => ({
-		...category,
-		iconUrl: `http://localhost${category.iconUrl}`,
-		types: category.types.map((type) => ({
-			...type,
-			iconUrl: `http://localhost${type.iconUrl}`,
-		})),
-	}));
-
-	return fixedUrlCategories;
+	return camelCaseCategories;
 });
 
 const slice = createSlice({

@@ -1,4 +1,6 @@
 from db import db
+from sqlalchemy.ext.hybrid import hybrid_property
+from flask import request
 
 class TypeModel(db.Model):
     __tablename__ = "types"
@@ -12,3 +14,7 @@ class TypeModel(db.Model):
     category = db.relationship("CategoryModel", back_populates = "types")
     
     items = db.relationship('ItemModel', back_populates = 'type', lazy = 'select')
+    
+    @hybrid_property
+    def icon_url(self):
+        return f'{request.host_url}resources/icons/{self.id}.svg'

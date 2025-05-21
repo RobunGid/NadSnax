@@ -21,6 +21,7 @@ from resources.avatar import blp as AvatarBlueprint
 from resources.image import blp as ImageBlueprint
 from resources.favorite import blp as FavoriteBlueprint
 from resources.orders import blp as OrderBlueprint
+from resources.icon import blp as IconBlueprint
 
 from datetime import timedelta
 
@@ -71,8 +72,10 @@ def create_app(db_url = None):
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     AVATAR_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/avatars")
     IMAGE_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/images")
+    ICONS_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/icons")
     app.config['AVATAR_UPLOAD_FOLDER'] = AVATAR_UPLOAD_FOLDER
     app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
+    app.config['ICONS_UPLOAD_FOLDER'] = ICONS_UPLOAD_FOLDER
     app.config['ALLOWED_AVATAR_EXTENSIONS'] = {'png', 'jpeg', 'jpg'}
     app.config['MAX_AVATAR_SIZE'] = 1 * 1024 * 1024 # 1 Mb
     
@@ -101,6 +104,7 @@ def create_app(db_url = None):
     api.register_blueprint(ImageBlueprint)
     api.register_blueprint(FavoriteBlueprint)
     api.register_blueprint(OrderBlueprint)
+    api.register_blueprint(IconBlueprint)
  
     return app
 
