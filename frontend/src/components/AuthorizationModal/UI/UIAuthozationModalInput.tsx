@@ -16,7 +16,7 @@ export const UIAuthozationModalInput = (props: UIAuthozationModalInputProps) => 
 			<input
 				className={clsx(
 					`
-				mb-2.5 w-72 h-10 font-normal pt-5 px-4 pb-5 rounded-lg relative placeholder-transparent border-none outline-none
+				mb-2.5 w-full h-10 font-normal pt-5 px-4 pb-5 rounded-lg relative placeholder-transparent border-none outline-none
 				focus:shadow-lg focus:shadow-gray-900
 				peer shadow-lg dark:text-gray-300 text-gray-900 disabled:border-y-gray-900 disabled:border-4
 				`,
@@ -35,7 +35,6 @@ export const UIAuthozationModalInput = (props: UIAuthozationModalInputProps) => 
 					absolute bottom-[18px] left-4 font-normal transition-all pointer-events-none
 					peer-focus:bottom-8 peer-focus:text-xs peer-focus:text-gray-700
 					peer-placeholder-shown:opacity-100 opacity-0 text-gray-600
-					
 					`}
 			>
 				{placeholder}
