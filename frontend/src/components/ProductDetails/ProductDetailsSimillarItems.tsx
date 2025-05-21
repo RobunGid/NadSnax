@@ -19,7 +19,10 @@ export const ProductDetailsSimillarItems = ({
 
 				<div className='flex gap-4'>
 					<ProductsList
-						items={itemList.filter((simmilarItem) => simmilarItem != item)}
+						items={itemList.filter(
+							//(simmilarItem) => simmilarItem != item
+							(simmilarItem) => simmilarItem.id != item.id
+						)}
 					/>
 				</div>
 			</div>
