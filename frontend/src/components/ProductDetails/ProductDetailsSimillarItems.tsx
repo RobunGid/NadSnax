@@ -12,12 +12,12 @@ export const ProductDetailsSimillarItems = ({
 }: ProductDetailsSimillarItemsProps) => {
 	return (
 		itemList.length != 1 && (
-			<div className='p-5'>
-				<span className='text-2xl font-bold dark:text-gray-300'>
+			<div className='p-5 flex flex-col md:block'>
+				<span className='text-2xl font-bold dark:text-gray-300 text-center'>
 					Simillar items you might like
 				</span>
 
-				<div className='flex gap-4'>
+				<div className='flex gap-4 flex-wrap justify-center md:flex-nowrap md:justify-start'>
 					<ProductsList
 						items={itemList.filter(
 							//(simmilarItem) => simmilarItem != item
