@@ -140,7 +140,7 @@ export const signoutThunk = createAsyncThunk(
 			if (response.status != 200) {
 				return rejectWithValue(response.statusText);
 			}
-			dispatch(authActions.clearTokens());
+			dispatch(clearTokens());
 			dispatch(userActions.clearUser());
 		} catch (error) {
 			if (isAxiosError(error)) {
@@ -216,4 +216,7 @@ const slice = createSlice({
 	},
 });
 
-export const { reducer: authReducer, actions: authActions } = slice;
+export const {
+	reducer: authReducer,
+	actions: { setAccessToken, clearTokens },
+} = slice;
