@@ -30,10 +30,14 @@ export const AuthorizationModalRegisterForm = () => {
 	const loginStatus = useStateSelector((state) => state.auth.status);
 	const loginError = useStateSelector((state) => state.auth.error);
 
+	console.log(loginError);
+
 	const errorMessage =
 		loginError.message !== 'Rejected' &&
+		loginError.data?.message &&
+		loginError.data.message != 'Token is missing or invalid' &&
 		loginStatus === 'error' &&
-		loginError.message;
+		loginError.data.message;
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

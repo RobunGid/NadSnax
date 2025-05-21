@@ -152,7 +152,7 @@ class UserRegister(MethodView):
             db.session.add(user)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the user.")
+            abort(500, message = "Register error. Try data validity")
     
 
     
