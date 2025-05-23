@@ -7,26 +7,30 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from uuid import uuid4
+from utils import role_required
 
 blp = Blueprint("orders", __name__, description = "Operations on orders")
 
 @blp.route('/orders')
 class Reviews(MethodView):
     @blp.response(200, OrderSchema(many=True))
+    @jwt_required()
+    @role_required(["admin", "moderator"])
     def get(self):
         return OrderModel.query.all()
        
-    @blp.arguments(PlainOrderSchema)
-    @blp.response(201, OrderSchema)
+    @blp.arguments(PlainOrderSchema(many=True))
+    @blp.response(201, OrderSchema(many=True))
     @jwt_required()
     def post(self, order_data):
         identity = get_jwt_identity()
-        review = OrderModel(**order_data, id=str(uuid4()), user_id=identity)
+        print(identity)
+        orders = [OrderModel(**order, id=str(uuid4()), user_id=identity) for order in order_data]
   
         try:
-            db.session.add(review)
+            db.session.bulk_save_objects(orders)
             db.session.commit()
         except SQLAlchemyError:
             abort(500, message="An error occured while creating the order")
     
-        return review
+        return OrderModel.query.filter(OrderModel.id.in_([order.id for order in orders])).all()

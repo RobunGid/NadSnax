@@ -23,7 +23,8 @@ class UserModel(db.Model):
     first_name = db.Column(db.String(32), nullable = False)
     last_name = db.Column(db.String(32), nullable = False)
     
-    reviews = db.relationship('ReviewModel', back_populates = 'user')
+    reviews = db.relationship('ReviewModel', back_populates='user')
+    orders = db.relationship("OrderModel", back_populates="user")
     
     __table_args__ = (
         CheckConstraint('char_length(first_name) > 2',

@@ -14,7 +14,7 @@ class OrderModel(db.Model):
     item = db.relationship("ItemModel")
     
     user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship("UserModel")
+    user = db.relationship("UserModel", back_populates = "orders")
     
     __table_args__ = (
         CheckConstraint('quantity > 0 AND quantity <= 16',
