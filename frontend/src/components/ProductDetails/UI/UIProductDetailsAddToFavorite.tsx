@@ -43,7 +43,7 @@ export const UIProductDetailsAddToFavorite = ({
 			</div>
 
 			<div className='group-hover:scale-105 transition-transform'>
-				{isFavorite ? 'Remove from favorite' : 'Add to favourite'}
+				{isFavorite ? 'Remove from favorite' : 'Add to favorite'}
 			</div>
 		</div>
 	);
