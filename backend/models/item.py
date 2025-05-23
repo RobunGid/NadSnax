@@ -9,7 +9,7 @@ class ItemModel(db.Model):
     
     id = db.Column(db.String(80), primary_key = True)
     label = db.Column(db.String(80), nullable = False)
-    price = db.Column(db.Float(precision = 2), nullable = False)
+    price = db.Column(db.Numeric(10, 2), nullable = False)
     old_price = db.Column(db.String(80))
     description = db.Column(db.String(80))
     is_bestseller = db.Column(db.Boolean())
