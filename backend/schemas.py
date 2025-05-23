@@ -190,13 +190,19 @@ class FavoriteSchema(Schema):
     user_id = fields.Str(required=True, dump_only=True)
     id = fields.Str(required=True, dump_only=True)
     
+class PlainOrderItemSchema(Schema):
+	id = fields.Str(dump_only=True)
+	item_id = fields.Str(required=True)
+	item = fields.Nested(ItemSchema(), dump_only = True)
+	quantity = fields.Int(required=True)
+    
 class PlainOrderSchema(Schema):
     id = fields.Str(dump_only=True)
     created_at = fields.DateTime(required=True, dump_only=True)
-    item_id = fields.Str(required=True)
-    quantity = fields.Int(required=True)
+    order_id = fields.Str(required=True, dump_only=True)
+    
     
 class OrderSchema(PlainOrderSchema):
-    item = fields.Nested(ItemSchema(), dump_only = True)
     user_id = fields.Str(required=True)
     user = fields.Nested(PlainUserSchema(), dump_only = True) 
+    items = fields.Nested(PlainOrderItemSchema(many=True))
