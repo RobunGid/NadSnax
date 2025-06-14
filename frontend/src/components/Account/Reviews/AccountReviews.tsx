@@ -21,7 +21,7 @@ export const AccountReviews = () => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
-		<div className='flex gap-4'>
+		<div className='flex gap-4 flex-wrap justify-center'>
 			{reviews.map((review) => {
 				const item = items.find((item) => item.id === review.itemId);
 				return (
