@@ -145,8 +145,8 @@ class Items(MethodView):
             simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
             
             query = query.filter(ItemModel.category_id == simillar_item.category_id)
-            query = query.filter(ItemModel.price >= simillar_item.price * 0.9)
-            query = query.filter(ItemModel.price <= simillar_item.price * 1.1)
+            query = query.filter(ItemModel.price >= float(simillar_item.price) * 0.9)
+            query = query.filter(ItemModel.price <= float(simillar_item.price) * 1.1)
         
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
