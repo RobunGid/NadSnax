@@ -17,7 +17,8 @@ export const Cart = () => {
 				{cartItems.map((cartItem) => (
 					<CartItem cartItem={cartItem} key={cartItem.item.id} />
 				))}
-				{!cartItems.length && <CartEmptyMessage />}
+
+				{cartItems.length == 0 && <CartEmptyMessage />}
 			</UICart>
 		</>
 	);
