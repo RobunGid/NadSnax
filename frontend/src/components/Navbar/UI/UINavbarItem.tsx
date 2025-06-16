@@ -33,7 +33,7 @@ export const UINavbarItem = ({
 			<div
 				className={`font-medium group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-gray-900 group-hover:text-gray-800
 			text-gray-500 group-[.active]:group-hover:decoration-2 dark:group-[.active]:text-gray-500 dark:group-hover:text-gray-400 dark:text-gray-300
-			pr-3 `}
+			px-4 flex items-center justify-center`}
 			>
 				{iconPosition == 'left' && (
 					<GoChevronDown
