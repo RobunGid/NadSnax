@@ -10,7 +10,7 @@ export const UIAccountSettingsDeleteButton = ({
 }: UIAccountSettingsDeleteButtonProps) => {
 	return (
 		<button
-			className='bg-red-800 hover:bg-red-900 p-3 hover:scale-105 transition'
+			className='bg-red-800 hover:bg-red-900 p-3 hover:scale-105 transition h-12'
 			onClick={onClick}
 		>
 			{children}
