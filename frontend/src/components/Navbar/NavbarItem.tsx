@@ -24,4 +24,9 @@ export const NavbarItem = {
 			/>
 		</li>
 	),
+	AllProducts: () => (
+		<li>
+			<UINavbarItem to='/products' text='All Products' className='pl-3' precise />
+		</li>
+	),
 };

@@ -10,6 +10,7 @@ type UINavbarItemProps = {
 	id?: string;
 	text?: string;
 	iconPosition?: 'left' | 'right';
+	precise?: boolean;
 };
 
 export const UINavbarItem = ({
@@ -18,9 +19,11 @@ export const UINavbarItem = ({
 	id,
 	text,
 	iconPosition,
+	precise,
 }: UINavbarItemProps) => {
 	return (
 		<NavLink
+			end={precise}
 			id={id}
 			to={to}
 			className={({ isActive }) =>

@@ -31,6 +31,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 
 			<UINavbarNavigation>
 				<NavbarItem.Home />
+				<NavbarItem.AllProducts />
 				<NavbarItem.BestSellers />
 				<NavbarItem.SecretBoxes />
 
