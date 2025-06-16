@@ -3,6 +3,7 @@ import { UIAccountSettingsForm } from './UI/UIAccountSettingsForm';
 import { updateUser, useAppDispatch, useStateSelector } from '../../../store';
 import { UIButton } from '../../UI/UIButton';
 import { UIAccountSettingsInput } from './UI/UIAccountSettingsInput';
+import { AccountSettingsDeleteButton } from './AccountSettingsDeleteButton';
 
 export type SettingsFormValue = {
 	firstName: string;
@@ -80,6 +81,7 @@ export const AccountSettingsForm = () => {
 				isInvalid={status === 'error'}
 			/>
 			<UIButton>Change data</UIButton>
+			<AccountSettingsDeleteButton />
 		</UIAccountSettingsForm>
 	);
 };
