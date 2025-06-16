@@ -21,9 +21,9 @@ export const Sidebar = ({ categories }: SidebarProps) => {
 			<UISidebarCloseMenuButton onClick={toggleSidebarVisibility} />
 			<UISidebarItems>
 				<SidebarItem.Home />
+				<SidebarItem.AllProducts />
 				<SidebarItem.BestSellers />
 				<SidebarItem.SecretBoxes />
-
 				<SidebarCategories categories={categories} />
 			</UISidebarItems>
 		</UISidebar>
