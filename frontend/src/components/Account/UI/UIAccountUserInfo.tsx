@@ -1,31 +1,24 @@
+import { User } from '../../../types';
 import { UIAvatar } from '../../UI/UIAvatar';
 
 interface UIAccountUserInfo {
-	username: string;
-	avatarUrl: string;
-	firstName: string;
-	lastName: string;
+	user: User;
 }
 
-export const UIAccountUserInfo = ({
-	avatarUrl,
-	firstName,
-	lastName,
-	username,
-}: UIAccountUserInfo) => {
+export const UIAccountUserInfo = ({ user }: UIAccountUserInfo) => {
 	return (
 		<li className='flex shadow-lg dark:shadow-gray-950 rounded-[40px] p-4 mb-4'>
 			<UIAvatar
-				username={username}
-				avatarUrl={avatarUrl}
+				username={user.username}
+				avatarUrl={user.avatarUrl}
 				className='rounded-full w-24 h-24 object-cover'
 			/>
 			<div className='p-4'>
 				<div className='text-xl'>
-					{firstName} {lastName}
+					{user.firstName} {user.lastName}
 				</div>
 				<div className='text-sm text-gray-600 dark:text-gray-400'>
-					@{username}
+					@{user.username}
 				</div>
 			</div>
 		</li>

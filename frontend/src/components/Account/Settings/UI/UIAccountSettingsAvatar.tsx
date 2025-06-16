@@ -1,21 +1,18 @@
+import { useStateSelector } from '../../../../store';
 import { UIAvatar } from '../../../UI/UIAvatar';
 
-interface UIAccountSettingsAvatarProps {
-	username: string;
-	avatarUrl: string;
-}
-
-export const UIAccountSettingsAvatar = ({
-	username,
-	avatarUrl,
-}: UIAccountSettingsAvatarProps) => {
+export const UIAccountSettingsAvatar = () => {
+	const { user, status } = useStateSelector((state) => state.user);
 	return (
-		<div className='w-48'>
-			<UIAvatar
-				username={username}
-				avatarUrl={avatarUrl}
-				className='rounded-2xl object-cover'
-			/>
-		</div>
+		user &&
+		status == 'success' && (
+			<div className='w-48'>
+				<UIAvatar
+					username={user.username}
+					avatarUrl={user.avatarUrl}
+					className='rounded-2xl object-cover'
+				/>
+			</div>
+		)
 	);
 };

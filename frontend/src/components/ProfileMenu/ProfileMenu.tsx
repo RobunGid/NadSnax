@@ -8,7 +8,7 @@ import { UIProfileMenuUserInfo } from './UI/UIProfileMenuUserInfo';
 import { UIProfileMenu } from './UI/UIProfileMenu';
 
 export const ProfileMenu = () => {
-	const { user } = useStateSelector((state) => state.user);
+	const user = useStateSelector((state) => state.user.user);
 
 	const dispatch = useAppDispatch();
 
