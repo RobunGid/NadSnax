@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import { Image } from '../../../types';
 
 interface UIProductDetailsImageProps {
 	image: Image;
+	type?: 'small' | 'big';
 }
 
-export const UIProductDetailsImage = ({ image }: UIProductDetailsImageProps) => {
+export const UIProductDetailsImage = ({ image, type }: UIProductDetailsImageProps) => {
 	return (
 		<>
 			<input
@@ -17,11 +19,17 @@ export const UIProductDetailsImage = ({ image }: UIProductDetailsImageProps) => 
 			<label
 				htmlFor={image.id}
 				style={{ backgroundImage: `url(${image.url})` }}
-				className='block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md transition-transform shadow-sm shadow-black'
+				className={clsx(
+					type == 'small' &&
+						'w-18 min-h-18 block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md transition-transform shadow-sm shadow-black snap-center',
+					type == 'big' && ''
+				)}
 			></label>
-			<div className='opacity-0 transition-opacity md:col-start-2 md:col-end-2 md:row-start-1 md:row-end-5 col-start-1 col-end-5 row-start-1 row-end-1'>
-				<img src={image.url} />
-			</div>
+			{type == 'big' && (
+				<div className='transition-opacity h-[400px] w-[400px]'>
+					<img src={image.url} />
+				</div>
+			)}
 		</>
 	);
 };
