@@ -7,3 +7,7 @@
 	appearance: textfield;
 	-moz-appearance: textfield;
 }
+
+.quantity-chooser-button:disabled {
+	cursor: not-allowed;
+}

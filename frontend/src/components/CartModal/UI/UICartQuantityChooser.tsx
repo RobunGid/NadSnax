@@ -22,17 +22,12 @@ export const UICartQuantityChooser = ({
 	onInputChange,
 }: UICartQuantityChooserProps) => {
 	return (
-		<div
-			className={clsx(
-				'flex justify-center items-center overflow-visible',
-				className
-			)}
-		>
+		<div className={clsx('flex justify-center items-center', className)}>
 			<div className='flex flex-row w-36 items-center border border-black justify-center'>
 				<button
 					className={clsx(
-						cartItem.count <= 1 && 'cursor-not-allowed text-gray-300',
-						'w-1/3 h-12 hover:bg-gray-200 dark:hover:bg-gray-900 disabled:hover:bg-white transtion text-bg font-semibold'
+						'w-1/3 h-12 hover:bg-gray-200 dark:hover:bg-gray-900 disabled:hover:bg-white transtion text-bg font-semibold dark:disabled:hover:bg-gray-900/40',
+						styles['quantity-chooser-button']
 					)}
 					onClick={onRemove}
 					disabled={cartItem.count <= 1}
@@ -45,13 +40,13 @@ export const UICartQuantityChooser = ({
 					onChange={onInputChange}
 					className={clsx(
 						styles['quantity-chooser-input'],
-						'transition-colors w-12 h-12 flex text-center hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-gray-900 focus:border-2 border-gray-400 dark:border-slate-500 focus:scale-125 focus:outline-none focus:hover:bg-white'
+						'transition-colors w-12 h-12 flex text-center hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-gray-900 focus:border-2 border-gray-400 dark:border-slate-500 focus:scale-125 focus:outline-none focus:hover:bg-white dark:focus:hover:bg-gray-700'
 					)}
 				/>
 				<button
 					className={clsx(
-						cartItem.count >= 16 && 'cursor-not-allowed text-gray-300',
-						'ml-auto w-1/3 h-12 dark:hover:bg-gray-900 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold'
+						'ml-auto w-1/3 h-12 dark:hover:bg-gray-900 hover:bg-gray-200 disabled:hover:bg-white transition text-bg font-semibold dark:disabled:hover:bg-gray-900/40',
+						styles['quantity-chooser-button']
 					)}
 					onClick={onAdd}
 					disabled={cartItem.count >= 16}
