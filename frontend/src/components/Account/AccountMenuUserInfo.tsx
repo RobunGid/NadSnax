@@ -11,14 +11,7 @@ interface AccountMenuUserInfoProps {
 export const AccountMenuUserInfo = ({ user, status }: AccountMenuUserInfoProps) => {
 	return (
 		<>
-			{user && status == 'success' && (
-				<UIAccountUserInfo
-					avatarUrl={user.avatarUrl}
-					firstName={user.firstName}
-					lastName={user.lastName}
-					username={user.username}
-				/>
-			)}
+			{user && status == 'success' && <UIAccountUserInfo user={user} />}
 			{(!user || status == 'loading') && <UIAccountUserInfoLoader />}
 		</>
 	);

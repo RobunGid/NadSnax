@@ -2,33 +2,32 @@ import { useRef, useState } from 'react';
 import { AccountSettingsAvatarControls } from './AccountSettingsAvatarControls';
 import { UIAccountSettingsAvatar } from './UI/UIAccountSettingsAvatar';
 import { UIAccountSettingsAvatarErrorMessage } from './UI/UIAccountSettingsAvatarErrorMessage';
-import { User } from '../../../types';
+import { useStateSelector } from '../../../store';
 
-interface AccountSettingsAvatarProps {
-	user: User;
-}
-
-export const AccountSettingsAvatar = ({ user }: AccountSettingsAvatarProps) => {
+export const AccountSettingsAvatar = () => {
 	const avatarInputRef = useRef<null | HTMLInputElement>(null);
 
 	const [avatarErrorMessage, setAvatarErrorMessage] = useState<string | undefined>(
 		undefined
 	);
 
+	const user = useStateSelector((state) => state.user.user);
+	const status = useStateSelector((state) => state.user.status);
+
 	return (
-		<>
-			<UIAccountSettingsAvatar
-				username={user.username}
-				avatarUrl={user.avatarUrl}
-			/>
-			<UIAccountSettingsAvatarErrorMessage
-				avatarErrorMessage={avatarErrorMessage}
-			/>
-			<AccountSettingsAvatarControls
-				avatarInputRef={avatarInputRef}
-				setAvatarErrorMessage={setAvatarErrorMessage}
-				user={user}
-			/>
-		</>
+		user &&
+		status == 'success' && (
+			<>
+				<UIAccountSettingsAvatar />
+				<UIAccountSettingsAvatarErrorMessage
+					avatarErrorMessage={avatarErrorMessage}
+				/>
+				<AccountSettingsAvatarControls
+					avatarInputRef={avatarInputRef}
+					setAvatarErrorMessage={setAvatarErrorMessage}
+					user={user}
+				/>
+			</>
+		)
 	);
 };

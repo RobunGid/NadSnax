@@ -1,6 +1,5 @@
-import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
 import { UIAccountSettingsForm } from './UI/UIAccountSettingsForm';
-import { User } from '../../../types';
 import { updateUser, useAppDispatch, useStateSelector } from '../../../store';
 import { UIButton } from '../../UI/UIButton';
 import { UIAccountSettingsInput } from './UI/UIAccountSettingsInput';
@@ -11,21 +10,32 @@ export type SettingsFormValue = {
 	username: string;
 };
 
-interface AccountSettingsFormProps {
-	user: User;
-}
-
-export const AccountSettingsForm = ({ user }: AccountSettingsFormProps) => {
+export const AccountSettingsForm = () => {
 	const dispatch = useAppDispatch();
+	const user = useStateSelector((state) => state.user.user);
 
 	const error = useStateSelector((state) => state.user.error);
 	const status = useStateSelector((state) => state.user.status);
 
+	const isInit = useRef<boolean>(true);
+
 	const settingsFormInitialState: SettingsFormValue = {
-		firstName: user.firstName,
-		lastName: user.lastName,
-		username: user.username,
+		firstName: '',
+		lastName: '',
+		username: '',
 	};
+
+	useEffect(() => {
+		if (user && isInit.current) {
+			setSettingsFormState({
+				firstName: user.firstName,
+				lastName: user.lastName,
+				username: user.username,
+			});
+			isInit.current = false;
+		}
+	}, [user]);
+
 	const [settingsFormState, setSettingsFormState] = useState<SettingsFormValue>(
 		settingsFormInitialState
 	);
