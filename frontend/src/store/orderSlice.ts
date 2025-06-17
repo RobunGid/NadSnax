@@ -45,26 +45,7 @@ export const fetchSelfOrders = createAsyncThunk<
 
 			const camelCaseOrders: Order[] = camelcaseKeys(orders, { deep: true });
 
-			const fixedOrders = camelCaseOrders.map((order) => ({
-				...order,
-
-				items: order.items.map((orderItem) => ({
-					...orderItem,
-					item: {
-						...orderItem.item,
-						images: orderItem.item.images.map((image) => ({
-							...image,
-							url:
-								import.meta.env.VITE_API_URL +
-								'/resources/images/' +
-								image.fileName +
-								'.png',
-						})),
-					},
-				})),
-			}));
-
-			return fixedOrders;
+			return camelCaseOrders;
 		} catch (error) {
 			if (isAxiosError(error)) {
 				return rejectWithValue({
