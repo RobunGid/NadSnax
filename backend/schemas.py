@@ -145,6 +145,7 @@ class PlainItemImageSchema(Schema):
     is_main = fields.Boolean()
     file_name = fields.Str(required = True)
     item_id = fields.Str(required = True)
+    url = fields.Str(dump_only=True)
  
 class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only = True) 
