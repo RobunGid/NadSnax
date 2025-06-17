@@ -7,10 +7,12 @@ interface CartToProductsButtonProps {
 }
 
 export const CartToProductsButton = ({ children }: CartToProductsButtonProps) => {
-	const { toggleCartModalVisibility } = useContext(CartModalContext);
+	const { toggleCartModalVisibility, changeSuccessOrder } =
+		useContext(CartModalContext);
 
 	const handleButtonClick = () => {
 		toggleCartModalVisibility();
+		changeSuccessOrder(false);
 	};
 
 	return (
