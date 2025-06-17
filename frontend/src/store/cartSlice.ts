@@ -60,6 +60,9 @@ const slice = createSlice({
 
 			state.productList.splice(existingCartProductIndex, 1);
 		},
+		clearCart(state) {
+			state.productList = [];
+		},
 		changeItemCount(state, action: PayloadAction<{ item: Item; count: number }>) {
 			const validatedCount = Math.min(action.payload.count, 16);
 
@@ -125,5 +128,11 @@ export const removeItemFromCart = (item?: Item) => (dispatch: AppDispatch) => {
 	dispatch({
 		type: 'cart/removeItemFromCart',
 		payload: { item },
+	});
+};
+
+export const clearCart = () => (dispatch: AppDispatch) => {
+	dispatch({
+		type: 'cart/clearCart',
 	});
 };

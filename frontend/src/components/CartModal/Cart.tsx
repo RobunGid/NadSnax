@@ -3,13 +3,16 @@ import { useStateSelector } from '../../store';
 import { UICartHeader } from './UI/UICartHeader';
 import { UICart } from './UI/UICart';
 import { UICartTitle } from './UI/UICartTitle';
-import { CartEmptyMessage } from './CartEmptyMessage';
 import { CartOrderButton } from './CartOrderButton';
 import { UICartInfo } from './UI/UICartInfo';
 import { CartOrderInfo } from './CartOrderInfo';
+import { CartModalContext } from '../../context/CartModalContext';
+import { useContext } from 'react';
+import { CartMessage } from './CartMessage';
 
 export const Cart = () => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
+	const { isSuccessOrder } = useContext(CartModalContext);
 
 	return (
 		<>
@@ -21,12 +24,16 @@ export const Cart = () => {
 					<CartItem cartItem={cartItem} key={cartItem.item.id} />
 				))}
 
-				{cartItems.length == 0 && <CartEmptyMessage />}
+				{cartItems.length == 0 && (
+					<CartMessage type={isSuccessOrder ? 'success' : 'empty'} />
+				)}
 			</UICart>
-			<UICartInfo>
-				{cartItems.length != 0 && <CartOrderButton />}
-				{cartItems.length != 0 && <CartOrderInfo />}
-			</UICartInfo>
+			{cartItems.length != 0 && (
+				<UICartInfo>
+					<CartOrderButton />
+					<CartOrderInfo />
+				</UICartInfo>
+			)}
 		</>
 	);
 };
