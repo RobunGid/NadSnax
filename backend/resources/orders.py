@@ -8,6 +8,7 @@ from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from uuid import uuid4
 from utils import role_required
+from flask import request
 
 blp = Blueprint("orders", __name__, description = "Operations on orders")
 
@@ -37,8 +38,9 @@ class Orders(MethodView):
         return OrderModel.query.get(order.id)
     
 @blp.route('/orders/<string:order_id>')
-@jwt_required()
 class Order(MethodView):
+    @jwt_required()
+    @role_required(["admin", "moderator"])
     def delete(self, order_id):
         identity = get_jwt_identity()
         order = OrderModel.query.get_or_404(order_id)
@@ -47,3 +49,29 @@ class Order(MethodView):
         db.session.delete(order)
         db.session.commit()
         return {"message": "Order deleted"}
+    
+@blp.route('/orders/self')
+class SelfOrders(MethodView):
+    @jwt_required()
+    def get(self):
+        identity = get_jwt_identity()
+        include_user = request.args.get("include_user", type=bool, default=False)
+        include_items = request.args.get("include_items", type=bool, default=False)
+        query = OrderModel.query.filter_by(user_id=identity)
+        
+        if include_user:
+            query = query.options(db.joinedload(OrderModel.user))
+        
+        if include_items:
+            query = query.options(db.joinedload(OrderModel.items))
+            
+        orders = query.all()
+            
+        params = {
+            "many": True,
+            "include_items": include_items,
+            "include_user": include_user
+        }
+        schema = OrderSchema(**params)
+            
+        return schema.dump(orders), 200
