@@ -5,6 +5,7 @@ import { AccountSettings } from './Settings/AccountSettings';
 import { UIAccountSection } from './UI/UIAccountSection';
 import { AccountFavorites } from './Favorites/AccountFavorites';
 import { AccountReviews } from './Reviews/AccountReviews';
+import { AccountOrderHistory } from './OrderHistory/AccountOrderHistory';
 
 interface AccountSectionProps {
 	section: Section;
@@ -15,7 +16,7 @@ export const AccountSection = ({ section }: AccountSectionProps) => {
 		settings: <AccountSettings />,
 		profile: <AccountProfile />,
 		help: <></>,
-		order_history: <></>,
+		order_history: <AccountOrderHistory />,
 		recently_viewed: <></>,
 		reviews: <AccountReviews />,
 		statistics: <></>,

@@ -19,7 +19,7 @@ const initialState: OrderState = {
 
 type fetchSelfOrdersParams = {
 	includeUser?: boolean;
-	includeItem?: boolean;
+	includeItems?: boolean;
 };
 
 export const fetchSelfOrders = createAsyncThunk<
@@ -28,13 +28,13 @@ export const fetchSelfOrders = createAsyncThunk<
 	{ rejectValue: StoreError; state: RootStore }
 >(
 	'order/fetchOrders',
-	async ({ includeUser, includeItem }, { rejectWithValue, getState }) => {
+	async ({ includeUser, includeItems }, { rejectWithValue, getState }) => {
 		const accessToken = getState().auth.accessToken;
 		try {
-			const response = await Axios.get<Order[]>('/order/self', {
+			const response = await Axios.get<Order[]>('/orders/self', {
 				params: {
 					include_user: includeUser,
-					include_item: includeItem,
+					include_items: includeItems,
 				},
 				headers: {
 					Authorization: accessToken ? `Bearer ${accessToken}` : '',
@@ -45,7 +45,26 @@ export const fetchSelfOrders = createAsyncThunk<
 
 			const camelCaseOrders: Order[] = camelcaseKeys(orders, { deep: true });
 
-			return camelCaseOrders;
+			const fixedOrders = camelCaseOrders.map((order) => ({
+				...order,
+
+				items: order.items.map((orderItem) => ({
+					...orderItem,
+					item: {
+						...orderItem.item,
+						images: orderItem.item.images.map((image) => ({
+							...image,
+							url:
+								import.meta.env.VITE_API_URL +
+								'/resources/images/' +
+								image.fileName +
+								'.png',
+						})),
+					},
+				})),
+			}));
+
+			return fixedOrders;
 		} catch (error) {
 			if (isAxiosError(error)) {
 				return rejectWithValue({
