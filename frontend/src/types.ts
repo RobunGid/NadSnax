@@ -91,6 +91,7 @@ export type Order = {
 	userId: string;
 	user: User;
 	createdAt: string;
+	items: OrderItem[];
 };
 
 export type StoreError = {

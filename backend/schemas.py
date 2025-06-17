@@ -157,7 +157,7 @@ class ItemSchema(PlainItemSchema):
     rating_count = fields.Int(dump_only = True)
     favorite_id = fields.Str(dump_only=True, required=True)
     
-    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, include_images = False, include_favorite=False, **kwargs):
+    def __init__(self, include_category = False, include_type = False, include_item_details = False, include_reviews = False, include_images=True, include_favorite=False, **kwargs):
         exclude_fields = set()
         if not include_category:
             exclude_fields.add("category")
