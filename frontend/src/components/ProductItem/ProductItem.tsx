@@ -21,7 +21,6 @@ type ProductItemProps = {
 	className?: string;
 	hideAddButton?: boolean;
 	hideInfo?: boolean;
-	isSmall?: boolean;
 };
 
 export const ProductItem = ({
