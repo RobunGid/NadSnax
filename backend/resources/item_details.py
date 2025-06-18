@@ -5,7 +5,7 @@ from flask_smorest import Blueprint, abort
 from models import ItemDetailsModel
 from schemas import ItemDetailsSchema
 
-blp = Blueprint("item_details", __name__, description = "Operations on item details")
+blp = Blueprint("item_details", __name__, description="Operations on item details")
         
 @blp.route('/item_detail')
 class ItemDetails(MethodView):
@@ -21,7 +21,7 @@ class ItemDetails(MethodView):
             db.session.add(item_detail)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the item details")
+            abort(500, message="An error occured while inserting the item details")
             
         return item_detail
     

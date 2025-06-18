@@ -3,7 +3,7 @@ from flask.views import MethodView
 from flask import send_from_directory, abort
 import os
 
-blp = Blueprint("images", __name__, description = "Operations on images")
+blp = Blueprint("images", __name__, description="Operations on images")
 
 @blp.route('/resources/images/<string:image_name>')
 class Images(MethodView):

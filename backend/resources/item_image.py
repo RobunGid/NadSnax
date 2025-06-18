@@ -8,7 +8,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import jwt_required
 from utils import role_required
 
-blp = Blueprint("item_images", __name__, description = "Operations on item images")
+blp = Blueprint("item_images", __name__, description="Operations on item images")
 
 @blp.route('/item_image')
 
@@ -18,17 +18,17 @@ class Images(MethodView):
     @jwt_required()
     @role_required(["admin", "moderator"])
     def post(self, image_data):
-        image = ItemImageModel(**image_data, id = str(uuid.uuid4()))
+        image = ItemImageModel(**image_data, id=str(uuid.uuid4()))
         
         try:
             db.session.add(image)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the record about image")
+            abort(500, message="An error occured while inserting the record about image")
             
         return image
     
-    @blp.response(200, ItemImageSchema(many = True))
+    @blp.response(200, ItemImageSchema(many=True))
     def get(self):
         return ItemImageModel.query.all()
     

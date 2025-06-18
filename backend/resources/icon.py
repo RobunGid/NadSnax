@@ -8,7 +8,7 @@ from db import db
 from utils import content_type_required
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-blp = Blueprint("icons", __name__, description = "Operations on icons files")
+blp = Blueprint("icons", __name__, description="Operations on icons files")
 
 @blp.route('/resources/icons/<string:icon_id>')
 class Icon(MethodView):

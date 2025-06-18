@@ -13,7 +13,7 @@ from blocklist import BLOCKLIST
 import os
 from utils import allowed_avatar_file, content_type_required
 
-blp = Blueprint("users", __name__, description = "Operations on users")
+blp = Blueprint("users", __name__, description="Operations on users")
 
 @blp.route('/user/me')
 class MyUser(MethodView):
@@ -129,9 +129,9 @@ class UserRegister(MethodView):
         from app import app
         existing_user = UserModel.query.filter_by(username=user_data["username"]).first()
         if existing_user:
-            abort(400, message = "Username already exists")
+            abort(400, message="Username already exists")
         user = UserModel(
-      id = str(uuid.uuid4()),
+      id=str(uuid.uuid4()),
       username=user_data["username"], 
       password=pbkdf2_sha512.hash(user_data["password"]), 
       first_name=user_data["first_name"],
@@ -140,7 +140,6 @@ class UserRegister(MethodView):
         try:
             if 'avatar' in request.files:
                 avatar_file = request.files.get('avatar')
-                username = request.form.get("username")
                 
                 filename = os.path.splitext(avatar_file.filename)[0]
         
@@ -152,7 +151,7 @@ class UserRegister(MethodView):
             db.session.add(user)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "Register error. Try data validity")
+            abort(500, message="Register error. Check data validity")
     
 
     
@@ -168,13 +167,13 @@ class UserLogin(MethodView):
         ).first()
         
         if user and pbkdf2_sha512.verify(user_data["password"], user.password):
-            access_token = create_access_token(identity = str(user.id), fresh = True)
-            refresh_token = create_refresh_token(identity = str(user.id))
+            access_token = create_access_token(identity=str(user.id), fresh=True)
+            refresh_token = create_refresh_token(identity=str(user.id))
             response = jsonify({"access_token": access_token})
             set_refresh_cookies(response, refresh_token)
             return response
     
-        abort(401, description = "Invalid credentials")
+        abort(401, description="Invalid credentials")
         
 @blp.route('/refresh')
 class TokenRefresh(MethodView):

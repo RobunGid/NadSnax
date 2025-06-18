@@ -10,7 +10,7 @@ class OrderModel(db.Model):
     id = db.Column(db.String(80), primary_key = True)
     
     user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship("UserModel", back_populates = "orders")
+    user = db.relationship("UserModel", back_populates="orders")
     
     items = db.relationship("OrderItemModel", back_populates="order", cascade="all,delete")
     

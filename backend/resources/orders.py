@@ -10,7 +10,7 @@ from uuid import uuid4
 from utils import role_required
 from flask import request
 
-blp = Blueprint("orders", __name__, description = "Operations on orders")
+blp = Blueprint("orders", __name__, description="Operations on orders")
 
 @blp.route('/orders')
 class Orders(MethodView):

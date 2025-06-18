@@ -92,11 +92,11 @@ class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
         
-        include_type = request.args.get("include_type", type = bool, default = False)
-        include_category = request.args.get("include_category", type = bool, default = False)
-        include_item_details = request.args.get("include_item_details", type = bool, default = False)
-        include_reviews = request.args.get("include_reviews", type = bool, default = False)
-        include_images = request.args.get("include_images", type = bool, default = False)
+        include_type = request.args.get("include_type", type=bool, default=False)
+        include_category = request.args.get("include_category", type=bool, default=False)
+        include_item_details = request.args.get("include_item_details", type=bool, default=False)
+        include_reviews = request.args.get("include_reviews", type=bool, default=False)
+        include_images = request.args.get("include_images", type=bool, default=False)
         include_favorite = False
         
         category_filter = request.args.get("category_name", "").lower()
@@ -160,7 +160,7 @@ class Items(MethodView):
                 query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
                 query = query.add_columns(FavoriteModel.id.label("favorite_id"))
             except SQLAlchemyError:
-                abort(500, message = "An error occured while getting the items with favorites")
+                abort(500, message="An error occured while getting the items with favorites")
                 
             items_favorites = query.all()
             items = [item for item, _ in items_favorites]
@@ -189,12 +189,12 @@ class Items(MethodView):
     @jwt_required()
     @role_required(['admin', 'moderator'])
     def post(self, item_data):
-        item = ItemModel(**item_data, id = str(uuid.uuid4()))
+        item = ItemModel(**item_data, id=str(uuid.uuid4()))
         
         try:
             db.session.add(item)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the item")
+            abort(500, message="An error occured while inserting the item")
             
         return item

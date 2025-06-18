@@ -8,7 +8,7 @@ import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request
 
-blp = Blueprint("reviews", __name__, description = "Operations on reviews")
+blp = Blueprint("reviews", __name__, description="Operations on reviews")
 
 @blp.route('/review/<string:review_id>')
 class Review(MethodView):
@@ -36,7 +36,7 @@ class Review(MethodView):
             review.text = review_data["text"]
             review.rating = review_data["rating"]
         else:
-            review = ReviewModel(**review_data, id = review_id)
+            review = ReviewModel(**review_data, id=review_id)
             
         db.session.add(review)
         db.session.commit()
@@ -86,6 +86,6 @@ class Reviews(MethodView):
             db.session.add(review)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the review")
+            abort(500, message="An error occured while inserting the review")
     
         return review

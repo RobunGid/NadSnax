@@ -7,7 +7,7 @@ from sqlalchemy import DateTime
 class OrderItemModel(db.Model):
     __tablename__ = 'order_items'
     
-    id = db.Column(db.String(80), primary_key = True)
+    id = db.Column(db.String(80), primary_key=True)
     quantity = db.Column(db.Integer)
     
     order_id = db.Column(db.String(80), db.ForeignKey("orders.id"), nullable=False)
