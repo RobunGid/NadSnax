@@ -137,25 +137,18 @@ class Categories(MethodView):
 
         categories = query.all()
 
-        if include_items and include_types:
-            schema = CategorySchema(many = True, include_types = True, include_items = True)
-        elif include_items:
-            schema = CategorySchema(many = True, include_items = True)
-        elif include_types:
-            schema = CategorySchema(many = True, include_types = True)
-        else:
-            schema = CategorySchema(many = True)
+        schema = CategorySchema(many=True, include_types=include_types, include_items=include_items)
             
         return schema.dump(categories), 200
     
     @blp.arguments(CategorySchema)
     @blp.response(201, CategorySchema)
     def post(self, category_data):
-        category = CategoryModel(**category_data, id = str(uuid.uuid4()))
+        category = CategoryModel(**category_data, id =str(uuid.uuid4()))
         try:
             db.session.add(category)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, message = "An error occured while inserting the category")
+            abort(500, message="An error occured while inserting the category")
             
         return category
