@@ -1,19 +1,24 @@
-import { formatReviewDate } from '../../../logic/formatReviewDate';
-import { Order } from '../../../types';
-import { ProductItem } from '../../ProductItem/ProductItem';
+import { Link } from 'react-router';
+import { Item } from '../../../types';
+import { UIAccountOrderItem } from './UI/UIAccountOrderItem';
+import { ProductItemImage } from '../../ProductItem/ProductItemImage';
 
 interface AccountOrderItemProps {
-	order: Order;
+	item: Item;
 }
 
-export const AccountOrderItem = ({ order }: AccountOrderItemProps) => {
-	const orderCreateDate = formatReviewDate(order.createdAt);
+export const AccountOrderItem = ({ item }: AccountOrderItemProps) => {
 	return (
-		<div className='flex border-1'>
-			{orderCreateDate}
-			{order.items.map((orderItem) => (
-				<ProductItem item={orderItem.item} key={orderItem.id} hideAddButton />
-			))}
-		</div>
+		<Link to={item.pageLink}>
+			<UIAccountOrderItem>
+				<ProductItemImage
+					imageURL={item.images[0].url}
+					label={item.images[0].title}
+					className='w-16 h-16'
+				/>
+				<div>{item.label}</div>
+				<div>{item.itemDetails?.supplier}</div>
+			</UIAccountOrderItem>
+		</Link>
 	);
 };
