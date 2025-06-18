@@ -92,11 +92,11 @@ class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
         
-        include_type = request.args.get("include_type", type=bool, default=False)
-        include_category = request.args.get("include_category", type=bool, default=False)
-        include_item_details = request.args.get("include_item_details", type=bool, default=False)
-        include_reviews = request.args.get("include_reviews", type=bool, default=False)
-        include_images = request.args.get("include_images", type=bool, default=False)
+        include_type = request.args.get("include_type", default='false').lower() == 'true'
+        include_category = request.args.get("include_category", default='false').lower() == 'true'
+        include_item_details = request.args.get("include_item_details", default='false').lower() == 'true'
+        include_reviews = request.args.get("include_reviews", default='false').lower() == 'true'
+        include_images = request.args.get("include_images", default='false').lower() == 'true'
         include_favorite = False
         
         category_filter = request.args.get("category_name", "").lower()
