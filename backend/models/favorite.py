@@ -6,7 +6,7 @@ from datetime import datetime
 class FavoriteModel(db.Model):
     __tablename__ = 'favorites'
     
-    id = db.Column(db.String(80), primary_key = True)
+    id = db.Column(db.String(80), primary_key=True)
     
     user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)
     item_id = db.Column(db.String(80), db.ForeignKey("items.id"), nullable=False)

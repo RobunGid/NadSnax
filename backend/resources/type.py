@@ -7,7 +7,7 @@ from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request
 
-blp = Blueprint("types", __name__, description = "Operations on types")
+blp = Blueprint("types", __name__, description="Operations on types")
 
 @blp.route("/type/<string:type_id>")
 class Category(MethodView):
@@ -34,7 +34,7 @@ class Category(MethodView):
             type.category_id = type_data["category_id"]
             type.page_link = type_data["page_link"]
         else:
-            type = TypeModel(**type_data, id = type_id)
+            type = TypeModel(**type_data, id=type_id)
             
         db.session.add(type)
         db.session.commit()
@@ -144,20 +144,20 @@ class Categories(MethodView):
         types = query.all()
             
         if include_items and include_category:
-            schema = TypeSchema(many = True, include_category = True, include_items = True)
+            schema = TypeSchema(many=True, include_category=True, include_items=True)
         elif include_items:
-            schema = TypeSchema(many = True, include_items = True)
+            schema = TypeSchema(many=True, include_items=True)
         elif include_category:
-            schema = TypeSchema(many = True, include_category = True)
+            schema = TypeSchema(many=True, include_category=True)
         else:
-            schema = TypeSchema(many = True)
+            schema = TypeSchema(many=True)
             
         return schema.dump(types), 200
     
     @blp.arguments(TypeSchema)
     @blp.response(201, TypeSchema)
     def post(self, type_data):
-        type = TypeModel(**type_data, id = str(uuid.uuid4()))
+        type = TypeModel(**type_data, id=str(uuid.uuid4()))
         try:
             db.session.add(type)
             db.session.commit()

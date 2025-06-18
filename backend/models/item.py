@@ -7,24 +7,24 @@ from sqlalchemy.orm import relationship
 class ItemModel(db.Model):
     __tablename__ = "items"
     
-    id = db.Column(db.String(80), primary_key = True)
-    label = db.Column(db.String(80), nullable = False)
-    price = db.Column(db.Numeric(10, 2), nullable = False)
+    id = db.Column(db.String(80), primary_key=True)
+    label = db.Column(db.String(80), nullable=False)
+    price = db.Column(db.Numeric(10, 2), nullable=False)
     old_price = db.Column(db.String(80))
     description = db.Column(db.String(80))
     is_bestseller = db.Column(db.Boolean())
     is_secretbox = db.Column(db.Boolean())
-    page_link = db.Column(db.String(80), nullable = False, unique = True)
+    page_link = db.Column(db.String(80), nullable=False, unique=True)
     
     category_id = db.Column(db.String(80), db.ForeignKey("categories.id"))
     type_id = db.Column(db.String(80), db.ForeignKey("types.id"))
     
-    category = db.relationship("CategoryModel", back_populates = "items")
-    type = db.relationship("TypeModel", back_populates = "items")
-    reviews = db.relationship("ReviewModel", back_populates = "item")
-    images = db.relationship("ItemImageModel", back_populates = "item", lazy = "select")
+    category = db.relationship("CategoryModel", back_populates="items")
+    type = db.relationship("TypeModel", back_populates="items")
+    reviews = db.relationship("ReviewModel", back_populates="item")
+    images = db.relationship("ItemImageModel", back_populates="item", lazy="select")
     
-    item_details = db.relationship("ItemDetailsModel", back_populates = "item", uselist = False)
+    item_details = db.relationship("ItemDetailsModel", back_populates="item", uselist=False)
     
     @hybrid_property
     def average_rating(self):

@@ -7,7 +7,7 @@ from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request
 
-blp = Blueprint("categories", __name__, description = "Operations on categories")
+blp = Blueprint("categories", __name__, description="Operations on categories")
 
 @blp.route("/category/<string:category_id>")
 class Category(MethodView):
@@ -33,7 +33,7 @@ class Category(MethodView):
             category.icon_url = category_data["icon_url"]
             category.page_link = category_data["page_link"]
         else:
-            category = CategoryModel(**category_data, id = category_id)
+            category = CategoryModel(**category_data, id=category_id)
             
         db.session.add(category)
         db.session.commit()
@@ -43,7 +43,7 @@ class Category(MethodView):
 
 @blp.route("/category")
 class Categories(MethodView):
-    @blp.alt_response(200, description = "Categories list")
+    @blp.alt_response(200, description="Categories list")
     @blp.doc(
         description="Get categories list with query parameters to manage related items and types",
         parameters=[

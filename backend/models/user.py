@@ -13,15 +13,15 @@ class Role(enum.Enum):
 class UserModel(db.Model):
     __tablename__ = "users"
     
-    id = db.Column(db.String(80), primary_key = True)
+    id = db.Column(db.String(80), primary_key=True)
     
-    username = db.Column(db.String(80), nullable = False, unique = True)
-    password = db.Column(db.String(256), nullable = False)
+    username = db.Column(db.String(80), nullable=False, unique=True)
+    password = db.Column(db.String(256), nullable=False)
     
     role = db.Column(db.Enum(Role), default=Role.user)
     
-    first_name = db.Column(db.String(32), nullable = False)
-    last_name = db.Column(db.String(32), nullable = False)
+    first_name = db.Column(db.String(32), nullable=False)
+    last_name = db.Column(db.String(32), nullable=False)
     
     reviews = db.relationship('ReviewModel', back_populates='user')
     orders = db.relationship("OrderModel", back_populates="user")

@@ -8,7 +8,7 @@ from db import db
 from utils import content_type_required
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-blp = Blueprint("avatars", __name__, description = "Operations on avatars files")
+blp = Blueprint("avatars", __name__, description="Operations on avatars files")
 	
 @blp.route('/avatar')
 class Avatar(MethodView):
@@ -23,7 +23,7 @@ class Avatar(MethodView):
 class Avatars(MethodView):
 	def get(self, avatar_name):
 		from app import app
-		as_attachment = request.args.get("as_attachment", type = bool, default = False)
+		as_attachment = request.args.get("as_attachment", type=bool, default=False)
 		return send_from_directory(app.config["AVATAR_UPLOAD_FOLDER"], avatar_name, as_attachment=as_attachment)     
 	
 	def delete(self, avatar_name):

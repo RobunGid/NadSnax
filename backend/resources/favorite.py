@@ -9,7 +9,7 @@ from flask_smorest import abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from utils import role_required
 
-blp = Blueprint("favorites", __name__, description = "Operations on favorites")
+blp = Blueprint("favorites", __name__, description="Operations on favorites")
 
 @blp.route('/favorite')
 class Favorites(MethodView):
