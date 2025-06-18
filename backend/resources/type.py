@@ -143,15 +143,7 @@ class Categories(MethodView):
             
         types = query.all()
             
-        if include_items and include_category:
-            schema = TypeSchema(many=True, include_category=True, include_items=True)
-        elif include_items:
-            schema = TypeSchema(many=True, include_items=True)
-        elif include_category:
-            schema = TypeSchema(many=True, include_category=True)
-        else:
-            schema = TypeSchema(many=True)
-            
+        schema = TypeSchema(many=True, include_category=include_category, include_items=include_items)
         return schema.dump(types), 200
     
     @blp.arguments(TypeSchema)
