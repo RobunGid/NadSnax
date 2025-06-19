@@ -48,13 +48,14 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 	};
 
 	return (
-		<>
-			<UIProductDetailsGallery>
+		<UIProductDetailsGallery>
+			<div className='flex flex-col items-center justify-center'>
 				<UIProductDetailsGalleryScrollButton
 					onClick={handleClickUpGallery}
 					type='up'
 					visibility={upButtonVisibilty}
 				/>
+
 				<UIProductDetailsCarousel
 					ref={galleryRef}
 					onScroll={handleCarouselScroll}
@@ -74,8 +75,8 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 					type='down'
 					visibility={downButtonVisibilty}
 				/>
-			</UIProductDetailsGallery>
+			</div>
 			<UIProductDetailsImage image={selectedImage} type='big' />
-		</>
+		</UIProductDetailsGallery>
 	);
 };
