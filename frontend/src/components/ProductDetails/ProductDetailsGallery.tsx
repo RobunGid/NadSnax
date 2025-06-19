@@ -1,7 +1,7 @@
 import { Image } from '../../types';
 import { UIProductDetailsImage } from './UI/UIProductDetailsImage';
 import { UIProductDetailsCarousel } from './UI/UIProductDetailsCarousel';
-import { UIEventHandler, useRef, useState } from 'react';
+import { ChangeEvent, UIEventHandler, useRef, useState } from 'react';
 import { UIProductDetailsGalleryScrollButton } from './UI/UIProductDetailsGalleryScrollButton';
 
 interface ProductDetailsGalleryProps {
@@ -9,17 +9,13 @@ interface ProductDetailsGalleryProps {
 }
 
 export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) => {
-	const mainImage = images.find((image) => image.isMain);
+	const defaultImage = images.find((image) => image.isMain) || images[0];
 	const galleryRef = useRef<null | HTMLDivElement>(null);
 	const [upButtonVisibilty, setUpButtonVisibilty] = useState<boolean>(false);
 	const [downButtonVisibilty, setDownButtonVisibilty] = useState<boolean>(true);
-
-	if (!mainImage) {
-		images = [{ ...images[0], isMain: true }, ...images.slice(1)];
-	}
+	const [selectedImage, setSelectedImage] = useState<Image>(defaultImage);
 
 	const handleCarouselScroll: UIEventHandler<HTMLDivElement> = (event) => {
-		console.log((event.target as HTMLDivElement).scrollTop);
 		if ((event.target as HTMLDivElement).scrollTop == 440) {
 			setDownButtonVisibilty(false);
 		} else {
@@ -44,6 +40,12 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 		}
 	};
 
+	const handleChangeSelectedImage = (event: ChangeEvent<HTMLInputElement>) => {
+		setSelectedImage(
+			images.find((image) => image.id == event.target.id) || images[0]
+		);
+	};
+
 	return (
 		<>
 			<div className='flex flex-col items-center'>
@@ -61,16 +63,18 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 							image={image}
 							key={image.id}
 							type='small'
+							onChange={handleChangeSelectedImage}
 						/>
 					))}
 				</UIProductDetailsCarousel>
+
 				<UIProductDetailsGalleryScrollButton
 					onClick={handleClickDownGallery}
 					type='down'
 					visibility={downButtonVisibilty}
 				/>
 			</div>
-			<UIProductDetailsImage image={mainImage || images[0]} type='big' />
+			<UIProductDetailsImage image={selectedImage} type='big' />
 		</>
 	);
 };
