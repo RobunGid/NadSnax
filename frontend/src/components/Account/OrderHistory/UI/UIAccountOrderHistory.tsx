@@ -5,5 +5,5 @@ interface UIAccountOrderHistoryProps {
 }
 
 export const UIAccountOrderHistory = ({ children }: UIAccountOrderHistoryProps) => {
-	return <div>{children}</div>;
+	return <div className='flex flex-wrap h-full justify-center'>{children}</div>;
 };

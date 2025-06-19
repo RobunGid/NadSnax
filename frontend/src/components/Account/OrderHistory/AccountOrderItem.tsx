@@ -1,23 +1,38 @@
 import { Link } from 'react-router';
-import { Item } from '../../../types';
+import { OrderItem } from '../../../types';
 import { UIAccountOrderItem } from './UI/UIAccountOrderItem';
 import { ProductItemImage } from '../../ProductItem/ProductItemImage';
+import { formatPrice } from '../../../logic/formatPrice';
 
 interface AccountOrderItemProps {
-	item: Item;
+	orderItem: OrderItem;
 }
 
-export const AccountOrderItem = ({ item }: AccountOrderItemProps) => {
+export const AccountOrderItem = ({ orderItem }: AccountOrderItemProps) => {
+	const totalItemPrice = orderItem.quantity * orderItem.item.price;
+	const formattedTotalPrice = formatPrice(totalItemPrice);
+	const formattedPrice = formatPrice(orderItem.item.price);
+
 	return (
-		<Link to={item.pageLink}>
+		<Link to={orderItem.item.pageLink}>
 			<UIAccountOrderItem>
 				<ProductItemImage
-					imageURL={item.images[0].url}
-					label={item.images[0].title}
+					imageURL={orderItem.item.images[0].url}
+					label={orderItem.item.images[0].title}
 					className='w-16 h-16'
 				/>
-				<div>{item.label}</div>
-				<div>{item.itemDetails?.supplier}</div>
+				<div className='flex flex-col justify-center p-2'>
+					<div>{orderItem.item.label}</div>
+					<div className='text-sm text-gray-500'>
+						{orderItem.item.itemDetails?.supplier}
+					</div>
+				</div>
+				<div className='flex flex-col justify-center'>
+					<div>{formattedTotalPrice}</div>
+					<div className='text-sm text-gray-400'>
+						{orderItem.quantity} x {formattedPrice}
+					</div>
+				</div>
 			</UIAccountOrderItem>
 		</Link>
 	);
