@@ -5,5 +5,5 @@ interface UIAccountFavoritesProps {
 }
 
 export const UIAccountFavorites = ({ children }: UIAccountFavoritesProps) => {
-	return <div className='flex flex-row h-full w-full'>{children}</div>;
+	return <div className='flex flex-row h-full w-full flex-wrap'>{children}</div>;
 };

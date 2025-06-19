@@ -8,7 +8,7 @@ export const AccountOrderHistory = () => {
 	const orders = useStateSelector((state) => state.order.orders);
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		dispatch(fetchSelfOrders({ includeItems: true }));
+		dispatch(fetchSelfOrders({ includeItems: true, includeUser: true }));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

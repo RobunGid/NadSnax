@@ -5,7 +5,7 @@ interface UIAccountMenuProps {
 }
 export const UIAccountMenu = ({ children }: UIAccountMenuProps) => {
 	return (
-		<div className='rounded-[40px] dark:bg-gray-800 bg-gray-200 w-full'>
+		<div className='rounded-[40px] dark:bg-gray-800 bg-gray-200 w-full max-h-fit'>
 			<ul className='divide-y divide-gray-900'>{children}</ul>
 		</div>
 	);
