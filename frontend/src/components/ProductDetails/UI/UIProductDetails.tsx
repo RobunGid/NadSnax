@@ -6,7 +6,7 @@ interface UIProductDetailsProps {
 
 export const UIProductDetails = ({ children }: UIProductDetailsProps) => {
 	return (
-		<div className='flex flex-col gap-10 flex-wrap justify-start dark:text-gray-200'>
+		<div className='flex flex-col gap-10 flex-wrap justify-start dark:text-gray-200 px-2'>
 			{children}
 		</div>
 	);
