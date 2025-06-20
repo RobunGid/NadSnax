@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../../store';
 import { ProductsList } from '../../Layout/ProductsList';
 import { UIAccountFavorites } from './UI/UIAccountFavorites';
-import { AccountFavoritesNoResults } from './AccountFavoritesNoResults';
+import { UIAccountFavoritesNoResults } from './UI/UIAccountFavoritesNoResults';
 
 export const AccountFavorites = () => {
 	const items = useStateSelector((state) => state.item.itemList);
@@ -29,7 +29,7 @@ export const AccountFavorites = () => {
 			{favoriteItems.length !== 0 ? (
 				<ProductsList items={favoriteItems} />
 			) : (
-				<AccountFavoritesNoResults />
+				<UIAccountFavoritesNoResults />
 			)}
 		</UIAccountFavorites>
 	);
