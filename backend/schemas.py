@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 from models.user import Role
+from models.order import OrderStatus
 from marshmallow_enum import EnumField
 
 class AuthUserSchema(Schema):
@@ -201,6 +202,8 @@ class PlainOrderSchema(Schema):
     id = fields.Str(dump_only=True)
     created_at = fields.DateTime(required=True, dump_only=True)
     order_id = fields.Str(required=True, dump_only=True)
+    status = EnumField(OrderStatus)
+    place = fields.Str(required=True)
     
 class OrderSchema(PlainOrderSchema):
     user_id = fields.Str(required=True)
