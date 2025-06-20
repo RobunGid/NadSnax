@@ -5,5 +5,5 @@ interface UICartOrderInfoProps {
 }
 
 export const UICartOrderInfo = ({ children }: UICartOrderInfoProps) => {
-	return <div className='p-4 h-40'>{children}</div>;
+	return <div className='grid grid-cols-2'>{children}</div>;
 };

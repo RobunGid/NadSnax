@@ -1,9 +1,15 @@
+import { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
 import { formatPrice } from '../../logic/formatPrice';
 import { useStateSelector } from '../../store';
 import { UICartOrderInfo } from './UI/UICartOrderInfo';
-import { UICartOrderInfoTitle } from './UI/UICartOrderInfoTitle';
+import { CartOrderInfoField } from './CartOrderInfoField';
 
-export const CartOrderInfo = () => {
+interface CartOrderInfoProps {
+	pickupPoint: string;
+	setPickupPoint: Dispatch<SetStateAction<string>>;
+}
+
+export const CartOrderInfo = ({ pickupPoint, setPickupPoint }: CartOrderInfoProps) => {
 	const user = useStateSelector((state) => state.user.user);
 
 	const cartItems = useStateSelector((state) => state.cart.productList);
@@ -11,27 +17,26 @@ export const CartOrderInfo = () => {
 		(prev, cur) => prev + cur.count * cur.item.price,
 		0
 	);
-	const itemQuantity = cartItems.reduce((prev, cur) => prev + cur.count, 0);
-	const formattedOrderAmount = formatPrice(orderAmount);
+	const itemQuantity = String(cartItems.reduce((prev, cur) => prev + cur.count, 0));
+	const formattedTotalAmount = formatPrice(orderAmount);
+
+	const formattedFullName = `${user && user.firstName} ${user && user.lastName}`;
+
+	const handleChangePickupPointInput: ChangeEventHandler<HTMLInputElement> = (
+		event
+	) => {
+		setPickupPoint(event.target.value);
+	};
 
 	return (
 		<UICartOrderInfo>
-			<UICartOrderInfoTitle size='big'>Order information</UICartOrderInfoTitle>
-			<UICartOrderInfoTitle>
-				{'Full name: '}
-				<strong>
-					{user?.firstName} {user?.lastName}
-				</strong>
-			</UICartOrderInfoTitle>
-			<UICartOrderInfoTitle>
-				Order pickup point: <strong>Standard</strong>
-			</UICartOrderInfoTitle>
-			<UICartOrderInfoTitle>
-				Total order amount: <strong>{formattedOrderAmount}</strong>
-			</UICartOrderInfoTitle>
-			<UICartOrderInfoTitle>
-				Order items quantity: <strong>{itemQuantity}</strong>
-			</UICartOrderInfoTitle>
+			<CartOrderInfoField.FullName fullName={formattedFullName} />
+			<CartOrderInfoField.TotalAmount totalAmount={formattedTotalAmount} />
+			<CartOrderInfoField.ItemQuantity itemQuantity={itemQuantity} />
+			<CartOrderInfoField.PickupPoint
+				value={pickupPoint}
+				onChange={handleChangePickupPointInput}
+			/>
 		</UICartOrderInfo>
 	);
 };
