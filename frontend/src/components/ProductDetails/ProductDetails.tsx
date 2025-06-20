@@ -6,6 +6,7 @@ import { ProductDetailsReviewForm } from './ProductDetailsReviewForm';
 import { ProductDetailsReviews } from './ProductDetailsReviews';
 import { ProductDetailsSimillarItems } from './ProductDetailsSimillarItems';
 import { UIProductDetails } from './UI/UIProductDetails';
+import { UIProductDetailsContainer } from './UI/UIProductDetailsContainer';
 
 interface ProductDetailsProps {
 	item: Required<Pick<Item, 'itemDetails'>> & Item;
@@ -17,19 +18,15 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
 	return (
 		<UIProductDetails>
-			<div className='flex lg:flex-row flex-col items-center w-full lg:w-auto '>
+			<UIProductDetailsContainer>
 				<ProductDetailsGallery images={item.images} />
 				<ProductDetailsInfo item={item} />
-			</div>
-			<div className='flex flex-col lg:flex-row gap-8'>
-				<div className='flex flex-col gap-8'>
-					{!hasOwnReview && user && (
-						<ProductDetailsReviewForm itemId={item.id} />
-					)}
-					<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
-				</div>
+			</UIProductDetailsContainer>
+			<UIProductDetailsContainer>
+				{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
+				<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
 				<ProductDetailsSimillarItems item={item} itemList={itemList} />
-			</div>
+			</UIProductDetailsContainer>
 		</UIProductDetails>
 	);
 };
