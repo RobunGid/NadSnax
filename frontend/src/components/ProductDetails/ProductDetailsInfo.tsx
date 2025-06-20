@@ -3,11 +3,11 @@ import { Item } from '../../types';
 import { ProductDetailsQuantityChooser } from './ProductDetailsQuantityChooser';
 import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
-import { ProductDetailsRating } from './ProductDetailsRating';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
 import { UIProductDetailsInfo } from './UI/UIProductDetailsInfo';
 import { ProductDetailsAddToFavorite } from './ProductDetailsAddToFavorite';
+import { UIProductDetailsRating } from './UI/UIProductDetailsRating';
 
 interface ProductDetailsInfo {
 	item: Required<Pick<Item, 'itemDetails'>> & Item;
@@ -25,7 +25,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 				{item.itemDetails.fullLabel}
 			</UIProductDetailsFullLabel>
 
-			<ProductDetailsRating
+			<UIProductDetailsRating
 				ratingCount={item.ratingCount}
 				averageRating={item.averageRating}
 			/>
@@ -36,12 +36,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<ProductDetailsAddToFavorite item={item} />
 
-			<ProductDetailsItemDetails
-				fullDescription={item.itemDetails.fullDescription}
-				ingridients={item.itemDetails.ingridients}
-				nutrition={item.itemDetails.ingridients}
-				supplier={item.itemDetails.supplier}
-			/>
+			<ProductDetailsItemDetails itemDetails={item.itemDetails} />
 		</UIProductDetailsInfo>
 	);
 };

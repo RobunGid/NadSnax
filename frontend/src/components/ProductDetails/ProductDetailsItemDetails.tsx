@@ -1,28 +1,27 @@
+import { ItemDetails } from '../../types';
 import { ProductDetailsDropdown } from './ProductDetailsDropdown';
 import { UIProductDetailsItemDetails } from './UI/UIProductDetailsItemDetails';
 
 interface ProductDetailsItemDetailsProps {
-	fullDescription: string;
-	ingridients: string;
-	supplier: string;
-	nutrition: string;
+	itemDetails: ItemDetails;
 }
 export const ProductDetailsItemDetails = ({
-	fullDescription,
-	ingridients,
-	supplier,
-	nutrition,
+	itemDetails,
 }: ProductDetailsItemDetailsProps) => {
 	return (
 		<UIProductDetailsItemDetails>
 			<ProductDetailsDropdown text='About this item'>
-				{fullDescription}
+				{itemDetails.fullDescription}
 			</ProductDetailsDropdown>
 			<ProductDetailsDropdown text='Ingridients'>
-				{ingridients}
+				{itemDetails.ingridients}
 			</ProductDetailsDropdown>
-			<ProductDetailsDropdown text='Supplier'>{supplier}</ProductDetailsDropdown>
-			<ProductDetailsDropdown text='Nutrition'>{nutrition}</ProductDetailsDropdown>
+			<ProductDetailsDropdown text='Supplier'>
+				{itemDetails.supplier}
+			</ProductDetailsDropdown>
+			<ProductDetailsDropdown text='Nutrition'>
+				{itemDetails.nutrition}
+			</ProductDetailsDropdown>
 		</UIProductDetailsItemDetails>
 	);
 };

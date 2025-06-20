@@ -10,12 +10,13 @@ import { UIProductDetailsContainer } from './UI/UIProductDetailsContainer';
 
 interface ProductDetailsProps {
 	item: Required<Pick<Item, 'itemDetails'>> & Item;
-	itemList: Item[];
+	simillarItems: Item[];
 }
 
-export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
+export const ProductDetails = ({ item, simillarItems }: ProductDetailsProps) => {
 	const user = useStateSelector((state) => state.user.user);
 	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
+
 	return (
 		<UIProductDetails>
 			<UIProductDetailsContainer>
@@ -25,7 +26,7 @@ export const ProductDetails = ({ item, itemList }: ProductDetailsProps) => {
 			<UIProductDetailsContainer>
 				{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
 				<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
-				<ProductDetailsSimillarItems item={item} itemList={itemList} />
+				<ProductDetailsSimillarItems itemList={simillarItems} />
 			</UIProductDetailsContainer>
 		</UIProductDetails>
 	);
