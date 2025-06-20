@@ -57,6 +57,7 @@ export const ProductDetailsPage = () => {
 
 	if (status === 'success' && item && item.itemDetails) {
 		const fullItem = { ...item, itemDetails: item.itemDetails };
-		return <ProductDetails item={fullItem} itemList={items} />;
+
+		return <ProductDetails item={fullItem} simillarItems={items} />;
 	}
 };

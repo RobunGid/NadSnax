@@ -4,6 +4,7 @@ import { UIProductDetailsCarousel } from './UI/UIProductDetailsCarousel';
 import { ChangeEvent, UIEventHandler, useRef, useState } from 'react';
 import { UIProductDetailsGalleryScrollButton } from './UI/UIProductDetailsGalleryScrollButton';
 import { UIProductDetailsGallery } from './UI/UIProductDetailsGallery';
+import { UIProductDetailsGalleryContainer } from './UI/UIProductDetailsGalleryContainer';
 
 interface ProductDetailsGalleryProps {
 	images: Image[];
@@ -49,7 +50,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 
 	return (
 		<UIProductDetailsGallery>
-			<div className='flex flex-col items-center justify-center'>
+			<UIProductDetailsGalleryContainer>
 				<UIProductDetailsGalleryScrollButton
 					onClick={handleClickUpGallery}
 					type='up'
@@ -75,7 +76,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 					type='down'
 					visibility={downButtonVisibilty}
 				/>
-			</div>
+			</UIProductDetailsGalleryContainer>
 			<UIProductDetailsImage image={selectedImage} type='big' />
 		</UIProductDetailsGallery>
 	);

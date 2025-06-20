@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef, useState } from 'react';
+import { ChangeEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { UIButton } from '../UI/UIButton';
 import { UIProductDetailsRatingInputs } from './UI/UIProductDetailsRatingInputs';
 import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
@@ -60,16 +60,16 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 			});
 		}
 	};
+
+	const handleChangeReviewForm: ChangeEventHandler<HTMLFormElement> = (event) => {
+		setFormValue((prev) => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}));
+	};
+
 	return (
-		<UIProductDetailsReviewForm
-			ref={formRef}
-			onChange={(event) =>
-				setFormValue((prev) => ({
-					...prev,
-					[event.target.name]: event.target.value,
-				}))
-			}
-		>
+		<UIProductDetailsReviewForm ref={formRef} onChange={handleChangeReviewForm}>
 			<label>Rate this item</label>
 			<UIProductDetailsRatingInputs />
 			<UIProductDetailsTextArea />

@@ -3,12 +3,10 @@ import { ProductsList } from '../Layout/ProductsList';
 
 interface ProductDetailsSimillarItemsProps {
 	itemList: Item[];
-	item: Item;
 }
 
 export const ProductDetailsSimillarItems = ({
 	itemList,
-	item,
 }: ProductDetailsSimillarItemsProps) => {
 	return (
 		itemList.length != 1 && (
@@ -18,12 +16,7 @@ export const ProductDetailsSimillarItems = ({
 				</span>
 
 				<div className='flex gap-4 flex-wrap justify-center md:flex-nowrap md:justify-start'>
-					<ProductsList
-						items={itemList.filter(
-							//(simmilarItem) => simmilarItem != item
-							(simmilarItem) => simmilarItem.id != item.id
-						)}
-					/>
+					<ProductsList items={itemList} />
 				</div>
 			</div>
 		)

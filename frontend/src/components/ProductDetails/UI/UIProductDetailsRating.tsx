@@ -1,14 +1,14 @@
-import { RatingElement } from '../Layout/RatingElement';
+import { RatingElement } from '../../Layout/RatingElement';
 
-interface ProductDetailsRatingProps {
+interface UIProductDetailsRatingProps {
 	averageRating: number | null;
 	ratingCount: number | null;
 }
 
-export const ProductDetailsRating = ({
+export const UIProductDetailsRating = ({
 	averageRating,
 	ratingCount,
-}: ProductDetailsRatingProps) => {
+}: UIProductDetailsRatingProps) => {
 	return (
 		<div className='flex justify-start items-center gap-x-1'>
 			<RatingElement rating={averageRating} className='flex text-yellow-400' />
