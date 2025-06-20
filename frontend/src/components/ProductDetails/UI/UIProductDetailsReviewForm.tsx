@@ -12,7 +12,7 @@ export const UIProductDetailsReviewForm = forwardRef<
 	return (
 		<form
 			ref={ref}
-			className='shadow-lg dark:shadow-gray-600 p-8 gap-y-4 flex flex-col items-center'
+			className='shadow-lg dark:shadow-gray-600 p-8 gap-y-4 flex flex-col items-center h-82 w-80'
 			onChange={onChange}
 		>
 			{children}
