@@ -15,7 +15,7 @@ export const ProductDetailsSimillarItems = ({
 					Simillar items you might like
 				</span>
 
-				<div className='flex gap-4 flex-wrap justify-center md:flex-nowrap md:justify-start'>
+				<div className='flex gap-4 flex-wrap justify-center'>
 					<ProductsList items={itemList} />
 				</div>
 			</div>
