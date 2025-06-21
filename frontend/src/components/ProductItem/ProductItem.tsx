@@ -43,8 +43,11 @@ export const ProductItem = ({
 	const price = formatPrice(item.price);
 
 	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
+
+	const pageLink = `/products/page${item.pageLink}`;
+
 	return (
-		<UIProductItem pageLink={item.pageLink} className={className} isSmall={hideInfo}>
+		<UIProductItem pageLink={pageLink} className={className} isSmall={hideInfo}>
 			<ProductItemCover
 				imageURL={imageURL}
 				isBestseller={item.isBestseller}

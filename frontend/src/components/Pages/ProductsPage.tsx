@@ -33,7 +33,6 @@ export const ProductsPage = () => {
 		fetchItems(fetchItemsParams);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category, type, accessToken]);
-
 	return (
 		<>
 			<div className='flex flex-wrap p-5 justify-center gap-4'>

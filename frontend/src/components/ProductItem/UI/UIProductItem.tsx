@@ -18,7 +18,7 @@ export const UIProductItem = ({
 }: UIProductItemProps) => {
 	return (
 		<Link
-			to={`/products/page${pageLink}`}
+			to={pageLink}
 			className={clsx(
 				'shadow-xl p-2 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
 				styles['product-item'],
