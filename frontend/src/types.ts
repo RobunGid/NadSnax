@@ -79,6 +79,18 @@ export type User = {
 	username: string;
 };
 
+export enum OrderStatus {
+	processing = 'processing',
+	packing = 'packing',
+	shipping = 'shipping',
+	ready = 'ready',
+	success = 'success',
+	canceled = 'canceled',
+	returned = 'returned',
+
+	deleted = 'deleted',
+}
+
 export type OrderItem = {
 	id: string;
 	itemId: string;
@@ -92,6 +104,8 @@ export type Order = {
 	user: User;
 	createdAt: string;
 	items: OrderItem[];
+	pickupPoint: string;
+	status: OrderStatus;
 };
 
 export type StoreError = {

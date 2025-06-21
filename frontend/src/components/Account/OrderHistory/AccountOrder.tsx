@@ -1,3 +1,4 @@
+import { formatOrderStatus } from '../../../logic/formatOrderStatus';
 import { formatPrice } from '../../../logic/formatPrice';
 import { formatReviewDate } from '../../../logic/formatReviewDate';
 import { Order } from '../../../types';
@@ -17,12 +18,14 @@ export const AccountOrder = ({ order }: AccountOrderProps) => {
 
 	const formattedTotalPrice = formatPrice(totalPrice);
 	const formatedCreatedAt = formatReviewDate(order.createdAt);
+	const formattedOrderStatus = formatOrderStatus(order.status);
 
 	return (
 		<UIAccountOrder
 			totalCount={totalCount}
 			totalPrice={formattedTotalPrice}
 			createdAt={formatedCreatedAt}
+			orderStatus={formattedOrderStatus}
 			order={order}
 		/>
 	);

@@ -9,6 +9,7 @@ interface UIAccountOrderProps {
 	totalCount: string;
 	order: Order;
 	createdAt: string;
+	orderStatus: string;
 }
 
 export const UIAccountOrder = ({
@@ -16,6 +17,7 @@ export const UIAccountOrder = ({
 	totalCount,
 	order,
 	createdAt,
+	orderStatus,
 }: UIAccountOrderProps) => {
 	return (
 		<div className='flex flex-col bg-gray-700 rounded-xl m-4 w-90 p-6 max-h-96 shadow-xl relative'>
@@ -29,8 +31,7 @@ export const UIAccountOrder = ({
 					<div className='flex text-sm py-2 gap-1 flex-col'>
 						<div className='flex gap-1'>
 							<MdLocationOn size='16' />
-							{/*order.place TODO*/}
-							Kentucky 452
+							{order.pickupPoint}
 						</div>
 						<div className='flex gap-1'>
 							<AiOutlineUser size='16' />
@@ -42,8 +43,8 @@ export const UIAccountOrder = ({
 						</div>
 					</div>
 				</div>
-				<div className='bg-teal-600/30 w-30 h-10 flex items-center justify-center rounded-2xl'>
-					Processing
+				<div className='bg-teal-600/30 w-30 h-10 flex items-center justify-center rounded-2xl shadow-xl'>
+					{orderStatus}
 					<FaRegQuestionCircle size='14' className='cursor-help ms-1' />
 				</div>
 			</div>
