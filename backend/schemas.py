@@ -203,10 +203,10 @@ class PlainOrderSchema(Schema):
     created_at = fields.DateTime(required=True, dump_only=True)
     order_id = fields.Str(required=True, dump_only=True)
     status = EnumField(OrderStatus)
-    place = fields.Str(required=True)
+    pickup_point = fields.Str(required=True)
     
 class OrderSchema(PlainOrderSchema):
-    user_id = fields.Str(required=True)
+    user_id = fields.Str(required=True, dump_only=True)
     user = fields.Nested(PlainUserSchema(), dump_only=True) 
     items = fields.Nested(PlainOrderItemSchema(many=True))
     

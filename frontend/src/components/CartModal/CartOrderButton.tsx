@@ -18,15 +18,18 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 		const orderItems = cartItems.map((cartItem) => ({
 			quantity: cartItem.count,
 			item_id: cartItem.item.id,
-			pickup_point: pickupPoint,
 		}));
 
-		const response = await Axios.post('/orders', orderItems, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				'Content-Type': 'application/json',
-			},
-		});
+		const response = await Axios.post(
+			'/orders',
+			{ pickup_point: pickupPoint, items: orderItems },
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+					'Content-Type': 'application/json',
+				},
+			}
+		);
 
 		if (response.request.status === 201) {
 			console.log(cartItems, response);

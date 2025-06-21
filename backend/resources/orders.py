@@ -20,17 +20,17 @@ class Orders(MethodView):
     def get(self):
         return OrderModel.query.all()
        
-    @blp.arguments(PlainOrderItemSchema(many=True))
+    @blp.arguments(OrderSchema)
     @blp.response(201, OrderSchema)
     @jwt_required()
     def post(self, order_data):
         identity = get_jwt_identity()
         print(identity)
-        order = OrderModel(id=str(uuid4()), user_id=identity)
+        order = OrderModel(id=str(uuid4()), user_id=identity, pickup_point=order_data["pickup_point"])
         db.session.add(order)
         db.session.commit()
         
-        order_items = [OrderItemModel(**order_item, id=str(uuid4()), order_id=order.id) for order_item in order_data]
+        order_items = [OrderItemModel(**order_item, id=str(uuid4()), order_id=order.id) for order_item in order_data["items"]]
         db.session.bulk_save_objects(order_items)
         
         db.session.commit()

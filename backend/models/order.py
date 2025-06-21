@@ -21,7 +21,8 @@ class OrderModel(db.Model):
     
     id = db.Column(db.String(80), primary_key=True)
     
-    place = db.Column(db.String(255), nullable=False)
+    pickup_point = db.Column(db.String(255), nullable=False)
+    
     status = db.Column(db.Enum(OrderStatus), default=OrderStatus.processing)
     
     user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)

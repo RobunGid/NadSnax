@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, Fragment } from 'react';
 import { Option } from '../../logic/orderInfoConfig';
 import clsx from 'clsx';
 
@@ -17,11 +17,11 @@ export const UISelect = ({ options, value, onChange }: UISelectProps) => {
 			required
 		>
 			{options.map((option) => (
-				<>
+				<Fragment key={option.value}>
 					<option {...option} className={clsx('bg-gray-800')}>
 						{option.text}
 					</option>
-				</>
+				</Fragment>
 			))}
 		</select>
 	);
