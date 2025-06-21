@@ -1,6 +1,8 @@
 import { ChangeEventHandler } from 'react';
 import { UICartOrderInfoField } from './UI/UICartOrderInfoField';
-import { UICartOrderInfoInput } from './UI/UICartOrderInfoInput';
+import { MdEdit } from 'react-icons/md';
+import { UISelect } from '../UI/UISelect';
+import { orderInfoConfig } from '../../logic/orderInfoConfig';
 
 interface CartOrderInfoFieldProps {
 	FullName: {
@@ -14,7 +16,7 @@ interface CartOrderInfoFieldProps {
 	};
 	PickupPoint: {
 		value: string;
-		onChange: ChangeEventHandler<HTMLInputElement>;
+		onChange: ChangeEventHandler<HTMLSelectElement>;
 	};
 }
 
@@ -38,8 +40,16 @@ export const CartOrderInfoField = {
 		</>
 	),
 	PickupPoint: ({ value, onChange }: CartOrderInfoFieldProps['PickupPoint']) => (
-		<UICartOrderInfoField>
-			<UICartOrderInfoInput value={value} onChange={onChange} />
-		</UICartOrderInfoField>
+		<>
+			<UICartOrderInfoField type='start'>
+				Pickup point: <MdEdit />
+			</UICartOrderInfoField>
+
+			<UISelect
+				options={orderInfoConfig.options}
+				value={value}
+				onChange={onChange}
+			/>
+		</>
 	),
 };

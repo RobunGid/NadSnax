@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from 'react';
+import { UIInput } from '../../UI/UIInput';
 
 interface UICartOrderInfoInputProps {
 	value: string;
@@ -6,9 +7,5 @@ interface UICartOrderInfoInputProps {
 }
 
 export const UICartOrderInfoInput = ({ value, onChange }: UICartOrderInfoInputProps) => {
-	return (
-		<div className='flex flex-row w-40 gap-1 items-center'>
-			<input value={value} onChange={onChange} className='w-30' />
-		</div>
-	);
+	return <UIInput value={value} onChange={onChange} />;
 };

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
-type UIAuthozationModalInputProps = {
+type UIInputProps = {
 	children?: ReactNode;
 	error?: boolean;
 	errorMessage?: string;
@@ -9,7 +9,7 @@ type UIAuthozationModalInputProps = {
 	isInvalid?: boolean;
 } & Partial<JSX.IntrinsicElements['input']>;
 
-export const UIAuthozationModalInput = (props: UIAuthozationModalInputProps) => {
+export const UIInput = (props: UIInputProps) => {
 	const { errorMessage, error, placeholder, isLoading, isInvalid, ...rest } = props;
 	return (
 		<label className='relative flex flex-col-reverse '>

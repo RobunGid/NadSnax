@@ -27,7 +27,7 @@ export const Cart = () => {
 						))}
 					</UICartContainer>
 					<UICartContainer bordered count={2}>
-						<CartOrderButton />
+						<CartOrderButton pickupPoint={pickupPoint} />
 						<CartOrderInfo
 							pickupPoint={pickupPoint}
 							setPickupPoint={setPickupPoint}

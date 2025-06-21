@@ -4,7 +4,11 @@ import { CartModalContext } from '../../context/CartModalContext';
 import { clearCart, useAppDispatch, useStateSelector } from '../../store';
 import { UICartOrderButton } from './UI/UICartOrderButton';
 
-export const CartOrderButton = () => {
+interface CartOrderButtonProps {
+	pickupPoint: string;
+}
+
+export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 	const dispatch = useAppDispatch();
@@ -14,6 +18,7 @@ export const CartOrderButton = () => {
 		const orderItems = cartItems.map((cartItem) => ({
 			quantity: cartItem.count,
 			item_id: cartItem.item.id,
+			pickup_point: pickupPoint,
 		}));
 
 		const response = await Axios.post('/orders', orderItems, {

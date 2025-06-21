@@ -8,7 +8,7 @@ import { fetchUser, loginThunk, useAppDispatch, useStateSelector } from '../../s
 import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
-import { UIAuthozationModalInput } from './UI/UIAuthozationModalInput';
+import { UIInput } from '../UI/UIInput';
 
 export const AuthozationModalLoginForm = () => {
 	const [loginFormState, setLoginFormState] =
@@ -56,7 +56,7 @@ export const AuthozationModalLoginForm = () => {
 				{loginFormConfig.map((conf) => {
 					const { name, ...rest } = conf;
 					return (
-						<UIAuthozationModalInput
+						<UIInput
 							{...rest}
 							onChange={onChange}
 							key={name}
@@ -64,7 +64,7 @@ export const AuthozationModalLoginForm = () => {
 							value={loginFormState[name]}
 							isLoading={loginStatus === 'loading'}
 							isInvalid={!!errorMessage}
-						></UIAuthozationModalInput>
+						/>
 					);
 				})}
 				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>

@@ -3,12 +3,12 @@ import { fetchUser, registerThunk, useAppDispatch, useStateSelector } from '../.
 import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
-import { UIAuthozationModalInput } from './UI/UIAuthozationModalInput';
 import {
 	registerFormConfig,
 	registerFormInitialState,
 	RegisterFormValue,
 } from '../../logic/registerFormConfig';
+import { UIInput } from '../UI/UIInput';
 
 export const AuthorizationModalRegisterForm = () => {
 	const [registerFormState, setRegisterFormState] = useState<RegisterFormValue>(
@@ -68,7 +68,7 @@ export const AuthorizationModalRegisterForm = () => {
 				{registerFormConfig.map((conf) => {
 					const { name, ...rest } = conf;
 					return (
-						<UIAuthozationModalInput
+						<UIInput
 							{...rest}
 							onChange={onChange}
 							key={name}
@@ -79,7 +79,7 @@ export const AuthorizationModalRegisterForm = () => {
 						/>
 					);
 				})}
-				<UIAuthozationModalInput
+				<UIInput
 					name='avatarFile'
 					isLoading={loginStatus === 'loading'}
 					isInvalid={!!errorMessage}

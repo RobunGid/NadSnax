@@ -22,7 +22,7 @@ export const CartOrderInfo = ({ pickupPoint, setPickupPoint }: CartOrderInfoProp
 
 	const formattedFullName = `${user && user.firstName} ${user && user.lastName}`;
 
-	const handleChangePickupPointInput: ChangeEventHandler<HTMLInputElement> = (
+	const handleChangePickupPointInput: ChangeEventHandler<HTMLSelectElement> = (
 		event
 	) => {
 		setPickupPoint(event.target.value);
