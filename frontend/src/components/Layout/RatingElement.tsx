@@ -16,7 +16,6 @@ const ratingIcons = {
 
 export const RatingElement = ({ rating, className, size }: RatingElementProps) => {
 	const fullRating = getRatingStar(rating);
-	console.log(rating, fullRating);
 
 	return (
 		<div className={className}>

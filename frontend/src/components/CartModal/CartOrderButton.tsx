@@ -32,7 +32,6 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 		);
 
 		if (response.request.status === 201) {
-			console.log(cartItems, response);
 			dispatch(clearCart());
 			changeSuccessOrder(true);
 		}

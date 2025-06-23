@@ -30,8 +30,6 @@ export const AuthorizationModalRegisterForm = () => {
 	const loginStatus = useStateSelector((state) => state.auth.status);
 	const loginError = useStateSelector((state) => state.auth.error);
 
-	console.log(loginError);
-
 	const errorMessage =
 		loginError.message !== 'Rejected' &&
 		loginError.data?.message &&
