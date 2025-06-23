@@ -16,6 +16,9 @@ interface ProductDetailsProps {
 export const ProductDetails = ({ item, simillarItems }: ProductDetailsProps) => {
 	const user = useStateSelector((state) => state.user.user);
 	const hasOwnReview = item.reviews.find((review) => review.userId === user?.id);
+	const simillarItemsWithoutMain = simillarItems.filter(
+		(simillarItem) => simillarItem.id != item.id
+	);
 
 	return (
 		<UIProductDetails>
@@ -26,7 +29,7 @@ export const ProductDetails = ({ item, simillarItems }: ProductDetailsProps) => 
 			<UIProductDetailsContainer>
 				{!hasOwnReview && user && <ProductDetailsReviewForm itemId={item.id} />}
 				<ProductDetailsReviews reviews={item.reviews} userId={user?.id} />
-				<ProductDetailsSimillarItems itemList={simillarItems} />
+				<ProductDetailsSimillarItems itemList={simillarItemsWithoutMain} />
 			</UIProductDetailsContainer>
 		</UIProductDetails>
 	);
