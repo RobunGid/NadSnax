@@ -18,9 +18,7 @@ export const UIProductItemImage = ({
 		<img
 			src={imageURL}
 			alt={`${label} image`}
-			className={
-				(clsx('object-cover w-[240px] h-[240px] rounded-md shadow-lg'), className)
-			}
+			className={clsx('object-cover shadow-lg', className)}
 			onError={onError}
 		/>
 	);
