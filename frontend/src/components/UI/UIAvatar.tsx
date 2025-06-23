@@ -10,9 +10,14 @@ interface UIAvatarProps {
 export const UIAvatar = ({ avatarUrl, username, className }: UIAvatarProps) => {
 	const [error, setError] = useState<boolean>(false);
 	return !avatarUrl || error ? (
-		<div className={clsx('rounded-full bg-gray-300 overflow-hidden', className)}>
+		<div
+			className={clsx(
+				'rounded-full bg-gray-300 overflow-hidden min-w-12 min-h-12',
+				className
+			)}
+		>
 			<svg
-				className='text-gray-400 block'
+				className='text-gray-400 block w-full h-full'
 				fill='currentColor'
 				viewBox='2 2 16 16'
 				xmlns='http://www.w3.org/2000/svg'
@@ -27,7 +32,7 @@ export const UIAvatar = ({ avatarUrl, username, className }: UIAvatarProps) => {
 	) : (
 		<img
 			alt={`${username} Avatar`}
-			className={className}
+			className={clsx(className, 'min-h-12 min-w-12 object-cover')}
 			src={`${avatarUrl}?_=${Date.now()}`}
 			onError={() => setError(true)}
 		/>

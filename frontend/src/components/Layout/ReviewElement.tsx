@@ -49,14 +49,19 @@ export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 					title='Delete this review'
 				/>
 			)}
-			<div className='flex flex-row items-center gap-4'>
+			<div className='flex flex-row gap-x-4'>
 				<UIAvatar
 					username={review.user.username}
 					avatarUrl={review.user.avatarUrl}
 					className='w-16 h-16 rounded-full '
 				/>
-				{review.user.firstName} {review.user.lastName}
-				<RatingElement rating={review.rating} className='flex text-yellow-400' />
+				<div className='flex flex-col gap-2'>
+					{review.user.firstName} {review.user.lastName}
+					<RatingElement
+						rating={review.rating}
+						className='flex text-yellow-400'
+					/>
+				</div>
 			</div>
 			<div>{review.text}</div>
 			<div className='dark:text-gray-500 text-sm'>{createdAt}</div>

@@ -21,7 +21,7 @@ export const getRatingStar = (ratingCount: number | null): FullRating => {
 
 	const halfStar: RatingType = Math.round(ratingCount % 1)
 		? RatingType.Half
-		: RatingType.Half;
+		: RatingType.Empty;
 
 	const fullAndHalfStars = fullStars.concat(halfStar);
 
