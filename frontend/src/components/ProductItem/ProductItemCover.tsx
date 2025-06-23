@@ -3,35 +3,33 @@ import { ProductItemImage } from './ProductItemImage';
 import { UIProductItemAddToFavorite } from './UI/UIProductItemAddToFavorite';
 import { UIProductItemBadges } from './UI/UIProductItemBadges';
 import { UIProductItemCover } from './UI/UIProductItemCover';
+import { Item } from '../../types';
 
 interface ProductItemCoverProps {
-	imageURL: string;
-	label: string;
-	isBestseller: boolean;
-	isSecretbox: boolean;
-	isFavorite: boolean;
+	item: Item;
 	onAddClick: MouseEventHandler<HTMLDivElement>;
 	onDeleteClick: MouseEventHandler<HTMLDivElement>;
+	imageURL: string;
 }
 
 export const ProductItemCover = ({
-	imageURL,
-	label,
-	isBestseller,
-	isSecretbox,
-	isFavorite,
+	item,
 	onAddClick,
 	onDeleteClick,
+	imageURL,
 }: ProductItemCoverProps) => {
 	return (
 		<UIProductItemCover>
-			<ProductItemImage imageURL={imageURL} label={label} />
+			<ProductItemImage imageURL={imageURL} label={item.label} />
 			<UIProductItemAddToFavorite
-				isFavorite={isFavorite}
+				isFavorite={item.favoriteId ? true : false}
 				onAddClick={onAddClick}
 				onDeleteClick={onDeleteClick}
 			/>
-			<UIProductItemBadges isBestseller={isBestseller} isSecretbox={isSecretbox} />
+			<UIProductItemBadges
+				isBestseller={item.isBestseller}
+				isSecretbox={item.isSecretbox}
+			/>
 		</UIProductItemCover>
 	);
 };

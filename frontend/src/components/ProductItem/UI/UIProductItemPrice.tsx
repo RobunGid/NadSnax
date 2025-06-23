@@ -9,8 +9,6 @@ export const UIProductItemPrice = ({
 	oldPrice,
 	discount,
 }: UIProductItemPriceProps) => {
-	console.log(discount);
-
 	return (
 		<div className='flex gap-x-1.5 items-center'>
 			{oldPrice ? (

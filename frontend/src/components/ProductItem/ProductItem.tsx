@@ -15,6 +15,7 @@ import { UIProductItemRating } from './UI/UIProductItemRating';
 import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
+import { MouseEventHandler } from 'react';
 
 type ProductItemProps = {
 	item: Item;
@@ -38,7 +39,16 @@ export const ProductItem = ({
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
-	const imageURL = getMainImageURL(item);
+	const handleAddToFavorite: MouseEventHandler<HTMLDivElement> = (event) => {
+		event.preventDefault();
+		dispatch(addFavoriteThunk({ itemId: item.id }));
+	};
+
+	const handleDeleteFromFavorite: MouseEventHandler<HTMLDivElement> = (event) => {
+		event.preventDefault();
+		if (item.favoriteId)
+			dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
+	};
 
 	const formattedPrice = formatPrice(item.price);
 
@@ -50,24 +60,17 @@ export const ProductItem = ({
 		? Math.floor(((item.oldPrice - item.price) / item.oldPrice) * 100)
 		: 0;
 
-	const formattedAverageRating = item.averageRating?.toFixed(1);
+	const imageURL = getMainImageURL(item);
+
+	const formattedAverageRating = item.averageRating.toFixed(1);
+
 	return (
 		<UIProductItem pageLink={pageLink} className={className} isSmall={hideInfo}>
 			<ProductItemCover
 				imageURL={imageURL}
-				isBestseller={item.isBestseller}
-				isSecretbox={item.isSecretbox}
-				label={item.label}
-				isFavorite={!!item.favoriteId}
-				onAddClick={(event) => {
-					event.preventDefault();
-					dispatch(addFavoriteThunk({ itemId: item.id }));
-				}}
-				onDeleteClick={(event) => {
-					event.preventDefault();
-					if (item.favoriteId)
-						dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
-				}}
+				item={item}
+				onAddClick={handleAddToFavorite}
+				onDeleteClick={handleDeleteFromFavorite}
 			/>
 			{!hideAddButton && (
 				<ProductItemQuantityChooser
@@ -88,7 +91,7 @@ export const ProductItem = ({
 					<UIProductItemLabel label={item.label} />
 					<UIProductItemRating
 						reviewCount={item.ratingCount}
-						averageRating={formattedAverageRating || null}
+						averageRating={formattedAverageRating}
 					/>
 				</div>
 			)}

@@ -39,8 +39,8 @@ export type Item = {
 	type?: Omit<ItemType, 'category'>;
 	typeId?: string;
 	category: Omit<ItemCategory, 'types'>;
-	averageRating: number | null;
-	ratingCount: number | null;
+	averageRating: number;
+	ratingCount: number;
 	images: Image[];
 	reviews: Review[];
 	favoriteId?: string;
