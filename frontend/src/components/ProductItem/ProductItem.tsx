@@ -74,18 +74,17 @@ export const ProductItem = ({
 				/>
 			)}
 			{!hideInfo && (
-				<>
+				<div className='flex flex-col gap-1 p-2'>
 					<UIProductItemPrice price={price} oldPrice={oldPrice} />
 					<UIProductItemLabel
 						description={item.description}
 						label={item.label}
-						isBestseller={item.isBestseller}
 					/>
 					<UIProductItemRating
 						ratingCount={item.ratingCount}
 						averageRating={item.averageRating}
 					/>
-				</>
+				</div>
 			)}
 		</UIProductItem>
 	);

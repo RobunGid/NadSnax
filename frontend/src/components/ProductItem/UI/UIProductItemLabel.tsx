@@ -1,16 +1,9 @@
-import { GiStarFormation } from 'react-icons/gi';
-
 interface UIProductItemLabelProps {
 	description: string;
 	label: string;
-	isBestseller: boolean;
 }
 
-export const UIProductItemLabel = ({
-	description,
-	label,
-	isBestseller,
-}: UIProductItemLabelProps) => {
+export const UIProductItemLabel = ({ description, label }: UIProductItemLabelProps) => {
 	return (
 		<>
 			<div
@@ -21,12 +14,6 @@ export const UIProductItemLabel = ({
 			</div>
 			<div className='flex text-xs space-x-2 dark:text-gray-600 items-center h-5'>
 				<div>{label}</div>
-				{isBestseller && (
-					<GiStarFormation
-						className='text-amber-400'
-						title="Customer's choice - Bestseller"
-					/>
-				)}
 			</div>
 		</>
 	);

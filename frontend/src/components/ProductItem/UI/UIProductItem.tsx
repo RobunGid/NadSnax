@@ -20,7 +20,7 @@ export const UIProductItem = ({
 		<Link
 			to={pageLink}
 			className={clsx(
-				'shadow-xl p-2 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
+				'shadow-xl p-3 w-60 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0',
 				styles['product-item'],
 				isSmall ? 'h-60' : 'h-[360px]',
 				className
