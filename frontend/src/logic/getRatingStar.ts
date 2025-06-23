@@ -1,5 +1,9 @@
-type Rating = 'empty' | 'half' | 'full';
-export type FullRating = [Rating, Rating, Rating, Rating, Rating];
+export enum RatingType {
+	Empty = 'empty',
+	Half = 'half',
+	Full = 'full',
+}
+export type FullRating = [RatingType, RatingType, RatingType, RatingType, RatingType];
 
 export const getRatingStar = (ratingCount: number | null): FullRating => {
 	if (ratingCount == null || ratingCount <= 0) {
@@ -10,17 +14,19 @@ export const getRatingStar = (ratingCount: number | null): FullRating => {
 		return Array.from({ length: 5 }, () => 'full') as FullRating;
 	}
 
-	const fullStars: Rating[] = Array.from(
+	const fullStars: RatingType[] = Array.from(
 		{ length: Math.round(ratingCount) },
-		() => 'full'
+		() => RatingType.Full
 	);
 
-	const halfStar: Rating = Math.round(ratingCount % 1) ? 'half' : 'empty';
+	const halfStar: RatingType = Math.round(ratingCount % 1)
+		? RatingType.Half
+		: RatingType.Half;
 
 	const fullAndHalfStars = fullStars.concat(halfStar);
 
 	const resultStars: FullRating = fullAndHalfStars.concat(
-		Array.from({ length: 5 - fullAndHalfStars.length }, () => 'empty')
+		Array.from({ length: 5 - fullAndHalfStars.length }, () => RatingType.Empty)
 	) as FullRating;
 
 	return resultStars;

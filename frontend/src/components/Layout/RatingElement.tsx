@@ -1,6 +1,5 @@
-import { getRatingStar } from '../../logic/getRatingStar';
-import clsx from 'clsx';
 import { GoStar, GoStarFill } from 'react-icons/go';
+import { getRatingStar, RatingType } from '../../logic/getRatingStar';
 import { IoMdStarHalf } from 'react-icons/io';
 
 interface RatingElementProps {
@@ -9,20 +8,20 @@ interface RatingElementProps {
 	size?: string | number;
 }
 
+const ratingIcons = {
+	[RatingType.Full]: GoStarFill,
+	[RatingType.Half]: IoMdStarHalf,
+	[RatingType.Empty]: GoStar,
+};
+
 export const RatingElement = ({ rating, className, size }: RatingElementProps) => {
-	const ratingCount = getRatingStar(rating);
+	const fullRating = getRatingStar(rating);
 
 	return (
-		<div className={clsx(className)}>
-			{ratingCount.map((rating, index) => {
-				switch (rating) {
-					case 'full':
-						return <GoStarFill key={index} size={size} />;
-					case 'half':
-						return <IoMdStarHalf key={index} size={size} />;
-					case 'empty':
-						return <GoStar key={index} size={size} />;
-				}
+		<div className={className}>
+			{fullRating.map((rating, index) => {
+				const Icon = ratingIcons[rating];
+				return <Icon size={size} key={index} />;
 			})}
 		</div>
 	);
