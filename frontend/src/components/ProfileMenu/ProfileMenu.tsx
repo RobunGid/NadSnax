@@ -20,6 +20,8 @@ export const ProfileMenu = () => {
 		navigate('/products');
 	};
 
+	const hasAdminPanel = user && user.role == 'admin';
+
 	return (
 		user && (
 			<div className='m-2'>
@@ -45,6 +47,7 @@ export const ProfileMenu = () => {
 					</li>
 
 					<ProfileMenuItem.SignOut onClick={handleSignout} />
+					{hasAdminPanel && <ProfileMenuItem.AdminPanel />}
 				</UIProfileMenu>
 			</div>
 		)

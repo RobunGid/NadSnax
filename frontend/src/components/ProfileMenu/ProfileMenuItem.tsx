@@ -1,5 +1,6 @@
 import { MouseEventHandler } from 'react';
 import { UIProfileMenuItem } from './UI/UIProfileMenuItem';
+import { GrUserAdmin } from 'react-icons/gr';
 
 interface SignOutProps {
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
@@ -24,6 +25,12 @@ export const ProfileMenuItem = {
 	SignOut: ({ onClick }: SignOutProps) => (
 		<UIProfileMenuItem to='/account/signout' type='secondary' onClick={onClick}>
 			Sign out
+		</UIProfileMenuItem>
+	),
+	AdminPanel: () => (
+		<UIProfileMenuItem to='/admin-panel' type='admin'>
+			<GrUserAdmin />
+			Admin panel
 		</UIProfileMenuItem>
 	),
 };

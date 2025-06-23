@@ -6,7 +6,7 @@ interface UIProfileMenuItemProps {
 	to: string;
 	children: ReactNode;
 	className?: string;
-	type?: 'primary' | 'secondary';
+	type?: 'primary' | 'secondary' | 'admin';
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
@@ -21,11 +21,13 @@ export const UIProfileMenuItem = ({
 		<li>
 			<Link
 				className={clsx(
-					'block px-4',
+					'flex gap-2 px-4',
 					(!type || type === 'primary') &&
 						'py-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white',
 					type === 'secondary' &&
 						'py-1 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-650 hover:bg-gray-250',
+					type === 'admin' &&
+						'py-3 px-4 font-semibold text-indigo-400 hover:bg-red-100 dark:hover:bg-gray-600 dark:hover:text-white',
 					className
 				)}
 				to={to}
