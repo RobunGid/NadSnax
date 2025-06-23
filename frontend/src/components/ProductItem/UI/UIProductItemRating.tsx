@@ -1,26 +1,27 @@
-import { RatingElement } from '../../Layout/RatingElement';
+import { FaCommentAlt } from 'react-icons/fa';
+import { GoStarFill } from 'react-icons/go';
 
 interface UIProductItemRatingProps {
-	ratingCount: number | null;
-	averageRating: number | null;
+	reviewCount: number | null;
+	averageRating: string | null;
 }
 
 export const UIProductItemRating = ({
-	ratingCount,
+	reviewCount,
 	averageRating,
 }: UIProductItemRatingProps) => {
 	return (
-		<div className='flex justify-start items-center gap-x-1'>
-			<RatingElement
-				rating={averageRating}
-				size='16'
-				className='flex text-yellow-400'
-			/>
-			<span className='text-gray-400 text-[0.75rem]'>{averageRating || 0}</span>
-			<span className='w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400'></span>
-			<span className='text-gray-500 text-[0.75rem]'>
-				{ratingCount} {ratingCount ? 'reviews' : 'No reviews'}
-			</span>
+		<div className='flex justify-start items-center gap-x-3'>
+			<div className='flex items-center gap-x-1'>
+				<GoStarFill size='16' className='text-yellow-600' />
+				<span className='text-gray-400 text-[0.75rem]'>{averageRating || 0}</span>
+			</div>
+			<div className='flex items-center gap-x-1.5'>
+				<FaCommentAlt size='12' className='text-gray-500' />
+				<span className='text-gray-500 text-[0.75rem]'>
+					{reviewCount} {reviewCount ? 'reviews' : 'No reviews'}
+				</span>
+			</div>
 		</div>
 	);
 };

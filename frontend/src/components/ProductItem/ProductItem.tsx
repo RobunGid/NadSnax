@@ -40,12 +40,17 @@ export const ProductItem = ({
 
 	const imageURL = getMainImageURL(item);
 
-	const price = formatPrice(item.price);
+	const formattedPrice = formatPrice(item.price);
 
-	const oldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
+	const formattedOldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
 
 	const pageLink = `/products/page${item.pageLink}`;
 
+	const discount = item.oldPrice
+		? Math.floor(((item.oldPrice - item.price) / item.oldPrice) * 100)
+		: 0;
+
+	const formattedAverageRating = item.averageRating?.toFixed(1);
 	return (
 		<UIProductItem pageLink={pageLink} className={className} isSmall={hideInfo}>
 			<ProductItemCover
@@ -74,15 +79,16 @@ export const ProductItem = ({
 				/>
 			)}
 			{!hideInfo && (
-				<div className='flex flex-col gap-1 p-2'>
-					<UIProductItemPrice price={price} oldPrice={oldPrice} />
-					<UIProductItemLabel
-						description={item.description}
-						label={item.label}
+				<div className='px-4 mt-2'>
+					<UIProductItemPrice
+						price={formattedPrice}
+						oldPrice={formattedOldPrice}
+						discount={discount}
 					/>
+					<UIProductItemLabel label={item.label} />
 					<UIProductItemRating
-						ratingCount={item.ratingCount}
-						averageRating={item.averageRating}
+						reviewCount={item.ratingCount}
+						averageRating={formattedAverageRating || null}
 					/>
 				</div>
 			)}
