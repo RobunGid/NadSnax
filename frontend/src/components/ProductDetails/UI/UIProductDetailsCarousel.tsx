@@ -5,7 +5,7 @@ import { forwardRef, MutableRefObject, ReactNode, UIEventHandler } from 'react';
 interface UIProductDetailsCarouselProps {
 	children: ReactNode;
 	ref: MutableRefObject<HTMLDivElement | null>;
-	onScroll: UIEventHandler<HTMLDivElement>;
+	onScroll?: UIEventHandler<HTMLDivElement>;
 }
 
 export const UIProductDetailsCarousel = forwardRef<
