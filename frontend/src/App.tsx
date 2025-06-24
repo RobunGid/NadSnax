@@ -12,6 +12,7 @@ import { getAppTheme } from './logic/getAppTheme';
 import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
+import { AdminPanelPage } from './components/Pages/AdminPanelPage';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -52,6 +53,11 @@ export const App = () => {
 					<Route element={<PrivateRoutes />}>
 						<Route path='/account' element={<AccountPage />} />
 						<Route path='/account/:section' element={<AccountPage />} />
+						<Route path='/admin-panel' element={<AdminPanelPage />} />
+						<Route
+							path='/admin-panel/:section'
+							element={<AdminPanelPage />}
+						/>
 					</Route>
 
 					<Route path='/home' element={<HomePage />} />

@@ -135,8 +135,10 @@ export type Section =
 	| 'help'
 	| 'favorites';
 
+export type AdminPanelSection = 'users' | 'items' | 'reviews' | 'orders' | 'statistics';
+
 export const predicateSection = (value?: string): value is Section => {
-	if (
+	return !(
 		value &&
 		![
 			'profile',
@@ -148,9 +150,13 @@ export const predicateSection = (value?: string): value is Section => {
 			'help',
 			'favorites',
 		].includes(value)
-	) {
-		return false;
-	} else {
-		return true;
-	}
+	);
+};
+
+export const predicateAdminPanelSection = (
+	value?: string
+): value is AdminPanelSection => {
+	return !(
+		value && !['users', 'items', 'reviews', 'orders', 'statistics'].includes(value)
+	);
 };
