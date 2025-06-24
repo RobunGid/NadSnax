@@ -6,8 +6,14 @@ import { LiaLuggageCartSolid } from 'react-icons/lia';
 import { GrContactInfo } from 'react-icons/gr';
 
 export const AdminPanelMenuItem = {
+	Statistics: () => (
+		<UIAdminPanelMenuItem to='/admin-panel/statistics'>
+			<GrContactInfo />
+			Statistics
+		</UIAdminPanelMenuItem>
+	),
 	Users: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/users' isFirst>
+		<UIAdminPanelMenuItem to='/admin-panel/users'>
 			<FaUsers />
 			Users
 		</UIAdminPanelMenuItem>
@@ -28,12 +34,6 @@ export const AdminPanelMenuItem = {
 		<UIAdminPanelMenuItem to='/admin-panel/orders'>
 			<LiaLuggageCartSolid />
 			Orders
-		</UIAdminPanelMenuItem>
-	),
-	Statistics: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/statistics' isLast>
-			<GrContactInfo />
-			Statistics
 		</UIAdminPanelMenuItem>
 	),
 };
