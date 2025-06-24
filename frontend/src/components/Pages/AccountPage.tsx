@@ -18,7 +18,7 @@ export const AccountPage = () => {
 
 	return (
 		<UIAccountPageContainer>
-			<AccountMenu />
+			{predicateSection(section) && <AccountMenu />}
 			{predicateSection(section) && <AccountSection section={section} />}
 		</UIAccountPageContainer>
 	);

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router';
 import { predicateAdminPanelSection } from '../../types';
 import { useEffect } from 'react';
 import { UIAdminPanelPageContainer } from './UI/UIAdminPanelPageContainer';
+import { AdminPanelMenu } from '../AdminPanel/AdminPanelMenu';
 
 export const AdminPanelPage = () => {
 	const { section } = useParams();
@@ -14,5 +15,9 @@ export const AdminPanelPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [section]);
 
-	return <UIAdminPanelPageContainer>123</UIAdminPanelPageContainer>;
+	return (
+		<UIAdminPanelPageContainer>
+			{predicateAdminPanelSection(section) && <AdminPanelMenu />}
+		</UIAdminPanelPageContainer>
+	);
 };
