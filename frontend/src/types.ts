@@ -135,7 +135,12 @@ export type Section =
 	| 'help'
 	| 'favorites';
 
-export type AdminPanelSection = 'users' | 'items' | 'reviews' | 'orders' | 'statistics';
+export type AdminPanelSectionType =
+	| 'statistics'
+	| 'users'
+	| 'items'
+	| 'reviews'
+	| 'orders';
 
 export const predicateSection = (value?: string): value is Section => {
 	return !(
@@ -155,8 +160,8 @@ export const predicateSection = (value?: string): value is Section => {
 
 export const predicateAdminPanelSection = (
 	value?: string
-): value is AdminPanelSection => {
+): value is AdminPanelSectionType => {
 	return !(
-		value && !['users', 'items', 'reviews', 'orders', 'statistics'].includes(value)
+		value && !['statistics', 'users', 'items', 'reviews', 'orders'].includes(value)
 	);
 };

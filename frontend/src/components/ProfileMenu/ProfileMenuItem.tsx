@@ -28,7 +28,7 @@ export const ProfileMenuItem = {
 		</UIProfileMenuItem>
 	),
 	AdminPanel: () => (
-		<UIProfileMenuItem to='/admin-panel' type='admin'>
+		<UIProfileMenuItem to='/admin-panel/statistics' type='admin'>
 			<GrUserAdmin />
 			Admin panel
 		</UIProfileMenuItem>

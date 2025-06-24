@@ -3,6 +3,7 @@ import { predicateAdminPanelSection } from '../../types';
 import { useEffect } from 'react';
 import { UIAdminPanelPageContainer } from './UI/UIAdminPanelPageContainer';
 import { AdminPanelMenu } from '../AdminPanel/AdminPanelMenu';
+import { AdminPanelSection } from '../AdminPanel/AdminPanelSection';
 
 export const AdminPanelPage = () => {
 	const { section } = useParams();
@@ -18,6 +19,9 @@ export const AdminPanelPage = () => {
 	return (
 		<UIAdminPanelPageContainer>
 			{predicateAdminPanelSection(section) && <AdminPanelMenu />}
+			{predicateAdminPanelSection(section) && (
+				<AdminPanelSection section={section} />
+			)}
 		</UIAdminPanelPageContainer>
 	);
 };

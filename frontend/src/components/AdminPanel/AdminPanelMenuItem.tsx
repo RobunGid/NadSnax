@@ -7,31 +7,31 @@ import { GrContactInfo } from 'react-icons/gr';
 
 export const AdminPanelMenuItem = {
 	Users: () => (
-		<UIAdminPanelMenuItem to='/admin-page/users' isFirst>
+		<UIAdminPanelMenuItem to='/admin-panel/users' isFirst>
 			<FaUsers />
 			Users
 		</UIAdminPanelMenuItem>
 	),
 	Items: () => (
-		<UIAdminPanelMenuItem to='/admin-page/items'>
+		<UIAdminPanelMenuItem to='/admin-panel/items'>
 			<AiFillProduct />
 			Items
 		</UIAdminPanelMenuItem>
 	),
 	Reviews: () => (
-		<UIAdminPanelMenuItem to='/admin-page/reviews'>
+		<UIAdminPanelMenuItem to='/admin-panel/reviews'>
 			<LuMessagesSquare />
 			Reviews
 		</UIAdminPanelMenuItem>
 	),
 	Orders: () => (
-		<UIAdminPanelMenuItem to='/admin-page/orders'>
+		<UIAdminPanelMenuItem to='/admin-panel/orders'>
 			<LiaLuggageCartSolid />
 			Orders
 		</UIAdminPanelMenuItem>
 	),
 	Statistics: () => (
-		<UIAdminPanelMenuItem to='/admin-page/statistics' isLast>
+		<UIAdminPanelMenuItem to='/admin-panel/statistics' isLast>
 			<GrContactInfo />
 			Statistics
 		</UIAdminPanelMenuItem>
