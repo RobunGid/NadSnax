@@ -1,4 +1,5 @@
 import { Role } from '../types';
+import { JSX } from 'react';
 
 type FormConfig = {
 	name: keyof RegisterFormValue;

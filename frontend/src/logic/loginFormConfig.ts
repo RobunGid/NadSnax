@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 type FormConfig = {
 	name: keyof LoginFormValue;
 	validate?: (error: LoginFormValue) => string;

@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { BiUser } from 'react-icons/bi';
+import { JSX } from 'react';
+
 type UINavbarLoginButtonProps = {
 	children: ReactNode;
 	className?: string;

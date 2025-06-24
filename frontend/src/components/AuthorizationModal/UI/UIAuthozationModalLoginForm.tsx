@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { JSX } from 'react';
 
 type UILoginFormProps = {
 	children?: ReactNode;
