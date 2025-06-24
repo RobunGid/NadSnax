@@ -6,7 +6,7 @@ import { ProductItem } from '../../ProductItem/ProductItem';
 
 export const AccountReviews = () => {
 	const reviews = useStateSelector((state) => state.review.reviews);
-	const items = useStateSelector((state) => state.item.itemList);
+	const items = useStateSelector((state) => state.item.items);
 
 	const dispatch = useAppDispatch();
 	useEffect(() => {

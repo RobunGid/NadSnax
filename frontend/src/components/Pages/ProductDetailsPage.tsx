@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk } from '../../store/itemSlice';
 import { useActionCreators, useStateSelector } from '../../store';
@@ -14,9 +14,7 @@ export const ProductDetailsPage = () => {
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
-	const items = useStateSelector((state) => state.item.itemList);
-
-	const status = useStateSelector((state) => state.item.status);
+	const { items, status } = useStateSelector((state) => state.item);
 
 	const fetchedSimillars = useRef(false);
 
@@ -34,7 +32,10 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_page_link, accessToken]);
 
-	const item = items.find((item) => item.pageLink == `/${product_page_link}`);
+	const item = useMemo(
+		() => items.find((item) => item.pageLink == `/${product_page_link}`),
+		[items, product_page_link]
+	);
 
 	useEffect(() => {
 		if (!item?.id || fetchedSimillars.current) return;
@@ -53,11 +54,11 @@ export const ProductDetailsPage = () => {
 
 	if (status === 'loading') return <UIproductDetailsLoader />;
 
-	if (status === 'error') return <div>Sorry, product not found</div>;
+	if (status === 'error') return <div>Sorry, item not found</div>;
 
-	if (status === 'success' && item && item.itemDetails) {
-		const fullItem = { ...item, itemDetails: item.itemDetails };
+	if (!item || !item.itemDetails) return null;
 
-		return <ProductDetails item={fullItem} simillarItems={items} />;
-	}
+	const fullItem = { ...item, itemDetails: item.itemDetails };
+
+	return <ProductDetails item={fullItem} simillarItems={items} />;
 };

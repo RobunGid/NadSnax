@@ -8,7 +8,7 @@ import { ProductsLoading } from '../Products/ProductsLoading';
 import { UIProductsNoResults } from '../UI/UIProductsNoResults';
 
 export const ProductsPage = () => {
-	const items = useStateSelector((state) => state.item.itemList);
+	const items = useStateSelector((state) => state.item.items);
 	const status = useStateSelector((state) => state.item.status);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 

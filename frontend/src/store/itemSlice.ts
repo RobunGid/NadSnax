@@ -5,12 +5,12 @@ import { RootStore, Status } from './types';
 import { Axios } from '../api';
 
 type ItemsState = {
-	itemList: Item[];
+	items: Item[];
 	status: Status;
 };
 
 const initialState: ItemsState = {
-	itemList: [],
+	items: [],
 	status: 'init',
 };
 
@@ -135,21 +135,19 @@ const slice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItemsThunk.pending, (state) => {
-			state.itemList = [];
+			state.items = [];
 			state.status = 'loading';
 		});
 		builder.addCase(fetchItemsThunk.fulfilled, (state, action) => {
-			state.itemList = action.payload;
+			state.items = action.payload;
 			state.status = 'success';
 		});
 		builder.addCase(addFavoriteThunk.fulfilled, (state, action) => {
-			const item = state.itemList.find((item) => item.id === action.payload.itemId);
+			const item = state.items.find((item) => item.id === action.payload.itemId);
 			if (item) item.favoriteId = action.payload.favoriteId;
 		});
 		builder.addCase(deleteFavoriteThunk.fulfilled, (state, action) => {
-			const item = state.itemList.find(
-				(item) => item.favoriteId === action.payload
-			);
+			const item = state.items.find((item) => item.favoriteId === action.payload);
 			if (item) item.favoriteId = undefined;
 		});
 	},

@@ -5,7 +5,7 @@ import { UIAccountFavorites } from './UI/UIAccountFavorites';
 import { UIAccountFavoritesNoResults } from './UI/UIAccountFavoritesNoResults';
 
 export const AccountFavorites = () => {
-	const items = useStateSelector((state) => state.item.itemList);
+	const items = useStateSelector((state) => state.item.items);
 	const favoriteItems = items.filter((item) => item.favoriteId);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
