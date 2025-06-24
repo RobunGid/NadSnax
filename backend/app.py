@@ -28,14 +28,17 @@ from datetime import timedelta
 from blocklist import BLOCKLIST
 
 def create_app(db_url = None):
-    logging.basicConfig(level=logging.INFO)
-	
+    
     app = Flask(__name__)
     app.logger.info("App started")
     env = os.getenv('APP_ENV', 'dev')
     env_file = '.env' if env == 'prod' else '.env.local'
     load_dotenv(env_file, override=True)	
  
+    if env == 'prod':
+        logging.basicConfig(level=logging.INFO)
+
+
     migrate = Migrate(app, db)
     jwt = JWTManager(app)	
  
