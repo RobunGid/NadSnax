@@ -92,6 +92,9 @@ class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
         
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        
         include_type = request.args.get("include_type", default='false').lower() == 'true'
         include_category = request.args.get("include_category", default='false').lower() == 'true'
         include_item_details = request.args.get("include_item_details", default='false').lower() == 'true'
@@ -150,6 +153,8 @@ class Items(MethodView):
         
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
+            
+        query = query.offset(page*per_page).limit(per_page)
         
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]

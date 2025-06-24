@@ -18,6 +18,22 @@ class Orders(MethodView):
     @jwt_required()
     @role_required(["admin", "moderator"])
     def get(self):
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        
+        include_user = request.args.get("include_user", default='false').lower() == 'true'
+        include_items = request.args.get("include_items", default='false').lower() == 'true'
+        
+        query = OrderModel.query
+        
+        if include_user:
+            query = query.options(db.joinedload(OrderModel.user))
+        
+        if include_items:
+            query = query.options(db.joinedload(OrderModel.items))
+        
+        query = query.offset(page*per_page).limit(per_page)
+        
         return OrderModel.query.all()
        
     @blp.arguments(OrderSchema)
@@ -25,7 +41,7 @@ class Orders(MethodView):
     @jwt_required()
     def post(self, order_data):
         identity = get_jwt_identity()
-        print(identity)
+        
         order = OrderModel(id=str(uuid4()), user_id=identity, pickup_point=order_data["pickup_point"])
         db.session.add(order)
         db.session.commit()
@@ -55,15 +71,24 @@ class SelfOrders(MethodView):
     @jwt_required()
     def get(self):
         identity = get_jwt_identity()
-        include_user = request.args.get("include_user", type=bool, default=False)
-        include_items = request.args.get("include_items", type=bool, default=False)
-        query = OrderModel.query.filter_by(user_id=identity)
+        
+        include_user = request.args.get("include_user", default='false').lower() == 'true'
+        include_items = request.args.get("include_items", default='false').lower() == 'true'
+        
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        
+        query = OrderModel.query
+        
+        query = query.filter_by(user_id=identity)
         
         if include_user:
             query = query.options(db.joinedload(OrderModel.user))
         
         if include_items:
             query = query.options(db.joinedload(OrderModel.items))
+            
+        query = query.offset(page*per_page).limit(per_page)
             
         orders = query.all()
             

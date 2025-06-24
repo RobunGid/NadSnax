@@ -110,12 +110,17 @@ class Users(MethodView):
         username_filter = request.args.get("username")
         first_name_filter = request.args.get("first_name")
         last_name_filter = request.args.get("last_name")
+        
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
   
         query = UserModel.query
   
         query = query.filter(UserModel.username==username_filter) if username_filter else query
         query = query.filter(UserModel.first_name==last_name_filter) if first_name_filter else query
         query = query.filter(UserModel.last_name==first_name_filter) if last_name_filter else query
+  
+        query = query.offset(per_page*page).limit(per_page)
   
         return query.all()
     
