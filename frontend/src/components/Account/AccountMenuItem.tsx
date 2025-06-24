@@ -60,7 +60,7 @@ export const AccountMenuItem = {
 		</UIAccountMenuItem>
 	),
 	Signout: ({ onClick }: SignoutProps) => (
-		<UIAccountMenuItem to='/account/signout' isLast onClick={onClick}>
+		<UIAccountMenuItem to='/account/signout' onClick={onClick}>
 			<PiSignOut />
 			Signout
 		</UIAccountMenuItem>
