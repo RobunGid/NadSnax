@@ -3,6 +3,7 @@ import { AccountMenu } from '../Account/AccountMenu';
 import { AccountSection } from '../Account/AccountSection';
 import { useEffect } from 'react';
 import { predicateSection } from '../../types';
+import { UIAccountPageContainer } from './UI/UIAccountPageContainer';
 
 export const AccountPage = () => {
 	const { section } = useParams();
@@ -16,9 +17,9 @@ export const AccountPage = () => {
 	}, [section]);
 
 	return (
-		<div className='p-8 flex gap-8 flex-col lg:flex-row'>
+		<UIAccountPageContainer>
 			<AccountMenu />
 			{predicateSection(section) && <AccountSection section={section} />}
-		</div>
+		</UIAccountPageContainer>
 	);
 };
