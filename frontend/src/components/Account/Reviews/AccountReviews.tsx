@@ -1,25 +1,20 @@
 import { useEffect } from 'react';
-import { fetchItemsThunk, useAppDispatch, useStateSelector } from '../../../store';
+import { useAppDispatch, useStateSelector } from '../../../store';
 import { ReviewElement } from '../../Layout/ReviewElement';
 import { fetchSelfReviews } from '../../../store/reviewSlice';
 import { ProductItem } from '../../ProductItem/ProductItem';
 
 export const AccountReviews = () => {
 	const reviews = useStateSelector((state) => state.review.reviews);
-	const items = useStateSelector((state) => state.item.items);
+	const items = reviews.map((review) => review.item);
 
 	const dispatch = useAppDispatch();
+
 	useEffect(() => {
 		dispatch(fetchSelfReviews({ includeUser: true, includeItem: true }));
-		dispatch(
-			fetchItemsThunk({
-				include_category: true,
-				include_images: true,
-				item_ids: reviews.map((review) => review.itemId),
-			})
-		);
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	return (
 		<div className='flex gap-4 flex-wrap justify-center'>
 			{reviews.map((review) => {

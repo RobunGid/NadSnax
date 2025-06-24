@@ -44,7 +44,6 @@ export const fetchSelfReviews = createAsyncThunk<
 			const reviews = response.data;
 
 			const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
-
 			return camelCaseReviews;
 		} catch (error) {
 			if (isAxiosError(error)) {

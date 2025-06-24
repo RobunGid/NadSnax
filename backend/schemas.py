@@ -62,31 +62,14 @@ class TypeSchema(PlainTypeSchema):
         super().__init__(exclude = exclude_fields, **kwargs)
     
 class TypeUpdateSchema(Schema):
-	name = fields.Str(required=True)
-	icon_url = fields.Str(required=True)
-	category_id = fields.Str(required=True)
-	page_link = fields.Str(required=True)
+    name = fields.Str(required=True)
+    icon_url = fields.Str(required=True)
+    category_id = fields.Str(required=True)
+    page_link = fields.Str(required=True)
     
 class UserSchema(PlainUserSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     
-    
-class ReviewSchema(PlainReviewSchema):
-    user_id = fields.Str(required=True)
-    user = fields.Nested(PlainUserSchema(), dump_only=True) 
-    
-    item = fields.Nested(PlainItemSchema(), dump_only=True)
-        
-    def __init__(self, include_item=False, include_user=False, **kwargs):
-        exclude_fields = set()
-        
-        if not include_user:
-            exclude_fields.add("user")
-            
-        if not include_item:
-            exclude_fields.add("item")
-
-        super().__init__(exclude = exclude_fields, **kwargs)
     
     
 class ReviewUpdateSchema(Schema):
@@ -130,13 +113,13 @@ class ItemUpdateSchema(Schema):
     type_id = fields.Str(required=True)
     
 class PlainItemDetailsSchema(Schema):
-	full_label = fields.Str(required=True)
-	full_description = fields.Str()
-	item_id = fields.Str(required=True)
-	ingridients = fields.Str(required=True)
-	supplier = fields.Str(required=True)
-	supplier_link = fields.Str(required=True)
-	nutrition = fields.Str(required=True)
+    full_label = fields.Str(required=True)
+    full_description = fields.Str()
+    item_id = fields.Str(required=True)
+    ingridients = fields.Str(required=True)
+    supplier = fields.Str(required=True)
+    supplier_link = fields.Str(required=True)
+    nutrition = fields.Str(required=True)
  
     
 class PlainItemImageSchema(Schema):
@@ -148,11 +131,28 @@ class PlainItemImageSchema(Schema):
     item_id = fields.Str(required=True)
     url = fields.Str(dump_only=True)
  
+class ReviewSchema(PlainReviewSchema):
+    user_id = fields.Str(required=True)
+    user = fields.Nested(PlainUserSchema(), dump_only=True) 
+    
+    item = fields.Nested('ItemSchema', dump_only=True)
+        
+    def __init__(self, include_item=False, include_user=False, **kwargs):
+        exclude_fields = set()
+        
+        if not include_user:
+            exclude_fields.add("user")
+            
+        if not include_item:
+            exclude_fields.add("item")
+
+        super().__init__(exclude = exclude_fields, **kwargs)
+
 class ItemSchema(PlainItemSchema):
     category = fields.Nested(PlainCategorySchema(), dump_only=True) 
     type = fields.Nested(PlainTypeSchema(), dump_only=True) 
     item_details = fields.Nested(PlainItemDetailsSchema(), dump_only=True)
-    reviews = fields.Nested(ReviewSchema(include_user=True), dump_only=True, many=True)
+    reviews = fields.Nested(lambda: ReviewSchema(include_user=True), dump_only=True, many=True)
     images = fields.Nested(PlainItemImageSchema(), dump_only=True, many=True)
     
     average_rating = fields.Float(dump_only=True)
@@ -178,8 +178,11 @@ class ItemSchema(PlainItemSchema):
         
         if not include_favorite:
             exclude_fields.add("favorite_id")
-
-        super().__init__(exclude = exclude_fields, **kwargs)
+            
+        if "exclude" in kwargs:
+            exclude_fields |= set(kwargs["exclude"])
+            del kwargs["exclude"]
+        super().__init__(exclude=exclude_fields, **kwargs)
     
 class ItemImageSchema(PlainItemImageSchema):
     item = fields.Nested(ItemSchema(), dump_only=True)
@@ -193,10 +196,10 @@ class FavoriteSchema(Schema):
     id = fields.Str(required=True, dump_only=True)
     
 class PlainOrderItemSchema(Schema):
-	id = fields.Str(dump_only=True)
-	item_id = fields.Str(required=True)
-	item = fields.Nested(ItemSchema(), dump_only=True)
-	quantity = fields.Int(required=True)
+    id = fields.Str(dump_only=True)
+    item_id = fields.Str(required=True)
+    item = fields.Nested(ItemSchema(), dump_only=True)
+    quantity = fields.Int(required=True)
     
 class PlainOrderSchema(Schema):
     id = fields.Str(dump_only=True)
