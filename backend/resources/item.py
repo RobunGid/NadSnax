@@ -102,6 +102,8 @@ class Items(MethodView):
         include_images = request.args.get("include_images", default='false').lower() == 'true'
         include_favorite = request.args.get("include_favorite", default='false').lower() == 'true'
         
+        include_reviews_user = request.args.get("include_reviews_user", default='false').lower() == 'true'
+        
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
         bestseller_filter = request.args.get("bestseller", "").lower()
@@ -180,7 +182,9 @@ class Items(MethodView):
             "include_reviews": include_reviews,
             "include_images": include_images,
             "include_favorite": include_favorite,
+            "include_reviews_user": include_reviews_user
         }
+        
         schema = ItemSchema(**params)
             
         dumped_items = schema.dump(items)
