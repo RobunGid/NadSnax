@@ -100,7 +100,7 @@ class Items(MethodView):
         include_item_details = request.args.get("include_item_details", default='false').lower() == 'true'
         include_reviews = request.args.get("include_reviews", default='false').lower() == 'true'
         include_images = request.args.get("include_images", default='false').lower() == 'true'
-        include_favorite = False
+        include_favorite = request.args.get("include_favorite", default='false').lower() == 'true'
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
@@ -154,24 +154,20 @@ class Items(MethodView):
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
             
-        query = query.offset(page*per_page).limit(per_page)
         
-        if auth_header and auth_header.startswith('Bearer '):
+        if auth_header and auth_header.startswith('Bearer ') and include_favorite:
             token = auth_header[7:]
-            try:
-                decoded_token = decode_token(token)
-                identity = decoded_token["sub"]
-                include_favorite = True
-                query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
-                query = query.add_columns(FavoriteModel.id.label("favorite_id"))
-            except SQLAlchemyError:
-                abort(500, message="An error occured while getting the items with favorites")
-                
+            decoded_token = decode_token(token)
+            identity = decoded_token["sub"]
+            query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
+            query = query.add_columns(FavoriteModel.id.label("favorite_id"))
+            query = query.offset(page*per_page).limit(per_page)
             items_favorites = query.all()
             items = [item for item, _ in items_favorites]
             for item, favorite_id in items_favorites:
                 item.favorite_id = favorite_id
         else:
+            query = query.offset(page*per_page).limit(per_page)
             items = query.all()
 
         
@@ -187,7 +183,9 @@ class Items(MethodView):
         }
         schema = ItemSchema(**params)
             
-        return schema.dump(items), 200
+        dumped_items = schema.dump(items)
+        
+        return dumped_items, 200
         
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)

@@ -69,6 +69,7 @@ export interface fetchItemsParams {
 	simillar_id?: string;
 	accessToken?: string;
 	item_ids?: string[];
+	include_favorite?: boolean;
 }
 
 export const fetchItemsThunk = createAsyncThunk<
@@ -91,6 +92,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			is_secretbox,
 			simillar_id,
 			item_ids,
+			include_favorite,
 		},
 		{ rejectWithValue, getState }
 	) => {
@@ -109,6 +111,7 @@ export const fetchItemsThunk = createAsyncThunk<
 				bestseller: is_bestseller,
 				secretbox: is_secretbox,
 				include_reviews,
+				include_favorite,
 				simillar_id,
 				item_ids: item_ids?.join(','),
 			},
@@ -124,7 +127,6 @@ export const fetchItemsThunk = createAsyncThunk<
 		const items = response.data;
 
 		const camelCaseItems: Item[] = camelcaseKeys(items, { deep: true });
-
 		return camelCaseItems;
 	}
 );

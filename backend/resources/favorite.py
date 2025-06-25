@@ -27,13 +27,20 @@ class Favorites(MethodView):
     def post(self, favorite_data):
         identity = get_jwt_identity()
         favorite = FavoriteModel(**favorite_data, id=str(uuid4()), user_id=identity)
-        try:
-            db.session.add(favorite)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500, message="An error occured while inserting the favorite")
-            
+        db.session.add(favorite)
+        db.session.commit()
         return favorite
+
+@blp.route('/favorite/self')
+class SelfFavorite(MethodView):
+    @blp.response(200, FavoriteSchema(many=True))
+    @jwt_required()
+    def get(self):
+        identity = get_jwt_identity()
+        query = FavoriteModel.query
+        query = query.filter_by(user_id=identity)
+        reviews = query.all()
+        return reviews, 200
     
 @blp.route('/favorite/<string:favorite_id>')
 class Favorite(MethodView):

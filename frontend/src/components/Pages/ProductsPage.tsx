@@ -27,6 +27,7 @@ export const ProductsPage = () => {
 		is_bestseller: category === 'best-sellers' ? true : undefined,
 		is_secretbox: category === 'secretboxes' ? true : undefined,
 		accessToken: accessToken,
+		include_favorite: true,
 	};
 
 	useEffect(() => {
