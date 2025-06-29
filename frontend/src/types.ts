@@ -165,3 +165,17 @@ export const predicateAdminPanelSection = (
 		value && !['statistics', 'users', 'items', 'reviews', 'orders'].includes(value)
 	);
 };
+
+export type SiteStatistics = {
+	orderData: {
+		totalOrders: number;
+		processingOrders: number;
+		packingOrders: number;
+		shippingOrders: number;
+		readyOrders: number;
+		successOrders: number;
+		canceledOrders: number;
+		returnedOrders: number;
+		deletedOrders: number;
+	};
+};
