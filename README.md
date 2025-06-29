@@ -57,15 +57,15 @@ _(Strikethrough features are in progress)_
 - Customizible API: Rest API with multiple query parameters
 - Best Sellers Support: Supporting best sellers page
 - Dark Theme dupport: Supporting changing theme between light and dark
-- ~~Multilingual Support: Language selection for international users~~
-- ~~Order History: Access to past orders with re-order functionality~~
-- ~~Favorites: Option to save items for future purchases~~
+- Order History: Access to past orders with re-order functionality~~
+- Favorites: Option to save items for future purchases~~
+- User Profile: Personal data, order history, favorites products, etc.~~
+- Review System: Product reviews and ratings~~
+- User Authentication: Secure login and registration~~
+- User Roles: Different access levels for admins, support, and regular users~~
+- Admin Dashboard: Backend interface for managing products, orders, and users~~
 - ~~Search Functionality: Full-text search, category, and tag-based filtering~~
 - ~~Order Management: View, track, and update order status~~
-- ~~User Profile: Personal data, order history, favorites products, etc.~~
-- ~~Review System: Product reviews and ratings~~
+- ~~Multilingual Support: Language selection for international users~~
 - ~~Shipping Integration: Real-time shipping rates and tracking~~
 - ~~Promo Codes/Discounts: Coupon functionality and discounts~~
-- ~~User Authentication: Secure login and registration~~
-- ~~User Roles: Different access levels for admins, support, and regular users~~
-- ~~Admin Dashboard: Backend interface for managing products, orders, and users~~
