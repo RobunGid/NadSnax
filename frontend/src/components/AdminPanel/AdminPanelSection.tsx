@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { AdminPanelSectionType } from '../../types';
 import { UIAdminSectionContainer } from './UI/UIAdminSectionContainer';
+import { AdminStatistics } from './Statistics/AdminStatistics';
 
 interface AdminPanelSectionProps {
 	section: AdminPanelSectionType;
@@ -12,7 +13,7 @@ export const AdminPanelSection = ({ section }: AdminPanelSectionProps) => {
 		users: <></>,
 		orders: <></>,
 		reviews: <></>,
-		statistics: <></>,
+		statistics: <AdminStatistics />,
 	};
 
 	return <UIAdminSectionContainer>{sections[section]}</UIAdminSectionContainer>;
