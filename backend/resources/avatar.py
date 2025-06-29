@@ -17,8 +17,6 @@ class Avatar(MethodView):
 		avatars = [f for f in os.listdir(app.config['AVATAR_UPLOAD_FOLDER']) if os.path.isfile(os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], f))]
 		return {"avatars": avatars}
 
-
-
 @blp.route('/avatar/<string:avatar_name>')
 class Avatars(MethodView):
 	def get(self, avatar_name):
