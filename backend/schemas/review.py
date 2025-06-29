@@ -15,7 +15,7 @@ class ReviewSchema(PlainReviewSchema):
     user_id = fields.Str(required=True)
     
     user = fields.Nested('schemas.user.PlainUserSchema', dump_only=True) 
-    item = fields.Nested('schemas.item.ItemSchema', dump_only=True)
+    item = fields.Nested('schemas.item.FullItemSchema', dump_only=True)
         
     def __init__(self, include_item=False, include_user=False, **kwargs):
         exclude_fields = set()

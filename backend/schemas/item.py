@@ -28,7 +28,7 @@ class ItemSchema(PlainItemSchema):
     type = fields.Nested("schemas.type.TypeSchema", dump_only=True) 
     item_details = fields.Nested("schemas.item_details.ItemDetailsSchema", dump_only=True)
     reviews = fields.Nested("schemas.review.FullReviewSchema", dump_only=True, many=True)
-    images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True)
+    images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True, exclude=("item",))
     
     average_rating = fields.Float(dump_only=True)
     rating_count = fields.Int(dump_only=True)
@@ -72,3 +72,13 @@ class ItemSchema(PlainItemSchema):
         
         if not include_reviews_user and include_reviews:
             self.fields["reviews"].exclude += ('user',)
+            
+class FullItemSchema(ItemSchema):
+    def __init__(self, **kwargs):
+        super().__init__(include_category=True, 
+                 include_type=True, 
+                 include_item_details=True, 
+                 include_reviews=True, 
+                 include_images=True, 
+                 include_favorite=True, 
+                 include_reviews_user=True, **kwargs)

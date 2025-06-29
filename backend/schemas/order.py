@@ -5,7 +5,7 @@ from models.order import OrderStatus
 class PlainOrderItemSchema(Schema):
     id = fields.Str(dump_only=True)
     item_id = fields.Str(required=True)
-    item = fields.Nested("schemas.item.ItemSchema", dump_only=True)
+    item = fields.Nested("schemas.item.FullItemSchema", dump_only=True)
     quantity = fields.Int(required=True)
     
 class PlainOrderSchema(Schema):
