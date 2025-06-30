@@ -2,7 +2,7 @@ import { AiFillProduct } from 'react-icons/ai';
 import { UIAdminStatisticsOption } from './UI/UIAdminStatisticsOption';
 import { IoReloadOutline } from 'react-icons/io5';
 import { FaBoxArchive, FaPersonCircleQuestion } from 'react-icons/fa6';
-import { FaCheckCircle, FaTruck } from 'react-icons/fa';
+import { FaCheckCircle, FaTruck, FaUsers } from 'react-icons/fa';
 import {
 	MdCancel,
 	MdDelete,
@@ -132,6 +132,16 @@ export const StatisticsOption = {
 				value={count}
 				icon={<GiStarsStack />}
 				title='Average Rating'
+			/>
+		),
+	},
+	Users: {
+		TotalUsers: ({ count }: StatisticsOptionProps['Count']) => (
+			<UIAdminStatisticsOption
+				value={count}
+				icon={<FaUsers size='48' />}
+				title='Total Users'
+				type='big'
 			/>
 		),
 	},

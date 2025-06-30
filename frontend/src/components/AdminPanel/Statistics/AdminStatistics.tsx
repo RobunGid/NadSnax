@@ -30,6 +30,9 @@ export const AdminStatistics = () => {
 			totalReviews: 0,
 			averageRating: 0,
 		},
+		userData: {
+			totalUsers: 0,
+		},
 	});
 
 	const fetchStatistics = async () => {
@@ -45,12 +48,22 @@ export const AdminStatistics = () => {
 		<>
 			<UIAdminStatisticsTitle>Site statistics</UIAdminStatisticsTitle>
 			<UIAdminStatisticsContainer>
-				<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
-				<StatisticsSection.Orders orderData={siteStatistics.orderData} />
-				<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
-				<StatisticsSection.Items itemData={siteStatistics.itemData} />
-				<UIAdminStatisticsSubtitle>Reviews</UIAdminStatisticsSubtitle>
-				<StatisticsSection.Reviews reviewData={siteStatistics.reviewData} />
+				<div>
+					<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
+					<StatisticsSection.Orders orderData={siteStatistics.orderData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
+					<StatisticsSection.Items itemData={siteStatistics.itemData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Reviews</UIAdminStatisticsSubtitle>
+					<StatisticsSection.Reviews reviewData={siteStatistics.reviewData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Users</UIAdminStatisticsSubtitle>
+					<StatisticsSection.Users userData={siteStatistics.userData} />
+				</div>
 			</UIAdminStatisticsContainer>
 		</>
 	);

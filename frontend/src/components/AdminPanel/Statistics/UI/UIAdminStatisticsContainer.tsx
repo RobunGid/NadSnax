@@ -7,5 +7,5 @@ interface UIAdminStatisticsContainerProps {
 export const UIAdminStatisticsContainer = ({
 	children,
 }: UIAdminStatisticsContainerProps) => {
-	return <div className='max-h-[650px] flex flex-col flex-wrap'>{children}</div>;
+	return <div className='max-h-170 flex flex-col flex-wrap'>{children}</div>;
 };

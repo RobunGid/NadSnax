@@ -6,6 +6,7 @@ interface StatisticsSectionProps {
 	orderData: { orderData: SiteStatistics['orderData'] };
 	itemData: { itemData: SiteStatistics['itemData'] };
 	reviewData: { reviewData: SiteStatistics['reviewData'] };
+	userData: { userData: SiteStatistics['userData'] };
 }
 
 export const StatisticsSection = {
@@ -52,6 +53,13 @@ export const StatisticsSection = {
 				<StatisticsOption.Reviews.AverageRating
 					count={reviewData.averageRating}
 				/>
+			</>
+		);
+	},
+	Users: ({ userData }: StatisticsSectionProps['userData']) => {
+		return (
+			<>
+				<StatisticsOption.Users.TotalUsers count={userData.totalUsers} />
 			</>
 		);
 	},

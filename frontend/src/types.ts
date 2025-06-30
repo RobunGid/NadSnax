@@ -188,4 +188,8 @@ export type SiteStatistics = {
 		totalReviews: number;
 		averageRating: number;
 	};
+
+	userData: {
+		totalUsers: number;
+	};
 };
