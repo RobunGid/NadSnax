@@ -6,14 +6,13 @@ class PlainReviewSchema(Schema):
     rating = fields.Int(required=True)
     created_at = fields.DateTime(required=True, dump_only=True)
     item_id = fields.Str(required=True)
+    user_id = fields.Str(required=True)
     
 class ReviewUpdateSchema(Schema):
     text = fields.Str(required=True)
     rating = fields.Int(required=True)
     
 class ReviewSchema(PlainReviewSchema):
-    user_id = fields.Str(required=True)
-    
     user = fields.Nested('schemas.user.PlainUserSchema', dump_only=True) 
     item = fields.Nested('schemas.item.FullItemSchema', dump_only=True)
         

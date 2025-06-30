@@ -14,9 +14,9 @@ class PlainOrderSchema(Schema):
     order_id = fields.Str(required=True, dump_only=True)
     status = EnumField(OrderStatus)
     pickup_point = fields.Str(required=True)
+    user_id = fields.Str(required=True, dump_only=True)
     
 class OrderSchema(PlainOrderSchema):
-    user_id = fields.Str(required=True, dump_only=True)
     user = fields.Nested("schemas.user.UserSchema", dump_only=True) 
     items = fields.Nested(PlainOrderItemSchema(many=True))
     
