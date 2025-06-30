@@ -178,4 +178,10 @@ export type SiteStatistics = {
 		returnedOrders: number;
 		deletedOrders: number;
 	};
+	itemData: {
+		totalItems: number;
+		bestsellerItems: number;
+		secretboxItems: number;
+		averagePrice: number;
+	};
 };

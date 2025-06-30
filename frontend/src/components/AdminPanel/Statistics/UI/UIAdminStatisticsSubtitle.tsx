@@ -7,5 +7,5 @@ interface UIAdminStatisticsSubtitleProps {
 export const UIAdminStatisticsSubtitle = ({
 	children,
 }: UIAdminStatisticsSubtitleProps) => {
-	return <div className='text-lg py-2 w-full'>{children}</div>;
+	return <div className='text-lg py-2'>{children}</div>;
 };

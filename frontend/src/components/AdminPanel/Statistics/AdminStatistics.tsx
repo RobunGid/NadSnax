@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { UIAdminSectionContainer } from '../UI/UIAdminSectionContainer';
 import { UIAdminStatisticsTitle } from './UI/UIAdminStatisticsTitle';
 import { Axios } from '../../../api';
 import { SiteStatistics } from '../../../types';
@@ -20,6 +19,12 @@ export const AdminStatistics = () => {
 			returnedOrders: 0,
 			deletedOrders: 0,
 		},
+		itemData: {
+			averagePrice: 0,
+			bestsellerItems: 0,
+			secretboxItems: 0,
+			totalItems: 0,
+		},
 	});
 
 	const fetchStatistics = async () => {
@@ -32,10 +37,14 @@ export const AdminStatistics = () => {
 	}, []);
 
 	return (
-		<UIAdminSectionContainer>
+		<div>
 			<UIAdminStatisticsTitle>Site statistics</UIAdminStatisticsTitle>
-			<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
-			<StatisticsSection.Orders orderData={siteStatistics.orderData} />
-		</UIAdminSectionContainer>
+			<div className='max-h-[650px] flex flex-col flex-wrap'>
+				<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
+				<StatisticsSection.Orders orderData={siteStatistics.orderData} />
+				<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
+				<StatisticsSection.Items itemData={siteStatistics.itemData} />
+			</div>
+		</div>
 	);
 };

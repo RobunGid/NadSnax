@@ -1,23 +1,46 @@
+import { formatPrice } from '../../../logic/formatPrice';
 import { SiteStatistics } from '../../../types';
 import { StatisticsOption } from './StatisticsOption';
 
 interface StatisticsSectionProps {
-	orderData: SiteStatistics['orderData'];
+	orderData: { orderData: SiteStatistics['orderData'] };
+	itemData: { itemData: SiteStatistics['itemData'] };
 }
 
 export const StatisticsSection = {
-	Orders: ({ orderData }: StatisticsSectionProps) => {
+	Orders: ({ orderData }: StatisticsSectionProps['orderData']) => {
 		return (
 			<>
-				<StatisticsOption.TotalOrders count={orderData.totalOrders} />
-				<StatisticsOption.ProcessingOrders count={orderData.processingOrders} />
-				<StatisticsOption.PackingOrders count={orderData.packingOrders} />
-				<StatisticsOption.ShippingOrders count={orderData.shippingOrders} />
-				<StatisticsOption.ReadyOrders count={orderData.readyOrders} />
-				<StatisticsOption.SuccessOrders count={orderData.successOrders} />
-				<StatisticsOption.CanceledOrders count={orderData.canceledOrders} />
-				<StatisticsOption.ReturnedOrders count={orderData.returnedOrders} />
-				<StatisticsOption.DeletedOrders count={orderData.deletedOrders} />
+				<StatisticsOption.Orders.TotalOrders count={orderData.totalOrders} />
+				<StatisticsOption.Orders.ProcessingOrders
+					count={orderData.processingOrders}
+				/>
+				<StatisticsOption.Orders.PackingOrders count={orderData.packingOrders} />
+				<StatisticsOption.Orders.ShippingOrders
+					count={orderData.shippingOrders}
+				/>
+				<StatisticsOption.Orders.ReadyOrders count={orderData.readyOrders} />
+				<StatisticsOption.Orders.SuccessOrders count={orderData.successOrders} />
+				<StatisticsOption.Orders.CanceledOrders
+					count={orderData.canceledOrders}
+				/>
+				<StatisticsOption.Orders.ReturnedOrders
+					count={orderData.returnedOrders}
+				/>
+				<StatisticsOption.Orders.DeletedOrders count={orderData.deletedOrders} />
+			</>
+		);
+	},
+	Items: ({ itemData }: StatisticsSectionProps['itemData']) => {
+		const formattedAveragePrice = formatPrice(itemData.averagePrice);
+		return (
+			<>
+				<StatisticsOption.Items.TotalItems count={itemData.totalItems} />
+				<StatisticsOption.Items.AveragePrice price={formattedAveragePrice} />
+				<StatisticsOption.Items.BestsellerItems
+					count={itemData.bestsellerItems}
+				/>
+				<StatisticsOption.Items.SecretboxItems count={itemData.secretboxItems} />
 			</>
 		);
 	},

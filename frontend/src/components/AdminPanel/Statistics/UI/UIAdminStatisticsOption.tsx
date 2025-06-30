@@ -5,19 +5,19 @@ interface UIAdminStatisticsOptionProps {
 	icon: ReactNode;
 	title: string;
 	type?: 'small' | 'big';
-	count: number;
+	value: number | string;
 }
 
 export const UIAdminStatisticsOption = ({
 	icon,
 	title,
-	count,
+	value,
 	type,
 }: UIAdminStatisticsOptionProps) => {
 	return (
 		<div
 			className={clsx(
-				'm-2 dark:bg-gray-600 shadow-xl rounded-xl flex w-58 justify-between items-center',
+				'm-2 dark:bg-gray-600 shadow-xl rounded-xl flex w-64 justify-between items-center',
 				(type == 'small' || !type) && 'py-2 px-4',
 				type == 'big' && 'py-4 px-4'
 			)}
@@ -28,13 +28,13 @@ export const UIAdminStatisticsOption = ({
 						{icon}
 						{title}
 					</div>
-					<div>{count}</div>
+					<div>{value}</div>
 				</>
 			)}
 			{type == 'big' && (
 				<>
 					<div className='flex flex-col gap-2'>
-						<div className='text-3xl'>{count}</div>
+						<div className='text-3xl'>{value}</div>
 						<div>{title}</div>
 					</div>
 					<div>{icon}</div>
