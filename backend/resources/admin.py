@@ -1,5 +1,5 @@
 from flask_smorest import Blueprint
-from models import OrderModel, ItemModel, ReviewModel
+from models import OrderModel, ItemModel, ReviewModel, UserModel
 from models.order import OrderStatus
 from flask.views import MethodView
 from sqlalchemy import func
@@ -34,4 +34,9 @@ class AdminStatistics(MethodView):
         review_data["total_reviews"] = ReviewModel.query.count()
         review_data["average_rating"] = float(round(ReviewModel.query.with_entities(func.avg(ReviewModel.rating)).scalar(), 2))
         statistics["review_data"] = review_data
+        
+        user_data = {}
+        user_data["total_users"] = UserModel.query.count()
+        statistics["user_data"] = user_data
+        
         return statistics
