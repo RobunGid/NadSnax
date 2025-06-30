@@ -5,6 +5,7 @@ import { SiteStatistics } from '../../../types';
 import camelcaseKeys from 'camelcase-keys';
 import { UIAdminStatisticsSubtitle } from './UI/UIAdminStatisticsSubtitle';
 import { StatisticsSection } from './StatisticsSection';
+import { UIAdminStatisticsContainer } from './UI/UIAdminStatisticsContainer';
 
 export const AdminStatistics = () => {
 	const [siteStatistics, setSiteStatistics] = useState<SiteStatistics>({
@@ -37,14 +38,14 @@ export const AdminStatistics = () => {
 	}, []);
 
 	return (
-		<div>
+		<>
 			<UIAdminStatisticsTitle>Site statistics</UIAdminStatisticsTitle>
-			<div className='max-h-[650px] flex flex-col flex-wrap'>
+			<UIAdminStatisticsContainer>
 				<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
 				<StatisticsSection.Orders orderData={siteStatistics.orderData} />
 				<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
 				<StatisticsSection.Items itemData={siteStatistics.itemData} />
-			</div>
-		</div>
+			</UIAdminStatisticsContainer>
+		</>
 	);
 };
