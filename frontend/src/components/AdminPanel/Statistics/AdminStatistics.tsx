@@ -26,6 +26,10 @@ export const AdminStatistics = () => {
 			secretboxItems: 0,
 			totalItems: 0,
 		},
+		reviewData: {
+			totalReviews: 0,
+			averageRating: 0,
+		},
 	});
 
 	const fetchStatistics = async () => {
@@ -45,6 +49,8 @@ export const AdminStatistics = () => {
 				<StatisticsSection.Orders orderData={siteStatistics.orderData} />
 				<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
 				<StatisticsSection.Items itemData={siteStatistics.itemData} />
+				<UIAdminStatisticsSubtitle>Reviews</UIAdminStatisticsSubtitle>
+				<StatisticsSection.Reviews reviewData={siteStatistics.reviewData} />
 			</UIAdminStatisticsContainer>
 		</>
 	);

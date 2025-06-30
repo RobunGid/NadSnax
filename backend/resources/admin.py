@@ -34,5 +34,4 @@ class AdminStatistics(MethodView):
         review_data["total_reviews"] = ReviewModel.query.count()
         review_data["average_rating"] = float(round(ReviewModel.query.with_entities(func.avg(ReviewModel.rating)).scalar(), 2))
         statistics["review_data"] = review_data
-        print(statistics)
         return statistics

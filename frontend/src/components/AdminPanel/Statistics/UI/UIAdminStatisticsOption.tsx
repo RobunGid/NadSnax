@@ -17,7 +17,7 @@ export const UIAdminStatisticsOption = ({
 	return (
 		<div
 			className={clsx(
-				'm-2 dark:bg-gray-600 shadow-xl rounded-xl flex w-64 justify-between items-center',
+				'm-2 dark:bg-gray-600 shadow-xl rounded-xl flex w-72 justify-between items-center',
 				(type == 'small' || !type) && 'py-2 px-4',
 				type == 'big' && 'py-4 px-4'
 			)}

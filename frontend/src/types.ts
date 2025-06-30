@@ -184,4 +184,8 @@ export type SiteStatistics = {
 		secretboxItems: number;
 		averagePrice: number;
 	};
+	reviewData: {
+		totalReviews: number;
+		averageRating: number;
+	};
 };

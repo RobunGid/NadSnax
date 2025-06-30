@@ -7,11 +7,13 @@ import {
 	MdCancel,
 	MdDelete,
 	MdOutlineWorkspacePremium,
+	MdRateReview,
 	MdSafetyCheck,
 } from 'react-icons/md';
 import { TbTruckReturn } from 'react-icons/tb';
 import { LiaLuggageCartSolid } from 'react-icons/lia';
 import { RiMoneyPoundCircleFill } from 'react-icons/ri';
+import { GiStarsStack } from 'react-icons/gi';
 
 interface StatisticsOptionProps {
 	Count: { count: number };
@@ -89,7 +91,7 @@ export const StatisticsOption = {
 		TotalItems: ({ count }: StatisticsOptionProps['Count']) => (
 			<UIAdminStatisticsOption
 				value={count}
-				icon={<LiaLuggageCartSolid />}
+				icon={<LiaLuggageCartSolid size='48' />}
 				title='Total Items'
 				type='big'
 			/>
@@ -112,7 +114,24 @@ export const StatisticsOption = {
 			<UIAdminStatisticsOption
 				value={price}
 				icon={<RiMoneyPoundCircleFill />}
-				title='Average item price'
+				title='Average Price'
+			/>
+		),
+	},
+	Reviews: {
+		TotalReviews: ({ count }: StatisticsOptionProps['Count']) => (
+			<UIAdminStatisticsOption
+				value={count}
+				icon={<MdRateReview size='48' />}
+				title='Total Reviews'
+				type='big'
+			/>
+		),
+		AverageRating: ({ count }: StatisticsOptionProps['Count']) => (
+			<UIAdminStatisticsOption
+				value={count}
+				icon={<GiStarsStack />}
+				title='Average Rating'
 			/>
 		),
 	},

@@ -5,6 +5,7 @@ import { StatisticsOption } from './StatisticsOption';
 interface StatisticsSectionProps {
 	orderData: { orderData: SiteStatistics['orderData'] };
 	itemData: { itemData: SiteStatistics['itemData'] };
+	reviewData: { reviewData: SiteStatistics['reviewData'] };
 }
 
 export const StatisticsSection = {
@@ -41,6 +42,16 @@ export const StatisticsSection = {
 					count={itemData.bestsellerItems}
 				/>
 				<StatisticsOption.Items.SecretboxItems count={itemData.secretboxItems} />
+			</>
+		);
+	},
+	Reviews: ({ reviewData }: StatisticsSectionProps['reviewData']) => {
+		return (
+			<>
+				<StatisticsOption.Reviews.TotalReviews count={reviewData.totalReviews} />
+				<StatisticsOption.Reviews.AverageRating
+					count={reviewData.averageRating}
+				/>
 			</>
 		);
 	},
