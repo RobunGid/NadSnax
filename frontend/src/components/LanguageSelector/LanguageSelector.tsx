@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useI18n } from '../../i18n/i18n';
 import { Language } from '../../types';
 import { UIFlagIcon } from '../UI/UIFlagIcon';
@@ -14,18 +14,34 @@ export const LanguageSelector = () => {
 	const [isOpen, setIsOpen] = useState(true);
 	const selectedLanguage = languages.find((language) => language.key === lang);
 
+	const languagesRef = useRef<HTMLDivElement | null>(null);
+
 	const handleLanguageChange = async (language: Language) => {
 		setLang(language.key);
 		setIsOpen(false);
 	};
 
+	const handleCloseLanguagesMenu = (event: MouseEvent): void => {
+		event.stopPropagation();
+		if (
+			languagesRef.current &&
+			event.target != languagesRef.current &&
+			!languagesRef.current.contains(event.target as Node)
+		) {
+			setIsOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', handleCloseLanguagesMenu);
+	}, []);
+
 	if (!selectedLanguage) {
 		return null;
 	}
-
 	return (
 		<>
-			<div className='flex items-center z-40'>
+			<div className='flex items-center z-40' ref={languagesRef}>
 				<div className='relative inline-block text-left'>
 					<div>
 						<button
