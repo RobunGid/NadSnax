@@ -38,7 +38,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 				<NavbarCategories categories={categories} />
 			</UINavbarNavigation>
 
-			<NavbarCart onClick={() => toggleCartModalVisibility()} />
+			<NavbarCart onClick={toggleCartModalVisibility} />
 
 			{user ? (
 				<ProfileMenu />

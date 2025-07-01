@@ -23,6 +23,7 @@ from resources.favorite import blp as FavoriteBlueprint
 from resources.orders import blp as OrderBlueprint
 from resources.icon import blp as IconBlueprint
 from resources.admin import blp as AdminBlueprint
+from resources.keysets import blp as KeysetsBlueprint
 
 from datetime import timedelta
 
@@ -110,6 +111,7 @@ def create_app(db_url = None):
     api.register_blueprint(OrderBlueprint)
     api.register_blueprint(IconBlueprint)
     api.register_blueprint(AdminBlueprint)
+    api.register_blueprint(KeysetsBlueprint)
  
     return app
 
