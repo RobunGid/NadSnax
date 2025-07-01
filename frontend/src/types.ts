@@ -193,3 +193,10 @@ export type SiteStatistics = {
 		totalUsers: number;
 	};
 };
+
+export type LanguageCodes = 'ru' | 'en';
+
+export type Language = {
+	key: LanguageCodes;
+	name: string;
+};

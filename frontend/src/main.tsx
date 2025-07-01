@@ -11,6 +11,7 @@ import { NavbarProvider } from './context/NavbarProvider.tsx';
 import { LoginModalProvider } from './context/LoginModalProvider.tsx';
 import { I18NProvider } from '@ayub-begimkulov/i18n';
 import { i18n } from './i18n/i18n.ts';
+import 'flag-icons/css/flag-icons.min.css';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
