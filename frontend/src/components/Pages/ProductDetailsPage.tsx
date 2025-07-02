@@ -21,12 +21,13 @@ export const ProductDetailsPage = () => {
 	useEffect(() => {
 		fetchedSimillars.current = false;
 		actions.fetchItems({
-			include_item_details: true,
-			include_category: true,
-			include_type: true,
-			include_images: true,
-			include_reviews: true,
-			page_link: `/${product_page_link}`,
+			includeItem_details: true,
+			includeCategory: true,
+			includeType: true,
+			includeImages: true,
+			includeReviews: true,
+			includeReviewsUser: true,
+			pageLink: `/${product_page_link}`,
 			accessToken,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,12 +41,13 @@ export const ProductDetailsPage = () => {
 	useEffect(() => {
 		if (!item?.id || fetchedSimillars.current) return;
 		actions.fetchItems({
-			include_item_details: true,
-			include_reviews: true,
-			include_category: true,
-			include_type: true,
-			include_images: true,
-			simillar_id: item.id,
+			includeItemDetails: true,
+			includeReviews: true,
+			includeReviewsUser: true,
+			includeCategory: true,
+			includeType: true,
+			includeImages: true,
+			simillarId: item.id,
 			accessToken,
 		});
 		fetchedSimillars.current = true;

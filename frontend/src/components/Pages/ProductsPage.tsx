@@ -19,15 +19,15 @@ export const ProductsPage = () => {
 	const { category, type } = useParams();
 
 	const fetchItemsParams = {
-		include_category: true,
-		include_type: true,
-		include_images: true,
-		category_name: category,
-		type_name: type,
-		is_bestseller: category === 'best-sellers' ? true : undefined,
-		is_secretbox: category === 'secretboxes' ? true : undefined,
+		includeCategory: true,
+		includeType: true,
+		includeImages: true,
+		categoryName: category,
+		typeName: type,
+		isBestseller: category === 'best-sellers' ? true : undefined,
+		isSecretbox: category === 'secretboxes' ? true : undefined,
 		accessToken: accessToken,
-		include_favorite: true,
+		includeFavorite: true,
 	};
 
 	useEffect(() => {

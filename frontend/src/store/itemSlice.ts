@@ -56,20 +56,21 @@ export const deleteFavoriteThunk = createAsyncThunk<
 });
 
 export interface fetchItemsParams {
-	include_type?: boolean;
-	include_category?: boolean;
-	include_item_details?: boolean;
-	category_name?: string;
-	type_name?: string;
-	page_link?: string;
-	is_bestseller?: boolean;
-	is_secretbox?: boolean;
-	include_images?: boolean;
-	include_reviews?: boolean;
-	simillar_id?: string;
+	includeType?: boolean;
+	includeCategory?: boolean;
+	includeItemDetails?: boolean;
+	categoryName?: string;
+	typeName?: string;
+	pageLink?: string;
+	isBestseller?: boolean;
+	isSecretbox?: boolean;
+	includeImages?: boolean;
+	includeReviews?: boolean;
+	includeReviewsUser?: boolean;
+	simillarId?: string;
 	accessToken?: string;
-	item_ids?: string[];
-	include_favorite?: boolean;
+	itemIds?: string[];
+	includeFavorite?: boolean;
 }
 
 export const fetchItemsThunk = createAsyncThunk<
@@ -80,40 +81,42 @@ export const fetchItemsThunk = createAsyncThunk<
 	'item/fetchItems',
 	async (
 		{
-			include_type,
-			include_category,
-			include_item_details,
-			include_images,
-			include_reviews,
-			category_name,
-			type_name,
-			page_link,
-			is_bestseller,
-			is_secretbox,
-			simillar_id,
-			item_ids,
-			include_favorite,
+			includeType,
+			includeCategory,
+			includeItemDetails,
+			includeImages,
+			includeReviews,
+			categoryName,
+			typeName,
+			pageLink,
+			isBestseller,
+			isSecretbox,
+			simillarId,
+			itemIds,
+			includeFavorite,
+			includeReviewsUser,
 		},
 		{ rejectWithValue, getState }
 	) => {
-		category_name = category_name !== 'best-sellers' ? category_name : undefined;
-		category_name = category_name !== 'secretboxes' ? category_name : undefined;
+		categoryName = categoryName !== 'best-sellers' ? categoryName : undefined;
+		categoryName = categoryName !== 'secretboxes' ? categoryName : undefined;
 		const accessToken = getState().auth.accessToken;
 		const response = await Axios.get<Item[]>('/item', {
 			params: {
-				include_type,
-				include_category,
-				include_item_details,
-				include_images,
-				category_name,
-				type_name,
-				page_link,
-				bestseller: is_bestseller,
-				secretbox: is_secretbox,
-				include_reviews,
-				include_favorite,
-				simillar_id,
-				item_ids: item_ids?.join(','),
+				include_type: includeType,
+				include_category: includeCategory,
+				include_item_details: includeItemDetails,
+				include_images: includeImages,
+				category_name: categoryName,
+				type_name: typeName,
+				page_link: pageLink,
+				bestseller: isBestseller,
+				secretbox: isSecretbox,
+				include_reviews: includeReviews,
+				include_reviews_user: includeReviewsUser,
+				include_favorite: includeFavorite,
+				simillar_id: simillarId,
+				item_ids: itemIds?.join(','),
 			},
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',

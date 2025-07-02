@@ -51,12 +51,12 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 
 		if (response.status === 201) {
 			actions.fetchItems({
-				include_item_details: true,
-				include_reviews: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: itemId,
+				includeItemDetails: true,
+				includeReviews: true,
+				includeCategory: true,
+				includeType: true,
+				includeImages: true,
+				simillarId: itemId,
 			});
 		}
 	};

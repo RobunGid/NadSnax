@@ -30,16 +30,15 @@ export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 
 		if (response.status === 200) {
 			actions.fetchItems({
-				include_item_details: true,
-				include_reviews: true,
-				include_category: true,
-				include_type: true,
-				include_images: true,
-				simillar_id: review.itemId,
+				includeItemDetails: true,
+				includeReviews: true,
+				includeCategory: true,
+				includeType: true,
+				includeImages: true,
+				simillarId: review.itemId,
 			});
 		}
 	};
-
 	return (
 		<UIReviewElement>
 			{displayControls && (
