@@ -12,7 +12,7 @@ export const NavbarDropdown = ({ category, text }: NavbarDropdownProps) => {
 		<>
 			<UINavbarItem
 				to={category.pageLink}
-				className='flex peer pl-6'
+				className='flex peer'
 				text={text}
 				iconPosition='right'
 			/>

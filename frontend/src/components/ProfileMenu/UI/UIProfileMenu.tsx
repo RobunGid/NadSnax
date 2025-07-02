@@ -10,7 +10,8 @@ export const UIProfileMenu = ({ children }: UIprofileMenuProps) => {
 				peer-has-checked:max-h-[500px] 
 				absolute right-2 top-16 z-10 bg-gray-200 
 				divide-y divide-gray-300 rounded-lg shadow-sm w-44 
-				dark:bg-gray-700 dark:divide-gray-600`}
+				dark:bg-gray-700 dark:divide-gray-600
+				group`}
 		>
 			{children}
 		</ul>

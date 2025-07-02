@@ -31,22 +31,19 @@ export const UINavbarItem = ({
 			}
 		>
 			<div
-				className={`font-medium group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-gray-900 group-hover:text-gray-800
+				className={clsx(
+					`px-3 font-medium group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-gray-900 group-hover:text-gray-800
 			text-gray-500 group-[.active]:group-hover:decoration-2 dark:group-[.active]:text-gray-500 dark:group-hover:text-gray-400 dark:text-gray-300
-			px-4 flex items-center justify-center`}
+			flex items-center justify-center text-nowrap`,
+					iconPosition == 'right' && 'pl-4 pr-2'
+				)}
 			>
 				{iconPosition == 'left' && (
-					<GoChevronDown
-						className='inline-block m-1 bg-transparent'
-						size='20px'
-					/>
+					<GoChevronDown className='inline-block bg-transparent' size='20px' />
 				)}
 				{text}
 				{iconPosition == 'right' && (
-					<GoChevronDown
-						className='inline-block m-1 bg-transparent'
-						size='20px'
-					/>
+					<GoChevronDown className='inline-block bg-transparent' size='20px' />
 				)}
 			</div>
 		</NavLink>

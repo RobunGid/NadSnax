@@ -6,11 +6,7 @@ export const NavbarItem = {
 		const translate = useTranslate();
 		return (
 			<li>
-				<UINavbarItem
-					to='/home'
-					text={translate('navbar.home')}
-					className='pl-3'
-				/>
+				<UINavbarItem to='/home' text={translate('navbar.home')} />
 			</li>
 		);
 	},
@@ -21,7 +17,6 @@ export const NavbarItem = {
 				<UINavbarItem
 					to='/products/best-sellers'
 					text={translate('navbar.bestsellers')}
-					className='pl-3'
 				/>
 			</li>
 		);
@@ -33,7 +28,6 @@ export const NavbarItem = {
 				<UINavbarItem
 					to='/products/secretboxes'
 					text={translate('navbar.secretboxes')}
-					className='pl-3'
 				/>
 			</li>
 		);
@@ -45,7 +39,6 @@ export const NavbarItem = {
 				<UINavbarItem
 					to='/products'
 					text={translate('navbar.all_products')}
-					className='pl-3'
 					precise
 				/>
 			</li>

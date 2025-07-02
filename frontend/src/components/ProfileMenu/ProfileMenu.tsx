@@ -26,7 +26,6 @@ export const ProfileMenu = () => {
 		user && (
 			<div className='m-2'>
 				<ProfileMenuButton user={user} />
-
 				<UIProfileMenu>
 					<ProfileMenuThemeSwitcher />
 

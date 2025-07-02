@@ -7,5 +7,7 @@ interface UISiteLogoProps {
 }
 
 export const UISiteLogo = ({ className }: UISiteLogoProps) => {
-	return <img src={logo} alt='logo' className={clsx('px-2 w-20', className)} />;
+	return (
+		<img src={logo} alt='logo' width='60' height='60' className={clsx(className)} />
+	);
 };

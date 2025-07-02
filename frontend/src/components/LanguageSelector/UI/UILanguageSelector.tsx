@@ -37,7 +37,7 @@ export const UILanguageSelector = ({
 					</button>
 				</div>
 				{isOpen && (
-					<div className='origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-gray-500 ring-1 ring-black ring-opacity-5'>
+					<div className='origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white dark:bg-gray-500 ring-1 ring-black ring-opacity-5'>
 						<div className='grid grid-cols-1 gap-2 p-1'>
 							{languages.map((language, index) => (
 								<button

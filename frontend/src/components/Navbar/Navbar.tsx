@@ -13,6 +13,7 @@ import { UINavbar } from './UI/UINavbar';
 import { useStateSelector } from '../../store';
 import { ThemeSwitcher } from '../Layout/ThemeSwitcher';
 import { NavbarLoginButton } from './NavbarLoginButton';
+import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 
 interface NavbarProps {
 	categories: ItemCategory[];
@@ -48,6 +49,7 @@ export const Navbar = ({ categories }: NavbarProps) => {
 					<NavbarLoginButton />
 				</>
 			)}
+			<LanguageSelector />
 		</UINavbar>
 	);
 };
