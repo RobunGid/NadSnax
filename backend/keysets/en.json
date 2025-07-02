@@ -2,5 +2,36 @@
 	"navbar.home": "Home",
 	"navbar.all_products": "All Products",
 	"navbar.bestsellers": "Best Sellers",
-	"navbar.secretboxes": "Secret Boxes"
+	"navbar.secretboxes": "Secret Boxes",
+
+	"homepage.slogan": "NadSnax - Crunch into happiness!",
+	"homepage.section1.title": "Welcome to NadSnax – Your Ultimate Snack Destination!",
+	"homepage.section1.p1": "Craving something crunchy, savory, or sweet?",
+	"homepage.section1.p2": "At NadSnax, we bring you the best selection of chips, nuts, and irresistible treats to satisfy your snack cravings.",
+	"homepage.section1.p3": "Whether you're looking for classic flavors or bold new tastes, we've got something for every snacker.",
+	"homepage.section1.p4": "Explore our delicious collection and snack happier with NadSnax!",
+
+	"homepage.section2.title": "Discover the Crunch of Perfection at NadSnax!",
+	"homepage.section2.p1": "Treat yourself to our delightful selection of crispy crackers – the perfect snack for any occasion.",
+	"homepage.section2.p2": "With a variety of flavors and textures, our crackers are great on their own or paired with your favorite dips and spreads.",
+	"homepage.section2.p3": "Whether you're enjoying a quiet moment or sharing with friends, NadSnax crackers offer a satisfying crunch and unbeatable taste.",
+	"homepage.section2.p4": "Find your new favorite snack today at NadSnax!",
+
+	"homepage.section3.title": "Indulge in the Sweetness of NadSnax Cookies!",
+	"homepage.section3.p1": "Craving something crunchy, savory, or sweet?",
+	"homepage.section3.p2": "From classic chocolate chip to deliciously unique flavors, NadSnax cookies are the perfect treat for any sweet tooth.",
+	"homepage.section3.p3": "Whether you're unwinding after a long day or sharing a moment with friends, these cookies make every occasion a little sweeter.",
+	"homepage.section3.p4": "Satisfy your cravings and find your favorite today at NadSnax!",
+
+	"homepage.section4.title": "Refresh and Recharge with NadSnax Juices!",
+	"homepage.section4.p1": "Quench your thirst with our vibrant selection of natural, refreshing juices, packed with fresh flavors to keep you energized throughout the day.",
+	"homepage.section4.p2": "From tangy citrus to sweet berry blends, each sip is like a burst of sunshine.",
+	"homepage.section4.p3": "Perfect for a quick refresh or paired with your favorite snack, NadSnax juices bring the perfect balance of taste and hydration.",
+	"homepage.section4.p4": "Stay refreshed and invigorated with NadSnax juices!",
+
+	"homepage.contact.title": "Contact details",
+	"homepage.contact.subtitle": "Contact us",
+	"homepage.contact.message": "Thank you for visiting our website! Currently, our contact form is temporarily unavailable. We apologize for any inconvenience this may cause and appreciate your understanding. Please check back soon for updates. In the meantime, feel free to explore our snacks and enjoy browsing our site!",
+
+	"homepage.reviews.title": "Our customer's reviews"
 }
