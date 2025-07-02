@@ -36,28 +36,31 @@ export const UILanguageSelector = ({
 						<IoIosArrowDown size='16' />
 					</button>
 				</div>
-				{isOpen && (
-					<div className='origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white dark:bg-gray-500 ring-1 ring-black ring-opacity-5'>
-						<div className='grid grid-cols-1 gap-2 p-1'>
-							{languages.map((language, index) => (
-								<button
-									key={language.key}
-									onClick={() => handleLanguageChange(language)}
-									className={clsx(
-										selectedLanguage.key === language.key
-											? 'bg-gray-100 text-gray-900 dark:bg-gray-400 dark:text-gray-100'
-											: 'text-gray-700 dark:text-gray-100',
-										'px-4 py-2 text-sm text-left items-center hover:bg-gray-100 dark:hover:bg-gray-400 flex shadow-md',
-										index % 2 === 0 ? 'rounded-r' : 'rounded-l'
-									)}
-								>
-									<UIFlagIcon countryCode={language.key} />
-									<span className='truncate'>{language.name}</span>
-								</button>
-							))}
-						</div>
+				<div
+					className={clsx(
+						'max-h-0 duration-200 overflow-hidden absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white dark:bg-gray-500 ring-1 ring-black ring-opacity-5 transition-[max-height]',
+						isOpen && 'max-h-24'
+					)}
+				>
+					<div className='grid grid-cols-1 gap-2 p-1'>
+						{languages.map((language, index) => (
+							<button
+								key={language.key}
+								onClick={() => handleLanguageChange(language)}
+								className={clsx(
+									selectedLanguage.key === language.key
+										? 'bg-gray-100 text-gray-900 dark:bg-gray-400 dark:text-gray-100'
+										: 'text-gray-700 dark:text-gray-100',
+									'px-4 py-2 text-sm text-left items-center hover:bg-gray-100 dark:hover:bg-gray-400 flex shadow-md',
+									index % 2 === 0 ? 'rounded-r' : 'rounded-l'
+								)}
+							>
+								<UIFlagIcon countryCode={language.key} />
+								<span className='truncate'>{language.name}</span>
+							</button>
+						))}
 					</div>
-				)}
+				</div>
 			</div>
 		</div>
 	);
