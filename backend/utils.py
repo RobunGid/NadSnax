@@ -5,18 +5,20 @@ from flask_jwt_extended import get_jwt_identity
 from models import UserModel
 from flask_smorest import abort
 from flask import request
+import requests
+import xml.etree.ElementTree as ET
 
 def role_required(roles: List[Role], message=None):
-	def decorator(fn):
-		@wraps(fn)
-		def wrapper(*args, **kwargs):
-			identity = get_jwt_identity()
-			user = UserModel.query.get_or_404(identity)
-			if user.role.value not in roles:
-				abort(403, message="You don't have permission to get users data" if not message else message)
-			return fn(*args, **kwargs)
-		return wrapper
-	return decorator
+    def decorator(fn):
+        @wraps(fn)
+        def wrapper(*args, **kwargs):
+            identity = get_jwt_identity()
+            user = UserModel.query.get_or_404(identity)
+            if user.role.value not in roles:
+                abort(403, message="You don't have permission to get users data" if not message else message)
+            return fn(*args, **kwargs)
+        return wrapper
+    return decorator
 
 def allowed_avatar_file(file): 
     from app import app
@@ -34,3 +36,11 @@ def content_type_required(content_types):
             return fn(*args, **kwargs)
         return wrapper
     return decorator
+
+def convert_currency(value=10, from_currency="rub", to_currency="usd"):
+    response = requests.get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+    rates = response.json()["usd"]
+    from_rate = rates[from_currency]
+    to_rate = rates[to_currency]
+    return to_rate/from_rate*value
+    print(rates)

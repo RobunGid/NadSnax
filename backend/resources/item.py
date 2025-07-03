@@ -5,12 +5,14 @@ from models import ItemModel, CategoryModel, TypeModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
-from flask import request
+from flask import request, session
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from models import FavoriteModel, UserModel
 from flask_jwt_extended import jwt_required
 from utils import role_required
+from flask import current_app
+from utils import convert_currency
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -68,7 +70,6 @@ class Item(MethodView):
     @role_required(['admin', 'moderator'])
     def put(self, item_data, item_id):
         item = ItemModel.query.get(item_id)
-  
         if item:
             item.label = item_data["label"]
             item.page_link = item_data["page_link"]
@@ -91,7 +92,8 @@ class Item(MethodView):
 class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
-        
+        language = session.get("language")
+            
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         
@@ -171,8 +173,6 @@ class Items(MethodView):
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-
-        
         
         params = {
             "many": True,

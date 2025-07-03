@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, session
 from flask_smorest import Api
 import os
 from flask_cors import CORS
@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import logging
-
+from CONSTANTS import SUPPORTED_LANGUAGES
 
 from db import db
 
@@ -59,6 +59,7 @@ def create_app(db_url = None):
     CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     app.config["PROPOGATE_EXCEPTIONS"] = True
+    app.secret_key = "236adf87-7d75-36e3-4d4c-81cf-07c57bd48857"
     app.config["API_TITLE"] = "NadSnax REST API"
     app.config["API_VERSION"] = "v1"
     app.config["OPENAPI_VERSION"] = "3.0.3"
@@ -92,6 +93,12 @@ def create_app(db_url = None):
         app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
  
     db.init_app(app)
+    
+    @app.before_request
+    def set_language_from_header():
+        if 'language' not in session:
+            best_lang = request.accept_languages.best_match(SUPPORTED_LANGUAGES)
+            session['language'] = best_lang or 'en' 
 
     api = Api(app)
  
