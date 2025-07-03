@@ -1,47 +1,48 @@
 import { useTranslate } from '../../i18n/i18n';
 import { UINavbarItem } from './UI/UINavbarItem';
+import { UINavbarItemContainer } from './UI/UINavbarItemContainer';
 
 export const NavbarItem = {
 	Home: () => {
 		const translate = useTranslate();
 		return (
-			<li>
+			<UINavbarItemContainer>
 				<UINavbarItem to='/home' text={translate('navbar.home')} />
-			</li>
+			</UINavbarItemContainer>
 		);
 	},
 	BestSellers: () => {
 		const translate = useTranslate();
 		return (
-			<li>
+			<UINavbarItemContainer>
 				<UINavbarItem
 					to='/products/best-sellers'
 					text={translate('navbar.bestsellers')}
 				/>
-			</li>
+			</UINavbarItemContainer>
 		);
 	},
 	SecretBoxes: () => {
 		const translate = useTranslate();
 		return (
-			<li>
+			<UINavbarItemContainer>
 				<UINavbarItem
 					to='/products/secretboxes'
 					text={translate('navbar.secretboxes')}
 				/>
-			</li>
+			</UINavbarItemContainer>
 		);
 	},
 	AllProducts: () => {
 		const translate = useTranslate();
 		return (
-			<li>
+			<UINavbarItemContainer>
 				<UINavbarItem
 					to='/products'
 					text={translate('navbar.all_products')}
 					precise
 				/>
-			</li>
+			</UINavbarItemContainer>
 		);
 	},
 };
