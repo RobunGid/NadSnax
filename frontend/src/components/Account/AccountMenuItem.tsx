@@ -4,65 +4,71 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { UIAccountMenuItem } from './UI/UIAccountMenuItem';
 import { PiSignOut, PiStar } from 'react-icons/pi';
 import { MouseEventHandler } from 'react';
+import { useTranslate } from '../../i18n/i18n';
+import { withTranslate } from '../../logic/withTranslate';
 
 interface SignoutProps {
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
+	translate: ReturnType<typeof useTranslate>;
+}
+
+interface AccountMenuItemProps {
+	translate: ReturnType<typeof useTranslate>;
 }
 
 export const AccountMenuItem = {
-	Profile: () => (
+	Profile: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/profile'>
 			<BiUser />
-			Profile
+			{translate('account_menu.profile')}
 		</UIAccountMenuItem>
-	),
-	OrderHistory: () => (
+	)),
+	OrderHistory: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/order_history'>
 			<BiHistory />
-			Order History
+			{translate('account_menu.order_history')}
 		</UIAccountMenuItem>
-	),
-	Reviews: () => (
+	)),
+	Reviews: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/reviews'>
 			<BiStar />
-			Reviews
+			{translate('account_menu.reviews')}
 		</UIAccountMenuItem>
-	),
-
-	RecentlyViewed: () => (
+	)),
+	RecentlyViewed: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/recently_viewed'>
 			<FaMagnifyingGlass />
-			Recently viewed
+			{translate('account_menu.recently_viewed')}
 		</UIAccountMenuItem>
-	),
-	Favorites: () => (
+	)),
+	Favorites: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/favorites'>
 			<PiStar />
-			Favorites
+			{translate('account_menu.favorites')}
 		</UIAccountMenuItem>
-	),
-	Help: () => (
+	)),
+	Help: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/help'>
 			<BiHelpCircle />
-			Help
+			{translate('account_menu.help')}
 		</UIAccountMenuItem>
-	),
-	Statistics: () => (
+	)),
+	Statistics: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/statistics'>
 			<BiInfoCircle />
-			Statistics
+			{translate('account_menu.statistics')}
 		</UIAccountMenuItem>
-	),
-	Settings: () => (
+	)),
+	Settings: withTranslate(({ translate }: AccountMenuItemProps) => (
 		<UIAccountMenuItem to='/account/settings'>
 			<IoSettingsOutline />
-			Settings
+			{translate('account_menu.settings')}
 		</UIAccountMenuItem>
-	),
-	Signout: ({ onClick }: SignoutProps) => (
+	)),
+	Signout: withTranslate(({ onClick, translate }: SignoutProps) => (
 		<UIAccountMenuItem to='/account/signout' onClick={onClick}>
 			<PiSignOut />
-			Signout
+			{translate('account_menu.signout')}
 		</UIAccountMenuItem>
-	),
+	)),
 };

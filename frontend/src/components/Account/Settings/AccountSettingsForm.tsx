@@ -4,6 +4,8 @@ import { updateUser, useAppDispatch, useStateSelector } from '../../../store';
 import { UIButton } from '../../UI/UIButton';
 import { UIAccountSettingsInput } from './UI/UIAccountSettingsInput';
 import { AccountSettingsDeleteButton } from './AccountSettingsDeleteButton';
+import { useTranslate } from '../../../i18n/i18n';
+import { UIAccountSettingsError } from './UI/UIAccountSettingsError';
 
 export type SettingsFormValue = {
 	firstName: string;
@@ -13,6 +15,9 @@ export type SettingsFormValue = {
 
 export const AccountSettingsForm = () => {
 	const dispatch = useAppDispatch();
+
+	const translate = useTranslate();
+
 	const user = useStateSelector((state) => state.user.user);
 
 	const error = useStateSelector((state) => state.user.error);
@@ -54,25 +59,23 @@ export const AccountSettingsForm = () => {
 	};
 	return (
 		<UIAccountSettingsForm onSubmit={handleUpdateData}>
-			<label className='text-orange-600 flex justify-center mb-2'>
-				{error.data?.message}
-			</label>
+			<UIAccountSettingsError>{error.data?.message}</UIAccountSettingsError>
 			<UIAccountSettingsInput
-				label='First name'
+				label={translate('account.settings.form.first_name')}
 				value={settingsFormState.firstName}
 				name='firstName'
 				onChange={handleChangeSettingsForm}
 				minLength={3}
 			/>
 			<UIAccountSettingsInput
-				label='Last name'
+				label={translate('account.settings.form.last_name')}
 				value={settingsFormState.lastName}
 				name='lastName'
 				onChange={handleChangeSettingsForm}
 				minLength={3}
 			/>
 			<UIAccountSettingsInput
-				label='Username'
+				label={translate('account.settings.form.username')}
 				isUsername
 				value={settingsFormState.username}
 				name='username'
@@ -80,7 +83,7 @@ export const AccountSettingsForm = () => {
 				minLength={5}
 				isInvalid={status === 'error'}
 			/>
-			<UIButton>Change data</UIButton>
+			<UIButton>{translate('account.settings.change_data')}</UIButton>
 			<AccountSettingsDeleteButton />
 		</UIAccountSettingsForm>
 	);

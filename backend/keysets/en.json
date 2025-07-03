@@ -48,6 +48,22 @@
 	"cart.message.success": "Success! Your order is now being process",
 
 	"cart.button.empty": "Go shopping",
-	"cart.button.success": "Order more"
+	"cart.button.success": "Order more",
 
+	"account_menu.profile": "Profile",
+	"account_menu.order_history": "Order History",
+	"account_menu.reviews": "Reviews",
+	"account_menu.recently_viewed": "Recently Viewed",
+	"account_menu.favorites": "Favorites",
+	"account_menu.help": "Help",
+	"account_menu.statistics": "Statistics",
+	"account_menu.settings": "Settings",
+	"account_menu.signout": "Sign Out",
+
+	"account.settings.title": "Account Settings",
+	"account.settings.change_data": "Change data",
+	"account.settings.delete_account": "Delete account",
+	"account.settings.form.first_name": "First name",
+	"account.settings.form.last_name": "Last name",
+	"account.settings.form.username": "Username"
 }

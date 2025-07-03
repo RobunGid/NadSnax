@@ -48,6 +48,22 @@
 	"cart.message.success": "Успешно! Заказ отправлен в обработку",
 
 	"cart.button.empty": "Перейти к покупкам",
-	"cart.button.success": "Заказать ещё"
-	
+	"cart.button.success": "Заказать ещё",
+
+	"account_menu.profile": "Профиль",
+	"account_menu.order_history": "История заказов",
+	"account_menu.reviews": "Отзывы",
+	"account_menu.recently_viewed": "Просмотренные",
+	"account_menu.favorites": "Избранное",
+	"account_menu.help": "Помощь",
+	"account_menu.statistics": "Статистика",
+	"account_menu.settings": "Настройки",
+	"account_menu.signout": "Выйти",
+
+	"account.settings.title": "Настройки аккаунта",
+	"account.settings.change_data": "Изменить данные",
+	"account.settings.delete_account": "Удалить аккаунт",
+	"account.settings.form.first_name": "Имя",
+	"account.settings.form.last_name": "Фамилия",
+	"account.settings.form.username": "Имя пользователя"
 }
