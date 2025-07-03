@@ -33,5 +33,15 @@
 	"homepage.contact.subtitle": "Contact us",
 	"homepage.contact.message": "Thank you for visiting our website! Currently, our contact form is temporarily unavailable. We apologize for any inconvenience this may cause and appreciate your understanding. Please check back soon for updates. In the meantime, feel free to explore our snacks and enjoy browsing our site!",
 
-	"homepage.reviews.title": "Our customer's reviews"
+	"homepage.reviews.title": "Our customer's reviews",
+
+	"profile_menu.profile": "My Profile",
+	"profile_menu.favorites": "Favorites",
+	"profile_menu.order_history": "Order History",
+	"profile_menu.settings": "Settings",
+	"profile_menu.reviews": "My Reviews",
+	"profile_menu.sign_out": "Sign Out",
+	"profile_menu.admin_panel": "Admin Panel",
+	"profile_menu.theme_switcher": "Change app theme"
+
 }

@@ -33,6 +33,15 @@
 	"homepage.contact.subtitle": "Связаться с нами",
 	"homepage.contact.message": "Спасибо за посещение нашего сайта! В настоящее время форма обратной связи временно недоступна. Приносим извинения за возможные неудобства и благодарим за понимание. Пожалуйста, загляните позже. А пока наслаждайтесь нашими вкусняшками!",
 
-	"homepage.reviews.title": "Отзывы наших клиентов"
+	"homepage.reviews.title": "Отзывы наших клиентов",
+
+	"profile_menu.profile": "Мой профиль",
+	"profile_menu.favorites": "Избранное",
+	"profile_menu.order_history": "История заказов",
+	"profile_menu.settings": "Настройки",
+	"profile_menu.reviews": "Мои отзывы",
+	"profile_menu.sign_out": "Выйти",
+	"profile_menu.admin_panel": "Панель администратора",
+	"profile_menu.theme_switcher": "Изменить тему"
 	
 }
