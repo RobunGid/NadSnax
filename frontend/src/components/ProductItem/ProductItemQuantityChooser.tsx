@@ -3,6 +3,7 @@ import styles from './ProductItemQuantityChooser.module.css';
 import { ChangeEvent, EventHandler, MouseEventHandler } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import clsx from 'clsx';
+import { useTranslate } from '../../i18n/i18n';
 
 export type ProductItemQuantityChooserProps = {
 	cartItem?: CartItemType;
@@ -20,15 +21,17 @@ export const ProductItemQuantityChooser = ({
 	onRemove,
 	onInputChange,
 }: ProductItemQuantityChooserProps) => {
+	const translate = useTranslate();
+
 	return (
 		<div className={className}>
 			{!cartItem?.count ? (
 				<div
-					className='dark:bg-sky-800 dark:hover:bg-sky-900 bg-orange-400 flex w-24 h-8 absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
+					className='dark:bg-sky-800 dark:hover:bg-sky-900 bg-orange-400 flex h-8 absolute justify-center translate-x-2 -translate-y-10 rounded-3xl px-3 py-1 font-bold transition hover:bg-orange-500 hover:scale-105'
 					onClick={onAdd}
 				>
 					<FiPlus />
-					<button>Add</button>
+					<button>{translate('product_item.quantity_chooser.add')}</button>
 				</div>
 			) : (
 				<div className='dark:bg-sky-800 bg-orange-400 flex justify-center w-[100px] h-[30px] absolute translate-x-2 -translate-y-10 rounded-3xl font-bold transition'>

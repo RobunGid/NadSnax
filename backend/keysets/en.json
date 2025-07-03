@@ -65,5 +65,7 @@
 	"account.settings.delete_account": "Delete account",
 	"account.settings.form.first_name": "First name",
 	"account.settings.form.last_name": "Last name",
-	"account.settings.form.username": "Username"
+	"account.settings.form.username": "Username",
+
+	"product_item.quantity_chooser.add": "Add"
 }
