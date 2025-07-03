@@ -42,6 +42,12 @@
 	"profile_menu.reviews": "My Reviews",
 	"profile_menu.sign_out": "Sign Out",
 	"profile_menu.admin_panel": "Admin Panel",
-	"profile_menu.theme_switcher": "Change app theme"
+	"profile_menu.theme_switcher": "Change app theme",
+
+	"cart.message.empty": "Your cart is empty",
+	"cart.message.success": "Success! Your order is now being process",
+
+	"cart.button.empty": "Go shopping",
+	"cart.button.success": "Order more"
 
 }

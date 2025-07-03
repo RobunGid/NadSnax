@@ -42,6 +42,12 @@
 	"profile_menu.reviews": "Мои отзывы",
 	"profile_menu.sign_out": "Выйти",
 	"profile_menu.admin_panel": "Панель администратора",
-	"profile_menu.theme_switcher": "Изменить тему"
+	"profile_menu.theme_switcher": "Изменить тему",
+
+	"cart.message.empty": "Ваша корзина пуста",
+	"cart.message.success": "Успешно! Заказ отправлен в обработку",
+
+	"cart.button.empty": "Перейти к покупкам",
+	"cart.button.success": "Заказать ещё"
 	
 }
