@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useI18n } from '../../i18n/i18n';
 import { Language } from '../../types';
 import { UILanguageSelector } from './UI/UILanguageSelector';
 import { languages } from '../../logic/languages';
+import { useOutside } from '../../hooks/useOutside';
 
 export const LanguageSelector = () => {
 	const { lang, setLang } = useI18n();
@@ -19,23 +20,12 @@ export const LanguageSelector = () => {
 		setIsOpen(false);
 	};
 
-	const handleCloseLanguagesMenu = (event: MouseEvent): void => {
-		event.stopPropagation();
-		if (
-			languagesRef.current &&
-			event.target != languagesRef.current &&
-			!languagesRef.current.contains(event.target as Node)
-		) {
+	useOutside({
+		onClickOutside: () => {
 			setIsOpen(false);
-		}
-	};
-
-	useEffect(() => {
-		window.addEventListener('click', handleCloseLanguagesMenu);
-		return () => {
-			window.removeEventListener('click', handleCloseLanguagesMenu);
-		};
-	}, []);
+		},
+		element: languagesRef,
+	});
 
 	return (
 		<UILanguageSelector
