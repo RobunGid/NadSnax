@@ -38,8 +38,8 @@ export const UILanguageSelector = ({
 				</div>
 				<div
 					className={clsx(
-						'max-h-0 duration-200 overflow-hidden absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white dark:bg-gray-500 ring-1 ring-black ring-opacity-5 transition-[max-height]',
-						isOpen && 'max-h-24'
+						'max-h-0 duration-200 overflow-hidden absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white dark:bg-gray-500 transition-[max-height]',
+						isOpen && 'max-h-24 ring-2 dark:ring-gray-800 ring-gray-400'
 					)}
 				>
 					<div className='grid grid-cols-1 gap-2 p-1'>
