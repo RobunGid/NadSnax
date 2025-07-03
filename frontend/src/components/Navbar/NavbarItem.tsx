@@ -1,18 +1,21 @@
 import { useTranslate } from '../../i18n/i18n';
+import { withTranslate } from '../../logic/withTranslate';
 import { UINavbarItem } from './UI/UINavbarItem';
 import { UINavbarItemContainer } from './UI/UINavbarItemContainer';
 
+interface NavbarItemProps {
+	translate: ReturnType<typeof useTranslate>;
+}
+
 export const NavbarItem = {
-	Home: () => {
-		const translate = useTranslate();
+	Home: withTranslate(({ translate }: NavbarItemProps) => {
 		return (
 			<UINavbarItemContainer>
 				<UINavbarItem to='/home' text={translate('navbar.home')} />
 			</UINavbarItemContainer>
 		);
-	},
-	BestSellers: () => {
-		const translate = useTranslate();
+	}),
+	BestSellers: withTranslate(({ translate }: NavbarItemProps) => {
 		return (
 			<UINavbarItemContainer>
 				<UINavbarItem
@@ -21,9 +24,8 @@ export const NavbarItem = {
 				/>
 			</UINavbarItemContainer>
 		);
-	},
-	SecretBoxes: () => {
-		const translate = useTranslate();
+	}),
+	SecretBoxes: withTranslate(({ translate }: NavbarItemProps) => {
 		return (
 			<UINavbarItemContainer>
 				<UINavbarItem
@@ -32,9 +34,8 @@ export const NavbarItem = {
 				/>
 			</UINavbarItemContainer>
 		);
-	},
-	AllProducts: () => {
-		const translate = useTranslate();
+	}),
+	AllProducts: withTranslate(({ translate }: NavbarItemProps) => {
 		return (
 			<UINavbarItemContainer>
 				<UINavbarItem
@@ -44,5 +45,5 @@ export const NavbarItem = {
 				/>
 			</UINavbarItemContainer>
 		);
-	},
+	}),
 };

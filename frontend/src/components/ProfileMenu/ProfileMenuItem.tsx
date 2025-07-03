@@ -1,51 +1,53 @@
 import { MouseEventHandler } from 'react';
 import { UIProfileMenuItem } from './UI/UIProfileMenuItem';
 import { GrUserAdmin } from 'react-icons/gr';
+import { withTranslate } from '../../logic/withTranslate';
+import { useTranslate } from '../../i18n/i18n';
 
 interface SignOutProps {
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
-	translate: (value: string) => string;
+	translate: ReturnType<typeof useTranslate>;
 }
 
 interface ProfileMenuItemProps {
-	translate: (value: string) => string;
+	translate: ReturnType<typeof useTranslate>;
 }
 
 export const ProfileMenuItem = {
-	Profile: ({ translate }: ProfileMenuItemProps) => (
+	Profile: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/account/profile'>
 			{translate('profile_menu.profile')}
 		</UIProfileMenuItem>
-	),
-	Favorites: ({ translate }: ProfileMenuItemProps) => (
+	)),
+	Favorites: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/account/favorites'>
 			{translate('profile_menu.favorites')}
 		</UIProfileMenuItem>
-	),
-	OrderHistory: ({ translate }: ProfileMenuItemProps) => (
+	)),
+	OrderHistory: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/account/order_history'>
 			{translate('profile_menu.order_history')}
 		</UIProfileMenuItem>
-	),
-	Settings: ({ translate }: ProfileMenuItemProps) => (
+	)),
+	Settings: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/account/settings'>
 			{translate('profile_menu.settings')}
 		</UIProfileMenuItem>
-	),
-	Reviews: ({ translate }: ProfileMenuItemProps) => (
+	)),
+	Reviews: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/account/reviews'>
 			{translate('profile_menu.reviews')}
 		</UIProfileMenuItem>
-	),
-	SignOut: ({ onClick, translate }: SignOutProps) => (
+	)),
+	SignOut: withTranslate(({ onClick, translate }: SignOutProps) => (
 		<UIProfileMenuItem to='/account/signout' type='secondary' onClick={onClick}>
 			{translate('profile_menu.sign_out')}
 		</UIProfileMenuItem>
-	),
-	AdminPanel: ({ translate }: ProfileMenuItemProps) => (
+	)),
+	AdminPanel: withTranslate(({ translate }: ProfileMenuItemProps) => (
 		<UIProfileMenuItem to='/admin-panel/statistics' type='admin'>
 			<GrUserAdmin size='36' />
 			{translate('profile_menu.admin_panel')}
 		</UIProfileMenuItem>
-	),
+	)),
 };

@@ -6,14 +6,11 @@ import { useNavigate } from 'react-router';
 import { ProfileMenuThemeSwitcher } from './ProfileMenuThemeSwitcher';
 import { UIProfileMenuUserInfo } from './UI/UIProfileMenuUserInfo';
 import { UIProfileMenu } from './UI/UIProfileMenu';
-import { useTranslate } from '../../i18n/i18n';
 
 export const ProfileMenu = () => {
 	const user = useStateSelector((state) => state.user.user);
 
 	const dispatch = useAppDispatch();
-
-	const translate = useTranslate();
 
 	const navigate = useNavigate();
 
@@ -32,8 +29,8 @@ export const ProfileMenu = () => {
 				<UIProfileMenu>
 					<ProfileMenuThemeSwitcher />
 
-					<ProfileMenuItem.Profile translate={translate} />
-					<ProfileMenuItem.Favorites translate={translate} />
+					<ProfileMenuItem.Profile />
+					<ProfileMenuItem.Favorites />
 
 					<UIProfileMenuUserInfo
 						firstName={user?.firstName}
@@ -42,19 +39,14 @@ export const ProfileMenu = () => {
 					/>
 					<li>
 						<ul>
-							<ProfileMenuItem.OrderHistory translate={translate} />
-							<ProfileMenuItem.Settings translate={translate} />
-							<ProfileMenuItem.Reviews translate={translate} />
+							<ProfileMenuItem.OrderHistory />
+							<ProfileMenuItem.Settings />
+							<ProfileMenuItem.Reviews />
 						</ul>
 					</li>
 
-					<ProfileMenuItem.SignOut
-						onClick={handleSignout}
-						translate={translate}
-					/>
-					{hasAdminPanel && (
-						<ProfileMenuItem.AdminPanel translate={translate} />
-					)}
+					<ProfileMenuItem.SignOut onClick={handleSignout} />
+					{hasAdminPanel && <ProfileMenuItem.AdminPanel />}
 				</UIProfileMenu>
 			</div>
 		)
