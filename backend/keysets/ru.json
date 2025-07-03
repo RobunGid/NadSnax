@@ -67,5 +67,7 @@
 	"account.settings.form.last_name": "Фамилия",
 	"account.settings.form.username": "Имя пользователя",
 
-	"product_item.quantity_chooser.add": "В корзину"
+	"product_item.quantity_chooser.add": "В корзину",
+	"product_item.badges.secretbox": "Секретный бокс",
+	"product_item.badges.bestseller": "Хит продаж"
 }

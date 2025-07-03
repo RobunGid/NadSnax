@@ -67,5 +67,7 @@
 	"account.settings.form.last_name": "Last name",
 	"account.settings.form.username": "Username",
 
-	"product_item.quantity_chooser.add": "Add"
+	"product_item.quantity_chooser.add": "Add",
+	"product_item.badges.secretbox": "Secretbox",
+	"product_item.badges.bestseller": "Bestseller"
 }
