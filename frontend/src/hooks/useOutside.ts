@@ -16,6 +16,7 @@ export const useOutside = ({ onClickOutside, element }: useOutsideParams) => {
 			onClickOutside();
 		}
 	};
+
 	useEffect(() => {
 		window.addEventListener('click', handleClickOutside);
 		return () => {
