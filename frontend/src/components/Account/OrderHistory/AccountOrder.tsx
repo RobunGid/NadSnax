@@ -1,6 +1,7 @@
+import { useI18n } from '../../../i18n/i18n';
+import { formatDate } from '../../../logic/formatDate';
 import { formatOrderStatus } from '../../../logic/formatOrderStatus';
 import { formatPrice } from '../../../logic/formatPrice';
-import { formatReviewDate } from '../../../logic/formatReviewDate';
 import { Order } from '../../../types';
 import { UIAccountOrder } from './UI/UIAccountOrder';
 
@@ -14,10 +15,12 @@ export const AccountOrder = ({ order }: AccountOrderProps) => {
 		0
 	);
 
+	const { lang } = useI18n();
+
 	const totalCount = String(order.items.reduce((prev, cur) => prev + cur.quantity, 0));
 
 	const formattedTotalPrice = formatPrice(totalPrice);
-	const formatedCreatedAt = formatReviewDate(order.createdAt);
+	const formatedCreatedAt = formatDate(order.createdAt, lang);
 	const formattedOrderStatus = formatOrderStatus(order.status);
 
 	return (

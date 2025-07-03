@@ -1,5 +1,6 @@
 import { Axios } from '../../api';
-import { formatReviewDate } from '../../logic/formatReviewDate';
+import { useI18n } from '../../i18n/i18n';
+import { formatDate } from '../../logic/formatDate';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
 import { Review } from '../../types';
 import { UIAvatar } from '../UI/UIAvatar';
@@ -13,7 +14,8 @@ interface ReviewProps {
 }
 
 export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
-	const createdAt = formatReviewDate(review.createdAt);
+	const { lang } = useI18n();
+	const createdAt = formatDate(review.createdAt, lang);
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
