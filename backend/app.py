@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import logging
 from constants import SupportedLanguages
+from flask import g
 
 from db import db
 
@@ -97,8 +98,10 @@ def create_app(db_url = None):
     @app.before_request
     def set_language_from_header():
         if 'language' not in session:
-            best_lang = request.accept_languages.best_match([language.value for language in SupportedLanguages])
-            session['language'] = best_lang or SupportedLanguages.en.value
+            header_language = request.args.get('lang')
+            accept_language = request.accept_languages.best_match([language.value for language in SupportedLanguages])
+            default_language = SupportedLanguages.en.value
+            g.lang = header_language or accept_language or default_language
 
     api = Api(app)
  

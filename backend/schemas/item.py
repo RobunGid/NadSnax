@@ -23,12 +23,18 @@ class ItemUpdateSchema(Schema):
     category_id = fields.Str(required=True)
     type_id = fields.Str(required=True)
 
+class ItemTranslationSchema(Schema):
+    label = fields.Str(required=True)
+    description = fields.Str(required=True)
+
 class ItemSchema(PlainItemSchema):
     category = fields.Nested("schemas.category.CategorySchema", dump_only=True) 
     type = fields.Nested("schemas.type.TypeSchema", dump_only=True) 
     item_details = fields.Nested("schemas.item_details.ItemDetailsSchema", dump_only=True)
     reviews = fields.Nested("schemas.review.FullReviewSchema", dump_only=True, many=True)
     images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True, exclude=("item",))
+    
+    translation = fields.Nested(ItemTranslationSchema, dump_only=True)
     
     average_rating = fields.Float(dump_only=True)
     rating_count = fields.Int(dump_only=True)
@@ -69,6 +75,9 @@ class ItemSchema(PlainItemSchema):
         
         if include_reviews:
             self.fields["reviews"].exclude += ('item',)
+            
+        if include_item_details:
+            self.fields["item_details"].exclude += ("item",)
         
         if not include_reviews_user and include_reviews:
             self.fields["reviews"].exclude += ('user',)
@@ -82,3 +91,4 @@ class FullItemSchema(ItemSchema):
                  include_images=True, 
                  include_favorite=True, 
                  include_reviews_user=True, **kwargs)
+

@@ -1,18 +1,17 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 import uuid
-from models import ItemModel, CategoryModel, TypeModel
+from models import ItemModel, CategoryModel, TypeModel, FavoriteModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
-from flask import request, session
+from flask import request, g
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
-from models import FavoriteModel, UserModel
 from flask_jwt_extended import jwt_required
 from utils import role_required
-from flask import current_app
-from utils import convert_currency
+from sqlalchemy.orm import aliased
+from constants import SupportedLanguages
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -92,7 +91,7 @@ class Item(MethodView):
 class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
-        language = session.get("language")
+        language = SupportedLanguages(g.get("language", SupportedLanguages.en.value))
             
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
@@ -137,6 +136,7 @@ class Items(MethodView):
         if include_images:
             query = query.options(db.joinedload(ItemModel.images))
         
+        query = query.options(db.joinedload(ItemModel.translations))
             
         query = query.join(ItemModel.category) if category_filter else query
         query = query.join(ItemModel.type) if type_filter else query
@@ -154,11 +154,10 @@ class Items(MethodView):
             query = query.filter(ItemModel.category_id == simillar_item.category_id)
             query = query.filter(ItemModel.price >= float(simillar_item.price) * 0.9)
             query = query.filter(ItemModel.price <= float(simillar_item.price) * 1.1)
-        
+
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
             
-        
         if auth_header and auth_header.startswith('Bearer ') and include_favorite:
             token = auth_header[7:]
             decoded_token = decode_token(token)
@@ -166,14 +165,22 @@ class Items(MethodView):
             query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
             query = query.add_columns(FavoriteModel.id.label("favorite_id"))
             query = query.offset(page*per_page).limit(per_page)
+            items = []
             items_favorites = query.all()
-            items = [item for item, _ in items_favorites]
+            
             for item, favorite_id in items_favorites:
                 item.favorite_id = favorite_id
+                items.append(item)
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-        
+            
+        for item in items:
+            item_translations = list(filter(lambda translation: translation.lang_key == language, item.translations))
+            item_details_translations = list(filter(lambda translation: translation.lang_key == language, item.item_details.translations))
+            item.translation = item_translations[0] if len(item_translations) != 0 else item.translations[0]
+            item.item_details.translation = item_details_translations[0] if len(item_details_translations) != 0 else item.item_details.translations[0]
+            
         params = {
             "many": True,
             "include_category": include_category,
@@ -188,7 +195,6 @@ class Items(MethodView):
         schema = ItemSchema(**params)
             
         dumped_items = schema.dump(items)
-        
         return dumped_items, 200
         
     @blp.arguments(ItemSchema)
