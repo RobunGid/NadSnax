@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import logging
-from CONSTANTS import SUPPORTED_LANGUAGES
+from constants import SupportedLanguages
 
 from db import db
 
@@ -97,8 +97,8 @@ def create_app(db_url = None):
     @app.before_request
     def set_language_from_header():
         if 'language' not in session:
-            best_lang = request.accept_languages.best_match(SUPPORTED_LANGUAGES)
-            session['language'] = best_lang or 'en' 
+            best_lang = request.accept_languages.best_match([language.value for language in SupportedLanguages])
+            session['language'] = best_lang or SupportedLanguages.en
 
     api = Api(app)
  

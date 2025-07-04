@@ -1,20 +1,8 @@
 from db import db
 from sqlalchemy import CheckConstraint
-from sqlalchemy.orm import validates
 from datetime import datetime
 from sqlalchemy import DateTime
-import enum
-
-class OrderStatus(enum.Enum):
-    processing = "processing"
-    packing = "packing"
-    shipping = "shipping"
-    ready = "ready"
-    success = "success"
-    canceled = "canceled"
-    returned = "returned"
-    
-    deleted = "deleted"
+from constants import OrderStatus
 
 class OrderModel(db.Model):
     __tablename__ = 'orders'

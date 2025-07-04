@@ -5,8 +5,8 @@ from flask_jwt_extended import get_jwt_identity
 from models import UserModel
 from flask_smorest import abort
 from flask import request
+from constants import SupportedCurrencies
 import requests
-import xml.etree.ElementTree as ET
 
 def role_required(roles: List[Role], message=None):
     def decorator(fn):
@@ -37,7 +37,7 @@ def content_type_required(content_types):
         return wrapper
     return decorator
 
-def convert_currency(value=10, from_currency="rub", to_currency="usd"):
+def convert_currency(value=10, from_currency=SupportedCurrencies.en, to_currency=SupportedCurrencies.ru):
     response = requests.get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
     rates = response.json()["usd"]
     from_rate = rates[from_currency]
