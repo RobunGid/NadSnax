@@ -69,5 +69,7 @@
 
 	"product_item.quantity_chooser.add": "Add",
 	"product_item.badges.secretbox": "Secretbox",
-	"product_item.badges.bestseller": "Bestseller"
+	"product_item.badges.bestseller": "Bestseller",
+
+	"product_details.simillar_items.title": "Simillar items you might like"
 }

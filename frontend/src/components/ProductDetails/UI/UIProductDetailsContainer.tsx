@@ -7,5 +7,9 @@ interface UIProductDetailsContainerProps {
 export const UIProductDetailsContainer = ({
 	children,
 }: UIProductDetailsContainerProps) => {
-	return <div className='w-full flex flex-row justify-center'>{children}</div>;
+	return (
+		<div className='w-full flex flex-row justify-center gap-10 flex-wrap'>
+			{children}
+		</div>
+	);
 };

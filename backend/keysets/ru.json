@@ -69,5 +69,7 @@
 
 	"product_item.quantity_chooser.add": "В корзину",
 	"product_item.badges.secretbox": "Секретный бокс",
-	"product_item.badges.bestseller": "Хит продаж"
+	"product_item.badges.bestseller": "Хит продаж",
+
+	"product_details.simillar_items.title": "Похожие товары"
 }
