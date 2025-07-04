@@ -6,7 +6,7 @@ class PlainReviewSchema(Schema):
     rating = fields.Int(required=True)
     created_at = fields.DateTime(required=True, dump_only=True)
     item_id = fields.Str(required=True)
-    user_id = fields.Str(required=True)
+    user_id = fields.Str(required=True, dump_only=True)
     
 class ReviewUpdateSchema(Schema):
     text = fields.Str(required=True)

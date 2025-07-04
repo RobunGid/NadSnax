@@ -53,6 +53,7 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 			actions.fetchItems({
 				includeItemDetails: true,
 				includeReviews: true,
+				includeReviewsUser: true,
 				includeCategory: true,
 				includeType: true,
 				includeImages: true,

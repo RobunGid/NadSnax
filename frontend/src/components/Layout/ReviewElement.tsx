@@ -37,6 +37,7 @@ export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 				includeCategory: true,
 				includeType: true,
 				includeImages: true,
+				includeReviewsUser: true,
 				simillarId: review.itemId,
 			});
 		}
