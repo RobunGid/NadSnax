@@ -8,3 +8,5 @@ from models.item_image import ItemImageModel
 from models.favorite import FavoriteModel
 from models.order import OrderModel
 from models.order_item import OrderItemModel
+from models.item_translation import ItemTranslationModel
+from models.item_details_translation import ItemDetailsTranslationModel

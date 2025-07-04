@@ -98,7 +98,7 @@ def create_app(db_url = None):
     def set_language_from_header():
         if 'language' not in session:
             best_lang = request.accept_languages.best_match([language.value for language in SupportedLanguages])
-            session['language'] = best_lang or SupportedLanguages.en
+            session['language'] = best_lang or SupportedLanguages.en.value
 
     api = Api(app)
  

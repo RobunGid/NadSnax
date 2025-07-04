@@ -12,5 +12,7 @@ class ItemDetailsModel(db.Model):
     
     ingridients = db.Column(db.Text, nullable=False)
     nutrition = db.Column(db.Text, nullable=False)
+    
     item = db.relationship("ItemModel", back_populates = "item_details")
+    translation = db.relationship("ItemDetailsTranslationModel", backref="item_details", lazy="select")
     

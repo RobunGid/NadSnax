@@ -26,6 +26,7 @@ class ItemModel(db.Model):
     images = db.relationship("ItemImageModel", back_populates="item", lazy="select")
     
     item_details = db.relationship("ItemDetailsModel", back_populates="item", uselist=False)
+    translation = db.relationship("ItemTranslationModel", backref="item", lazy="select")
     
     @hybrid_property
     def average_rating(self):
