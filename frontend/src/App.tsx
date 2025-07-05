@@ -13,9 +13,12 @@ import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
 import { AdminPanelPage } from './components/Pages/AdminPanelPage';
+import { useAxiosLanguageHeader } from './hooks/useAxiosLanguageHeader';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
+
+	useAxiosLanguageHeader();
 
 	const categoriesStatus = useStateSelector((state) => state.category.status);
 
