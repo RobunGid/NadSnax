@@ -1,7 +1,7 @@
 import { formatPrice } from '../../logic/formatPrice';
 import { Item } from '../../types';
 import { ProductDetailsQuantityChooser } from './ProductDetailsQuantityChooser';
-import { ProductDetailsItemDetails } from './ProductDetailsItemDetails';
+import { ProductDetailsPanel } from './ProductDetailsPanel';
 import { UIProductDetailsPrice } from './UI/UIProductDetailsPrice';
 import { UIProductDetailsFullLabel } from './UI/UIProductDetailsFullLabel';
 import { UIProductDetailsSupplier } from './UIProductDetailsSupplier';
@@ -36,7 +36,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 			<ProductDetailsAddToFavorite item={item} />
 
-			<ProductDetailsItemDetails itemDetails={item.itemDetails} />
+			<ProductDetailsPanel itemDetails={item.itemDetails} />
 		</UIProductDetailsInfo>
 	);
 };

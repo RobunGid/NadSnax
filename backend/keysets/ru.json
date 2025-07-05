@@ -71,5 +71,9 @@
 	"product_item.badges.secretbox": "Секретный бокс",
 	"product_item.badges.bestseller": "Хит продаж",
 
-	"product_details.simillar_items.title": "Похожие товары"
+	"product_details.simillar_items.title": "Похожие товары",
+	"product_details.panel.full_description": "О товаре",
+	"product_details.panel.ingridients": "Состав",
+	"product_details.panel.supplier": "Поставщик",
+	"product_details.panel.nutrition": "Пищевая ценность"
 }

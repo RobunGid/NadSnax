@@ -71,5 +71,9 @@
 	"product_item.badges.secretbox": "Secretbox",
 	"product_item.badges.bestseller": "Bestseller",
 
-	"product_details.simillar_items.title": "Simillar items you might like"
+	"product_details.simillar_items.title": "Simillar items you might like",
+	"product_details.panel.full_description": "About this item",
+	"product_details.panel.ingridients": "Ingridients",
+	"product_details.panel.supplier": "Supplier",
+	"product_details.panel.nutrition": "Nutrition"
 }
