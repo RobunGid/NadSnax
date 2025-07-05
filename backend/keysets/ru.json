@@ -80,5 +80,6 @@
 	"product_details.remove_from_favorite": "Удалить из избранного",
 	"product_details.quantity_chooser.add_to_cart": "Добавить в корзину",
 	"product_details.review_form.text_area_placeholder": "Поделитесь вашим мнением!",
-	"product_details.review_form.label": "Оцените этот товар"
+	"product_details.review_form.label": "Оцените этот товар",
+	"product_details.supplier_link": "Перейти на сайт поставщика"
 }

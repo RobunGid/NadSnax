@@ -80,5 +80,6 @@
 	"product_details.remove_from_favorite": "Remove from favorite",
 	"product_details.quantity_chooser.add_to_cart": "Add to cart",
 	"product_details.review_form.text_area_placeholder": "Tell us about your opinion!",
-	"product_details.review_form.label": "Rate this item"
+	"product_details.review_form.label": "Rate this item",
+	"product_details.supplier_link": "Visit the supplier site"
 }
