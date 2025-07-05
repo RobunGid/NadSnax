@@ -18,7 +18,7 @@ class ItemDetailsTranslationSchema(Schema):
     
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested("schemas.item.ItemSchema", dump_only=True)
-    translation = fields.Nested(ItemDetailsTranslationSchema, dump_only=True)
+    # translation = fields.Nested(ItemDetailsTranslationSchema, dump_only=True)
     
     def __init__(self, include_item=True, **kwargs):
         exclude_fields = set()

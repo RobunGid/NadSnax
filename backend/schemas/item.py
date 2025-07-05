@@ -34,7 +34,7 @@ class ItemSchema(PlainItemSchema):
     reviews = fields.Nested("schemas.review.FullReviewSchema", dump_only=True, many=True)
     images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True, exclude=("item",))
     
-    translation = fields.Nested(ItemTranslationSchema, dump_only=True)
+    # translation = fields.Nested(ItemTranslationSchema, dump_only=True)
     
     average_rating = fields.Float(dump_only=True)
     rating_count = fields.Int(dump_only=True)

@@ -97,11 +97,10 @@ def create_app(db_url = None):
     
     @app.before_request
     def set_language_from_header():
-        if 'language' not in session:
-            header_language = request.args.get('lang')
-            accept_language = request.accept_languages.best_match([language.value for language in SupportedLanguages])
-            default_language = SupportedLanguages.en.value
-            g.lang = header_language or accept_language or default_language
+        header_language = request.args.get('lang')
+        accept_language = request.accept_languages.best_match([language.value for language in SupportedLanguages])
+        default_language = SupportedLanguages.en.value
+        g.language = header_language or accept_language or default_language
 
     api = Api(app)
  

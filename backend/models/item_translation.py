@@ -13,7 +13,7 @@ class ItemTranslationModel(db.Model):
     label = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80))
     
-    lang_key = db.Column(db.Enum(SupportedLanguages), default=SupportedLanguages.ru)
+    lang_key = db.Column(db.Enum(SupportedLanguages), default=SupportedLanguages.ru, nullable=False)
     
     __table_args__ = (
 		UniqueConstraint('item_id', 'lang_key', name='uix_item_translation'),

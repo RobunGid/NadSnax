@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 import uuid
-from models import ItemModel, CategoryModel, TypeModel, FavoriteModel
+from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel
 from schemas import ItemSchema, ItemUpdateSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
@@ -12,6 +12,7 @@ from flask_jwt_extended import jwt_required
 from utils import role_required
 from sqlalchemy.orm import aliased
 from constants import SupportedLanguages
+from sqlalchemy.orm import contains_eager
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -129,15 +130,12 @@ class Items(MethodView):
             query = query.options(db.joinedload(ItemModel.type))
         if include_category:
             query = query.options(db.joinedload(ItemModel.category))
-        if include_item_details:
-            query = query.options(db.joinedload(ItemModel.item_details))
+
         if include_reviews:
             query = query.options(db.joinedload(ItemModel.reviews))
         if include_images:
             query = query.options(db.joinedload(ItemModel.images))
         
-        query = query.options(db.joinedload(ItemModel.translations))
-            
         query = query.join(ItemModel.category) if category_filter else query
         query = query.join(ItemModel.type) if type_filter else query
             
@@ -158,6 +156,21 @@ class Items(MethodView):
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
             
+        ItemTranslationAlias = aliased(ItemTranslationModel)
+        ItemDetailsTranslationAlias = aliased(ItemDetailsTranslationModel)
+
+        query = query \
+            .outerjoin(ItemTranslationAlias, 
+                    and_(ItemTranslationAlias.item_id == ItemModel.id, 
+                            ItemTranslationAlias.lang_key == language)) \
+            .outerjoin(ItemDetailsModel, ItemModel.id == ItemDetailsModel.item_id) \
+            .outerjoin(ItemDetailsTranslationAlias,
+                    and_(ItemDetailsTranslationAlias.item_id == ItemDetailsModel.item_id,
+                            ItemDetailsTranslationAlias.lang_key == language)) \
+            .options(contains_eager(ItemModel.translations, alias=ItemTranslationAlias)) \
+            .options(contains_eager(ItemModel.item_details)
+                    .contains_eager(ItemDetailsModel.translations, alias=ItemDetailsTranslationAlias))
+                
         if auth_header and auth_header.startswith('Bearer ') and include_favorite:
             token = auth_header[7:]
             decoded_token = decode_token(token)
@@ -174,13 +187,21 @@ class Items(MethodView):
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-            
+        
         for item in items:
-            item_translations = list(filter(lambda translation: translation.lang_key == language, item.translations))
-            item_details_translations = list(filter(lambda translation: translation.lang_key == language, item.item_details.translations))
-            item.translation = item_translations[0] if len(item_translations) != 0 else item.translations[0]
-            item.item_details.translation = item_details_translations[0] if len(item_details_translations) != 0 else item.item_details.translations[0]
-            
+            if item.translations:
+                item.translation = item.translations[0]
+                item.label = item.translation.label or item.label
+                item.description = item.translation.description or item.description
+
+            if item.item_details and item.item_details.translations:
+                item.item_details.translation = item.item_details.translations[0]
+                item.item_details.full_label = item.item_details.translation.full_label or item.item_details.full_label
+                item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
+                item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
+                item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
+                item.item_details.supplier = item.item_details.translation.supplier or item.item_details.supplier
+        
         params = {
             "many": True,
             "include_category": include_category,
