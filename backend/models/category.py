@@ -12,6 +12,8 @@ class CategoryModel(db.Model):
     types = db.relationship('TypeModel', back_populates='category', lazy='select')
     items = db.relationship('ItemModel', back_populates='category', lazy='select')
     
+    translations = db.relationship("CategoryTranslationModel", back_populates="category")
+    
     @hybrid_property
     def icon_url(self):
         return f'{request.host_url}resources/icons/{self.id}.svg'

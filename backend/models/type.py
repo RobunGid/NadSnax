@@ -13,6 +13,8 @@ class TypeModel(db.Model):
     category_id = db.Column(db.String(80), db.ForeignKey("categories.id"), nullable=False)
     category = db.relationship("CategoryModel", back_populates="types")
     
+    translations = db.relationship("TypeTranslationModel", back_populates="type")
+    
     items = db.relationship('ItemModel', back_populates='type', lazy='select')
     
     @hybrid_property

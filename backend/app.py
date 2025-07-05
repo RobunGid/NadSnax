@@ -100,7 +100,8 @@ def create_app(db_url = None):
         header_language = request.args.get('lang')
         accept_language = request.accept_languages.best_match([language.value for language in SupportedLanguages])
         default_language = SupportedLanguages.en.value
-        g.language = header_language or accept_language or default_language
+        language = header_language or accept_language or default_language
+        g.language = SupportedLanguages(language.upper())
 
     api = Api(app)
  

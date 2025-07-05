@@ -92,7 +92,7 @@ class Item(MethodView):
 class Items(MethodView):
     def get(self):
         auth_header = request.headers.get("Authorization", None)
-        language = SupportedLanguages(g.get("language", SupportedLanguages.en.value).upper())
+        language = g.language
             
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
