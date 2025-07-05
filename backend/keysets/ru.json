@@ -75,5 +75,8 @@
 	"product_details.panel.full_description": "О товаре",
 	"product_details.panel.ingridients": "Состав",
 	"product_details.panel.supplier": "Поставщик",
-	"product_details.panel.nutrition": "Пищевая ценность"
+	"product_details.panel.nutrition": "Пищевая ценность",
+	"product_details.add_to_favorite": "Добавить в избранное",
+	"product_details.remove_from_favorite": "Удалить из избранного",
+	"product_details.quantity_chooser.add_to_cart": "Добавить в корзину"
 }

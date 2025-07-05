@@ -128,8 +128,6 @@ export const fetchItemsThunk = createAsyncThunk<
 			},
 		});
 
-		console.log(lang);
-
 		if (response.status != 200) {
 			return rejectWithValue('Server Error!');
 		}

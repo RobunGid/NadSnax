@@ -75,5 +75,8 @@
 	"product_details.panel.full_description": "About this item",
 	"product_details.panel.ingridients": "Ingridients",
 	"product_details.panel.supplier": "Supplier",
-	"product_details.panel.nutrition": "Nutrition"
+	"product_details.panel.nutrition": "Nutrition",
+	"product_details.add_to_favorite": "Add to favorite",
+	"product_details.remove_from_favorite": "Remove from favorite",
+	"product_details.quantity_chooser.add_to_cart": "Add to cart"
 }
