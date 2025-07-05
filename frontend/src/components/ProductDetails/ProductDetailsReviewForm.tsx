@@ -1,8 +1,5 @@
 import { ChangeEventHandler, MouseEventHandler, useRef, useState } from 'react';
-import { UIButton } from '../UI/UIButton';
-import { UIProductDetailsRatingInputs } from './UI/UIProductDetailsRatingInputs';
 import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
-import { UIProductDetailsTextArea } from './UI/UIProductDetailsTextArea';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
 import { Axios } from '../../api';
 
@@ -70,13 +67,10 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 	};
 
 	return (
-		<UIProductDetailsReviewForm ref={formRef} onChange={handleChangeReviewForm}>
-			<label>Rate this item</label>
-			<UIProductDetailsRatingInputs />
-			<UIProductDetailsTextArea />
-			<UIButton className='w-28' onClick={handleSendReview}>
-				Send
-			</UIButton>
-		</UIProductDetailsReviewForm>
+		<UIProductDetailsReviewForm
+			ref={formRef}
+			onChange={handleChangeReviewForm}
+			onSubmit={handleSendReview}
+		/>
 	);
 };

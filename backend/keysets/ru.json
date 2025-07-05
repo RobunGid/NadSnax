@@ -78,5 +78,7 @@
 	"product_details.panel.nutrition": "Пищевая ценность",
 	"product_details.add_to_favorite": "Добавить в избранное",
 	"product_details.remove_from_favorite": "Удалить из избранного",
-	"product_details.quantity_chooser.add_to_cart": "Добавить в корзину"
+	"product_details.quantity_chooser.add_to_cart": "Добавить в корзину",
+	"product_details.review_form.text_area_placeholder": "Поделитесь вашим мнением!",
+	"product_details.review_form.label": "Оцените этот товар"
 }
