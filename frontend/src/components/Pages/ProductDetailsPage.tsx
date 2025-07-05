@@ -4,6 +4,7 @@ import { fetchItemsThunk } from '../../store/itemSlice';
 import { useActionCreators, useStateSelector } from '../../store';
 import { UIproductDetailsLoader } from '../ProductDetails/UI/Loader/UIProductDetailsLoader';
 import { ProductDetails } from '../ProductDetails/ProductDetails';
+import { useI18n } from '../../i18n/i18n';
 
 export const ProductDetailsPage = () => {
 	const { product: product_page_link } = useParams();
@@ -13,6 +14,8 @@ export const ProductDetailsPage = () => {
 	});
 
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
+
+	const { lang } = useI18n();
 
 	const { items, status } = useStateSelector((state) => state.item);
 
@@ -29,9 +32,10 @@ export const ProductDetailsPage = () => {
 			includeReviewsUser: true,
 			pageLink: `/${product_page_link}`,
 			accessToken,
+			lang,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [product_page_link, accessToken]);
+	}, [product_page_link, accessToken, lang]);
 
 	const item = useMemo(
 		() => items.find((item) => item.pageLink == `/${product_page_link}`),
@@ -49,10 +53,11 @@ export const ProductDetailsPage = () => {
 			includeImages: true,
 			simillarId: item.id,
 			accessToken,
+			lang,
 		});
 		fetchedSimillars.current = true;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [item?.id, accessToken]);
+	}, [item?.id, accessToken, lang]);
 
 	if (status === 'loading') return <UIproductDetailsLoader />;
 

@@ -102,7 +102,9 @@ export const fetchItemsThunk = createAsyncThunk<
 	) => {
 		categoryName = categoryName !== 'best-sellers' ? categoryName : undefined;
 		categoryName = categoryName !== 'secretboxes' ? categoryName : undefined;
+
 		const accessToken = getState().auth.accessToken;
+
 		const response = await Axios.get<Item[]>('/item', {
 			params: {
 				include_type: includeType,
@@ -125,6 +127,8 @@ export const fetchItemsThunk = createAsyncThunk<
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
 			},
 		});
+
+		console.log(lang);
 
 		if (response.status != 200) {
 			return rejectWithValue('Server Error!');
