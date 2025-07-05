@@ -6,11 +6,14 @@ import { useActionCreators, useStateSelector } from '../../store';
 import { ProductsList } from '../Layout/ProductsList';
 import { ProductsLoading } from '../Products/ProductsLoading';
 import { UIProductsNoResults } from '../UI/UIProductsNoResults';
+import { useI18n } from '../../i18n/i18n';
 
 export const ProductsPage = () => {
 	const items = useStateSelector((state) => state.item.items);
 	const status = useStateSelector((state) => state.item.status);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
+
+	const { lang } = useI18n();
 
 	const { fetchItems } = useActionCreators({
 		fetchItems: fetchItemsThunk,
@@ -28,12 +31,13 @@ export const ProductsPage = () => {
 		isSecretbox: category === 'secretboxes' ? true : undefined,
 		accessToken: accessToken,
 		includeFavorite: true,
+		lang,
 	};
 
 	useEffect(() => {
 		fetchItems(fetchItemsParams);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [category, type, accessToken]);
+	}, [category, type, accessToken, lang]);
 	return (
 		<>
 			<div className='flex flex-wrap p-5 justify-center gap-4'>

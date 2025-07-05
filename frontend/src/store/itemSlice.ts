@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Item } from '../types';
+import { Item, LanguageCodes } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { RootStore, Status } from './types';
 import { Axios } from '../api';
@@ -71,6 +71,7 @@ export interface fetchItemsParams {
 	accessToken?: string;
 	itemIds?: string[];
 	includeFavorite?: boolean;
+	lang?: LanguageCodes;
 }
 
 export const fetchItemsThunk = createAsyncThunk<
@@ -95,6 +96,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			itemIds,
 			includeFavorite,
 			includeReviewsUser,
+			lang,
 		},
 		{ rejectWithValue, getState }
 	) => {
@@ -117,6 +119,7 @@ export const fetchItemsThunk = createAsyncThunk<
 				include_favorite: includeFavorite,
 				simillar_id: simillarId,
 				item_ids: itemIds?.join(','),
+				lang,
 			},
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
