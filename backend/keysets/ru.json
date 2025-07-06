@@ -82,6 +82,7 @@
 	"product_details.review_form.text_area_placeholder": "Поделитесь вашим мнением!",
 	"product_details.review_form.label": "Оцените этот товар",
 	"product_details.supplier_link": "Перейти на сайт поставщика",
+	"products_details.price.now": "Теперь",
 
 	"products.no_results.both": "Извините, нет товаров типа <1></1> в категории <2></2>"
 }
