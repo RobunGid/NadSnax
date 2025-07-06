@@ -10,19 +10,13 @@ interface UIProductItemProps {
 	isSmall?: boolean;
 }
 
-export const UIProductItem = ({
-	pageLink,
-	className,
-	children,
-	isSmall,
-}: UIProductItemProps) => {
+export const UIProductItem = ({ pageLink, className, children }: UIProductItemProps) => {
 	return (
 		<Link
 			to={pageLink}
 			className={clsx(
 				'shadow-xl w-64 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0 rounded-xl overflow-hidden',
 				styles['product-item'],
-				isSmall ? 'h-64' : 'h-[380px]',
 				className
 			)}
 		>

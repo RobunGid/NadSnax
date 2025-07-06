@@ -204,6 +204,21 @@ class Items(MethodView):
             if item.old_price:
                 item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
                
+        for item in items:
+            if item.translations:
+                item.translation = item.translations[0]
+                item.label = item.translation.label or item.label
+                item.description = item.translation.description or item.description
+
+            if item.item_details:
+                translations = item.item_details.translations
+                if translations:
+                    item.item_details.translation = translations[0]
+                    item.item_details.full_label = item.item_details.translation.full_label or item.item_details.full_label
+                    item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
+                    item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
+                    item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
+               
         schema = ItemSchema(**params)
             
         dumped_items = schema.dump(items)

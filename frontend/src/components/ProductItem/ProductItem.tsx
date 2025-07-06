@@ -17,6 +17,7 @@ import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
 import { MouseEventHandler } from 'react';
 import { useI18n } from '../../i18n/i18n';
+import { UIProductItemInfoContainer } from './UI/UIProductItemInfoContainer';
 
 type ProductItemProps = {
 	item: Item;
@@ -90,7 +91,7 @@ export const ProductItem = ({
 				/>
 			)}
 			{!hideInfo && (
-				<div className='px-4 mt-2'>
+				<UIProductItemInfoContainer>
 					<UIProductItemPrice
 						price={formattedPrice}
 						oldPrice={formattedOldPrice}
@@ -101,7 +102,7 @@ export const ProductItem = ({
 						reviewCount={item.ratingCount}
 						averageRating={formattedAverageRating}
 					/>
-				</div>
+				</UIProductItemInfoContainer>
 			)}
 		</UIProductItem>
 	);
