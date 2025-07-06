@@ -18,10 +18,10 @@ export const UIProductDetailsRating = withTranslate(
 				<span className='text-gray-500'>
 					{ratingCount}{' '}
 					{ratingCount
-						? translate('product_details.review_count', {
+						? translate('review_count', {
 								count: ratingCount,
 						  })
-						: 'No reviews'}
+						: translate('no_reviews')}
 				</span>
 			</div>
 		);
