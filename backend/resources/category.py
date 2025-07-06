@@ -1,11 +1,13 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from models import CategoryModel
+from models import CategoryModel, CategoryTranslationModel, TypeTranslationModel, TypeModel
 from schemas import CategorySchema, CategoryUpdateSchema
 import uuid
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
-from flask import request
+from flask import request, g
+from sqlalchemy.orm import aliased, contains_eager
+from sqlalchemy import and_
 
 blp = Blueprint("categories", __name__, description="Operations on categories")
 
@@ -127,15 +129,39 @@ class Categories(MethodView):
     def get(self):
         include_items = request.args.get("include_items", "false").lower() == "true"
         include_types = request.args.get("include_types", "false").lower() == "true"
+        language = g.language
 
         query = CategoryModel.query
 
         if include_items:
             query = query.options(db.joinedload(CategoryModel.items))
-        if include_types:
-            query = query.options(db.joinedload(CategoryModel.types))
 
+        CategoryTranslationAlias = aliased(CategoryTranslationModel)
+        TypeTranslationAlias = aliased(TypeTranslationModel)
+
+        query = query \
+            .outerjoin(CategoryTranslationAlias, 
+                    and_(CategoryTranslationAlias.category_id == CategoryModel.id, 
+                            CategoryTranslationAlias.lang_key == language)) \
+            .outerjoin(TypeModel, CategoryModel.id == TypeModel.category_id) \
+            .outerjoin(TypeTranslationAlias,
+                    and_(TypeTranslationAlias.type_id == TypeModel.id,
+                            TypeTranslationAlias.lang_key == language)) \
+            .options(contains_eager(CategoryModel.translations, alias=CategoryTranslationAlias)) \
+            .options(contains_eager(CategoryModel.types)
+                    .contains_eager(TypeModel.translations, alias=TypeTranslationAlias))
         categories = query.all()
+        
+        for category in categories:
+            if category.translations:
+                category.translation = category.translations[0]
+                category.name = category.translation.name or category.name
+                
+            if include_types:
+                for typee in category.types:
+                    if typee.translations:
+                        typee.translation = typee.translations[0]
+                        typee.name = typee.translation.name
 
         schema = CategorySchema(many=True, include_types=include_types, include_items=include_items)
             
