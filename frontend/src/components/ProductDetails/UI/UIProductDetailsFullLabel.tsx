@@ -4,5 +4,5 @@ interface UIProductDetailsFullLabelProps {
 export const UIProductDetailsFullLabel = ({
 	children,
 }: UIProductDetailsFullLabelProps) => {
-	return <div className='text-nowrap'>{children}</div>;
+	return <div className=''>{children}</div>;
 };
