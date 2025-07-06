@@ -2,7 +2,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { MdLocationOn, MdOutlineCalendarToday } from 'react-icons/md';
 import { AccountOrderItem } from '../AccountOrderItem';
-import { Order, OrderStatus } from '../../../../types';
+import { Order } from '../../../../types';
 import { useTranslate } from '../../../../i18n/i18n';
 import { withTranslate } from '../../../../logic/withTranslate';
 
@@ -11,7 +11,7 @@ interface UIAccountOrderProps {
 	totalCount: string;
 	order: Order;
 	createdAt: string;
-	orderStatus: OrderStatus;
+	orderStatus: string;
 	translate: ReturnType<typeof useTranslate>;
 }
 

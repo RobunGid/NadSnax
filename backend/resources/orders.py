@@ -51,8 +51,6 @@ class Orders(MethodView):
                     .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
                 )
         
-
-        
         query = query.offset(page*per_page).limit(per_page)
         
         orders = OrderModel.query.all()
@@ -102,6 +100,7 @@ class SelfOrders(MethodView):
     @jwt_required()
     def get(self):
         identity = get_jwt_identity()
+        language = g.language
         
         include_user = request.args.get("include_user", default='false').lower() == 'true'
         include_items = request.args.get("include_items", default='false').lower() == 'true'
@@ -117,11 +116,34 @@ class SelfOrders(MethodView):
             query = query.options(db.joinedload(OrderModel.user))
         
         if include_items:
-            query = query.options(db.joinedload(OrderModel.items))
+            ItemTranslationAlias = aliased(ItemTranslationModel)
+
+            query = query.join(OrderModel.items)
+            query = query.join(OrderItemModel.item)
+            query = query.outerjoin(
+                ItemTranslationAlias, 
+                    and_(
+                        ItemTranslationAlias.item_id == ItemModel.id,
+                        ItemTranslationAlias.lang_key == language
+                    )
+                )
+            query = query.options(
+                    contains_eager(OrderModel.items)
+                    .contains_eager(OrderItemModel.item)
+                    .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
+                )
             
         query = query.offset(page*per_page).limit(per_page)
             
         orders = query.all()
+            
+        for order in orders:
+            for order_item in order.items:
+                item = order_item.item
+                if item and item.translations:
+                    item.translation = item.translations[0]
+                    item.label = item.translation.label or item.label
+                    item.description = item.translation.description or item.description
             
         params = {
             "many": True,

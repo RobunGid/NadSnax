@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Order, StoreError } from '../types';
+import { LanguageCodes, Order, StoreError } from '../types';
 import { RootStore, Status } from './types';
 import camelcaseKeys from 'camelcase-keys';
 import { Axios } from '../api';
@@ -20,6 +20,7 @@ const initialState: OrderState = {
 type fetchSelfOrdersParams = {
 	includeUser?: boolean;
 	includeItems?: boolean;
+	lang?: LanguageCodes;
 };
 
 export const fetchSelfOrders = createAsyncThunk<
@@ -28,13 +29,15 @@ export const fetchSelfOrders = createAsyncThunk<
 	{ rejectValue: StoreError; state: RootStore }
 >(
 	'order/fetchOrders',
-	async ({ includeUser, includeItems }, { rejectWithValue, getState }) => {
+	async ({ includeUser, includeItems, lang }, { rejectWithValue, getState }) => {
 		const accessToken = getState().auth.accessToken;
+
 		try {
 			const response = await Axios.get<Order[]>('/orders/self', {
 				params: {
 					include_user: includeUser,
 					include_items: includeItems,
+					lang,
 				},
 				headers: {
 					Authorization: accessToken ? `Bearer ${accessToken}` : '',
