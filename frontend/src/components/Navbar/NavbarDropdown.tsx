@@ -10,17 +10,16 @@ interface NavbarDropdownProps {
 export const NavbarDropdown = ({ category, text }: NavbarDropdownProps) => {
 	return (
 		<>
-			<UINavbarItem
-				to={category.pageLink}
-				className='flex peer'
-				text={text}
-				iconPosition='right'
-			/>
+			<UINavbarItem to={category.pageLink} text={text} iconPosition='right' />
 
 			<UINavbarDropdown>
 				{category.types.map((product) => (
 					<li key={product.name}>
-						<UINavbarItem to={product.pageLink} text={product.name} />
+						<UINavbarItem
+							to={product.pageLink}
+							text={product.name}
+							textWrap
+						/>
 					</li>
 				))}
 			</UINavbarDropdown>

@@ -6,35 +6,34 @@ import { NavLink } from 'react-router';
 type UINavbarItemProps = {
 	children?: ReactNode;
 	to: string;
-	className?: string;
 	id?: string;
 	text?: string;
 	iconPosition?: 'left' | 'right';
 	precise?: boolean;
+	textWrap?: boolean;
 };
 
 export const UINavbarItem = ({
 	to,
-	className,
 	id,
 	text,
 	iconPosition,
 	precise,
+	textWrap,
 }: UINavbarItemProps) => {
 	return (
 		<NavLink
 			end={precise}
 			id={id}
 			to={to}
-			className={({ isActive }) =>
-				clsx('group flex', isActive && 'active', className)
-			}
+			className={({ isActive }) => clsx('group flex peer', isActive && 'active')}
 		>
 			<div
 				className={clsx(
 					`px-3 font-medium group-[.active]:underline group-[.active]:underline-offset-[5px] group-[.active]:text-gray-900 group-hover:text-gray-800
 			text-gray-500 group-[.active]:group-hover:decoration-2 dark:group-[.active]:text-gray-500 dark:group-hover:text-gray-400 dark:text-gray-300
-			flex items-center justify-center text-nowrap`,
+			flex items-center justify-center `,
+					textWrap ? 'text-wrap' : 'text-nowrap',
 					iconPosition == 'right' && 'pl-4 pr-2'
 				)}
 			>
