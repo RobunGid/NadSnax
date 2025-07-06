@@ -81,5 +81,7 @@
 	"product_details.quantity_chooser.add_to_cart": "Add to cart",
 	"product_details.review_form.text_area_placeholder": "Tell us about your opinion!",
 	"product_details.review_form.label": "Rate this item",
-	"product_details.supplier_link": "Visit the supplier site"
+	"product_details.supplier_link": "Visit the supplier site",
+
+	"products.no_results.both": "Sorry, there no products for <1></1> in <2></2>"
 }
