@@ -67,6 +67,12 @@
 	"account.settings.form.last_name": "Last name",
 	"account.settings.form.username": "Username",
 
+	"account.order.title": "Order",
+	"account.order.item_count": {
+		"one": "item",
+		"other": "items"
+	},
+
 	"product_item.quantity_chooser.add": "Add",
 	"product_item.badges.secretbox": "Secretbox",
 	"product_item.badges.bestseller": "Bestseller",
