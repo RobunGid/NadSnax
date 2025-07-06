@@ -11,7 +11,7 @@ export const UIProductDetailsPrice = withTranslate(
 		return oldPrice && oldPrice != price ? (
 			<div className='flex gap-2 m-4 items-center'>
 				<div className='font-bold text-xl text-lime-600'>
-					{translate('products_details.price.now')} {price}
+					{translate('product_details.price.now')} {price}
 				</div>
 				<div className='font-bold text-md text-gray-500 line-through'>
 					{oldPrice}
