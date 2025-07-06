@@ -159,16 +159,15 @@ class Items(MethodView):
         ItemTranslationAlias = aliased(ItemTranslationModel)
         ItemDetailsTranslationAlias = aliased(ItemDetailsTranslationModel)
 
-        query = query \
-            .outerjoin(ItemTranslationAlias, 
+        query = query.outerjoin(ItemTranslationAlias, 
                     and_(ItemTranslationAlias.item_id == ItemModel.id, 
-                            ItemTranslationAlias.lang_key == language)) \
-            .outerjoin(ItemDetailsModel, ItemModel.id == ItemDetailsModel.item_id) \
-            .outerjoin(ItemDetailsTranslationAlias,
+                            ItemTranslationAlias.lang_key == language))
+        query = query.outerjoin(ItemDetailsModel, ItemModel.id == ItemDetailsModel.item_id)
+        query = query.outerjoin(ItemDetailsTranslationAlias,
                     and_(ItemDetailsTranslationAlias.item_id == ItemDetailsModel.item_id,
-                            ItemDetailsTranslationAlias.lang_key == language)) \
-            .options(contains_eager(ItemModel.translations, alias=ItemTranslationAlias)) \
-            .options(contains_eager(ItemModel.item_details)
+                            ItemDetailsTranslationAlias.lang_key == language)) 
+        query = query.options(contains_eager(ItemModel.translations, alias=ItemTranslationAlias)) 
+        query = query.options(contains_eager(ItemModel.item_details)
                     .contains_eager(ItemDetailsModel.translations, alias=ItemDetailsTranslationAlias))
                 
         if auth_header and auth_header.startswith('Bearer ') and include_favorite:
@@ -187,20 +186,6 @@ class Items(MethodView):
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-        
-        for item in items:
-            if item.translations:
-                item.translation = item.translations[0]
-                item.label = item.translation.label or item.label
-                item.description = item.translation.description or item.description
-
-            if item.item_details and item.item_details.translations:
-                item.item_details.translation = item.item_details.translations[0]
-                item.item_details.full_label = item.item_details.translation.full_label or item.item_details.full_label
-                item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
-                item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
-                item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
-                item.item_details.supplier = item.item_details.translation.supplier or item.item_details.supplier
         
         params = {
             "many": True,

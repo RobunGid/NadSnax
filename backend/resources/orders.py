@@ -1,14 +1,15 @@
 from flask_smorest import Blueprint
 from flask.views import MethodView
 from flask_smorest import abort
-from models import OrderModel, OrderItemModel
-from schemas import OrderSchema, PlainOrderItemSchema
+from models import OrderModel, OrderItemModel, ItemTranslationModel, ItemModel
+from schemas import OrderSchema
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from db import db
-from sqlalchemy.exc import SQLAlchemyError
 from uuid import uuid4
 from utils import role_required
-from flask import request
+from flask import request, g
+from sqlalchemy.orm import aliased, contains_eager
+from sqlalchemy import and_
 
 blp = Blueprint("orders", __name__, description="Operations on orders")
 
@@ -20,6 +21,7 @@ class Orders(MethodView):
     def get(self):
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        language = g.language
         
         include_user = request.args.get("include_user", default='false').lower() == 'true'
         include_items = request.args.get("include_items", default='false').lower() == 'true'
@@ -30,11 +32,40 @@ class Orders(MethodView):
             query = query.options(db.joinedload(OrderModel.user))
         
         if include_items:
-            query = query.options(db.joinedload(OrderModel.items))
+            query = query.options(db.joinedload(OrderModel.items).joinedload(OrderItemModel.item))
+
+            ItemTranslationAlias = aliased(ItemTranslationModel)
+
+            query = query.join(OrderModel.items)
+            query = query.join(OrderItemModel.item)
+            query = query.outerjoin(
+                ItemTranslationAlias, 
+                    and_(
+                        ItemTranslationAlias.item_id == ItemModel.id,
+                        ItemTranslationAlias.lang_key == language
+                    )
+                )
+            query = query.options(
+                    contains_eager(OrderModel.items)
+                    .contains_eager(OrderItemModel.item)
+                    .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
+                )
+        
+
         
         query = query.offset(page*per_page).limit(per_page)
         
-        return OrderModel.query.all()
+        orders = OrderModel.query.all()
+        
+        for order in orders:
+            for order_item in order.items:
+                item = order_item.item
+                if item and item.translations:
+                    item.translation = item.translations[0]
+                    item.label = item.translation.label or item.label
+                    item.description = item.translation.description or item.description
+        
+        return orders
        
     @blp.arguments(OrderSchema)
     @blp.response(201, OrderSchema)
