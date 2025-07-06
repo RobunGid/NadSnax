@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Header } from './components/Header/Header';
 import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
-import { fetchUser, refreshThunk, useAppDispatch, useStateSelector } from './store';
+import { fetchUser, refreshThunk, useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
 import { useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
@@ -13,16 +13,17 @@ import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
 import { AdminPanelPage } from './components/Pages/AdminPanelPage';
+import { useI18n } from './i18n/i18n';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
 
-	const categoriesStatus = useStateSelector((state) => state.category.status);
+	const { lang } = useI18n();
 
 	useEffect(() => {
-		if (categoriesStatus === 'init') dispatch(fetchCategories());
+		dispatch(fetchCategories({ lang }));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [lang]);
 
 	useEffect(() => {
 		(async () => {

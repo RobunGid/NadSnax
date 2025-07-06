@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ItemCategory } from '../types';
+import { ItemCategory, LanguageCodes } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { Status } from './types';
 import { Axios } from '../api';
@@ -14,13 +14,17 @@ const initialState: CategoryState = {
 	status: 'init',
 };
 
+interface fetchCategoriesParams {
+	lang?: LanguageCodes;
+}
+
 export const fetchCategories = createAsyncThunk<
 	ItemCategory[],
-	undefined,
+	fetchCategoriesParams,
 	{ rejectValue: string }
->('category/fetchCategories', async (_, { rejectWithValue }) => {
+>('category/fetchCategories', async ({ lang }, { rejectWithValue }) => {
 	const response = await Axios.get<ItemCategory[]>('/category', {
-		params: { include_types: true },
+		params: { include_types: true, lang },
 	});
 
 	if (response.status != 200) {
