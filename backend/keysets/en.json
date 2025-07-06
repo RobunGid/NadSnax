@@ -89,10 +89,11 @@
 	"product_details.review_form.label": "Rate this item",
 	"product_details.supplier_link": "Visit the supplier site",
 	"product_details.price.now": "Now",
-	"product_details.review_count": {
+	"review_count": {
 		"one": "review",
 		"other": "reviews"
 	},
+	"no_reviews": "No reviews",
 
 	"products.no_results.both": "Sorry, there no products for <1></1> in <2></2>",
 

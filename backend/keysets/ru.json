@@ -91,12 +91,13 @@
 	"product_details.review_form.label": "Оцените этот товар",
 	"product_details.supplier_link": "Перейти на сайт поставщика",
 	"product_details.price.now": "Теперь",
-	"product_details.review_count": {
+	"review_count": {
 		"one": "отзыв",
 		"few": "отзыва",
 		"many": "отзывов",
 		"other": "отзывов"
 	},
+	"no_reviews": "Нет отзывов",
 
 	"products.no_results.both": "Извините, нет товаров типа <1></1> в категории <2></2>",
 
