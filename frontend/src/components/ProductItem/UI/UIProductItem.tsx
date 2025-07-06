@@ -22,7 +22,7 @@ export const UIProductItem = ({
 			className={clsx(
 				'shadow-xl w-64 block hover:scale-[102.5%] transition-transform animate-fadeIn opacity-0 rounded-xl overflow-hidden',
 				styles['product-item'],
-				isSmall ? 'h-60' : 'h-[360px]',
+				isSmall ? 'h-64' : 'h-[380px]',
 				className
 			)}
 		>
