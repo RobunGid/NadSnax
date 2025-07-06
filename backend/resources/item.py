@@ -11,8 +11,9 @@ from flask_jwt_extended import decode_token
 from flask_jwt_extended import jwt_required
 from utils import role_required
 from sqlalchemy.orm import aliased
-from constants import SupportedLanguages
+from constants import SupportedCurrencies
 from sqlalchemy.orm import contains_eager
+from currency_converter import CurrencyConverter
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -198,6 +199,11 @@ class Items(MethodView):
             "include_reviews_user": include_reviews_user
         }
         
+        for item in items:
+            item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
+            if item.old_price:
+                item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
+               
         schema = ItemSchema(**params)
             
         dumped_items = schema.dump(items)

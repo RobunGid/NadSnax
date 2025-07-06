@@ -3,7 +3,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.sql import func
 from sqlalchemy import select
 import models
-from sqlalchemy.orm import relationship
 
 class ItemModel(db.Model):
     __tablename__ = "items"

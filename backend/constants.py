@@ -18,3 +18,8 @@ class OrderStatus(Enum):
     returned = "returned"
     
     deleted = "deleted"
+    
+class Role(Enum):
+    user = 'user'
+    moderator = 'moderator'
+    admin = 'admin'

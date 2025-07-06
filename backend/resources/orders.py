@@ -10,8 +10,8 @@ from utils import role_required
 from flask import request, g
 from sqlalchemy.orm import aliased, contains_eager
 from sqlalchemy import and_
-from utils import CurrencyConverter
 from constants import SupportedCurrencies
+from currency_converter import CurrencyConverter
 
 blp = Blueprint("orders", __name__, description="Operations on orders")
 
@@ -147,6 +147,7 @@ class SelfOrders(MethodView):
                     item.label = item.translation.label or item.label
                     item.description = item.translation.description or item.description
                     item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
+                    item.converted_old_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
             
         params = {
             "many": True,

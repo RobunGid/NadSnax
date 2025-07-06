@@ -10,7 +10,7 @@ interface AccountOrderProps {
 
 export const AccountOrder = ({ order }: AccountOrderProps) => {
 	const totalPrice = order.items.reduce(
-		(prev, cur) => prev + cur.item.price * cur.quantity,
+		(prev, cur) => prev + cur.item.convertedPrice * cur.quantity,
 		0
 	);
 
@@ -19,7 +19,7 @@ export const AccountOrder = ({ order }: AccountOrderProps) => {
 
 	const totalCount = String(order.items.reduce((prev, cur) => prev + cur.quantity, 0));
 
-	const formattedTotalPrice = formatPrice(totalPrice);
+	const formattedTotalPrice = formatPrice(totalPrice, lang);
 	const formatedCreatedAt = formatDate(order.createdAt, lang);
 	const formattedOrderStatus = translate(order.status);
 

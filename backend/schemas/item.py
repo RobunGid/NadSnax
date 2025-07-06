@@ -7,6 +7,7 @@ class PlainItemSchema(Schema):
     description = fields.Str()
     price = fields.Float(required=True)
     converted_price = fields.Float(dump_only=True)
+    converted_old_price = fields.Float(dump_only=True)
     old_price = fields.Float()
     is_bestseller = fields.Boolean()
     is_secretbox = fields.Boolean()

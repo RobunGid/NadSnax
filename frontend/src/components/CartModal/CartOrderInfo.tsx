@@ -14,7 +14,7 @@ export const CartOrderInfo = ({ pickupPoint, setPickupPoint }: CartOrderInfoProp
 
 	const cartItems = useStateSelector((state) => state.cart.productList);
 	const orderAmount = cartItems.reduce(
-		(prev, cur) => prev + cur.count * cur.item.price,
+		(prev, cur) => prev + cur.count * cur.item.convertedPrice,
 		0
 	);
 	const itemQuantity = String(cartItems.reduce((prev, cur) => prev + cur.count, 0));

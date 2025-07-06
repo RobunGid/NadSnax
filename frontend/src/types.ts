@@ -34,6 +34,8 @@ export type Item = {
 	itemDetails?: ItemDetails;
 	label: string;
 	price: number;
+	convertedPrice: number;
+	convertedOldPrice: number;
 	oldPrice?: number | null;
 	pageLink: string;
 	type?: Omit<ItemType, 'category'>;

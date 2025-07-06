@@ -4,11 +4,7 @@ from flask import request
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy import CheckConstraint
 from sqlalchemy.orm import validates
-
-class Role(enum.Enum):
-    user = 'user'
-    moderator = 'moderator'
-    admin = 'admin'
+from constants import Role
 
 class UserModel(db.Model):
     __tablename__ = "users"

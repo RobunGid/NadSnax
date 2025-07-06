@@ -16,6 +16,7 @@ import { getMainImageURL } from '../../logic/getMainImageURL';
 import { UIProductItem } from './UI/UIProductItem';
 import { ProductItemCover } from './ProductItemCover';
 import { MouseEventHandler } from 'react';
+import { useI18n } from '../../i18n/i18n';
 
 type ProductItemProps = {
 	item: Item;
@@ -36,6 +37,8 @@ export const ProductItem = ({
 
 	const dispatch = useAppDispatch();
 
+	const { lang } = useI18n();
+
 	const { handleAddItemToCart, handleRemoveProductFromCart, handleInputChange } =
 		useItemQuantityChooser({ item });
 
@@ -50,14 +53,19 @@ export const ProductItem = ({
 			dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
 	};
 
-	const formattedPrice = formatPrice(item.price);
+	const formattedPrice = formatPrice(item.convertedPrice, lang);
 
-	const formattedOldPrice = item.oldPrice ? formatPrice(item.oldPrice) : '';
+	const formattedOldPrice = item.oldPrice
+		? formatPrice(item.convertedOldPrice, lang)
+		: '';
 
 	const pageLink = `/products/page${item.pageLink}`;
-
 	const discount = item.oldPrice
-		? Math.floor(((item.oldPrice - item.price) / item.oldPrice) * 100)
+		? Math.floor(
+				((item.convertedOldPrice - item.convertedPrice) /
+					item.convertedOldPrice) *
+					100
+		  )
 		: 0;
 
 	const imageURL = getMainImageURL(item);
