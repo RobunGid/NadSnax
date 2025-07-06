@@ -55,8 +55,8 @@ export const UIAccountOrder = withTranslate(
 							</div>
 						</div>
 					</div>
-					<div className='bg-teal-600/30 w-30 h-10 flex items-center justify-center rounded-2xl shadow-xl'>
-						{orderStatus}
+					<div className='bg-teal-600/30 w-32 h-10 flex items-center justify-center rounded-2xl shadow-xl'>
+						{translate(orderStatus)}
 						<FaRegQuestionCircle size='14' className='cursor-help ms-1' />
 					</div>
 				</div>

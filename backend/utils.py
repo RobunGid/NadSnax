@@ -43,4 +43,3 @@ def convert_currency(value=10, from_currency=SupportedCurrencies.en, to_currency
     from_rate = rates[from_currency]
     to_rate = rates[to_currency]
     return to_rate/from_rate*value
-    print(rates)

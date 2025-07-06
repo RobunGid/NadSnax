@@ -94,5 +94,14 @@
 		"other": "reviews"
 	},
 
-	"products.no_results.both": "Sorry, there no products for <1></1> in <2></2>"
+	"products.no_results.both": "Sorry, there no products for <1></1> in <2></2>",
+
+	"processing": "Processing",
+    "packing": "Packing",
+    "shipping": "Shipping",
+    "ready": "Ready for pickup",
+    "success": "Completed",
+    "canceled": "Canceled",
+    "returned": "Returned",
+    "deleted": "Deleted"
 }
