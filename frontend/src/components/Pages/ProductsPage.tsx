@@ -4,7 +4,7 @@ import { fetchItemsThunk } from '../../store/itemSlice';
 
 import { useActionCreators, useStateSelector } from '../../store';
 import { ProductsList } from '../Layout/ProductsList';
-import { ProductsLoading } from '../Products/ProductsLoading';
+import { ProductsLoading } from '../Layout/ProductsLoading';
 import { UIProductsNoResults } from '../UI/UIProductsNoResults';
 import { useI18n } from '../../i18n/i18n';
 
