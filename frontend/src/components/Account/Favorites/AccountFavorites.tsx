@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../../store';
 import { ProductsList } from '../../Layout/ProductsList';
-import { UIAccountFavorites } from './UI/UIAccountFavorites';
 import { UIAccountFavoritesNoResults } from './UI/UIAccountFavoritesNoResults';
+import { UIAccountFavoritesContainer } from './UI/UIAccountFavoritesContainer';
 
 export const AccountFavorites = () => {
 	const items = useStateSelector((state) => state.item.items);
@@ -26,12 +26,12 @@ export const AccountFavorites = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
-		<UIAccountFavorites>
+		<UIAccountFavoritesContainer>
 			{favoriteItems.length !== 0 ? (
 				<ProductsList items={favoriteItems} />
 			) : (
 				<UIAccountFavoritesNoResults />
 			)}
-		</UIAccountFavorites>
+		</UIAccountFavoritesContainer>
 	);
 };
