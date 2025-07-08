@@ -44,6 +44,16 @@
 	"profile_menu.admin_panel": "Панель администратора",
 	"profile_menu.theme_switcher": "Изменить тему",
 
+	"cart.title": "Корзина",
+	"cart.title.item": "Товар",
+	"cart.title.quantity": "Количество (шт)",
+	"cart.title.total": "Общая цена (₽)",
+
+	"cart.order_info.full_name": "ФИО: ",
+	"cart.order_info.total_amount": "Общая стоимость: ",
+	"cart.order_info.quantity": "Количество товаров: ",
+	"cart.order_info.pickup_point": "Пункт выдачи: ",
+
 	"cart.message.empty": "Ваша корзина пуста",
 	"cart.message.success": "Успешно! Заказ отправлен в обработку",
 

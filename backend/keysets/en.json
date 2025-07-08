@@ -44,6 +44,16 @@
 	"profile_menu.admin_panel": "Admin Panel",
 	"profile_menu.theme_switcher": "Change app theme",
 
+	"cart.title": "Cart",
+	"cart.title.item": "Product",
+	"cart.title.quantity": "Quantity",
+	"cart.title.total": "Total price",
+
+	"cart.order_info.full_name": "Full name: ",
+	"cart.order_info.total_amount": "Total Amount: ",
+	"cart.order_info.quantity": "Item quantity: ",
+	"cart.order_info.pickup_point": "Pickup point: ",
+
 	"cart.message.empty": "Your cart is empty",
 	"cart.message.success": "Success! Your order is now being process",
 
