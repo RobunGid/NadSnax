@@ -51,6 +51,9 @@ class Orders(MethodView):
         for order in orders:
             for order_item in order.items:
                 item = order_item.item
+                item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
+                if item.old_price:
+                    item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
                 if item and item.translations:
                     item.translation = item.translations[0]
                     item.label = item.translation.label or item.label
@@ -127,6 +130,9 @@ class SelfOrders(MethodView):
         for order in orders:
             for order_item in order.items:
                 item = order_item.item
+                item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
+                if item.old_price:
+                    item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
                 if item and item.translations:
                     item.translation = item.translations[0]
                     item.label = item.translation.label or item.label
