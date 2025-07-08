@@ -44,107 +44,13 @@ class Category(MethodView):
 
 @blp.route("/type")
 class Categories(MethodView):
-    @blp.alt_response(200, description = "Types list")
-    @blp.doc(
-        description="Get types list with query parameters to manage related items and category",
-        parameters=[
-            {
-                "name": "include_items",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": "false",
-                "description": "Include related items"
-            },
-            {
-                "name": "include_category",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": "false",
-                "description": "Include category"
-            }
-        ],
-        responses={
-            "200": {
-                "description": "Types list",
-                "content": {
-                    "application/json": {
-                        "examples": {
-                            "include_items=true&include_category=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string",
-                                        "items": [{"string": "string"}, {"string": "string"}],
-                                        "category_id": "string",
-                                        "category": {"string": "string"}
-                                    },
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string",
-                                        "items": [{"string": "string"}, {"string": "string"}],
-                                        "category_id": "ID",
-                                        "category": {"string": "string"}
-                                    }
-                                ]
-                            },
-                            "Without query parameters": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string",
-                                        "category_id": "string",
-                                    }
-                                ]
-                            },
-                            "include_items=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "category_id": "string",
-                                        "page_link": "string",
-                                        "items": [{"string": "string"}, {"string": "string"}],
-                                    },
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "category_id": "string",
-                                        "page_link": "string",
-                                        "items": [],
-                                    }
-                                ]
-                            },
-                        }
-                    }
-                }
-            }
-        }
-    )
+    @blp.response(200, TypeSchema(many=True))
     def get(self):
-        include_items = request.args.get("include_items", "false").lower() == "true"
-        include_category = request.args.get("include_category", "false").lower() == "true"
-        
         query = TypeModel.query
         
-        if include_items:
-            query = query.options(db.joinedload(TypeModel.items))
-        if include_category:
-            query = query.options(db.joinedload(TypeModel.category))
-            
         types = query.all()
             
-        schema = TypeSchema(many=True, include_category=include_category, include_items=include_items)
-        return schema.dump(types), 200
+        return types
     
     @blp.arguments(TypeSchema)
     @blp.response(201, TypeSchema)

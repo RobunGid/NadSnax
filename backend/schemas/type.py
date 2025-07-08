@@ -8,23 +8,8 @@ class PlainTypeSchema(Schema):
     category_id = fields.Str(required=True)
 
 class TypeSchema(PlainTypeSchema):
-    items = fields.List(fields.Nested("schemas.item.ItemSchema"), dump_only=True)
-    category = fields.Nested("schemas.category.CategorySchema", dump_only=True)
-    
-    def __init__(self, include_category=False, include_items=False, **kwargs):
-        exclude_fields = set()
-        
-        if not include_category:
-            exclude_fields.add("category")
-            
-        if not include_items:
-            exclude_fields.add("items")
-
-        if "exclude" in kwargs:
-            exclude_fields |= set(kwargs["exclude"])
-            del kwargs["exclude"]
-
-        super().__init__(exclude=exclude_fields, **kwargs)
+    items = fields.Nested("schemas.item.PlainItemSchema", many=True, dump_only=True)
+    category = fields.Nested("schemas.category.PlainCategorySchema", dump_only=True)
     
 class TypeUpdateSchema(Schema):
     name = fields.Str(required=True)

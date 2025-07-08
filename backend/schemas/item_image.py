@@ -10,5 +10,5 @@ class PlainItemImageSchema(Schema):
     url = fields.Str(dump_only=True)
  
 class ItemImageSchema(PlainItemImageSchema):
-    item = fields.Nested("schemas.item.ItemSchema", dump_only=True)
+    item = fields.Nested("schemas.item.ItemSchema", dump_only=True, exclude=("images",))
     

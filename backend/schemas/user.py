@@ -20,4 +20,5 @@ class UserUpdateSchema(Schema):
     role = fields.Enum(Role)
     
 class UserSchema(PlainUserSchema):
-    reviews = fields.List(fields.Nested('schemas.review.ReviewSchema'), dump_only=True)
+    reviews = fields.List(fields.Nested('schemas.review.ReviewSchema'), dump_only=True, exclude=("user",))
+    orders = fields.List(fields.Nested('schemas.order.OrderSchema'), dump_only=True, exclude=("user",))

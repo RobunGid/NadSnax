@@ -17,17 +17,5 @@ class ItemDetailsTranslationSchema(Schema):
     nutrition = fields.Str(required=True)
     
 class ItemDetailsSchema(PlainItemDetailsSchema):
-    item = fields.Nested("schemas.item.ItemSchema", dump_only=True)
+    item = fields.Nested("schemas.item.ItemSchema", dump_only=True, exclude=("item_details",))
     # translation = fields.Nested(ItemDetailsTranslationSchema, dump_only=True)
-    
-    def __init__(self, include_item=True, **kwargs):
-        exclude_fields = set()
-
-        if not include_item:
-            exclude_fields.add("item")
-
-        if "exclude" in kwargs:
-            exclude_fields |= set(kwargs["exclude"])
-            del kwargs["exclude"]
-
-        super().__init__(exclude=exclude_fields, **kwargs)

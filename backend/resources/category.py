@@ -45,96 +45,11 @@ class Category(MethodView):
 
 @blp.route("/category")
 class Categories(MethodView):
-    @blp.alt_response(200, description="Categories list")
-    @blp.doc(
-        description="Get categories list with query parameters to manage related items and types",
-        parameters=[
-            {
-                "name": "include_items",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": "false",
-                "description": "Include related items"
-            },
-            {
-                "name": "include_types",
-                "in": "query",
-                "type": "boolean",
-                "required": False,
-                "default": "false",
-                "description": "Include types"
-            }
-        ],
-        responses={
-            "200": {
-                "description": "Categories list",
-                "content": {
-                    "application/json": {
-                        "examples": {
-                            "include_items=true&include_types=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string",
-                                        "items": [{"string": "string"}, {"string": "string"}],
-                                        "types": [{"string": "string"}, {"string": "string"}]
-                                    },
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string",
-                                        "items": [],
-                                        "types": []
-                                    }
-                                ]
-                            },
-                            "Without query parameters": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "page_link": "string"
-                                    }
-                                ]
-                            },
-                            "include_items=true": {
-                                "value": [
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "items": [{"string": "string"}, {"string": "string"}],
-                                        "page_link": "string"
-                                    },
-                                    {
-                                        "id": "string",
-                                        "name": "string",
-                                        "icon_url": "string",
-                                        "items": [],
-                                        "page_link": "string"
-                                    }
-                                ]
-                            },
-                        }
-                    }
-                }
-            }
-        }
-    )
+    @blp.response(200, CategorySchema(many=True, exclude=("items","types.category", "types.items")))
     def get(self):
-        include_items = request.args.get("include_items", "false").lower() == "true"
-        include_types = request.args.get("include_types", "false").lower() == "true"
         language = g.language
 
         query = CategoryModel.query
-
-        if include_items:
-            query = query.options(db.joinedload(CategoryModel.items))
 
         CategoryTranslationAlias = aliased(CategoryTranslationModel)
         TypeTranslationAlias = aliased(TypeTranslationModel)
@@ -150,6 +65,7 @@ class Categories(MethodView):
             .options(contains_eager(CategoryModel.translations, alias=CategoryTranslationAlias)) \
             .options(contains_eager(CategoryModel.types)
                     .contains_eager(TypeModel.translations, alias=TypeTranslationAlias))
+            
         categories = query.all()
         
         for category in categories:
@@ -157,15 +73,12 @@ class Categories(MethodView):
                 category.translation = category.translations[0]
                 category.name = category.translation.name or category.name
                 
-            if include_types:
-                for typee in category.types:
-                    if typee.translations:
-                        typee.translation = typee.translations[0]
-                        typee.name = typee.translation.name
+            for typee in category.types:
+                if typee.translations:
+                    typee.translation = typee.translations[0]
+                    typee.name = typee.translation.name
 
-        schema = CategorySchema(many=True, include_types=include_types, include_items=include_items)
-            
-        return schema.dump(categories), 200
+        return categories
     
     @blp.arguments(CategorySchema)
     @blp.response(201, CategorySchema)

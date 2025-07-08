@@ -91,21 +91,13 @@ class Item(MethodView):
 
 @blp.route('/item')
 class Items(MethodView):
+    @blp.response(200, ItemSchema(many=True))
     def get(self):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
             
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
-        
-        include_type = request.args.get("include_type", default='false').lower() == 'true'
-        include_category = request.args.get("include_category", default='false').lower() == 'true'
-        include_item_details = request.args.get("include_item_details", default='false').lower() == 'true'
-        include_reviews = request.args.get("include_reviews", default='false').lower() == 'true'
-        include_images = request.args.get("include_images", default='false').lower() == 'true'
-        include_favorite = request.args.get("include_favorite", default='false').lower() == 'true'
-        
-        include_reviews_user = request.args.get("include_reviews_user", default='false').lower() == 'true'
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
@@ -126,19 +118,6 @@ class Items(MethodView):
             secretbox_filter = None
             
         query = ItemModel.query
-        
-        if include_type:
-            query = query.options(db.joinedload(ItemModel.type))
-        if include_category:
-            query = query.options(db.joinedload(ItemModel.category))
-
-        if include_reviews:
-            query = query.options(db.joinedload(ItemModel.reviews))
-        if include_images:
-            query = query.options(db.joinedload(ItemModel.images))
-        
-        query = query.join(ItemModel.category) if category_filter else query
-        query = query.join(ItemModel.type) if type_filter else query
             
         query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
         query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
@@ -171,7 +150,7 @@ class Items(MethodView):
         query = query.options(contains_eager(ItemModel.item_details)
                     .contains_eager(ItemDetailsModel.translations, alias=ItemDetailsTranslationAlias))
                 
-        if auth_header and auth_header.startswith('Bearer ') and include_favorite:
+        if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]
             decoded_token = decode_token(token)
             identity = decoded_token["sub"]
@@ -187,17 +166,6 @@ class Items(MethodView):
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-        
-        params = {
-            "many": True,
-            "include_category": include_category,
-            "include_type": include_type,
-            "include_item_details": include_item_details,
-            "include_reviews": include_reviews,
-            "include_images": include_images,
-            "include_favorite": include_favorite,
-            "include_reviews_user": include_reviews_user
-        }
         
         for item in items:
             item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
@@ -219,10 +187,7 @@ class Items(MethodView):
                     item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
                     item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
                
-        schema = ItemSchema(**params)
-            
-        dumped_items = schema.dump(items)
-        return dumped_items, 200
+        return items
         
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)

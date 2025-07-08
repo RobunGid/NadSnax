@@ -25,33 +25,24 @@ class Orders(MethodView):
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         language = g.language
         
-        include_user = request.args.get("include_user", default='false').lower() == 'true'
-        include_items = request.args.get("include_items", default='false').lower() == 'true'
-        
         query = OrderModel.query
         
-        if include_user:
-            query = query.options(db.joinedload(OrderModel.user))
-        
-        if include_items:
-            query = query.options(db.joinedload(OrderModel.items).joinedload(OrderItemModel.item))
+        ItemTranslationAlias = aliased(ItemTranslationModel)
 
-            ItemTranslationAlias = aliased(ItemTranslationModel)
-
-            query = query.join(OrderModel.items)
-            query = query.join(OrderItemModel.item)
-            query = query.outerjoin(
-                ItemTranslationAlias, 
-                    and_(
-                        ItemTranslationAlias.item_id == ItemModel.id,
-                        ItemTranslationAlias.lang_key == language
-                    )
+        query = query.join(OrderModel.items)
+        query = query.join(OrderItemModel.item)
+        query = query.outerjoin(
+            ItemTranslationAlias, 
+                and_(
+                    ItemTranslationAlias.item_id == ItemModel.id,
+                    ItemTranslationAlias.lang_key == language
                 )
-            query = query.options(
-                    contains_eager(OrderModel.items)
-                    .contains_eager(OrderItemModel.item)
-                    .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
-                )
+            )
+        query = query.options(
+                contains_eager(OrderModel.items)
+                .contains_eager(OrderItemModel.item)
+                .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
+            )
         
         query = query.offset(page*per_page).limit(per_page)
         
@@ -100,12 +91,10 @@ class Order(MethodView):
 @blp.route('/orders/self')
 class SelfOrders(MethodView):
     @jwt_required()
+    @blp.response(200, OrderSchema(many=True))
     def get(self):
         identity = get_jwt_identity()
         language = g.language
-        
-        include_user = request.args.get("include_user", default='false').lower() == 'true'
-        include_items = request.args.get("include_items", default='false').lower() == 'true'
         
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
@@ -114,26 +103,22 @@ class SelfOrders(MethodView):
         
         query = query.filter_by(user_id=identity)
         
-        if include_user:
-            query = query.options(db.joinedload(OrderModel.user))
-        
-        if include_items:
-            ItemTranslationAlias = aliased(ItemTranslationModel)
+        ItemTranslationAlias = aliased(ItemTranslationModel)
 
-            query = query.join(OrderModel.items)
-            query = query.join(OrderItemModel.item)
-            query = query.outerjoin(
-                ItemTranslationAlias, 
-                    and_(
-                        ItemTranslationAlias.item_id == ItemModel.id,
-                        ItemTranslationAlias.lang_key == language
-                    )
+        query = query.join(OrderModel.items)
+        query = query.join(OrderItemModel.item)
+        query = query.outerjoin(
+            ItemTranslationAlias, 
+                and_(
+                    ItemTranslationAlias.item_id == ItemModel.id,
+                    ItemTranslationAlias.lang_key == language
                 )
-            query = query.options(
-                    contains_eager(OrderModel.items)
-                    .contains_eager(OrderItemModel.item)
-                    .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
-                )
+            )
+        query = query.options(
+                contains_eager(OrderModel.items)
+                .contains_eager(OrderItemModel.item)
+                .contains_eager(ItemModel.translations, alias=ItemTranslationAlias)
+            )
             
         query = query.offset(page*per_page).limit(per_page)
             
@@ -148,12 +133,5 @@ class SelfOrders(MethodView):
                     item.description = item.translation.description or item.description
                     item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
                     item.converted_old_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
-            
-        params = {
-            "many": True,
-            "include_items": include_items,
-            "include_user": include_user
-        }
-        schema = OrderSchema(**params)
-            
-        return schema.dump(orders), 200
+        
+        return orders

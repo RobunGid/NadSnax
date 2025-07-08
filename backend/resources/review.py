@@ -46,11 +46,9 @@ class Review(MethodView):
 @blp.route('/review/self')
 class SelfReviews(MethodView):
     @jwt_required()
+    @blp.response(200, ReviewSchema(many=True))
     def get(self):
         identity = get_jwt_identity()
-        
-        include_user = request.args.get("include_user", default='false').lower() == 'true'
-        include_item = request.args.get("include_item", default='false').lower() == 'true'
         
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
@@ -59,54 +57,26 @@ class SelfReviews(MethodView):
         
         query = query.filter_by(user_id=identity)
         
-        if include_user:
-            query = query.options(db.joinedload(ReviewModel.user))
-        
-        if include_item:
-            query = query.options(db.joinedload(ReviewModel.item))
-            
         query = query.offset(page*per_page).limit(per_page)
             
         reviews = query.all()
             
-        params = {
-            "many": True,
-            "include_item": include_item,
-            "include_user": include_user
-        }
-        schema = ReviewSchema(**params)
-            
-        return schema.dump(reviews), 200
+        return reviews
             
 @blp.route('/review')
 class Reviews(MethodView):
+    @blp.response(200, ReviewSchema(many=True))
     def get(self):
-        include_user = request.args.get("include_user", default='false').lower() == 'true'
-        include_item = request.args.get("include_item", default='false').lower() == 'true'
-        
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         
         query = ReviewModel.query
         
-        if include_user:
-            query = query.options(db.joinedload(ReviewModel.user))
-        
-        if include_item:
-            query = query.options(db.joinedload(ReviewModel.item))
-            
         query = query.offset(page*per_page).limit(per_page)
         
         reviews = query.all()
         
-        params = {
-            "many": True,
-            "include_item": include_item,
-            "include_user": include_user
-        }
-        schema = ReviewSchema(**params)
-            
-        return schema.dump(reviews), 200
+        return reviews
        
     @blp.arguments(PlainReviewSchema)
     @blp.response(201, ReviewSchema)
