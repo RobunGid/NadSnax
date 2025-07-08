@@ -1,10 +1,11 @@
-from db import db
-import enum
 from flask import request
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy import CheckConstraint
+from sqlalchemy import CheckConstraint, DateTime
 from sqlalchemy.orm import validates
+from datetime import datetime
+
 from constants import Role
+from db import db
 
 class UserModel(db.Model):
     __tablename__ = "users"
@@ -13,6 +14,8 @@ class UserModel(db.Model):
     
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)
+    
+    register_at = db.Column(DateTime, default=datetime.now, nullable=False)
     
     role = db.Column(db.Enum(Role), default=Role.user)
     

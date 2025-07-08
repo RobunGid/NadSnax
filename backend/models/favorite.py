@@ -11,8 +11,8 @@ class FavoriteModel(db.Model):
     user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)
     item_id = db.Column(db.String(80), db.ForeignKey("items.id"), nullable=False)
     
-    user = db.relationship('UserModel', backref='favorite', lazy='select')
-    item = db.relationship('ItemModel', backref='favorite', lazy='select')
+    user = db.relationship('UserModel', backref='favorite')
+    item = db.relationship('ItemModel', backref='favorite')
     
     added_at = db.Column(DateTime, default=datetime.now, nullable=False)
     
