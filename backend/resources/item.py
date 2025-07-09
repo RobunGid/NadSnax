@@ -1,8 +1,8 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-import uuid
-from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel
-from schemas import ItemSchema, ItemUpdateSchema
+from uuid import uuid4
+from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel
+from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request, g
@@ -194,17 +194,28 @@ class Items(MethodView):
                     item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
         return items
         
-    @blp.arguments(ItemSchema)
-    @blp.response(201, ItemSchema)
     @jwt_required()
     @role_required(['admin', 'moderator'])
-    def post(self, item_data):
-        item = ItemModel(**item_data, id=str(uuid.uuid4()))
+    @blp.arguments(PostItemSchema)
+    @blp.response(201, ItemSchema)
+    def post(self, full_data):
+        item_data = full_data["item"]
+        item_translations_data = full_data.get("item_translations", None)
+        item_details_translations_data = full_data.get("item_details_translations", None)
+        images_data = full_data.get("images", None)
+        item_details_data = full_data.get("item_details", None)
         
-        try:
-            db.session.add(item)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500, message="An error occured while inserting the item")
+        item = ItemModel(**item_data, id=str(uuid4()))
+        item_details = ItemDetailsModel(**item_details_data, item_id=item.id)
+        item_translations = [ItemTranslationModel(**item_translation_data, item_id=item.id, id=str(uuid4())) for item_translation_data in item_translations_data]
+        item_details_translations = [ItemDetailsTranslationModel(**item_details_translation_data, item_id=item.id, id=str(uuid4())) for item_details_translation_data in item_details_translations_data]
+        images = [ItemImageModel(**item_image_data, item_id=item.id, id=str(uuid4())) for item_image_data in images_data]
+        
+        db.session.add(item)
+        db.session.add(item_details)
+        db.session.add_all(item_translations)
+        db.session.add_all(item_details_translations)
+        db.session.add_all(images)
+        db.session.commit()
             
         return item

@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 
-from schemas import CategorySchema
+from constants import SupportedLanguages
 
 class PlainItemSchema(Schema):
     id = fields.Str(dump_only=True)
@@ -28,6 +28,8 @@ class ItemUpdateSchema(Schema):
     type_id = fields.Str(required=True)
 
 class ItemTranslationSchema(Schema):
+    lang_key = fields.Enum(SupportedLanguages)
+    item_id = fields.Str(required=True)
     label = fields.Str(required=True)
     description = fields.Str(required=True)
 
@@ -38,8 +40,16 @@ class ItemSchema(PlainItemSchema):
     reviews = fields.Nested("schemas.review.ReviewSchema", dump_only=True, many=True, exclude=("item","user.reviews", "user.orders"))
     images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True, exclude=("item",))
     
-    # translation = fields.Nested(ItemTranslationSchema, dump_only=True)
+    translation = fields.Nested(ItemTranslationSchema, dump_only=True)
     
     average_rating = fields.Float(dump_only=True)
     rating_count = fields.Int(dump_only=True)
     favorite_id = fields.Str(dump_only=True)
+    
+class PostItemSchema(Schema):
+    item = fields.Nested(ItemSchema, required=True)
+    item_translations = fields.Nested(ItemTranslationSchema, many=True, exclude=("item_id",))
+    item_details = fields.Nested("schemas.item_details.ItemDetailsSchema", exclude=("item_id",))
+    item_details_translations = fields.Nested("schemas.item_details.ItemDetailsTranslationSchema", many=True, exclude=("item_id",))
+    images = fields.Nested("schemas.item_image.ItemImageSchema", many=True, exclude=("item_id",))
+    
