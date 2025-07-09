@@ -66,9 +66,13 @@ export const App = () => {
 			<main>
 				<Routes>
 					<Route path='/' element={<Navigate to='/home' />} />
-					<Route element={<PrivateRoutes />}>
+					<Route
+						element={<PrivateRoutes roles={['admin', 'moderator', 'user']} />}
+					>
 						<Route path='/account' element={<AccountPage />} />
 						<Route path='/account/:section' element={<AccountPage />} />
+					</Route>
+					<Route element={<PrivateRoutes roles={['admin', 'moderator']} />}>
 						<Route path='/admin-panel' element={<AdminPanelPage />} />
 						<Route
 							path='/admin-panel/:section'

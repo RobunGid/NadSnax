@@ -77,7 +77,7 @@ export type User = {
 	firstName: string;
 	lastName: string;
 	reviews?: Review[];
-	role: string;
+	role: Role;
 	username: string;
 };
 
