@@ -16,7 +16,6 @@ export const AccountOrderHistory = () => {
 		dispatch(fetchSelfOrders({ includeItems: true, includeUser: true, lang }));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lang]);
-
 	return (
 		<UIAccountOrderHistory>
 			{orders.map((order) => (
