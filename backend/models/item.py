@@ -19,10 +19,10 @@ class ItemModel(db.Model):
     category_id = db.Column(db.String(80), db.ForeignKey("categories.id"))
     type_id = db.Column(db.String(80), db.ForeignKey("types.id"))
     
-    category = db.relationship("CategoryModel", back_populates="items")
-    type = db.relationship("TypeModel", back_populates="items")
-    reviews = db.relationship("ReviewModel", back_populates="item")
-    images = db.relationship("ItemImageModel", back_populates="item")
+    category = db.relationship("CategoryModel", back_populates="items", lazy=True)
+    type = db.relationship("TypeModel", back_populates="items", lazy=True)
+    reviews = db.relationship("ReviewModel", back_populates="item", lazy=True)
+    images = db.relationship("ItemImageModel", back_populates="item", lazy=True)
     
     item_details = db.relationship("ItemDetailsModel", back_populates="item", uselist=False)
     translations = db.relationship("ItemTranslationModel", back_populates="item")

@@ -18,8 +18,6 @@ const initialState: OrderState = {
 };
 
 type fetchSelfOrdersParams = {
-	includeUser?: boolean;
-	includeItems?: boolean;
 	lang?: LanguageCodes;
 };
 
@@ -27,41 +25,36 @@ export const fetchSelfOrders = createAsyncThunk<
 	Order[],
 	fetchSelfOrdersParams,
 	{ rejectValue: StoreError; state: RootStore }
->(
-	'order/fetchOrders',
-	async ({ includeUser, includeItems, lang }, { rejectWithValue, getState }) => {
-		const accessToken = getState().auth.accessToken;
+>('order/fetchOrders', async ({ lang }, { rejectWithValue, getState }) => {
+	const accessToken = getState().auth.accessToken;
 
-		try {
-			const response = await Axios.get<Order[]>('/orders/self', {
-				params: {
-					include_user: includeUser,
-					include_items: includeItems,
-					lang,
-				},
-				headers: {
-					Authorization: accessToken ? `Bearer ${accessToken}` : '',
-				},
+	try {
+		const response = await Axios.get<Order[]>('/orders/self', {
+			params: {
+				lang,
+			},
+			headers: {
+				Authorization: accessToken ? `Bearer ${accessToken}` : '',
+			},
+		});
+
+		const orders = response.data;
+
+		const camelCaseOrders: Order[] = camelcaseKeys(orders, { deep: true });
+
+		return camelCaseOrders;
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
 			});
-
-			const orders = response.data;
-
-			const camelCaseOrders: Order[] = camelcaseKeys(orders, { deep: true });
-
-			return camelCaseOrders;
-		} catch (error) {
-			if (isAxiosError(error)) {
-				return rejectWithValue({
-					message: error.message,
-					code: error.code,
-					status: error.response?.status,
-					data: error.response?.data,
-				});
-			}
-			return rejectWithValue({ message: 'Unknown error' });
 		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
-);
+});
 
 const slice = createSlice({
 	name: 'order',

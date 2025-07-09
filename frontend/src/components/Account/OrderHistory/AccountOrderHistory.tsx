@@ -13,7 +13,7 @@ export const AccountOrderHistory = () => {
 	const { lang } = useI18n();
 
 	useEffect(() => {
-		dispatch(fetchSelfOrders({ includeItems: true, includeUser: true, lang }));
+		dispatch(fetchSelfOrders({ lang }));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lang]);
 	return (

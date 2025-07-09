@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Review, StoreError } from '../types';
+import { LanguageCodes, Review, StoreError } from '../types';
 import { RootStore, Status } from './types';
 import camelcaseKeys from 'camelcase-keys';
 import { Axios } from '../api';
@@ -18,46 +18,41 @@ const initialState: ReviewState = {
 };
 
 type fetchSelfReviewsParams = {
-	includeUser?: boolean;
-	includeItem?: boolean;
+	lang?: LanguageCodes;
 };
 
 export const fetchSelfReviews = createAsyncThunk<
 	Review[],
 	fetchSelfReviewsParams,
 	{ rejectValue: StoreError; state: RootStore }
->(
-	'review/fetchReviews',
-	async ({ includeUser, includeItem }, { rejectWithValue, getState }) => {
-		const accessToken = getState().auth.accessToken;
-		try {
-			const response = await Axios.get<Review[]>('/review/self', {
-				params: {
-					include_user: includeUser,
-					include_item: includeItem,
-				},
-				headers: {
-					Authorization: accessToken ? `Bearer ${accessToken}` : '',
-				},
+>('review/fetchReviews', async ({ lang }, { rejectWithValue, getState }) => {
+	const accessToken = getState().auth.accessToken;
+	try {
+		const response = await Axios.get<Review[]>('/review/self', {
+			params: {
+				lang,
+			},
+			headers: {
+				Authorization: accessToken ? `Bearer ${accessToken}` : '',
+			},
+		});
+
+		const reviews = response.data;
+
+		const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
+		return camelCaseReviews;
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
 			});
-
-			const reviews = response.data;
-
-			const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
-			return camelCaseReviews;
-		} catch (error) {
-			if (isAxiosError(error)) {
-				return rejectWithValue({
-					message: error.message,
-					code: error.code,
-					status: error.response?.status,
-					data: error.response?.data,
-				});
-			}
-			return rejectWithValue({ message: 'Unknown error' });
 		}
+		return rejectWithValue({ message: 'Unknown error' });
 	}
-);
+});
 
 const slice = createSlice({
 	name: 'review',

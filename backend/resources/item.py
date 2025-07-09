@@ -119,6 +119,12 @@ class Items(MethodView):
             
         query = ItemModel.query
             
+        if category_filter:
+            query = query.join(CategoryModel).filter(func.lower(CategoryModel.name) == category_filter)
+
+        if type_filter:
+            query = query.join(TypeModel).filter(func.lower(TypeModel.name) == type_filter)
+            
         query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
         query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
         query = query.filter(ItemModel.page_link == page_link_filter) if page_link_filter else query
@@ -186,7 +192,6 @@ class Items(MethodView):
                     item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
                     item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
                     item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
-               
         return items
         
     @blp.arguments(ItemSchema)

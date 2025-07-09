@@ -22,15 +22,11 @@ export const ProductsPage = () => {
 	const { category, type } = useParams();
 
 	const fetchItemsParams = {
-		includeCategory: true,
-		includeType: true,
-		includeImages: true,
 		categoryName: category,
 		typeName: type,
 		isBestseller: category === 'best-sellers' ? true : undefined,
 		isSecretbox: category === 'secretboxes' ? true : undefined,
 		accessToken: accessToken,
-		includeFavorite: true,
 		lang,
 	};
 

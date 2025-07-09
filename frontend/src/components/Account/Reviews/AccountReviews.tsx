@@ -11,7 +11,7 @@ export const AccountReviews = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchSelfReviews({ includeUser: true, includeItem: true }));
+		dispatch(fetchSelfReviews({}));
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

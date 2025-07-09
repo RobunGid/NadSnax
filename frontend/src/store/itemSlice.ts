@@ -56,21 +56,14 @@ export const deleteFavoriteThunk = createAsyncThunk<
 });
 
 export interface fetchItemsParams {
-	includeType?: boolean;
-	includeCategory?: boolean;
-	includeItemDetails?: boolean;
 	categoryName?: string;
 	typeName?: string;
 	pageLink?: string;
 	isBestseller?: boolean;
 	isSecretbox?: boolean;
-	includeImages?: boolean;
-	includeReviews?: boolean;
-	includeReviewsUser?: boolean;
 	simillarId?: string;
 	accessToken?: string;
 	itemIds?: string[];
-	includeFavorite?: boolean;
 	lang?: LanguageCodes;
 }
 
@@ -82,11 +75,6 @@ export const fetchItemsThunk = createAsyncThunk<
 	'item/fetchItems',
 	async (
 		{
-			includeType,
-			includeCategory,
-			includeItemDetails,
-			includeImages,
-			includeReviews,
 			categoryName,
 			typeName,
 			pageLink,
@@ -94,8 +82,6 @@ export const fetchItemsThunk = createAsyncThunk<
 			isSecretbox,
 			simillarId,
 			itemIds,
-			includeFavorite,
-			includeReviewsUser,
 			lang,
 		},
 		{ rejectWithValue, getState }
@@ -105,24 +91,19 @@ export const fetchItemsThunk = createAsyncThunk<
 
 		const accessToken = getState().auth.accessToken;
 
+		const requestParams = {
+			category_name: categoryName,
+			type_name: typeName,
+			page_link: pageLink,
+			bestseller: isBestseller,
+			secretbox: isSecretbox,
+			simillar_id: simillarId,
+			item_ids: itemIds?.join(','),
+			lang,
+		};
+		console.log(requestParams);
 		const response = await Axios.get<Item[]>('/item', {
-			params: {
-				include_type: includeType,
-				include_category: includeCategory,
-				include_item_details: includeItemDetails,
-				include_images: includeImages,
-				category_name: categoryName,
-				type_name: typeName,
-				page_link: pageLink,
-				bestseller: isBestseller,
-				secretbox: isSecretbox,
-				include_reviews: includeReviews,
-				include_reviews_user: includeReviewsUser,
-				include_favorite: includeFavorite,
-				simillar_id: simillarId,
-				item_ids: itemIds?.join(','),
-				lang,
-			},
+			params: requestParams,
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
 			},

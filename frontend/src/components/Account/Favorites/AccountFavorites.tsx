@@ -14,10 +14,6 @@ export const AccountFavorites = () => {
 	});
 
 	const fetchItemsParams = {
-		includeCategory: true,
-		includeType: true,
-		includeImages: true,
-		includeFavorite: true,
 		accessToken: accessToken,
 	};
 

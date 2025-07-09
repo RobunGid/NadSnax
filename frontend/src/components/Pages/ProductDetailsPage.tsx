@@ -24,12 +24,6 @@ export const ProductDetailsPage = () => {
 	useEffect(() => {
 		fetchedSimillars.current = false;
 		actions.fetchItems({
-			includeItem_details: true,
-			includeCategory: true,
-			includeType: true,
-			includeImages: true,
-			includeReviews: true,
-			includeReviewsUser: true,
 			pageLink: `/${product_page_link}`,
 			accessToken,
 			lang,
@@ -45,12 +39,6 @@ export const ProductDetailsPage = () => {
 	useEffect(() => {
 		if (!item?.id || fetchedSimillars.current) return;
 		actions.fetchItems({
-			includeItemDetails: true,
-			includeReviews: true,
-			includeReviewsUser: true,
-			includeCategory: true,
-			includeType: true,
-			includeImages: true,
 			simillarId: item.id,
 			accessToken,
 			lang,

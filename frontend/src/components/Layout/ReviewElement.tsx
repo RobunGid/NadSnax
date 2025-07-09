@@ -32,12 +32,6 @@ export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 
 		if (response.status === 200) {
 			actions.fetchItems({
-				includeItemDetails: true,
-				includeReviews: true,
-				includeCategory: true,
-				includeType: true,
-				includeImages: true,
-				includeReviewsUser: true,
 				simillarId: review.itemId,
 			});
 		}

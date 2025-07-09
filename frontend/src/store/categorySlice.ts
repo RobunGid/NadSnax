@@ -24,7 +24,7 @@ export const fetchCategories = createAsyncThunk<
 	{ rejectValue: string }
 >('category/fetchCategories', async ({ lang }, { rejectWithValue }) => {
 	const response = await Axios.get<ItemCategory[]>('/category', {
-		params: { include_types: true, lang },
+		params: { lang },
 	});
 
 	if (response.status != 200) {
