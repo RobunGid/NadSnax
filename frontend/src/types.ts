@@ -142,7 +142,8 @@ export type AdminPanelSectionType =
 	| 'users'
 	| 'items'
 	| 'reviews'
-	| 'orders';
+	| 'orders'
+	| 'create_item';
 
 export const predicateSection = (value?: string): value is Section => {
 	return !(
@@ -164,7 +165,10 @@ export const predicateAdminPanelSection = (
 	value?: string
 ): value is AdminPanelSectionType => {
 	return !(
-		value && !['statistics', 'users', 'items', 'reviews', 'orders'].includes(value)
+		value &&
+		!['statistics', 'users', 'items', 'reviews', 'orders', 'create_item'].includes(
+			value
+		)
 	);
 };
 

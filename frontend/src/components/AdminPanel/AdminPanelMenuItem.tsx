@@ -38,7 +38,7 @@ export const AdminPanelMenuItem = {
 		</UIAdminPanelMenuItem>
 	),
 	CreateItem: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/create-item'>
+		<UIAdminPanelMenuItem to='/admin-panel/create_item'>
 			<IoCreateOutline />
 			Create item
 		</UIAdminPanelMenuItem>

@@ -9,6 +9,7 @@ interface AdminPanelSectionProps {
 
 export const AdminPanelSection = ({ section }: AdminPanelSectionProps) => {
 	const sections: Record<AdminPanelSectionType, ReactNode> = {
+		create_item: <></>,
 		items: <></>,
 		users: <></>,
 		orders: <></>,
