@@ -17,6 +17,7 @@ export const LanguageSelector = () => {
 
 	const handleLanguageChange = async (language: Language) => {
 		setLang(language.key);
+		sessionStorage.setItem('lang', language.key);
 		setIsOpen(false);
 	};
 

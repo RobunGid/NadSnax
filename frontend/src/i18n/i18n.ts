@@ -6,6 +6,7 @@ import {
 } from '@ayub-begimkulov/i18n';
 import { Axios } from '../api';
 import { Keyset } from '@ayub-begimkulov/i18n/dist/i18n';
+import { getDefaultLang } from '../logic/getDefaultLang';
 
 const pluralizeEn = createPluralize('en');
 const pluralizeRu = createPluralize('ru');
@@ -21,7 +22,7 @@ const loadRu = async () => {
 };
 
 export const i18n = new I18N({
-	defaultLang: 'en',
+	defaultLang: getDefaultLang(),
 	languages: {
 		en: {
 			keyset: loadEn,

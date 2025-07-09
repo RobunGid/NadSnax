@@ -198,6 +198,10 @@ export type SiteStatistics = {
 
 export type LanguageCodes = 'ru' | 'en';
 
+export const predicateLanguageCode = (lang: string): lang is LanguageCodes => {
+	return ['ru', 'en'].includes(lang);
+};
+
 export type Language = {
 	key: LanguageCodes;
 	name: string;

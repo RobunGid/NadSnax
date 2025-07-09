@@ -14,11 +14,13 @@ import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
 import { AdminPanelPage } from './components/Pages/AdminPanelPage';
 import { useI18n } from './i18n/i18n';
+import { languages } from './logic/languages';
+import { predicateLanguageCode } from './types';
 
 export const App = () => {
 	const dispatch = useAppDispatch();
 
-	const { lang } = useI18n();
+	const { lang, setLang } = useI18n();
 
 	useEffect(() => {
 		dispatch(fetchCategories({ lang }));
@@ -40,6 +42,19 @@ export const App = () => {
 
 		document.body.classList.add('dark:bg-gray-900');
 		document.body.classList.add('dark:text-white');
+	}, []);
+
+	useEffect(() => {
+		const savedLang = sessionStorage.getItem('lang');
+		const languageKeys = languages.map((lang) => lang.key);
+		if (
+			typeof savedLang == 'string' &&
+			predicateLanguageCode(savedLang) &&
+			languageKeys.includes(savedLang) &&
+			savedLang != lang
+		) {
+			setLang(savedLang);
+		}
 	}, []);
 
 	return (
