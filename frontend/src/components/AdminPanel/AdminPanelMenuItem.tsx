@@ -4,6 +4,7 @@ import { AiFillProduct } from 'react-icons/ai';
 import { LuMessagesSquare } from 'react-icons/lu';
 import { LiaLuggageCartSolid } from 'react-icons/lia';
 import { GrContactInfo } from 'react-icons/gr';
+import { IoCreateOutline } from 'react-icons/io5';
 
 export const AdminPanelMenuItem = {
 	Statistics: () => (
@@ -34,6 +35,12 @@ export const AdminPanelMenuItem = {
 		<UIAdminPanelMenuItem to='/admin-panel/orders'>
 			<LiaLuggageCartSolid />
 			Orders
+		</UIAdminPanelMenuItem>
+	),
+	CreateItem: () => (
+		<UIAdminPanelMenuItem to='/admin-panel/create-item'>
+			<IoCreateOutline />
+			Create item
 		</UIAdminPanelMenuItem>
 	),
 };

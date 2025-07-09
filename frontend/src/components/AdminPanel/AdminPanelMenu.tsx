@@ -4,6 +4,7 @@ import { UIAdminPanelMenu } from './UI/UIAdminPanelMenu';
 export const AdminPanelMenu = () => {
 	return (
 		<UIAdminPanelMenu>
+			<AdminPanelMenuItem.CreateItem />
 			<AdminPanelMenuItem.Statistics />
 			<AdminPanelMenuItem.Users />
 			<AdminPanelMenuItem.Items />
