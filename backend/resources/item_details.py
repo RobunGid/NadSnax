@@ -7,7 +7,7 @@ from schemas import ItemDetailsSchema
 
 blp = Blueprint("item_details", __name__, description="Operations on item details")
         
-@blp.route('/item_detail')
+@blp.route("/item_details")
 class ItemDetails(MethodView):
     @blp.response(200, ItemDetailsSchema(many = True))
     def get(self):
