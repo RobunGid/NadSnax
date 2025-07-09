@@ -12,10 +12,14 @@ interface ProductDetailsGalleryProps {
 
 export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) => {
 	const defaultImage = images.find((image) => image.isMain) || images[0];
+
 	const galleryRef = useRef<null | HTMLDivElement>(null);
+
 	const [upButtonVisibilty, setUpButtonVisibilty] = useState<boolean>(false);
 	const [downButtonVisibilty, setDownButtonVisibilty] = useState<boolean>(true);
 	const [selectedImage, setSelectedImage] = useState<Image>(defaultImage);
+
+	const hideButtons = images.length > 4;
 
 	const handleCarouselScroll: UIEventHandler<HTMLDivElement> = (event) => {
 		if ((event.target as HTMLDivElement).scrollTop == 440) {
@@ -54,7 +58,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 				<UIProductDetailsGalleryScrollButton
 					onClick={handleClickUpGallery}
 					type='up'
-					visibility={upButtonVisibilty}
+					visibility={upButtonVisibilty && hideButtons}
 				/>
 
 				<UIProductDetailsCarousel
@@ -74,7 +78,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 				<UIProductDetailsGalleryScrollButton
 					onClick={handleClickDownGallery}
 					type='down'
-					visibility={downButtonVisibilty}
+					visibility={downButtonVisibilty && hideButtons}
 				/>
 			</UIProductDetailsGalleryContainer>
 			<UIProductDetailsImage image={selectedImage} type='big' />
