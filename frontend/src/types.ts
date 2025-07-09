@@ -129,9 +129,9 @@ export type CartItemType = {
 
 export type Section =
 	| 'profile'
-	| 'order_history'
+	| 'order-history'
 	| 'reviews'
-	| 'recently_viewed'
+	| 'recently-viewed'
 	| 'settings'
 	| 'statistics'
 	| 'help'
@@ -143,16 +143,16 @@ export type AdminPanelSectionType =
 	| 'items'
 	| 'reviews'
 	| 'orders'
-	| 'create_item';
+	| 'create-item';
 
 export const predicateSection = (value?: string): value is Section => {
 	return !(
 		value &&
 		![
 			'profile',
-			'order_history',
+			'order-history',
 			'reviews',
-			'recently_viewed',
+			'recently-viewed',
 			'settings',
 			'statistics',
 			'help',
@@ -166,7 +166,7 @@ export const predicateAdminPanelSection = (
 ): value is AdminPanelSectionType => {
 	return !(
 		value &&
-		!['statistics', 'users', 'items', 'reviews', 'orders', 'create_item'].includes(
+		!['statistics', 'users', 'items', 'reviews', 'orders', 'create-item'].includes(
 			value
 		)
 	);

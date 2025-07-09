@@ -24,7 +24,7 @@ export const AccountMenuItem = {
 		</UIAccountMenuItem>
 	)),
 	OrderHistory: withTranslate(({ translate }: AccountMenuItemProps) => (
-		<UIAccountMenuItem to='/account/order_history'>
+		<UIAccountMenuItem to='/account/order-history'>
 			<BiHistory />
 			{translate('account_menu.order_history')}
 		</UIAccountMenuItem>
@@ -36,7 +36,7 @@ export const AccountMenuItem = {
 		</UIAccountMenuItem>
 	)),
 	RecentlyViewed: withTranslate(({ translate }: AccountMenuItemProps) => (
-		<UIAccountMenuItem to='/account/recently_viewed'>
+		<UIAccountMenuItem to='/account/recently-viewed'>
 			<FaMagnifyingGlass />
 			{translate('account_menu.recently_viewed')}
 		</UIAccountMenuItem>
