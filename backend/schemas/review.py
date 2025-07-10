@@ -13,5 +13,5 @@ class ReviewUpdateSchema(Schema):
     rating = fields.Int(required=True)
     
 class ReviewSchema(PlainReviewSchema):
-    user = fields.Nested('schemas.user.UserSchema', dump_only=True, exclude=("reviews",)) 
+    user = fields.Nested('schemas.user.UserSchema', dump_only=True, exclude=("reviews", "orders")) 
     item = fields.Nested('schemas.item.ItemSchema', dump_only=True, exclude=("reviews",))

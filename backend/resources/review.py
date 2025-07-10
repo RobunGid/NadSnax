@@ -7,6 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request
+from sqlalchemy import func
 
 blp = Blueprint("reviews", __name__, description="Operations on reviews")
 
@@ -69,8 +70,11 @@ class Reviews(MethodView):
     def get(self):
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        is_random = str(request.args.get("random")).lower() == "true"
         
         query = ReviewModel.query
+        if is_random:
+            query = query.order_by(func.random())
         
         query = query.offset(page*per_page).limit(per_page)
         
