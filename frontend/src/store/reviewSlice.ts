@@ -54,6 +54,46 @@ export const fetchSelfReviews = createAsyncThunk<
 	}
 });
 
+type fetchRandomReviewsParams = {
+	lang?: LanguageCodes;
+	count: number;
+};
+
+export const fetchRandomReviews = createAsyncThunk<
+	Review[],
+	fetchRandomReviewsParams,
+	{ rejectValue: StoreError; state: RootStore }
+>('review/fetchReviews', async ({ lang, count }, { rejectWithValue, getState }) => {
+	const accessToken = getState().auth.accessToken;
+	try {
+		const response = await Axios.get<Review[]>('/review', {
+			params: {
+				lang,
+				random: true,
+				per_page: count,
+			},
+			headers: {
+				Authorization: accessToken ? `Bearer ${accessToken}` : '',
+			},
+		});
+
+		const reviews = response.data;
+
+		const camelCaseReviews: Review[] = camelcaseKeys(reviews, { deep: true });
+		return camelCaseReviews;
+	} catch (error) {
+		if (isAxiosError(error)) {
+			return rejectWithValue({
+				message: error.message,
+				code: error.code,
+				status: error.response?.status,
+				data: error.response?.data,
+			});
+		}
+		return rejectWithValue({ message: 'Unknown error' });
+	}
+});
+
 const slice = createSlice({
 	name: 'review',
 	initialState,

@@ -1,10 +1,22 @@
-import { ReactNode } from 'react';
-import { UIProductsPage } from './UI/UIProductsPage';
-import { useTranslate } from '../../i18n/i18n';
+import { useEffect } from 'react';
+import { UIHomePage } from './UI/UIHomePage';
+import { useActionCreators, useStateSelector } from '../../store';
+import { fetchRandomReviews } from '../../store/reviewSlice';
+import { useI18n } from '../../i18n/i18n';
+import { ReviewElement } from '../Layout/ReviewElement';
 
 export const HomePage = () => {
-	const reviews: ReactNode[] = [];
-	const translate = useTranslate();
+	const reviews = useStateSelector((state) => state.review.reviews);
+	const reviewsElements = reviews.map((review) => <ReviewElement review={review} />);
+	const { lang } = useI18n();
 
-	return <UIProductsPage customerReviews={reviews} translate={translate} />;
+	const { fetchReviews } = useActionCreators({
+		fetchReviews: fetchRandomReviews,
+	});
+
+	useEffect(() => {
+		fetchReviews({ lang, count: 5 });
+	}, []);
+
+	return <UIHomePage customerReviews={reviewsElements} />;
 };
