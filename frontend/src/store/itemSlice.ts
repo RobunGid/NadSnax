@@ -101,7 +101,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			item_ids: itemIds?.join(','),
 			lang,
 		};
-		console.log(requestParams);
+
 		const response = await Axios.get<Item[]>('/item', {
 			params: requestParams,
 			headers: {

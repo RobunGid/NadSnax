@@ -135,9 +135,9 @@ export const UIHomePage = withTranslate(
 					<h2 className='font-bold text-2xl text-center'>
 						{translate('homepage.reviews.title')}
 					</h2>
-					<ul className='flex gap-5 overflow-hidden justify-center w-full mx-auto'>
-						{customerReviews}
-					</ul>
+					<div className='overflow-hidden w-full'>
+						<ul className='marquee'>{customerReviews}</ul>
+					</div>
 				</section>
 			</div>
 		);

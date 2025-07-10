@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Axios } from '../../api';
 import { useI18n } from '../../i18n/i18n';
 import { formatDate } from '../../logic/formatDate';
@@ -11,9 +12,10 @@ import { TfiTrash } from 'react-icons/tfi';
 interface ReviewProps {
 	review: Review;
 	displayControls?: boolean;
+	type?: 'standard' | 'homePage';
 }
 
-export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
+export const ReviewElement = ({ review, displayControls, type }: ReviewProps) => {
 	const { lang } = useI18n();
 	const createdAt = formatDate(review.createdAt, lang);
 
@@ -37,7 +39,7 @@ export const ReviewElement = ({ review, displayControls }: ReviewProps) => {
 		}
 	};
 	return (
-		<UIReviewElement>
+		<UIReviewElement className={clsx(type == 'homePage' && 'marquee-item w-64')}>
 			{displayControls && (
 				<TfiTrash
 					onClick={handleDeleteReview}
