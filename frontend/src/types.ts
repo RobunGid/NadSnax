@@ -210,3 +210,6 @@ export type Language = {
 	key: LanguageCodes;
 	name: string;
 };
+
+export type Translation = string | Record<string, string>;
+export type Keyset = Record<string, Translation>;

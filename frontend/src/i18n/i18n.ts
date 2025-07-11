@@ -5,8 +5,8 @@ import {
 	useI18N as useI18nBase,
 } from '@ayub-begimkulov/i18n';
 import { Axios } from '../api';
-import { Keyset } from '@ayub-begimkulov/i18n/dist/i18n';
 import { getDefaultLang } from '../logic/getDefaultLang';
+import { Keyset } from '../types';
 
 const pluralizeEn = createPluralize('en');
 const pluralizeRu = createPluralize('ru');
