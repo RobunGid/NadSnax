@@ -3,32 +3,33 @@ import { JSX } from 'react';
 
 type FormConfig = {
 	name: keyof RegisterFormValue;
+	placeholderKey: string;
 } & JSX.IntrinsicElements['input'];
 
 export const registerFormConfig: FormConfig[] = [
 	{
 		name: 'username',
-		placeholder: 'Username',
+		placeholderKey: 'authorization_modal.placeholder.username',
 		required: true,
 		autoComplete: 'username',
 		minLength: 5,
 	},
 	{
 		name: 'firstName',
-		placeholder: 'First name',
+		placeholderKey: 'authorization_modal.placeholder.first_name',
 		required: true,
 		autoComplete: 'name',
 		minLength: 3,
 	},
 	{
 		name: 'lastName',
-		placeholder: 'Last name',
+		placeholderKey: 'authorization_modal.placeholder.last_name',
 		autoComplete: 'name',
 		minLength: 3,
 	},
 	{
 		name: 'password',
-		placeholder: 'Password',
+		placeholderKey: 'authorization_modal.placeholder.password',
 		required: true,
 		type: 'password',
 		autoComplete: 'current-password',

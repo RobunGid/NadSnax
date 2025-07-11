@@ -5,6 +5,18 @@
 	"navbar.secretboxes": "Секретные боксы",
 	"navbar.login_button": "Войти",
 
+	"authorization_modal.title.login": "Войти в аккаунт",
+	"authorization_modal.title.register": "Зарегистрироваться",
+	"authorization_modal.button.login": "Войти",
+	"authorization_modal.button.register": "Зарегистрироваться",
+	"authorization_modal.placeholder.username": "Логин",
+	"authorization_modal.placeholder.password": "Пароль",
+	"authorization_modal.placeholder.first_name": "Имя",
+	"authorization_modal.placeholder.last_name": "Фамилия",
+
+	"authorization_modal.label.login": "Уже есть аккаунт?",
+	"authorization_modal.label.register": "Ещё нет аккаунта?",
+
 	"homepage.slogan": "NadSnax - Вкуси счастье!",
 	"homepage.section1.title": "Добро пожаловать в NadSnax – ваш главный пункт назначения для перекусов!",
 	"homepage.section1.p1": "Хотите чего-то хрустящего, солёного или сладкого?",

@@ -3,19 +3,20 @@ import { JSX } from 'react';
 type FormConfig = {
 	name: keyof LoginFormValue;
 	validate?: (error: LoginFormValue) => string;
+	placeholderKey: string;
 } & JSX.IntrinsicElements['input'];
 
 export const loginFormConfig: FormConfig[] = [
 	{
 		name: 'username',
-		placeholder: 'Username',
+		placeholderKey: 'authorization_modal.placeholder.username',
 		required: true,
 		autoComplete: 'username',
 		minLength: 5,
 	},
 	{
 		name: 'password',
-		placeholder: 'Password',
+		placeholderKey: 'authorization_modal.placeholder.password',
 		required: true,
 		type: 'password',
 		autoComplete: 'current-password',

@@ -5,6 +5,14 @@
 	"navbar.secretboxes": "Secret Boxes",
 	"navbar.login_button": "Login",
 
+	"authorization_modal.title.login": "Login",
+	"authorization_modal.title.register": "Register",
+	"authorization_modal.login_button": "Login",
+	"authorization_modal.placeholder.username": "Username",
+	"authorization_modal.placeholder.password": "Password",
+	"authorization_modal.placeholder.first_name": "First Name",
+	"authorization_modal.placeholder.last_name": "Last Name",
+
 	"homepage.slogan": "NadSnax - Crunch into happiness!",
 	"homepage.section1.title": "Welcome to NadSnax – Your Ultimate Snack Destination!",
 	"homepage.section1.p1": "Craving something crunchy, savory, or sweet?",

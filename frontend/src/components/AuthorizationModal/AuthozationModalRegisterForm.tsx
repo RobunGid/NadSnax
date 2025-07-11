@@ -9,6 +9,7 @@ import {
 	RegisterFormValue,
 } from '../../logic/registerFormConfig';
 import { UIInput } from '../UI/UIInput';
+import { useTranslate } from '@ayub-begimkulov/i18n';
 
 export const AuthorizationModalRegisterForm = () => {
 	const [registerFormState, setRegisterFormState] = useState<RegisterFormValue>(
@@ -16,6 +17,8 @@ export const AuthorizationModalRegisterForm = () => {
 	);
 
 	const [avatarFile, setAvatarFile] = useState<undefined | File>(undefined);
+
+	const translate = useTranslate();
 
 	const dispatch = useAppDispatch();
 
@@ -58,19 +61,23 @@ export const AuthorizationModalRegisterForm = () => {
 
 	return (
 		<div>
-			<div className='text-lg'>Register</div>
+			<div className='text-lg'>
+				{translate('authorization_modal.title.register')}
+			</div>
 			<UILoginForm onSubmit={onSubmit} className='text-black'>
 				<label className='text-orange-600 flex justify-center mb-2'>
 					{errorMessage}
 				</label>
 				{registerFormConfig.map((conf) => {
-					const { name, ...rest } = conf;
+					const { name, placeholderKey, ...rest } = conf;
+					const placeholder = translate(placeholderKey);
 					return (
 						<UIInput
 							{...rest}
 							onChange={onChange}
 							key={name}
 							name={name}
+							placeholder={placeholder}
 							value={registerFormState[name]}
 							isLoading={loginStatus === 'loading'}
 							isInvalid={!!errorMessage}
@@ -89,7 +96,7 @@ export const AuthorizationModalRegisterForm = () => {
 					}
 				/>
 				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
-					Register
+					{translate('authorization_modal.button.register')}
 				</UIButton>
 			</UILoginForm>
 		</div>
