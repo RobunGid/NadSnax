@@ -19,8 +19,3 @@ class OrderModel(db.Model):
     items = db.relationship("OrderItemModel", back_populates="order", cascade="all,delete")
     
     created_at = db.Column(DateTime, default=datetime.now, nullable=False)
-    
-    __table_args__ = (
-        CheckConstraint('quantity > 0 AND quantity <= 16',
-                        name='quantity_boundaries'),
-    )
