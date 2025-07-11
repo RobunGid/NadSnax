@@ -32,7 +32,7 @@ export const UILanguageSelector = ({
 								hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-1 dark:ring-gray-700 ring-gray-300`}
 					>
 						<UIFlagIcon countryCode={selectedLanguage.key} />
-						{selectedLanguage.name}
+						<span className='hidden md:inline'>{selectedLanguage.name}</span>
 						<IoIosArrowDown size='16' />
 					</button>
 				</div>
