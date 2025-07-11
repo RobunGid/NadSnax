@@ -1,6 +1,6 @@
 import { SidebarItem } from './SidebarItem';
 import { ItemCategory } from '../../types';
-import { useContext } from 'react';
+import { RefObject, useContext } from 'react';
 import { NavbarContext } from '../../context/NavbarContext';
 import { SidebarCategories } from './SidebarCategories';
 import { UISidebarCloseMenuButton } from './UI/UISidebarCloseMenuButton';
@@ -10,12 +10,17 @@ import { UISidebarHeader } from './UI/UISidebarHeader';
 
 interface SidebarProps {
 	categories: ItemCategory[];
+	ref: RefObject<HTMLDivElement | null>;
 }
 
-export const Sidebar = ({ categories }: SidebarProps) => {
+export const Sidebar = ({ categories, ref }: SidebarProps) => {
 	const { sidebarVisibility, toggleSidebarVisibility } = useContext(NavbarContext);
+
 	return (
-		<UISidebar className={sidebarVisibility ? 'translate-x-0' : '-translate-x-full'}>
+		<UISidebar
+			className={sidebarVisibility ? 'translate-x-0' : '-translate-x-full'}
+			ref={ref}
+		>
 			<UISidebarHeader onClick={toggleSidebarVisibility} />
 
 			<UISidebarCloseMenuButton onClick={toggleSidebarVisibility} />

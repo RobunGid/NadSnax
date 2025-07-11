@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { RefObject, useContext } from 'react';
 import { NavbarCart } from './NavbarCart';
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { ItemCategory } from '../../types';
@@ -17,16 +17,21 @@ import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 
 interface NavbarProps {
 	categories: ItemCategory[];
+	openSidebarButtonRef: RefObject<HTMLButtonElement | null>;
 }
 
-export const Navbar = ({ categories }: NavbarProps) => {
+export const Navbar = ({ categories, openSidebarButtonRef }: NavbarProps) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	const { toggleCartModalVisibility } = useContext(CartModalContext);
 
 	const user = useStateSelector((state) => state.user.user);
+
 	return (
 		<UINavbar>
-			<UINavbarOpenSidebarButton onClick={toggleSidebarVisibility} />
+			<UINavbarOpenSidebarButton
+				onClick={toggleSidebarVisibility}
+				ref={openSidebarButtonRef}
+			/>
 
 			<UINavbarSiteLogo />
 

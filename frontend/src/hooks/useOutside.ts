@@ -3,15 +3,22 @@ import { RefObject, useEffect } from 'react';
 interface useOutsideParams {
 	onClickOutside: () => void;
 	element: RefObject<HTMLElement | null>;
+	ignoredElements?: RefObject<HTMLElement | null>[];
 }
 
-export const useOutside = ({ onClickOutside, element }: useOutsideParams) => {
+export const useOutside = ({
+	onClickOutside,
+	element,
+	ignoredElements = [],
+}: useOutsideParams) => {
 	const handleClickOutside = (event: MouseEvent): void => {
 		event.stopPropagation();
 		if (
 			element.current &&
-			event.target != element.current &&
-			!element.current.contains(event.target as Node)
+			!element.current.contains(event.target as Node) &&
+			!ignoredElements.some(
+				(ref) => ref.current && ref.current.contains(event.target as Node)
+			)
 		) {
 			onClickOutside();
 		}
