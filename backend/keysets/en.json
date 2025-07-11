@@ -116,5 +116,10 @@
     "success": "Completed",
     "canceled": "Canceled",
     "returned": "Returned",
-    "deleted": "Deleted"
+    "deleted": "Deleted",
+
+	"sidebar.item.home": "Home",
+	"sidebar.item.all_products": "All Products",
+	"sidebar.item.secretboxes": "Secret Boxes",
+	"sidebar.item.best_sellers": "Best Sellers"
 }

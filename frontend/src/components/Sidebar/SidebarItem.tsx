@@ -3,30 +3,36 @@ import { SidebarItemContainer } from './SidebarItemContainer';
 import { CiGift } from 'react-icons/ci';
 import { MdStarOutline } from 'react-icons/md';
 import { FaBoxes } from 'react-icons/fa';
+import { useTranslate } from '../../i18n/i18n';
+import { withTranslate } from '../../logic/withTranslate';
+
+interface SidebarItemProps {
+	translate: ReturnType<typeof useTranslate>;
+}
 
 export const SidebarItem = {
-	Home: () => (
+	Home: withTranslate(({ translate }: SidebarItemProps) => (
 		<SidebarItemContainer to='/home'>
 			<GoHome />
-			<span className='ms-3'>Home</span>
+			<span className='ms-3'>{translate('sidebar.item.home')}</span>
 		</SidebarItemContainer>
-	),
-	AllProducts: () => (
+	)),
+	AllProducts: withTranslate(({ translate }: SidebarItemProps) => (
 		<SidebarItemContainer to='/products'>
 			<FaBoxes />
-			<span className='ms-3'>All Products</span>
+			<span className='ms-3'>{translate('sidebar.item.all_products')}</span>
 		</SidebarItemContainer>
-	),
-	SecretBoxes: () => (
+	)),
+	SecretBoxes: withTranslate(({ translate }: SidebarItemProps) => (
 		<SidebarItemContainer to='/products/secretboxes'>
 			<CiGift />
-			<span className='ms-3'>Secret Boxes</span>
+			<span className='ms-3'>{translate('sidebar.item.secretboxes')}</span>
 		</SidebarItemContainer>
-	),
-	BestSellers: () => (
+	)),
+	BestSellers: withTranslate(({ translate }: SidebarItemProps) => (
 		<SidebarItemContainer to='/products/best-sellers'>
 			<MdStarOutline />
-			<span className='ms-3'>Best Sellers</span>
+			<span className='ms-3'>{translate('sidebar.item.best_sellers')}</span>
 		</SidebarItemContainer>
-	),
+	)),
 };

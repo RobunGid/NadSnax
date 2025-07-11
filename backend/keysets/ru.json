@@ -120,5 +120,10 @@
     "success": "Завершён",
     "canceled": "Отменён",
     "returned": "Возвращён",
-    "deleted": "Удалён"
+    "deleted": "Удалён",
+
+	"sidebar.item.home": "Главная",
+	"sidebar.item.all_products": "Все товары",
+	"sidebar.item.secretboxes": "Секретные боксы",
+	"sidebar.item.best_sellers": "Хиты продаж"
 }
