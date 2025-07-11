@@ -121,7 +121,7 @@ export const UIHomePage = withTranslate(
 					<h2 className='font-bold text-2xl'>
 						{translate('homepage.contact.title')}
 					</h2>
-					<div className='bg-gray-200 dark:bg-gray-800 p-14 mx-24'>
+					<div className='bg-gray-200 dark:bg-gray-800 p-4 md:p-14 mx-4 md:mx-24'>
 						<h3 className='text-center font-semibold text-xl mb-5'>
 							{translate('homepage.contact.subtitle')}
 						</h3>
