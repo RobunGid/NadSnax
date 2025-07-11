@@ -7,12 +7,16 @@
 
 	"authorization_modal.title.login": "Login",
 	"authorization_modal.title.register": "Register",
-	"authorization_modal.login_button": "Login",
-	"authorization_modal.placeholder.username": "Username",
+	"authorization_modal.button.login": "Login",
+	"authorization_modal.button.register": "Register",
+	"authorization_modal.placeholder.username": "Login",
 	"authorization_modal.placeholder.password": "Password",
 	"authorization_modal.placeholder.first_name": "First Name",
-	"authorization_modal.placeholder.last_name": "Last Name",
+	"authorization_modal.placeholder.last_name": "Last name",
 
+	"authorization_modal.label.login": "Already have an account?",
+	"authorization_modal.label.register": "Doesn't ahve an account yet?",
+	
 	"homepage.slogan": "NadSnax - Crunch into happiness!",
 	"homepage.section1.title": "Welcome to NadSnax – Your Ultimate Snack Destination!",
 	"homepage.section1.p1": "Craving something crunchy, savory, or sweet?",
