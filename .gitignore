@@ -1,8 +1,13 @@
 .venv
-/resources
 pgdata/
 *.sql
 *.dump
 *.tar
 *.gz
 TODO.md
+resources/avatars/*
+!resources/avatars/.gitkeep
+resources/icons/*
+!resources/icons/.gitkeep
+resources/images/*
+!resources/images/.gitkeep
