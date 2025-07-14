@@ -31,7 +31,7 @@ export const UIproductDetailsLoader = () => {
 							/>
 						</div>
 					</div>
-					<div className='transition-opacity h-[400px] w-[400px] shadow-md shadow-gray-600 dark:bg-gray-600 bg-gray-300 animate-skeleton rounded-xl' />
+					<div className='transition-opacity size-80 md:size-120 shadow-md shadow-gray-600 dark:bg-gray-600 bg-gray-300 animate-skeleton rounded-xl' />
 					{/* main image*/}
 				</div>
 				<div className='flex flex-col md:mt-20 w-100 px-4 h-[550px] overflow-y-auto scrollbar-stable gap-2'>
