@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk } from '../../store/itemSlice';
 import { useActionCreators, useStateSelector } from '../../store';
@@ -18,7 +18,6 @@ export const ProductDetailsPage = () => {
 	const { lang } = useI18n();
 
 	const { items, status } = useStateSelector((state) => state.item);
-	const [testLoading, setTestLoading] = useState(false);
 
 	const fetchedSimillars = useRef(false);
 
@@ -38,18 +37,6 @@ export const ProductDetailsPage = () => {
 	);
 
 	useEffect(() => {
-		const handleClick = (event: KeyboardEvent) => {
-			if (event.key == 'x') {
-				setTestLoading((prev) => !prev);
-			}
-		};
-		window.addEventListener('keydown', handleClick);
-		return () => {
-			window.removeEventListener('keydown', handleClick);
-		};
-	}, []);
-
-	useEffect(() => {
 		if (!item?.id || fetchedSimillars.current) return;
 		actions.fetchItems({
 			simillarId: item.id,
@@ -60,7 +47,7 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id, accessToken, lang]);
 
-	if (status === 'loading' || testLoading) return <UIproductDetailsLoader />;
+	if (status === 'loading') return <UIproductDetailsLoader />;
 
 	if (status === 'error') return <div>Sorry, item not found</div>;
 
