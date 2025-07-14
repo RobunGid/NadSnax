@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchItemsThunk } from '../../store/itemSlice';
 import { useActionCreators, useStateSelector } from '../../store';
-import { UIproductDetailsLoader } from '../ProductDetails/UI/Loader/UIProductDetailsLoader';
+import { UIproductDetailsLoader } from '../ProductDetails/UI/UIProductDetailsLoader';
 import { ProductDetails } from '../ProductDetails/ProductDetails';
 import { useI18n } from '../../i18n/i18n';
 
