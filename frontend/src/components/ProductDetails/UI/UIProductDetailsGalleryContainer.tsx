@@ -7,5 +7,9 @@ interface UIProductDetailsGalleryContainerProps {
 export const UIProductDetailsGalleryContainer = ({
 	children,
 }: UIProductDetailsGalleryContainerProps) => {
-	return <div className='flex flex-col items-center justify-center'>{children}</div>;
+	return (
+		<div className='flex md:flex-col flex-row items-center justify-center p-4'>
+			{children}
+		</div>
+	);
 };

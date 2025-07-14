@@ -22,27 +22,62 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 	const hideButtons = images.length > 4;
 
 	const handleCarouselScroll: UIEventHandler<HTMLDivElement> = (event) => {
-		if ((event.target as HTMLDivElement).scrollTop == 440) {
-			setDownButtonVisibilty(false);
+		const isVertical = window.innerWidth >= 768;
+		if (isVertical) {
+			if ((event.target as HTMLDivElement).scrollTop == 440) {
+				setDownButtonVisibilty(false);
+			} else {
+				setDownButtonVisibilty(true);
+			}
+
+			if ((event.target as HTMLDivElement).scrollTop == 0) {
+				setUpButtonVisibilty(false);
+			} else {
+				setUpButtonVisibilty(true);
+			}
+			return;
 		} else {
-			setDownButtonVisibilty(true);
-		}
-		if ((event.target as HTMLDivElement).scrollTop == 0) {
-			setUpButtonVisibilty(false);
-		} else {
-			setUpButtonVisibilty(true);
+			if ((event.target as HTMLDivElement).scrollLeft == 456) {
+				setDownButtonVisibilty(false);
+			} else {
+				setDownButtonVisibilty(true);
+			}
+
+			if ((event.target as HTMLDivElement).scrollLeft == 0) {
+				setUpButtonVisibilty(false);
+			} else {
+				setUpButtonVisibilty(true);
+			}
 		}
 	};
 
 	const handleClickUpGallery = () => {
+		const isVertical = window.innerWidth >= 768;
+
+		const topScrollValue = isVertical ? -100 : 0;
+		const leftScrollValue = isVertical ? 0 : -100;
+
 		if (galleryRef.current) {
-			galleryRef.current.scrollBy({ top: -100, behavior: 'smooth' });
+			galleryRef.current.scrollBy({
+				top: topScrollValue,
+				left: leftScrollValue,
+				behavior: 'smooth',
+			});
 		}
 	};
 
 	const handleClickDownGallery = () => {
+		const isVertical = window.innerWidth >= 768;
+
+		const topScrollValue = isVertical ? 100 : 0;
+		const leftScrollValue = isVertical ? 0 : 100;
+
 		if (galleryRef.current) {
-			galleryRef.current.scrollBy({ top: 100, behavior: 'smooth' });
+			galleryRef.current.scrollBy({
+				top: topScrollValue,
+				behavior: 'smooth',
+				left: leftScrollValue,
+			});
 		}
 	};
 

@@ -29,7 +29,7 @@ export const UIProductDetailsImage = ({
 						htmlFor={image.id}
 						style={{ backgroundImage: `url(${image.url})` }}
 						className={clsx(
-							'w-18 min-h-18 block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md transition-transform shadow-sm shadow-gray-600 snap-center'
+							'shrink-0 w-18 min-h-18 block cursor-pointer bg-no-repeat bg-cover position bg-center rounded-md transition-transform shadow-sm shadow-gray-600 snap-center'
 						)}
 					/>
 				</>

@@ -25,9 +25,9 @@ export const UIProductDetailsGalleryScrollButton = ({
 			)}
 		>
 			{type === 'down' ? (
-				<IoMdArrowDropdown size='40' />
+				<IoMdArrowDropdown size='40' className='-rotate-90 md:rotate-0' />
 			) : (
-				<IoMdArrowDropup size='40' />
+				<IoMdArrowDropup size='40' className='-rotate-90 md:rotate-0' />
 			)}
 		</button>
 	);
