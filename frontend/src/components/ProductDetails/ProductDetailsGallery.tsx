@@ -37,7 +37,11 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 			}
 			return;
 		} else {
-			if ((event.target as HTMLDivElement).scrollLeft == 456) {
+			console.log((event.target as HTMLDivElement).scrollLeft);
+			if (
+				(event.target as HTMLDivElement).scrollLeft > 620 &&
+				(event.target as HTMLDivElement).scrollLeft < 630
+			) {
 				setDownButtonVisibilty(false);
 			} else {
 				setDownButtonVisibilty(true);

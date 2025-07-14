@@ -18,7 +18,7 @@ export const UIProductDetailsCarousel = forwardRef<
 			onScroll={onScroll}
 			className={clsx(
 				classes.gallery,
-				'md:h-[440px] md:w-[150px] w-[440px] p-4 overflow-x-scroll md:overflow-y-scroll md:snap-y snap-x flex flex-row md:flex-col items-center gap-4 py-2 no-scrollbar'
+				'md:h-[440px] md:w-[150px] w-[270px] p-4 overflow-x-scroll md:overflow-y-scroll md:snap-y snap-x flex flex-row md:flex-col items-center gap-4 py-2 no-scrollbar'
 			)}
 		>
 			{children}
