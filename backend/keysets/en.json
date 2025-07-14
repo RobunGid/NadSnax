@@ -13,6 +13,9 @@
 	"authorization_modal.placeholder.password": "Password",
 	"authorization_modal.placeholder.first_name": "First Name",
 	"authorization_modal.placeholder.last_name": "Last name",
+	"authorization_modal.register.upload_avatar": "Choose avatar",
+	"authorization_modal.avatar_input.file_formats": "PNG, JPG or JPEG (Max. 1Mb)",
+	"authorization_modal.avatar_input.click_to_upload": "<1>Click to upload avatar</1><2> or drag and drop</2>",
 
 	"authorization_modal.label.login": "Already have an account?",
 	"authorization_modal.label.register": "Doesn't ahve an account yet?",

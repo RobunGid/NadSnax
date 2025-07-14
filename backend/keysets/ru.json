@@ -13,6 +13,9 @@
 	"authorization_modal.placeholder.password": "Пароль",
 	"authorization_modal.placeholder.first_name": "Имя",
 	"authorization_modal.placeholder.last_name": "Фамилия",
+	"authorization_modal.register.upload_avatar": "Выберите аватар",
+	"authorization_modal.avatar_input.file_formats": "PNG, JPG или JPEG (Максимум 1Мб)",
+	"authorization_modal.avatar_input.click_to_upload": "<1>Нажмите чтобы зарузить аватар</1><2> или перетащите</2>",
 
 	"authorization_modal.label.login": "Уже есть аккаунт?",
 	"authorization_modal.label.register": "Ещё нет аккаунта?",

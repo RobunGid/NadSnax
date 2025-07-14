@@ -10,7 +10,7 @@ export const UILoginForm = (props: UILoginFormProps) => {
 		<form
 			{...props}
 			className={`
-		p-16 flex flex-col items-center
+		flex flex-col items-center w-80 h-70 justify-center
 		`}
 		/>
 	);

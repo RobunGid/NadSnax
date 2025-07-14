@@ -5,6 +5,7 @@ import { AuthozationModalLoginForm } from './AuthozationModalLoginForm';
 import { UIAuthozationModalButtonToSignup } from './UI/UIAuthozationModalButtonToSignup';
 import { UIAuthozationModalButtonToLogin } from './UI/UIAuthozationModalButtonToLogin';
 import { AuthorizationModalRegisterForm } from './AuthozationModalRegisterForm';
+import { UIAuthorizationModalTitle } from './UI/UIAuthorizationModalTitle';
 
 export const LoginModal = () => {
 	const { loginModalVisibility, toggleLoginModalVisibility } =
@@ -14,6 +15,7 @@ export const LoginModal = () => {
 
 	return (
 		<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
+			<UIAuthorizationModalTitle type={isLoginForm ? 'login' : 'register'} />
 			{isLoginForm ? (
 				<>
 					<AuthozationModalLoginForm />

@@ -196,7 +196,7 @@ class Items(MethodView):
         
     @jwt_required()
     @role_required(['admin', 'moderator'])
-    @blp.arguments(PostItemSchema)
+    @blp.arguments(PostItemSchema, location="form")
     @blp.response(201, ItemSchema)
     def post(self, full_data):
         item_data = full_data["item"]

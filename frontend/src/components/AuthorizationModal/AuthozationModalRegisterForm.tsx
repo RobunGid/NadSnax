@@ -1,6 +1,12 @@
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
+import {
+	ChangeEvent,
+	ChangeEventHandler,
+	FormEvent,
+	useContext,
+	useEffect,
+	useState,
+} from 'react';
 import { fetchUser, registerThunk, useAppDispatch, useStateSelector } from '../../store';
-import { UILoginForm } from './UI/UIAuthozationModalLoginForm';
 import { UIButton } from '../UI/UIButton';
 import { LoginModalContext } from '../../context/LoginModalContext';
 import {
@@ -10,6 +16,8 @@ import {
 } from '../../logic/registerFormConfig';
 import { UIInput } from '../UI/UIInput';
 import { useTranslate } from '@ayub-begimkulov/i18n';
+import { UIAuthorizationModalAvatarInput } from './UI/UIAuthorizationModalAvatarInput';
+import { UIRegisterForm } from './UI/UIRegisterForm';
 
 export const AuthorizationModalRegisterForm = () => {
 	const [registerFormState, setRegisterFormState] = useState<RegisterFormValue>(
@@ -51,6 +59,10 @@ export const AuthorizationModalRegisterForm = () => {
 		await dispatch(fetchUser());
 	};
 
+	const onAvatarChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+		setAvatarFile(event.target.files ? event.target.files[0] : undefined);
+	};
+
 	useEffect(() => {
 		if (loginStatus === 'success') {
 			disableLoginModalVisibility();
@@ -60,45 +72,31 @@ export const AuthorizationModalRegisterForm = () => {
 	}, [loginStatus]);
 
 	return (
-		<div>
-			<div className='text-lg'>
-				{translate('authorization_modal.title.register')}
-			</div>
-			<UILoginForm onSubmit={onSubmit} className='text-black'>
-				<label className='text-orange-600 flex justify-center mb-2'>
-					{errorMessage}
-				</label>
-				{registerFormConfig.map((conf) => {
-					const { name, placeholderKey, ...rest } = conf;
-					const placeholder = translate(placeholderKey);
-					return (
-						<UIInput
-							{...rest}
-							onChange={onChange}
-							key={name}
-							name={name}
-							placeholder={placeholder}
-							value={registerFormState[name]}
-							isLoading={loginStatus === 'loading'}
-							isInvalid={!!errorMessage}
-						/>
-					);
-				})}
-				<UIInput
-					name='avatarFile'
-					isLoading={loginStatus === 'loading'}
-					isInvalid={!!errorMessage}
-					type='file'
-					onChange={(event) =>
-						setAvatarFile(
-							event.target.files ? event.target.files[0] : undefined
-						)
-					}
-				/>
-				<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
-					{translate('authorization_modal.button.register')}
-				</UIButton>
-			</UILoginForm>
-		</div>
+		<UIRegisterForm onSubmit={onSubmit} className='text-black'>
+			<label className='text-orange-600 flex justify-center mb-2'>
+				{errorMessage}
+			</label>
+			{registerFormConfig.map((conf) => {
+				const { name, placeholderKey, ...rest } = conf;
+				const placeholder = translate(placeholderKey);
+				return (
+					<UIInput
+						{...rest}
+						onChange={onChange}
+						key={name}
+						name={name}
+						placeholder={placeholder}
+						value={registerFormState[name]}
+						isLoading={loginStatus === 'loading'}
+						isInvalid={!!errorMessage}
+					/>
+				);
+			})}
+			<UIAuthorizationModalAvatarInput onChange={onAvatarChange} />
+
+			<UIButton className='t-5 w-full h-10 flex items-center justify-center'>
+				{translate('authorization_modal.button.register')}
+			</UIButton>
+		</UIRegisterForm>
 	);
 };

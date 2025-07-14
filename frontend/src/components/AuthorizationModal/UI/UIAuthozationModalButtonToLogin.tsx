@@ -10,7 +10,7 @@ interface UIAuthozationModalButtonToLoginProps {
 export const UIAuthozationModalButtonToLogin = withTranslate(
 	({ onClick, translate }: UIAuthozationModalButtonToLoginProps) => {
 		return (
-			<div className='flex justify-center items-center gap-x-1'>
+			<div className='flex justify-center items-center gap-x-1 mt-2'>
 				{translate('authorization_modal.label.login')}
 				<button onClick={onClick} className='text-sky-500 hover:underline'>
 					{translate('authorization_modal.button.login')}
