@@ -35,7 +35,7 @@ export const UIProductDetailsImage = ({
 				</>
 			)}
 			{type == 'big' && (
-				<div className='transition-opacity size-80 md:size-120 shadow-md shadow-gray-600'>
+				<div className='transition-opacity w-75 md:w-100 shadow-md shadow-gray-600'>
 					<img src={image.url} />
 				</div>
 			)}

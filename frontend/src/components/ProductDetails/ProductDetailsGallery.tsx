@@ -19,7 +19,9 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 	const [downButtonVisibilty, setDownButtonVisibilty] = useState<boolean>(true);
 	const [selectedImage, setSelectedImage] = useState<Image>(defaultImage);
 
-	const hideButtons = images.length > 4;
+	const hideButtons =
+		(images.length > 4 && window.innerWidth >= 768) ||
+		(window.innerWidth < 768 && images.length > 3);
 
 	const handleCarouselScroll: UIEventHandler<HTMLDivElement> = (event) => {
 		const isVertical = window.innerWidth >= 768;
