@@ -68,6 +68,7 @@
 	"cart.order_info.pickup_point": "Пункт выдачи: ",
 
 	"cart.order_button": "Заказать",
+	"cart.login_button": "Войдите в аккаунт чтобы сделать заказ",
 
 	"cart.message.empty": "Ваша корзина пуста",
 	"cart.message.success": "Успешно! Заказ отправлен в обработку",

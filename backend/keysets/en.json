@@ -68,6 +68,7 @@
 	"cart.order_info.pickup_point": "Pickup point: ",
 
 	"cart.order_button": "Order",
+	"cart.login_button": "Login to make order",
 
 	"cart.message.empty": "Your cart is empty",
 	"cart.message.success": "Success! Your order is now being process",

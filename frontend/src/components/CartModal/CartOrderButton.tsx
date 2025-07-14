@@ -3,7 +3,6 @@ import { Axios } from '../../api';
 import { CartModalContext } from '../../context/CartModalContext';
 import { clearCart, useAppDispatch, useStateSelector } from '../../store';
 import { UICartOrderButton } from './UI/UICartOrderButton';
-import { useTranslate } from '../../i18n/i18n';
 
 interface CartOrderButtonProps {
 	pickupPoint: string;
@@ -14,8 +13,6 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const dispatch = useAppDispatch();
-
-	const translate = useTranslate();
 
 	const { changeSuccessOrder } = useContext(CartModalContext);
 
@@ -41,9 +38,5 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 			changeSuccessOrder(true);
 		}
 	};
-	return (
-		<UICartOrderButton onClick={handleOrder}>
-			{translate('cart.order_button')}
-		</UICartOrderButton>
-	);
+	return <UICartOrderButton onClick={handleOrder} />;
 };

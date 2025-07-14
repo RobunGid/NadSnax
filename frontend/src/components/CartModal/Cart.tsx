@@ -9,9 +9,13 @@ import { useContext, useState } from 'react';
 import { CartMessage } from './CartMessage';
 import { CartOrderButton } from './CartOrderButton';
 import { UICartContainer } from './UI/UICartContainer';
+import { CartLoginButton } from './CartLoginButton';
 
 export const Cart = () => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
+	const userStatus = useStateSelector((state) => state.user.status);
+	const user = useStateSelector((state) => state.user.user);
+	const isLoggedIn = userStatus == 'success' && user;
 	const { isSuccessOrder } = useContext(CartModalContext);
 	const [pickupPoint, setPickupPoint] = useState<string>('');
 
@@ -27,11 +31,17 @@ export const Cart = () => {
 						))}
 					</UICartContainer>
 					<UICartContainer bordered count={2}>
-						<CartOrderButton pickupPoint={pickupPoint} />
-						<CartOrderInfo
-							pickupPoint={pickupPoint}
-							setPickupPoint={setPickupPoint}
-						/>
+						{isLoggedIn ? (
+							<>
+								<CartOrderButton pickupPoint={pickupPoint} />
+								<CartOrderInfo
+									pickupPoint={pickupPoint}
+									setPickupPoint={setPickupPoint}
+								/>
+							</>
+						) : (
+							<CartLoginButton />
+						)}
 					</UICartContainer>
 				</>
 			)}
