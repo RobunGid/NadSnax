@@ -19,6 +19,11 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 	const [downButtonVisibilty, setDownButtonVisibilty] = useState<boolean>(true);
 	const [selectedImage, setSelectedImage] = useState<Image>(defaultImage);
 
+	const fixedImages = [
+		defaultImage,
+		...images.filter((image) => image != defaultImage),
+	];
+
 	const hideButtons =
 		(images.length > 4 && window.innerWidth >= 768) ||
 		(window.innerWidth < 768 && images.length > 3);
@@ -39,7 +44,6 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 			}
 			return;
 		} else {
-			console.log((event.target as HTMLDivElement).scrollLeft);
 			if (
 				(event.target as HTMLDivElement).scrollLeft > 620 &&
 				(event.target as HTMLDivElement).scrollLeft < 630
@@ -106,7 +110,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 					ref={galleryRef}
 					onScroll={handleCarouselScroll}
 				>
-					{images.map((image) => (
+					{fixedImages.map((image) => (
 						<UIProductDetailsImage
 							image={image}
 							key={image.id}
