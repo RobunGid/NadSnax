@@ -84,7 +84,9 @@ def create_app(db_url = None):
     app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
     app.config['ICONS_UPLOAD_FOLDER'] = ICONS_UPLOAD_FOLDER
     app.config['ALLOWED_AVATAR_EXTENSIONS'] = {'png', 'jpeg', 'jpg'}
+    app.config['ALLOWED_ITEM_IMAGE_EXTENSIONS'] = {'png', 'jpeg', 'jpg'}
     app.config['MAX_AVATAR_SIZE'] = 1 * 1024 * 1024 # 1 Mb
+    app.config['MAX_ITEM_IMAGE_SIZE'] = 4 * 1024 * 1024 # 4 Mb
     
     db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
 

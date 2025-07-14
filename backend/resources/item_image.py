@@ -6,19 +6,40 @@ from schemas import ItemImageSchema
 from models import ItemImageModel, ItemModel
 from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import jwt_required
-from utils import role_required
+from utils import role_required, allowed_item_image_file, content_type_required
+import os
+from flask import request
 
 blp = Blueprint("item_images", __name__, description="Operations on item images")
 
 @blp.route('/item_image')
 
 class Images(MethodView):
-    @blp.arguments(ItemImageSchema)
-    @blp.response(201, ItemImageSchema)
     @jwt_required()
+    @content_type_required(['multipart/form-data'])
     @role_required(["admin", "moderator"])
+    @blp.arguments(ItemImageSchema, location="form")
+    @blp.response(201, ItemImageSchema)
     def post(self, image_data):
+        from app import app
         image = ItemImageModel(**image_data, id=str(uuid.uuid4()))
+        item_image_name = request.form.get("file_name") + '.png'
+        file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], item_image_name)
+        
+        if 'image' not in request.files:
+            abort(400, message="No item image file found")
+            
+        image_file = request.files.get("image")
+        
+        if not allowed_item_image_file(image_file):
+            abort(400, message="Invalid avatar file format or file size")
+            
+        if os.path.exists(file_path):
+            abort(400, message="Image already exists")
+        
+        filename = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], item_image_name)
+        
+        image_file.save(filename)
         
         try:
             db.session.add(image)
@@ -30,7 +51,13 @@ class Images(MethodView):
     
     @blp.response(200, ItemImageSchema(many=True))
     def get(self):
-        return ItemImageModel.query.all()
+        item_filter = request.args.get('item_id')
+        query = ItemImageModel.query
+        
+        if item_filter:
+            query = query.filter(ItemImageModel.item_id==item_filter)
+            
+        return query.all()
     
 @blp.route('/item_image/<string:item_image_id>')
 class Image(MethodView):

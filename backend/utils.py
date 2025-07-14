@@ -24,6 +24,12 @@ def allowed_avatar_file(file):
     file.seek(0)
     return '.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_AVATAR_EXTENSIONS'] and file_size <= app.config['MAX_AVATAR_SIZE']
 
+def allowed_item_image_file(file):
+    from app import app
+    file_size = len(file.read())
+    file.seek(0)
+    return '.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_ITEM_IMAGE_EXTENSIONS'] and file_size <= app.config['MAX_ITEM_IMAGE_SIZE']
+
 def content_type_required(content_types):
     def decorator(fn):
         @wraps(fn)
