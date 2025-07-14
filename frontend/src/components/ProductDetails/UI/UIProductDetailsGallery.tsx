@@ -6,7 +6,7 @@ interface UIProductDetailsGalleryProps {
 
 export const UIProductDetailsGallery = ({ children }: UIProductDetailsGalleryProps) => {
 	return (
-		<div className='flex flex-col md:flex-row justify-center items-center'>
+		<div className='flex flex-col md:flex-row justify-center items-center md:m-4'>
 			{children}
 		</div>
 	);
