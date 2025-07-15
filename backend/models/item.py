@@ -21,11 +21,11 @@ class ItemModel(db.Model):
     
     category = db.relationship("CategoryModel", back_populates="items", lazy=True)
     type = db.relationship("TypeModel", back_populates="items", lazy=True)
-    reviews = db.relationship("ReviewModel", back_populates="item", lazy=True)
-    images = db.relationship("ItemImageModel", back_populates="item", lazy=True)
+    reviews = db.relationship("ReviewModel", back_populates="item", lazy=True, cascade="all, delete")
+    images = db.relationship("ItemImageModel", back_populates="item", lazy=True, cascade="all, delete")
     
-    item_details = db.relationship("ItemDetailsModel", back_populates="item", uselist=False)
-    translations = db.relationship("ItemTranslationModel", back_populates="item")
+    item_details = db.relationship("ItemDetailsModel", back_populates="item", uselist=False, cascade="all, delete")
+    translations = db.relationship("ItemTranslationModel", back_populates="item", cascade="all, delete")
     
     @hybrid_property
     def average_rating(self):

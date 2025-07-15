@@ -10,13 +10,13 @@ from flask import request, g
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from flask_jwt_extended import jwt_required
-from utils import role_required, content_type_required
+from utils import role_required, content_type_required, allowed_item_image_file
 from sqlalchemy.orm import aliased
 from constants import SupportedCurrencies
 from sqlalchemy.orm import contains_eager
 from currency_converter import CurrencyConverter
 import json
-
+import os
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -26,10 +26,16 @@ class Item(MethodView):
     def get(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         return item
+    
     @jwt_required()
     @role_required(['admin', 'moderator'])
     def delete(self, item_id):
+        from app import app
         item = ItemModel.query.get_or_404(item_id)
+        for image in item.images:
+            file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], image.file_name + '.png')
+            if os.path.exists(file_path):
+                os.remove(file_path)
         db.session.delete(item)
         db.session.commit()
         return {"message": "Item deleted"}
@@ -203,9 +209,11 @@ class Items(MethodView):
     @blp.arguments(PostItemSchema, location="form")
     @blp.response(201, ItemSchema(exclude=("reviews",)))
     def post(self, form_data):
+        from app import app
         try:
             item_data = json.loads(form_data.get("item", "{}"))
             item = ItemSchema().load(item_data)
+            image_files = request.files.getlist("image_file")
             
             item_translations_json = form_data.get("item_translations", None)
             item_details_json = form_data.get("item_details", None)
@@ -216,8 +224,10 @@ class Items(MethodView):
             item_details_data = json.loads(item_details_json) if item_details_json else None
             item_details_translations_data = json.loads(item_details_translations_json) if item_details_translations_json else None
             item_images_data = json.loads(item_images_json) if item_images_json else None
-
             
+            if not image_files or len(image_files) != len(item_images_data) or len(image_files) == 0:
+                abort(422, message="Wrong image files quantity")
+
             item_translations = ItemTranslationSchema(many=True, exclude=("item_id",)).load(item_translations_data) if item_translations_data else None
             item_details = ItemDetailsSchema(exclude=("item_id",)).load(item_details_data) if item_details_data else None
             item_details_translations = ItemDetailsTranslationSchema(many=True, exclude=("item_id",)).load(item_details_translations_data) if item_details_translations_data else None
@@ -239,9 +249,19 @@ class Items(MethodView):
                 db.session.add_all(item_details_translations_model)
                 
             if item_images:
-                print(item_images)
                 item_images_models = [ItemImageModel(**item_image_data, item_id=item_model.id, id=str(uuid4())) for item_image_data in item_images]
                 db.session.add_all(item_images_models)
+                for item_image, image_file in zip(item_images_models, image_files):
+                    
+                    if not allowed_item_image_file(image_file):
+                        abort(400, message="Invalid image file format or file size")
+                        
+                    file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], item_image.file_name + '.png')
+                    
+                    if os.path.exists(file_path):
+                        abort(400, message="Image already exists")
+                        
+                    image_file.save(file_path)
             
             db.session.commit()
             

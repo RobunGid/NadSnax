@@ -14,5 +14,5 @@ class ItemDetailsModel(db.Model):
     nutrition = db.Column(db.Text, nullable=False)
     
     item = db.relationship("ItemModel", back_populates = "item_details")
-    translations = db.relationship("ItemDetailsTranslationModel", back_populates="item")
+    translations = db.relationship("ItemDetailsTranslationModel", back_populates="item", cascade="all, delete")
     
