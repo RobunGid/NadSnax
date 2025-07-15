@@ -1,19 +1,22 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+from marshmallow import ValidationError
 from uuid import uuid4
 from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel
-from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema
+from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request, g
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from flask_jwt_extended import jwt_required
-from utils import role_required
+from utils import role_required, content_type_required
 from sqlalchemy.orm import aliased
 from constants import SupportedCurrencies
 from sqlalchemy.orm import contains_eager
 from currency_converter import CurrencyConverter
+import json
+
 
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -196,26 +199,52 @@ class Items(MethodView):
         
     @jwt_required()
     @role_required(['admin', 'moderator'])
+    @content_type_required(['multipart/form-data'])
     @blp.arguments(PostItemSchema, location="form")
-    @blp.response(201, ItemSchema)
-    def post(self, full_data):
-        item_data = full_data["item"]
-        item_translations_data = full_data.get("item_translations", None)
-        item_details_translations_data = full_data.get("item_details_translations", None)
-        images_data = full_data.get("images", None)
-        item_details_data = full_data.get("item_details", None)
-        
-        item = ItemModel(**item_data, id=str(uuid4()))
-        item_details = ItemDetailsModel(**item_details_data, item_id=item.id)
-        item_translations = [ItemTranslationModel(**item_translation_data, item_id=item.id, id=str(uuid4())) for item_translation_data in item_translations_data]
-        item_details_translations = [ItemDetailsTranslationModel(**item_details_translation_data, item_id=item.id, id=str(uuid4())) for item_details_translation_data in item_details_translations_data]
-        images = [ItemImageModel(**item_image_data, item_id=item.id, id=str(uuid4())) for item_image_data in images_data]
-        
-        db.session.add(item)
-        db.session.add(item_details)
-        db.session.add_all(item_translations)
-        db.session.add_all(item_details_translations)
-        db.session.add_all(images)
-        db.session.commit()
+    @blp.response(201, ItemSchema(exclude=("reviews",)))
+    def post(self, form_data):
+        try:
+            item_data = json.loads(form_data.get("item", "{}"))
+            item = ItemSchema().load(item_data)
             
-        return item
+            item_translations_json = form_data.get("item_translations", None)
+            item_details_json = form_data.get("item_details", None)
+            item_details_translations_json = form_data.get("item_details_translations", None)
+            item_images_json = form_data.get("item_images", None)
+            
+            item_translations_data = json.loads(item_translations_json) if item_translations_json else None
+            item_details_data = json.loads(item_details_json) if item_details_json else None
+            item_details_translations_data = json.loads(item_details_translations_json) if item_details_translations_json else None
+            item_images_data = json.loads(item_images_json) if item_images_json else None
+
+            
+            item_translations = ItemTranslationSchema(many=True, exclude=("item_id",)).load(item_translations_data) if item_translations_data else None
+            item_details = ItemDetailsSchema(exclude=("item_id",)).load(item_details_data) if item_details_data else None
+            item_details_translations = ItemDetailsTranslationSchema(many=True, exclude=("item_id",)).load(item_details_translations_data) if item_details_translations_data else None
+            item_images = ItemImageSchema(many=True, exclude=("item_id",)).load(item_images_data) if item_images_data else None
+            
+            item_model = ItemModel(**item, id=str(uuid4()))
+            db.session.add(item_model)
+            
+            if item_details:
+                item_details_model = ItemDetailsModel(**item_details_data, item_id=item_model.id)
+                db.session.add(item_details_model)
+                
+            if item_translations:
+                item_translations_models = [ItemTranslationModel(**item_translation_data, item_id=item_model.id, id=str(uuid4())) for item_translation_data in item_translations_data]
+                db.session.add_all(item_translations_models)
+                
+            if item_details_translations:
+                item_details_translations_model = [ItemDetailsTranslationModel(**item_details_translation_data, item_id=item_model.id, id=str(uuid4())) for item_details_translation_data in item_details_translations_data]
+                db.session.add_all(item_details_translations_model)
+                
+            if item_images:
+                print(item_images)
+                item_images_models = [ItemImageModel(**item_image_data, item_id=item_model.id, id=str(uuid4())) for item_image_data in item_images]
+                db.session.add_all(item_images_models)
+            
+            db.session.commit()
+            
+            return item_model
+        except ValidationError as error:
+            abort(422, errors=error.messages)
