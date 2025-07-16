@@ -145,8 +145,8 @@
 	"create_item.form.general.short_description": "Short description",
 	"create_item.form.general.price": "Price",
 	"create_item.form.general.old_price": "Old price",
-	"create_item.form.general.is_bestseller": "Bestseller",
-	"create_item.form.general.is_secret_box": "Secret box",
+	"create_item.form.general.is_bestseller": "Is bestseller",
+	"create_item.form.general.is_secret_box": "Is secret box",
 	"create_item.form.general.category": "Category",
 	"create_item.form.general.type": "Type",
 	"create_item.form.details.full_displayed_name": "Full displayed name",
@@ -171,6 +171,8 @@
 	"create_item.form.details_translations.lang_key": "Language",
 	"create_item.form.images_translations.title": "Image title",
 	"create_item.form.images_translations.alt": "Alternative text",
-	"create_item.form.images_translations.lang_key": "Language"
+	"create_item.form.images_translations.lang_key": "Language",
+
+	"create_item.legend.general": "General Information"
 
 }

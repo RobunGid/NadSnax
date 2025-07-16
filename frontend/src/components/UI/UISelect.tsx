@@ -1,6 +1,5 @@
 import { JSX } from 'react';
 import { ChangeEventHandler } from 'react';
-import clsx from 'clsx';
 import { Option } from '../../types';
 
 type UISelectProps = {
@@ -13,14 +12,15 @@ export const UISelect = (props: UISelectProps) => {
 	const { options, value, onChange, text, ...attributes } = props;
 	return (
 		<select
-			value={value}
-			onChange={onChange}
-			className='outline-none border-1 border-gray-500 rounded-md px-2 py-1 invalid:border-2 invalid:border-gray-700'
+			id='small'
+			className='focus:outline-gray-500 focus:outline-1 block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
 			{...attributes}
+			onChange={onChange}
+			value={value}
 		>
-			<option disabled>{text}</option>
+			<option selected>{text}</option>
 			{options.map((option) => (
-				<option {...option} className={clsx('bg-gray-800')}>
+				<option value={option.value} key={option.value}>
 					{option.text}
 				</option>
 			))}
