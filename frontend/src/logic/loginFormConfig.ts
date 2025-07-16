@@ -1,5 +1,10 @@
 import { JSX } from 'react';
 
+export type LoginFormValue = {
+	username: string;
+	password: string;
+};
+
 type FormConfig = {
 	name: keyof LoginFormValue;
 	validate?: (error: LoginFormValue) => string;
@@ -23,11 +28,6 @@ export const loginFormConfig: FormConfig[] = [
 		minLength: 8,
 	},
 ];
-
-export type LoginFormValue = {
-	username: string;
-	password: string;
-};
 
 export const loginFormInitialState: LoginFormValue = {
 	username: '',
