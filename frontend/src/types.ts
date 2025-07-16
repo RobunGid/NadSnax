@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 export type ItemCategory = {
 	name: string;
 	iconUrl: string;
@@ -213,3 +215,8 @@ export type Language = {
 
 export type Translation = string | Record<string, string>;
 export type Keyset = Record<string, Translation>;
+
+export type Option = JSX.IntrinsicElements['option'] & {
+	value: string;
+	text: string;
+};

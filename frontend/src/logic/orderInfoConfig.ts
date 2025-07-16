@@ -1,8 +1,4 @@
-import { JSX } from 'react';
-export type Option = {
-	value: string;
-	text: string;
-} & JSX.IntrinsicElements['option'];
+import { Option } from '../types';
 
 interface OrderInfo {
 	options: Option[];

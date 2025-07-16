@@ -1,19 +1,20 @@
 import { JSX } from 'react';
+import { Option } from '../types';
 
-type InputRecord = {
+export type InputRecord = {
 	name: string;
 	placeholderKey: string;
 } & JSX.IntrinsicElements['input'];
 
-type CheckboxRecord = {
+export type CheckboxRecord = {
 	name: string;
 	placeholderKey: string;
 } & JSX.IntrinsicElements['input'];
 
-type SelectRecord = {
+export type SelectRecord = {
 	name: string;
-	placeholderKey: string;
-	options: Array<{ value: string; label: string }>;
+	textKey: string;
+	options: Option[];
 } & JSX.IntrinsicElements['select'];
 
 type FileInputRecord = {
@@ -76,6 +77,7 @@ export const createItemFormConfig: FormConfig = {
 			required: true,
 			autoComplete: 'off',
 			minLength: 6,
+			type: 'text',
 		},
 		uniqueName: {
 			name: 'name',
@@ -83,6 +85,7 @@ export const createItemFormConfig: FormConfig = {
 			required: true,
 			autoComplete: 'off',
 			minLength: 6,
+			type: 'text',
 		},
 		shortDescription: {
 			name: 'shortDescription',
@@ -90,6 +93,7 @@ export const createItemFormConfig: FormConfig = {
 			required: true,
 			autoComplete: 'off',
 			minLength: 12,
+			type: 'text',
 		},
 		price: {
 			name: 'price',
@@ -117,12 +121,12 @@ export const createItemFormConfig: FormConfig = {
 		},
 		category: {
 			name: 'category',
-			placeholderKey: 'create_item.form.general.category',
+			textKey: 'create_item.form.general.category',
 			options: [],
 		},
 		type: {
 			name: 'type',
-			placeholderKey: 'create_item.form.general.type',
+			textKey: 'create_item.form.general.type',
 			options: [],
 		},
 	},
