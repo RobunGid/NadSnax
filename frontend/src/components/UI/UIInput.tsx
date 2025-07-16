@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import { JSX, ReactNode } from 'react';
+import { JSX } from 'react';
 
 type UIInputProps = {
-	children?: ReactNode;
 	error?: boolean;
 	errorMessage?: string;
 	isLoading?: boolean;

@@ -1,66 +1,70 @@
-import { formatPrice } from '../../../logic/formatPrice';
+import { useEffect, useState } from 'react';
+import { UIAdminStatisticsTitle } from './UI/UIAdminStatisticsTitle';
+import { Axios } from '../../../api';
 import { SiteStatistics } from '../../../types';
-import { StatisticsOption } from './StatisticsOption';
+import camelcaseKeys from 'camelcase-keys';
+import { UIAdminStatisticsSubtitle } from './UI/UIAdminStatisticsSubtitle';
+import { UIAdminStatisticsContainer } from './UI/UIAdminStatisticsContainer';
+import { StatisticsItem } from './StatisticsItem';
 
-interface StatisticsSectionProps {
-	orderData: { orderData: SiteStatistics['orderData'] };
-	itemData: { itemData: SiteStatistics['itemData'] };
-	reviewData: { reviewData: SiteStatistics['reviewData'] };
-	userData: { userData: SiteStatistics['userData'] };
-}
+export const StatisticsSection = () => {
+	const [siteStatistics, setSiteStatistics] = useState<SiteStatistics>({
+		orderData: {
+			totalOrders: 0,
+			processingOrders: 0,
+			packingOrders: 0,
+			shippingOrders: 0,
+			readyOrders: 0,
+			successOrders: 0,
+			canceledOrders: 0,
+			returnedOrders: 0,
+			deletedOrders: 0,
+		},
+		itemData: {
+			averagePrice: 0,
+			bestsellerItems: 0,
+			secretboxItems: 0,
+			totalItems: 0,
+		},
+		reviewData: {
+			totalReviews: 0,
+			averageRating: 0,
+		},
+		userData: {
+			totalUsers: 0,
+		},
+	});
 
-export const StatisticsSection = {
-	Orders: ({ orderData }: StatisticsSectionProps['orderData']) => {
-		return (
-			<>
-				<StatisticsOption.Orders.TotalOrders count={orderData.totalOrders} />
-				<StatisticsOption.Orders.ProcessingOrders
-					count={orderData.processingOrders}
-				/>
-				<StatisticsOption.Orders.PackingOrders count={orderData.packingOrders} />
-				<StatisticsOption.Orders.ShippingOrders
-					count={orderData.shippingOrders}
-				/>
-				<StatisticsOption.Orders.ReadyOrders count={orderData.readyOrders} />
-				<StatisticsOption.Orders.SuccessOrders count={orderData.successOrders} />
-				<StatisticsOption.Orders.CanceledOrders
-					count={orderData.canceledOrders}
-				/>
-				<StatisticsOption.Orders.ReturnedOrders
-					count={orderData.returnedOrders}
-				/>
-				<StatisticsOption.Orders.DeletedOrders count={orderData.deletedOrders} />
-			</>
-		);
-	},
-	Items: ({ itemData }: StatisticsSectionProps['itemData']) => {
-		const formattedAveragePrice = formatPrice(itemData.averagePrice);
-		return (
-			<>
-				<StatisticsOption.Items.TotalItems count={itemData.totalItems} />
-				<StatisticsOption.Items.AveragePrice price={formattedAveragePrice} />
-				<StatisticsOption.Items.BestsellerItems
-					count={itemData.bestsellerItems}
-				/>
-				<StatisticsOption.Items.SecretboxItems count={itemData.secretboxItems} />
-			</>
-		);
-	},
-	Reviews: ({ reviewData }: StatisticsSectionProps['reviewData']) => {
-		return (
-			<>
-				<StatisticsOption.Reviews.TotalReviews count={reviewData.totalReviews} />
-				<StatisticsOption.Reviews.AverageRating
-					count={reviewData.averageRating}
-				/>
-			</>
-		);
-	},
-	Users: ({ userData }: StatisticsSectionProps['userData']) => {
-		return (
-			<>
-				<StatisticsOption.Users.TotalUsers count={userData.totalUsers} />
-			</>
-		);
-	},
+	const fetchStatistics = async () => {
+		const fetchedSiteStatistics = (await Axios.get('/admin/statistics')).data;
+		setSiteStatistics(camelcaseKeys(fetchedSiteStatistics, { deep: true }));
+	};
+
+	useEffect(() => {
+		fetchStatistics();
+	}, []);
+
+	return (
+		<>
+			<UIAdminStatisticsTitle>Site statistics</UIAdminStatisticsTitle>
+			<UIAdminStatisticsContainer>
+				<div>
+					<UIAdminStatisticsSubtitle>Orders</UIAdminStatisticsSubtitle>
+					<StatisticsItem.Orders orderData={siteStatistics.orderData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Items</UIAdminStatisticsSubtitle>
+					<StatisticsItem.Items itemData={siteStatistics.itemData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Reviews</UIAdminStatisticsSubtitle>
+					<StatisticsItem.Reviews reviewData={siteStatistics.reviewData} />
+				</div>
+				<div>
+					<UIAdminStatisticsSubtitle>Users</UIAdminStatisticsSubtitle>
+					<StatisticsItem.Users userData={siteStatistics.userData} />
+				</div>
+			</UIAdminStatisticsContainer>
+		</>
+	);
 };
