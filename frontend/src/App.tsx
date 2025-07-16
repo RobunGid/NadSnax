@@ -12,7 +12,7 @@ import { getAppTheme } from './logic/getAppTheme';
 import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
-import { AdminPanelPage } from './components/Pages/AdminPanelPage';
+import { ControlPanelPage } from './components/Pages/ControlPanelPage';
 import { useI18n } from './i18n/i18n';
 import { languages } from './logic/languages';
 import { predicateLanguageCode } from './types';
@@ -73,10 +73,9 @@ export const App = () => {
 						<Route path='/account/:section' element={<AccountPage />} />
 					</Route>
 					<Route element={<PrivateRoutes roles={['admin', 'moderator']} />}>
-						<Route path='/admin-panel' element={<AdminPanelPage />} />
 						<Route
-							path='/admin-panel/:section'
-							element={<AdminPanelPage />}
+							path='/control-panel/:section'
+							element={<ControlPanelPage />}
 						/>
 					</Route>
 

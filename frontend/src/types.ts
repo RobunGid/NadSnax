@@ -137,7 +137,7 @@ export type Section =
 	| 'help'
 	| 'favorites';
 
-export type AdminPanelSectionType =
+export type ControlPanelSectionType =
 	| 'statistics'
 	| 'users'
 	| 'items'
@@ -161,9 +161,9 @@ export const predicateSection = (value?: string): value is Section => {
 	);
 };
 
-export const predicateAdminPanelSection = (
+export const predicateControlPanelSection = (
 	value?: string
-): value is AdminPanelSectionType => {
+): value is ControlPanelSectionType => {
 	return !(
 		value &&
 		!['statistics', 'users', 'items', 'reviews', 'orders', 'create-item'].includes(

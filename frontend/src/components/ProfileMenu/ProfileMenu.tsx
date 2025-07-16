@@ -32,7 +32,7 @@ export const ProfileMenu = () => {
 
 	useOutside({ onClickOutside: handleCloseProfileMenu, element: profileMenuRef });
 
-	const hasAdminPanel = user && user.role == 'admin';
+	const hasControlPanelAccess = user && user.role == 'admin';
 
 	return (
 		user && (
@@ -58,7 +58,7 @@ export const ProfileMenu = () => {
 					</li>
 
 					<ProfileMenuItem.SignOut onClick={handleSignout} />
-					{hasAdminPanel && <ProfileMenuItem.AdminPanel />}
+					{hasControlPanelAccess && <ProfileMenuItem.ControlPanel />}
 				</UIProfileMenu>
 			</div>
 		)

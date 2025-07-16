@@ -44,10 +44,10 @@ export const ProfileMenuItem = {
 			{translate('profile_menu.sign_out')}
 		</UIProfileMenuItem>
 	)),
-	AdminPanel: withTranslate(({ translate }: ProfileMenuItemProps) => (
-		<UIProfileMenuItem to='/admin-panel/statistics' type='admin'>
+	ControlPanel: withTranslate(({ translate }: ProfileMenuItemProps) => (
+		<UIProfileMenuItem to='/control-panel/statistics' type='control'>
 			<GrUserAdmin size='36' />
-			{translate('profile_menu.admin_panel')}
+			{translate('profile_menu.control_panel')}
 		</UIProfileMenuItem>
 	)),
 };

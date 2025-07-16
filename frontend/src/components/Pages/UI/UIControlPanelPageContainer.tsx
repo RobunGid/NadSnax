@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-interface UIAdminPanelPageContainerProps {
+interface UIControlPanelPageContainerProps {
 	children: ReactNode;
 }
 
-export const UIAdminPanelPageContainer = ({
+export const UIControlPanelPageContainer = ({
 	children,
-}: UIAdminPanelPageContainerProps) => {
+}: UIControlPanelPageContainerProps) => {
 	return <div className='p-8 flex gap-8 flex-col lg:flex-row'>{children}</div>;
 };

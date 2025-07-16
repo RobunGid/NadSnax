@@ -2,19 +2,19 @@ import clsx from 'clsx';
 import { MouseEventHandler, ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
-interface UIAdminPanelMenuItemProps {
+interface UIControlPanelMenuItemProps {
 	to: string;
 	className?: string;
 	children: ReactNode;
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export const UIAdminPanelMenuItem = ({
+export const UIControlPanelMenuItem = ({
 	to,
 	className,
 	children,
 	onClick,
-}: UIAdminPanelMenuItemProps) => {
+}: UIControlPanelMenuItemProps) => {
 	return (
 		<li>
 			<NavLink

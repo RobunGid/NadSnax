@@ -1,46 +1,46 @@
 import { FaUsers } from 'react-icons/fa';
-import { UIAdminPanelMenuItem } from './UI/UIAdminPanelMenuItem';
+import { UIControlPanelMenuItem } from './UI/UIControlPanelMenuItem';
 import { AiFillProduct } from 'react-icons/ai';
 import { LuMessagesSquare } from 'react-icons/lu';
 import { LiaLuggageCartSolid } from 'react-icons/lia';
 import { GrContactInfo } from 'react-icons/gr';
 import { IoCreateOutline } from 'react-icons/io5';
 
-export const AdminPanelMenuItem = {
+export const ControlPanelMenuItem = {
 	Statistics: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/statistics'>
+		<UIControlPanelMenuItem to='/control-panel/statistics'>
 			<GrContactInfo />
 			Statistics
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 	Users: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/users'>
+		<UIControlPanelMenuItem to='/control-panel/users'>
 			<FaUsers />
 			Users
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 	Items: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/items'>
+		<UIControlPanelMenuItem to='/control-panel/items'>
 			<AiFillProduct />
 			Items
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 	Reviews: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/reviews'>
+		<UIControlPanelMenuItem to='/control-panel/reviews'>
 			<LuMessagesSquare />
 			Reviews
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 	Orders: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/orders'>
+		<UIControlPanelMenuItem to='/control-panel/orders'>
 			<LiaLuggageCartSolid />
 			Orders
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 	CreateItem: () => (
-		<UIAdminPanelMenuItem to='/admin-panel/create-item'>
+		<UIControlPanelMenuItem to='/control-panel/create-item'>
 			<IoCreateOutline />
 			Create item
-		</UIAdminPanelMenuItem>
+		</UIControlPanelMenuItem>
 	),
 };
