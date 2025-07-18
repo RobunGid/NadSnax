@@ -14,9 +14,11 @@ export const UIInput = (props: UIInputProps) => {
 	return (
 		<label
 			className={clsx(
-				'relative flex flex-col-reverse w-full focus:shadow-lg has-focus:shadow-gray-900 shadow-lg cursor-text',
+				'relative flex flex-col-reverse w-full focus:shadow-lg has-focus:shadow-gray-900 shadow-lg',
 				type === 'checkbox' &&
-					'flex-row items-center justify-center px-2 shadow-none'
+					'flex-row items-center justify-center px-2 shadow-none',
+				type === 'file' && 'mb-2',
+				(type === 'text' || !type) && 'cursor-text'
 			)}
 		>
 			<input
@@ -46,10 +48,11 @@ export const UIInput = (props: UIInputProps) => {
 			<p
 				className={clsx(
 					'text-nowrap',
-					type === 'file' && 'top-10',
+					type === 'file' && 'top-10 left-1',
+					type !== 'file' && 'left-4',
 					type !== 'checkbox' &&
 						`
-					absolute bottom-[7px] left-4 font-normal transition-all pointer-events-none
+					absolute bottom-[7px] font-normal transition-all pointer-events-none
 					peer-focus:bottom-[22px] peer-focus:text-xs peer-focus:text-gray-700
 					peer-[:not(:placeholder-shown)]:bottom-[23px] peer-[:not(:placeholder-shown)]:text-gray-700
 					peer-[:not(:placeholder-shown)]:text-sm

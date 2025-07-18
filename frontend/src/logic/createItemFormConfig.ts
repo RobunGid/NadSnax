@@ -72,7 +72,6 @@ type FormConfig = {
 	images_translations: {
 		input: {
 			title: InputRecord;
-			alt: InputRecord;
 			langKey: InputRecord;
 		};
 	};
@@ -82,7 +81,7 @@ export const createItemFormConfig: FormConfig = {
 	general: {
 		input: {
 			displayedName: {
-				name: 'label',
+				name: 'item.label',
 				translateKey: 'create_item.form.general.displayed_name',
 				required: true,
 				autoComplete: 'off',
@@ -90,14 +89,14 @@ export const createItemFormConfig: FormConfig = {
 				type: 'text',
 			},
 			price: {
-				name: 'price',
+				name: 'item.price',
 				translateKey: 'create_item.form.general.price',
 				required: true,
 				type: 'number',
 				min: 0,
 			},
 			shortDescription: {
-				name: 'shortDescription',
+				name: 'item.description',
 				translateKey: 'create_item.form.general.short_description',
 				required: true,
 				autoComplete: 'off',
@@ -105,14 +104,14 @@ export const createItemFormConfig: FormConfig = {
 				type: 'text',
 			},
 			oldPrice: {
-				name: 'oldPrice',
+				name: 'item.oldPrice',
 				translateKey: 'create_item.form.general.old_price',
 				required: false,
 				type: 'number',
 				min: 0,
 			},
 			uniqueName: {
-				name: 'name',
+				name: 'item.name',
 				translateKey: 'create_item.form.general.unique_name',
 				required: true,
 				autoComplete: 'off',
@@ -122,24 +121,24 @@ export const createItemFormConfig: FormConfig = {
 		},
 		checkbox: {
 			isBestseller: {
-				name: 'isBestseller',
+				name: 'item.isBestseller',
 				translateKey: 'create_item.form.general.is_bestseller',
 				type: 'checkbox',
 			},
 			isSecretBox: {
-				name: 'isSecretBox',
+				name: 'item.isSecretBox',
 				translateKey: 'create_item.form.general.is_secret_box',
 				type: 'checkbox',
 			},
 		},
 		select: {
 			category: {
-				name: 'category',
+				name: 'item.category',
 				translateKey: 'create_item.form.general.category',
 				options: [],
 			},
 			type: {
-				name: 'type',
+				name: 'item.type',
 				translateKey: 'create_item.form.general.type',
 				options: [],
 			},
@@ -148,32 +147,32 @@ export const createItemFormConfig: FormConfig = {
 	details: {
 		input: {
 			fullDisplayedName: {
-				name: 'fullDisplayedName',
+				name: 'details.fullDisplayedName',
 				translateKey: 'create_item.form.details.full_displayed_name',
 				required: true,
 			},
 			ingridients: {
-				name: 'ingridients',
+				name: 'details.ingridients',
 				translateKey: 'create_item.form.details.ingridients',
 				required: true,
 			},
 			fullDescription: {
-				name: 'fullDescription',
+				name: 'details.fullDescription',
 				translateKey: 'create_item.form.details.full_description',
 				required: true,
 			},
 			supplier: {
-				name: 'supplier',
+				name: 'details.supplier',
 				translateKey: 'create_item.form.details.supplier',
 				required: true,
 			},
 			supplierLink: {
-				name: 'supplierLink',
+				name: 'details.supplierLink',
 				translateKey: 'create_item.form.details.supplier_link',
 				required: true,
 			},
 			nutritionalValue: {
-				name: 'nutritionalValue',
+				name: 'details.nutritionalValue',
 				translateKey: 'create_item.form.details.nutritional_value',
 				required: true,
 			},
@@ -182,26 +181,26 @@ export const createItemFormConfig: FormConfig = {
 	images: {
 		input: {
 			title: {
-				name: 'title',
+				name: 'images.title',
 				translateKey: 'create_item.form.images.title',
 				required: true,
 			},
 			name: {
-				name: 'name',
+				name: 'images.name',
 				translateKey: 'create_item.form.images.name',
 				required: true,
 			},
 		},
 		checkbox: {
 			isMain: {
-				name: 'isMain',
+				name: 'images.isMain',
 				translateKey: 'create_item.form.images.is_main',
 				type: 'checkbox',
 			},
 		},
 		file: {
 			file: {
-				name: 'file',
+				name: 'images.file',
 				translateKey: 'create_item.form.images.file',
 				type: 'file',
 				required: true,
@@ -211,17 +210,17 @@ export const createItemFormConfig: FormConfig = {
 	general_translations: {
 		input: {
 			langKey: {
-				name: 'langKey',
+				name: 'general_translations.langKey',
 				translateKey: 'create_item.form.general_translations.lang_key',
 				required: true,
 			},
 			label: {
-				name: 'label',
+				name: 'general_translations.label',
 				translateKey: 'create_item.form.general_translations.label',
 				required: true,
 			},
 			shortDescription: {
-				name: 'shortDescription',
+				name: 'general_translations.shortDescription',
 				translateKey: 'create_item.form.general_translations.short_description',
 				required: true,
 			},
@@ -230,32 +229,32 @@ export const createItemFormConfig: FormConfig = {
 	details_translations: {
 		input: {
 			fullDescription: {
-				name: 'fullDescription',
+				name: 'details_translations.fullDescription',
 				translateKey: 'create_item.form.details_translations.full_description',
 				required: true,
 			},
 			fullLabel: {
-				name: 'fullLabel',
+				name: 'details_translations.fullLabel',
 				translateKey: 'create_item.form.details_translations.full_label',
 				required: true,
 			},
 			ingridients: {
-				name: 'ingridients',
+				name: 'details_translations.ingridients',
 				translateKey: 'create_item.form.details_translations.ingridients',
 				required: true,
 			},
 			nutritional: {
-				name: 'nutritional',
+				name: 'details_translations.nutritional',
 				translateKey: 'create_item.form.details_translations.nutritional',
 				required: true,
 			},
 			supplier: {
-				name: 'supplier',
+				name: 'details_translations.supplier',
 				translateKey: 'create_item.form.details_translations.supplier',
 				required: true,
 			},
 			langKey: {
-				name: 'langKey',
+				name: 'details_translations.langKey',
 				translateKey: 'create_item.form.details_translations.lang_key',
 				required: true,
 			},
@@ -264,17 +263,12 @@ export const createItemFormConfig: FormConfig = {
 	images_translations: {
 		input: {
 			title: {
-				name: 'title',
+				name: 'images_translations.title',
 				translateKey: 'create_item.form.images_translations.title',
 				required: true,
 			},
-			alt: {
-				name: 'alt',
-				translateKey: 'create_item.form.images_translations.alt',
-				required: true,
-			},
 			langKey: {
-				name: 'langKey',
+				name: 'images_translations.langKey',
 				translateKey: 'create_item.form.images_translations.lang_key',
 				required: true,
 			},

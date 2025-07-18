@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
@@ -68,15 +69,42 @@ export const CreateItemFieldset = {
 		);
 	}),
 	Images: withTranslate(({ translate }: CreateItemFieldsetProps) => {
+		const [imageCount, setImageCount] = useState([1, 2]);
 		return (
 			<UICreateItemFieldset>
 				<UICreateItemLegend>
 					{translate('create_item.legend.images')}
 				</UICreateItemLegend>
-				<UICreateItemInput config={createItemFormConfig.images.input.title} />
-				<UICreateItemInput config={createItemFormConfig.images.input.name} />
-				<UICreateItemInput config={createItemFormConfig.images.checkbox.isMain} />
-				<UICreateItemInput config={createItemFormConfig.images.file.file} />
+				{imageCount.map((count) => {
+					return (
+						<>
+							<UICreateItemInput
+								config={{
+									...createItemFormConfig.images.input.title,
+									name: `${createItemFormConfig.images.input.title.name}_${count}`,
+								}}
+							/>
+							<UICreateItemInput
+								config={{
+									...createItemFormConfig.images.input.name,
+									name: `${createItemFormConfig.images.input.name.name}_${count}`,
+								}}
+							/>
+							<UICreateItemInput
+								config={{
+									...createItemFormConfig.images.checkbox.isMain,
+									name: `${createItemFormConfig.images.checkbox.isMain.name}_${count}`,
+								}}
+							/>
+							<UICreateItemInput
+								config={{
+									...createItemFormConfig.images.file.file,
+									name: `${createItemFormConfig.images.file.file.name}_${count}`,
+								}}
+							/>
+						</>
+					);
+				})}
 			</UICreateItemFieldset>
 		);
 	}),
