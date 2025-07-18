@@ -1,8 +1,8 @@
 import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
-import { CreateItemInputs } from './CreateItemInputs';
 import { UICreateItemFieldset } from './UI/UICreateItemFieldset';
+import { UICreateItemInput } from './UI/UICreateItemInput';
 import { UICreateItemLegend } from './UI/UICreateItemLegend';
 
 interface CreateItemFieldsetProps {
@@ -16,22 +16,29 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.general')}
 				</UICreateItemLegend>
-				<CreateItemInputs inputConfigs={createItemFormConfig.general.input} />
-				<CreateItemInputs
-					inputConfigs={{
-						category: createItemFormConfig.general.select.category,
-					}}
+				<UICreateItemInput
+					config={createItemFormConfig.general.input.displayedName}
+				/>
+				<UICreateItemInput config={createItemFormConfig.general.input.price} />
+				<UICreateItemInput
+					config={createItemFormConfig.general.input.shortDescription}
+				/>
+				<UICreateItemInput config={createItemFormConfig.general.input.oldPrice} />
+				<UICreateItemInput
+					config={createItemFormConfig.general.input.uniqueName}
+				/>
+				<UICreateItemInput
+					config={createItemFormConfig.general.select.category}
 				/>
 				<div className='flex'>
-					<CreateItemInputs
-						inputConfigs={createItemFormConfig.general.checkbox}
+					<UICreateItemInput
+						config={createItemFormConfig.general.checkbox.isBestseller}
+					/>
+					<UICreateItemInput
+						config={createItemFormConfig.general.checkbox.isSecretBox}
 					/>
 				</div>
-				<CreateItemInputs
-					inputConfigs={{
-						type: createItemFormConfig.general.select.type,
-					}}
-				/>
+				<UICreateItemInput config={createItemFormConfig.general.select.type} />
 			</UICreateItemFieldset>
 		);
 	}),
@@ -41,7 +48,22 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.details')}
 				</UICreateItemLegend>
-				<CreateItemInputs inputConfigs={createItemFormConfig.details.input} />
+				<UICreateItemInput
+					config={createItemFormConfig.details.input.fullDisplayedName}
+				/>
+				<UICreateItemInput
+					config={createItemFormConfig.details.input.ingridients}
+				/>
+				<UICreateItemInput
+					config={createItemFormConfig.details.input.fullDescription}
+				/>
+				<UICreateItemInput config={createItemFormConfig.details.input.supplier} />
+				<UICreateItemInput
+					config={createItemFormConfig.details.input.supplierLink}
+				/>
+				<UICreateItemInput
+					config={createItemFormConfig.details.input.nutritionalValue}
+				/>
 			</UICreateItemFieldset>
 		);
 	}),
@@ -51,9 +73,10 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.images')}
 				</UICreateItemLegend>
-				<CreateItemInputs inputConfigs={createItemFormConfig.images.input} />
-				<CreateItemInputs inputConfigs={createItemFormConfig.images.checkbox} />
-				<CreateItemInputs inputConfigs={createItemFormConfig.images.file} />
+				<UICreateItemInput config={createItemFormConfig.images.input.title} />
+				<UICreateItemInput config={createItemFormConfig.images.input.name} />
+				<UICreateItemInput config={createItemFormConfig.images.checkbox.isMain} />
+				<UICreateItemInput config={createItemFormConfig.images.file.file} />
 			</UICreateItemFieldset>
 		);
 	}),

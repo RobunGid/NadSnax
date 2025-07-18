@@ -19,7 +19,7 @@ type FormConfig = {
 			uniqueName: InputRecord;
 			shortDescription: InputRecord;
 			price: InputRecord;
-			oldPrice?: InputRecord;
+			oldPrice: InputRecord;
 		};
 		checkbox: {
 			isBestseller: InputRecord;
