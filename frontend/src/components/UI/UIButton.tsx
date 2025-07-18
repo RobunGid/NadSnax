@@ -5,13 +5,25 @@ interface UIButtonProps {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	children: ReactNode;
 	className?: string;
+	type?: 'normal' | 'danger';
+	hidden?: boolean;
 }
 
-export const UIButton = ({ onClick, children, className }: UIButtonProps) => {
+export const UIButton = ({
+	onClick,
+	children,
+	className,
+	type = 'normal',
+	hidden,
+}: UIButtonProps) => {
 	return (
 		<button
 			className={clsx(
-				'bg-amber-400 hover:bg-amber-500 dark:bg-sky-800 dark:hover:bg-sky-900 p-3 hover:scale-105 transition',
+				'p-3 hover:scale-103 transition',
+				type == 'danger' && 'bg-red-800 hover:bg-red-900',
+				(type == 'normal' || !type) &&
+					'bg-amber-400 hover:bg-amber-500 dark:bg-sky-800 dark:hover:bg-sky-900',
+				hidden && 'opacity-0 pointer-events-none',
 				className
 			)}
 			onClick={onClick}

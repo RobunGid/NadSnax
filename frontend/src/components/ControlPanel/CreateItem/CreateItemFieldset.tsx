@@ -5,6 +5,8 @@ import { withTranslate } from '../../../logic/withTranslate';
 import { UICreateItemFieldset } from './UI/UICreateItemFieldset';
 import { UICreateItemInput } from './UI/UICreateItemInput';
 import { UICreateItemLegend } from './UI/UICreateItemLegend';
+import { UICreateItemFieldsetLine } from './UI/UICreateItemFieldsetLine';
+import { UIButton } from '../../UI/UIButton';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -70,11 +72,28 @@ export const CreateItemFieldset = {
 	}),
 	Images: withTranslate(({ translate }: CreateItemFieldsetProps) => {
 		const [imageCount, setImageCount] = useState([1, 2]);
+		const hideAddButton = imageCount.length >= 10;
+		const hideRemoveButton = imageCount.length == 1;
+
+		const handleAddPicture = () => setImageCount((prev) => [...prev, prev.length]);
+		const handleRemovePicture = () =>
+			setImageCount((prev) => prev.slice(0, prev.length - 1));
+
 		return (
-			<UICreateItemFieldset>
+			<UICreateItemFieldset type='images'>
 				<UICreateItemLegend>
 					{translate('create_item.legend.images')}
 				</UICreateItemLegend>
+				<UIButton onClick={handleAddPicture} hidden={hideAddButton}>
+					{translate('create_item.add_picture')}
+				</UIButton>
+				<UIButton
+					onClick={handleRemovePicture}
+					type='danger'
+					hidden={hideRemoveButton}
+				>
+					{translate('create_item.delete_picture')}
+				</UIButton>
 				{imageCount.map((count) => {
 					return (
 						<>
@@ -102,6 +121,9 @@ export const CreateItemFieldset = {
 									name: `${createItemFormConfig.images.file.file.name}_${count}`,
 								}}
 							/>
+							{count !== imageCount[imageCount.length - 1] && (
+								<UICreateItemFieldsetLine />
+							)}
 						</>
 					);
 				})}

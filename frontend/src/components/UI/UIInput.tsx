@@ -17,20 +17,20 @@ export const UIInput = (props: UIInputProps) => {
 				'relative flex flex-col-reverse w-full focus:shadow-lg has-focus:shadow-gray-900 shadow-lg',
 				type === 'checkbox' &&
 					'flex-row items-center justify-center px-2 shadow-none',
-				type === 'file' && 'mb-2',
+				type === 'file' && 'mb-10',
 				(type === 'text' || !type) && 'cursor-text'
 			)}
 		>
 			<input
 				className={clsx(
-					`h-10 w-10 block
+					`h-10 block
 				font-normal rounded-lg relative placeholder-transparent border-none outline-none
-				peer dark:text-gray-300 text-gray-900 disabled:border-y-gray-900 disabled:border-4 size-5
+				peer dark:text-gray-300 text-gray-900 disabled:border-y-gray-900 disabled:border-4 w-full
 				`,
 					isLoading && 'cursor-progress',
 					isInvalid && 'shadow-orange-800 ring-2 ring-orange-800 shadow-md',
 					type === 'checkbox' && 'max-h-5 max-w-7 m-1',
-					type === 'text' || (!type && 'pt-6 px-4 pb-3'),
+					(type === 'text' || !type) && 'pt-6 px-4 pb-3',
 					type === 'file' &&
 						`pt-2.5 px-3 w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
 						dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
@@ -47,7 +47,7 @@ export const UIInput = (props: UIInputProps) => {
 			</p>
 			<p
 				className={clsx(
-					'text-nowrap',
+					'',
 					type === 'file' && 'top-10 left-1',
 					type !== 'file' && 'left-4',
 					type !== 'checkbox' &&
@@ -58,8 +58,7 @@ export const UIInput = (props: UIInputProps) => {
 					peer-[:not(:placeholder-shown)]:text-sm
 					text-gray-600
 					`,
-					type === 'checkbox' &&
-						'font-normal dark:text-gray-300 text-black text-nowrap'
+					type === 'checkbox' && 'font-normal dark:text-gray-300 text-black'
 				)}
 			>
 				{placeholder}

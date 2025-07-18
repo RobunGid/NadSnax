@@ -5,5 +5,5 @@ interface UICreateItemLegendProps {
 }
 
 export const UICreateItemLegend = ({ children }: UICreateItemLegendProps) => {
-	return <legend className='p-3 font-bold text-lg'>{children}</legend>;
+	return <legend className='p-1 font-bold text-lg'>{children}</legend>;
 };

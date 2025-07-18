@@ -179,6 +179,8 @@
 
 	"create_item.legend.general": "Общая информация",
 	"create_item.legend.details": "Детали о товаре",
-	"create_item.legend.images": "Изображения"
+	"create_item.legend.images": "Изображения",
+	"create_item.add_picture" :"Добавить новую картинку",
+	"create_item.delete_picture": "Удалить последнюю картинку"
 
 }

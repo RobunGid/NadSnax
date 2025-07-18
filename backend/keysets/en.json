@@ -175,6 +175,8 @@
 
 	"create_item.legend.general": "General Information",
 	"create_item.legend.details": "Details Description",
-	"create_item.legend.images": "Images"
+	"create_item.legend.images": "Images",
+	"create_item.add_picture" :"Add new picture",
+	"create_item.delete_picture": "Delete last picture"
 
 }
