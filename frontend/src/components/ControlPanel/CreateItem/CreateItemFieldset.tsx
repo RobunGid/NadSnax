@@ -1,72 +1,60 @@
 import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig } from '../../../logic/createItemFormConfig';
-import { UIInput } from '../../UI/UIInput';
-import { UISelect } from '../../UI/UISelect';
+import { withTranslate } from '../../../logic/withTranslate';
+import { CreateItemInputs } from './CreateItemInputs';
 import { UICreateItemFieldset } from './UI/UICreateItemFieldset';
 import { UICreateItemLegend } from './UI/UICreateItemLegend';
 
+interface CreateItemFieldsetProps {
+	translate: ReturnType<typeof useTranslate>;
+}
+
 export const CreateItemFieldset = {
-	General: () => {
-		const translate = useTranslate();
+	General: withTranslate(({ translate }: CreateItemFieldsetProps) => {
 		return (
 			<UICreateItemFieldset type='general'>
 				<UICreateItemLegend>
 					{translate('create_item.legend.general')}
 				</UICreateItemLegend>
-				{Object.values(createItemFormConfig.general.input).map((config) => {
-					return (
-						<UIInput
-							key={config.name}
-							placeholder={translate(config.placeholderKey)}
-							{...config}
-						/>
-					);
-				})}
-				{Object.values(createItemFormConfig.general.select)
-					.slice(0, 1)
-					.map((config) => {
-						const text = translate(config.textKey);
-						return <UISelect key={config.name} {...config} text={text} />;
-					})}
+				<CreateItemInputs inputConfigs={createItemFormConfig.general.input} />
+				<CreateItemInputs
+					inputConfigs={{
+						category: createItemFormConfig.general.select.category,
+					}}
+				/>
 				<div className='flex'>
-					{Object.values(createItemFormConfig.general.checkbox).map(
-						(config) => {
-							return (
-								<UIInput
-									key={config.name}
-									placeholder={translate(config.placeholderKey)}
-									{...config}
-								/>
-							);
-						}
-					)}
+					<CreateItemInputs
+						inputConfigs={createItemFormConfig.general.checkbox}
+					/>
 				</div>
-				{Object.values(createItemFormConfig.general.select)
-					.slice(1, 2)
-					.map((config) => {
-						const text = translate(config.textKey);
-						return <UISelect key={config.name} {...config} text={text} />;
-					})}
+				<CreateItemInputs
+					inputConfigs={{
+						type: createItemFormConfig.general.select.type,
+					}}
+				/>
 			</UICreateItemFieldset>
 		);
-	},
-	Details: () => {
-		const translate = useTranslate();
+	}),
+	Details: withTranslate(({ translate }: CreateItemFieldsetProps) => {
 		return (
 			<UICreateItemFieldset>
 				<UICreateItemLegend>
 					{translate('create_item.legend.details')}
 				</UICreateItemLegend>
-				{Object.values(createItemFormConfig.details.input).map((config) => {
-					return (
-						<UIInput
-							key={config.name}
-							placeholder={translate(config.placeholderKey)}
-							{...config}
-						/>
-					);
-				})}
+				<CreateItemInputs inputConfigs={createItemFormConfig.details.input} />
 			</UICreateItemFieldset>
 		);
-	},
+	}),
+	Images: withTranslate(({ translate }: CreateItemFieldsetProps) => {
+		return (
+			<UICreateItemFieldset>
+				<UICreateItemLegend>
+					{translate('create_item.legend.images')}
+				</UICreateItemLegend>
+				<CreateItemInputs inputConfigs={createItemFormConfig.images.input} />
+				<CreateItemInputs inputConfigs={createItemFormConfig.images.checkbox} />
+				<CreateItemInputs inputConfigs={createItemFormConfig.images.file} />
+			</UICreateItemFieldset>
+		);
+	}),
 };

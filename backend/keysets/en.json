@@ -159,7 +159,7 @@
 	"create_item.form.images.alt": "Alternative text",
 	"create_item.form.images.is_main": "Main image",
 	"create_item.form.images.name": "Image name",
-	"create_item.form.images.file": "Image file",
+	"create_item.form.images.file": "Image file (PNG, JPG or JPEG, max 1Mb)",
 	"create_item.form.general_translations.lang_key": "Language",
 	"create_item.form.general_translations.label": "Label",
 	"create_item.form.general_translations.short_description": "Short description",
@@ -174,6 +174,7 @@
 	"create_item.form.images_translations.lang_key": "Language",
 
 	"create_item.legend.general": "General Information",
-	"create_item.legend.details": "Details Description"
+	"create_item.legend.details": "Details Description",
+	"create_item.legend.images": "Images"
 
 }

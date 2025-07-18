@@ -8,6 +8,7 @@ export const CreateItemSection = () => {
 			<UICreateItemForm>
 				<CreateItemFieldset.General />
 				<CreateItemFieldset.Details />
+				<CreateItemFieldset.Images />
 			</UICreateItemForm>
 		</UICreateItemSectionContainer>
 	);

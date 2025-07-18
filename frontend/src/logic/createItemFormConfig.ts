@@ -3,24 +3,14 @@ import { Option } from '../types';
 
 export type InputRecord = {
 	name: string;
-	placeholderKey: string;
-} & JSX.IntrinsicElements['input'];
-
-export type CheckboxRecord = {
-	name: string;
-	placeholderKey: string;
+	translateKey: string;
 } & JSX.IntrinsicElements['input'];
 
 export type SelectRecord = {
 	name: string;
-	textKey: string;
+	translateKey: string;
 	options: Option[];
 } & JSX.IntrinsicElements['select'];
-
-type FileInputRecord = {
-	name: string;
-	placeholderKey: string;
-} & JSX.IntrinsicElements['input'];
 
 type FormConfig = {
 	general: {
@@ -32,8 +22,8 @@ type FormConfig = {
 			oldPrice?: InputRecord;
 		};
 		checkbox: {
-			isBestseller: CheckboxRecord;
-			isSecretBox: CheckboxRecord;
+			isBestseller: InputRecord;
+			isSecretBox: InputRecord;
 		};
 		select: {
 			category: SelectRecord;
@@ -53,14 +43,13 @@ type FormConfig = {
 	images: {
 		input: {
 			title: InputRecord;
-			alt: InputRecord;
 			name: InputRecord;
 		};
 		checkbox: {
-			isMain: CheckboxRecord;
+			isMain: InputRecord;
 		};
 		file: {
-			file: FileInputRecord;
+			file: InputRecord;
 		};
 	};
 	general_translations: {
@@ -94,7 +83,7 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			displayedName: {
 				name: 'label',
-				placeholderKey: 'create_item.form.general.displayed_name',
+				translateKey: 'create_item.form.general.displayed_name',
 				required: true,
 				autoComplete: 'off',
 				minLength: 6,
@@ -102,14 +91,14 @@ export const createItemFormConfig: FormConfig = {
 			},
 			price: {
 				name: 'price',
-				placeholderKey: 'create_item.form.general.price',
+				translateKey: 'create_item.form.general.price',
 				required: true,
 				type: 'number',
 				min: 0,
 			},
 			shortDescription: {
 				name: 'shortDescription',
-				placeholderKey: 'create_item.form.general.short_description',
+				translateKey: 'create_item.form.general.short_description',
 				required: true,
 				autoComplete: 'off',
 				minLength: 12,
@@ -117,14 +106,14 @@ export const createItemFormConfig: FormConfig = {
 			},
 			oldPrice: {
 				name: 'oldPrice',
-				placeholderKey: 'create_item.form.general.old_price',
+				translateKey: 'create_item.form.general.old_price',
 				required: false,
 				type: 'number',
 				min: 0,
 			},
 			uniqueName: {
 				name: 'name',
-				placeholderKey: 'create_item.form.general.unique_name',
+				translateKey: 'create_item.form.general.unique_name',
 				required: true,
 				autoComplete: 'off',
 				minLength: 6,
@@ -134,24 +123,24 @@ export const createItemFormConfig: FormConfig = {
 		checkbox: {
 			isBestseller: {
 				name: 'isBestseller',
-				placeholderKey: 'create_item.form.general.is_bestseller',
+				translateKey: 'create_item.form.general.is_bestseller',
 				type: 'checkbox',
 			},
 			isSecretBox: {
 				name: 'isSecretBox',
-				placeholderKey: 'create_item.form.general.is_secret_box',
+				translateKey: 'create_item.form.general.is_secret_box',
 				type: 'checkbox',
 			},
 		},
 		select: {
 			category: {
 				name: 'category',
-				textKey: 'create_item.form.general.category',
+				translateKey: 'create_item.form.general.category',
 				options: [],
 			},
 			type: {
 				name: 'type',
-				textKey: 'create_item.form.general.type',
+				translateKey: 'create_item.form.general.type',
 				options: [],
 			},
 		},
@@ -160,32 +149,32 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			fullDisplayedName: {
 				name: 'fullDisplayedName',
-				placeholderKey: 'create_item.form.details.full_displayed_name',
+				translateKey: 'create_item.form.details.full_displayed_name',
 				required: true,
 			},
 			ingridients: {
 				name: 'ingridients',
-				placeholderKey: 'create_item.form.details.ingridients',
+				translateKey: 'create_item.form.details.ingridients',
 				required: true,
 			},
 			fullDescription: {
 				name: 'fullDescription',
-				placeholderKey: 'create_item.form.details.full_description',
+				translateKey: 'create_item.form.details.full_description',
 				required: true,
 			},
 			supplier: {
 				name: 'supplier',
-				placeholderKey: 'create_item.form.details.supplier',
+				translateKey: 'create_item.form.details.supplier',
 				required: true,
 			},
 			supplierLink: {
 				name: 'supplierLink',
-				placeholderKey: 'create_item.form.details.supplier_link',
+				translateKey: 'create_item.form.details.supplier_link',
 				required: true,
 			},
 			nutritionalValue: {
 				name: 'nutritionalValue',
-				placeholderKey: 'create_item.form.details.nutritional_value',
+				translateKey: 'create_item.form.details.nutritional_value',
 				required: true,
 			},
 		},
@@ -194,31 +183,26 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			title: {
 				name: 'title',
-				placeholderKey: 'create_item.form.images.title',
-				required: true,
-			},
-			alt: {
-				name: 'alt',
-				placeholderKey: 'create_item.form.images.alt',
+				translateKey: 'create_item.form.images.title',
 				required: true,
 			},
 			name: {
 				name: 'name',
-				placeholderKey: 'create_item.form.images.name',
+				translateKey: 'create_item.form.images.name',
 				required: true,
 			},
 		},
 		checkbox: {
 			isMain: {
 				name: 'isMain',
-				placeholderKey: 'create_item.form.images.is_main',
+				translateKey: 'create_item.form.images.is_main',
 				type: 'checkbox',
 			},
 		},
 		file: {
 			file: {
 				name: 'file',
-				placeholderKey: 'create_item.form.images.file',
+				translateKey: 'create_item.form.images.file',
 				type: 'file',
 				required: true,
 			},
@@ -228,17 +212,17 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			langKey: {
 				name: 'langKey',
-				placeholderKey: 'create_item.form.general_translations.lang_key',
+				translateKey: 'create_item.form.general_translations.lang_key',
 				required: true,
 			},
 			label: {
 				name: 'label',
-				placeholderKey: 'create_item.form.general_translations.label',
+				translateKey: 'create_item.form.general_translations.label',
 				required: true,
 			},
 			shortDescription: {
 				name: 'shortDescription',
-				placeholderKey: 'create_item.form.general_translations.short_description',
+				translateKey: 'create_item.form.general_translations.short_description',
 				required: true,
 			},
 		},
@@ -247,32 +231,32 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			fullDescription: {
 				name: 'fullDescription',
-				placeholderKey: 'create_item.form.details_translations.full_description',
+				translateKey: 'create_item.form.details_translations.full_description',
 				required: true,
 			},
 			fullLabel: {
 				name: 'fullLabel',
-				placeholderKey: 'create_item.form.details_translations.full_label',
+				translateKey: 'create_item.form.details_translations.full_label',
 				required: true,
 			},
 			ingridients: {
 				name: 'ingridients',
-				placeholderKey: 'create_item.form.details_translations.ingridients',
+				translateKey: 'create_item.form.details_translations.ingridients',
 				required: true,
 			},
 			nutritional: {
 				name: 'nutritional',
-				placeholderKey: 'create_item.form.details_translations.nutritional',
+				translateKey: 'create_item.form.details_translations.nutritional',
 				required: true,
 			},
 			supplier: {
 				name: 'supplier',
-				placeholderKey: 'create_item.form.details_translations.supplier',
+				translateKey: 'create_item.form.details_translations.supplier',
 				required: true,
 			},
 			langKey: {
 				name: 'langKey',
-				placeholderKey: 'create_item.form.details_translations.lang_key',
+				translateKey: 'create_item.form.details_translations.lang_key',
 				required: true,
 			},
 		},
@@ -281,17 +265,17 @@ export const createItemFormConfig: FormConfig = {
 		input: {
 			title: {
 				name: 'title',
-				placeholderKey: 'create_item.form.images_translations.title',
+				translateKey: 'create_item.form.images_translations.title',
 				required: true,
 			},
 			alt: {
 				name: 'alt',
-				placeholderKey: 'create_item.form.images_translations.alt',
+				translateKey: 'create_item.form.images_translations.alt',
 				required: true,
 			},
 			langKey: {
 				name: 'langKey',
-				placeholderKey: 'create_item.form.images_translations.lang_key',
+				translateKey: 'create_item.form.images_translations.lang_key',
 				required: true,
 			},
 		},

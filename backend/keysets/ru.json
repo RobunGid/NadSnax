@@ -163,7 +163,7 @@
 	"create_item.form.images.alt": "Альтернативный текст изображения",
 	"create_item.form.images.is_main": "Главное изображение",
 	"create_item.form.images.name": "Имя изображения",
-	"create_item.form.images.file": "Файл изображения",
+	"create_item.form.images.file": "Файл изображения (PNG, JPG или JPEG, макс. 1Мб)",
 	"create_item.form.general_translations.lang_key": "Язык",
 	"create_item.form.general_translations.label": "Метка",
 	"create_item.form.general_translations.short_description": "Краткое описание",
@@ -178,5 +178,7 @@
 	"create_item.form.images_translations.lang_key": "Язык",
 
 	"create_item.legend.general": "Общая информация",
-	"create_item.legend.details": "Детали о товаре"
+	"create_item.legend.details": "Детали о товаре",
+	"create_item.legend.images": "Изображения"
+
 }

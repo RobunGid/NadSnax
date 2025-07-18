@@ -14,20 +14,26 @@ export const UIInput = (props: UIInputProps) => {
 	return (
 		<label
 			className={clsx(
-				'relative flex flex-col-reverse w-full focus:shadow-lg has-focus:shadow-gray-900 shadow-lg',
+				'relative flex flex-col-reverse w-full focus:shadow-lg has-focus:shadow-gray-900 shadow-lg cursor-text',
 				type === 'checkbox' &&
 					'flex-row items-center justify-center px-2 shadow-none'
 			)}
 		>
 			<input
 				className={clsx(
-					`
-				font-normal pt-6 px-4 pb-3 rounded-lg relative placeholder-transparent border-none outline-none
-				peer dark:text-gray-300 text-gray-900 disabled:border-y-gray-900 disabled:border-4 size-5 w-full
+					`h-10 w-10 block
+				font-normal rounded-lg relative placeholder-transparent border-none outline-none
+				peer dark:text-gray-300 text-gray-900 disabled:border-y-gray-900 disabled:border-4 size-5
 				`,
 					isLoading && 'cursor-progress',
 					isInvalid && 'shadow-orange-800 ring-2 ring-orange-800 shadow-md',
-					type === 'checkbox' ? 'max-h-5 max-w-7 block m-1' : 'h-10 w-10'
+					type === 'checkbox' && 'max-h-5 max-w-7 m-1',
+					type === 'text' || (!type && 'pt-6 px-4 pb-3'),
+					type === 'file' &&
+						`pt-2.5 px-3 w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
+						dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+						before:absolute before:bg-gray-600/30 before:w-[89px] before:h-10 before:inset-0 before:flex before:items-center before:justify-center
+						before:text-white hover:before:bg-gray-500/40 file:text-white file:gap-20`
 				)}
 				{...rest}
 				type={type}
@@ -39,6 +45,8 @@ export const UIInput = (props: UIInputProps) => {
 			</p>
 			<p
 				className={clsx(
+					'text-nowrap',
+					type === 'file' && 'top-10',
 					type !== 'checkbox' &&
 						`
 					absolute bottom-[7px] left-4 font-normal transition-all pointer-events-none
