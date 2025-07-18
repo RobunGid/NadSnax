@@ -177,5 +177,6 @@
 	"create_item.form.images_translations.alt": "Альтернативный текст",
 	"create_item.form.images_translations.lang_key": "Язык",
 
-	"create_item.legend.general": "Общая информация"
+	"create_item.legend.general": "Общая информация",
+	"create_item.legend.details": "Детали о товаре"
 }

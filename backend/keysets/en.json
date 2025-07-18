@@ -173,6 +173,7 @@
 	"create_item.form.images_translations.alt": "Alternative text",
 	"create_item.form.images_translations.lang_key": "Language",
 
-	"create_item.legend.general": "General Information"
+	"create_item.legend.general": "General Information",
+	"create_item.legend.details": "Details Description"
 
 }
