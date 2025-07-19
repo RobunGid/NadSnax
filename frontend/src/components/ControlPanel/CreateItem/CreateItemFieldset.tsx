@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, MouseEventHandler, useState } from 'react';
 import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
@@ -8,6 +8,7 @@ import { UICreateItemLegend } from './UI/UICreateItemLegend';
 import { UICreateItemFieldsetLine } from './UI/UICreateItemFieldsetLine';
 import { UIButton } from '../../UI/UIButton';
 import { languages } from '../../../logic/languages';
+import { CreateItemInputGroup } from './CreateItemInputGroup';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -22,28 +23,11 @@ export const CreateItemFieldset = {
 				</UICreateItemLegend>
 
 				{languages.map((language) => (
-					<>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.general.input.displayedName}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.general.input.price}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.general.input.shortDescription}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.general.input.oldPrice}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.general.input.uniqueName}
-						/>
-					</>
+					<CreateItemInputGroup
+						configs={createItemFormConfig.general.input}
+						language={language.key}
+						key={language.key}
+					/>
 				))}
 				<div className='flex'>
 					<UICreateItemInput
@@ -69,32 +53,11 @@ export const CreateItemFieldset = {
 					{translate('create_item.legend.details')}
 				</UICreateItemLegend>
 				{languages.map((language) => (
-					<>
-						<UICreateItemInput
-							config={createItemFormConfig.details.input.fullDisplayedName}
-							languageCode={language.key}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.details.input.ingridients}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.details.input.fullDescription}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.details.input.supplier}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.details.input.supplierLink}
-						/>
-						<UICreateItemInput
-							languageCode={language.key}
-							config={createItemFormConfig.details.input.nutritionalValue}
-						/>
-					</>
+					<CreateItemInputGroup
+						configs={createItemFormConfig.details.input}
+						language={language.key}
+						key={language.key}
+					/>
 				))}
 			</UICreateItemFieldset>
 		);
@@ -104,9 +67,14 @@ export const CreateItemFieldset = {
 		const hideAddButton = imageCount.length >= 10;
 		const hideRemoveButton = imageCount.length == 1;
 
-		const handleAddPicture = () => setImageCount((prev) => [...prev, prev.length]);
-		const handleRemovePicture = () =>
+		const handleAddPicture: MouseEventHandler<HTMLButtonElement> = (event) => {
+			event.preventDefault();
+			setImageCount((prev) => [...prev, prev.length]);
+		};
+		const handleRemovePicture: MouseEventHandler<HTMLButtonElement> = (event) => {
+			event.preventDefault();
 			setImageCount((prev) => prev.slice(0, prev.length - 1));
+		};
 
 		return (
 			<UICreateItemFieldset type='images'>
@@ -130,9 +98,9 @@ export const CreateItemFieldset = {
 				</UIButton>
 				{imageCount.map((count) => {
 					return (
-						<>
+						<Fragment key={count}>
 							{languages.map((language) => (
-								<>
+								<Fragment key={language.key}>
 									<UICreateItemInput
 										languageCode={language.key}
 										config={{
@@ -147,7 +115,7 @@ export const CreateItemFieldset = {
 											name: `${createItemFormConfig.images.input.name.name}_${count}`,
 										}}
 									/>
-								</>
+								</Fragment>
 							))}
 							<UICreateItemInput
 								config={{
@@ -164,7 +132,7 @@ export const CreateItemFieldset = {
 							{count != imageCount[imageCount.length - 1] && (
 								<UICreateItemFieldsetLine />
 							)}
-						</>
+						</Fragment>
 					);
 				})}
 			</UICreateItemFieldset>

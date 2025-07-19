@@ -13,17 +13,20 @@ interface UICreateItemInputProps {
 
 export const UICreateItemInput = withTranslate(
 	({ translate, config, languageCode }: UICreateItemInputProps) => {
-		const text = translate(config.translateKey);
+		const { translateKey, ...attributes } = config;
+		const text = translate(translateKey);
 		const fixedName = languageCode ? `${config.name}_${languageCode}` : config.name;
-		if ('options' in config) {
-			return <UISelect key={config.name} text={text} {...config} />;
+
+		if ('options' in attributes) {
+			return <UISelect key={config.name} text={text} {...attributes} />;
 		}
+
 		return (
 			<UIInput
 				key={config.name}
 				placeholder={text}
 				languageCode={languageCode}
-				{...{ ...config, name: fixedName }}
+				{...{ ...attributes, name: fixedName }}
 			/>
 		);
 	}

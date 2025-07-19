@@ -2,12 +2,10 @@ import { JSX } from 'react';
 import { Option } from '../types';
 
 export type InputRecord = {
-	name: string;
 	translateKey: string;
 } & JSX.IntrinsicElements['input'];
 
 export type SelectRecord = {
-	name: string;
 	translateKey: string;
 	options: Option[];
 } & JSX.IntrinsicElements['select'];
