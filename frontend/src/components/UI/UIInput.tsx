@@ -1,16 +1,27 @@
 import clsx from 'clsx';
 import { JSX } from 'react';
+import { LanguageCodes } from '../../types';
+import { UIFlagIcon } from './UIFlagIcon';
 
 type UIInputProps = {
 	error?: boolean;
 	errorMessage?: string;
 	isLoading?: boolean;
 	isInvalid?: boolean;
+	languageCode?: LanguageCodes;
 } & Partial<JSX.IntrinsicElements['input']>;
 
 export const UIInput = (props: UIInputProps) => {
-	const { errorMessage, error, placeholder, isLoading, isInvalid, type, ...rest } =
-		props;
+	const {
+		errorMessage,
+		error,
+		placeholder,
+		isLoading,
+		isInvalid,
+		type,
+		languageCode,
+		...rest
+	} = props;
 	return (
 		<label
 			className={clsx(
@@ -30,7 +41,7 @@ export const UIInput = (props: UIInputProps) => {
 					isLoading && 'cursor-progress',
 					isInvalid && 'shadow-orange-800 ring-2 ring-orange-800 shadow-md',
 					type === 'checkbox' && 'max-h-5 max-w-7 m-1',
-					(type === 'text' || !type) && 'pt-6 px-4 pb-3',
+					(type === 'text' || type === 'number' || !type) && 'pt-6 px-4 pb-3',
 					type === 'file' &&
 						`pt-2.5 px-3 w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
 						dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
@@ -61,6 +72,7 @@ export const UIInput = (props: UIInputProps) => {
 					type === 'checkbox' && 'font-normal dark:text-gray-300 text-black'
 				)}
 			>
+				{languageCode && <UIFlagIcon countryCode={languageCode} />}
 				{placeholder}
 			</p>
 		</label>

@@ -12,7 +12,8 @@ export const UICreateItemFieldset = ({ children, type }: UICreateItemFieldsetPro
 		<fieldset
 			className={clsx(
 				'grid gap-2 sm:grid-cols-2 border-2 border-gray-700 p-2 grid-cols-1',
-				type === 'general' && 'sm:grid-cols-[2fr_1fr]'
+				type === 'general' && 'sm:grid-cols-[2fr_1fr]',
+				type === 'images' && 'place-items-center'
 			)}
 		>
 			{children}

@@ -7,6 +7,7 @@ import { UICreateItemInput } from './UI/UICreateItemInput';
 import { UICreateItemLegend } from './UI/UICreateItemLegend';
 import { UICreateItemFieldsetLine } from './UI/UICreateItemFieldsetLine';
 import { UIButton } from '../../UI/UIButton';
+import { languages } from '../../../logic/languages';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -17,30 +18,46 @@ export const CreateItemFieldset = {
 		return (
 			<UICreateItemFieldset type='general'>
 				<UICreateItemLegend>
-					{translate('create_item.legend.general')}
+					{translate('create_item.legend.general')}{' '}
 				</UICreateItemLegend>
-				<UICreateItemInput
-					config={createItemFormConfig.general.input.displayedName}
-				/>
-				<UICreateItemInput config={createItemFormConfig.general.input.price} />
-				<UICreateItemInput
-					config={createItemFormConfig.general.input.shortDescription}
-				/>
-				<UICreateItemInput config={createItemFormConfig.general.input.oldPrice} />
-				<UICreateItemInput
-					config={createItemFormConfig.general.input.uniqueName}
-				/>
-				<UICreateItemInput
-					config={createItemFormConfig.general.select.category}
-				/>
+
+				{languages.map((language) => (
+					<>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.displayedName}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.price}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.shortDescription}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.oldPrice}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.uniqueName}
+						/>
+					</>
+				))}
 				<div className='flex'>
-					<UICreateItemInput
-						config={createItemFormConfig.general.checkbox.isBestseller}
-					/>
 					<UICreateItemInput
 						config={createItemFormConfig.general.checkbox.isSecretBox}
 					/>
+					<UICreateItemInput
+						config={createItemFormConfig.general.checkbox.isBestseller}
+					/>
 				</div>
+				<UICreateItemInput
+					config={createItemFormConfig.general.select.category}
+				/>
+				<div />
+
 				<UICreateItemInput config={createItemFormConfig.general.select.type} />
 			</UICreateItemFieldset>
 		);
@@ -51,22 +68,34 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.details')}
 				</UICreateItemLegend>
-				<UICreateItemInput
-					config={createItemFormConfig.details.input.fullDisplayedName}
-				/>
-				<UICreateItemInput
-					config={createItemFormConfig.details.input.ingridients}
-				/>
-				<UICreateItemInput
-					config={createItemFormConfig.details.input.fullDescription}
-				/>
-				<UICreateItemInput config={createItemFormConfig.details.input.supplier} />
-				<UICreateItemInput
-					config={createItemFormConfig.details.input.supplierLink}
-				/>
-				<UICreateItemInput
-					config={createItemFormConfig.details.input.nutritionalValue}
-				/>
+				{languages.map((language) => (
+					<>
+						<UICreateItemInput
+							config={createItemFormConfig.details.input.fullDisplayedName}
+							languageCode={language.key}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.details.input.ingridients}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.details.input.fullDescription}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.details.input.supplier}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.details.input.supplierLink}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.details.input.nutritionalValue}
+						/>
+					</>
+				))}
 			</UICreateItemFieldset>
 		);
 	}),
@@ -84,12 +113,17 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.images')}
 				</UICreateItemLegend>
-				<UIButton onClick={handleAddPicture} hidden={hideAddButton}>
+				<UIButton
+					onClick={handleAddPicture}
+					hidden={hideAddButton}
+					className='w-full'
+				>
 					{translate('create_item.add_picture')}
 				</UIButton>
 				<UIButton
 					onClick={handleRemovePicture}
 					type='danger'
+					className='w-full'
 					hidden={hideRemoveButton}
 				>
 					{translate('create_item.delete_picture')}
@@ -97,18 +131,24 @@ export const CreateItemFieldset = {
 				{imageCount.map((count) => {
 					return (
 						<>
-							<UICreateItemInput
-								config={{
-									...createItemFormConfig.images.input.title,
-									name: `${createItemFormConfig.images.input.title.name}_${count}`,
-								}}
-							/>
-							<UICreateItemInput
-								config={{
-									...createItemFormConfig.images.input.name,
-									name: `${createItemFormConfig.images.input.name.name}_${count}`,
-								}}
-							/>
+							{languages.map((language) => (
+								<>
+									<UICreateItemInput
+										languageCode={language.key}
+										config={{
+											...createItemFormConfig.images.input.title,
+											name: `${createItemFormConfig.images.input.title.name}_${count}`,
+										}}
+									/>
+									<UICreateItemInput
+										languageCode={language.key}
+										config={{
+											...createItemFormConfig.images.input.name,
+											name: `${createItemFormConfig.images.input.name.name}_${count}`,
+										}}
+									/>
+								</>
+							))}
 							<UICreateItemInput
 								config={{
 									...createItemFormConfig.images.checkbox.isMain,
@@ -121,7 +161,7 @@ export const CreateItemFieldset = {
 									name: `${createItemFormConfig.images.file.file.name}_${count}`,
 								}}
 							/>
-							{count !== imageCount[imageCount.length - 1] && (
+							{count != imageCount[imageCount.length - 1] && (
 								<UICreateItemFieldsetLine />
 							)}
 						</>
