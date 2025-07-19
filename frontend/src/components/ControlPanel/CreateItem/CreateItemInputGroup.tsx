@@ -12,6 +12,10 @@ export const CreateItemInputGroup = ({
 	language,
 }: CreateItemInputGroupProps) => {
 	return Object.values(configs).map((config) => (
-		<UICreateItemInput languageCode={language} config={config} key={config.name} />
+		<UICreateItemInput
+			languageCode={language}
+			config={{ ...config, required: language === 'en' && config.required }}
+			key={config.name}
+		/>
 	));
 };

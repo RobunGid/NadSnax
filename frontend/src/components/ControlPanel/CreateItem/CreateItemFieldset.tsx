@@ -1,6 +1,6 @@
 import { Fragment, MouseEventHandler, useState } from 'react';
 import { useTranslate } from '../../../i18n/i18n';
-import { createItemFormConfig } from '../../../logic/createItemFormConfig';
+import { createItemFormConfig, InputRecord } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
 import { UICreateItemFieldset } from './UI/UICreateItemFieldset';
 import { UICreateItemInput } from './UI/UICreateItemInput';
@@ -98,25 +98,28 @@ export const CreateItemFieldset = {
 				</UIButton>
 				{imageCount.map((count) => {
 					return (
-						<Fragment key={count}>
-							{languages.map((language) => (
-								<Fragment key={language.key}>
-									<UICreateItemInput
-										languageCode={language.key}
-										config={{
+						<Fragment key={Math.random()}>
+							{languages.map((language) => {
+								const configs: Record<string, InputRecord> = {
+									[`${createItemFormConfig.images.input.title.name}_${count}`]:
+										{
 											...createItemFormConfig.images.input.title,
 											name: `${createItemFormConfig.images.input.title.name}_${count}`,
-										}}
-									/>
-									<UICreateItemInput
-										languageCode={language.key}
-										config={{
+										},
+									[`${createItemFormConfig.images.input.name.name}_${count}`]:
+										{
 											...createItemFormConfig.images.input.name,
 											name: `${createItemFormConfig.images.input.name.name}_${count}`,
-										}}
+										},
+								};
+								return (
+									<CreateItemInputGroup
+										configs={configs}
+										language={language.key}
+										key={language.key}
 									/>
-								</Fragment>
-							))}
+								);
+							})}
 							<UICreateItemInput
 								config={{
 									...createItemFormConfig.images.checkbox.isMain,
