@@ -71,7 +71,7 @@ export const CreateItemFieldset = {
 		);
 	}),
 	Images: withTranslate(({ translate }: CreateItemFieldsetProps) => {
-		const [imageCount, setImageCount] = useState([1, 2]);
+		const [imageCount, setImageCount] = useState([1]);
 		const hideAddButton = imageCount.length >= 10;
 		const hideRemoveButton = imageCount.length == 1;
 
