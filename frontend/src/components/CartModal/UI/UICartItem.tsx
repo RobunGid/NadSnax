@@ -25,7 +25,7 @@ export const UICartItem = ({
 		<>
 			<div className='max-md:col-span-3 relative z-0 overflow-hidden flex flex-col md:flex-row md:items-start w-70'>
 				<Link
-					to={`/products/page${cartItem.item.pageLink}`}
+					to={`/products/page/${cartItem.item.name}`}
 					className='flex flex-col items-center'
 				>
 					<div className='text-gray-500 text-xs text-center md:text-left mb-3 block md:hidden'>

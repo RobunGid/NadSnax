@@ -84,7 +84,7 @@ export const App = () => {
 					<Route path='/products/:category/' element={<ProductsPage />} />
 					<Route path='/products/:category/:type/' element={<ProductsPage />} />
 					<Route
-						path='/products/page/:product'
+						path='/products/page/:productName'
 						element={<ProductDetailsPage />}
 					/>
 				</Routes>

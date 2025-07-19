@@ -58,7 +58,7 @@ export const deleteFavoriteThunk = createAsyncThunk<
 export interface fetchItemsParams {
 	categoryName?: string;
 	typeName?: string;
-	pageLink?: string;
+	name?: string;
 	isBestseller?: boolean;
 	isSecretbox?: boolean;
 	simillarId?: string;
@@ -77,7 +77,7 @@ export const fetchItemsThunk = createAsyncThunk<
 		{
 			categoryName,
 			typeName,
-			pageLink,
+			name,
 			isBestseller,
 			isSecretbox,
 			simillarId,
@@ -94,7 +94,7 @@ export const fetchItemsThunk = createAsyncThunk<
 		const requestParams = {
 			category_name: categoryName,
 			type_name: typeName,
-			page_link: pageLink,
+			name: name,
 			bestseller: isBestseller,
 			secretbox: isSecretbox,
 			simillar_id: simillarId,

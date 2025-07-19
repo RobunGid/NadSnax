@@ -7,7 +7,7 @@ import { ProductDetails } from '../ProductDetails/ProductDetails';
 import { useI18n } from '../../i18n/i18n';
 
 export const ProductDetailsPage = () => {
-	const { product: product_page_link } = useParams();
+	const { productName: product_name } = useParams();
 
 	const actions = useActionCreators({
 		fetchItems: fetchItemsThunk,
@@ -24,16 +24,16 @@ export const ProductDetailsPage = () => {
 	useEffect(() => {
 		fetchedSimillars.current = false;
 		actions.fetchItems({
-			pageLink: `/${product_page_link}`,
+			name: product_name,
 			accessToken,
 			lang,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [product_page_link, accessToken, lang]);
+	}, [product_name, accessToken, lang]);
 
 	const item = useMemo(
-		() => items.find((item) => item.pageLink == `/${product_page_link}`),
-		[items, product_page_link]
+		() => items.find((item) => item.name == product_name),
+		[items, product_name]
 	);
 
 	useEffect(() => {

@@ -20,7 +20,7 @@ export type ItemType = {
 export type Image = {
 	id: string;
 	alt: string;
-	fileName: string;
+	name: string;
 	isMain?: boolean;
 	title: string;
 	url: string;
@@ -39,7 +39,7 @@ export type Item = {
 	convertedPrice: number;
 	convertedOldPrice: number;
 	oldPrice?: number | null;
-	pageLink: string;
+	name: string;
 	type?: Omit<ItemType, 'category'>;
 	typeId?: string;
 	category: Omit<ItemCategory, 'types'>;

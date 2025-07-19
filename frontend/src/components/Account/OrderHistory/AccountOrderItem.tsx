@@ -14,7 +14,7 @@ export const AccountOrderItem = ({ orderItem }: AccountOrderItemProps) => {
 	const formattedPrice = formatPrice(orderItem.item.convertedPrice);
 
 	return (
-		<Link to={orderItem.item.pageLink}>
+		<Link to={orderItem.item.name}>
 			<UIAccountOrderItem>
 				<ProductItemImage
 					imageURL={orderItem.item.images[0].url}

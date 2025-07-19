@@ -60,7 +60,7 @@ export const ProductItem = ({
 		? formatPrice(item.convertedOldPrice, lang)
 		: '';
 
-	const pageLink = `/products/page${item.pageLink}`;
+	const pageLink = `/products/page/${item.name}`;
 	const discount = item.oldPrice
 		? Math.floor(
 				((item.convertedOldPrice - item.convertedPrice) /
