@@ -6,7 +6,13 @@ import { UICreateItemSectionContainer } from './UI/UICreateItemSectionContainer'
 export const CreateItemSection = () => {
 	return (
 		<UICreateItemSectionContainer>
-			<UICreateItemForm>
+			<UICreateItemForm
+				onSubmit={(event) => {
+					event.preventDefault();
+					const formData = new FormData(event.target as HTMLFormElement);
+					console.log(Object.fromEntries(formData));
+				}}
+			>
 				<CreateItemFieldset.General />
 				<CreateItemFieldset.Details />
 				<CreateItemFieldset.Images />
