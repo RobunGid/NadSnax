@@ -8,7 +8,7 @@ from constants import Role
 from db import db
 
 class UserModel(db.Model):
-    __tablename__ = "users"
+    __tablename__ = "user"
     
     id = db.Column(db.String(80), primary_key=True)
     

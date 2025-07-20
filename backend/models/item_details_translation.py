@@ -9,7 +9,7 @@ class ItemDetailsTranslationModel(db.Model):
     
     item_id = db.Column(db.String(80), db.ForeignKey("item_details.item_id"))
     
-    item = db.relationship("ItemDetailsModel", back_populates="translations", lazy="select")
+    item_details = db.relationship("ItemDetailsModel", back_populates="translations", lazy="select")
     
     full_description = db.Column(db.Text)
     full_label = db.Column(db.Text, nullable=False)

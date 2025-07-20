@@ -1,19 +1,17 @@
 from db import db
 from sqlalchemy import CheckConstraint
 from sqlalchemy.orm import validates
-from datetime import datetime
-from sqlalchemy import DateTime
 
 class OrderItemModel(db.Model):
-    __tablename__ = 'order_items'
+    __tablename__ = 'order_item'
     
     id = db.Column(db.String(80), primary_key=True)
     quantity = db.Column(db.Integer)
     
-    order_id = db.Column(db.String(80), db.ForeignKey("orders.id"), nullable=False)
+    order_id = db.Column(db.String(80), db.ForeignKey("order.id"), nullable=False)
     order = db.relationship('OrderModel', back_populates="items")
     
-    item_id = db.Column(db.String(80), db.ForeignKey("items.id"), nullable=False)
+    item_id = db.Column(db.String(80), db.ForeignKey("item.id"), nullable=False)
     item = db.relationship("ItemModel")
     
     __table_args__ = (

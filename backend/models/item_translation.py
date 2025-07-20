@@ -3,11 +3,11 @@ from constants import SupportedLanguages
 from sqlalchemy import UniqueConstraint
 
 class ItemTranslationModel(db.Model):
-    __tablename__ = "items_translation"
+    __tablename__ = "item_translation"
     
     id = db.Column(db.String(80), primary_key=True)
     
-    item_id = db.Column(db.String(80), db.ForeignKey("items.id"))
+    item_id = db.Column(db.String(80), db.ForeignKey("item.id"))
     item = db.relationship("ItemModel", back_populates="translations", lazy="select")
     
     label = db.Column(db.String(80), nullable=False)

@@ -8,7 +8,7 @@ class TypeTranslationModel(db.Model):
     
     id = db.Column(db.String(80), primary_key=True)
     
-    type_id = db.Column(db.String(80), db.ForeignKey("types.id"))
+    type_id = db.Column(db.String(80), db.ForeignKey("type.id"))
     type = db.relationship("TypeModel", back_populates="translations", lazy="select")
     
     name = db.Column(db.String(80), nullable=False)

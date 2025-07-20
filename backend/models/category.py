@@ -3,7 +3,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from flask import request
 
 class CategoryModel(db.Model):
-    __tablename__ = "categories"
+    __tablename__ = "category"
     
     id = db.Column(db.String(80), primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)

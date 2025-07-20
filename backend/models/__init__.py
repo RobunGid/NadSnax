@@ -12,3 +12,4 @@ from models.item_translation import ItemTranslationModel
 from models.item_details_translation import ItemDetailsTranslationModel
 from models.category_translation import CategoryTranslationModel
 from models.type_translation import TypeTranslationModel
+from models.item_image_translation import ItemImageTranslationModel

@@ -8,7 +8,7 @@ class CategoryTranslationModel(db.Model):
     
     id = db.Column(db.String(80), primary_key=True)
     
-    category_id = db.Column(db.String(80), db.ForeignKey("categories.id"))
+    category_id = db.Column(db.String(80), db.ForeignKey("category.id"))
     category = db.relationship("CategoryModel", back_populates="translations", lazy="select")
     
     name = db.Column(db.String(80), nullable=False)

@@ -4,12 +4,12 @@ from sqlalchemy import DateTime, UniqueConstraint
 from datetime import datetime
 
 class FavoriteModel(db.Model):
-    __tablename__ = 'favorites'
+    __tablename__ = 'favorite'
     
     id = db.Column(db.String(80), primary_key=True)
     
-    user_id = db.Column(db.String(80), db.ForeignKey("users.id"), nullable=False)
-    item_id = db.Column(db.String(80), db.ForeignKey("items.id"), nullable=False)
+    user_id = db.Column(db.String(80), db.ForeignKey("user.id"), nullable=False)
+    item_id = db.Column(db.String(80), db.ForeignKey("item.id"), nullable=False)
     
     user = db.relationship('UserModel', backref='favorite')
     item = db.relationship('ItemModel', backref='favorite')

@@ -5,7 +5,7 @@ from sqlalchemy import select
 import models
 
 class ItemModel(db.Model):
-    __tablename__ = "items"
+    __tablename__ = "item"
     
     id = db.Column(db.String(80), primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
@@ -17,8 +17,8 @@ class ItemModel(db.Model):
     is_bestseller = db.Column(db.Boolean())
     is_secretbox = db.Column(db.Boolean())
     
-    category_id = db.Column(db.String(80), db.ForeignKey("categories.id"))
-    type_id = db.Column(db.String(80), db.ForeignKey("types.id"))
+    category_id = db.Column(db.String(80), db.ForeignKey("category.id"))
+    type_id = db.Column(db.String(80), db.ForeignKey("type.id"))
     
     category = db.relationship("CategoryModel", back_populates="items", lazy=True)
     type = db.relationship("TypeModel", back_populates="items", lazy=True)
