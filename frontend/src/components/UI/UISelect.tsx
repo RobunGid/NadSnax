@@ -17,7 +17,7 @@ export const UISelect = (props: UISelectProps) => {
 			onChange={onChange}
 			value={value}
 		>
-			<option defaultChecked>{text}</option>
+			<option defaultChecked>--- {text} ---</option>
 			{options.map((option) => (
 				<option value={option.value} key={option.value}>
 					{option.text}

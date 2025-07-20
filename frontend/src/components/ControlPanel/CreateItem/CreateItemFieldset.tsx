@@ -1,4 +1,4 @@
-import { Fragment, MouseEventHandler, useState } from 'react';
+import { ChangeEventHandler, Fragment, MouseEventHandler, useState } from 'react';
 import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig, InputRecord } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
@@ -9,6 +9,9 @@ import { UICreateItemFieldsetLine } from './UI/UICreateItemFieldsetLine';
 import { UIButton } from '../../UI/UIButton';
 import { languages } from '../../../logic/languages';
 import { CreateItemInputGroup } from './CreateItemInputGroup';
+import { useStateSelector } from '../../../store';
+import { UICreateItemSelect } from './UI/UICreateItemSelect';
+import { ItemType } from '../../../types';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -16,6 +19,28 @@ interface CreateItemFieldsetProps {
 
 export const CreateItemFieldset = {
 	General: withTranslate(({ translate }: CreateItemFieldsetProps) => {
+		const [selectedCategory, setSelectedCategory] = useState<null | string>(null);
+
+		const categories = useStateSelector((state) => state.category.categoryList);
+		const categoryOptions = categories.map((category) => ({
+			text: category.name,
+			value: category.id,
+		}));
+		const defaultTypes: Omit<ItemType, 'category'>[] = [];
+		const types = categories.reduce(
+			(prev, category) => [...prev, ...category.types],
+			defaultTypes
+		);
+		const typeOptions = types
+			.filter((type) => type.categoryId == selectedCategory)
+			.map((type) => ({
+				text: type.name,
+				value: type.id,
+			}));
+
+		const handleChangeCategory: ChangeEventHandler<HTMLSelectElement> = (event) =>
+			setSelectedCategory(event.target.value);
+
 		return (
 			<UICreateItemFieldset type='general'>
 				<UICreateItemLegend>
@@ -37,12 +62,19 @@ export const CreateItemFieldset = {
 						config={createItemFormConfig.general.checkbox.isBestseller}
 					/>
 				</div>
-				<UICreateItemInput
-					config={createItemFormConfig.general.select.category}
+				<UICreateItemSelect
+					config={{
+						...createItemFormConfig.general.select.category,
+						onChange: handleChangeCategory,
+					}}
+					options={categoryOptions}
 				/>
 				<div />
 
-				<UICreateItemInput config={createItemFormConfig.general.select.type} />
+				<UICreateItemSelect
+					config={createItemFormConfig.general.select.type}
+					options={typeOptions}
+				/>
 			</UICreateItemFieldset>
 		);
 	}),
@@ -99,17 +131,19 @@ export const CreateItemFieldset = {
 				{imageCount.map((count) => {
 					return (
 						<Fragment key={Math.random()}>
+							<UICreateItemInput
+								config={{
+									...createItemFormConfig.images.input.name,
+									name: `${createItemFormConfig.images.input.name.name}_${count}`,
+								}}
+							/>
+
 							{languages.map((language) => {
 								const configs: Record<string, InputRecord> = {
 									[`${createItemFormConfig.images.input.title.name}_${count}`]:
 										{
 											...createItemFormConfig.images.input.title,
 											name: `${createItemFormConfig.images.input.title.name}_${count}`,
-										},
-									[`${createItemFormConfig.images.input.name.name}_${count}`]:
-										{
-											...createItemFormConfig.images.input.name,
-											name: `${createItemFormConfig.images.input.name.name}_${count}`,
 										},
 								};
 								return (
@@ -132,6 +166,7 @@ export const CreateItemFieldset = {
 									name: `${createItemFormConfig.images.file.file.name}_${count}`,
 								}}
 							/>
+							<div />
 							{count != imageCount[imageCount.length - 1] && (
 								<UICreateItemFieldsetLine />
 							)}
