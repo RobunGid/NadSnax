@@ -12,7 +12,7 @@ class ItemModel(db.Model):
     
     label = db.Column(db.String(80), nullable=False)
     price = db.Column(db.Numeric(10, 2), nullable=False)
-    old_price = db.Column(db.String(80))
+    old_price = db.Column(db.Numeric(10, 2))
     description = db.Column(db.String(80))
     is_bestseller = db.Column(db.Boolean())
     is_secretbox = db.Column(db.Boolean())

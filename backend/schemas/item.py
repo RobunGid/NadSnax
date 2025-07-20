@@ -32,6 +32,8 @@ class ItemTranslationSchema(Schema):
     item_id = fields.Str(required=True)
     label = fields.Str(required=True)
     description = fields.Str(required=True)
+    price = fields.Float(required=True)
+    old_price = fields.Float()
 
 class ItemSchema(PlainItemSchema):
     category = fields.Nested("schemas.category.CategorySchema", dump_only=True, exclude=("items", "types")) 

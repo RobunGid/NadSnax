@@ -14,6 +14,7 @@ class ItemDetailsTranslationModel(db.Model):
     full_description = db.Column(db.Text)
     full_label = db.Column(db.Text, nullable=False)
     supplier = db.Column(db.Text, nullable=False)
+    supplier_link = db.Column(db.String(80), nullable=False)
     
     ingridients = db.Column(db.Text, nullable=False)
     nutrition = db.Column(db.Text, nullable=False)

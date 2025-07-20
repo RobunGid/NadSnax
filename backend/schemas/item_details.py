@@ -17,6 +17,7 @@ class ItemDetailsTranslationSchema(Schema):
     full_description = fields.Str(required=True)
     ingridients = fields.Str(required=True)
     supplier = fields.Str(required=True)
+    supplier_link = fields.Str(required=True)
     nutrition = fields.Str(required=True)
     lang_key = fields.Enum(SupportedLanguages)
     
