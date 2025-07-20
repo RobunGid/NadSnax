@@ -17,3 +17,6 @@ class ItemImageModel(db.Model):
     @hybrid_property
     def url(self):
         return request.host_url + 'resources/images/' + self.name + '.png'
+    
+    def __repr__(self):
+    	return f"<ItemImageModel(id='{self.id}', name='{self.name}', title='{self.title}', is_main={self.is_main}, item_id='{self.item_id}')>"

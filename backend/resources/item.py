@@ -2,8 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from marshmallow import ValidationError
 from uuid import uuid4
-from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel
-from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema
+from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
+from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema
 from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request, g
@@ -210,61 +210,71 @@ class Items(MethodView):
     @blp.response(201, ItemSchema(exclude=("reviews",)))
     def post(self, form_data):
         from app import app
-        try:
-            item_data = json.loads(form_data.get("item", "{}"))
-            item = ItemSchema().load(item_data)
-            image_files = request.files.getlist("image_file")
-            
-            item_translations_json = form_data.get("item_translations", None)
-            item_details_json = form_data.get("item_details", None)
-            item_details_translations_json = form_data.get("item_details_translations", None)
-            item_images_json = form_data.get("item_images", None)
-            
-            item_translations_data = json.loads(item_translations_json) if item_translations_json else None
-            item_details_data = json.loads(item_details_json) if item_details_json else None
-            item_details_translations_data = json.loads(item_details_translations_json) if item_details_translations_json else None
-            item_images_data = json.loads(item_images_json) if item_images_json else None
-            
-            if not image_files or len(image_files) != len(item_images_data) or len(image_files) == 0:
-                abort(422, message="Wrong image files quantity")
+        image_files = request.files.getlist("image_file")
+        
+        item_json = form_data.get("item", None)
+        item_details_json = form_data.get("item_details", None)
+        item_images_json = form_data.get("item_images", None)
+        item_translations_json = form_data.get("item_translations", None)
+        item_details_translations_json = form_data.get("item_details_translations", None)
+        item_images_translations_json = form_data.get("item_images_translations", None)
+        
+        item_data = json.loads(item_json)
+        item_details_data = json.loads(item_details_json) if item_details_json else None
+        item_images_data = json.loads(item_images_json) if item_images_json else None
+        item_translations_data = json.loads(item_translations_json) if item_translations_json else None
+        item_details_translations_data = json.loads(item_details_translations_json) if item_details_translations_json else None
+        item_images_translations_data = json.loads(item_images_translations_json) if item_images_translations_json else None
+        
+        if not image_files or len(image_files) != len(item_images_data) or len(image_files) == 0:
+            abort(422, message="Wrong image files quantity")
 
-            item_translations = ItemTranslationSchema(many=True, exclude=("item_id",)).load(item_translations_data) if item_translations_data else None
-            item_details = ItemDetailsSchema(exclude=("item_id",)).load(item_details_data) if item_details_data else None
-            item_details_translations = ItemDetailsTranslationSchema(many=True, exclude=("item_id",)).load(item_details_translations_data) if item_details_translations_data else None
-            item_images = ItemImageSchema(many=True, exclude=("item_id",)).load(item_images_data) if item_images_data else None
+        item = ItemSchema().load(item_data)
+        item_translations = ItemTranslationSchema(many=True, exclude=("item_id",)).load(item_translations_data) if item_translations_data else None
+        item_details = ItemDetailsSchema(exclude=("item_id",)).load(item_details_data) if item_details_data else None
+        item_details_translations = ItemDetailsTranslationSchema(many=True, exclude=("item_id",)).load(item_details_translations_data) if item_details_translations_data else None
+        item_images = ItemImageSchema(many=True, exclude=("item_id",)).load(item_images_data) if item_images_data else None
+        item_images_translations = [ItemImageTranslationSchema(many=True, exclude=("item_image_id",)).load(item_image_translations_data) 
+                                    for item_image_translations_data in item_images_translations_data] if item_images_data else None
+        
+        item_model = ItemModel(**item, id=str(uuid4()))
+        db.session.add(item_model)
+        
+        if item_details:
+            item_details_model = ItemDetailsModel(**item_details_data, item_id=item_model.id)
+            db.session.add(item_details_model)
             
-            item_model = ItemModel(**item, id=str(uuid4()))
-            db.session.add(item_model)
+        if item_translations:
+            item_translations_models = [ItemTranslationModel(**item_translation_data, item_id=item_model.id, id=str(uuid4())) for item_translation_data in item_translations_data]
+            db.session.add_all(item_translations_models)
             
-            if item_details:
-                item_details_model = ItemDetailsModel(**item_details_data, item_id=item_model.id)
-                db.session.add(item_details_model)
+        if item_details_translations:
+            item_details_translations_model = [ItemDetailsTranslationModel(**item_details_translation_data, item_id=item_model.id, id=str(uuid4())) for item_details_translation_data in item_details_translations_data]
+            db.session.add_all(item_details_translations_model)
+            
+        if item_images:
+            item_images_models = [ItemImageModel(**item_image_data, item_id=item_model.id, id=str(uuid4())) for item_image_data in item_images]
+            db.session.add_all(item_images_models)
+            for item_image, image_file in zip(item_images_models, image_files):
                 
-            if item_translations:
-                item_translations_models = [ItemTranslationModel(**item_translation_data, item_id=item_model.id, id=str(uuid4())) for item_translation_data in item_translations_data]
-                db.session.add_all(item_translations_models)
-                
-            if item_details_translations:
-                item_details_translations_model = [ItemDetailsTranslationModel(**item_details_translation_data, item_id=item_model.id, id=str(uuid4())) for item_details_translation_data in item_details_translations_data]
-                db.session.add_all(item_details_translations_model)
-                
-            if item_images:
-                item_images_models = [ItemImageModel(**item_image_data, item_id=item_model.id, id=str(uuid4())) for item_image_data in item_images]
-                db.session.add_all(item_images_models)
-                for item_image, image_file in zip(item_images_models, image_files):
+                if not allowed_item_image_file(image_file):
+                    abort(400, message="Invalid image file format or file size")
                     
-                    if not allowed_item_image_file(image_file):
-                        abort(400, message="Invalid image file format or file size")
-                        
-                    file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], item_image.file_name + '.png')
+                file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], item_image.name + '.png')
+                
+                if os.path.exists(file_path):
+                    abort(400, message="Image already exists")
                     
-                    if os.path.exists(file_path):
-                        abort(400, message="Image already exists")
-                        
-                    image_file.save(file_path)
+                image_file.save(file_path)
             
-            db.session.commit()
-            
-            return item_model
-        except ValidationError as error:
-            abort(422, errors=error.messages)
+        db.session.flush()
+        if item_images_translations:
+            for index, image in enumerate(item_images_models):
+                item_images_translation_models = [ItemImageTranslationModel(**item_image_translation, item_image_id=image.id, id=uuid4()) for item_image_translation in item_images_translations[index]]
+                db.session.add_all(item_images_translation_models)
+        
+        
+        db.session.commit()
+        
+        return item_model
+  
