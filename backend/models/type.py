@@ -6,7 +6,8 @@ class TypeModel(db.Model):
     __tablename__ = "types"
     
     id = db.Column(db.String(80), primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    
     icon_url = db.Column(db.String(80), nullable=False)
     page_link = db.Column(db.String(80), nullable=False)
     

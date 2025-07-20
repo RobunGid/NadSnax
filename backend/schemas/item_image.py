@@ -5,7 +5,7 @@ class PlainItemImageSchema(Schema):
     title = fields.Str(required=True)
     alt = fields.Str(required=True)
     is_main = fields.Boolean()
-    file_name = fields.Str(required=True)
+    name = fields.Str(required=True)
     item_id = fields.Str(required=True)
     url = fields.Str(dump_only=True)
  

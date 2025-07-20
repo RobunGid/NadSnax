@@ -5,7 +5,7 @@ from constants import SupportedLanguages
 class PlainItemSchema(Schema):
     id = fields.Str(dump_only=True)
     label = fields.Str(required=True)
-    page_link = fields.Str(required=True)
+    name = fields.Str(required=True)
     description = fields.Str()
     price = fields.Float(required=True)
     converted_price = fields.Float(dump_only=True)
@@ -18,7 +18,7 @@ class PlainItemSchema(Schema):
     
 class ItemUpdateSchema(Schema):
     label = fields.Str(required=True)
-    page_link = fields.Str(required=True)
+    name = fields.Str(required=True)
     description = fields.Str(required=True)
     price = fields.Float(required=True)
     old_price = fields.Float(required=True)
@@ -57,3 +57,4 @@ class PostItemSchema(Schema):
     item_details = fields.Str()
     item_details_translations = fields.Str()
     item_images = fields.Str()
+    item_images_translations = fields.Str()
