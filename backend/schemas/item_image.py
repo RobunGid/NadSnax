@@ -3,7 +3,6 @@ from marshmallow import Schema, fields
 class PlainItemImageSchema(Schema):
     id = fields.Str(dump_only=True)
     title = fields.Str(required=True)
-    alt = fields.Str(required=True)
     is_main = fields.Boolean()
     name = fields.Str(required=True)
     item_id = fields.Str(required=True)

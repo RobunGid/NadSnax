@@ -1,21 +1,26 @@
 import clsx from 'clsx';
-import styles from './UIFlagIcon.module.css';
+import { LanguageCodes } from '../../types';
 
 interface UIFlagIcon {
-	countryCode: string;
+	countryCode: LanguageCodes;
 	className?: string;
 }
 
 export const UIFlagIcon = ({ countryCode, className }: UIFlagIcon) => {
-	if (countryCode === 'en') {
-		countryCode = 'us';
+	switch (countryCode) {
+		case 'en':
+			return (
+				<img
+					src='https://hatscripts.github.io/circle-flags/flags/us.svg'
+					className={clsx(`size-5 rounded-full`, className)}
+				/>
+			);
+		case 'ru':
+			return (
+				<img
+					src='https://hatscripts.github.io/circle-flags/flags/ru.svg'
+					className={clsx(`size-5 rounded-full`, className)}
+				/>
+			);
 	}
-	return (
-		<span
-			className={clsx(
-				`fi fis inline-block mr-2 fi-${countryCode} ${styles.fiCircle}`,
-				className
-			)}
-		/>
-	);
 };

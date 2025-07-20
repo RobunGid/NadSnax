@@ -19,7 +19,6 @@ export type ItemType = {
 
 export type Image = {
 	id: string;
-	alt: string;
 	name: string;
 	isMain?: boolean;
 	title: string;
