@@ -12,14 +12,14 @@ export const UIFlagIcon = ({ countryCode, className }: UIFlagIcon) => {
 			return (
 				<img
 					src='https://hatscripts.github.io/circle-flags/flags/us.svg'
-					className={clsx(`size-5 rounded-full`, className)}
+					className={clsx(`size-5 rounded-full inline`, className)}
 				/>
 			);
 		case 'ru':
 			return (
 				<img
 					src='https://hatscripts.github.io/circle-flags/flags/ru.svg'
-					className={clsx(`size-5 rounded-full`, className)}
+					className={clsx(`size-5 rounded-full inline`, className)}
 				/>
 			);
 	}

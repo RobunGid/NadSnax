@@ -65,8 +65,8 @@ export const UIInput = (props: UIInputProps) => {
 						`
 					absolute bottom-[7px] font-normal transition-all pointer-events-none
 					peer-focus:bottom-[22px] peer-focus:text-xs peer-focus:text-gray-700
-					peer-[:not(:placeholder-shown)]:bottom-[23px] peer-[:not(:placeholder-shown)]:text-gray-700
-					peer-[:not(:placeholder-shown)]:text-sm
+					peer-[:not(:placeholder-shown)]:bottom-[22px] peer-[:not(:placeholder-shown)]:text-gray-700
+					peer-[:not(:placeholder-shown)]:text-xs flex gap-2
 					text-gray-600
 					`,
 					type === 'checkbox' && 'font-normal dark:text-gray-300 text-black'
