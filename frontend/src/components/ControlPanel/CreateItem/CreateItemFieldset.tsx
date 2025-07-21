@@ -46,13 +46,28 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.general')}{' '}
 				</UICreateItemLegend>
-
+				<UICreateItemInput
+					config={createItemFormConfig.general.input.uniqueName}
+				/>
 				{languages.map((language) => (
-					<CreateItemInputGroup
-						configs={createItemFormConfig.general.input}
-						language={language.key}
-						key={language.key}
-					/>
+					<Fragment key={language.key}>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.displayedName}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.price}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.shortDescription}
+						/>
+						<UICreateItemInput
+							languageCode={language.key}
+							config={createItemFormConfig.general.input.oldPrice}
+						/>
+					</Fragment>
 				))}
 				<div className='flex'>
 					<UICreateItemInput
@@ -69,7 +84,6 @@ export const CreateItemFieldset = {
 					}}
 					options={categoryOptions}
 				/>
-				<div />
 
 				<UICreateItemSelect
 					config={createItemFormConfig.general.select.type}

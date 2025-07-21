@@ -43,6 +43,8 @@ type Translation = {
 	supplier?: string;
 	supplier_link?: string;
 	nutrition?: string;
+	price?: number;
+	old_price?: number;
 };
 
 type ParsedForm = {
@@ -98,6 +100,7 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 	for (const [key, value] of Object.entries(formData)) {
 		if (key === 'item.isBestseller') item.is_bestseller = value.toString() === 'on';
 		if (key === 'item.isSecretBox') item.is_secretbox = value.toString() === 'on';
+		if (key === 'item.name') item.name = value.toString();
 		if (key.startsWith('item.')) {
 			const [, field, lang] = key.split(/[._]/);
 			const v = value.toString();
@@ -105,7 +108,7 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 				if (field === 'isBestseller') item.is_bestseller = v === 'on';
 				if (field === 'isSecretbox') item.is_secretbox = v === 'on';
 				if (field === 'label') item.label = v;
-				if (field === 'name') item.name = v;
+
 				if (field === 'description') item.description = v;
 				if (field === 'price') item.price = parseFloat(v) || 0;
 				if (field === 'oldPrice') item.old_price = parseFloat(v) || 0;
@@ -114,6 +117,11 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 					itemTranslationsMap[lang as LanguageCodes].label = v;
 				if (field === 'description')
 					itemTranslationsMap[lang as LanguageCodes].description = v;
+				if (field === 'price')
+					itemTranslationsMap[lang as LanguageCodes].price = parseFloat(v) || 0;
+				if (field === 'old_price')
+					itemTranslationsMap[lang as LanguageCodes].old_price =
+						parseFloat(v) || 0;
 			}
 		}
 
