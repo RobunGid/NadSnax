@@ -1,6 +1,7 @@
-from db import db
 from sqlalchemy.ext.hybrid import hybrid_property
 from flask import request
+
+from db import db
 
 class CategoryModel(db.Model):
     __tablename__ = "category"

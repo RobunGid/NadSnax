@@ -1,6 +1,7 @@
-from db import db
 from sqlalchemy import UniqueConstraint, DateTime
 from datetime import datetime
+
+from db import db
 
 class ReviewModel(db.Model):
     __tablename__ = "review"

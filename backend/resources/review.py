@@ -1,13 +1,15 @@
+import uuid
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from models import ReviewModel
-from schemas import ReviewSchema, ReviewUpdateSchema, PlainReviewSchema
-from db import db
 from sqlalchemy.exc import SQLAlchemyError
-import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request
 from sqlalchemy import func
+
+from db import db
+from schemas import ReviewSchema, ReviewUpdateSchema, PlainReviewSchema
+from models import ReviewModel
 
 blp = Blueprint("reviews", __name__, description="Operations on reviews")
 

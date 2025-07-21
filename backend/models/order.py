@@ -1,7 +1,8 @@
-from db import db
 from datetime import datetime
 from sqlalchemy import DateTime
 from constants import OrderStatus
+
+from db import db
 
 class OrderModel(db.Model):
     __tablename__ = 'order'

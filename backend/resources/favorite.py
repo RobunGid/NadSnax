@@ -1,13 +1,14 @@
+from uuid import uuid4
+
 from flask_smorest import Blueprint
 from flask.views import MethodView
-from schemas import FavoriteSchema
-from models import FavoriteModel
-from uuid import uuid4
-from db import db
-from sqlalchemy.exc import SQLAlchemyError
 from flask_smorest import abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
 from utils import role_required
+from schemas import FavoriteSchema
+from models import FavoriteModel
+from db import db
 
 blp = Blueprint("favorites", __name__, description="Operations on favorites")
 

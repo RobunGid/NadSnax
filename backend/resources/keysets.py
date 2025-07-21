@@ -1,7 +1,8 @@
-from flask_smorest import Blueprint
-from flask.views import MethodView
 import json
 import os
+
+from flask_smorest import Blueprint
+from flask.views import MethodView
 
 blp = Blueprint("keyset", __name__, "Key sets")
 

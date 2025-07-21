@@ -1,8 +1,9 @@
 from flask_smorest import Blueprint
-from models import OrderModel, ItemModel, ReviewModel, UserModel
-from models.order import OrderStatus
 from flask.views import MethodView
 from sqlalchemy import func
+
+from models import OrderModel, ItemModel, ReviewModel, UserModel
+from models.order import OrderStatus
 
 blp = Blueprint("admin", __name__, "Admin tools")
 

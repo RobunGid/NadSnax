@@ -1,5 +1,6 @@
 from marshmallow import fields, Schema
 from marshmallow_enum import EnumField
+
 from models.order import OrderStatus
 
 class PlainOrderItemSchema(Schema):

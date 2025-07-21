@@ -1,7 +1,7 @@
-
-from db import db
 from constants import SupportedLanguages
 from sqlalchemy import UniqueConstraint
+
+from db import db
 
 class TypeTranslationModel(db.Model):
     __tablename__ = "type_translation"

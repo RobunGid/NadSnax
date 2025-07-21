@@ -1,7 +1,8 @@
-from db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+
+from db import db
 from models import ItemDetailsModel
 from schemas import ItemDetailsSchema
 

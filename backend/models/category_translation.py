@@ -1,7 +1,7 @@
+from sqlalchemy import UniqueConstraint
 
 from db import db
 from constants import SupportedLanguages
-from sqlalchemy import UniqueConstraint
 
 class CategoryTranslationModel(db.Model):
     __tablename__ = "category_translation"

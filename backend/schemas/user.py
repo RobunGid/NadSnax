@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 from marshmallow_enum import EnumField
+
 from models.user import Role
 
 class AuthUserSchema(Schema):

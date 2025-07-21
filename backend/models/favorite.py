@@ -1,7 +1,8 @@
-from db import db
-
 from sqlalchemy import DateTime, UniqueConstraint
 from datetime import datetime
+
+from db import db
+
 
 class FavoriteModel(db.Model):
     __tablename__ = 'favorite'

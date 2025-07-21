@@ -1,13 +1,15 @@
+import uuid
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from models import CategoryModel, CategoryTranslationModel, TypeTranslationModel, TypeModel
-from schemas import CategorySchema, CategoryUpdateSchema
-import uuid
-from db import db
 from sqlalchemy.exc import SQLAlchemyError
-from flask import request, g
+from flask import g
 from sqlalchemy.orm import aliased, contains_eager
 from sqlalchemy import and_
+
+from db import db
+from models import CategoryModel, CategoryTranslationModel, TypeTranslationModel, TypeModel
+from schemas import CategorySchema, CategoryUpdateSchema
 
 blp = Blueprint("categories", __name__, description="Operations on categories")
 

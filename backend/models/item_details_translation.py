@@ -1,6 +1,7 @@
+from sqlalchemy import UniqueConstraint
+
 from db import db
 from constants import SupportedLanguages
-from sqlalchemy import UniqueConstraint
 
 class ItemDetailsTranslationModel(db.Model):
     __tablename__ = "item_details_translation"

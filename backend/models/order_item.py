@@ -1,6 +1,7 @@
-from db import db
 from sqlalchemy import CheckConstraint
 from sqlalchemy.orm import validates
+
+from db import db
 
 class OrderItemModel(db.Model):
     __tablename__ = 'order_item'

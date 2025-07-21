@@ -1,8 +1,9 @@
+from datetime import datetime
+
 from flask import request
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy import CheckConstraint, DateTime
 from sqlalchemy.orm import validates
-from datetime import datetime
 
 from constants import Role
 from db import db

@@ -1,17 +1,19 @@
+import uuid
+import os
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from models import UserModel
-from schemas import UserSchema, UserUpdateSchema, PlainUserSchema, AuthUserSchema
-from db import db
 from sqlalchemy.exc import SQLAlchemyError
-import uuid
 from flask_jwt_extended import create_access_token, set_refresh_cookies, create_refresh_token, jwt_required, get_jwt_identity, get_jwt
 from flask import request, jsonify
 from passlib.hash import pbkdf2_sha512
-from utils import role_required
-from blocklist import BLOCKLIST	
-import os
+
+from models import UserModel
 from utils import allowed_avatar_file, content_type_required
+from blocklist import BLOCKLIST	
+from schemas import UserSchema, UserUpdateSchema, AuthUserSchema
+from utils import role_required
+from db import db
 
 blp = Blueprint("users", __name__, description="Operations on users")
 

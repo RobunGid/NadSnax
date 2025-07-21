@@ -1,9 +1,11 @@
 from typing import List
 from functools import wraps
+
 from flask_jwt_extended import get_jwt_identity
-from models import UserModel
 from flask_smorest import abort
 from flask import request
+
+from models import UserModel
 from constants import Role
 
 def role_required(roles: List[Role], message=None):

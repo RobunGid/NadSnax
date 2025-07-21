@@ -1,23 +1,25 @@
+import json
+import os
+from uuid import uuid4
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from marshmallow import ValidationError
-from uuid import uuid4
-from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
-from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema
-from db import db
-from sqlalchemy.exc import SQLAlchemyError
 from flask import request, g
 from sqlalchemy import func, and_
 from flask_jwt_extended import decode_token
 from flask_jwt_extended import jwt_required
-from utils import role_required, content_type_required, allowed_item_image_file
 from sqlalchemy.orm import aliased
-from constants import SupportedCurrencies
 from sqlalchemy.orm import contains_eager
-from currency_converter import CurrencyConverter
-import json
-import os
 
+from db import db
+from currency_converter import CurrencyConverter
+from constants import SupportedCurrencies
+from utils import role_required, content_type_required, allowed_item_image_file
+from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, \
+    ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
+from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, \
+    ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema
+    
 blp = Blueprint("items", __name__, description = "Operations on items")
 
 @blp.route('/item/<string:item_id>')

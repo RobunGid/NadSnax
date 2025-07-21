@@ -1,16 +1,18 @@
-from flask import Flask, request, session
-from flask_smorest import Api
 import os
+import logging
+from datetime import timedelta
+
+from flask import Flask, request
+from flask_smorest import Api
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
-import logging
-from constants import SupportedLanguages
 from flask import g
 
 from db import db
-
+from blocklist import BLOCKLIST
+from constants import SupportedLanguages
 from resources.user import blp as UserBlueprint
 from resources.review import blp as ReviewBlueprint
 from resources.category import blp as CategoryBlueprint
@@ -26,9 +28,7 @@ from resources.icon import blp as IconBlueprint
 from resources.admin import blp as AdminBlueprint
 from resources.keysets import blp as KeysetsBlueprint
 
-from datetime import timedelta
 
-from blocklist import BLOCKLIST
 
 def create_app(db_url = None):
     

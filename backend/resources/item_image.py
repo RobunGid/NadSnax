@@ -1,14 +1,16 @@
+import os
+
 from flask_smorest import Blueprint, abort
-from db import db
 import uuid
 from flask.views import MethodView
-from schemas import ItemImageSchema
-from models import ItemImageModel, ItemModel
 from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import jwt_required
-from utils import role_required, allowed_item_image_file, content_type_required
-import os
 from flask import request
+
+from db import db
+from schemas import ItemImageSchema
+from models import ItemImageModel
+from utils import role_required, allowed_item_image_file, content_type_required
 
 blp = Blueprint("item_images", __name__, description="Operations on item images")
 

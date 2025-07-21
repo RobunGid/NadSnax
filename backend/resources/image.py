@@ -1,7 +1,6 @@
 from flask_smorest import Blueprint
 from flask.views import MethodView
-from flask import send_from_directory, abort
-import os
+from flask import send_from_directory
 
 blp = Blueprint("images", __name__, description="Operations on images")
 

@@ -1,11 +1,12 @@
+import uuid
+
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from models import TypeModel
-from schemas import TypeSchema, TypeUpdateSchema, ItemSchema
-import uuid
-from db import db
 from sqlalchemy.exc import SQLAlchemyError
-from flask import request
+
+from db import db
+from schemas import TypeSchema, TypeUpdateSchema, ItemSchema
+from models import TypeModel
 
 blp = Blueprint("types", __name__, description="Operations on types")
 

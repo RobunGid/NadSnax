@@ -1,17 +1,19 @@
+from uuid import uuid4
+
 from flask_smorest import Blueprint
 from flask.views import MethodView
 from flask_smorest import abort
-from models import OrderModel, OrderItemModel, ItemTranslationModel, ItemModel
-from schemas import OrderSchema
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from db import db
-from uuid import uuid4
-from utils import role_required
 from flask import request, g
 from sqlalchemy.orm import aliased, contains_eager
 from sqlalchemy import and_
-from constants import SupportedCurrencies
+
+from db import db
 from currency_converter import CurrencyConverter
+from constants import SupportedCurrencies
+from utils import role_required
+from schemas import OrderSchema
+from models import OrderModel, OrderItemModel, ItemTranslationModel, ItemModel
 
 blp = Blueprint("orders", __name__, description="Operations on orders")
 
