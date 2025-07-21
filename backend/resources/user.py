@@ -14,6 +14,7 @@ from blocklist import BLOCKLIST
 from schemas import UserSchema, UserUpdateSchema, AuthUserSchema
 from utils import role_required
 from db import db
+from constants import Role
 
 blp = Blueprint("users", __name__, description="Operations on users")
 
@@ -69,13 +70,13 @@ class MyUser(MethodView):
 @blp.route('/user/<string:user_id>')
 class User(MethodView):
     @blp.response(200, UserSchema)
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         return user
     
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def delete(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         db.session.delete(user)
@@ -85,7 +86,7 @@ class User(MethodView):
     @blp.response(200, UserSchema)        
     @blp.arguments(UserUpdateSchema)
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def put(self, user_data, user_id):
         user = UserModel.query.get(user_id)
         
@@ -95,7 +96,7 @@ class User(MethodView):
             user.last_name = user_data["last_name"]
             user.role = user_data["role"]
         else:
-            user = UserModel(id = user_id, **user_data)
+            user = UserModel(id=user_id, **user_data)
             
         db.session.add(user)
         db.session.commit()
@@ -107,14 +108,14 @@ class User(MethodView):
 class Users(MethodView):
     @blp.response(200, UserSchema(many = True))
     @jwt_required()
-    @role_required(['moderator', 'admin'])
+    @role_required([Role.admin, Role.moderator])
     def get(self):
         username_filter = request.args.get("username")
         first_name_filter = request.args.get("first_name")
         last_name_filter = request.args.get("last_name")
         
-        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
-        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        per_page = int(request.args.get("per_page", 10))
+        page = int(request.args.get("page", 10))
   
         query = UserModel.query
   
@@ -138,17 +139,17 @@ class UserRegister(MethodView):
         if existing_user:
             abort(400, message="Username already exists")
         user = UserModel(
-      id=str(uuid.uuid4()),
-      username=user_data["username"], 
-      password=pbkdf2_sha512.hash(user_data["password"]), 
-      first_name=user_data["first_name"],
-      last_name=user_data["last_name"],
-      )
+			id=str(uuid.uuid4()),
+			username=user_data["username"], 
+			password=pbkdf2_sha512.hash(user_data["password"]), 
+			first_name=user_data["first_name"],
+			last_name=user_data["last_name"],
+      	)
         try:
-            if 'avatar' in request.files:
-                avatar_file = request.files.get('avatar')
+            avatar_file = request.files.get('avatar', None)
+            if avatar_file:
                 
-                filename = os.path.splitext(avatar_file.filename)[0]
+                filename = os.path.splitext(avatar_file.get("filename"))[0]
         
                 if not allowed_avatar_file(avatar_file):
                     abort(400, description="Invalid avatar file format or file size")
