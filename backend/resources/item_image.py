@@ -23,7 +23,7 @@ class Images(MethodView):
     def post(self, image_data):
         from app import app
         image = ItemImageModel(**image_data, id=str(uuid.uuid4()))
-        item_image_name = request.form.get("file_name") + '.png'
+        item_image_name = request.form.get("name") + '.png'
         file_path = os.path.join(app.config['AVATAR_UPLOAD_FOLDER'], item_image_name)
         
         if 'image' not in request.files:

@@ -39,6 +39,7 @@ export const CreateItemSection = () => {
 		transformedData.image_files.forEach((imageFile) => {
 			transformedFormData.append('image_file', imageFile);
 		});
+		console.log(transformedData);
 		const response = await Axios.post('/item', transformedFormData, {
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',

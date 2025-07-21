@@ -33,7 +33,7 @@ class Item(MethodView):
         from app import app
         item = ItemModel.query.get_or_404(item_id)
         for image in item.images:
-            file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], image.file_name + '.png')
+            file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], image.name + '.png')
             if os.path.exists(file_path):
                 os.remove(file_path)
         db.session.delete(item)
@@ -259,7 +259,7 @@ class Items(MethodView):
                 
                 if not allowed_item_image_file(image_file):
                     abort(400, message="Invalid image file format or file size")
-                    
+                
                 file_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], item_image.name + '.png')
                 
                 if os.path.exists(file_path):

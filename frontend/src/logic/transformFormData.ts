@@ -82,7 +82,11 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 		nutrition: '',
 	};
 
-	const translationsMap: Record<LanguageCodes, Translation> = {
+	const itemTranslationsMap: Record<LanguageCodes, Translation> = {
+		ru: { lang_key: 'ru' },
+		en: { lang_key: 'en' },
+	};
+	const itemDetailsTranslationsMap: Record<LanguageCodes, Translation> = {
 		ru: { lang_key: 'ru' },
 		en: { lang_key: 'en' },
 	};
@@ -106,9 +110,10 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 				if (field === 'price') item.price = parseFloat(v) || 0;
 				if (field === 'oldPrice') item.old_price = parseFloat(v) || 0;
 			} else if (langs.includes(lang as LanguageCodes)) {
-				if (field === 'label') translationsMap[lang as LanguageCodes].label = v;
+				if (field === 'label')
+					itemTranslationsMap[lang as LanguageCodes].label = v;
 				if (field === 'description')
-					translationsMap[lang as LanguageCodes].description = v;
+					itemTranslationsMap[lang as LanguageCodes].description = v;
 			}
 		}
 
@@ -124,17 +129,18 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 				if (field === 'nutritionalValue') item_details.nutrition = v;
 			} else if (langs.includes(lang as LanguageCodes)) {
 				if (field === 'fullDisplayedName')
-					translationsMap[lang as LanguageCodes].full_label = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].full_label = v;
 				if (field === 'fullDescription')
-					translationsMap[lang as LanguageCodes].full_description = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].full_description =
+						v;
 				if (field === 'ingridients')
-					translationsMap[lang as LanguageCodes].ingridients = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].ingridients = v;
 				if (field === 'supplier')
-					translationsMap[lang as LanguageCodes].supplier = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].supplier = v;
 				if (field === 'supplierLink')
-					translationsMap[lang as LanguageCodes].supplier_link = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].supplier_link = v;
 				if (field === 'nutritionalValue')
-					translationsMap[lang as LanguageCodes].nutrition = v;
+					itemDetailsTranslationsMap[lang as LanguageCodes].nutrition = v;
 			}
 		}
 
@@ -155,7 +161,7 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 						title: v,
 					});
 			}
-			if (field === 'name' && lang === 'en') imageGroups[index].name = v;
+			if (field === 'name') imageGroups[index].name = v;
 			if (field === 'file' && value instanceof File) imageFiles.push(value);
 		}
 
@@ -163,10 +169,10 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 		if (key === 'item.type') item.type_id = value.toString();
 	}
 
-	const item_translations = Object.values(translationsMap).filter(
+	const item_translations = Object.values(itemTranslationsMap).filter(
 		(t) => t.lang_key !== 'en' && (t.label || t.description)
 	);
-	const item_details_translations = Object.values(translationsMap).filter(
+	const item_details_translations = Object.values(itemDetailsTranslationsMap).filter(
 		(t) =>
 			t.lang_key !== 'en' &&
 			(t.full_label ||
