@@ -9,9 +9,9 @@ import { UIButton } from '../../UI/UIButton';
 import { languages } from '../../../logic/languages';
 import { CreateItemInputGroup } from './CreateItemInputGroup';
 import { useStateSelector } from '../../../store';
-import { UICreateItemSelect } from './UI/UICreateItemSelect';
 import { ItemType } from '../../../types';
 import { CreateItemInput } from './CreateItemInput';
+import { CreateItemSelect } from './CreateItemSelect';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -19,7 +19,9 @@ interface CreateItemFieldsetProps {
 
 export const CreateItemFieldset = {
 	General: withTranslate(({ translate }: CreateItemFieldsetProps) => {
-		const [selectedCategory, setSelectedCategory] = useState<null | string>(null);
+		const [selectedCategory, setSelectedCategory] = useState<string>(
+			sessionStorage.getItem('item.category') ?? ''
+		);
 
 		const categories = useStateSelector((state) => state.category.categoryList);
 		const categoryOptions = categories.map((category) => ({
@@ -75,7 +77,7 @@ export const CreateItemFieldset = {
 						config={createItemFormConfig.general.checkbox.isBestseller}
 					/>
 				</div>
-				<UICreateItemSelect
+				<CreateItemSelect
 					config={{
 						...createItemFormConfig.general.select.category,
 						onChange: handleChangeCategory,
@@ -83,7 +85,7 @@ export const CreateItemFieldset = {
 					options={categoryOptions}
 				/>
 
-				<UICreateItemSelect
+				<CreateItemSelect
 					config={createItemFormConfig.general.select.type}
 					options={typeOptions}
 				/>
