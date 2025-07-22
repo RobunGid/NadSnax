@@ -5,7 +5,7 @@ import { LanguageCodes } from '../../../../types';
 import { UIInput } from '../../../UI/UIInput';
 
 type UICreateItemInputProps = {
-	config: InputRecord;
+	config: InputRecord & Required<Pick<InputRecord, 'name'>>;
 	translate: ReturnType<typeof useTranslate>;
 	languageCode?: LanguageCodes;
 };
@@ -14,14 +14,12 @@ export const UICreateItemInput = withTranslate(
 	({ translate, config, languageCode }: UICreateItemInputProps) => {
 		const { translateKey, ...attributes } = config;
 		const text = translate(translateKey);
-		const fixedName = languageCode ? `${config.name}_${languageCode}` : config.name;
-
 		return (
 			<UIInput
 				key={config.name}
 				placeholder={text}
 				languageCode={languageCode}
-				{...{ ...attributes, name: fixedName }}
+				{...attributes}
 			/>
 		);
 	}

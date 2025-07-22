@@ -3,7 +3,6 @@ import { useTranslate } from '../../../i18n/i18n';
 import { createItemFormConfig, InputRecord } from '../../../logic/createItemFormConfig';
 import { withTranslate } from '../../../logic/withTranslate';
 import { UICreateItemFieldset } from './UI/UICreateItemFieldset';
-import { UICreateItemInput } from './UI/UICreateItemInput';
 import { UICreateItemLegend } from './UI/UICreateItemLegend';
 import { UICreateItemFieldsetLine } from './UI/UICreateItemFieldsetLine';
 import { UIButton } from '../../UI/UIButton';
@@ -12,6 +11,7 @@ import { CreateItemInputGroup } from './CreateItemInputGroup';
 import { useStateSelector } from '../../../store';
 import { UICreateItemSelect } from './UI/UICreateItemSelect';
 import { ItemType } from '../../../types';
+import { CreateItemInput } from './CreateItemInput';
 
 interface CreateItemFieldsetProps {
 	translate: ReturnType<typeof useTranslate>;
@@ -46,34 +46,32 @@ export const CreateItemFieldset = {
 				<UICreateItemLegend>
 					{translate('create_item.legend.general')}{' '}
 				</UICreateItemLegend>
-				<UICreateItemInput
-					config={createItemFormConfig.general.input.uniqueName}
-				/>
+				<CreateItemInput config={createItemFormConfig.general.input.uniqueName} />
 				{languages.map((language) => (
 					<Fragment key={language.key}>
-						<UICreateItemInput
+						<CreateItemInput
 							languageCode={language.key}
 							config={createItemFormConfig.general.input.displayedName}
 						/>
-						<UICreateItemInput
+						<CreateItemInput
 							languageCode={language.key}
 							config={createItemFormConfig.general.input.price}
 						/>
-						<UICreateItemInput
+						<CreateItemInput
 							languageCode={language.key}
 							config={createItemFormConfig.general.input.shortDescription}
 						/>
-						<UICreateItemInput
+						<CreateItemInput
 							languageCode={language.key}
 							config={createItemFormConfig.general.input.oldPrice}
 						/>
 					</Fragment>
 				))}
 				<div className='flex'>
-					<UICreateItemInput
+					<CreateItemInput
 						config={createItemFormConfig.general.checkbox.isSecretBox}
 					/>
-					<UICreateItemInput
+					<CreateItemInput
 						config={createItemFormConfig.general.checkbox.isBestseller}
 					/>
 				</div>
@@ -145,7 +143,7 @@ export const CreateItemFieldset = {
 				{imageCount.map((count) => {
 					return (
 						<Fragment key={Math.random()}>
-							<UICreateItemInput
+							<CreateItemInput
 								config={{
 									...createItemFormConfig.images.input.name,
 									name: `${createItemFormConfig.images.input.name.name}_${count}`,
@@ -168,13 +166,13 @@ export const CreateItemFieldset = {
 									/>
 								);
 							})}
-							<UICreateItemInput
+							<CreateItemInput
 								config={{
 									...createItemFormConfig.images.checkbox.isMain,
 									name: `${createItemFormConfig.images.checkbox.isMain.name}_${count}`,
 								}}
 							/>
-							<UICreateItemInput
+							<CreateItemInput
 								config={{
 									...createItemFormConfig.images.file.file,
 									name: `${createItemFormConfig.images.file.file.name}_${count}`,

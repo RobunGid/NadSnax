@@ -3,12 +3,14 @@ import { Option } from '../types';
 
 export type InputRecord = {
 	translateKey: string;
-} & JSX.IntrinsicElements['input'];
+} & JSX.IntrinsicElements['input'] &
+	Required<Pick<JSX.IntrinsicElements['input'], 'name'>>;
 
 export type SelectRecord = {
 	translateKey: string;
 	options: Option[];
-} & JSX.IntrinsicElements['select'];
+} & JSX.IntrinsicElements['select'] &
+	Required<Pick<JSX.IntrinsicElements['select'], 'name'>>;
 
 type FormConfig = {
 	general: {
