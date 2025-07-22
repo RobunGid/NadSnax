@@ -4,18 +4,14 @@ import { useActionCreators, useStateSelector } from '../../store';
 import { fetchRandomReviews } from '../../store/reviewSlice';
 import { useI18n } from '../../i18n/i18n';
 import { HomePageReviewElement } from './Layout/HomePageReviewElement';
+import { extendReviewsLen } from '../../logic/extendReviewsLen';
 
 export const HomePage = () => {
-	const REQUIRED_REVIEWS_LENGTH = 8;
 	const reviews = useStateSelector((state) => state.review.reviews);
-	const fixedReviews = [...reviews];
-	if (reviews.length > 0) {
-		while (fixedReviews.length < REQUIRED_REVIEWS_LENGTH) {
-			fixedReviews.push(reviews[fixedReviews.length % reviews.length]);
-		}
-	}
 
-	const reviewsElements = fixedReviews.map((review) => (
+	const extendedReviews = extendReviewsLen(reviews);
+
+	const reviewsElements = extendedReviews.map((review) => (
 		<HomePageReviewElement review={review} key={review.id + Math.random()} />
 	));
 
