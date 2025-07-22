@@ -1,9 +1,8 @@
-import { ReactNode, useContext } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 import { UISidebarItem } from './UI/UISidebarItem';
 import { NavbarContext } from '../../context/NavbarContext';
 
 interface SidebarItemContainerProps {
-	children: ReactNode;
 	className?: string;
 	to: string;
 }
@@ -12,7 +11,7 @@ export const SidebarItemContainer = ({
 	children,
 	className,
 	to,
-}: SidebarItemContainerProps) => {
+}: PropsWithChildren<SidebarItemContainerProps>) => {
 	const { toggleSidebarVisibility } = useContext(NavbarContext);
 	return (
 		<li onClick={toggleSidebarVisibility}>

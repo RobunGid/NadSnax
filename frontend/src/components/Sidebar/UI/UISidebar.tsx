@@ -1,13 +1,16 @@
 import clsx from 'clsx';
-import { ReactNode, RefObject } from 'react';
+import { PropsWithChildren, RefObject } from 'react';
 
 interface UISidebarProps {
 	className?: string;
-	children: ReactNode;
 	ref?: RefObject<HTMLDivElement | null>;
 }
 
-export const UISidebar = ({ className, children, ref }: UISidebarProps) => {
+export const UISidebar = ({
+	className,
+	children,
+	ref,
+}: PropsWithChildren<UISidebarProps>) => {
 	return (
 		<div
 			className={clsx(

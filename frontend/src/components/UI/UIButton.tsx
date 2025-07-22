@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 
 interface UIButtonProps {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
-	children: ReactNode;
 	className?: string;
 	type?: 'normal' | 'danger';
 	hidden?: boolean;
@@ -11,11 +10,11 @@ interface UIButtonProps {
 
 export const UIButton = ({
 	onClick,
-	children,
 	className,
 	type = 'normal',
 	hidden,
-}: UIButtonProps) => {
+	children,
+}: PropsWithChildren<UIButtonProps>) => {
 	return (
 		<button
 			className={clsx(

@@ -1,16 +1,19 @@
 import clsx from 'clsx';
 import { Link } from 'react-router';
 import styles from './UIProductItem.module.css';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 interface UIProductItemProps {
 	className?: string;
 	pageLink: string;
-	children: ReactNode;
 	isSmall?: boolean;
 }
 
-export const UIProductItem = ({ pageLink, className, children }: UIProductItemProps) => {
+export const UIProductItem = ({
+	pageLink,
+	className,
+	children,
+}: PropsWithChildren<UIProductItemProps>) => {
 	return (
 		<Link
 			to={pageLink}

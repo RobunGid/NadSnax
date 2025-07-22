@@ -1,10 +1,8 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import { NavLink } from 'react-router';
 
 type UINavbarItemProps = {
-	children?: ReactNode;
 	to: string;
 	id?: string;
 	text?: string;

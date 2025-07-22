@@ -1,22 +1,24 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { BiUser } from 'react-icons/bi';
 import { JSX } from 'react';
 
 type UINavbarLoginButtonProps = {
-	children: ReactNode;
 	className?: string;
 } & Partial<JSX.IntrinsicElements['button']>;
 
-export const UINavbarLoginButton = (props: UINavbarLoginButtonProps) => {
-	const { className, children } = props;
+export const UINavbarLoginButton = ({
+	className,
+	children,
+	...rest
+}: PropsWithChildren<UINavbarLoginButtonProps>) => {
 	return (
 		<button
 			className={clsx(
 				'flex p-[6px] m-2 bg-transparent dark:bg-transparent hover:scale-105 transition-transform',
 				className
 			)}
-			{...props}
+			{...rest}
 		>
 			<BiUser />
 			{children}

@@ -1,14 +1,17 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 interface UICartContainerProps {
-	children: ReactNode;
 	bordered?: boolean;
 	count?: 2 | 3;
 	type?: 'big' | 'small';
 }
 
-export const UICartContainer = ({ children, bordered, count }: UICartContainerProps) => {
+export const UICartContainer = ({
+	children,
+	bordered,
+	count,
+}: PropsWithChildren<UICartContainerProps>) => {
 	return (
 		<div
 			className={clsx(

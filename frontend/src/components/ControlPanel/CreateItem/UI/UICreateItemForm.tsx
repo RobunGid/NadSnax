@@ -1,11 +1,13 @@
-import { FormEventHandler, ReactNode } from 'react';
+import { FormEventHandler, PropsWithChildren } from 'react';
 
 interface UICreateItemFormProps {
-	children: ReactNode;
 	onSubmit?: FormEventHandler<HTMLFormElement>;
 }
 
-export const UICreateItemForm = ({ children, onSubmit }: UICreateItemFormProps) => {
+export const UICreateItemForm = ({
+	children,
+	onSubmit,
+}: PropsWithChildren<UICreateItemFormProps>) => {
 	return (
 		<form className='flex flex-col gap-4' onSubmit={onSubmit}>
 			{children}

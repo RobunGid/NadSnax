@@ -1,7 +1,11 @@
 import { ReactNode, useState } from 'react';
 import { CartModalContext } from './CartModalContext';
 
-export const CartModalProvider = ({ children }: { children: ReactNode }) => {
+interface CartModalProviderProps {
+	children: ReactNode;
+}
+
+export const CartModalProvider = ({ children }: CartModalProviderProps) => {
 	const [cartModalVisibility, setCartModalVisibility] = useState<boolean>(false);
 	const [isSuccessOrder, setIsSuccessOrder] = useState<boolean>(false);
 

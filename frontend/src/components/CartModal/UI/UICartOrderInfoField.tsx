@@ -1,12 +1,14 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 interface UICartOrderInfoFieldProps {
-	children: ReactNode;
 	type?: 'end' | 'start';
 }
 
-export const UICartOrderInfoField = ({ children, type }: UICartOrderInfoFieldProps) => {
+export const UICartOrderInfoField = ({
+	children,
+	type,
+}: PropsWithChildren<UICartOrderInfoFieldProps>) => {
 	return (
 		<div
 			className={clsx(

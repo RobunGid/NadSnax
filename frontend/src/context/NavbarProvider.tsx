@@ -1,7 +1,11 @@
 import { ReactNode, useState } from 'react';
 import { NavbarContext } from './NavbarContext';
 
-export const NavbarProvider = ({ children }: { children: ReactNode }) => {
+interface NavbarProviderProps {
+	children: ReactNode;
+}
+
+export const NavbarProvider = ({ children }: NavbarProviderProps) => {
 	const [sidebarVisibility, setSidebarVisibility] = useState<boolean>(false);
 
 	const toggleSidebarVisibility = () => setSidebarVisibility((prev) => !prev);

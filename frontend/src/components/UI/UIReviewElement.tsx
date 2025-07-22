@@ -1,12 +1,14 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 interface UIReviewElementProps {
-	children: ReactNode;
 	className?: string;
 }
 
-export const UIReviewElement = ({ children, className }: UIReviewElementProps) => {
+export const UIReviewElement = ({
+	children,
+	className,
+}: PropsWithChildren<UIReviewElementProps>) => {
 	return (
 		<div
 			className={clsx(

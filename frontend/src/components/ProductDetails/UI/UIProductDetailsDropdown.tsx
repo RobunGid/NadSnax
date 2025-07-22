@@ -1,12 +1,11 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 interface UIProductDetailsDropdownProps {
 	className?: string;
 	text?: string;
 	optionsVisibility: boolean;
-	children: ReactNode;
 	handleToggleVisibility: MouseEventHandler<HTMLDivElement>;
 }
 
@@ -16,7 +15,7 @@ export const UIProductDetailsDropdown = ({
 	optionsVisibility,
 	children,
 	handleToggleVisibility,
-}: UIProductDetailsDropdownProps) => {
+}: PropsWithChildren<UIProductDetailsDropdownProps>) => {
 	return (
 		<div className={className}>
 			<div

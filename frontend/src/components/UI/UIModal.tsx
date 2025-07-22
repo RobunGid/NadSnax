@@ -1,16 +1,20 @@
 import clsx from 'clsx';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 import { createPortal } from 'react-dom';
 import { RxCross1 } from 'react-icons/rx';
 
 interface UIModalProps {
 	active?: boolean;
 	setActive: Dispatch<SetStateAction<boolean>>;
-	children?: ReactNode;
 	className?: string;
 }
 
-export const UIModal = ({ active, setActive, children, className }: UIModalProps) => {
+export const UIModal = ({
+	active,
+	setActive,
+	children,
+	className,
+}: PropsWithChildren<UIModalProps>) => {
 	return createPortal(
 		<div
 			className={clsx(

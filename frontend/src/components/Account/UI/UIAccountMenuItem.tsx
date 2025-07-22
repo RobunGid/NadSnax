@@ -1,20 +1,19 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router';
 
 interface UIAccountMenuItem {
 	to: string;
 	className?: string;
-	children: ReactNode;
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export const UIAccountMenuItem = ({
 	to,
 	className,
-	children,
 	onClick,
-}: UIAccountMenuItem) => {
+	children,
+}: PropsWithChildren<UIAccountMenuItem>) => {
 	return (
 		<li>
 			<NavLink

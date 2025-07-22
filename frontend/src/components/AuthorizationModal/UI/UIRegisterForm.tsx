@@ -1,9 +1,6 @@
-import { ReactNode } from 'react';
 import { JSX } from 'react';
 
-type UIRegisterFormProps = {
-	children?: ReactNode;
-} & JSX.IntrinsicElements['form'];
+type UIRegisterFormProps = JSX.IntrinsicElements['form'];
 
 export const UIRegisterForm = (props: UIRegisterFormProps) => {
 	return (

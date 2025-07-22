@@ -1,11 +1,10 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router';
 
 interface UIControlPanelMenuItemProps {
 	to: string;
 	className?: string;
-	children: ReactNode;
 	onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
@@ -14,7 +13,7 @@ export const UIControlPanelMenuItem = ({
 	className,
 	children,
 	onClick,
-}: UIControlPanelMenuItemProps) => {
+}: PropsWithChildren<UIControlPanelMenuItemProps>) => {
 	return (
 		<li>
 			<NavLink

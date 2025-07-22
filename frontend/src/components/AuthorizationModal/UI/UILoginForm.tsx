@@ -1,9 +1,6 @@
-import { ReactNode } from 'react';
 import { JSX } from 'react';
 
-type UILoginFormProps = {
-	children?: ReactNode;
-} & JSX.IntrinsicElements['form'];
+type UILoginFormProps = JSX.IntrinsicElements['form'];
 
 export const UILoginForm = (props: UILoginFormProps) => {
 	return (

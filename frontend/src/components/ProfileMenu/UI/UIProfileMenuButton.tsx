@@ -1,11 +1,13 @@
-import { ReactNode, RefObject } from 'react';
+import { PropsWithChildren, RefObject } from 'react';
 
 interface UIProfileMenuButtonProps {
-	children: ReactNode;
 	inputRef?: RefObject<HTMLInputElement | null>;
 }
 
-export const UIProfileMenuButton = ({ children, inputRef }: UIProfileMenuButtonProps) => {
+export const UIProfileMenuButton = ({
+	children,
+	inputRef,
+}: PropsWithChildren<UIProfileMenuButtonProps>) => {
 	return (
 		<div className='overflow-hidden rounded-full w-12 h-12 peer transition-transform hover:scale-105'>
 			<input

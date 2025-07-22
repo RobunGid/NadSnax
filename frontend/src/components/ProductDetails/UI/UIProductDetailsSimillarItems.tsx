@@ -1,14 +1,13 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { withTranslate } from '../../../logic/withTranslate';
 import { useTranslate } from '../../../i18n/i18n';
 
 interface UIProductDetailsSimillarItemsProps {
-	children: ReactNode;
 	translate: ReturnType<typeof useTranslate>;
 }
 
 export const UIProductDetailsSimillarItems = withTranslate(
-	({ children, translate }: UIProductDetailsSimillarItemsProps) => {
+	({ children, translate }: PropsWithChildren<UIProductDetailsSimillarItemsProps>) => {
 		return (
 			<div className='p-5 flex flex-col md:block'>
 				<span className='text-2xl font-bold dark:text-gray-300 block my-4'>

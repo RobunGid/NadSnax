@@ -1,16 +1,15 @@
 import clsx from 'clsx';
 import classes from './UIProductDetailsCarousel.module.css';
-import { forwardRef, ReactNode, RefObject, UIEventHandler } from 'react';
+import { forwardRef, PropsWithChildren, RefObject, UIEventHandler } from 'react';
 
 interface UIProductDetailsCarouselProps {
-	children: ReactNode;
 	ref: RefObject<HTMLDivElement | null>;
 	onScroll?: UIEventHandler<HTMLDivElement>;
 }
 
 export const UIProductDetailsCarousel = forwardRef<
 	HTMLDivElement,
-	UIProductDetailsCarouselProps
+	PropsWithChildren<UIProductDetailsCarouselProps>
 >(({ children, onScroll }, ref) => {
 	return (
 		<div

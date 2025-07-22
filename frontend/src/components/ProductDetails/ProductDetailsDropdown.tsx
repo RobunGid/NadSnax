@@ -1,8 +1,7 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
+import { MouseEventHandler, PropsWithChildren, useState } from 'react';
 import { UIProductDetailsDropdown } from './UI/UIProductDetailsDropdown';
 
 interface ProductDetailsDropdownProps {
-	children?: ReactNode;
 	text?: string;
 	className?: string;
 }
@@ -11,7 +10,7 @@ export const ProductDetailsDropdown = ({
 	children,
 	text,
 	className,
-}: ProductDetailsDropdownProps) => {
+}: PropsWithChildren<ProductDetailsDropdownProps>) => {
 	const [optionsVisibility, setOptionsVisibility] = useState<boolean>(false);
 
 	const handleToggleVisibility: MouseEventHandler<HTMLDivElement> = (event) => {
