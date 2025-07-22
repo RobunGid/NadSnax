@@ -135,11 +135,13 @@ export const createItemFormConfig: FormConfig = {
 			category: {
 				name: 'item.category',
 				translateKey: 'create_item.form.general.category',
+				required: true,
 				options: [],
 			},
 			type: {
 				name: 'item.type',
 				translateKey: 'create_item.form.general.type',
+				required: true,
 				options: [],
 			},
 		},
