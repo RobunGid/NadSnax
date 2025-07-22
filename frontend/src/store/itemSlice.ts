@@ -88,7 +88,6 @@ export const fetchItemsThunk = createAsyncThunk<
 	) => {
 		categoryName = categoryName !== 'best-sellers' ? categoryName : undefined;
 		categoryName = categoryName !== 'secretboxes' ? categoryName : undefined;
-
 		const accessToken = getState().auth.accessToken;
 
 		const requestParams = {
@@ -116,6 +115,7 @@ export const fetchItemsThunk = createAsyncThunk<
 		const items = response.data;
 
 		const camelCaseItems: Item[] = camelcaseKeys(items, { deep: true });
+
 		return camelCaseItems;
 	}
 );

@@ -112,6 +112,7 @@ class Items(MethodView):
         
         category_filter = request.args.get("category_name", "").lower()
         type_filter = request.args.get("type_name", "").lower()
+        
         bestseller_filter = request.args.get("bestseller", "").lower()
         secretbox_filter = request.args.get("secretbox", "").lower()
         name_filter = request.args.get("name", "").lower()
@@ -131,13 +132,12 @@ class Items(MethodView):
         query = ItemModel.query
             
         if category_filter:
-            query = query.join(CategoryModel).filter(func.lower(CategoryModel.name) == category_filter)
+            query = query.join(CategoryModel, ItemModel.category_id==CategoryModel.id).filter(func.lower(CategoryModel.name)==category_filter)
 
         if type_filter:
-            query = query.join(TypeModel).filter(func.lower(TypeModel.name) == type_filter)
+            query = query.join(TypeModel, ItemModel.type_id==TypeModel.id).filter(func.lower(TypeModel.name)==type_filter)
+           
             
-        query = query.filter(func.lower(CategoryModel.name) == category_filter) if category_filter else query
-        query = query.filter(func.lower(TypeModel.name) == type_filter) if type_filter else query
         query = query.filter(ItemModel.name == name_filter) if name_filter else query
         
         query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
