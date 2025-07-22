@@ -4,7 +4,7 @@ import { HomePage } from './components/Pages/HomePage';
 import { ProductsPage } from './components/Pages/ProductsPage';
 import { fetchUser, refreshThunk, useAppDispatch } from './store';
 import { fetchCategories } from './store/categorySlice';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ProductDetailsPage } from './components/Pages/ProductDetailsPage';
 import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { AccountPage } from './components/Pages/AccountPage';
@@ -12,7 +12,6 @@ import { getAppTheme } from './logic/getAppTheme';
 import { LoginModal } from './components/AuthorizationModal/AuthozationModal';
 import { CartModal } from './components/CartModal/CartModal';
 import { PrivateRoutes } from './components/Layout/PrivateRoutes';
-import { ControlPanelPage } from './components/Pages/ControlPanelPage';
 import { useI18n } from './i18n/i18n';
 import { languages } from './logic/languages';
 import { predicateLanguageCode } from './types';
@@ -57,6 +56,12 @@ export const App = () => {
 		}
 	}, []);
 
+	const ControlPanelPage = lazy(() =>
+		import('./components/Pages/ControlPanelPage').then((module) => ({
+			default: module.ControlPanelPage,
+		}))
+	);
+
 	return (
 		<>
 			<Header />
@@ -64,30 +69,37 @@ export const App = () => {
 			<CartModal />
 			<LoginModal />
 			<main>
-				<Routes>
-					<Route path='/' element={<Navigate to='/home' />} />
-					<Route
-						element={<PrivateRoutes roles={['admin', 'moderator', 'user']} />}
-					>
-						<Route path='/account' element={<AccountPage />} />
-						<Route path='/account/:section' element={<AccountPage />} />
-					</Route>
-					<Route element={<PrivateRoutes roles={['admin', 'moderator']} />}>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Routes>
+						<Route path='/' element={<Navigate to='/home' />} />
 						<Route
-							path='/control-panel/:section'
-							element={<ControlPanelPage />}
-						/>
-					</Route>
+							element={
+								<PrivateRoutes roles={['admin', 'moderator', 'user']} />
+							}
+						>
+							<Route path='/account' element={<AccountPage />} />
+							<Route path='/account/:section' element={<AccountPage />} />
+						</Route>
+						<Route element={<PrivateRoutes roles={['admin', 'moderator']} />}>
+							<Route
+								path='/control-panel/:section'
+								element={<ControlPanelPage />}
+							/>
+						</Route>
 
-					<Route path='/home' element={<HomePage />} />
-					<Route path='/products/' element={<ProductsPage />} />
-					<Route path='/products/:category/' element={<ProductsPage />} />
-					<Route path='/products/:category/:type/' element={<ProductsPage />} />
-					<Route
-						path='/products/page/:productName'
-						element={<ProductDetailsPage />}
-					/>
-				</Routes>
+						<Route path='/home' element={<HomePage />} />
+						<Route path='/products/' element={<ProductsPage />} />
+						<Route path='/products/:category/' element={<ProductsPage />} />
+						<Route
+							path='/products/:category/:type/'
+							element={<ProductsPage />}
+						/>
+						<Route
+							path='/products/page/:productName'
+							element={<ProductDetailsPage />}
+						/>
+					</Routes>
+				</Suspense>
 			</main>
 		</>
 	);
