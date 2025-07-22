@@ -10,7 +10,8 @@ export const CreateItemInput = ({
 	const [value, setValue] = useState<string>(sessionStorage.getItem(fixedName) || '');
 
 	const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-		sessionStorage.setItem(fixedName, event.target.value);
+		if (event.target.type !== 'file')
+			sessionStorage.setItem(fixedName, event.target.value);
 		setValue(event.target.value);
 	};
 

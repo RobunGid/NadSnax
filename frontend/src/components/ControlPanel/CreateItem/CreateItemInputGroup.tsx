@@ -1,6 +1,6 @@
 import { InputRecord, SelectRecord } from '../../../logic/createItemFormConfig';
 import { LanguageCodes } from '../../../types';
-import { UICreateItemInput } from './UI/UICreateItemInput';
+import { CreateItemInput } from './CreateItemInput';
 
 interface CreateItemInputGroupProps {
 	configs: Record<string, InputRecord> | Record<string, SelectRecord>;
@@ -12,7 +12,7 @@ export const CreateItemInputGroup = ({
 	language,
 }: CreateItemInputGroupProps) => {
 	return Object.values(configs).map((config) => (
-		<UICreateItemInput
+		<CreateItemInput
 			languageCode={language}
 			config={{ ...config, required: language === 'en' && config.required }}
 			key={config.name}

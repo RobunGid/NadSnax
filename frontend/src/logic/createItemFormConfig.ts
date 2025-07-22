@@ -94,6 +94,7 @@ export const createItemFormConfig: FormConfig = {
 				required: true,
 				type: 'number',
 				min: 0,
+				step: 0.01,
 			},
 			shortDescription: {
 				name: 'item.description',
@@ -109,6 +110,7 @@ export const createItemFormConfig: FormConfig = {
 				required: false,
 				type: 'number',
 				min: 0,
+				step: 0.01,
 			},
 			uniqueName: {
 				name: 'item.name',

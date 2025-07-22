@@ -109,17 +109,38 @@ export const CreateItemFieldset = {
 		);
 	}),
 	Images: withTranslate(({ translate }: CreateItemFieldsetProps) => {
-		const [imageCount, setImageCount] = useState([1]);
+		const defaultImageCount: number[] = [1];
+		const savedImageCount = sessionStorage.getItem('createItemImageCount');
+		if (savedImageCount) {
+			for (let i = 2; i < parseInt(savedImageCount) + 1; i++) {
+				defaultImageCount.push(i);
+			}
+		}
+
+		const [imageCount, setImageCount] = useState<number[]>(defaultImageCount);
+		console.log(imageCount);
 		const hideAddButton = imageCount.length >= 10;
 		const hideRemoveButton = imageCount.length == 1;
 
 		const handleAddPicture: MouseEventHandler<HTMLButtonElement> = (event) => {
 			event.preventDefault();
-			setImageCount((prev) => [...prev, prev.length]);
+			setImageCount((prev) => {
+				sessionStorage.setItem(
+					'createItemImageCount',
+					(prev.length + 1).toString()
+				);
+				return [...prev, prev.length + 1];
+			});
 		};
 		const handleRemovePicture: MouseEventHandler<HTMLButtonElement> = (event) => {
 			event.preventDefault();
-			setImageCount((prev) => prev.slice(0, prev.length - 1));
+			setImageCount((prev) => {
+				sessionStorage.setItem(
+					'createItemImageCount',
+					(prev.length - 1).toString()
+				);
+				return prev.slice(0, prev.length - 1);
+			});
 		};
 
 		return (
