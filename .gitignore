@@ -1,5 +1,6 @@
 .venv
 pgdata/
+pgdata.bak/
 *.sql
 *.dump
 *.tar
