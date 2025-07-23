@@ -12,7 +12,6 @@ from sqlalchemy.orm import aliased
 from sqlalchemy.orm import contains_eager
 
 from db import db
-from constants import SupportedCurrencies
 from utils import role_required, content_type_required, allowed_item_image_file
 from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, \
     ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
@@ -106,7 +105,7 @@ class Items(MethodView):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
             
-        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 100
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         
         category_filter = request.args.get("category_name", "").lower()
@@ -163,7 +162,7 @@ class Items(MethodView):
             simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
 
             query = query.filter(ItemModel.category_id == simillar_item.category_id)
-            simillar_translation = simillar_item.translations[0] if simillar_item.translations else None
+            simillar_translation = next((t for t in simillar_item.translations if t.lang_key == language), None)
 
             if simillar_translation and simillar_translation.price is not None:
                 simillar_price = float(simillar_translation.price)
@@ -191,7 +190,6 @@ class Items(MethodView):
         for item in items:
             if item.translations:
                 item.translation = item.translations[0]
-                print(item.translation.price)
                 item.label = item.translation.label or item.label
                 item.description = item.translation.description or item.description
                 item.price = item.translation.price
