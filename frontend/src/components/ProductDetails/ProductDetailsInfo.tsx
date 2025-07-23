@@ -19,7 +19,7 @@ export const ProductDetailsInfo = ({ item }: ProductDetailsInfo) => {
 
 	return (
 		<UIProductDetailsInfo>
-			<UIProductDetailsSupplier supplierLink={item.itemDetails.supplier} />
+			<UIProductDetailsSupplier supplierLink={item.itemDetails.supplierLink} />
 
 			<UIProductDetailsFullLabel>
 				{item.itemDetails.fullLabel}

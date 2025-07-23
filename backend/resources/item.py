@@ -168,8 +168,8 @@ class Items(MethodView):
             if simillar_translation and simillar_translation.price is not None:
                 simillar_price = float(simillar_translation.price)
                 query = query.filter(ItemModel.category_id == simillar_item.category_id)
-                query = query.filter(ItemTranslationAlias.price >= simillar_price * 1.25)
-                query = query.filter(ItemTranslationAlias.price <= simillar_price * 0.75)
+                query = query.filter(ItemTranslationAlias.price >= simillar_price * 0.75)
+                query = query.filter(ItemTranslationAlias.price <= simillar_price * 1.25)
                 
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]
@@ -198,14 +198,16 @@ class Items(MethodView):
                 if item.translation.old_price:
                     item.old_price = item.translation.old_price
 
-            if item.item_details:
+            if item.item_details.translations:
                 translations = item.item_details.translations
                 if translations:
                     item.item_details.translation = translations[0]
-                    item.item_details.full_label = item.item_details.translation.full_label or item.item_details.full_label
-                    item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
-                    item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
-                    item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
+                    item.item_details.full_label = item.item_details.translation.full_label
+                    item.item_details.ingridients = item.item_details.translation.ingridients
+                    item.item_details.nutrition = item.item_details.translation.nutrition
+                    item.item_details.full_description = item.item_details.translation.full_description
+                    item.item_details.supplier = item.item_details.translation.supplier
+                    item.item_details.supplier_link = item.item_details.translation.supplier_link
                     
         return items
         
