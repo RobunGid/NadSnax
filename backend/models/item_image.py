@@ -9,7 +9,6 @@ class ItemImageModel(db.Model):
     id = db.Column(db.String(80), primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
 
-    title = db.Column(db.String(80), nullable=False)
     is_main = db.Column(db.Boolean())
     
     item_id = db.Column(db.String(80), db.ForeignKey("item.id"), nullable=False)

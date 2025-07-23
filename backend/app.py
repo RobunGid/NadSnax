@@ -28,8 +28,6 @@ from resources.icon import blp as IconBlueprint
 from resources.admin import blp as AdminBlueprint
 from resources.keysets import blp as KeysetsBlueprint
 
-
-
 def create_app(db_url = None):
     
     app = Flask(__name__)

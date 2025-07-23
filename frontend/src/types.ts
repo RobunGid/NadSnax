@@ -35,8 +35,6 @@ export type Item = {
 	itemDetails?: ItemDetails;
 	label: string;
 	price: number;
-	convertedPrice: number;
-	convertedOldPrice: number;
 	oldPrice?: number | null;
 	name: string;
 	type?: Omit<ItemType, 'category'>;

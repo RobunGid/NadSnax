@@ -54,19 +54,13 @@ export const ProductItem = ({
 			dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
 	};
 
-	const formattedPrice = formatPrice(item.convertedPrice, lang);
+	const formattedPrice = formatPrice(item.price, lang);
 
-	const formattedOldPrice = item.oldPrice
-		? formatPrice(item.convertedOldPrice, lang)
-		: '';
+	const formattedOldPrice = item.oldPrice ? formatPrice(item.oldPrice, lang) : '';
 
 	const pageLink = `/products/page/${item.name}`;
 	const discount = item.oldPrice
-		? Math.floor(
-				((item.convertedOldPrice - item.convertedPrice) /
-					item.convertedOldPrice) *
-					100
-		  )
+		? Math.floor(((item.oldPrice - item.price) / item.oldPrice) * 100)
 		: 0;
 
 	const imageURL = getMainImageURL(item);

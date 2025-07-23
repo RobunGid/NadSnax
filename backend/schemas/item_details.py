@@ -23,4 +23,3 @@ class ItemDetailsTranslationSchema(Schema):
     
 class ItemDetailsSchema(PlainItemDetailsSchema):
     item = fields.Nested("schemas.item.ItemSchema", dump_only=True, exclude=("item_details",))
-    translation = fields.Nested(ItemDetailsTranslationSchema, dump_only=True)

@@ -9,7 +9,6 @@ from sqlalchemy.orm import aliased, contains_eager
 from sqlalchemy import and_
 
 from db import db
-from currency_converter import CurrencyConverter
 from constants import SupportedCurrencies
 from utils import role_required
 from schemas import OrderSchema
@@ -53,13 +52,13 @@ class Orders(MethodView):
         for order in orders:
             for order_item in order.items:
                 item = order_item.item
-                item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
-                if item.old_price:
-                    item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
                 if item and item.translations:
                     item.translation = item.translations[0]
                     item.label = item.translation.label or item.label
                     item.description = item.translation.description or item.description
+                    item.price = item.translation.price
+                    if item.translation.old_price:
+                        item.old_price = item.translation.old_price
         
         return orders
        

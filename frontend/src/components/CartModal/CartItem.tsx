@@ -9,7 +9,7 @@ type CartItemProps = {
 };
 
 export const CartItem = ({ cartItem }: CartItemProps) => {
-	const totalPrice = cartItem?.item.convertedPrice * cartItem.count;
+	const totalPrice = cartItem?.item.price * cartItem.count;
 
 	const mainImage =
 		cartItem.item.images.find((image) => image.isMain) || cartItem.item.images[0];

@@ -9,9 +9,9 @@ interface AccountOrderItemProps {
 }
 
 export const AccountOrderItem = ({ orderItem }: AccountOrderItemProps) => {
-	const totalItemPrice = orderItem.quantity * orderItem.item.convertedPrice;
+	const totalItemPrice = orderItem.quantity * orderItem.item.price;
 	const formattedTotalPrice = formatPrice(totalItemPrice);
-	const formattedPrice = formatPrice(orderItem.item.convertedPrice);
+	const formattedPrice = formatPrice(orderItem.item.price);
 
 	return (
 		<Link to={orderItem.item.name}>

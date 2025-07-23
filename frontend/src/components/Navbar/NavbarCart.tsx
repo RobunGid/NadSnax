@@ -14,7 +14,7 @@ export const NavbarCart = ({ className, onClick }: NavbarCartProps) => {
 	const count = productsItems.reduce((acum, value) => acum + value.count, 0);
 
 	const amount = productsItems.reduce(
-		(acum, value) => acum + value.item.convertedPrice * value.count,
+		(acum, value) => acum + value.item.price * value.count,
 		0
 	);
 

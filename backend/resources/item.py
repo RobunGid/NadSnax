@@ -12,7 +12,6 @@ from sqlalchemy.orm import aliased
 from sqlalchemy.orm import contains_eager
 
 from db import db
-from currency_converter import CurrencyConverter
 from constants import SupportedCurrencies
 from utils import role_required, content_type_required, allowed_item_image_file
 from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, \
@@ -142,13 +141,6 @@ class Items(MethodView):
         
         query = query.filter(ItemModel.is_bestseller == bestseller_filter) if bestseller_filter != None else query
         query = query.filter(ItemModel.is_secretbox == secretbox_filter) if secretbox_filter != None else query
-        
-        if simillar_id_filter:
-            simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
-            
-            query = query.filter(ItemModel.category_id == simillar_item.category_id)
-            query = query.filter(ItemModel.price >= float(simillar_item.price) * 0.9)
-            query = query.filter(ItemModel.price <= float(simillar_item.price) * 1.1)
 
         if item_ids:
             query = query.filter(ItemModel.id.in_(item_ids.split(',')))
@@ -167,6 +159,18 @@ class Items(MethodView):
         query = query.options(contains_eager(ItemModel.item_details)
                     .contains_eager(ItemDetailsModel.translations, alias=ItemDetailsTranslationAlias))
                 
+        if simillar_id_filter:
+            simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
+
+            query = query.filter(ItemModel.category_id == simillar_item.category_id)
+            simillar_translation = simillar_item.translations[0] if simillar_item.translations else None
+
+            if simillar_translation and simillar_translation.price is not None:
+                simillar_price = float(simillar_translation.price)
+                query = query.filter(ItemModel.category_id == simillar_item.category_id)
+                query = query.filter(ItemTranslationAlias.price >= simillar_price * 1.25)
+                query = query.filter(ItemTranslationAlias.price <= simillar_price * 0.75)
+                
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]
             decoded_token = decode_token(token)
@@ -183,17 +187,16 @@ class Items(MethodView):
         else:
             query = query.offset(page*per_page).limit(per_page)
             items = query.all()
-        
-        for item in items:
-            item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
-            if item.old_price:
-                item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
-               
+            
         for item in items:
             if item.translations:
                 item.translation = item.translations[0]
+                print(item.translation.price)
                 item.label = item.translation.label or item.label
                 item.description = item.translation.description or item.description
+                item.price = item.translation.price
+                if item.translation.old_price:
+                    item.old_price = item.translation.old_price
 
             if item.item_details:
                 translations = item.item_details.translations
@@ -203,6 +206,7 @@ class Items(MethodView):
                     item.item_details.ingridients = item.item_details.translation.ingridients or item.item_details.ingridients
                     item.item_details.nutrition = item.item_details.translation.nutrition or item.item_details.nutrition
                     item.item_details.full_description = item.item_details.translation.full_description or item.item_details.full_description
+                    
         return items
         
     @jwt_required()
