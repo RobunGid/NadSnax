@@ -125,6 +125,10 @@
 	"no_reviews": "No reviews",
 
 	"products.no_results.both": "Sorry, there no products for <1></1> in <2></2>",
+	"products.no_results.category": "Sorry, there no products for <1></1>",
+	"products.no_results.all": "Sorry, there no products",
+
+	"products.no_results.to_products": "Open products page",
 
 	"processing": "Processing",
     "packing": "Packing",

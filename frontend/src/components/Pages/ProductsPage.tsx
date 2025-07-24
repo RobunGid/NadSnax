@@ -41,11 +41,7 @@ export const ProductsPage = () => {
 				{status === 'loading' && <ProductsLoading />}
 			</div>
 			{status !== 'loading' && !items.length && (
-				<UIProductsNoResults
-					category={category}
-					type={type}
-					className='h-[calc(100vh-20rem)]'
-				/>
+				<UIProductsNoResults category={category} type={type} />
 			)}
 		</>
 	);

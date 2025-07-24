@@ -18,12 +18,12 @@ export const UIProductsNoResults = withTranslate(
 		return (
 			<div
 				className={clsx(
-					'text-xl flex items-center justify-center flex-col',
+					'text-xl flex items-center justify-center flex-col h-[calc(100vh-10rem)]',
 					className
 				)}
 			>
 				{category && type && (
-					<h1>
+					<h1 className='text-center'>
 						<TaggedText
 							text={translate('products.no_results.both')}
 							tags={{
@@ -34,14 +34,18 @@ export const UIProductsNoResults = withTranslate(
 					</h1>
 				)}
 				{!type && category && (
-					<h1>
-						Sorry, there no products in
-						<span className='font-bold'>{category}</span>
+					<h1 className='text-center'>
+						<TaggedText
+							text={translate('products.no_results.category')}
+							tags={{
+								1: () => <span className='font-bold'>{category}</span>,
+							}}
+						/>
 					</h1>
 				)}
-				{!type && !category && <h1>Sorry, there no products</h1>}
+				{!type && !category && <h1>{translate('products.no_results.all')}</h1>}
 				<UIToProductsButton onClick={onClick}>
-					Open products page
+					{translate('products.no_results.to_products')}
 				</UIToProductsButton>
 			</div>
 		);

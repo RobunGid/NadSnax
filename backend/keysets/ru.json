@@ -129,6 +129,10 @@
 	"no_reviews": "Нет отзывов",
 
 	"products.no_results.both": "Извините, нет товаров типа <1></1> в категории <2></2>",
+	"products.no_results.category": "Извините, нет товаров категории <1></1>",
+	"products.no_results.all": "Извините, товаров нет",
+
+	"products.no_results.to_products": "Открыть страницу товаров",
 
 	"processing": "В обработке",
     "packing": "Упаковывается",
