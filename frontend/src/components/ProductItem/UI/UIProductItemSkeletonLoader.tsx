@@ -1,4 +1,4 @@
-export const ProductItemSkeletonLoader = () => {
+export const UIProductItemSkeletonLoader = () => {
 	return (
 		<div className='h-[360px] p-2 shadow-xl w-60 animate-skeleton opacity-0 '>
 			<div className='relative flex items-center justify-center h-60 mb-4 bg-gray-300 rounded-sm dark:bg-gray-700'>

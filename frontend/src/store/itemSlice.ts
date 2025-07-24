@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item, LanguageCodes, Review } from '../types';
 import camelcaseKeys from 'camelcase-keys';
 import { RootStore, Status } from './types';
@@ -13,6 +13,8 @@ type ItemsState = {
 		addReview: Status;
 		deleteReview: Status;
 	};
+	currentItemPage: number;
+	totalItems: number;
 };
 
 const initialState: ItemsState = {
@@ -24,6 +26,8 @@ const initialState: ItemsState = {
 		addReview: 'init',
 		deleteReview: 'init',
 	},
+	currentItemPage: 0,
+	totalItems: 0,
 };
 
 interface addItemReviewThunkParams {
@@ -131,8 +135,13 @@ export interface fetchItemsParams {
 	lang?: LanguageCodes;
 }
 
+interface fetchItemsThunkResult {
+	items: Item[];
+	totalItems: number;
+}
+
 export const fetchItemsThunk = createAsyncThunk<
-	Item[],
+	fetchItemsThunkResult,
 	fetchItemsParams,
 	{ rejectValue: string; state: RootStore }
 >(
@@ -153,6 +162,7 @@ export const fetchItemsThunk = createAsyncThunk<
 		categoryName = categoryName !== 'best-sellers' ? categoryName : undefined;
 		categoryName = categoryName !== 'secretboxes' ? categoryName : undefined;
 		const accessToken = getState().auth.accessToken;
+		const page = getState().item.currentItemPage;
 
 		const requestParams = {
 			category_name: categoryName,
@@ -163,9 +173,11 @@ export const fetchItemsThunk = createAsyncThunk<
 			simillar_id: simillarId,
 			item_ids: itemIds?.join(','),
 			lang,
+			page,
+			per_page: 10,
 		};
 
-		const response = await Axios.get<Item[]>('/item', {
+		const response = await Axios.get('/item', {
 			params: requestParams,
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
@@ -176,25 +188,31 @@ export const fetchItemsThunk = createAsyncThunk<
 			return rejectWithValue('Server Error!');
 		}
 
-		const items = response.data;
+		const items = response.data.items;
+		const totalItems = response.data.total_items;
 
 		const camelCaseItems: Item[] = camelcaseKeys(items, { deep: true });
-
-		return camelCaseItems;
+		return { items: camelCaseItems, totalItems };
 	}
 );
 
 const slice = createSlice({
 	name: 'item',
 	initialState,
-	reducers: {},
+	reducers: {
+		setItemPage: (state, action: PayloadAction<number>) => {
+			console.log(action.payload);
+			state.currentItemPage = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchItemsThunk.pending, (state) => {
 			state.items = [];
 			state.status.fetchItems = 'loading';
 		});
 		builder.addCase(fetchItemsThunk.fulfilled, (state, action) => {
-			state.items = action.payload;
+			state.items = action.payload.items;
+			state.totalItems = action.payload.totalItems;
 			state.status.fetchItems = 'success';
 		});
 		builder.addCase(fetchItemsThunk.rejected, (state) => {

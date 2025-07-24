@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { UIToProductsButton } from './UIToProductsButton';
 import { MouseEventHandler } from 'react';
 import { TaggedText } from '@ayub-begimkulov/i18n';
 import { useTranslate } from '../../i18n/i18n';
 import { withTranslate } from '../../logic/withTranslate';
+import { UIToProductsButton } from './UIToProductsButton';
 
 interface UIProductsNoResultsProps {
 	category?: string;

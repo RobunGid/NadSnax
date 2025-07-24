@@ -1,13 +1,13 @@
-import { ProductItemSkeletonLoader } from '../ProductItem/ProductItemSkeletonLoader';
+import { UIProductItemSkeletonLoader } from '../ProductItem/UI/UIProductItemSkeletonLoader';
 
 export const ProductsLoading = () => {
 	return (
 		<>
-			<ProductItemSkeletonLoader />
-			<ProductItemSkeletonLoader />
-			<ProductItemSkeletonLoader />
-			<ProductItemSkeletonLoader />
-			<ProductItemSkeletonLoader />
+			<UIProductItemSkeletonLoader />
+			<UIProductItemSkeletonLoader />
+			<UIProductItemSkeletonLoader />
+			<UIProductItemSkeletonLoader />
+			<UIProductItemSkeletonLoader />
 		</>
 	);
 };
