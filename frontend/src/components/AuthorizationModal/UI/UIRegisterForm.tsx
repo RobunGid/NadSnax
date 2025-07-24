@@ -7,7 +7,7 @@ export const UIRegisterForm = (props: UIRegisterFormProps) => {
 		<form
 			{...props}
 			className={`
-		flex flex-col items-center w-80 h-100 justify-center
+		flex flex-col items-center w-80 justify-center gap-4
 		`}
 		/>
 	);
