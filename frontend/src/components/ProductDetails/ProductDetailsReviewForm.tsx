@@ -1,7 +1,6 @@
 import { ChangeEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { UIProductDetailsReviewForm } from './UI/UIProductDetailsReviewForm';
-import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
-import { Axios } from '../../api';
+import { addItemReviewThunk, useActionCreators } from '../../store';
 
 interface ReviewFormState {
 	text: string;
@@ -22,10 +21,8 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 	const formRef = useRef<HTMLFormElement | null>(null);
 
 	const actions = useActionCreators({
-		fetchItems: fetchItemsThunk,
+		addFavorite: addItemReviewThunk,
 	});
-
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const handleSendReview: MouseEventHandler<HTMLButtonElement> = async (event) => {
 		event.preventDefault();
@@ -36,21 +33,10 @@ export const ProductDetailsReviewForm = ({ itemId }: ProductDetailsReviewFormPro
 		const review = {
 			text: formValue.text,
 			rating: formValue.rating,
-			item_id: itemId,
+			itemId: itemId,
 		};
 
-		const response = await Axios.post('/review', review, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				'Content-Type': 'application/json',
-			},
-		});
-
-		if (response.status === 201) {
-			actions.fetchItems({
-				simillarId: itemId,
-			});
-		}
+		actions.addFavorite({ review });
 	};
 
 	const handleChangeReviewForm: ChangeEventHandler<HTMLFormElement> = (event) => {

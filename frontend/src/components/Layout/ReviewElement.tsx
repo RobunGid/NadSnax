@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import { Axios } from '../../api';
 import { useI18n } from '../../i18n/i18n';
 import { formatDate } from '../../logic/formatDate';
-import { fetchItemsThunk, useActionCreators, useStateSelector } from '../../store';
+import { deleteItemReviewThunk, useActionCreators } from '../../store';
 import { Review } from '../../types';
 import { UIAvatar } from '../UI/UIAvatar';
 import { UIReviewElement } from '../UI/UIReviewElement';
@@ -19,24 +18,12 @@ export const ReviewElement = ({ review, displayControls, type }: ReviewProps) =>
 	const { lang } = useI18n();
 	const createdAt = formatDate(review.createdAt, lang);
 
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
 	const actions = useActionCreators({
-		fetchItems: fetchItemsThunk,
+		deleteReview: deleteItemReviewThunk,
 	});
 
 	const handleDeleteReview = async () => {
-		const response = await Axios.delete(`/review/${review.id}`, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-
-		if (response.status === 200) {
-			actions.fetchItems({
-				simillarId: review.itemId,
-			});
-		}
+		actions.deleteReview({ reviewId: review.id, itemId: review.itemId });
 	};
 	return (
 		<UIReviewElement className={clsx(type == 'homePage' && 'marquee-item w-64')}>

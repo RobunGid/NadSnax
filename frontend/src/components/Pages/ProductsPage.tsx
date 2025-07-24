@@ -10,7 +10,7 @@ import { useI18n } from '../../i18n/i18n';
 
 export const ProductsPage = () => {
 	const items = useStateSelector((state) => state.item.items);
-	const status = useStateSelector((state) => state.item.status);
+	const status = useStateSelector((state) => state.item.status.fetchItems);
 	const accessToken = useStateSelector((state) => state.auth.accessToken);
 
 	const { lang } = useI18n();
