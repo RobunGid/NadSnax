@@ -17,6 +17,7 @@ from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTrans
     ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
 from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, \
     ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema
+from models.user import Role
     
 blp = Blueprint("items", __name__, description = "Operations on items")
 
@@ -28,7 +29,7 @@ class Item(MethodView):
         return item
     
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def delete(self, item_id):
         from app import app
         item = ItemModel.query.get_or_404(item_id)
@@ -42,7 +43,7 @@ class Item(MethodView):
 
     @blp.response(200, ItemSchema)
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def patch(self, item_id):
         try:
             item = ItemModel.query.get_or_404(item_id)
@@ -77,7 +78,7 @@ class Item(MethodView):
     @blp.response(200, ItemSchema)
     @blp.arguments(ItemUpdateSchema)
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     def put(self, item_data, item_id):
         item = ItemModel.query.get(item_id)
         if item:
@@ -105,7 +106,7 @@ class Items(MethodView):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
             
-        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 100
+        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         
         category_filter = request.args.get("category_name", "").lower()
@@ -210,7 +211,7 @@ class Items(MethodView):
         return items
         
     @jwt_required()
-    @role_required(['admin', 'moderator'])
+    @role_required([Role.admin, Role.moderator])
     @content_type_required(['multipart/form-data'])
     @blp.arguments(PostItemSchema, location="form")
     @blp.response(201, ItemSchema(exclude=("reviews",)))
@@ -274,7 +275,7 @@ class Items(MethodView):
                 image_file.save(file_path)
             
         db.session.flush()
-        if item_images_translations:
+        if item_images and item_images_translations:
             for index, image in enumerate(item_images_models):
                 item_images_translation_models = [ItemImageTranslationModel(**item_image_translation, item_image_id=image.id, id=uuid4()) for item_image_translation in item_images_translations[index]]
                 db.session.add_all(item_images_translation_models)
