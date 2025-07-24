@@ -18,8 +18,6 @@ from resources.review import blp as ReviewBlueprint
 from resources.category import blp as CategoryBlueprint
 from resources.type import blp as TypeBlueprint
 from resources.item import blp as ItemBlueprint
-from resources.item_details import blp as ItemDetailsBlueprint
-from resources.item_image import blp as ItemImageBlueprint
 from resources.avatar import blp as AvatarBlueprint
 from resources.image import blp as ImageBlueprint
 from resources.favorite import blp as FavoriteBlueprint
@@ -108,13 +106,11 @@ def create_app(db_url = None):
     with app.app_context():
         db.create_all()
 
-    api.register_blueprint(ItemImageBlueprint)
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ReviewBlueprint)
     api.register_blueprint(CategoryBlueprint)
     api.register_blueprint(TypeBlueprint)
     api.register_blueprint(ItemBlueprint)
-    api.register_blueprint(ItemDetailsBlueprint)
     api.register_blueprint(AvatarBlueprint)
     api.register_blueprint(ImageBlueprint)
     api.register_blueprint(FavoriteBlueprint)

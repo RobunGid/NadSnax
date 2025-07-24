@@ -173,20 +173,18 @@ Install NadSnax using one of the following methods:
 ```sh
 ❯ cp .env.example .env
 ```
-5. Run docker compose [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
+
+5. Insert mock data if necessary
+
+```sh
+docker exec -i postgresql psql -U USERNAME -d DATABASE_NAME < ./insret_mock.sql
+cp ./mock_images ./resources/images/
+```
+
+6. Run docker compose [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
 ```sh
 ❯ docker compose up
 ```
-
-###  Usage
-Run NadSnax using the following command:
-
-**Full mock products** &nbsp; [<img align="center" src="https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white" />](https://www.docker.com/)
-
-```sh
-❯ python ./backend/fill_mock.py
-```
-
 
 ---
 ##  Project Roadmap
