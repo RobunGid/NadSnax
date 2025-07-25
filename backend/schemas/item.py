@@ -46,12 +46,11 @@ class ItemSchema(PlainItemSchema):
     rating_count = fields.Int(dump_only=True)
     favorite_id = fields.Str(dump_only=True)
     
+class GetItemSchema(Schema):
+    items = fields.Nested(ItemSchema(many=True))
+    total_items = fields.Int()
+    
 class PostItemSchema(Schema):
-    # item = fields.Nested(ItemSchema, required=True)
-    # item_translations = fields.Nested(ItemTranslationSchema, many=True, exclude=("item_id",))
-    # item_details = fields.Nested("schemas.item_details.ItemDetailsSchema", exclude=("item_id",))
-    # item_details_translations = fields.Nested("schemas.item_details.ItemDetailsTranslationSchema", many=True, exclude=("item_id",))
-    # images = fields.Nested("schemas.item_image.ItemImageSchema", many=True, exclude=("item_id",))
     item = fields.Str(required=True)
     item_translations = fields.Str()
     item_details = fields.Str()

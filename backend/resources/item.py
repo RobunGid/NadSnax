@@ -16,7 +16,8 @@ from utils import role_required, content_type_required, allowed_item_image_file
 from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, \
     ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
 from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, \
-    ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema
+    ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema, \
+        GetItemSchema
 from models.user import Role
     
 blp = Blueprint("items", __name__, description = "Operations on items")
@@ -101,7 +102,7 @@ class Item(MethodView):
 
 @blp.route('/item')
 class Items(MethodView):
-    @blp.response(200, ItemSchema(many=True))
+    @blp.response(200, GetItemSchema())
     def get(self):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
@@ -207,8 +208,12 @@ class Items(MethodView):
                     item.item_details.full_description = item.item_details.translation.full_description
                     item.item_details.supplier = item.item_details.translation.supplier
                     item.item_details.supplier_link = item.item_details.translation.supplier_link
-                    
-        return items
+        
+        totalItems = ItemModel.query.count()
+        return {
+			"items": items,
+			"total_items": totalItems
+		} 
         
     @jwt_required()
     @role_required([Role.admin, Role.moderator])
