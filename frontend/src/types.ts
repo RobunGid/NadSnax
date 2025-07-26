@@ -217,3 +217,5 @@ export type Option = JSX.IntrinsicElements['option'] & {
 	value: string;
 	text: string;
 };
+
+export const isUserDefined = (user: User | null): user is User => user !== null;

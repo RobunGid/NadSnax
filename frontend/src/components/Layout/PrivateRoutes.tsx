@@ -1,37 +1,38 @@
 import { Navigate, Outlet } from 'react-router';
-import { useStateSelector } from '../../store';
 import { LoginModalContext } from '../../context/LoginModalContext';
 import { useContext, useEffect } from 'react';
-import { Role } from '../../types';
+import { isUserDefined, Role } from '../../types';
+import { useAuth } from '../../hooks/useAuth';
 
 interface PrivateRoutesProps {
 	roles: Role[];
 }
 
 export const PrivateRoutes = ({ roles }: PrivateRoutesProps) => {
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-	const accessTokenStatus = useStateSelector((state) => state.auth.status);
-	const user = useStateSelector((state) => state.user.user);
+	const { isAuthenticated, isUserLoaded, user } = useAuth();
 
 	useEffect(() => {
-		if (accessTokenStatus == 'error') {
+		if (isAuthenticated) {
 			toggleLoginModalVisibility();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [accessTokenStatus]);
+	}, [isAuthenticated]);
 
 	const { toggleLoginModalVisibility } = useContext(LoginModalContext);
 
 	if (
-		accessToken &&
-		accessTokenStatus == 'success' &&
-		user &&
+		isUserLoaded &&
+		isAuthenticated &&
+		isUserDefined(user) &&
 		roles.includes(user.role)
 	) {
 		return <Outlet />;
 	}
-
-	if (accessTokenStatus == 'error' || (user && !roles.includes(user.role))) {
+	if (
+		!isAuthenticated ||
+		!isUserLoaded ||
+		(isUserLoaded && isUserDefined(user) && !roles.includes(user.role))
+	) {
 		return <Navigate to='/home' replace />;
 	}
 };
