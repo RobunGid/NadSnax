@@ -9,7 +9,7 @@ from sqlalchemy.orm import aliased, contains_eager
 from sqlalchemy import and_
 
 from db import db
-from constants import SupportedCurrencies
+from constants import Role, SupportedCurrencies
 from utils import role_required
 from schemas import OrderSchema
 from models import OrderModel, OrderItemModel, ItemTranslationModel, ItemModel
@@ -20,7 +20,7 @@ blp = Blueprint("orders", __name__, description="Operations on orders")
 class Orders(MethodView):
     @blp.response(200, OrderSchema(many=True))
     @jwt_required()
-    @role_required(["admin", "moderator"])
+    @role_required([Role.admin, Role.moderator])
     def get(self):
         per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
@@ -82,7 +82,7 @@ class Orders(MethodView):
 @blp.route('/orders/<string:order_id>')
 class Order(MethodView):
     @jwt_required()
-    @role_required(["admin", "moderator"])
+    @role_required([Role.admin, Role.moderator])
     def delete(self, order_id):
         identity = get_jwt_identity()
         order = OrderModel.query.get_or_404(order_id)
@@ -131,14 +131,12 @@ class SelfOrders(MethodView):
         for order in orders:
             for order_item in order.items:
                 item = order_item.item
-                item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
-                if item.old_price:
-                    item.converted_old_price = CurrencyConverter.convert(item.old_price, to_currency=SupportedCurrencies[language.value.lower()])
                 if item and item.translations:
                     item.translation = item.translations[0]
+                    item.price = item.translation.price
                     item.label = item.translation.label or item.label
                     item.description = item.translation.description or item.description
-                    item.converted_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
-                    item.converted_old_price = CurrencyConverter.convert(item.price, to_currency=SupportedCurrencies[language.value.lower()])
+                    if item.translation.old_price:
+                        item.old_price = item.translation.old_price
         
         return orders
