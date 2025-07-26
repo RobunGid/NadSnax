@@ -17,8 +17,9 @@ export const AccountOrder = ({ order }: AccountOrderProps) => {
 	const { lang } = useI18n();
 	const translate = useTranslate();
 
-	const totalCount = String(order.items.reduce((prev, cur) => prev + cur.quantity, 0));
-
+	const totalCount = order.items
+		.reduce((prev, cur) => prev + cur.quantity, 0)
+		.toString();
 	const formattedTotalPrice = formatPrice(totalPrice, lang);
 	const formatedCreatedAt = formatDate(order.createdAt, lang);
 	const formattedOrderStatus = translate(order.status);
