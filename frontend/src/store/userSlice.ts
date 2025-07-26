@@ -58,8 +58,8 @@ export const updateUser = createAsyncThunk<
 		const accessToken = getState().auth.accessToken;
 
 		const fixedUserData = {
-			...(userData.firstName && { first_name: userData.firstName }),
-			...(userData.lastName && { last_name: userData.lastName }),
+			...(userData.firstName && { firstName: userData.firstName }),
+			...(userData.lastName && { lastName: userData.lastName }),
 			...(userData.username && { username: userData.username }),
 		};
 

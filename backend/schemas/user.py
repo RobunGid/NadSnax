@@ -9,15 +9,15 @@ class AuthUserSchema(Schema):
     password = fields.Str(required=True, load_only=True)
     
 class PlainUserSchema(AuthUserSchema):
-    first_name = fields.Str(required=True)
-    last_name = fields.Str(required=True)
+    first_name = fields.Str(required=True, data_key="firstName")
+    last_name = fields.Str(required=True, data_key="lastName")
     role = EnumField(Role)
-    avatar_url = fields.Str(required=True, dump_only=True)
+    avatar_url = fields.Str(required=True, dump_only=True, data_key="avatarUrl")
     
 class UserUpdateSchema(Schema):
     username = fields.Str(required=True)
-    first_name = fields.Str(required=True)
-    last_name = fields.Str(required=True)
+    first_name = fields.Str(required=True, data_key="firstName")
+    last_name = fields.Str(required=True, data_key="lastName")
     role = fields.Enum(Role)
     
 class UserSchema(PlainUserSchema):

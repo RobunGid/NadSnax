@@ -70,7 +70,7 @@ export const fetchRandomReviews = createAsyncThunk<
 			params: {
 				lang,
 				random: true,
-				per_page: count,
+				perPage: count,
 			},
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',

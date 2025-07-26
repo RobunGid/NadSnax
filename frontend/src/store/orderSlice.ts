@@ -59,7 +59,7 @@ export const fetchSelfOrders = createAsyncThunk<
 interface createOrderThunkParams {
 	orderItems: {
 		quantity: number;
-		item_id: string;
+		itemId: string;
 	}[];
 	pickupPoint: string;
 }
@@ -75,7 +75,7 @@ export const createOrderThunk = createAsyncThunk<
 			const accessToken = getState().auth.accessToken;
 			const response = await Axios.post(
 				'/orders',
-				{ pickup_point: pickupPoint, items: orderItems },
+				{ pickupPoint, items: orderItems },
 				{
 					headers: {
 						Authorization: `Bearer ${accessToken}`,

@@ -24,8 +24,8 @@ export const loginThunk = createAsyncThunk<
 >('auth/login', async ({ username, password }, { rejectWithValue }) => {
 	try {
 		const response = await Axios.post<{
-			access_token: string;
-			refresh_token: string;
+			accessToken: string;
+			refreshToken: string;
 		}>(
 			'/login',
 			{ username, password },
@@ -37,7 +37,7 @@ export const loginThunk = createAsyncThunk<
 		);
 		const data = response.data;
 
-		return { accessToken: data.access_token };
+		return { accessToken: data.accessToken };
 	} catch (error) {
 		if (isAxiosError(error)) {
 			return rejectWithValue({
@@ -65,8 +65,8 @@ export const registerThunk = createAsyncThunk<
 			const formData = new FormData();
 			formData.append('username', username);
 			formData.append('password', password);
-			formData.append('first_name', firstName);
-			formData.append('last_name', lastName);
+			formData.append('firstName', firstName);
+			formData.append('lastName', lastName);
 			formData.append('role', role);
 			if (avatarFile) formData.append('avatar', avatarFile);
 			const response = await Axios.post('/register', formData, {
@@ -103,7 +103,7 @@ export const refreshThunk = createAsyncThunk<
 	try {
 		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
 
-		const accessToken = response.data.access_token;
+		const accessToken = response.data.accessToken;
 		return accessToken;
 	} catch (error) {
 		if (isAxiosError(error)) {

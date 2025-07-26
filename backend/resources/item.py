@@ -15,7 +15,7 @@ from db import db
 from utils import role_required, content_type_required, allowed_item_image_file
 from models import ItemModel, CategoryModel, TypeModel, FavoriteModel, ItemTranslationModel, \
     ItemDetailsTranslationModel, ItemDetailsModel, ItemImageModel, ItemImageTranslationModel
-from schemas import ItemSchema, ItemUpdateSchema, PostItemSchema, ItemDetailsSchema, \
+from schemas import ItemSchema,  PostItemSchema, ItemDetailsSchema, \
     ItemTranslationSchema, ItemImageSchema, ItemDetailsTranslationSchema, ItemImageTranslationSchema, \
         GetItemSchema
 from models.user import Role
@@ -42,63 +42,7 @@ class Item(MethodView):
         db.session.commit()
         return {"message": "Item deleted"}
 
-    @blp.response(200, ItemSchema)
-    @jwt_required()
-    @role_required([Role.admin, Role.moderator])
-    def patch(self, item_id):
-        try:
-            item = ItemModel.query.get_or_404(item_id)
-            item_data = request.get_json()
-            
-            if label := item_data.get("label", None):
-                item.label = label
-            if price := item_data.get("price", None):
-                item.price = price
-            if description := item_data.get("description", None):
-                item.description = description
-            if category_id := item_data.get("category_id", None):
-                item.category_id = category_id
-            if type_id := item_data.get("type_id", None):
-                item.type_id = type_id
-            if page_link := item_data.get("page_link", None):
-                item.page_link = page_link
-            if is_secretbox := item_data.get("is_secretbox", None):
-                item.is_secretbox = is_secretbox
-            if is_bestseller := item_data.get("is_bestseller", None):
-                item.is_bestseller = is_bestseller
-            if old_price := item_data.get("description", None):
-                item.old_price = old_price
-        
-            db.session.add(item)
-            db.session.commit()
-        except ValueError as error:
-            abort(400, message=str(error))
 
-        return item
-
-    @blp.response(200, ItemSchema)
-    @blp.arguments(ItemUpdateSchema)
-    @jwt_required()
-    @role_required([Role.admin, Role.moderator])
-    def put(self, item_data, item_id):
-        item = ItemModel.query.get(item_id)
-        if item:
-            item.label = item_data["label"]
-            item.page_link = item_data["page_link"]
-            item.description = item_data["description"]
-            item.price = item_data["price"]
-            item.old_price = item_data["old_price"]
-            item.is_bestseller = item_data["is_bestseller"]
-            item.is_secretbox = item_data["is_secretbox"]
-            item.category_id = item_data["category_id"]
-            item.type_id = item_data["type_id"]
-        else:
-            item = ItemModel(**item_data, id = item_id)
-                    
-        db.session.add(item)
-        db.session.commit()
-        
-        return item
 
 @blp.route('/item')
 class Items(MethodView):

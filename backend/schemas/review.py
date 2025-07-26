@@ -4,9 +4,9 @@ class PlainReviewSchema(Schema):
     id = fields.Str(dump_only=True)
     text = fields.Str(required=True)
     rating = fields.Int(required=True)
-    created_at = fields.DateTime(required=True, dump_only=True)
-    item_id = fields.Str(required=True)
-    user_id = fields.Str(required=True, dump_only=True)
+    created_at = fields.DateTime(required=True, dump_only=True, data_key="createdAt")
+    item_id = fields.Str(required=True, data_key="itemId")
+    user_id = fields.Str(required=True, dump_only=True, data_key="userId")
     
 class ReviewUpdateSchema(Schema):
     text = fields.Str(required=True)

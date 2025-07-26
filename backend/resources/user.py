@@ -177,7 +177,7 @@ class UserLogin(MethodView):
         if user and pbkdf2_sha512.verify(user_data["password"], user.password):
             access_token = create_access_token(identity=str(user.id), fresh=True)
             refresh_token = create_refresh_token(identity=str(user.id))
-            response = jsonify({"access_token": access_token})
+            response = jsonify({"accessToken": access_token})
             set_refresh_cookies(response, refresh_token)
             return response
     
@@ -189,7 +189,7 @@ class TokenRefresh(MethodView):
     def post(self):
         identity = get_jwt_identity()
         access_token = create_access_token(identity=identity)
-        return {"access_token": access_token}
+        return {"accessToken": access_token}
 
 @blp.route('/signout')
 class Signout(MethodView):

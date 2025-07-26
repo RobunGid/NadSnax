@@ -45,7 +45,7 @@ export const addItemReviewThunk = createAsyncThunk<
 		{
 			text: review.text,
 			rating: review.rating,
-			item_id: review.itemId,
+			itemId: review.itemId,
 		},
 		{
 			headers: {
@@ -94,7 +94,7 @@ export const addFavoriteThunk = createAsyncThunk<
 	const accessToken = getState().auth.accessToken;
 	const response = await Axios.post<{ id: string }>(
 		'/favorite',
-		{ item_id: itemId },
+		{ itemId: itemId },
 		{
 			headers: {
 				Authorization: accessToken ? `Bearer ${accessToken}` : '',
@@ -165,16 +165,16 @@ export const fetchItemsThunk = createAsyncThunk<
 		const page = getState().item.currentItemPage;
 
 		const requestParams = {
-			category_name: categoryName,
-			type_name: typeName,
+			categoryName,
+			typeName,
 			name: name,
 			bestseller: isBestseller,
 			secretbox: isSecretbox,
-			simillar_id: simillarId,
-			item_ids: itemIds?.join(','),
+			simillarId,
+			itemIds: itemIds?.join(','),
 			lang,
 			page,
-			per_page: 10,
+			perPage: 10,
 		};
 
 		const response = await Axios.get('/item', {
@@ -189,7 +189,7 @@ export const fetchItemsThunk = createAsyncThunk<
 		}
 
 		const items = response.data.items;
-		const totalItems = response.data.total_items;
+		const totalItems = response.data.totalItems;
 
 		const camelCaseItems: Item[] = camelcaseKeys(items, { deep: true });
 		return { items: camelCaseItems, totalItems };
