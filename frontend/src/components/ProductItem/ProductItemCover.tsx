@@ -10,6 +10,7 @@ interface ProductItemCoverProps {
 	onAddClick: MouseEventHandler<HTMLDivElement>;
 	onDeleteClick: MouseEventHandler<HTMLDivElement>;
 	imageURL: string;
+	showFavorite?: boolean;
 }
 
 export const ProductItemCover = ({
@@ -17,15 +18,18 @@ export const ProductItemCover = ({
 	onAddClick,
 	onDeleteClick,
 	imageURL,
+	showFavorite = false,
 }: ProductItemCoverProps) => {
 	return (
 		<UIProductItemCover>
 			<ProductItemImage imageURL={imageURL} label={item.label} />
-			<UIProductItemAddToFavorite
-				isFavorite={item.favoriteId ? true : false}
-				onAddClick={onAddClick}
-				onDeleteClick={onDeleteClick}
-			/>
+			{showFavorite && (
+				<UIProductItemAddToFavorite
+					isFavorite={item.favoriteId ? true : false}
+					onAddClick={onAddClick}
+					onDeleteClick={onDeleteClick}
+				/>
+			)}
 			<UIProductItemBadges
 				isBestseller={item.isBestseller}
 				isSecretbox={item.isSecretbox}

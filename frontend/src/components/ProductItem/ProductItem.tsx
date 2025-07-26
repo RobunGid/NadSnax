@@ -5,7 +5,7 @@ import { useItemQuantityChooser } from '../../hooks/useItemQuantityChooser';
 import {
 	addFavoriteThunk,
 	deleteFavoriteThunk,
-	useAppDispatch,
+	useActionCreators,
 	useStateSelector,
 } from '../../store';
 import { formatPrice } from '../../logic/formatPrice';
@@ -18,6 +18,7 @@ import { ProductItemCover } from './ProductItemCover';
 import { MouseEventHandler } from 'react';
 import { useI18n } from '../../i18n/i18n';
 import { UIProductItemInfoContainer } from './UI/UIProductItemInfoContainer';
+import { useAuth } from '../../hooks/useAuth';
 
 type ProductItemProps = {
 	item: Item;
@@ -36,7 +37,12 @@ export const ProductItem = ({
 		(cartItem) => cartItem.item.id === item.id
 	);
 
-	const dispatch = useAppDispatch();
+	const { isAuthenticated } = useAuth();
+
+	const { addToFavorite, deleteFromFavorite } = useActionCreators({
+		addToFavorite: addFavoriteThunk,
+		deleteFromFavorite: deleteFavoriteThunk,
+	});
 
 	const { lang } = useI18n();
 
@@ -45,13 +51,12 @@ export const ProductItem = ({
 
 	const handleAddToFavorite: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
-		dispatch(addFavoriteThunk({ itemId: item.id }));
+		addToFavorite({ itemId: item.id });
 	};
 
 	const handleDeleteFromFavorite: MouseEventHandler<HTMLDivElement> = (event) => {
 		event.preventDefault();
-		if (item.favoriteId)
-			dispatch(deleteFavoriteThunk({ favoriteId: item.favoriteId }));
+		if (item.favoriteId) deleteFromFavorite({ favoriteId: item.favoriteId });
 	};
 
 	const formattedPrice = formatPrice(item.price, lang);
@@ -74,6 +79,7 @@ export const ProductItem = ({
 				item={item}
 				onAddClick={handleAddToFavorite}
 				onDeleteClick={handleDeleteFromFavorite}
+				showFavorite={isAuthenticated}
 			/>
 			{!hideAddButton && (
 				<ProductItemQuantityChooser

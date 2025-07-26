@@ -3,13 +3,15 @@ import { LoginModalContext } from '../../context/LoginModalContext';
 import { useContext, useEffect } from 'react';
 import { isUserDefined, Role } from '../../types';
 import { useAuth } from '../../hooks/useAuth';
+import { useLoadUser } from '../../hooks/useLoadUser';
 
 interface PrivateRoutesProps {
 	roles: Role[];
 }
 
 export const PrivateRoutes = ({ roles }: PrivateRoutesProps) => {
-	const { isAuthenticated, isUserLoaded, user } = useAuth();
+	const { isAuthenticated } = useAuth();
+	const { isUserLoaded, user } = useLoadUser();
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -30,7 +32,6 @@ export const PrivateRoutes = ({ roles }: PrivateRoutesProps) => {
 	}
 	if (
 		!isAuthenticated ||
-		!isUserLoaded ||
 		(isUserLoaded && isUserDefined(user) && !roles.includes(user.role))
 	) {
 		return <Navigate to='/home' replace />;

@@ -7,13 +7,13 @@ import { isAxiosError } from 'axios';
 
 type OrderState = {
 	orders: Order[];
-	status: Status;
+	status: { fetchSelfOrders: Status; createOrder: Status };
 	error: StoreError;
 };
 
 const initialState: OrderState = {
 	orders: [],
-	status: 'init',
+	status: { createOrder: 'init', fetchSelfOrders: 'init' },
 	error: {},
 };
 
@@ -56,20 +56,75 @@ export const fetchSelfOrders = createAsyncThunk<
 	}
 });
 
+interface createOrderThunkParams {
+	orderItems: {
+		quantity: number;
+		item_id: string;
+	}[];
+	pickupPoint: string;
+}
+
+export const createOrderThunk = createAsyncThunk<
+	Order,
+	createOrderThunkParams,
+	{ state: RootStore; rejectValue: StoreError }
+>(
+	'/orders/create',
+	async ({ orderItems, pickupPoint }, { getState, rejectWithValue }) => {
+		try {
+			const accessToken = getState().auth.accessToken;
+			const response = await Axios.post(
+				'/orders',
+				{ pickup_point: pickupPoint, items: orderItems },
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			const data = response.data;
+			return data;
+		} catch (error) {
+			if (isAxiosError(error)) {
+				return rejectWithValue({
+					message: error.message,
+					code: error.code,
+					status: error.response?.status,
+					data: error.response?.data,
+				});
+			}
+			return rejectWithValue({ message: 'Unknown error' });
+		}
+	}
+);
+
 const slice = createSlice({
 	name: 'order',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(fetchSelfOrders.pending, (state) => {
-			state.status = 'loading';
+			state.status.fetchSelfOrders = 'loading';
 		});
 		builder.addCase(fetchSelfOrders.fulfilled, (state, action) => {
-			state.status = 'success';
+			state.status.fetchSelfOrders = 'success';
 			state.orders = action.payload;
 		});
 		builder.addCase(fetchSelfOrders.rejected, (state, action) => {
-			state.status = 'error';
+			state.status.fetchSelfOrders = 'error';
+			state.error = action.payload ? action.payload : { message: 'Unknown error' };
+		});
+
+		builder.addCase(createOrderThunk.pending, (state) => {
+			state.status.fetchSelfOrders = 'loading';
+		});
+		builder.addCase(createOrderThunk.fulfilled, (state, action) => {
+			state.status.fetchSelfOrders = 'success';
+			state.orders.push(action.payload);
+		});
+		builder.addCase(createOrderThunk.rejected, (state, action) => {
+			state.status.fetchSelfOrders = 'error';
 			state.error = action.payload ? action.payload : { message: 'Unknown error' };
 		});
 	},

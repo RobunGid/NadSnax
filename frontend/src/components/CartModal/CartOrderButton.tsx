@@ -1,8 +1,13 @@
 import { useContext } from 'react';
-import { Axios } from '../../api';
 import { CartModalContext } from '../../context/CartModalContext';
-import { clearCart, useAppDispatch, useStateSelector } from '../../store';
+import {
+	clearCart,
+	useActionCreators,
+	useAppDispatch,
+	useStateSelector,
+} from '../../store';
 import { UICartOrderButton } from './UI/UICartOrderButton';
+import { createOrderThunk } from '../../store/orderSlice';
 
 interface CartOrderButtonProps {
 	pickupPoint: string;
@@ -10,9 +15,11 @@ interface CartOrderButtonProps {
 
 export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
-	const accessToken = useStateSelector((state) => state.auth.accessToken);
-
 	const dispatch = useAppDispatch();
+
+	const { clearCartAction } = useActionCreators({
+		clearCartAction: clearCart,
+	} as const);
 
 	const { changeSuccessOrder } = useContext(CartModalContext);
 
@@ -22,21 +29,13 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 			item_id: cartItem.item.id,
 		}));
 
-		const response = await Axios.post(
-			'/orders',
-			{ pickup_point: pickupPoint, items: orderItems },
-			{
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-					'Content-Type': 'application/json',
-				},
-			}
-		);
+		const result = await dispatch(createOrderThunk({ orderItems, pickupPoint }));
 
-		if (response.request.status === 201) {
-			dispatch(clearCart());
+		if (result.meta.requestStatus == 'fulfilled') {
+			clearCartAction();
 			changeSuccessOrder(true);
 		}
 	};
+
 	return <UICartOrderButton onClick={handleOrder} />;
 };
