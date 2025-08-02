@@ -16,8 +16,8 @@ export const UIProductsPageSelectorButton = ({
 		<button
 			onClick={onClick}
 			className={clsx(
-				'w-10 h-10 border-4 rounded-full',
-				isCurrent && 'border-red-800'
+				'w-16 h-16 font-bold text-lg rounded-full',
+				isCurrent && 'border-sky-800 border-4'
 			)}
 		>
 			{pageNumber}

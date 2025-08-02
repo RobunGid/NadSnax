@@ -1,5 +1,6 @@
 import { itemActions, useActionCreators, useStateSelector } from '../../store';
 import { UIProductsPageSelectorButton } from './UI/UIProductsPageSelectorButton';
+import { UIProductsPageSelectorContainer } from './UI/UIProductsPageSelectorContainer';
 
 export const ProductsPageSelector = () => {
 	const totalItems = useStateSelector((state) => state.item.totalItems);
@@ -16,5 +17,5 @@ export const ProductsPageSelector = () => {
 			/>
 		);
 	}
-	return buttons;
+	return <UIProductsPageSelectorContainer>{buttons}</UIProductsPageSelectorContainer>;
 };
