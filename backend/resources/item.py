@@ -51,17 +51,17 @@ class Items(MethodView):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
             
-        per_page = int(request.args.get("per_page")) if "per_page" in request.args and request.args.get("per_page").isdigit() else 10
+        per_page = int(request.args.get("perPage")) if "perPage" in request.args and request.args.get("perPage").isdigit() else 10
         page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
         
-        category_filter = request.args.get("category_name", "").lower()
-        type_filter = request.args.get("type_name", "").lower()
+        category_filter = request.args.get("categoryName", "").lower()
+        type_filter = request.args.get("typeName", "").lower()
         
         bestseller_filter = request.args.get("bestseller", "").lower()
         secretbox_filter = request.args.get("secretbox", "").lower()
         name_filter = request.args.get("name", "").lower()
-        simillar_id_filter = request.args.get("simillar_id")
-        item_ids = request.args.get('item_ids')
+        simillar_id_filter = request.args.get("simillarId")
+        item_ids = request.args.get('itemIds')
   
         if bestseller_filter in ["false", "true"]:
             bestseller_filter = bestseller_filter == "true"
