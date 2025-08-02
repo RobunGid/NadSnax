@@ -126,7 +126,7 @@ export const signoutThunk = createAsyncThunk(
 				import.meta.env.VITE_API_URL + '/refresh'
 			);
 
-			const accessToken = accessResponse.data.access_token;
+			const accessToken = accessResponse.data.accessToken;
 			const response = await Axios.post(
 				import.meta.env.VITE_API_URL + '/signout',
 				{},

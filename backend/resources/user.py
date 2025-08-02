@@ -63,9 +63,6 @@ class MyUser(MethodView):
             abort(400, message=str(error))
  
         return user
-            
-
-        
 
 @blp.route('/user/<string:user_id>')
 class User(MethodView):
@@ -160,8 +157,6 @@ class UserRegister(MethodView):
             db.session.commit()
         except SQLAlchemyError:
             abort(500, message="Register error. Check data validity")
-    
-
     
         return user
 
