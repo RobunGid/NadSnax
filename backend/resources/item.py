@@ -51,8 +51,8 @@ class Items(MethodView):
         auth_header = request.headers.get("Authorization", None)
         language = g.language
             
-        per_page = int(request.args.get("perPage")) if "perPage" in request.args and request.args.get("perPage").isdigit() else 10
-        page = int(request.args.get("page")) if "page" in request.args and request.args.get("page").isdigit() else 0
+        per_page = int(request.args.get("perPage", 10)) if "perPage" in request.args and request.args.get("perPage", "").isdigit() else 10
+        page = int(request.args.get("page", 0)) if "page" in request.args and request.args.get("page", "").isdigit() else 0
         
         category_filter = request.args.get("categoryName", "").lower()
         type_filter = request.args.get("typeName", "").lower()
