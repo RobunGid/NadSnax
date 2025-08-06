@@ -26,7 +26,7 @@ export const CartOrderButton = ({ pickupPoint }: CartOrderButtonProps) => {
 	const handleOrder = async () => {
 		const orderItems = cartItems.map((cartItem) => ({
 			quantity: cartItem.count,
-			item_id: cartItem.item.id,
+			itemId: cartItem.item.id,
 		}));
 
 		const result = await dispatch(createOrderThunk({ orderItems, pickupPoint }));
