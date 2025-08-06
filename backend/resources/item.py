@@ -123,8 +123,8 @@ class Items(MethodView):
             query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
             query = query.add_columns(FavoriteModel.id.label("favorite_id"))
         
+        total_items = query.count()
         items = query.offset(page*per_page).limit(per_page).all()
-        total_items = len(items)
         if auth_header and auth_header.startswith('Bearer '):
             for index, (item, favorite_id) in enumerate(items):
                 item.favorite_id = favorite_id
