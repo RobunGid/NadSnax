@@ -1,1216 +1,458 @@
 BEGIN;
 
---- Lays Classic ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', true, 'lays-classic', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Lays Classic Potato Chips', 'Classic potato chips with just the right amount of salt', 'en', 2.99, 3.49),
-('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a78901', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Лейс Классические Чипсы', 'Классические картофельные чипсы с идеальным количеством соли', 'ru', 239.99, 299.49);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 
-'Lays Classic potato chips are made from fresh potatoes and cooked to perfection with just the right amount of salt for that classic taste you love.', 
-'Lays Classic Potato Chips 200g', 'PepsiCo', 
-'Potatoes, Vegetable Oil (Sunflower, Corn, and/or Canola Oil), Salt', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('d4e5f6b4-b8c9-0123-d4e5-f6a7b8c90123', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 
-'Чипсы Лейс Классические приготовлены из свежего картофеля с идеальным количеством соли для любимого классического вкуса.', 
-'Лейс Классические Чипсы 200г', 'PepsiCo', 
-'Картофель, растительное масло (подсолнечное, кукурузное и/или рапсовое), соль', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', true, 'lays_classic_front', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'Lays Classic Potato Chips package', 'en'),
-('a7b8c9d0-e1f2-3456-a7b8-c9d0e1f23456', 'e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'Упаковка чипсов Лейс Классические', 'ru');
-
---- Lays Classic Party Size ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', true, 'lays-classic-party', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('b3c4d5e6-f7a8-9012-b3c4-d5e6f7a89012', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Lays Classic Party Size', 'Perfect for sharing - classic potato chips in a big bag', 'en', 4.99, 5.49),
-('c4d5e6f7-a8b9-0123-c4d5-e6f7a8b90123', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Лейс Классические Party Size', 'Идеально для компании - классические чипсы в большой упаковке', 'ru', 429.49, 529.49);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('d5e6f7a8-b9c0-1234-d5e6-f7a8b9c01234', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 
-'Lays Classic Party Size chips are perfect for gatherings and parties. The same great classic taste in a larger bag for sharing.', 
-'Lays Classic Potato Chips Party Size 400g', 'PepsiCo', 
-'Potatoes, Vegetable Oil (Sunflower, Corn, and/or Canola Oil), Salt', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('e6f7a8b9-c0d1-2345-e6f7-a8b9c0d12345', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 
-'Чипсы Лейс Классические Party Size идеально подходят для вечеринок и компаний. Тот же классический вкус в большой упаковке.', 
-'Лейс Классические Чипсы Party Size 400г', 'PepsiCo', 
-'Картофель, растительное масло (подсолнечное, кукурузное и/или рапсовое), соль', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', true, 'lays_party_front', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('a8b9c0d1-e2f3-4567-a8b9-c0d1e2f34567', 'f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'Lays Classic Party Size package', 'en'),
-('b9c0d1e2-f3a4-5678-b9c0-d1e2f3a45678', 'f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'Упаковка Лейс Классические Party Size', 'ru');
-
---- Lays Salt & Vinegar ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', true, 'lays-salt-vinegar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('c5d6e7f8-a9b0-1234-c5d6-e7f8a9b01234', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Lays Salt & Vinegar', 'Tangy vinegar flavor with a salty kick', 'en', 2.99, 3.29),
-('d6e7f8a9-b0c1-2345-d6e7-f8a9b0c12345', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Лейс с солью и уксусом', 'Пикантный вкус уксуса с солоноватым оттенком', 'ru', 420, 610);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('e7f8a9b0-c1d2-3456-e7f8-a9b0c1d23456', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 
-'Lays Salt & Vinegar chips combine the perfect balance of tangy vinegar and salt for a bold flavor experience.', 
-'Lays Salt & Vinegar Potato Chips 200g', 'PepsiCo', 
-'Potatoes, Vegetable Oil, Salt & Vinegar Seasoning (Maltodextrin, Sodium Diacetate, Salt, Malt Vinegar, Citric Acid, Sugar, Yeast Extract)', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 210mg (9% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('f8a9b0c1-d2e3-4567-f8a9-b0c1d2e34567', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 
-'Чипсы Лейс с солью и уксусом сочетают идеальный баланс пикантного уксуса и соли для яркого вкусового опыта.', 
-'Лейс Чипсы с солью и уксусом 200г', 'PepsiCo', 
-'Картофель, растительное масло, приправа соль и уксус (мальтодекстрин, диацетат натрия, соль, солодовый уксус, лимонная кислота, сахар, экстракт дрожжей)', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 210мг (9% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', true, 'lays_salt_vinegar_front', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('b0c1d2e3-f4a5-6789-b0c1-d2e3f4a56789', 'a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', 'Lays Salt & Vinegar package', 'en'),
-('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', 'Упаковка Лейс с солью и уксусом', 'ru');
-
---- Lays Sour Cream & Onion ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', true, 'lays-sour-cream-onion', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('d7e8f9a0-b1c2-3456-d7e8-f9a0b1c23456', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Lays Sour Cream & Onion', 'Creamy sour cream flavor with onion taste', 'en', 2.99, 3.29),
-('e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Лейс со сметаной и луком', 'Нежный вкус сметаны с луковыми нотками', 'ru', 230.49, 290.99);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('f9a0b1c2-d3e4-5678-f9a0-b1c2d3e45678', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 
-'Lays Sour Cream & Onion chips combine the cool taste of sour cream with the savory flavor of onions for a delicious snack.', 
-'Lays Sour Cream & Onion Potato Chips 200g', 'PepsiCo', 
-'Potatoes, Vegetable Oil, Sour Cream & Onion Seasoning (Whey, Onion Powder, Salt, Sour Cream, Sugar, Garlic Powder)', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 180mg (8% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('a0b1c2d3-e4f5-6789-a0b1-c2d3e4f56789', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 
-'Чипсы Лейс со сметаной и луком сочетают нежный вкус сметаны с пикантным луковым ароматом.', 
-'Лейс Чипсы со сметаной и луком 200г', 'PepsiCo', 
-'Картофель, растительное масло, приправа сметана и лук (сыворотка, луковый порошок, соль, сметана, сахар, чесночный порошок)', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 180мг (8% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', true, 'lays_sour_cream_front', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c2d3e4f5-a6b7-8901-c2d3-e4f5a6b78901', 'b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', 'Lays Sour Cream & Onion package', 'en'),
-('d3e4f5a6-b7c8-9012-d3e4-f5a6b7c89012', 'b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', 'Упаковка Лейс со сметаной и луком', 'ru');
-
---- Miss Vickies Spice Fill Pickle ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', false, 'miss-vickies-spicy-dill', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('e9f0a1b2-c3d4-5678-e9f0-a1b2c3d45678', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Miss Vickies Spicy Dill Pickle', 'Bold dill pickle flavor with a spicy kick', 'en', 3.49),
-('f0a1b2c3-d4e5-6789-f0a1-b2c3d4e56789', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Мисс Викис Острый соленый огурец', 'Яркий вкус соленого огурца с остринкой', 'ru', 269.99);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 
-'Miss Vickies Spicy Dill Pickle chips are kettle cooked for extra crunch with a bold dill pickle flavor and spicy finish.', 
-'Miss Vickies Spicy Dill Pickle Kettle Cooked Chips 220g', 'PepsiCo', 
-'Potatoes, Vegetable Oil, Spicy Dill Pickle Seasoning (Salt, Sugar, Maltodextrin, Spices, Garlic Powder, Natural Flavors)', 
-'Per 50g: Calories 260, Fat 14g (22% DV), Sodium 380mg (16% DV), Carbs 30g (10% DV), Protein 3g', 
-'en', 'https://www.pepsico.com'),
-('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a78901', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 
-'Чипсы Мисс Викис Острый соленый огурец готовятся в котле для дополнительной хрусткости с ярким вкусом соленого огурца и острой ноткой.', 
-'Мисс Викис Чипсы Острый соленый огурец 220г', 'PepsiCo', 
-'Картофель, растительное масло, приправа острый соленый огурец (соль, сахар, мальтодекстрин, специи, чесночный порошок, натуральные ароматизаторы)', 
-'На 50г: Калории 260, Жиры 14г (22% ДН), Натрий 380мг (16% ДН), Углеводы 30г (10% ДН), Белки 3г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', true, 'miss_vickies_front', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('d4e5f6a7-b8c9-0123-d4e5-f6a7b8c90123', 'c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'Miss Vickies Spicy Dill Pickle package', 'en'),
-('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'Упаковка Мисс Викис Острый соленый огурец', 'ru');
-
---- Pringles Original ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('d6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', true, 'pringles-original', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('d6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Pringles Original', 'Classic potato crisps with perfect crunch', 'en', 3.29, 3.79),
-('a8b9c0d1-e2f3-4567-a8b9-c0d1e2f34567', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Принглс Оригинальные', 'Классические картофельные хрустящие чипсы', 'ru', 190, 350);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('b9c0d1e2-f3a4-5678-b9c0-d1e2f3a45678', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 
-'Pringles Original have that perfect combination of potato taste, crispiness, and saltiness in their unique saddle shape.', 
-'Pringles Original Potato Crisps 190g', 'Kelloggs', 
-'Dried Potatoes, Vegetable Oils, Rice Flour, Wheat Starch, Maltodextrin, Salt, Dextrose', 
-'Per 30g: Calories 160, Fat 9g (14% DV), Sodium 150mg (6% DV), Carbs 16g (5% DV), Protein 1g', 
-'en', 'https://www.kelloggs.com'),
-('c0d1e2f3-a4b5-6789-c0d1-e2f3a4b56789', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 
-'Принглс Оригинальные обладают идеальным сочетанием картофельного вкуса, хрусткости и солоноватости в своей уникальной форме.', 
-'Принглс Оригинальные 190г', 'Kelloggs', 
-'Сушеный картофель, растительные масла, рисовая мука, пшеничный крахмал, мальтодекстрин, соль, декстроза', 
-'На 30г: Калории 160, Жиры 9г (14% ДН), Натрий 150мг (6% ДН), Углеводы 16г (5% ДН), Белки 1г', 
-'ru', 'https://www.kelloggs.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', true, 'pringles_original_front', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Pringles Original can', 'en'),
-('f3a4b5c6-d7e8-9012-f3a4-b5c6d7e89012', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Банка Принглс Оригинальные', 'ru');
-
---- Doritos Nacho Cheese-
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', true, 'doritos-nacho-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('a4b5c6d7-e8f9-0123-a4b5-c6d7e8f90123', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Doritos Nacho Cheese Party Size', 'Bold nacho cheese flavor in a big sharing bag', 'en', 4.99, 5.49),
-('b5c6d7e8-f9a0-1234-b5c6-d7e8f9a01234', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Доритос Начо Сыр Party Size', 'Яркий вкус начо сыра в большой упаковке', 'ru', 419.95, 495.40);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('c6d7e8f9-a0b1-2345-c6d7-e8f9a0b12345', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 
-'Doritos Nacho Cheese tortilla chips have that bold, cheesy nacho flavor perfect for parties and gatherings.', 
-'Doritos Nacho Cheese Flavored Tortilla Chips Party Size 425g', 'PepsiCo', 
-'Corn, Vegetable Oil, Nacho Cheese Seasoning (Cheddar Cheese, Whey, Salt, Onion Powder, Tomato Powder, Garlic Powder)', 
-'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 210mg (9% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('d7e8f9a0-b1c2-3456-d7e8-f9a0b1c23456', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 
-'Кукурузные чипсы Доритос Начо Сыр обладают ярким сырным вкусом, идеальным для вечеринок и компаний.', 
-'Доритос Начо Сыр Party Size 425г', 'PepsiCo', 
-'Кукуруза, растительное масло, приправа Начо Сыр (сыр Чеддер, сыворотка, соль, луковый порошок, томатный порошок, чесночный порошок)', 
-'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 210мг (9% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', true, 'doritos_nacho_front', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('f9a0b1c2-d3e4-5678-f9a0-b1c2d3e45678', 'e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'Doritos Nacho Cheese Party Size bag', 'en'),
-('a0b1c2d3-e4f5-6789-a0b1-c2d3e4f56789', 'e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'Упаковка Доритос Начо Сыр Party Size', 'ru');
-
---- Lays Flavored Barbecue ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', true, 'lays-barbecue', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('d2e3f4a5-b6c7-8901-d2e3-f4a5b6c78901', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Lays Barbecue Flavored', 'Smoky, sweet barbecue flavor potato chips', 'en', 2.99, 3.29),
-('e3f4a5b6-c7d8-9012-e3f4-a5b6c7d89012', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Лейс со вкусом барбекю', 'Картофельные чипсы с дымчатым сладковатым вкусом барбекю', 'ru', 219.99, 309.99);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('f4a5b6c7-d8e9-0123-f4a5-b6c7d8e90123', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 
-'Lays Barbecue Flavored potato chips deliver the perfect balance of smoky, sweet and tangy barbecue flavor in every crispy bite.', 
-'Lays Barbecue Flavored Potato Chips 200g', 'PepsiCo', 
-'Potatoes, Vegetable Oil, Barbecue Seasoning (Sugar, Dextrose, Salt, Molasses, Onion Powder, Spices, Garlic Powder, Natural Flavors)', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('a5b6c7d8-e9f0-1234-a5b6-c7d8e9f01234', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 
-'Чипсы Лейс со вкусом барбекю предлагают идеальный баланс дымчатого, сладкого и пикантного вкуса в каждой хрустящей дольке.', 
-'Лейс Чипсы со вкусом барбекю 200г', 'PepsiCo', 
-'Картофель, растительное масло, приправа барбекю (сахар, декстроза, соль, меласса, луковый порошок, специи, чесночный порошок, натуральные ароматизаторы)', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', true, 'lays_barbecue_front', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c7d8e9f0-a1b2-3456-c7d8-e9f0a1b23456', 'b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', 'Lays Barbecue Flavored chips package', 'en'),
-('d8e9f0a1-b2c3-4567-d8e9-f0a1b2c34567', 'b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', 'Упаковка чипсов Лейс со вкусом барбекю', 'ru');
-
---- On The Border Mexicali Grill & Cantina Cafe Style Tortilla Chips ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', false, 'on-the-border-mexicali', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('fk2845jf-f6a7-8901-b2c3-d4e5f6a78901', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'On The Border Mexicali Grill & Cantina Cafe Style', 'Restaurant-style tortilla chips with authentic flavor', 'en', 3.99),
-('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'On The Border Mexicali Grill & Cantina (кафе стиль)', 'Чипсы в стиле мексиканского кафе с аутентичным вкусом', 'ru', 249.99);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('d4e5f6a7-b8c9-0123-d4e5-f6a7b8c90123', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 
-'On The Border Mexicali Grill & Cantina Cafe Style Tortilla Chips bring authentic Mexican restaurant flavor to your home. Perfect for dipping or enjoying alone.', 
-'On The Border Mexicali Grill & Cantina Cafe Style Tortilla Chips 12oz (340g)', 'On The Border Foods', 
-'Stone Ground White Corn, Vegetable Oil (Corn, Soybean, and/or Sunflower Oil), Salt', 
-'Per 1oz (28g): Calories 140, Fat 7g (9% DV), Sodium 105mg (5% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.ontheborder.com'),
-('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 
-'Чипсы On The Border Mexicali Grill & Cantina воспроизводят аутентичный вкус мексиканского ресторана. Идеальны для соусов или самостоятельного употребления.', 
-'On The Border Mexicali Grill & Cantina Чипсы 340г', 'On The Border Foods', 
-'Молотая белая кукуруза, растительное масло (кукурузное, соевое и/или подсолнечное), соль', 
-'На 28г: Калории 140, Жиры 7г (9% ДН), Натрий 105мг (5% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.ontheborder.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', true, 'on_the_border_front', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('a7b8c9d0-e1f2-4927-a7b8-c9d0e1f23456', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'On The Border Mexicali Grill tortilla chips package', 'en'),
-('b8c9d0e1-f2a3-4567-b8c9-d0e1f2a34567', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Упаковка чипсов On The Border Mexicali Grill', 'ru');
-
---- Cheetos Crunchy Cheese ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('828172cc-0566-4843-96a5-3913e0cc3df3', true, 'cheetos-crunchy-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('828172cc-0566-4843-96a5-3913e0cc3df3');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('399b9e14-efaa-3ae6-807a-bf4b244d6aad', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Cheetos Crunchy Cheese', 'Classic crunchy cheese-flavored corn snacks', 'en', 2.99, 3.49),
-('6807abf4-b244-d6aa-d399-b9e14efaa3ae', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Читос Хрустящие Сырные', 'Хрустящие кукурузные снеки с сырным вкусом', 'ru', 240, 280);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('244d6aad-399b-9e14-efaa-3ae6807abf4b', '828172cc-0566-4843-96a5-3913e0cc3df3', 
-'Cheetos Crunchy Cheese Flavored Snacks are made with real cheese for that classic taste you love. Perfect crunchy texture every time.', 
-'Cheetos Crunchy Cheese Flavored Snacks 8.5oz (241g)', 'PepsiCo', 
-'Enriched Corn Meal, Vegetable Oil, Cheese Seasoning (Whey, Cheddar Cheese, Canola Oil, Salt)', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 250mg (11% DV), Carbs 15g (5% DV), Protein 1g', 
-'en', 'https://www.pepsico.com'),
-('efaa3ae6-807a-bf4b-244d-6aad399b9e14', '828172cc-0566-4843-96a5-3913e0cc3df3', 
-'Читос Хрустящие с сырным вкусом сделаны с использованием настоящего сыра. Идеальная хрустящая текстура.', 
-'Читос Хрустящие Сырные 241г', 'PepsiCo', 
-'Обогащенная кукурузная мука, растительное масло, сырная приправа (сыворотка, сыр Чеддер, рапсовое масло, соль)', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 250мг (11% ДН), Углеводы 15г (5% ДН), Белки 1г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('3913e0cc-3df3-8281-72cc-0566484396a5', true, 'cheetos_crunchy_front', '828172cc-0566-4843-96a5-3913e0cc3df3');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('05664843-96a5-3913-e0cc-3df3828172cc', '3913e0cc-3df3-8281-72cc-0566484396a5', 'Cheetos Crunchy Cheese bag', 'en'),
-('96a53913-e0cc-3df3-8281-72cc05664843', '3913e0cc-3df3-8281-72cc-0566484396a5', 'Упаковка Читос Хрустящие Сырные', 'ru');
-
---- Doritos Spicy Sweet Chili (Party Size) ---
-
-BEGIN;
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e2170ecf-6123-4a3e-a1e3-c2439d757fab', false, 'doritos-spicy-sweet-chili', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e2170ecf-6123-4a3e-a1e3-c2439d757fab');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('be945da8-4287-e3db-477e-59bc8f2b8b9e', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Doritos Spicy Sweet Chili', 'Perfect balance of spicy and sweet flavors', 'en', 4.49),
-('477e59bc-8f2b-8b9e-be94-5da84287e3db', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Доритос Острый Сладкий Чили', 'Идеальный баланс острого и сладкого вкусов', 'ru', 360);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('8f2b8b9e-be94-5da8-4287-e3db477e59bc', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 
-'Doritos Spicy Sweet Chili Flavored Tortilla Chips combine the perfect amount of heat with a touch of sweetness for an addictive snack.', 
-'Doritos Spicy Sweet Chili Party Size 14.5oz (411g)', 'PepsiCo', 
-'Corn, Vegetable Oil, Spicy Sweet Chili Seasoning (Sugar, Salt, Spices, Onion Powder, Garlic Powder)', 
-'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 210mg (9% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('4287e3db-477e-59bc-8f2b-8b9ebe945da8', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 
-'Чипсы Доритос Острый Сладкий Чили сочетают идеальное количество остроты с легкой сладостью.', 
-'Доритос Острый Сладкий Чили Party Size 411г', 'PepsiCo', 
-'Кукуруза, растительное масло, приправа Острый Сладкий Чили (сахар, соль, специи, луковый порошок, чесночный порошок)', 
-'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 210мг (9% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('c2439d75-7fab-e217-0ecf-61234a3ea1e3', true, 'doritos_spicy_sweet_front', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('61234a3e-a1e3-c243-9d75-7fabe2170ecf', 'c2439d75-7fab-e217-0ecf-61234a3ea1e3', 'Doritos Spicy Sweet Chili bag', 'en'),
-('a1e3c243-9d75-7fab-e217-0ecf61234a3e', 'c2439d75-7fab-e217-0ecf-61234a3ea1e3', 'Упаковка Доритос Острый Сладкий Чили', 'ru');
-
---- Lay's Baked BBQ (Gluten Free) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('7e161f6d-5f93-4453-8865-eb7e449828b7', false, 'lays-baked-bbq', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('7e161f6d-5f93-4453-8865-eb7e449828b7');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('b74beac7-ae46-a530-afa7-1bf662ae84ce', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Lay''s Baked BBQ', 'Baked potato chips with barbecue flavor, gluten free', 'en', 3.29, 3.79),
-('afa71bf6-62ae-84ce-b74b-eac7ae46a530', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Лейс Печеные Барбекю', 'Печеные картофельные чипсы со вкусом барбекю, без глютена', 'ru', 260, 300);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('62ae84ce-b74b-eac7-ae46-a530afa71bf6', '7e161f6d-5f93-4453-8865-eb7e449828b7', 
-'Lay''s Baked BBQ Flavored Potato Chips are made with 65% less fat than regular potato chips. Gluten free and full of smoky barbecue flavor.', 
-'Lay''s Baked Gluten Free Barbecue Flavored Potato Chips 6.25oz (177g)', 'PepsiCo', 
-'Dried Potatoes, Corn Starch, Sugar, Salt, Barbecue Seasoning', 
-'Per 28g: Calories 120, Fat 3.5g (5% DV), Sodium 180mg (8% DV), Carbs 22g (8% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('ae46a530-afa7-1bf6-62ae-84ceb74beac7', '7e161f6d-5f93-4453-8865-eb7e449828b7', 
-'Чипсы Лейс Печеные Барбекю содержат на 65% меньше жира по сравнению с обычными чипсами. Без глютена с дымчатым вкусом барбекю.', 
-'Лейс Печеные Барбекю 177г', 'PepsiCo', 
-'Сушеный картофель, кукурузный крахмал, сахар, соль, приправа барбекю', 
-'На 28г: Калории 120, Жиры 3.5г (5% ДН), Натрий 180мг (8% ДН), Углеводы 22г (8% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('eb7e4498-28b7-7e16-1f6d-5f9344538865', true, 'lays_baked_bbq_front', '7e161f6d-5f93-4453-8865-eb7e449828b7');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('5f934453-8865-eb7e-4498-28b77e161f6d', 'eb7e4498-28b7-7e16-1f6d-5f9344538865', 'Lay''s Baked BBQ bag', 'en'),
-('8865eb7e-4498-28b7-7e16-1f6d5f934453', 'eb7e4498-28b7-7e16-1f6d-5f9344538865', 'Упаковка Лейс Печеные Барбекю', 'ru');
-
---- SunChips Garden Salsa ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', true, 'sunchips-garden-salsa', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e13aba2a-6fd9-454d-a0a1-248cd31a6dc0');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('4d613a3b-0bba-0a29-69d3-4e511a74812e', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'SunChips Garden Salsa', 'Whole grain snacks with garden salsa flavor', 'en', 3.49),
-('69d34e51-1a74-812e-4d61-3a3b0bba0a29', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'СанЧипс Гарден Сальса', 'Цельнозерновые снеки с вкусом сальсы', 'ru', 280);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('1a74812e-4d61-3a3b-0bba-0a2969d34e51', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 
-'SunChips Garden Salsa Flavored Whole Grain Snacks are made with 100% whole grain and have 18g or more of whole grain per serving.', 
-'SunChips Garden Salsa Whole Grain Snacks 7oz (198g)', 'PepsiCo', 
-'Whole Corn, Whole Wheat, Vegetable Oil, Garden Salsa Seasoning', 
-'Per 28g: Calories 140, Fat 6g (9% DV), Sodium 120mg (5% DV), Carbs 19g (7% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('0bba0a29-69d3-4e51-1a74-812e4d613a3b', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 
-'СанЧипс Гарден Сальса сделаны из 100% цельного зерна и содержат 18г или более цельного зерна на порцию.', 
-'СанЧипс Гарден Сальса 198г', 'PepsiCo', 
-'Цельная кукуруза, цельная пшеница, растительное масло, приправа Гарден Сальса', 
-'На 28г: Калории 140, Жиры 6г (9% ДН), Натрий 120мг (5% ДН), Углеводы 19г (7% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', true, 'sunchips_garden_front', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('6fd9454d-a0a1-248c-d31a-6dc0e13aba2a', '248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', 'SunChips Garden Salsa bag', 'en'),
-('a0a1248c-d31a-6dc0-e13a-ba2a6fd9454d', '248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', 'Упаковка СанЧипс Гарден Сальса', 'ru');
-
---- Takies Fuego ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('ce60e10f-61f5-44c0-81a4-29014c08643e', true, 'takis-fuego', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('ce60e10f-61f5-44c0-81a4-29014c08643e');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('9512f82d-04b1-1918-6dbd-96b4995abd41', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Takis Fuego', 'Hot chili pepper & lime rolled tortilla chips', 'en', 3.99, 4.49),
-('6dbd96b4-995a-bd41-9512-f82d04b11918', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Такис Фуэго', 'Острые чипсы с вкусом перца чили и лайма', 'ru', 320, 360);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('995abd41-9512-f82d-04b1-19186dbd96b4', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 
-'Takis Fuego are rolled corn tortilla chips packed with intense heat and tangy lime flavor. Not for the faint of heart!', 
-'Takis Fuego Hot Chili Pepper & Lime Rolled Tortilla Chips 9.9oz (280g)', 'Barcel', 
-'Corn Masa Flour, Vegetable Oil, Seasoning (Salt, Sugar, Citric Acid, Chili Pepper, Natural Flavors)', 
-'Per 28g: Calories 140, Fat 8g (12% DV), Sodium 420mg (18% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.barcel-usa.com'),
-('04b11918-6dbd-96b4-995a-bd419512f82d', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 
-'Такис Фуэго - свернутые кукурузные чипсы с интенсивной остротой и вкусом лайма. Не для слабонервных!', 
-'Такис Фуэго Острые Чипсы 280г', 'Barcel', 
-'Кукурузная мука, растительное масло, приправа (соль, сахар, лимонная кислота, перец чили, натуральные ароматизаторы)', 
-'На 28г: Калории 140, Жиры 8г (12% ДН), Натрий 420мг (18% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.barcel-usa.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('29014c08-643e-ce60-e10f-61f544c081a4', true, 'takis_fuego_front', 'ce60e10f-61f5-44c0-81a4-29014c08643e');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('61f544c0-81a4-2901-4c08-643ece60e10f', '29014c08-643e-ce60-e10f-61f544c081a4', 'Takis Fuego bag', 'en'),
-('81a42901-4c08-643e-ce60-e10f61f544c0', '29014c08-643e-ce60-e10f-61f544c081a4', 'Упаковка Такис Фуэго', 'ru');
-
---- Doritos Twisted Queso ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e7627b73-922e-44f8-b646-bbbd74788acf', false, 'doritos-twisted-queso', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e7627b73-922e-44f8-b646-bbbd74788acf');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('bbb28c4c-435e-4d85-37ae-ce2cf845d3c', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Doritos Twisted Queso', 'Cheesy twisted tortilla chips with bold flavor', 'en', 3.29),
-('37aece2c-f845-d3cb-bb28-c4c435e4d853', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Доритос Твистед Кесо', 'Сырные скрученные чипсы с насыщенным вкусом', 'ru', 260);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('f845d3cb-bb28-c4c4-35e4-d85337aece2c', 'e7627b73-922e-44f8-b646-bbbd74788acf', 
-'Doritos Twisted Queso tortilla chips feature a unique twisted shape and extra cheesy queso flavor that delivers maximum taste in every bite.', 
-'Doritos Twisted Queso Tortilla Chips 9oz (255g)', 'PepsiCo', 
-'Corn, Vegetable Oil, Queso Seasoning (Cheddar Cheese, Whey, Buttermilk, Salt, Onion Powder)', 
-'Per 28g: Calories 150, Fat 8g (12% DV), Sodium 210mg (9% DV), Carbs 17g (6% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('35e4d853-37ae-ce2c-f845-d3cbbb28c4c4', 'e7627b73-922e-44f8-b646-bbbd74788acf', 
-'Чипсы Доритос Твистед Кесо имеют уникальную скрученную форму и насыщенный сырный вкус кесо.', 
-'Доритос Твистед Кесо 255г', 'PepsiCo', 
-'Кукуруза, растительное масло, приправа Кесо (сыр Чеддер, сыворотка, пахта, соль, луковый порошок)', 
-'На 28г: Калории 150, Жиры 8г (12% ДН), Натрий 210мг (9% ДН), Углеводы 17г (6% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('bbbd7478-8acf-e762-7b73-922e44f8b646', true, 'doritos_twisted_front', 'e7627b73-922e-44f8-b646-bbbd74788acf');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('922e44f8-b646-bbbd-7478-8acfe7627b73', 'bbbd7478-8acf-e762-7b73-922e44f8b646', 'Doritos Twisted Queso bag', 'en'),
-('b646bbbd-7478-8acf-e762-7b73922e44f8', 'bbbd7478-8acf-e762-7b73-922e44f8b646', 'Упаковка Доритос Твистед Кесо', 'ru');
-
---- Great Value Nacho Cheese ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('3c6f292e-411b-4bd6-92cc-bd01e330c09e', false, 'great-value-nacho-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('3c6f292e-411b-4bd6-92cc-bd01e330c09e');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('9804b3b2-763a-507c-e2c7-fb0414dcbb0f', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Great Value Nacho Cheese', 'Classic nacho cheese flavored tortilla chips', 'en', 2.29, 2.79),
-('e2c7fb04-14dc-bb0f-9804-b3b2763a507c', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Great Value Начо Сыр', 'Классические чипсы со вкусом начо сыра', 'ru', 180, 220);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('14dcbb0f-9804-b3b2-763a-507ce2c7fb04', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 
-'Great Value Nacho Cheese Flavored Tortilla Chips deliver the classic nacho cheese taste you love at a great value price.', 
-'Great Value Nacho Cheese Tortilla Chips 9.75oz (276g)', 'Walmart', 
-'Corn, Vegetable Oil, Nacho Cheese Seasoning (Whey, Cheddar Cheese, Salt, Onion Powder)', 
-'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 180mg (8% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.walmart.com'),
-('763a507c-e2c7-fb04-14dc-bb0f9804b3b2', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 
-'Чипсы Great Value Начо Сыр предлагают классический вкус начо сыра по отличной цене.', 
-'Great Value Чипсы Начо Сыр 276г', 'Walmart', 
-'Кукуруза, растительное масло, приправа Начо Сыр (сыворотка, сыр Чеддер, соль, луковый порошок)', 
-'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 180мг (8% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.walmart.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('bd01e330-c09e-3c6f-292e-411b4bd692cc', true, 'great_value_nacho_front', '3c6f292e-411b-4bd6-92cc-bd01e330c09e');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('411b4bd6-92cc-bd01-e330-c09e3c6f292e', 'bd01e330-c09e-3c6f-292e-411b4bd692cc', 'Great Value Nacho Cheese bag', 'en'),
-('92ccbd01-e330-c09e-3c6f-292e411b4bd6', 'bd01e330-c09e-3c6f-292e-411b4bd692cc', 'Упаковка Great Value Начо Сыр', 'ru');
-
---- Tostitos Cantina Thin & Crispy ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('694e30fa-d29c-4437-a4a1-0c89b090ce74', true, 'tostitos-cantina-thin', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('694e30fa-d29c-4437-a4a1-0c89b090ce74');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('4b6b33e0-b4c9-c4e7-da26-9d28863c6a99', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Tostitos Cantina Thin & Crispy', 'Thin, crispy restaurant-style tortilla chips', 'en', 3.79),
-('da269d28-863c-6a99-4b6b-33e0b4c9c4e7', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Тоститос Кантина Тонкие Хрустящие', 'Тонкие чипсы в стиле мексиканского ресторана', 'ru', 300);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('863c6a99-4b6b-33e0-b4c9-c4e7da269d28', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 
-'Tostitos Cantina Thin & Crispy tortilla chips are inspired by authentic Mexican restaurants with their thin, crispy texture.', 
-'Tostitos Cantina Thin & Crispy Tortilla Chips 10oz (283g)', 'PepsiCo', 
-'White Corn, Vegetable Oil, Sea Salt', 
-'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 115mg (5% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('b4c9c4e7-da26-9d28-863c-6a994b6b33e0', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 
-'Чипсы Тоститос Кантина Тонкие Хрустящие вдохновлены аутентичными мексиканскими ресторанами.', 
-'Тоститос Кантина Тонкие Хрустящие 283г', 'PepsiCo', 
-'Белая кукуруза, растительное масло, морская соль', 
-'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 115мг (5% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('0c89b090-ce74-694e-30fa-d29c4437a4a1', true, 'tostitos_cantina_front', '694e30fa-d29c-4437-a4a1-0c89b090ce74');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('d29c4437-a4a1-0c89-b090-ce74694e30fa', '0c89b090-ce74-694e-30fa-d29c4437a4a1', 'Tostitos Cantina Thin & Crispy bag', 'en'),
-('a4a10c89-b090-ce74-694e-30fad29c4437', '0c89b090-ce74-694e-30fa-d29c4437a4a1', 'Упаковка Тоститос Кантина Тонкие Хрустящие', 'ru');
-
---- Takis Blue Heat ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('6f9da1dd-0041-478a-bdd4-f80e67a58f26', false, 'takis-blue-heat', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('6f9da1dd-0041-478a-bdd4-f80e67a58f26');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('641e1b70-cc6d-1a43-d7f3-3813d512cb23', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Takis Blue Heat', 'Extremely hot chili pepper rolled tortilla chips', 'en', 3.99),
-('d7f33813-d512-cb23-641e-1b70cc6d1a43', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Такис Блю Хит', 'Очень острые чипсы с перцем чили', 'ru', 320);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('d512cb23-641e-1b70-cc6d-1a43d7f33813', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 
-'Takis Blue Heat rolled tortilla chips deliver an extreme heat experience with intense chili pepper flavor and eye-catching blue color.', 
-'Takis Blue Heat Hot Chili Pepper Rolled Tortilla Chips 9.9oz (280g)', 'Barcel', 
-'Corn Masa Flour, Vegetable Oil, Seasoning (Salt, Sugar, Chili Pepper, Citric Acid, Blue 1 Lake)', 
-'Per 28g: Calories 140, Fat 8g (12% DV), Sodium 420mg (18% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.barcel-usa.com'),
-('cc6d1a43-d7f3-3813-d512-cb23641e1b70', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 
-'Чипсы Такис Блю Хит предлагают экстремально острый вкус с интенсивным вкусом перца чили и ярким синим цветом.', 
-'Такис Блю Хит Острые Чипсы 280г', 'Barcel', 
-'Кукурузная мука, растительное масло, приправа (соль, сахар, перец чили, лимонная кислота, краситель Blue 1 Lake)', 
-'На 28г: Калории 140, Жиры 8г (12% ДН), Натрий 420мг (18% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.barcel-usa.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f80e67a5-8f26-6f9d-a1dd-0041478abdd4', true, 'takis_blue_front', '6f9da1dd-0041-478a-bdd4-f80e67a58f26');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('0041478a-bdd4-f80e-67a5-8f266f9da1dd', 'f80e67a5-8f26-6f9d-a1dd-0041478abdd4', 'Takis Blue Heat bag', 'en'),
-('bdd4f80e-67a5-8f26-6f9d-a1dd0041478a', 'f80e67a5-8f26-6f9d-a1dd-0041478abdd4', 'Упаковка Такис Блю Хит', 'ru');
-
---- The Good Crisp Outback BBQ (Gluten Free) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', false, 'good-crisp-outback-bbq', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('f29fff33-e5f8-a773-89cd-4c9ec1f87a3b', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'The Good Crisp Outback BBQ', 'Gluten free potato chips with smoky BBQ flavor', 'en', 3.99),
-('89cd4c9e-c1f8-7a3b-f29f-ff33e5f8a773', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'Гуд Крисп Аутбэк Барбекю', 'Безглютеновые чипсы с дымчатым вкусом барбекю', 'ru', 320);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('c1f87a3b-f29f-ff33-e5f8-a77389cd4c9e', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 
-'The Good Crisp Company Outback BBQ flavored potato chips are gluten free and made with simple ingredients for a better-for-you snack.', 
-'The Good Crisp Company Gluten Free Outback BBQ Snack Chips 5.6oz (159g)', 'The Good Crisp Company', 
-'Potatoes, Sunflower Oil, Outback BBQ Seasoning (Sugar, Salt, Tomato Powder, Spices)', 
-'Per 28g: Calories 150, Fat 9g (14% DV), Sodium 180mg (8% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.thegoodcrispcompany.com'),
-('e5f8a773-89cd-4c9e-c1f8-7a3bf29fff33', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 
-'Чипсы Гуд Крисп Аутбэк Барбекю не содержат глютен и сделаны из простых ингредиентов.', 
-'Гуд Крисп Аутбэк Барбекю 159г', 'The Good Crisp Company', 
-'Картофель, подсолнечное масло, приправа Аутбэк Барбекю (сахар, соль, томатный порошок, специи)', 
-'На 28г: Калории 150, Жиры 9г (14% ДН), Натрий 180мг (8% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.thegoodcrispcompany.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', true, 'good_crisp_bbq_front', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('8ca64ca0-b803-4cd0-a2c5-7001e0b4eb02', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'The Good Crisp Outback BBQ bag', 'en'),
-('b8034cd0-a2c5-7001-e0b4-eb028ca64ca0', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'Упаковка Гуд Крисп Аутбэк Барбекю', 'ru');
-
---- Act II Butter Lovers Microwave Popcorn (3-count) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', false, 'act_ii_butter_lovers_3ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a98701', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Act II Butter Lovers Microwave Popcorn', 'Rich buttery flavor popcorn, 3-count box', 'en', 3.49, 3.99),
-('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89874', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Акт II Любительское Масло Попкорн', 'Попкорн с насыщенным масляным вкусом, 3 пакета', 'ru', 280, 320);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('d4e5f6a7-b8c9-0123-d4e5-b6a7b8c90123', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 
-'Act II Butter Lovers Microwave Popcorn delivers rich, buttery flavor in every bite. Perfect for movie nights at home.', 
-'Act II Butter Lovers Microwave Popcorn 2.75oz 3-count', 'Conagra Brands', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
-'Per 2.75oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.conagrabrands.com'),
-('e5f6a9b8-c9d0-1234-e5f6-a7b8c9d01234', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 
-'Попкорн Act II Любительское Масло с насыщенным масляным вкусом. Идеально для домашних киносеансов.', 
-'Акт II Любительское Масло Попкорн 2.75oz 3 пакета', 'Conagra Brands', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
-'На 2.75oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.conagrabrands.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f6a7b8c9-d0e1-7896-f6a7-b8c9d0e12345', true, 'act_ii_butter_lovers_microwave_popcorn_2_75_oz_3_count', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('a7b8c9d0-e1f2-3456-3764-c9d0e1f23456', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Act II Butter Lovers 3-count box', 'en'),
-('b8c9d0e1-f2a3-4567-b8c9-d0e8f2a34567', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Упаковка Акт II Любительское Масло 3 пакета', 'ru');
-
---- SkinnyPop Gluten Free Butter Microwave Popcorn  ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047', true, 'skinny_pop_gluten_free_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('12a1a66e-bc9a-e733-c454-53e2cbe70562', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'SkinnyPop Gluten Free Butter Microwave Popcorn', 'Light, buttery popcorn with 39% less fat than regular', 'en', 4.99),
-('c45453e2-cbe7-0562-12a1-a66ebc9ae733', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'СкинниПоп Безглютеновый Масляный Попкорн', 'Легкий попкорн с масляным вкусом, на 39% меньше жира', 'ru', 400);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('cbe70562-12a1-a66e-bc9a-e733c45453e2', '5c812e5c-1fa8-441a-93bf-28f674a36047', 
-'SkinnyPop Gluten Free Butter Microwave Popcorn is made with simple ingredients and contains 39% less fat than regular butter popcorn.', 
-'SkinnyPop Gluten Free Butter Microwave Popcorn 2.8oz 6-count', 'SkinnyPop', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor', 
-'Per 2.8oz bag: Calories 130, Fat 7g (11% DV), Sodium 250mg (11% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.skinnypop.com'),
-('bc9ae733-c454-53e2-cbe7-056212a1a66e', '5c812e5c-1fa8-441a-93bf-28f674a36047', 
-'Попкорн СкинниПоп Безглютеновый Масляный сделан из простых ингредиентов и содержит на 39% меньше жира.', 
-'СкинниПоп Безглютеновый Масляный Попкорн 2.8oz 6 пакетов', 'SkinnyPop', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор', 
-'На 2.8oz пакет: Калории 130, Жиры 7г (11% ДН), Натрий 250мг (11% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.skinnypop.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('28f674a3-6047-5c81-2e5c-1fa8441a93bf', true, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count', '5c812e5c-1fa8-441a-93bf-28f674a36047');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('93bf28f6-74a3-6047-5c81-2e5c1fa8441a', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count_back', '5c812e5c-1fa8-441a-93bf-28f674a36047'),
-('60475c81-2e5c-1fa8-441a-93bf28f674a3', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_bowl', '5c812e5c-1fa8-441a-93bf-28f674a36047');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('441a93bf-28f6-74a3-6047-5c812e5c1fa8', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'SkinnyPop Gluten Free Butter box front', 'en'),
-('74a36047-5c81-2e5c-1fa8-441a93bf28f6', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'Упаковка СкинниПоп Безглютеновый Масляный', 'ru'),
-
-('5c1fa844-1a93-bf28-f674-a360475c812e', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'SkinnyPop box back', 'en'),
-('475c812e-5c1f-a844-1a93-bf28f674a360', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'Задняя сторона упаковки СкинниПоп', 'ru'),
-
-('812e5c1f-a844-1a93-bf28-f674a360475c', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'SkinnyPop popcorn in bowl', 'en'),
-('e5c1fa84-41a9-3bf2-8f67-4a360475c812', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'СкинниПоп попкорн в миске', 'ru');
-
---- Smartfood White Cheddar ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', true, 'smartfood_white_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Smartfood White Cheddar Popcorn', 'Delicious white cheddar flavored popcorn', 'en', 3.99),
-('a4b5c6d7-8901-e2f3-a4b5-c6d78901e2f3', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Смартфуд Вайт Чеддер Попкорн', 'Попкорн с вкусом белого чеддера', 'ru', 320);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('8901e2f3-a4b5-c6d7-8901-e2f3a4b5c6d7', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 
-'Smartfood White Cheddar Cheese Flavored Popcorn is a delicious snack made with real cheese for authentic flavor.', 
-'Smartfood White Cheddar Popcorn 6.75oz (191g)', 'PepsiCo', 
-'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning (Whey, Cheddar Cheese, Canola Oil, Salt)', 
-'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 230mg (10% DV), Carbs 15g (5% DV), Protein 3g', 
-'en', 'https://www.pepsico.com'),
-('c6d78901-e2f3-a4b5-c6d7-8901e2f3a4b5', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 
-'Попкорн Смартфуд Вайт Чеддер сделан с использованием настоящего сыра для аутентичного вкуса.', 
-'Смартфуд Вайт Чеддер Попкорн 191г', 'PepsiCo', 
-'Попкорн, растительное масло, приправа Вайт Чеддер (сыворотка, сыр Чеддер, рапсовое масло, соль)', 
-'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 230мг (10% ДН), Углеводы 15г (5% ДН), Белки 3г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', true, 'smartfood_white_cheddar_6_75_oz_bag', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('b5c67890-d1e2-f3a4-b5c6-7890d1e2f3a4', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Smartfood White Cheddar bag', 'en'),
-('7890d1e2-f3a4-b5c6-7890-d1e2f3a4b5c6', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Упаковка Смартфуд Вайт Чеддер', 'ru');
-
---- Angie's Boomchickapop Sweet & Salty Kettle Corn ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', false, 'angies_boomchickapop_sweet_salty', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('a9b8c7d6-e5f4-3821-a9b8-c7d6e5f43821', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Angie''s Boomchickapop Sweet & Salty Kettle Corn', 'Perfect balance of sweet and salty flavors', 'en', 4.49),
-('c7d6e5f4-3821-a9b8-c7d6-e5f43821a9b8', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Энджис Бумчикапоп Сладко-Соленый', 'Идеальный баланс сладкого и соленого вкусов', 'ru', 360);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('3821a9b8-c7d6-e5f4-3821-a9b8c7d6e5f4', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 
-'Angie''s Boomchickapop Sweet & Salty Kettle Corn is made with simple ingredients and contains no artificial flavors or preservatives.', 
-'Angie''s Boomchickapop Sweet & Salty Kettle Corn 7oz (198g)', 'Angie''s Artisan Treats', 
-'Popcorn, Sunflower Oil, Cane Sugar, Sea Salt', 
-'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 85mg (4% DV), Carbs 18g (6% DV), Protein 2g', 
-'en', 'https://www.angiesboomchickapop.com'),
-('e5f43821-a9b8-c7d6-e5f4-3821a9b8c7d6', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 
-'Попкорн Энджис Бумчикапоп Сладко-Соленый сделан из простых ингредиентов без искусственных ароматизаторов.', 
-'Энджис Бумчикапоп Сладко-Соленый 198г', 'Angie''s Artisan Treats', 
-'Попкорн, подсолнечное масло, тростниковый сахар, морская соль', 
-'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 85мг (4% ДН), Углеводы 18г (6% ДН), Белки 2г', 
-'ru', 'https://www.angiesboomchickapop.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', true, 'angies_boomchickapop_sweet_salty_kettle_corn_prepopped_7_oz', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('b4a34921-83f6-e5d4-c3b2-a109f8e7d6c5', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Angie''s Boomchickapop Sweet & Salty bag', 'en'),
-('83f6e5d4-c3b2-a109-f8e7-d6c5b4a54971', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Упаковка Энджис Бумчикапоп Сладко-Соленый', 'ru');
-
---- Orville Redenbacher's Movie Theater Butter (12-count) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', true, 'orville_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Orville Redenbacher''s Movie Theater Butter', 'Rich, buttery flavor like at the movies', 'en', 5.99, 6.49),
-('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Орвилл Реденбахер Кинотеатральное Масло', 'Насыщенный масляный вкус как в кинотеатре', 'ru', 480, 520);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('a109f8e7-d6c5-b4a3-4921-83f6e5d4c3b2', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 
-'Orville Redenbacher''s Movie Theater Butter popcorn delivers the rich, buttery taste you love from the movie theater.', 
-'Orville Redenbacher''s Movie Theater Butter Microwave Popcorn 12-count', 'Orville Redenbacher''s', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
-'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.orville.com'),
-('492183f6-e5d4-c3b2-a109-f8e7d6c5b4a3', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 
-'Попкорн Орвилл Реденбахер Кинотеатральное Масло воспроизводит вкус кинотеатрального попкорна.', 
-'Орвилл Реденбахер Кинотеатральное Масло 12 пакетов', 'Orville Redenbacher''s', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
-'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.orville.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', true, 'orville_redenbacher_movie_theater_butter_microwave_popcorn_12_count', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Orville Redenbacher''s Movie Theater Butter box', 'en'),
-('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Упаковка Орвилл Реденбахер Кинотеатральное Масло', 'ru');
-
---- Popcornopolis Caramel Kettle Mix ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', false, 'popcornopolis_caramel_kettle', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Popcornopolis Caramel Kettle Mix', 'Sweet caramel coated kettle corn', 'en', 6.99),
-('d4c3b2a1-09f8-e7d6-c5b4-a8492183f6e5', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Попкорнополис Карамельный Микс', 'Сладкий карамелизированный попкорн', 'ru', 560);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('09f8e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 
-'Popcornopolis Caramel Kettle Mix is a delicious blend of sweet caramel coated popcorn that''s perfect for sharing.', 
-'Popcornopolis Caramel Kettle Mix 7.5oz (213g)', 'Popcornopolis', 
-'Popcorn, Sugar, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 
-'Per 28g: Calories 130, Fat 4.5g (7% DV), Sodium 85mg (4% DV), Carbs 22g (8% DV), Protein 1g', 
-'en', 'https://www.popcornopolis.com'),
-('2183f6e5-d4c3-b2a1-09f8-e7d6c974a349', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 
-'Попкорнополис Карамельный Микс - это вкусная смесь сладкого карамелизированного попкорна.', 
-'Попкорнополис Карамельный Микс 213г', 'Popcornopolis', 
-'Попкорн, сахар, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 
-'На 28г: Калории 130, Жиры 4.5г (7% ДН), Натрий 85мг (4% ДН), Углеводы 22г (8% ДН), Белки 1г', 
-'ru', 'https://www.popcornopolis.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', true, 'popcornopolis_caramel_kettle_mix_7_5_oz_bag', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e7d6', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Popcornopolis Caramel Kettle Mix bag', 'en'),
-('f6e5d4c3-b2a1-09f8-e7d6-b5b4a3492183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Упаковка Попкорнополис Карамельный Микс', 'ru');
-
---- Jolly Time Blast O Butter Theatre Style ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', false, 'jolly_time_blast_o_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Jolly Time Blast O Butter Theatre Style', 'Extra buttery theater-style popcorn', 'en', 4.29),
-('b2a109f8-e7d6-c5b4-a349-2183f6e5d863', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Джолли Тайм Бласт О Баттер Театральный', 'Очень маслянистый попкорн в театральном стиле', 'ru', 340);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b6', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 
-'Jolly Time Blast O Butter Theatre Style Microwave Popcorn delivers extra buttery flavor with a light, fluffy texture.', 
-'Jolly Time Blast O Butter Theatre Style Microwave Popcorn 3.2oz 6-pack', 'Jolly Time', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
-'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
-'en', 'https://www.jollytime.com'),
-('d4c3b2a1-09f8-e7d6-c5b4-a3492133f6e5', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 
-'Попкорн Джолли Тайм Бласт О Баттер Театральный имеет очень маслянистый вкус и воздушную текстуру.', 
-'Джолли Тайм Бласт О Баттер Театральный 6 пакетов', 'Jolly Time', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
-'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
-'ru', 'https://www.jollytime.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e484', true, 'jolly_time_blast_o_butter_theatre_style_microwave_popcorn_3_2_oz_6_pack', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492873', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Jolly Time Blast O Butter box', 'en'),
-('b2a109f8-e7d6-c5b4-a349-5583f6e5d4c3', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Упаковка Джолли Тайм Бласт О Баттер', 'ru');
-
---- Great Value Extra Butter Microwave Popcorn (12-count) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', false, 'great_value_extra_butter_12ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('d4c3b2a1-09f8-e7d6-c5b4-a3493183f6e5', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Extra Butter Microwave Popcorn', 'Rich extra buttery flavor, 12-count box', 'en', 3.49),
-('09f8e7d6-c5b4-a349-2183-f6e5d4c7b2a1', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Экстра Масло Попкорн', 'Насыщенный масляный вкус, 12 пакетов', 'ru', 280);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('2183f6e5-d4c3-b2a1-09f8-e7d64784a349', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 
-'Great Value Extra Butter Microwave Popcorn delivers rich, buttery flavor at a great value price.', 
-'Great Value Extra Butter Microwave Popcorn 2.55oz 12-count', 'Walmart', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
-'Per 2.55oz bag: Calories 160, Fat 10g (15% DV), Sodium 280mg (12% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.walmart.com'),
-('b2a569f8-e7d6-c5b4-a349-2183f6e5d4c3', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 
-'Попкорн Great Value Экстра Масло предлагает насыщенный масляный вкус по отличной цене.', 
-'Great Value Экстра Масло Попкорн 2.55oz 12 пакетов', 'Walmart', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
-'На 2.55oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 280мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.walmart.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', true, 'great_value_extra_butter_microwave_popcorn_12_count_2_55_oz', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e553', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Great Value Extra Butter 12-count box', 'en'),
-('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492473', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Упаковка Great Value Экстра Масло 12 пакетов', 'ru');
-
---- Crunch 'n Munch Buttery Toffee with Peanuts ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', true, 'crunch_n_munch_buttery_toffee', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('b2a109f8-e7d6-c5b4-a349-2183f6e534c3', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Crunch ''n Munch Buttery Toffee with Peanuts', 'Sweet toffee-coated popcorn with peanuts', 'en', 3.99, 4.29),
-('09f8e7d6-c5b4-a349-2185-f6e5d4c3b2a1', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Кранч энд Манч Масляная Ириска с Арахисом', 'Сладкий попкорн в ириске с арахисом', 'ru', 320, 340);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('a3492183-f6e5-d4c3-b2a1-09f8e7d665b4', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 
-'Crunch ''n Munch Buttery Toffee with Peanuts combines sweet toffee-coated popcorn with crunchy peanuts for a delicious snack.', 
-'Crunch ''n Munch Buttery Toffee with Peanuts 12oz (340g)', 'Conagra Brands', 
-'Popcorn, Sugar, Peanuts, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 
-'Per 28g: Calories 140, Fat 6g (9% DV), Sodium 85mg (4% DV), Carbs 21g (7% DV), Protein 2g', 
-'en', 'https://www.conagrabrands.com'),
-('d4c3b2a1-09f8-e7d6-c5b4-a34921839797', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 
-'Кранч энд Манч Масляная Ириска с Арахисом сочетает сладкий попкорн в ириске с хрустящим арахисом.', 
-'Кранч энд Манч Масляная Ириска с Арахисом 340г', 'Conagra Brands', 
-'Попкорн, сахар, арахис, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 
-'На 28г: Калории 140, Жиры 6г (9% ДН), Натрий 85мг (4% ДН), Углеводы 21г (7% ДН), Белки 2г', 
-'ru', 'https://www.conagrabrands.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', true, 'crunch_n_munch_buttery_toffee_with_peanuts_12_oz', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e333', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Crunch ''n Munch Buttery Toffee bag', 'en'),
-('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3491483', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Упаковка Кранч энд Манч Масляная Ириска', 'ru');
-
---- LesserEvil Organic Cheddar Popcorn ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', false, 'lesserevil_organic_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('09f8e7d6-c5b4-a349-2183-f6e5d4c5b2a1', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'LesserEvil Organic Cheddar Popcorn', 'Organic popcorn with cheddar cheese flavor', 'en', 4.99),
-('a3492183-f6e5-d4c3-b2a1-09f8e7d6c4b4', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'ЛессерЭвил Органик Чеддер Попкорн', 'Органический попкорн с вкусом сыра чеддер', 'ru', 400);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('2183f6e5-d4c3-b2a1-09f8-e8678b4a349', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 
-'LesserEvil Organic Cheddar Popcorn is made with simple, organic ingredients and contains no artificial flavors or preservatives.', 
-'LesserEvil Organic Cheddar Popcorn 4.6oz (130g)', 'LesserEvil', 
-'Organic Popcorn, Organic Sunflower Oil, Organic Cheddar Cheese Seasoning', 
-'Per 28g: Calories 150, Fat 8g (12% DV), Sodium 210mg (9% DV), Carbs 16g (6% DV), Protein 3g', 
-'en', 'https://www.lesserevil.com'),
-('b2a109f8-e7d6-c5b4-a349-3463f6e5d4c3', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 
-'Попкорн ЛессерЭвил Органик Чеддер сделан из простых органических ингредиентов без искусственных добавок.', 
-'ЛессерЭвил Органик Чеддер Попкорн 130г', 'LesserEvil', 
-'Органический попкорн, органическое подсолнечное масло, органическая приправа Чеддер', 
-'На 28г: Калории 150, Жиры 8г (12% ДН), Натрий 210мг (9% ДН), Углеводы 16г (6% ДН), Белки 3г', 
-'ru', 'https://www.lesserevil.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', true, 'lesserevil_organic_cheddar_popcorn_4_6_oz', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e222', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'LesserEvil Organic Cheddar bag', 'en'),
-('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492493', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'Упаковка ЛессерЭвил Органик Чеддер', 'ru');
-
---- Smartfood White Cheddar (Multipack) ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478', false, 'smartfood_white_cheddar_multipack', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('a3492183-f6e5-d4c3-b2a1-09f8e7d6c2b4', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Smartfood White Cheddar Multipack', 'White cheddar flavored popcorn snack packs', 'en', 5.49),
-('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e6', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Смартфуд Вайт Чеддер Мультипак', 'Попкорн с вкусом белого чеддера в порционных упаковках', 'ru', 440);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('2183f6e5-d4c3-b2a1-09f8-e7d6c3b4a349', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 
-'Smartfood White Cheddar Multipack contains individually portioned bags of delicious white cheddar flavored popcorn.', 
-'Smartfood White Cheddar Flavored 0.625oz Bags 10-count Multipack', 'PepsiCo', 
-'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning', 
-'Per 0.625oz bag: Calories 110, Fat 7g (11% DV), Sodium 150mg (7% DV), Carbs 10g (4% DV), Protein 2g', 
-'en', 'https://www.pepsico.com'),
-('b2a109f8-e7d6-c5b4-a997-2183f6e5d4c3', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 
-'Мультипак Смартфуд Вайт Чеддер содержит порционные упаковки попкорна с вкусом белого чеддера.', 
-'Смартфуд Вайт Чеддер 0.625oz 10 пакетов', 'PepsiCo', 
-'Попкорн, растительное масло, приправа Вайт Чеддер', 
-'На 0.625oz пакет: Калории 110, Жиры 7г (11% ДН), Натрий 150мг (7% ДН), Углеводы 10г (4% ДН), Белки 2г', 
-'ru', 'https://www.pepsico.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', true, 'smartfood_white_cheddar_flavored_0_625_oz_bags_10_count_multipack', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('c5b4a349-2183-f6e5-d4c3-b2a109f8e123', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Smartfood White Cheddar Multipack box', 'en'),
-('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3942183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Упаковка Смартфуд Вайт Чеддер Мультипак', 'ru');
-
---- PopSecret Movie Theater Butter ---
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25', true, 'pop_secret_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
-
-INSERT INTO item_details (item_id)
-VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
-VALUES 
-('5a45b2f2-4e06-9ee3-fb59-caee106dae53', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'PopSecret Movie Theater Butter', 'Rich theater-style butter flavor popcorn', 'en', 4.49, 4.99),
-('fb59caee-106d-ae53-5a45-b2f24e069ee3', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'ПопСекрет Кинотеатральное Масло', 'Попкорн с насыщенным масляным вкусом как в кинотеатре', 'ru', 360, 400);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('106dae53-5a45-b2f2-4e06-9ee3fb59caee', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 
-'PopSecret Movie Theater Butter Microwave Popcorn delivers the rich, buttery taste you love from the movie theater right to your home.', 
-'PopSecret Movie Theater Butter Microwave Popcorn 1.75oz 12-count', 'PopSecret', 
-'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
-'Per 1.75oz bag: Calories 160, Fat 10g (15% DV), Sodium 270mg (12% DV), Carbs 15g (5% DV), Protein 2g', 
-'en', 'https://www.popsecret.com'),
-('4e069ee3-fb59-caee-106d-ae535a45b2f2', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 
-'Попкорн ПопСекрет Кинотеатральное Масло воспроизводит насыщенный масляный вкус как в кинотеатре.', 
-'ПопСекрет Кинотеатральное Масло 1.75oz 12 пакетов', 'PopSecret', 
-'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
-'На 1.75oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 270мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 
-'ru', 'https://www.popsecret.com');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('b0898b95-be25-2384-d84c-c2f14cf48277', true, 'pop_secret_movie_theater_front', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('c2f14cf4-8277-b089-8b95-be252384d84c', false, 'popsecret/2040afd2-d8d1-43a8-86ba-746934a37f63.7b641a6e57e2985ff1122f0cd89d8928', '2384d84c-c2f1-4cf4-8277-b0898b95be25'),
-('8277b089-8b95-be25-2384-d84cc2f14cf4', false, 'popsecret/6c2c378d-9c86-4bdf-8f5b-0c3a5ae80678.5693ab1a9d22b575fd449998c3bae07a', '2384d84c-c2f1-4cf4-8277-b0898b95be25'),
-('8b95be25-2384-d84c-c2f1-4cf48277b089', false, 'popsecret/efc9b726-f707-4224-ae27-e3ef10157149.e51429c0e25ea378c7eb449a364ae9ff', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('d84cc2f1-4cf4-8277-b089-8b95eb252384', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'PopSecret Movie Theater Butter box', 'en'),
-('4cf48277-b089-8b95-be25-2384d84cc2f1', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'Упаковка ПопСекрет Кинотеатральное Масло', 'ru'),
-
-('2384d84c-c2f1-4cf4-8277-b0898b95be25', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'PopSecret product close-up', 'en'),
-('c2f14cf4-8277-b089-8b95-be252384d84c', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'Крупный план продукта ПопСекрет', 'ru'),
-
-('be252384-d84c-c2f1-4cf4-8277b0898b95', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'PopSecret popcorn in bowl', 'en'),
-('d84cc2f1-4cf4-8277-b089-8b95be252384', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'Попкорн ПопСекрет в миске', 'ru'),
-
-('8277b089-8b95-be25-2384-d84cc2f14cf4', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'PopSecret nutritional information', 'en'),
-('8b95be25-2384-d84c-c2f1-4cf48277b089', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'Информация о питательности ПопСекрет', 'ru');
-
---- Secret Box - Montly August 2025 ---
-
-
-INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
-VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1', true, 'secret_snack_box_august2025', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', null, true);
-
-INSERT INTO item_details (item_id)
-VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
-
-INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
-VALUES 
-('b7a59d12-cebf-1289-77b8-4e41d3f655b1', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Secret Snack Box – August Edition', 'A box filled with a curated selection of international and classic snacks', 'en', 21.99),
-('12cebf55-b1b7-a59d-3d4e-128977b89e41', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Секретный Бокс Со Снеками – Август', 'Коробка с подборкой классических и международных снеков', 'ru', 1790);
-
-INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
-VALUES 
-('55b1b7a5-9d12-1289-e41d-4d3f77b89ceb', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 
-'This August Edition Secret Snack Box features a premium mix of salty, sweet, and savory snacks from top global brands. ', 
-'Secret Snack Box – Monthly Surprise Treat Box (August 2025)', 'SnackRush Co.', 
-'Assorted snacks including chips, chocolate bars, gummies, crackers, nuts', 
-'Varies per snack. Average per box: 1200–1800 kcal', 
-'en', 'https://snackrush.global'),
-
-('a59d3d4e-1289-77b8-9e41-55b1d3f6cebf', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 
-'Августовский секретный бокс со снеками — уникальный набор из солёных, сладких и пряных угощений от мировых брендов. ', 
-'Секретный Бокс Снеки – Удиви Себя Вкусом (Август 2025)', 'SnackRush Co.', 
-'Ассорти снеки: чипсы, шоколад, мармелад, крекеры, орехи', 
-'Зависит от состава. В среднем: 1200–1800 ккал на коробку', 
-'ru', 'https://snackrush.global');
-
-INSERT INTO item_image (id, is_main, name, item_id)
-VALUES 
-('1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', true, 'secret_snack_box_august_2025_main', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
-
-INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
-VALUES 
-('4d3f77b8-9ceb-f55b-1b7a-5d121289e41d', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Secret Snack Box – August Edition (photo)', 'en'),
-('f55b1b7a-5d12-1289-e41d-4d3f77b89ceb', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Секретный Снэк Бокс – Август (фото)', 'ru');
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
+-- Dumped by pg_dump version 17.5
+
+-- Started on 2025-08-06 15:13:33 MSK
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3495 (class 0 OID 16590)
+-- Dependencies: 218
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.category (id, name, page_link) VALUES ('fa61b5e8-c44f-4dec-91fd-d28ad7538a24', 'Sweets', '/products/sweets');
+INSERT INTO public.category (id, name, page_link) VALUES ('bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'Snacks', '/products/snacks');
+INSERT INTO public.category (id, name, page_link) VALUES ('d8a0d4c6-f0ef-4024-854b-a6c3dfaa6d4b', 'Drinks', '/products/drinks');
+
+
+--
+-- TOC entry 3507 (class 0 OID 25077)
+-- Dependencies: 230
+-- Data for Name: category_translation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.category_translation (id, category_id, name, lang_key) VALUES ('10487c5c-2a4e-4cc7-804c-e201f19dc987', 'fa61b5e8-c44f-4dec-91fd-d28ad7538a24', 'Сладости', 'ru');
+INSERT INTO public.category_translation (id, category_id, name, lang_key) VALUES ('dcf4bfdf-d6d3-4e8f-a37c-f007c2cd9654', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'Снэки', 'ru');
+INSERT INTO public.category_translation (id, category_id, name, lang_key) VALUES ('d9b7145c-9565-44f1-8caa-6f08d7fa835c', 'd8a0d4c6-f0ef-4024-854b-a6c3dfaa6d4b', 'Напитки', 'ru');
+
+
+--
+-- TOC entry 3502 (class 0 OID 16618)
+-- Dependencies: 225
+-- Data for Name: type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', 'Popcorn', '/products/snacks/popcorn', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('ced40972-b8b9-4ebd-a7f7-405b2f6196f3', 'Crackers', '/products/snacks/crackers', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('4036002d-d64f-46ec-b688-aaddb05273ec', 'Chips', '/products/snacks/chips', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('62d4dd46-bf34-4ac7-8f07-1700f9d3d892', 'Juices', '/products/drinks/juices', 'd8a0d4c6-f0ef-4024-854b-a6c3dfaa6d4b');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('127334b8-b491-4e34-9358-f9fadbbc2378', 'Milkshakes', '/products/drinks/milkshakes', 'd8a0d4c6-f0ef-4024-854b-a6c3dfaa6d4b');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('fe114c51-1fa2-4dca-9731-32acf70d9dba', 'Candies', '/products/sweets/candies', 'fa61b5e8-c44f-4dec-91fd-d28ad7538a24');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('fad6568f-f1c8-40b1-95c6-5e17f0895d44', 'Gum', '/products/sweets/gum', 'fa61b5e8-c44f-4dec-91fd-d28ad7538a24');
+INSERT INTO public.type (id, name, page_link, category_id) VALUES ('a93cf4f7-03b1-46ab-808b-7d4f9385edb6', 'Cookies', '/products/sweets/cookies', 'fa61b5e8-c44f-4dec-91fd-d28ad7538a24');
+
+
+--
+-- TOC entry 3499 (class 0 OID 16604)
+-- Dependencies: 222
+-- Data for Name: item; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1', true, 'secret_snack_box_august2025', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', NULL, true);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', true, 'lays-classic', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', true, 'lays-classic-party', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', true, 'lays-salt-vinegar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', true, 'lays-sour-cream-onion', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', false, 'miss-vickies-spicy-dill', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('d6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', true, 'pringles-original', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', true, 'doritos-nacho-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', true, 'lays-barbecue', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', false, 'on-the-border-mexicali', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('828172cc-0566-4843-96a5-3913e0cc3df3', true, 'cheetos-crunchy-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e2170ecf-6123-4a3e-a1e3-c2439d757fab', false, 'doritos-spicy-sweet-chili', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('7e161f6d-5f93-4453-8865-eb7e449828b7', false, 'lays-baked-bbq', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', true, 'sunchips-garden-salsa', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('ce60e10f-61f5-44c0-81a4-29014c08643e', true, 'takis-fuego', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e7627b73-922e-44f8-b646-bbbd74788acf', false, 'doritos-twisted-queso', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('3c6f292e-411b-4bd6-92cc-bd01e330c09e', false, 'great-value-nacho-cheese', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('694e30fa-d29c-4437-a4a1-0c89b090ce74', true, 'tostitos-cantina-thin', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('6f9da1dd-0041-478a-bdd4-f80e67a58f26', false, 'takis-blue-heat', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', false, 'good-crisp-outback-bbq', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', '4036002d-d64f-46ec-b688-aaddb05273ec', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', false, 'act_ii_butter_lovers_3ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047', true, 'skinny_pop_gluten_free_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', true, 'smartfood_white_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', false, 'angies_boomchickapop_sweet_salty', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', true, 'orville_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', false, 'popcornopolis_caramel_kettle', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', false, 'jolly_time_blast_o_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', false, 'great_value_extra_butter_12ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', true, 'crunch_n_munch_buttery_toffee', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', false, 'lesserevil_organic_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478', false, 'smartfood_white_cheddar_multipack', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+INSERT INTO public.item (id, is_bestseller, name, category_id, type_id, is_secretbox) VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25', true, 'pop_secret_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+--
+-- TOC entry 3497 (class 0 OID 16596)
+-- Dependencies: 220
+-- Data for Name: item_details; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item_details (item_id) VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
+INSERT INTO public.item_details (item_id) VALUES ('e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f');
+INSERT INTO public.item_details (item_id) VALUES ('f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8');
+INSERT INTO public.item_details (item_id) VALUES ('a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9');
+INSERT INTO public.item_details (item_id) VALUES ('b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0');
+INSERT INTO public.item_details (item_id) VALUES ('c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1');
+INSERT INTO public.item_details (item_id) VALUES ('d6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2');
+INSERT INTO public.item_details (item_id) VALUES ('e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3');
+INSERT INTO public.item_details (item_id) VALUES ('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890');
+INSERT INTO public.item_details (item_id) VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890');
+INSERT INTO public.item_details (item_id) VALUES ('828172cc-0566-4843-96a5-3913e0cc3df3');
+INSERT INTO public.item_details (item_id) VALUES ('e2170ecf-6123-4a3e-a1e3-c2439d757fab');
+INSERT INTO public.item_details (item_id) VALUES ('7e161f6d-5f93-4453-8865-eb7e449828b7');
+INSERT INTO public.item_details (item_id) VALUES ('e13aba2a-6fd9-454d-a0a1-248cd31a6dc0');
+INSERT INTO public.item_details (item_id) VALUES ('ce60e10f-61f5-44c0-81a4-29014c08643e');
+INSERT INTO public.item_details (item_id) VALUES ('e7627b73-922e-44f8-b646-bbbd74788acf');
+INSERT INTO public.item_details (item_id) VALUES ('3c6f292e-411b-4bd6-92cc-bd01e330c09e');
+INSERT INTO public.item_details (item_id) VALUES ('694e30fa-d29c-4437-a4a1-0c89b090ce74');
+INSERT INTO public.item_details (item_id) VALUES ('6f9da1dd-0041-478a-bdd4-f80e67a58f26');
+INSERT INTO public.item_details (item_id) VALUES ('e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001');
+INSERT INTO public.item_details (item_id) VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
+INSERT INTO public.item_details (item_id) VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047');
+INSERT INTO public.item_details (item_id) VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
+INSERT INTO public.item_details (item_id) VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
+INSERT INTO public.item_details (item_id) VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
+INSERT INTO public.item_details (item_id) VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
+INSERT INTO public.item_details (item_id) VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
+INSERT INTO public.item_details (item_id) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
+INSERT INTO public.item_details (item_id) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
+INSERT INTO public.item_details (item_id) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
+INSERT INTO public.item_details (item_id) VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
+INSERT INTO public.item_details (item_id) VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25');
+
+
+--
+-- TOC entry 3506 (class 0 OID 25063)
+-- Dependencies: 229
+-- Data for Name: item_details_translation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('55b1b7a5-9d12-1289-e41d-4d3f77b89ceb', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'This August Edition Secret Snack Box features a premium mix of salty, sweet, and savory snacks from top global brands. ', 'Secret Snack Box – Monthly Surprise Treat Box (August 2025)', 'SnackRush Co.', 'Assorted snacks including chips, chocolate bars, gummies, crackers, nuts', 'Varies per snack. Average per box: 1200–1800 kcal', 'en', 'https://snackrush.global');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a59d3d4e-1289-77b8-9e41-55b1d3f6cebf', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Августовский секретный бокс со снеками — уникальный набор из солёных, сладких и пряных угощений от мировых брендов. ', 'Секретный Бокс Снеки – Удиви Себя Вкусом (Август 2025)', 'SnackRush Co.', 'Ассорти снеки: чипсы, шоколад, мармелад, крекеры, орехи', 'Зависит от состава. В среднем: 1200–1800 ккал на коробку', 'ru', 'https://snackrush.global');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Lays Classic potato chips are made from fresh potatoes and cooked to perfection with just the right amount of salt for that classic taste you love.', 'Lays Classic Potato Chips 200g', 'PepsiCo', 'Potatoes, Vegetable Oil (Sunflower, Corn, and/or Canola Oil), Salt', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d4e5f6b4-b8c9-0123-d4e5-f6a7b8c90123', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Чипсы Лейс Классические приготовлены из свежего картофеля с идеальным количеством соли для любимого классического вкуса.', 'Лейс Классические Чипсы 200г', 'PepsiCo', 'Картофель, растительное масло (подсолнечное, кукурузное и/или рапсовое), соль', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d5e6f7a8-b9c0-1234-d5e6-f7a8b9c01234', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Lays Classic Party Size chips are perfect for gatherings and parties. The same great classic taste in a larger bag for sharing.', 'Lays Classic Potato Chips Party Size 400g', 'PepsiCo', 'Potatoes, Vegetable Oil (Sunflower, Corn, and/or Canola Oil), Salt', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e6f7a8b9-c0d1-2345-e6f7-a8b9c0d12345', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Чипсы Лейс Классические Party Size идеально подходят для вечеринок и компаний. Тот же классический вкус в большой упаковке.', 'Лейс Классические Чипсы Party Size 400г', 'PepsiCo', 'Картофель, растительное масло (подсолнечное, кукурузное и/или рапсовое), соль', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e7f8a9b0-c1d2-3456-e7f8-a9b0c1d23456', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Lays Salt & Vinegar chips combine the perfect balance of tangy vinegar and salt for a bold flavor experience.', 'Lays Salt & Vinegar Potato Chips 200g', 'PepsiCo', 'Potatoes, Vegetable Oil, Salt & Vinegar Seasoning (Maltodextrin, Sodium Diacetate, Salt, Malt Vinegar, Citric Acid, Sugar, Yeast Extract)', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 210mg (9% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('f8a9b0c1-d2e3-4567-f8a9-b0c1d2e34567', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Чипсы Лейс с солью и уксусом сочетают идеальный баланс пикантного уксуса и соли для яркого вкусового опыта.', 'Лейс Чипсы с солью и уксусом 200г', 'PepsiCo', 'Картофель, растительное масло, приправа соль и уксус (мальтодекстрин, диацетат натрия, соль, солодовый уксус, лимонная кислота, сахар, экстракт дрожжей)', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 210мг (9% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('f9a0b1c2-d3e4-5678-f9a0-b1c2d3e45678', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Lays Sour Cream & Onion chips combine the cool taste of sour cream with the savory flavor of onions for a delicious snack.', 'Lays Sour Cream & Onion Potato Chips 200g', 'PepsiCo', 'Potatoes, Vegetable Oil, Sour Cream & Onion Seasoning (Whey, Onion Powder, Salt, Sour Cream, Sugar, Garlic Powder)', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 180mg (8% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a0b1c2d3-e4f5-6789-a0b1-c2d3e4f56789', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Чипсы Лейс со сметаной и луком сочетают нежный вкус сметаны с пикантным луковым ароматом.', 'Лейс Чипсы со сметаной и луком 200г', 'PepsiCo', 'Картофель, растительное масло, приправа сметана и лук (сыворотка, луковый порошок, соль, сметана, сахар, чесночный порошок)', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 180мг (8% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Miss Vickies Spicy Dill Pickle chips are kettle cooked for extra crunch with a bold dill pickle flavor and spicy finish.', 'Miss Vickies Spicy Dill Pickle Kettle Cooked Chips 220g', 'PepsiCo', 'Potatoes, Vegetable Oil, Spicy Dill Pickle Seasoning (Salt, Sugar, Maltodextrin, Spices, Garlic Powder, Natural Flavors)', 'Per 50g: Calories 260, Fat 14g (22% DV), Sodium 380mg (16% DV), Carbs 30g (10% DV), Protein 3g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a78901', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Чипсы Мисс Викис Острый соленый огурец готовятся в котле для дополнительной хрусткости с ярким вкусом соленого огурца и острой ноткой.', 'Мисс Викис Чипсы Острый соленый огурец 220г', 'PepsiCo', 'Картофель, растительное масло, приправа острый соленый огурец (соль, сахар, мальтодекстрин, специи, чесночный порошок, натуральные ароматизаторы)', 'На 50г: Калории 260, Жиры 14г (22% ДН), Натрий 380мг (16% ДН), Углеводы 30г (10% ДН), Белки 3г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b9c0d1e2-f3a4-5678-b9c0-d1e2f3a45678', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Pringles Original have that perfect combination of potato taste, crispiness, and saltiness in their unique saddle shape.', 'Pringles Original Potato Crisps 190g', 'Kelloggs', 'Dried Potatoes, Vegetable Oils, Rice Flour, Wheat Starch, Maltodextrin, Salt, Dextrose', 'Per 30g: Calories 160, Fat 9g (14% DV), Sodium 150mg (6% DV), Carbs 16g (5% DV), Protein 1g', 'en', 'https://www.kelloggs.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('c0d1e2f3-a4b5-6789-c0d1-e2f3a4b56789', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Принглс Оригинальные обладают идеальным сочетанием картофельного вкуса, хрусткости и солоноватости в своей уникальной форме.', 'Принглс Оригинальные 190г', 'Kelloggs', 'Сушеный картофель, растительные масла, рисовая мука, пшеничный крахмал, мальтодекстрин, соль, декстроза', 'На 30г: Калории 160, Жиры 9г (14% ДН), Натрий 150мг (6% ДН), Углеводы 16г (5% ДН), Белки 1г', 'ru', 'https://www.kelloggs.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('c6d7e8f9-a0b1-2345-c6d7-e8f9a0b12345', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Doritos Nacho Cheese tortilla chips have that bold, cheesy nacho flavor perfect for parties and gatherings.', 'Doritos Nacho Cheese Flavored Tortilla Chips Party Size 425g', 'PepsiCo', 'Corn, Vegetable Oil, Nacho Cheese Seasoning (Cheddar Cheese, Whey, Salt, Onion Powder, Tomato Powder, Garlic Powder)', 'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 210mg (9% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d7e8f9a0-b1c2-3456-d7e8-f9a0b1c23456', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Кукурузные чипсы Доритос Начо Сыр обладают ярким сырным вкусом, идеальным для вечеринок и компаний.', 'Доритос Начо Сыр Party Size 425г', 'PepsiCo', 'Кукуруза, растительное масло, приправа Начо Сыр (сыр Чеддер, сыворотка, соль, луковый порошок, томатный порошок, чесночный порошок)', 'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 210мг (9% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('f4a5b6c7-d8e9-0123-f4a5-b6c7d8e90123', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Lays Barbecue Flavored potato chips deliver the perfect balance of smoky, sweet and tangy barbecue flavor in every crispy bite.', 'Lays Barbecue Flavored Potato Chips 200g', 'PepsiCo', 'Potatoes, Vegetable Oil, Barbecue Seasoning (Sugar, Dextrose, Salt, Molasses, Onion Powder, Spices, Garlic Powder, Natural Flavors)', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 170mg (7% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a5b6c7d8-e9f0-1234-a5b6-c7d8e9f01234', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Чипсы Лейс со вкусом барбекю предлагают идеальный баланс дымчатого, сладкого и пикантного вкуса в каждой хрустящей дольке.', 'Лейс Чипсы со вкусом барбекю 200г', 'PepsiCo', 'Картофель, растительное масло, приправа барбекю (сахар, декстроза, соль, меласса, луковый порошок, специи, чесночный порошок, натуральные ароматизаторы)', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 170мг (7% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d4e5f6a7-b8c9-0123-d4e5-f6a7b8c90123', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'On The Border Mexicali Grill & Cantina Cafe Style Tortilla Chips bring authentic Mexican restaurant flavor to your home. Perfect for dipping or enjoying alone.', 'On The Border Mexicali Grill & Cantina Cafe Style Tortilla Chips 12oz (340g)', 'On The Border Foods', 'Stone Ground White Corn, Vegetable Oil (Corn, Soybean, and/or Sunflower Oil), Salt', 'Per 1oz (28g): Calories 140, Fat 7g (9% DV), Sodium 105mg (5% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.ontheborder.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'Чипсы On The Border Mexicali Grill & Cantina воспроизводят аутентичный вкус мексиканского ресторана. Идеальны для соусов или самостоятельного употребления.', 'On The Border Mexicali Grill & Cantina Чипсы 340г', 'On The Border Foods', 'Молотая белая кукуруза, растительное масло (кукурузное, соевое и/или подсолнечное), соль', 'На 28г: Калории 140, Жиры 7г (9% ДН), Натрий 105мг (5% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.ontheborder.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('244d6aad-399b-9e14-efaa-3ae6807abf4b', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Cheetos Crunchy Cheese Flavored Snacks are made with real cheese for that classic taste you love. Perfect crunchy texture every time.', 'Cheetos Crunchy Cheese Flavored Snacks 8.5oz (241g)', 'PepsiCo', 'Enriched Corn Meal, Vegetable Oil, Cheese Seasoning (Whey, Cheddar Cheese, Canola Oil, Salt)', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 250mg (11% DV), Carbs 15g (5% DV), Protein 1g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('efaa3ae6-807a-bf4b-244d-6aad399b9e14', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Читос Хрустящие с сырным вкусом сделаны с использованием настоящего сыра. Идеальная хрустящая текстура.', 'Читос Хрустящие Сырные 241г', 'PepsiCo', 'Обогащенная кукурузная мука, растительное масло, сырная приправа (сыворотка, сыр Чеддер, рапсовое масло, соль)', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 250мг (11% ДН), Углеводы 15г (5% ДН), Белки 1г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('8f2b8b9e-be94-5da8-4287-e3db477e59bc', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Doritos Spicy Sweet Chili Flavored Tortilla Chips combine the perfect amount of heat with a touch of sweetness for an addictive snack.', 'Doritos Spicy Sweet Chili Party Size 14.5oz (411g)', 'PepsiCo', 'Corn, Vegetable Oil, Spicy Sweet Chili Seasoning (Sugar, Salt, Spices, Onion Powder, Garlic Powder)', 'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 210mg (9% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('4287e3db-477e-59bc-8f2b-8b9ebe945da8', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Чипсы Доритос Острый Сладкий Чили сочетают идеальное количество остроты с легкой сладостью.', 'Доритос Острый Сладкий Чили Party Size 411г', 'PepsiCo', 'Кукуруза, растительное масло, приправа Острый Сладкий Чили (сахар, соль, специи, луковый порошок, чесночный порошок)', 'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 210мг (9% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('62ae84ce-b74b-eac7-ae46-a530afa71bf6', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Lay''s Baked BBQ Flavored Potato Chips are made with 65% less fat than regular potato chips. Gluten free and full of smoky barbecue flavor.', 'Lay''s Baked Gluten Free Barbecue Flavored Potato Chips 6.25oz (177g)', 'PepsiCo', 'Dried Potatoes, Corn Starch, Sugar, Salt, Barbecue Seasoning', 'Per 28g: Calories 120, Fat 3.5g (5% DV), Sodium 180mg (8% DV), Carbs 22g (8% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('ae46a530-afa7-1bf6-62ae-84ceb74beac7', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Чипсы Лейс Печеные Барбекю содержат на 65% меньше жира по сравнению с обычными чипсами. Без глютена с дымчатым вкусом барбекю.', 'Лейс Печеные Барбекю 177г', 'PepsiCo', 'Сушеный картофель, кукурузный крахмал, сахар, соль, приправа барбекю', 'На 28г: Калории 120, Жиры 3.5г (5% ДН), Натрий 180мг (8% ДН), Углеводы 22г (8% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('1a74812e-4d61-3a3b-0bba-0a2969d34e51', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'SunChips Garden Salsa Flavored Whole Grain Snacks are made with 100% whole grain and have 18g or more of whole grain per serving.', 'SunChips Garden Salsa Whole Grain Snacks 7oz (198g)', 'PepsiCo', 'Whole Corn, Whole Wheat, Vegetable Oil, Garden Salsa Seasoning', 'Per 28g: Calories 140, Fat 6g (9% DV), Sodium 120mg (5% DV), Carbs 19g (7% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('0bba0a29-69d3-4e51-1a74-812e4d613a3b', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'СанЧипс Гарден Сальса сделаны из 100% цельного зерна и содержат 18г или более цельного зерна на порцию.', 'СанЧипс Гарден Сальса 198г', 'PepsiCo', 'Цельная кукуруза, цельная пшеница, растительное масло, приправа Гарден Сальса', 'На 28г: Калории 140, Жиры 6г (9% ДН), Натрий 120мг (5% ДН), Углеводы 19г (7% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('995abd41-9512-f82d-04b1-19186dbd96b4', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Takis Fuego are rolled corn tortilla chips packed with intense heat and tangy lime flavor. Not for the faint of heart!', 'Takis Fuego Hot Chili Pepper & Lime Rolled Tortilla Chips 9.9oz (280g)', 'Barcel', 'Corn Masa Flour, Vegetable Oil, Seasoning (Salt, Sugar, Citric Acid, Chili Pepper, Natural Flavors)', 'Per 28g: Calories 140, Fat 8g (12% DV), Sodium 420mg (18% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.barcel-usa.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('04b11918-6dbd-96b4-995a-bd419512f82d', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Такис Фуэго - свернутые кукурузные чипсы с интенсивной остротой и вкусом лайма. Не для слабонервных!', 'Такис Фуэго Острые Чипсы 280г', 'Barcel', 'Кукурузная мука, растительное масло, приправа (соль, сахар, лимонная кислота, перец чили, натуральные ароматизаторы)', 'На 28г: Калории 140, Жиры 8г (12% ДН), Натрий 420мг (18% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.barcel-usa.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('f845d3cb-bb28-c4c4-35e4-d85337aece2c', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Doritos Twisted Queso tortilla chips feature a unique twisted shape and extra cheesy queso flavor that delivers maximum taste in every bite.', 'Doritos Twisted Queso Tortilla Chips 9oz (255g)', 'PepsiCo', 'Corn, Vegetable Oil, Queso Seasoning (Cheddar Cheese, Whey, Buttermilk, Salt, Onion Powder)', 'Per 28g: Calories 150, Fat 8g (12% DV), Sodium 210mg (9% DV), Carbs 17g (6% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('35e4d853-37ae-ce2c-f845-d3cbbb28c4c4', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Чипсы Доритос Твистед Кесо имеют уникальную скрученную форму и насыщенный сырный вкус кесо.', 'Доритос Твистед Кесо 255г', 'PepsiCo', 'Кукуруза, растительное масло, приправа Кесо (сыр Чеддер, сыворотка, пахта, соль, луковый порошок)', 'На 28г: Калории 150, Жиры 8г (12% ДН), Натрий 210мг (9% ДН), Углеводы 17г (6% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('14dcbb0f-9804-b3b2-763a-507ce2c7fb04', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Great Value Nacho Cheese Flavored Tortilla Chips deliver the classic nacho cheese taste you love at a great value price.', 'Great Value Nacho Cheese Tortilla Chips 9.75oz (276g)', 'Walmart', 'Corn, Vegetable Oil, Nacho Cheese Seasoning (Whey, Cheddar Cheese, Salt, Onion Powder)', 'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 180mg (8% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.walmart.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('763a507c-e2c7-fb04-14dc-bb0f9804b3b2', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Чипсы Great Value Начо Сыр предлагают классический вкус начо сыра по отличной цене.', 'Great Value Чипсы Начо Сыр 276г', 'Walmart', 'Кукуруза, растительное масло, приправа Начо Сыр (сыворотка, сыр Чеддер, соль, луковый порошок)', 'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 180мг (8% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.walmart.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('863c6a99-4b6b-33e0-b4c9-c4e7da269d28', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Tostitos Cantina Thin & Crispy tortilla chips are inspired by authentic Mexican restaurants with their thin, crispy texture.', 'Tostitos Cantina Thin & Crispy Tortilla Chips 10oz (283g)', 'PepsiCo', 'White Corn, Vegetable Oil, Sea Salt', 'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 115mg (5% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b4c9c4e7-da26-9d28-863c-6a994b6b33e0', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Чипсы Тоститос Кантина Тонкие Хрустящие вдохновлены аутентичными мексиканскими ресторанами.', 'Тоститос Кантина Тонкие Хрустящие 283г', 'PepsiCo', 'Белая кукуруза, растительное масло, морская соль', 'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 115мг (5% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d512cb23-641e-1b70-cc6d-1a43d7f33813', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Takis Blue Heat rolled tortilla chips deliver an extreme heat experience with intense chili pepper flavor and eye-catching blue color.', 'Takis Blue Heat Hot Chili Pepper Rolled Tortilla Chips 9.9oz (280g)', 'Barcel', 'Corn Masa Flour, Vegetable Oil, Seasoning (Salt, Sugar, Chili Pepper, Citric Acid, Blue 1 Lake)', 'Per 28g: Calories 140, Fat 8g (12% DV), Sodium 420mg (18% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.barcel-usa.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('cc6d1a43-d7f3-3813-d512-cb23641e1b70', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Чипсы Такис Блю Хит предлагают экстремально острый вкус с интенсивным вкусом перца чили и ярким синим цветом.', 'Такис Блю Хит Острые Чипсы 280г', 'Barcel', 'Кукурузная мука, растительное масло, приправа (соль, сахар, перец чили, лимонная кислота, краситель Blue 1 Lake)', 'На 28г: Калории 140, Жиры 8г (12% ДН), Натрий 420мг (18% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.barcel-usa.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('c1f87a3b-f29f-ff33-e5f8-a77389cd4c9e', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'The Good Crisp Company Outback BBQ flavored potato chips are gluten free and made with simple ingredients for a better-for-you snack.', 'The Good Crisp Company Gluten Free Outback BBQ Snack Chips 5.6oz (159g)', 'The Good Crisp Company', 'Potatoes, Sunflower Oil, Outback BBQ Seasoning (Sugar, Salt, Tomato Powder, Spices)', 'Per 28g: Calories 150, Fat 9g (14% DV), Sodium 180mg (8% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.thegoodcrispcompany.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e5f8a773-89cd-4c9e-c1f8-7a3bf29fff33', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'Чипсы Гуд Крисп Аутбэк Барбекю не содержат глютен и сделаны из простых ингредиентов.', 'Гуд Крисп Аутбэк Барбекю 159г', 'The Good Crisp Company', 'Картофель, подсолнечное масло, приправа Аутбэк Барбекю (сахар, соль, томатный порошок, специи)', 'На 28г: Калории 150, Жиры 9г (14% ДН), Натрий 180мг (8% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.thegoodcrispcompany.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d4e5f6a7-b8c9-0123-d4e5-b6a7b8c90123', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Act II Butter Lovers Microwave Popcorn delivers rich, buttery flavor in every bite. Perfect for movie nights at home.', 'Act II Butter Lovers Microwave Popcorn 2.75oz 3-count', 'Conagra Brands', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 'Per 2.75oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.conagrabrands.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e5f6a9b8-c9d0-1234-e5f6-a7b8c9d01234', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Попкорн Act II Любительское Масло с насыщенным масляным вкусом. Идеально для домашних киносеансов.', 'Акт II Любительское Масло Попкорн 2.75oz 3 пакета', 'Conagra Brands', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 'На 2.75oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.conagrabrands.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('cbe70562-12a1-a66e-bc9a-e733c45453e2', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'SkinnyPop Gluten Free Butter Microwave Popcorn is made with simple ingredients and contains 39% less fat than regular butter popcorn.', 'SkinnyPop Gluten Free Butter Microwave Popcorn 2.8oz 6-count', 'SkinnyPop', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor', 'Per 2.8oz bag: Calories 130, Fat 7g (11% DV), Sodium 250mg (11% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.skinnypop.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('bc9ae733-c454-53e2-cbe7-056212a1a66e', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'Попкорн СкинниПоп Безглютеновый Масляный сделан из простых ингредиентов и содержит на 39% меньше жира.', 'СкинниПоп Безглютеновый Масляный Попкорн 2.8oz 6 пакетов', 'SkinnyPop', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор', 'На 2.8oz пакет: Калории 130, Жиры 7г (11% ДН), Натрий 250мг (11% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.skinnypop.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('8901e2f3-a4b5-c6d7-8901-e2f3a4b5c6d7', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Smartfood White Cheddar Cheese Flavored Popcorn is a delicious snack made with real cheese for authentic flavor.', 'Smartfood White Cheddar Popcorn 6.75oz (191g)', 'PepsiCo', 'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning (Whey, Cheddar Cheese, Canola Oil, Salt)', 'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 230mg (10% DV), Carbs 15g (5% DV), Protein 3g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('c6d78901-e2f3-a4b5-c6d7-8901e2f3a4b5', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Попкорн Смартфуд Вайт Чеддер сделан с использованием настоящего сыра для аутентичного вкуса.', 'Смартфуд Вайт Чеддер Попкорн 191г', 'PepsiCo', 'Попкорн, растительное масло, приправа Вайт Чеддер (сыворотка, сыр Чеддер, рапсовое масло, соль)', 'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 230мг (10% ДН), Углеводы 15г (5% ДН), Белки 3г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('3821a9b8-c7d6-e5f4-3821-a9b8c7d6e5f4', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Angie''s Boomchickapop Sweet & Salty Kettle Corn is made with simple ingredients and contains no artificial flavors or preservatives.', 'Angie''s Boomchickapop Sweet & Salty Kettle Corn 7oz (198g)', 'Angie''s Artisan Treats', 'Popcorn, Sunflower Oil, Cane Sugar, Sea Salt', 'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 85mg (4% DV), Carbs 18g (6% DV), Protein 2g', 'en', 'https://www.angiesboomchickapop.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('e5f43821-a9b8-c7d6-e5f4-3821a9b8c7d6', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Попкорн Энджис Бумчикапоп Сладко-Соленый сделан из простых ингредиентов без искусственных ароматизаторов.', 'Энджис Бумчикапоп Сладко-Соленый 198г', 'Angie''s Artisan Treats', 'Попкорн, подсолнечное масло, тростниковый сахар, морская соль', 'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 85мг (4% ДН), Углеводы 18г (6% ДН), Белки 2г', 'ru', 'https://www.angiesboomchickapop.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a109f8e7-d6c5-b4a3-4921-83f6e5d4c3b2', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Orville Redenbacher''s Movie Theater Butter popcorn delivers the rich, buttery taste you love from the movie theater.', 'Orville Redenbacher''s Movie Theater Butter Microwave Popcorn 12-count', 'Orville Redenbacher''s', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.orville.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('492183f6-e5d4-c3b2-a109-f8e7d6c5b4a3', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Попкорн Орвилл Реденбахер Кинотеатральное Масло воспроизводит вкус кинотеатрального попкорна.', 'Орвилл Реденбахер Кинотеатральное Масло 12 пакетов', 'Orville Redenbacher''s', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.orville.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Popcornopolis Caramel Kettle Mix is a delicious blend of sweet caramel coated popcorn that''s perfect for sharing.', 'Popcornopolis Caramel Kettle Mix 7.5oz (213g)', 'Popcornopolis', 'Popcorn, Sugar, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 'Per 28g: Calories 130, Fat 4.5g (7% DV), Sodium 85mg (4% DV), Carbs 22g (8% DV), Protein 1g', 'en', 'https://www.popcornopolis.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c974a349', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Попкорнополис Карамельный Микс - это вкусная смесь сладкого карамелизированного попкорна.', 'Попкорнополис Карамельный Микс 213г', 'Popcornopolis', 'Попкорн, сахар, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 'На 28г: Калории 130, Жиры 4.5г (7% ДН), Натрий 85мг (4% ДН), Углеводы 22г (8% ДН), Белки 1г', 'ru', 'https://www.popcornopolis.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b6', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Jolly Time Blast O Butter Theatre Style Microwave Popcorn delivers extra buttery flavor with a light, fluffy texture.', 'Jolly Time Blast O Butter Theatre Style Microwave Popcorn 3.2oz 6-pack', 'Jolly Time', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 'en', 'https://www.jollytime.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492133f6e5', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Попкорн Джолли Тайм Бласт О Баттер Театральный имеет очень маслянистый вкус и воздушную текстуру.', 'Джолли Тайм Бласт О Баттер Театральный 6 пакетов', 'Jolly Time', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 'ru', 'https://www.jollytime.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d64784a349', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Extra Butter Microwave Popcorn delivers rich, buttery flavor at a great value price.', 'Great Value Extra Butter Microwave Popcorn 2.55oz 12-count', 'Walmart', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 'Per 2.55oz bag: Calories 160, Fat 10g (15% DV), Sodium 280mg (12% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.walmart.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b2a569f8-e7d6-c5b4-a349-2183f6e5d4c3', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Попкорн Great Value Экстра Масло предлагает насыщенный масляный вкус по отличной цене.', 'Great Value Экстра Масло Попкорн 2.55oz 12 пакетов', 'Walmart', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 'На 2.55oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 280мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.walmart.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d665b4', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Crunch ''n Munch Buttery Toffee with Peanuts combines sweet toffee-coated popcorn with crunchy peanuts for a delicious snack.', 'Crunch ''n Munch Buttery Toffee with Peanuts 12oz (340g)', 'Conagra Brands', 'Popcorn, Sugar, Peanuts, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 'Per 28g: Calories 140, Fat 6g (9% DV), Sodium 85mg (4% DV), Carbs 21g (7% DV), Protein 2g', 'en', 'https://www.conagrabrands.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a34921839797', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Кранч энд Манч Масляная Ириска с Арахисом сочетает сладкий попкорн в ириске с хрустящим арахисом.', 'Кранч энд Манч Масляная Ириска с Арахисом 340г', 'Conagra Brands', 'Попкорн, сахар, арахис, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 'На 28г: Калории 140, Жиры 6г (9% ДН), Натрий 85мг (4% ДН), Углеводы 21г (7% ДН), Белки 2г', 'ru', 'https://www.conagrabrands.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('2183f6e5-d4c3-b2a1-09f8-e8678b4a349', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'LesserEvil Organic Cheddar Popcorn is made with simple, organic ingredients and contains no artificial flavors or preservatives.', 'LesserEvil Organic Cheddar Popcorn 4.6oz (130g)', 'LesserEvil', 'Organic Popcorn, Organic Sunflower Oil, Organic Cheddar Cheese Seasoning', 'Per 28g: Calories 150, Fat 8g (12% DV), Sodium 210mg (9% DV), Carbs 16g (6% DV), Protein 3g', 'en', 'https://www.lesserevil.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b2a109f8-e7d6-c5b4-a349-3463f6e5d4c3', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'Попкорн ЛессерЭвил Органик Чеддер сделан из простых органических ингредиентов без искусственных добавок.', 'ЛессерЭвил Органик Чеддер Попкорн 130г', 'LesserEvil', 'Органический попкорн, органическое подсолнечное масло, органическая приправа Чеддер', 'На 28г: Калории 150, Жиры 8г (12% ДН), Натрий 210мг (9% ДН), Углеводы 16г (6% ДН), Белки 3г', 'ru', 'https://www.lesserevil.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c3b4a349', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Smartfood White Cheddar Multipack contains individually portioned bags of delicious white cheddar flavored popcorn.', 'Smartfood White Cheddar Flavored 0.625oz Bags 10-count Multipack', 'PepsiCo', 'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning', 'Per 0.625oz bag: Calories 110, Fat 7g (11% DV), Sodium 150mg (7% DV), Carbs 10g (4% DV), Protein 2g', 'en', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('b2a109f8-e7d6-c5b4-a997-2183f6e5d4c3', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Мультипак Смартфуд Вайт Чеддер содержит порционные упаковки попкорна с вкусом белого чеддера.', 'Смартфуд Вайт Чеддер 0.625oz 10 пакетов', 'PepsiCo', 'Попкорн, растительное масло, приправа Вайт Чеддер', 'На 0.625oz пакет: Калории 110, Жиры 7г (11% ДН), Натрий 150мг (7% ДН), Углеводы 10г (4% ДН), Белки 2г', 'ru', 'https://www.pepsico.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('106dae53-5a45-b2f2-4e06-9ee3fb59caee', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'PopSecret Movie Theater Butter Microwave Popcorn delivers the rich, buttery taste you love from the movie theater right to your home.', 'PopSecret Movie Theater Butter Microwave Popcorn 1.75oz 12-count', 'PopSecret', 'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 'Per 1.75oz bag: Calories 160, Fat 10g (15% DV), Sodium 270mg (12% DV), Carbs 15g (5% DV), Protein 2g', 'en', 'https://www.popsecret.com');
+INSERT INTO public.item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link) VALUES ('4e069ee3-fb59-caee-106d-ae535a45b2f2', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'Попкорн ПопСекрет Кинотеатральное Масло воспроизводит насыщенный масляный вкус как в кинотеатре.', 'ПопСекрет Кинотеатральное Масло 1.75oz 12 пакетов', 'PopSecret', 'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 'На 1.75oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 270мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 'ru', 'https://www.popsecret.com');
+
+
+--
+-- TOC entry 3498 (class 0 OID 16601)
+-- Dependencies: 221
+-- Data for Name: item_image; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', true, 'secret_snack_box_august_2025_main', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', true, 'lays_classic_front', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', true, 'lays_party_front', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', true, 'lays_salt_vinegar_front', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', true, 'lays_sour_cream_front', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', true, 'miss_vickies_front', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', true, 'pringles_original_front', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', true, 'doritos_nacho_front', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', true, 'lays_barbecue_front', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', true, 'on_the_border_front', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('3913e0cc-3df3-8281-72cc-0566484396a5', true, 'cheetos_crunchy_front', '828172cc-0566-4843-96a5-3913e0cc3df3');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('c2439d75-7fab-e217-0ecf-61234a3ea1e3', true, 'doritos_spicy_sweet_front', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('eb7e4498-28b7-7e16-1f6d-5f9344538865', true, 'lays_baked_bbq_front', '7e161f6d-5f93-4453-8865-eb7e449828b7');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', true, 'sunchips_garden_front', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('29014c08-643e-ce60-e10f-61f544c081a4', true, 'takis_fuego_front', 'ce60e10f-61f5-44c0-81a4-29014c08643e');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('bbbd7478-8acf-e762-7b73-922e44f8b646', true, 'doritos_twisted_front', 'e7627b73-922e-44f8-b646-bbbd74788acf');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('bd01e330-c09e-3c6f-292e-411b4bd692cc', true, 'great_value_nacho_front', '3c6f292e-411b-4bd6-92cc-bd01e330c09e');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('0c89b090-ce74-694e-30fa-d29c4437a4a1', true, 'tostitos_cantina_front', '694e30fa-d29c-4437-a4a1-0c89b090ce74');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f80e67a5-8f26-6f9d-a1dd-0041478abdd4', true, 'takis_blue_front', '6f9da1dd-0041-478a-bdd4-f80e67a58f26');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', true, 'good_crisp_bbq_front', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f6a7b8c9-d0e1-7896-f6a7-b8c9d0e12345', true, 'act_ii_butter_lovers_microwave_popcorn_2_75_oz_3_count', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('28f674a3-6047-5c81-2e5c-1fa8441a93bf', true, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count', '5c812e5c-1fa8-441a-93bf-28f674a36047');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('93bf28f6-74a3-6047-5c81-2e5c1fa8441a', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count_back', '5c812e5c-1fa8-441a-93bf-28f674a36047');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('60475c81-2e5c-1fa8-441a-93bf28f674a3', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_bowl', '5c812e5c-1fa8-441a-93bf-28f674a36047');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', true, 'smartfood_white_cheddar_6_75_oz_bag', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', true, 'angies_boomchickapop_sweet_salty_kettle_corn_prepopped_7_oz', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', true, 'orville_redenbacher_movie_theater_butter_microwave_popcorn_12_count', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', true, 'popcornopolis_caramel_kettle_mix_7_5_oz_bag', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e484', true, 'jolly_time_blast_o_butter_theatre_style_microwave_popcorn_3_2_oz_6_pack', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', true, 'great_value_extra_butter_microwave_popcorn_12_count_2_55_oz', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', true, 'crunch_n_munch_buttery_toffee_with_peanuts_12_oz', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', true, 'lesserevil_organic_cheddar_popcorn_4_6_oz', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', true, 'smartfood_white_cheddar_flavored_0_625_oz_bags_10_count_multipack', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('b0898b95-be25-2384-d84c-c2f14cf48277', true, 'pop_secret_movie_theater_front', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('c2f14cf4-8277-b089-8b95-be252384d84c', false, 'popsecret/2040afd2-d8d1-43a8-86ba-746934a37f63.7b641a6e57e2985ff1122f0cd89d8928', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('8277b089-8b95-be25-2384-d84cc2f14cf4', false, 'popsecret/6c2c378d-9c86-4bdf-8f5b-0c3a5ae80678.5693ab1a9d22b575fd449998c3bae07a', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+INSERT INTO public.item_image (id, is_main, name, item_id) VALUES ('8b95be25-2384-d84c-c2f1-4cf48277b089', false, 'popsecret/efc9b726-f707-4224-ae27-e3ef10157149.e51429c0e25ea378c7eb449a364ae9ff', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+
+
+--
+-- TOC entry 3509 (class 0 OID 50616)
+-- Dependencies: 232
+-- Data for Name: item_image_translation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('4d3f77b8-9ceb-f55b-1b7a-5d121289e41d', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Secret Snack Box – August Edition (photo)', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f55b1b7a-5d12-1289-e41d-4d3f77b89ceb', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Секретный Снэк Бокс – Август (фото)', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'Lays Classic Potato Chips package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a7b8c9d0-e1f2-3456-a7b8-c9d0e1f23456', 'e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'Упаковка чипсов Лейс Классические', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a8b9c0d1-e2f3-4567-a8b9-c0d1e2f34567', 'f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'Lays Classic Party Size package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b9c0d1e2-f3a4-5678-b9c0-d1e2f3a45678', 'f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'Упаковка Лейс Классические Party Size', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b0c1d2e3-f4a5-6789-b0c1-d2e3f4a56789', 'a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', 'Lays Salt & Vinegar package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'a9b0c1d2-e3f4-5678-a9b0-c1d2e3f45678', 'Упаковка Лейс с солью и уксусом', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c2d3e4f5-a6b7-8901-c2d3-e4f5a6b78901', 'b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', 'Lays Sour Cream & Onion package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d3e4f5a6-b7c8-9012-d3e4-f5a6b7c89012', 'b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67890', 'Упаковка Лейс со сметаной и луком', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d4e5f6a7-b8c9-0123-d4e5-f6a7b8c90123', 'c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'Miss Vickies Spicy Dill Pickle package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('e5f6a7b8-c9d0-1234-e5f6-a7b8c9d01234', 'c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'Упаковка Мисс Викис Острый соленый огурец', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Pringles Original can', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f3a4b5c6-d7e8-9012-f3a4-b5c6d7e89012', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Банка Принглс Оригинальные', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f9a0b1c2-d3e4-5678-f9a0-b1c2d3e45678', 'e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'Doritos Nacho Cheese Party Size bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a0b1c2d3-e4f5-6789-a0b1-c2d3e4f56789', 'e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'Упаковка Доритос Начо Сыр Party Size', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c7d8e9f0-a1b2-3456-c7d8-e9f0a1b23456', 'b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', 'Lays Barbecue Flavored chips package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d8e9f0a1-b2c3-4567-d8e9-f0a1b2c34567', 'b6c7d8e9-f0a1-2345-b6c7-d8e9f0a12345', 'Упаковка чипсов Лейс со вкусом барбекю', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a7b8c9d0-e1f2-4927-a7b8-c9d0e1f23456', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'On The Border Mexicali Grill tortilla chips package', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b8c9d0e1-f2a3-4567-b8c9-d0e1f2a34567', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Упаковка чипсов On The Border Mexicali Grill', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('05664843-96a5-3913-e0cc-3df3828172cc', '3913e0cc-3df3-8281-72cc-0566484396a5', 'Cheetos Crunchy Cheese bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('96a53913-e0cc-3df3-8281-72cc05664843', '3913e0cc-3df3-8281-72cc-0566484396a5', 'Упаковка Читос Хрустящие Сырные', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('61234a3e-a1e3-c243-9d75-7fabe2170ecf', 'c2439d75-7fab-e217-0ecf-61234a3ea1e3', 'Doritos Spicy Sweet Chili bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a1e3c243-9d75-7fab-e217-0ecf61234a3e', 'c2439d75-7fab-e217-0ecf-61234a3ea1e3', 'Упаковка Доритос Острый Сладкий Чили', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('5f934453-8865-eb7e-4498-28b77e161f6d', 'eb7e4498-28b7-7e16-1f6d-5f9344538865', 'Lay''s Baked BBQ bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('8865eb7e-4498-28b7-7e16-1f6d5f934453', 'eb7e4498-28b7-7e16-1f6d-5f9344538865', 'Упаковка Лейс Печеные Барбекю', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('6fd9454d-a0a1-248c-d31a-6dc0e13aba2a', '248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', 'SunChips Garden Salsa bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a0a1248c-d31a-6dc0-e13a-ba2a6fd9454d', '248cd31a-6dc0-e13a-ba2a-6fd9454da0a1', 'Упаковка СанЧипс Гарден Сальса', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('61f544c0-81a4-2901-4c08-643ece60e10f', '29014c08-643e-ce60-e10f-61f544c081a4', 'Takis Fuego bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('81a42901-4c08-643e-ce60-e10f61f544c0', '29014c08-643e-ce60-e10f-61f544c081a4', 'Упаковка Такис Фуэго', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('922e44f8-b646-bbbd-7478-8acfe7627b73', 'bbbd7478-8acf-e762-7b73-922e44f8b646', 'Doritos Twisted Queso bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b646bbbd-7478-8acf-e762-7b73922e44f8', 'bbbd7478-8acf-e762-7b73-922e44f8b646', 'Упаковка Доритос Твистед Кесо', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('411b4bd6-92cc-bd01-e330-c09e3c6f292e', 'bd01e330-c09e-3c6f-292e-411b4bd692cc', 'Great Value Nacho Cheese bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('92ccbd01-e330-c09e-3c6f-292e411b4bd6', 'bd01e330-c09e-3c6f-292e-411b4bd692cc', 'Упаковка Great Value Начо Сыр', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d29c4437-a4a1-0c89-b090-ce74694e30fa', '0c89b090-ce74-694e-30fa-d29c4437a4a1', 'Tostitos Cantina Thin & Crispy bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a4a10c89-b090-ce74-694e-30fad29c4437', '0c89b090-ce74-694e-30fa-d29c4437a4a1', 'Упаковка Тоститос Кантина Тонкие Хрустящие', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('0041478a-bdd4-f80e-67a5-8f266f9da1dd', 'f80e67a5-8f26-6f9d-a1dd-0041478abdd4', 'Takis Blue Heat bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('bdd4f80e-67a5-8f26-6f9d-a1dd0041478a', 'f80e67a5-8f26-6f9d-a1dd-0041478abdd4', 'Упаковка Такис Блю Хит', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('8ca64ca0-b803-4cd0-a2c5-7001e0b4eb02', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'The Good Crisp Outback BBQ bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b8034cd0-a2c5-7001-e0b4-eb028ca64ca0', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'Упаковка Гуд Крисп Аутбэк Барбекю', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('a7b8c9d0-e1f2-3456-3764-c9d0e1f23456', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Act II Butter Lovers 3-count box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b8c9d0e1-f2a3-4567-b8c9-d0e8f2a34567', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Упаковка Акт II Любительское Масло 3 пакета', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('441a93bf-28f6-74a3-6047-5c812e5c1fa8', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'SkinnyPop Gluten Free Butter box front', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('74a36047-5c81-2e5c-1fa8-441a93bf28f6', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'Упаковка СкинниПоп Безглютеновый Масляный', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('5c1fa844-1a93-bf28-f674-a360475c812e', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'SkinnyPop box back', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('475c812e-5c1f-a844-1a93-bf28f674a360', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'Задняя сторона упаковки СкинниПоп', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('812e5c1f-a844-1a93-bf28-f674a360475c', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'SkinnyPop popcorn in bowl', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('e5c1fa84-41a9-3bf2-8f67-4a360475c812', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'СкинниПоп попкорн в миске', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b5c67890-d1e2-f3a4-b5c6-7890d1e2f3a4', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Smartfood White Cheddar bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('7890d1e2-f3a4-b5c6-7890-d1e2f3a4b5c6', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Упаковка Смартфуд Вайт Чеддер', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b4a34921-83f6-e5d4-c3b2-a109f8e7d6c5', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Angie''s Boomchickapop Sweet & Salty bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('83f6e5d4-c3b2-a109-f8e7-d6c5b4a54971', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Упаковка Энджис Бумчикапоп Сладко-Соленый', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Orville Redenbacher''s Movie Theater Butter box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Упаковка Орвилл Реденбахер Кинотеатральное Масло', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e7d6', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Popcornopolis Caramel Kettle Mix bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-b5b4a3492183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Упаковка Попкорнополис Карамельный Микс', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492873', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Jolly Time Blast O Butter box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('b2a109f8-e7d6-c5b4-a349-5583f6e5d4c3', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Упаковка Джолли Тайм Бласт О Баттер', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e553', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Great Value Extra Butter 12-count box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492473', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Упаковка Great Value Экстра Масло 12 пакетов', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e333', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Crunch ''n Munch Buttery Toffee bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3491483', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Упаковка Кранч энд Манч Масляная Ириска', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e222', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'LesserEvil Organic Cheddar bag', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492493', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'Упаковка ЛессерЭвил Органик Чеддер', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c5b4a349-2183-f6e5-d4c3-b2a109f8e123', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Smartfood White Cheddar Multipack box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3942183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Упаковка Смартфуд Вайт Чеддер Мультипак', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d84cc2f1-4cf4-8277-b089-8b95eb252384', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'PopSecret Movie Theater Butter box', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('4cf48277-b089-8b95-be25-2384d84cc2f1', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'Упаковка ПопСекрет Кинотеатральное Масло', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'PopSecret product close-up', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('c2f14cf4-8277-b089-8b95-be252384d84c', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'Крупный план продукта ПопСекрет', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('be252384-d84c-c2f1-4cf4-8277b0898b95', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'PopSecret popcorn in bowl', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('d84cc2f1-4cf4-8277-b089-8b95be252384', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'Попкорн ПопСекрет в миске', 'ru');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('8277b089-8b95-be25-2384-d84cc2f14cf4', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'PopSecret nutritional information', 'en');
+INSERT INTO public.item_image_translation (id, item_image_id, title, lang_key) VALUES ('8b95be25-2384-d84c-c2f1-4cf48277b089', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'Информация о питательности ПопСекрет', 'ru');
+
+
+--
+-- TOC entry 3505 (class 0 OID 25051)
+-- Dependencies: 228
+-- Data for Name: item_translation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b7a59d12-cebf-1289-77b8-4e41d3f655b1', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Secret Snack Box – August Edition', 'A box filled with a curated selection of international and classic snacks', 'en', 21.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('12cebf55-b1b7-a59d-3d4e-128977b89e41', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Секретный Бокс Со Снеками – Август', 'Коробка с подборкой классических и международных снеков', 'ru', 1790.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Lays Classic Potato Chips', 'Classic potato chips with just the right amount of salt', 'en', 2.99, 3.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a78901', 'e1b0e8a1-2f9e-4a1d-9c8b-1a2b3c4d5e6f', 'Лейс Классические Чипсы', 'Классические картофельные чипсы с идеальным количеством соли', 'ru', 239.99, 299.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b3c4d5e6-f7a8-9012-b3c4-d5e6f7a89012', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Lays Classic Party Size', 'Perfect for sharing - classic potato chips in a big bag', 'en', 4.99, 5.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c4d5e6f7-a8b9-0123-c4d5-e6f7a8b90123', 'f2e3d4c5-b6a7-89f0-e1d2-c3b4a5d6e7f8', 'Лейс Классические Party Size', 'Идеально для компании - классические чипсы в большой упаковке', 'ru', 429.49, 529.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c5d6e7f8-a9b0-1234-c5d6-e7f8a9b01234', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Lays Salt & Vinegar', 'Tangy vinegar flavor with a salty kick', 'en', 2.99, 3.29);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d6e7f8a9-b0c1-2345-d6e7-f8a9b0c12345', 'a3b4c5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9', 'Лейс с солью и уксусом', 'Пикантный вкус уксуса с солоноватым оттенком', 'ru', 420.00, 610.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d7e8f9a0-b1c2-3456-d7e8-f9a0b1c23456', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Lays Sour Cream & Onion', 'Creamy sour cream flavor with onion taste', 'en', 2.99, 3.29);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('e8f9a0b1-c2d3-4567-e8f9-a0b1c2d34567', 'b4c5d6e7-f8a9-01b2-c3d4-e5f6a7b8c9d0', 'Лейс со сметаной и луком', 'Нежный вкус сметаны с луковыми нотками', 'ru', 230.49, 290.99);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('e9f0a1b2-c3d4-5678-e9f0-a1b2c3d45678', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Miss Vickies Spicy Dill Pickle', 'Bold dill pickle flavor with a spicy kick', 'en', 3.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('f0a1b2c3-d4e5-6789-f0a1-b2c3d4e56789', 'c5d6e7f8-a9b0-12c3-d4e5-f6a7b8c9d0e1', 'Мисс Викис Острый соленый огурец', 'Яркий вкус соленого огурца с остринкой', 'ru', 269.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('f7a8b9c0-d1e2-3456-f7a8-b9c0d1e23456', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Pringles Original', 'Classic potato crisps with perfect crunch', 'en', 3.29, 3.79);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a8b9c0d1-e2f3-4567-a8b9-c0d1e2f34567', 'd6e7f8a9-b0c1-23d4-e5f6-a7b8c9d0e1f2', 'Принглс Оригинальные', 'Классические картофельные хрустящие чипсы', 'ru', 190.00, 350.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a4b5c6d7-e8f9-0123-a4b5-c6d7e8f90123', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Doritos Nacho Cheese Party Size', 'Bold nacho cheese flavor in a big sharing bag', 'en', 4.99, 5.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b5c6d7e8-f9a0-1234-b5c6-d7e8f9a01234', 'e7f8a9b0-c1d2-34e5-f6a7-b8c9d0e1f2g3', 'Доритос Начо Сыр Party Size', 'Яркий вкус начо сыра в большой упаковке', 'ru', 419.95, 495.40);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d2e3f4a5-b6c7-8901-d2e3-f4a5b6c78901', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Lays Barbecue Flavored', 'Smoky, sweet barbecue flavor potato chips', 'en', 2.99, 3.29);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('e3f4a5b6-c7d8-9012-e3f4-a5b6c7d89012', 'c1d2e3f4-a5b6-7890-c1d2-e3f4a5b67890', 'Лейс со вкусом барбекю', 'Картофельные чипсы с дымчатым сладковатым вкусом барбекю', 'ru', 219.99, 309.99);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('fk2845jf-f6a7-8901-b2c3-d4e5f6a78901', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'On The Border Mexicali Grill & Cantina Cafe Style', 'Restaurant-style tortilla chips with authentic flavor', 'en', 3.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89012', 'a1b2c3d4-e5f6-7890-a1b2-c3d4e5f67890', 'On The Border Mexicali Grill & Cantina (кафе стиль)', 'Чипсы в стиле мексиканского кафе с аутентичным вкусом', 'ru', 249.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('399b9e14-efaa-3ae6-807a-bf4b244d6aad', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Cheetos Crunchy Cheese', 'Classic crunchy cheese-flavored corn snacks', 'en', 2.99, 3.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('6807abf4-b244-d6aa-d399-b9e14efaa3ae', '828172cc-0566-4843-96a5-3913e0cc3df3', 'Читос Хрустящие Сырные', 'Хрустящие кукурузные снеки с сырным вкусом', 'ru', 240.00, 280.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('be945da8-4287-e3db-477e-59bc8f2b8b9e', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Doritos Spicy Sweet Chili', 'Perfect balance of spicy and sweet flavors', 'en', 4.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('477e59bc-8f2b-8b9e-be94-5da84287e3db', 'e2170ecf-6123-4a3e-a1e3-c2439d757fab', 'Доритос Острый Сладкий Чили', 'Идеальный баланс острого и сладкого вкусов', 'ru', 360.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b74beac7-ae46-a530-afa7-1bf662ae84ce', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Lay''s Baked BBQ', 'Baked potato chips with barbecue flavor, gluten free', 'en', 3.29, 3.79);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('afa71bf6-62ae-84ce-b74b-eac7ae46a530', '7e161f6d-5f93-4453-8865-eb7e449828b7', 'Лейс Печеные Барбекю', 'Печеные картофельные чипсы со вкусом барбекю, без глютена', 'ru', 260.00, 300.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('4d613a3b-0bba-0a29-69d3-4e511a74812e', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'SunChips Garden Salsa', 'Whole grain snacks with garden salsa flavor', 'en', 3.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('69d34e51-1a74-812e-4d61-3a3b0bba0a29', 'e13aba2a-6fd9-454d-a0a1-248cd31a6dc0', 'СанЧипс Гарден Сальса', 'Цельнозерновые снеки с вкусом сальсы', 'ru', 280.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('9512f82d-04b1-1918-6dbd-96b4995abd41', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Takis Fuego', 'Hot chili pepper & lime rolled tortilla chips', 'en', 3.99, 4.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('6dbd96b4-995a-bd41-9512-f82d04b11918', 'ce60e10f-61f5-44c0-81a4-29014c08643e', 'Такис Фуэго', 'Острые чипсы с вкусом перца чили и лайма', 'ru', 320.00, 360.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('bbb28c4c-435e-4d85-37ae-ce2cf845d3c', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Doritos Twisted Queso', 'Cheesy twisted tortilla chips with bold flavor', 'en', 3.29, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('37aece2c-f845-d3cb-bb28-c4c435e4d853', 'e7627b73-922e-44f8-b646-bbbd74788acf', 'Доритос Твистед Кесо', 'Сырные скрученные чипсы с насыщенным вкусом', 'ru', 260.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('9804b3b2-763a-507c-e2c7-fb0414dcbb0f', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Great Value Nacho Cheese', 'Classic nacho cheese flavored tortilla chips', 'en', 2.29, 2.79);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('e2c7fb04-14dc-bb0f-9804-b3b2763a507c', '3c6f292e-411b-4bd6-92cc-bd01e330c09e', 'Great Value Начо Сыр', 'Классические чипсы со вкусом начо сыра', 'ru', 180.00, 220.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('4b6b33e0-b4c9-c4e7-da26-9d28863c6a99', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Tostitos Cantina Thin & Crispy', 'Thin, crispy restaurant-style tortilla chips', 'en', 3.79, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('da269d28-863c-6a99-4b6b-33e0b4c9c4e7', '694e30fa-d29c-4437-a4a1-0c89b090ce74', 'Тоститос Кантина Тонкие Хрустящие', 'Тонкие чипсы в стиле мексиканского ресторана', 'ru', 300.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('641e1b70-cc6d-1a43-d7f3-3813d512cb23', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Takis Blue Heat', 'Extremely hot chili pepper rolled tortilla chips', 'en', 3.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d7f33813-d512-cb23-641e-1b70cc6d1a43', '6f9da1dd-0041-478a-bdd4-f80e67a58f26', 'Такис Блю Хит', 'Очень острые чипсы с перцем чили', 'ru', 320.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('f29fff33-e5f8-a773-89cd-4c9ec1f87a3b', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'The Good Crisp Outback BBQ', 'Gluten free potato chips with smoky BBQ flavor', 'en', 3.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('89cd4c9e-c1f8-7a3b-f29f-ff33e5f8a773', 'e0b4eb02-8ca6-4ca0-b803-4cd0a2c57001', 'Гуд Крисп Аутбэк Барбекю', 'Безглютеновые чипсы с дымчатым вкусом барбекю', 'ru', 320.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a98701', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Act II Butter Lovers Microwave Popcorn', 'Rich buttery flavor popcorn, 3-count box', 'en', 3.49, 3.99);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89874', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Акт II Любительское Масло Попкорн', 'Попкорн с насыщенным масляным вкусом, 3 пакета', 'ru', 280.00, 320.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('12a1a66e-bc9a-e733-c454-53e2cbe70562', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'SkinnyPop Gluten Free Butter Microwave Popcorn', 'Light, buttery popcorn with 39% less fat than regular', 'en', 4.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c45453e2-cbe7-0562-12a1-a66ebc9ae733', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'СкинниПоп Безглютеновый Масляный Попкорн', 'Легкий попкорн с масляным вкусом, на 39% меньше жира', 'ru', 400.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Smartfood White Cheddar Popcorn', 'Delicious white cheddar flavored popcorn', 'en', 3.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a4b5c6d7-8901-e2f3-a4b5-c6d78901e2f3', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Смартфуд Вайт Чеддер Попкорн', 'Попкорн с вкусом белого чеддера', 'ru', 320.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a9b8c7d6-e5f4-3821-a9b8-c7d6e5f43821', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Angie''s Boomchickapop Sweet & Salty Kettle Corn', 'Perfect balance of sweet and salty flavors', 'en', 4.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('c7d6e5f4-3821-a9b8-c7d6-e5f43821a9b8', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Энджис Бумчикапоп Сладко-Соленый', 'Идеальный баланс сладкого и соленого вкусов', 'ru', 360.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Orville Redenbacher''s Movie Theater Butter', 'Rich, buttery flavor like at the movies', 'en', 5.99, 6.49);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Орвилл Реденбахер Кинотеатральное Масло', 'Насыщенный масляный вкус как в кинотеатре', 'ru', 480.00, 520.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Popcornopolis Caramel Kettle Mix', 'Sweet caramel coated kettle corn', 'en', 6.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a8492183f6e5', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Попкорнополис Карамельный Микс', 'Сладкий карамелизированный попкорн', 'ru', 560.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Jolly Time Blast O Butter Theatre Style', 'Extra buttery theater-style popcorn', 'en', 4.29, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d863', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Джолли Тайм Бласт О Баттер Театральный', 'Очень маслянистый попкорн в театральном стиле', 'ru', 340.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3493183f6e5', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Extra Butter Microwave Popcorn', 'Rich extra buttery flavor, 12-count box', 'en', 3.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c7b2a1', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Экстра Масло Попкорн', 'Насыщенный масляный вкус, 12 пакетов', 'ru', 280.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e534c3', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Crunch ''n Munch Buttery Toffee with Peanuts', 'Sweet toffee-coated popcorn with peanuts', 'en', 3.99, 4.29);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('09f8e7d6-c5b4-a349-2185-f6e5d4c3b2a1', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Кранч энд Манч Масляная Ириска с Арахисом', 'Сладкий попкорн в ириске с арахисом', 'ru', 320.00, 340.00);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c5b2a1', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'LesserEvil Organic Cheddar Popcorn', 'Organic popcorn with cheddar cheese flavor', 'en', 4.99, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c4b4', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'ЛессерЭвил Органик Чеддер Попкорн', 'Органический попкорн с вкусом сыра чеддер', 'ru', 400.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c2b4', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Smartfood White Cheddar Multipack', 'White cheddar flavored popcorn snack packs', 'en', 5.49, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e6', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Смартфуд Вайт Чеддер Мультипак', 'Попкорн с вкусом белого чеддера в порционных упаковках', 'ru', 440.00, NULL);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('5a45b2f2-4e06-9ee3-fb59-caee106dae53', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'PopSecret Movie Theater Butter', 'Rich theater-style butter flavor popcorn', 'en', 4.49, 4.99);
+INSERT INTO public.item_translation (id, item_id, label, description, lang_key, price, old_price) VALUES ('fb59caee-106d-ae53-5a45-b2f24e069ee3', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'ПопСекрет Кинотеатральное Масло', 'Попкорн с насыщенным масляным вкусом как в кинотеатре', 'ru', 360.00, 400.00);
+
+
+--
+-- TOC entry 3500 (class 0 OID 16610)
+-- Dependencies: 223
+-- Data for Name: order; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3504 (class 0 OID 24934)
+-- Dependencies: 227
+-- Data for Name: order_item; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3501 (class 0 OID 16614)
+-- Dependencies: 224
+-- Data for Name: review; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3508 (class 0 OID 25089)
+-- Dependencies: 231
+-- Data for Name: type_translation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('cb5b4deb-e6af-4309-9d7d-94a3d9f65246', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', 'Попкорн', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('016afbc2-b1ea-49aa-9631-037c9b866229', 'ced40972-b8b9-4ebd-a7f7-405b2f6196f3', 'Крекеры', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('7d4e3d37-d08e-4c35-8c5b-b32dce130a4d', '4036002d-d64f-46ec-b688-aaddb05273ec', 'Чипсы', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('9f5250dc-ab74-475e-b269-e63add01cffe', '62d4dd46-bf34-4ac7-8f07-1700f9d3d892', 'Соки', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('70023356-0592-4ab8-ba16-193117251f5c', '127334b8-b491-4e34-9358-f9fadbbc2378', 'Молочные коктейли', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('db5b4820-4f92-49e4-aa46-0065f674b426', 'fe114c51-1fa2-4dca-9731-32acf70d9dba', 'Конфеты', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('109de313-e7e0-46bc-a4a9-58e6ae6e96c1', 'fad6568f-f1c8-40b1-95c6-5e17f0895d44', 'Жевательная резинка', 'ru');
+INSERT INTO public.type_translation (id, type_id, name, lang_key) VALUES ('f47ace3a-5d7e-4887-b6d4-e9bb11686544', 'a93cf4f7-03b1-46ab-808b-7d4f9385edb6', 'Печенье', 'ru');
+
+
+-- Completed on 2025-08-06 15:13:33 MSK
+
+--
+-- PostgreSQL database dump complete
+--
 
 COMMIT;
