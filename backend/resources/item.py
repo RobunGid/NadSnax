@@ -5,7 +5,7 @@ from uuid import uuid4
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask import request, g
-from sqlalchemy import func, and_
+from sqlalchemy import func, and_, case
 from flask_jwt_extended import decode_token
 from flask_jwt_extended import jwt_required
 from sqlalchemy.orm import aliased
@@ -106,15 +106,15 @@ class Items(MethodView):
                 
         if simillar_id_filter:
             simillar_item = ItemModel.query.get_or_404(simillar_id_filter)
-
             query = query.filter(ItemModel.category_id == simillar_item.category_id)
             simillar_translation = next((t for t in simillar_item.translations if t.lang_key == language), None)
-
+            
             if simillar_translation and simillar_translation.price is not None:
                 simillar_price = float(simillar_translation.price)
                 query = query.filter(ItemModel.category_id == simillar_item.category_id)
                 query = query.filter(ItemTranslationAlias.price >= simillar_price * 0.75)
                 query = query.filter(ItemTranslationAlias.price <= simillar_price * 1.25)
+                query = query.order_by(case((ItemModel.id == simillar_item.id, 0), else_=1))
                 
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header[7:]
@@ -149,7 +149,6 @@ class Items(MethodView):
                     item.item_details.full_description = item.item_details.translation.full_description
                     item.item_details.supplier = item.item_details.translation.supplier
                     item.item_details.supplier_link = item.item_details.translation.supplier_link
-                    print(item.item_details.__dict__)
         
         return {
             "items": items,

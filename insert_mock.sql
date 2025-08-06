@@ -704,4 +704,475 @@ VALUES
 ('8ca64ca0-b803-4cd0-a2c5-7001e0b4eb02', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'The Good Crisp Outback BBQ bag', 'en'),
 ('b8034cd0-a2c5-7001-e0b4-eb028ca64ca0', '4cd0a2c5-7001-e0b4-eb02-8ca64ca0b803', 'Упаковка Гуд Крисп Аутбэк Барбекю', 'ru');
 
+--- Act II Butter Lovers Microwave Popcorn (3-count) ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', false, 'act_ii_butter_lovers_3ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
+VALUES 
+('b2c3d4e5-f6a7-8901-b2c3-d4e5f6a98701', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Act II Butter Lovers Microwave Popcorn', 'Rich buttery flavor popcorn, 3-count box', 'en', 3.49, 3.99),
+('c3d4e5f6-a7b8-9012-c3d4-e5f6a7b89874', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 'Акт II Любительское Масло Попкорн', 'Попкорн с насыщенным масляным вкусом, 3 пакета', 'ru', 280, 320);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('d4e5f6a7-b8c9-0123-d4e5-b6a7b8c90123', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 
+'Act II Butter Lovers Microwave Popcorn delivers rich, buttery flavor in every bite. Perfect for movie nights at home.', 
+'Act II Butter Lovers Microwave Popcorn 2.75oz 3-count', 'Conagra Brands', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
+'Per 2.75oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
+'en', 'https://www.conagrabrands.com'),
+('e5f6a9b8-c9d0-1234-e5f6-a7b8c9d01234', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890', 
+'Попкорн Act II Любительское Масло с насыщенным масляным вкусом. Идеально для домашних киносеансов.', 
+'Акт II Любительское Масло Попкорн 2.75oz 3 пакета', 'Conagra Brands', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
+'На 2.75oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
+'ru', 'https://www.conagrabrands.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('f6a7b8c9-d0e1-7896-f6a7-b8c9d0e12345', true, 'act_ii_butter_lovers_microwave_popcorn_2_75_oz_3_count', 'a1b5c9d4-b9f6-7890-a1b2-c5d4e5f67890');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('a7b8c9d0-e1f2-3456-3764-c9d0e1f23456', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Act II Butter Lovers 3-count box', 'en'),
+('b8c9d0e1-f2a3-4567-b8c9-d0e8f2a34567', 'f6a7b8c9-d0e1-2345-f6a7-b8c9d0e12345', 'Упаковка Акт II Любительское Масло 3 пакета', 'ru');
+
+--- SkinnyPop Gluten Free Butter Microwave Popcorn  ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047', true, 'skinny_pop_gluten_free_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('5c812e5c-1fa8-441a-93bf-28f674a36047');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('12a1a66e-bc9a-e733-c454-53e2cbe70562', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'SkinnyPop Gluten Free Butter Microwave Popcorn', 'Light, buttery popcorn with 39% less fat than regular', 'en', 4.99),
+('c45453e2-cbe7-0562-12a1-a66ebc9ae733', '5c812e5c-1fa8-441a-93bf-28f674a36047', 'СкинниПоп Безглютеновый Масляный Попкорн', 'Легкий попкорн с масляным вкусом, на 39% меньше жира', 'ru', 400);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('cbe70562-12a1-a66e-bc9a-e733c45453e2', '5c812e5c-1fa8-441a-93bf-28f674a36047', 
+'SkinnyPop Gluten Free Butter Microwave Popcorn is made with simple ingredients and contains 39% less fat than regular butter popcorn.', 
+'SkinnyPop Gluten Free Butter Microwave Popcorn 2.8oz 6-count', 'SkinnyPop', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor', 
+'Per 2.8oz bag: Calories 130, Fat 7g (11% DV), Sodium 250mg (11% DV), Carbs 15g (5% DV), Protein 2g', 
+'en', 'https://www.skinnypop.com'),
+('bc9ae733-c454-53e2-cbe7-056212a1a66e', '5c812e5c-1fa8-441a-93bf-28f674a36047', 
+'Попкорн СкинниПоп Безглютеновый Масляный сделан из простых ингредиентов и содержит на 39% меньше жира.', 
+'СкинниПоп Безглютеновый Масляный Попкорн 2.8oz 6 пакетов', 'SkinnyPop', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор', 
+'На 2.8oz пакет: Калории 130, Жиры 7г (11% ДН), Натрий 250мг (11% ДН), Углеводы 15г (5% ДН), Белки 2г', 
+'ru', 'https://www.skinnypop.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('28f674a3-6047-5c81-2e5c-1fa8441a93bf', true, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count', '5c812e5c-1fa8-441a-93bf-28f674a36047');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('93bf28f6-74a3-6047-5c81-2e5c1fa8441a', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_2_8_oz_6_count_back', '5c812e5c-1fa8-441a-93bf-28f674a36047'),
+('60475c81-2e5c-1fa8-441a-93bf28f674a3', false, 'skinny_pop_gluten_free_butter_microwave_popcorn_bowl', '5c812e5c-1fa8-441a-93bf-28f674a36047');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('441a93bf-28f6-74a3-6047-5c812e5c1fa8', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'SkinnyPop Gluten Free Butter box front', 'en'),
+('74a36047-5c81-2e5c-1fa8-441a93bf28f6', '28f674a3-6047-5c81-2e5c-1fa8441a93bf', 'Упаковка СкинниПоп Безглютеновый Масляный', 'ru'),
+
+('5c1fa844-1a93-bf28-f674-a360475c812e', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'SkinnyPop box back', 'en'),
+('475c812e-5c1f-a844-1a93-bf28f674a360', '93bf28f6-74a3-6047-5c81-2e5c1fa8441a', 'Задняя сторона упаковки СкинниПоп', 'ru'),
+
+('812e5c1f-a844-1a93-bf28-f674a360475c', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'SkinnyPop popcorn in bowl', 'en'),
+('e5c1fa84-41a9-3bf2-8f67-4a360475c812', '60475c81-2e5c-1fa8-441a-93bf28f674a3', 'СкинниПоп попкорн в миске', 'ru');
+
+--- Smartfood White Cheddar ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', true, 'smartfood_white_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Smartfood White Cheddar Popcorn', 'Delicious white cheddar flavored popcorn', 'en', 3.99),
+('a4b5c6d7-8901-e2f3-a4b5-c6d78901e2f3', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 'Смартфуд Вайт Чеддер Попкорн', 'Попкорн с вкусом белого чеддера', 'ru', 320);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('8901e2f3-a4b5-c6d7-8901-e2f3a4b5c6d7', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 
+'Smartfood White Cheddar Cheese Flavored Popcorn is a delicious snack made with real cheese for authentic flavor.', 
+'Smartfood White Cheddar Popcorn 6.75oz (191g)', 'PepsiCo', 
+'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning (Whey, Cheddar Cheese, Canola Oil, Salt)', 
+'Per 28g: Calories 160, Fat 10g (15% DV), Sodium 230mg (10% DV), Carbs 15g (5% DV), Protein 3g', 
+'en', 'https://www.pepsico.com'),
+('c6d78901-e2f3-a4b5-c6d7-8901e2f3a4b5', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890', 
+'Попкорн Смартфуд Вайт Чеддер сделан с использованием настоящего сыра для аутентичного вкуса.', 
+'Смартфуд Вайт Чеддер Попкорн 191г', 'PepsiCo', 
+'Попкорн, растительное масло, приправа Вайт Чеддер (сыворотка, сыр Чеддер, рапсовое масло, соль)', 
+'На 28г: Калории 160, Жиры 10г (15% ДН), Натрий 230мг (10% ДН), Углеводы 15г (5% ДН), Белки 3г', 
+'ru', 'https://www.pepsico.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', true, 'smartfood_white_cheddar_6_75_oz_bag', 'd1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('b5c67890-d1e2-f3a4-b5c6-7890d1e2f3a4', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Smartfood White Cheddar bag', 'en'),
+('7890d1e2-f3a4-b5c6-7890-d1e2f3a4b5c6', 'f3a4b5c6-7890-d1e2-f3a4-b5c67890d1e2', 'Упаковка Смартфуд Вайт Чеддер', 'ru');
+
+--- Angie's Boomchickapop Sweet & Salty Kettle Corn ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', false, 'angies_boomchickapop_sweet_salty', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('a9b8c7d6-e5f4-3821-a9b8-c7d6e5f43821', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Angie''s Boomchickapop Sweet & Salty Kettle Corn', 'Perfect balance of sweet and salty flavors', 'en', 4.49),
+('c7d6e5f4-3821-a9b8-c7d6-e5f43821a9b8', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Энджис Бумчикапоп Сладко-Соленый', 'Идеальный баланс сладкого и соленого вкусов', 'ru', 360);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('3821a9b8-c7d6-e5f4-3821-a9b8c7d6e5f4', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 
+'Angie''s Boomchickapop Sweet & Salty Kettle Corn is made with simple ingredients and contains no artificial flavors or preservatives.', 
+'Angie''s Boomchickapop Sweet & Salty Kettle Corn 7oz (198g)', 'Angie''s Artisan Treats', 
+'Popcorn, Sunflower Oil, Cane Sugar, Sea Salt', 
+'Per 28g: Calories 140, Fat 7g (11% DV), Sodium 85mg (4% DV), Carbs 18g (6% DV), Protein 2g', 
+'en', 'https://www.angiesboomchickapop.com'),
+('e5f43821-a9b8-c7d6-e5f4-3821a9b8c7d6', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 
+'Попкорн Энджис Бумчикапоп Сладко-Соленый сделан из простых ингредиентов без искусственных ароматизаторов.', 
+'Энджис Бумчикапоп Сладко-Соленый 198г', 'Angie''s Artisan Treats', 
+'Попкорн, подсолнечное масло, тростниковый сахар, морская соль', 
+'На 28г: Калории 140, Жиры 7г (11% ДН), Натрий 85мг (4% ДН), Углеводы 18г (6% ДН), Белки 2г', 
+'ru', 'https://www.angiesboomchickapop.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', true, 'angies_boomchickapop_sweet_salty_kettle_corn_prepopped_7_oz', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('b4a34921-83f6-e5d4-c3b2-a109f8e7d6c5', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Angie''s Boomchickapop Sweet & Salty bag', 'en'),
+('83f6e5d4-c3b2-a109-f8e7-d6c5b4a54971', 'e5d4c3b2-a109-f8e7-d6c5-b4a3492183f6', 'Упаковка Энджис Бумчикапоп Сладко-Соленый', 'ru');
+
+--- Orville Redenbacher's Movie Theater Butter (12-count) ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', true, 'orville_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
+VALUES 
+('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Orville Redenbacher''s Movie Theater Butter', 'Rich, buttery flavor like at the movies', 'en', 5.99, 6.49),
+('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 'Орвилл Реденбахер Кинотеатральное Масло', 'Насыщенный масляный вкус как в кинотеатре', 'ru', 480, 520);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('a109f8e7-d6c5-b4a3-4921-83f6e5d4c3b2', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 
+'Orville Redenbacher''s Movie Theater Butter popcorn delivers the rich, buttery taste you love from the movie theater.', 
+'Orville Redenbacher''s Movie Theater Butter Microwave Popcorn 12-count', 'Orville Redenbacher''s', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
+'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
+'en', 'https://www.orville.com'),
+('492183f6-e5d4-c3b2-a109-f8e7d6c5b4a3', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4', 
+'Попкорн Орвилл Реденбахер Кинотеатральное Масло воспроизводит вкус кинотеатрального попкорна.', 
+'Орвилл Реденбахер Кинотеатральное Масло 12 пакетов', 'Orville Redenbacher''s', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
+'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
+'ru', 'https://www.orville.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', true, 'orville_redenbacher_movie_theater_butter_microwave_popcorn_12_count', 'c3b2a109-f8e7-d6c5-b4a3-492183f6e5d4');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('d6c5b4a3-4921-83f6-e5d4-c3b2a109f8e7', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Orville Redenbacher''s Movie Theater Butter box', 'en'),
+('83f6e5d4-c3b2-a109-f8e7-d6c5b4a34921', 'f8e7d6c5-b4a3-4921-83f6-e5d4c3b2a109', 'Упаковка Орвилл Реденбахер Кинотеатральное Масло', 'ru');
+
+--- Popcornopolis Caramel Kettle Mix ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', false, 'popcornopolis_caramel_kettle', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Popcornopolis Caramel Kettle Mix', 'Sweet caramel coated kettle corn', 'en', 6.99),
+('d4c3b2a1-09f8-e7d6-c5b4-a8492183f6e5', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 'Попкорнополис Карамельный Микс', 'Сладкий карамелизированный попкорн', 'ru', 560);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('09f8e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 
+'Popcornopolis Caramel Kettle Mix is a delicious blend of sweet caramel coated popcorn that''s perfect for sharing.', 
+'Popcornopolis Caramel Kettle Mix 7.5oz (213g)', 'Popcornopolis', 
+'Popcorn, Sugar, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 
+'Per 28g: Calories 130, Fat 4.5g (7% DV), Sodium 85mg (4% DV), Carbs 22g (8% DV), Protein 1g', 
+'en', 'https://www.popcornopolis.com'),
+('2183f6e5-d4c3-b2a1-09f8-e7d6c974a349', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3', 
+'Попкорнополис Карамельный Микс - это вкусная смесь сладкого карамелизированного попкорна.', 
+'Попкорнополис Карамельный Микс 213г', 'Popcornopolis', 
+'Попкорн, сахар, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 
+'На 28г: Калории 130, Жиры 4.5г (7% ДН), Натрий 85мг (4% ДН), Углеводы 22г (8% ДН), Белки 1г', 
+'ru', 'https://www.popcornopolis.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', true, 'popcornopolis_caramel_kettle_mix_7_5_oz_bag', 'b2a109f8-e7d6-c5b4-a349-2183f6e5d4c3');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e7d6', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Popcornopolis Caramel Kettle Mix bag', 'en'),
+('f6e5d4c3-b2a1-09f8-e7d6-b5b4a3492183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a109f8', 'Упаковка Попкорнополис Карамельный Микс', 'ru');
+
+--- Jolly Time Blast O Butter Theatre Style ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', false, 'jolly_time_blast_o_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Jolly Time Blast O Butter Theatre Style', 'Extra buttery theater-style popcorn', 'en', 4.29),
+('b2a109f8-e7d6-c5b4-a349-2183f6e5d863', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 'Джолли Тайм Бласт О Баттер Театральный', 'Очень маслянистый попкорн в театральном стиле', 'ru', 340);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b6', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 
+'Jolly Time Blast O Butter Theatre Style Microwave Popcorn delivers extra buttery flavor with a light, fluffy texture.', 
+'Jolly Time Blast O Butter Theatre Style Microwave Popcorn 3.2oz 6-pack', 'Jolly Time', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
+'Per 3.2oz bag: Calories 170, Fat 11g (17% DV), Sodium 290mg (12% DV), Carbs 16g (6% DV), Protein 2g', 
+'en', 'https://www.jollytime.com'),
+('d4c3b2a1-09f8-e7d6-c5b4-a3492133f6e5', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1', 
+'Попкорн Джолли Тайм Бласт О Баттер Театральный имеет очень маслянистый вкус и воздушную текстуру.', 
+'Джолли Тайм Бласт О Баттер Театральный 6 пакетов', 'Jolly Time', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
+'На 3.2oz пакет: Калории 170, Жиры 11г (17% ДН), Натрий 290мг (12% ДН), Углеводы 16г (6% ДН), Белки 2г', 
+'ru', 'https://www.jollytime.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e484', true, 'jolly_time_blast_o_butter_theatre_style_microwave_popcorn_3_2_oz_6_pack', '9848e7d6-c5b4-a349-2183-f6e5d4c3b2a1');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492873', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Jolly Time Blast O Butter box', 'en'),
+('b2a109f8-e7d6-c5b4-a349-5583f6e5d4c3', 'c5b4a349-2183-f6e5-d4c3-b2a109f8e484', 'Упаковка Джолли Тайм Бласт О Баттер', 'ru');
+
+--- Great Value Extra Butter Microwave Popcorn (12-count) ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', false, 'great_value_extra_butter_12ct', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('d4c3b2a1-09f8-e7d6-c5b4-a3493183f6e5', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Extra Butter Microwave Popcorn', 'Rich extra buttery flavor, 12-count box', 'en', 3.49),
+('09f8e7d6-c5b4-a349-2183-f6e5d4c7b2a1', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 'Great Value Экстра Масло Попкорн', 'Насыщенный масляный вкус, 12 пакетов', 'ru', 280);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('2183f6e5-d4c3-b2a1-09f8-e7d64784a349', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 
+'Great Value Extra Butter Microwave Popcorn delivers rich, buttery flavor at a great value price.', 
+'Great Value Extra Butter Microwave Popcorn 2.55oz 12-count', 'Walmart', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
+'Per 2.55oz bag: Calories 160, Fat 10g (15% DV), Sodium 280mg (12% DV), Carbs 15g (5% DV), Protein 2g', 
+'en', 'https://www.walmart.com'),
+('b2a569f8-e7d6-c5b4-a349-2183f6e5d4c3', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4', 
+'Попкорн Great Value Экстра Масло предлагает насыщенный масляный вкус по отличной цене.', 
+'Great Value Экстра Масло Попкорн 2.55oz 12 пакетов', 'Walmart', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
+'На 2.55oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 280мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 
+'ru', 'https://www.walmart.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', true, 'great_value_extra_butter_microwave_popcorn_12_count_2_55_oz', 'a3492183-f6e5-d4c3-b2a1-09f8e7d6c5b4');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e553', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Great Value Extra Butter 12-count box', 'en'),
+('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492473', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10998', 'Упаковка Great Value Экстра Масло 12 пакетов', 'ru');
+
+--- Crunch 'n Munch Buttery Toffee with Peanuts ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', true, 'crunch_n_munch_buttery_toffee', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
+VALUES 
+('b2a109f8-e7d6-c5b4-a349-2183f6e534c3', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Crunch ''n Munch Buttery Toffee with Peanuts', 'Sweet toffee-coated popcorn with peanuts', 'en', 3.99, 4.29),
+('09f8e7d6-c5b4-a349-2185-f6e5d4c3b2a1', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 'Кранч энд Манч Масляная Ириска с Арахисом', 'Сладкий попкорн в ириске с арахисом', 'ru', 320, 340);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('a3492183-f6e5-d4c3-b2a1-09f8e7d665b4', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 
+'Crunch ''n Munch Buttery Toffee with Peanuts combines sweet toffee-coated popcorn with crunchy peanuts for a delicious snack.', 
+'Crunch ''n Munch Buttery Toffee with Peanuts 12oz (340g)', 'Conagra Brands', 
+'Popcorn, Sugar, Peanuts, Corn Syrup, Butter, Salt, Soy Lecithin, Baking Soda', 
+'Per 28g: Calories 140, Fat 6g (9% DV), Sodium 85mg (4% DV), Carbs 21g (7% DV), Protein 2g', 
+'en', 'https://www.conagrabrands.com'),
+('d4c3b2a1-09f8-e7d6-c5b4-a34921839797', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349', 
+'Кранч энд Манч Масляная Ириска с Арахисом сочетает сладкий попкорн в ириске с хрустящим арахисом.', 
+'Кранч энд Манч Масляная Ириска с Арахисом 340г', 'Conagra Brands', 
+'Попкорн, сахар, арахис, кукурузный сироп, масло, соль, соевый лецитин, пищевая сода', 
+'На 28г: Калории 140, Жиры 6г (9% ДН), Натрий 85мг (4% ДН), Углеводы 21г (7% ДН), Белки 2г', 
+'ru', 'https://www.conagrabrands.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', true, 'crunch_n_munch_buttery_toffee_with_peanuts_12_oz', '2183f6e5-d4c3-b2a1-09f8-e7d6c5b4a349');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e333', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Crunch ''n Munch Buttery Toffee bag', 'en'),
+('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3491483', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10933', 'Упаковка Кранч энд Манч Масляная Ириска', 'ru');
+
+--- LesserEvil Organic Cheddar Popcorn ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', false, 'lesserevil_organic_cheddar', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('09f8e7d6-c5b4-a349-2183-f6e5d4c5b2a1', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'LesserEvil Organic Cheddar Popcorn', 'Organic popcorn with cheddar cheese flavor', 'en', 4.99),
+('a3492183-f6e5-d4c3-b2a1-09f8e7d6c4b4', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 'ЛессерЭвил Органик Чеддер Попкорн', 'Органический попкорн с вкусом сыра чеддер', 'ru', 400);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('2183f6e5-d4c3-b2a1-09f8-e8678b4a349', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 
+'LesserEvil Organic Cheddar Popcorn is made with simple, organic ingredients and contains no artificial flavors or preservatives.', 
+'LesserEvil Organic Cheddar Popcorn 4.6oz (130g)', 'LesserEvil', 
+'Organic Popcorn, Organic Sunflower Oil, Organic Cheddar Cheese Seasoning', 
+'Per 28g: Calories 150, Fat 8g (12% DV), Sodium 210mg (9% DV), Carbs 16g (6% DV), Protein 3g', 
+'en', 'https://www.lesserevil.com'),
+('b2a109f8-e7d6-c5b4-a349-3463f6e5d4c3', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5', 
+'Попкорн ЛессерЭвил Органик Чеддер сделан из простых органических ингредиентов без искусственных добавок.', 
+'ЛессерЭвил Органик Чеддер Попкорн 130г', 'LesserEvil', 
+'Органический попкорн, органическое подсолнечное масло, органическая приправа Чеддер', 
+'На 28г: Калории 150, Жиры 8г (12% ДН), Натрий 210мг (9% ДН), Углеводы 16г (6% ДН), Белки 3г', 
+'ru', 'https://www.lesserevil.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', true, 'lesserevil_organic_cheddar_popcorn_4_6_oz', 'd4c3b2a1-09f8-e7d6-c5b4-a3492183f6e5');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e222', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'LesserEvil Organic Cheddar bag', 'en'),
+('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3492493', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10912', 'Упаковка ЛессерЭвил Органик Чеддер', 'ru');
+
+--- Smartfood White Cheddar (Multipack) ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478', false, 'smartfood_white_cheddar_multipack', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('a3492183-f6e5-d4c3-b2a1-09f8e7d6c2b4', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Smartfood White Cheddar Multipack', 'White cheddar flavored popcorn snack packs', 'en', 5.49),
+('d4c3b2a1-09f8-e7d6-c5b4-a3492183f6e6', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 'Смартфуд Вайт Чеддер Мультипак', 'Попкорн с вкусом белого чеддера в порционных упаковках', 'ru', 440);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('2183f6e5-d4c3-b2a1-09f8-e7d6c3b4a349', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 
+'Smartfood White Cheddar Multipack contains individually portioned bags of delicious white cheddar flavored popcorn.', 
+'Smartfood White Cheddar Flavored 0.625oz Bags 10-count Multipack', 'PepsiCo', 
+'Popcorn, Vegetable Oil, White Cheddar Cheese Seasoning', 
+'Per 0.625oz bag: Calories 110, Fat 7g (11% DV), Sodium 150mg (7% DV), Carbs 10g (4% DV), Protein 2g', 
+'en', 'https://www.pepsico.com'),
+('b2a109f8-e7d6-c5b4-a997-2183f6e5d4c3', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478', 
+'Мультипак Смартфуд Вайт Чеддер содержит порционные упаковки попкорна с вкусом белого чеддера.', 
+'Смартфуд Вайт Чеддер 0.625oz 10 пакетов', 'PepsiCo', 
+'Попкорн, растительное масло, приправа Вайт Чеддер', 
+'На 0.625oz пакет: Калории 110, Жиры 7г (11% ДН), Натрий 150мг (7% ДН), Углеводы 10г (4% ДН), Белки 2г', 
+'ru', 'https://www.pepsico.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', true, 'smartfood_white_cheddar_flavored_0_625_oz_bags_10_count_multipack', '09f8e7d6-c5b4-a349-2183-f6e5d4c48478');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('c5b4a349-2183-f6e5-d4c3-b2a109f8e123', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Smartfood White Cheddar Multipack box', 'en'),
+('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3942183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Упаковка Смартфуд Вайт Чеддер Мультипак', 'ru');
+
+
+--- PopSecret Movie Theater Butter ---
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25', true, 'pop_secret_movie_theater_butter', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', 'ebe7ba4d-1c92-432f-977c-4ad7d0ccc07d', false);
+
+INSERT INTO item_details (item_id)
+VALUES ('2384d84c-c2f1-4cf4-8277-b0898b95be25');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price, old_price)
+VALUES 
+('5a45b2f2-4e06-9ee3-fb59-caee106dae53', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'PopSecret Movie Theater Butter', 'Rich theater-style butter flavor popcorn', 'en', 4.49, 4.99),
+('fb59caee-106d-ae53-5a45-b2f24e069ee3', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 'ПопСекрет Кинотеатральное Масло', 'Попкорн с насыщенным масляным вкусом как в кинотеатре', 'ru', 360, 400);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('106dae53-5a45-b2f2-4e06-9ee3fb59caee', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 
+'PopSecret Movie Theater Butter Microwave Popcorn delivers the rich, buttery taste you love from the movie theater right to your home.', 
+'PopSecret Movie Theater Butter Microwave Popcorn 1.75oz 12-count', 'PopSecret', 
+'Popcorn, Palm Oil, Salt, Natural Butter Flavor, Color Added', 
+'Per 1.75oz bag: Calories 160, Fat 10g (15% DV), Sodium 270mg (12% DV), Carbs 15g (5% DV), Protein 2g', 
+'en', 'https://www.popsecret.com'),
+('4e069ee3-fb59-caee-106d-ae535a45b2f2', '2384d84c-c2f1-4cf4-8277-b0898b95be25', 
+'Попкорн ПопСекрет Кинотеатральное Масло воспроизводит насыщенный масляный вкус как в кинотеатре.', 
+'ПопСекрет Кинотеатральное Масло 1.75oz 12 пакетов', 'PopSecret', 
+'Попкорн, пальмовое масло, соль, натуральный масляный ароматизатор, краситель', 
+'На 1.75oz пакет: Калории 160, Жиры 10г (15% ДН), Натрий 270мг (12% ДН), Углеводы 15г (5% ДН), Белки 2г', 
+'ru', 'https://www.popsecret.com');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('b0898b95-be25-2384-d84c-c2f14cf48277', true, 'pop_secret_movie_theater_front', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('c2f14cf4-8277-b089-8b95-be252384d84c', false, 'popsecret/2040afd2-d8d1-43a8-86ba-746934a37f63.7b641a6e57e2985ff1122f0cd89d8928', '2384d84c-c2f1-4cf4-8277-b0898b95be25'),
+('8277b089-8b95-be25-2384-d84cc2f14cf4', false, 'popsecret/6c2c378d-9c86-4bdf-8f5b-0c3a5ae80678.5693ab1a9d22b575fd449998c3bae07a', '2384d84c-c2f1-4cf4-8277-b0898b95be25'),
+('8b95be25-2384-d84c-c2f1-4cf48277b089', false, 'popsecret/efc9b726-f707-4224-ae27-e3ef10157149.e51429c0e25ea378c7eb449a364ae9ff', '2384d84c-c2f1-4cf4-8277-b0898b95be25');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('d84cc2f1-4cf4-8277-b089-8b95eb252384', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'PopSecret Movie Theater Butter box', 'en'),
+('4cf48277-b089-8b95-be25-2384d84cc2f1', 'b0898b95-be25-2384-d84c-c2f14cf48277', 'Упаковка ПопСекрет Кинотеатральное Масло', 'ru'),
+
+('2384d84c-c2f1-4cf4-8277-b0898b95be25', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'PopSecret product close-up', 'en'),
+('c2f14cf4-8277-b089-8b95-be252384d84c', 'c2f14cf4-8277-b089-8b95-be252384d84c', 'Крупный план продукта ПопСекрет', 'ru'),
+
+('be252384-d84c-c2f1-4cf4-8277b0898b95', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'PopSecret popcorn in bowl', 'en'),
+('d84cc2f1-4cf4-8277-b089-8b95be252384', '8277b089-8b95-be25-2384-d84cc2f14cf4', 'Попкорн ПопСекрет в миске', 'ru'),
+
+('8277b089-8b95-be25-2384-d84cc2f14cf4', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'PopSecret nutritional information', 'en'),
+('8b95be25-2384-d84c-c2f1-4cf48277b089', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'Информация о питательности ПопСекрет', 'ru');
+
 COMMIT;

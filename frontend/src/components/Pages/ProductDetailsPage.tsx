@@ -17,7 +17,10 @@ export const ProductDetailsPage = () => {
 
 	const { lang } = useI18n();
 
-	const { items, status } = useStateSelector((state) => state.item);
+	const {
+		items,
+		status: { fetchItems },
+	} = useStateSelector((state) => state.item);
 
 	const fetchedSimillars = useRef(false);
 
@@ -30,7 +33,12 @@ export const ProductDetailsPage = () => {
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_name, accessToken, lang]);
-
+	console.log(
+		items,
+		product_name,
+		items.map((item) => item.name),
+		items.find((item) => item.name == product_name)
+	);
 	const item = useMemo(
 		() => items.find((item) => item.name == product_name),
 		[items, product_name]
@@ -47,9 +55,9 @@ export const ProductDetailsPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [item?.id, accessToken, lang]);
 
-	if (status === 'loading') return <UIproductDetailsLoader />;
+	if (fetchItems === 'loading') return <UIproductDetailsLoader />;
 
-	if (status === 'error' || !item || !item.itemDetails)
+	if (fetchItems === 'error' || !item || !item.itemDetails)
 		return <div>Sorry, item not found</div>;
 
 	return (
