@@ -1122,7 +1122,6 @@ VALUES
 ('c5b4a349-2183-f6e5-d4c3-b2a109f8e123', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Smartfood White Cheddar Multipack box', 'en'),
 ('f6e5d4c3-b2a1-09f8-e7d6-c5b4a3942183', 'e7d6c5b4-a349-2183-f6e5-d4c3b2a10934', 'Упаковка Смартфуд Вайт Чеддер Мультипак', 'ru');
 
-
 --- PopSecret Movie Theater Butter ---
 
 INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
@@ -1174,5 +1173,44 @@ VALUES
 
 ('8277b089-8b95-be25-2384-d84cc2f14cf4', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'PopSecret nutritional information', 'en'),
 ('8b95be25-2384-d84c-c2f1-4cf48277b089', '8b95be25-2384-d84c-c2f1-4cf48277b089', 'Информация о питательности ПопСекрет', 'ru');
+
+--- Secret Box - Montly August 2025 ---
+
+
+INSERT INTO item (id, is_bestseller, name, category_id, type_id, is_secretbox)
+VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1', true, 'secret_snack_box_august2025', 'bbaf2417-4c2c-4bf1-854b-2ba4d020c018', null, true);
+
+INSERT INTO item_details (item_id)
+VALUES ('77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
+
+INSERT INTO item_translation (id, item_id, label, description, lang_key, price)
+VALUES 
+('b7a59d12-cebf-1289-77b8-4e41d3f655b1', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Secret Snack Box – August Edition', 'A box filled with a curated selection of international and classic snacks', 'en', 21.99),
+('12cebf55-b1b7-a59d-3d4e-128977b89e41', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 'Секретный Бокс Со Снеками – Август', 'Коробка с подборкой классических и международных снеков', 'ru', 1790);
+
+INSERT INTO item_details_translation (id, item_id, full_description, full_label, supplier, ingridients, nutrition, lang_key, supplier_link)
+VALUES 
+('55b1b7a5-9d12-1289-e41d-4d3f77b89ceb', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 
+'This August Edition Secret Snack Box features a premium mix of salty, sweet, and savory snacks from top global brands. ', 
+'Secret Snack Box – Monthly Surprise Treat Box (August 2025)', 'SnackRush Co.', 
+'Assorted snacks including chips, chocolate bars, gummies, crackers, nuts', 
+'Varies per snack. Average per box: 1200–1800 kcal', 
+'en', 'https://snackrush.global'),
+
+('a59d3d4e-1289-77b8-9e41-55b1d3f6cebf', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1', 
+'Августовский секретный бокс со снеками — уникальный набор из солёных, сладких и пряных угощений от мировых брендов. ', 
+'Секретный Бокс Снеки – Удиви Себя Вкусом (Август 2025)', 'SnackRush Co.', 
+'Ассорти снеки: чипсы, шоколад, мармелад, крекеры, орехи', 
+'Зависит от состава. В среднем: 1200–1800 ккал на коробку', 
+'ru', 'https://snackrush.global');
+
+INSERT INTO item_image (id, is_main, name, item_id)
+VALUES 
+('1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', true, 'secret_snack_box_august_2025_main', '77b89e41-1289-4d3d-b7a5-9d12cebf55b1');
+
+INSERT INTO item_image_translation (id, item_image_id, title, lang_key)
+VALUES 
+('4d3f77b8-9ceb-f55b-1b7a-5d121289e41d', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Secret Snack Box – August Edition (photo)', 'en'),
+('f55b1b7a-5d12-1289-e41d-4d3f77b89ceb', '1289e41d-4d3f-77b8-9ceb-f55b1b7a5d12', 'Секретный Снэк Бокс – Август (фото)', 'ru');
 
 COMMIT;

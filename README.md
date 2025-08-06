@@ -177,7 +177,7 @@ Install NadSnax using one of the following methods:
 5. Insert mock data if necessary
 
 ```sh
-docker exec -i postgresql psql -U USERNAME -d DATABASE_NAME < ./insret_mock.sql
+docker exec -i nadsnax-database psql -U USERNAME -d DATABASE_NAME < ./insert_mock.sql
 cp ./mock_images ./resources/images/
 ```
 
