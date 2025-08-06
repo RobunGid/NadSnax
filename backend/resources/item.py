@@ -122,10 +122,9 @@ class Items(MethodView):
             identity = decoded_token["sub"]
             query = query.join(FavoriteModel, and_(ItemModel.id==FavoriteModel.item_id, FavoriteModel.user_id==identity), isouter=True)
             query = query.add_columns(FavoriteModel.id.label("favorite_id"))
-            
-        totalItems = query.count()
         
         items = query.offset(page*per_page).limit(per_page).all()
+        total_items = len(items)
         if auth_header and auth_header.startswith('Bearer '):
             for index, (item, favorite_id) in enumerate(items):
                 item.favorite_id = favorite_id
@@ -150,11 +149,11 @@ class Items(MethodView):
                     item.item_details.full_description = item.item_details.translation.full_description
                     item.item_details.supplier = item.item_details.translation.supplier
                     item.item_details.supplier_link = item.item_details.translation.supplier_link
-        
+                    print(item.item_details.__dict__)
         
         return {
             "items": items,
-            "total_items": totalItems
+            "totalItems": total_items
         } 
         
     @jwt_required()

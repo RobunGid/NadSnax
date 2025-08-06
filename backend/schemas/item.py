@@ -27,7 +27,7 @@ class ItemTranslationSchema(Schema):
 class ItemSchema(PlainItemSchema):
     category = fields.Nested("schemas.category.CategorySchema", dump_only=True, exclude=("items", "types")) 
     type = fields.Nested("schemas.type.TypeSchema", dump_only=True, exclude=("items", "category")) 
-    item_details = fields.Nested("schemas.item_details.ItemDetailsSchema", dump_only=True, exclude=("item",), data_key="itemDetails")
+    item_details = fields.Nested("schemas.item_details.ItemDetailsTranslationSchema", dump_only=True, data_key="itemDetails")
     reviews = fields.Nested("schemas.review.ReviewSchema", dump_only=True, many=True, exclude=("item","user.reviews", "user.orders"))
     images = fields.Nested("schemas.item_image.ItemImageSchema", dump_only=True, many=True, exclude=("item",))
     
@@ -37,7 +37,7 @@ class ItemSchema(PlainItemSchema):
     
 class GetItemSchema(Schema):
     items = fields.Nested(ItemSchema(many=True))
-    total_items = fields.Int(data_key="totalItems")
+    totalItems = fields.Int(data_key="totalItems")
     
 class PostItemSchema(Schema):
     item = fields.Str(required=True)
