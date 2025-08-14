@@ -41,7 +41,11 @@ export const UIInput = (props: UIInputProps) => {
 					isLoading && 'cursor-progress',
 					isInvalid && 'shadow-orange-800 ring-2 ring-orange-800 shadow-md',
 					type === 'checkbox' && 'max-h-5 max-w-7 m-1',
-					(type === 'text' || type === 'number' || !type) && 'pt-6 px-4 pb-3',
+					(type === 'text' ||
+						type === 'number' ||
+						type === 'password' ||
+						!type) &&
+						'pt-6 px-4 pb-3',
 					type === 'file' &&
 						`pt-2.5 px-3 w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
 						dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
