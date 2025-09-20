@@ -118,7 +118,6 @@ export const CreateItemFieldset = {
 		}
 
 		const [imageCount, setImageCount] = useState<number[]>(defaultImageCount);
-		console.log(imageCount);
 		const hideAddButton = imageCount.length >= 10;
 		const hideRemoveButton = imageCount.length == 1;
 

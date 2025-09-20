@@ -133,6 +133,7 @@ export interface fetchItemsParams {
 	accessToken?: string;
 	itemIds?: string[];
 	lang?: LanguageCodes;
+	page?: number;
 }
 
 interface fetchItemsThunkResult {
@@ -156,14 +157,14 @@ export const fetchItemsThunk = createAsyncThunk<
 			simillarId,
 			itemIds,
 			lang,
+			page,
 		},
 		{ rejectWithValue, getState }
 	) => {
 		categoryName = categoryName !== 'best-sellers' ? categoryName : undefined;
 		categoryName = categoryName !== 'secretboxes' ? categoryName : undefined;
 		const accessToken = getState().auth.accessToken;
-		const page = getState().item.currentItemPage;
-
+		const currentPage = page ?? getState().item.currentItemPage;
 		const requestParams = {
 			categoryName,
 			typeName,
@@ -173,7 +174,7 @@ export const fetchItemsThunk = createAsyncThunk<
 			simillarId,
 			itemIds: itemIds?.join(','),
 			lang,
-			page,
+			page: currentPage,
 			perPage: 10,
 		};
 
@@ -201,7 +202,6 @@ const slice = createSlice({
 	initialState,
 	reducers: {
 		setItemPage: (state, action: PayloadAction<number>) => {
-			console.log(action.payload);
 			state.currentItemPage = action.payload;
 		},
 	},

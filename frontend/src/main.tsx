@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { App } from './App.tsx';
@@ -13,21 +12,19 @@ import { I18NProvider } from '@ayub-begimkulov/i18n';
 import { i18n } from './i18n/i18n.ts';
 
 createRoot(document.getElementById('root')!).render(
-	<StrictMode>
-		<Provider store={store}>
-			<CartModalProvider>
-				<LoginModalProvider>
-					<NavbarProvider>
-						<BrowserRouter>
-							<IconContext.Provider value={{ size: '24px' }}>
-								<I18NProvider i18n={i18n}>
-									<App />
-								</I18NProvider>
-							</IconContext.Provider>
-						</BrowserRouter>
-					</NavbarProvider>
-				</LoginModalProvider>
-			</CartModalProvider>
-		</Provider>
-	</StrictMode>
+	<Provider store={store}>
+		<CartModalProvider>
+			<LoginModalProvider>
+				<NavbarProvider>
+					<BrowserRouter>
+						<IconContext.Provider value={{ size: '24px' }}>
+							<I18NProvider i18n={i18n}>
+								<App />
+							</I18NProvider>
+						</IconContext.Provider>
+					</BrowserRouter>
+				</NavbarProvider>
+			</LoginModalProvider>
+		</CartModalProvider>
+	</Provider>
 );

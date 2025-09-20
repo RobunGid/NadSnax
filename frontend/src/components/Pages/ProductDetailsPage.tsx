@@ -30,15 +30,11 @@ export const ProductDetailsPage = () => {
 			name: product_name,
 			accessToken,
 			lang,
+			page: 0,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_name, accessToken, lang]);
-	console.log(
-		items,
-		product_name,
-		items.map((item) => item.name),
-		items.find((item) => item.name == product_name)
-	);
+
 	const item = useMemo(
 		() => items.find((item) => item.name == product_name),
 		[items, product_name]
@@ -50,6 +46,7 @@ export const ProductDetailsPage = () => {
 			simillarId: item.id,
 			accessToken,
 			lang,
+			page: 0,
 		});
 		fetchedSimillars.current = true;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
