@@ -1,5 +1,6 @@
 services:
   postgres:
+    network_mode: "host"
     image: postgres:latest
     container_name: nadsnax-database
     environment:
@@ -12,36 +13,32 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data/pgdata
     privileged: true
-    networks:
-      - nadsnax-net
   backend:
-    build: ./backend
+    network_mode: "host"
+    build: 
+      context: ./backend
+      network: host
     ports: 
       - "5000:5000"
     volumes:
       - ./backend:/app
       - ./resources:/resources
-    networks:
-      - nadsnax-net
     privileged: true
     depends_on:
       - postgres
     env_file:
       - ./backend/.env
   frontend:
-    build: ./frontend
+    network_mode: "host"
+    build: 
+      context: ./frontend
+      network: host
     ports: 
       - "80:80"
     depends_on:
       - backend
     volumes:
       - ./resources:/usr/share/nginx/html/resources
-    networks:
-      - nadsnax-net
     environment:
       - NODE_ENV=production
     privileged: true
-
-networks:
-  nadsnax-net:
-    driver: bridge

@@ -85,7 +85,6 @@ def create_app(db_url = None):
     app.config['MAX_ITEM_IMAGE_SIZE'] = 4 * 1024 * 1024 # 4 Mb
     
     db_url = os.getenv("DATABASE_URL", 'sqlite:////tmp/test.db')
-
     if db_url is not None:
         app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     else:

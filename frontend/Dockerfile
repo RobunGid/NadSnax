@@ -1,6 +1,7 @@
-FROM node:21-alpine3.20 AS builder
+FROM node:24-alpine3.20 AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
+RUN npm install -g npm@latest
 RUN npm install
 COPY . .
 RUN npm run build
