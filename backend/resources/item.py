@@ -125,7 +125,6 @@ class Items(MethodView):
             query = query.add_columns(FavoriteModel.id.label("favorite_id"))
         
         total_items = query.count()
-        print(total_items, page, per_page)
         items = query.offset(page*per_page).limit(per_page).all()
         if auth_header and auth_header.startswith('Bearer '):
             for index, (item, favorite_id) in enumerate(items):
