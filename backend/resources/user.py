@@ -61,7 +61,7 @@ class MyUser(MethodView):
             db.session.commit()
         except ValueError as error:
             abort(400, message=str(error))
- 
+
         return user
 
 @blp.route('/user/<string:user_id>')
@@ -136,17 +136,17 @@ class UserRegister(MethodView):
         if existing_user:
             abort(400, message="Username already exists")
         user = UserModel(
-			id=str(uuid.uuid4()),
-			username=user_data["username"], 
-			password=pbkdf2_sha512.hash(user_data["password"]), 
-			first_name=user_data["first_name"],
-			last_name=user_data["last_name"],
-      	)
+            id=str(uuid.uuid4()),
+            username=user_data["username"], 
+            password=pbkdf2_sha512.hash(user_data["password"]), 
+            first_name=user_data["first_name"],
+            last_name=user_data["last_name"],
+          )
         try:
             avatar_file = request.files.get('avatar', None)
-            if avatar_file:
+            if avatar_file and avatar_file.filename:
                 
-                filename = os.path.splitext(avatar_file.get("filename"))[0]
+                filename = os.path.splitext(avatar_file.filename)[0]
         
                 if not allowed_avatar_file(avatar_file):
                     abort(400, description="Invalid avatar file format or file size")
