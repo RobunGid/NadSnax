@@ -193,6 +193,6 @@ class Signout(MethodView):
         jti = get_jwt()["jti"]
         BLOCKLIST.add(jti)
         response = jsonify(msg="Signout successful")
-        response.set_cookie('refresh_token_cookie', '', expires=0, httponly=True, secure=True, path='/')
-        response.set_cookie('access_token_cookie', '', expires=0, httponly=True, secure=True, path='/')
+        response.set_cookie('refresh_token_cookie', '', expires=0, httponly=True, secure=False, path='/')
+        response.set_cookie('access_token_cookie', '', expires=0, httponly=True, secure=False, path='/')
         return response
