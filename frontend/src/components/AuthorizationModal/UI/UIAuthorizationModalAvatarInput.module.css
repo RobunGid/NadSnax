@@ -1,0 +1,4 @@
+.avatar-input::-webkit-file-upload-button,
+.avatar-input::file-selector-button {
+	display: none;
+}
