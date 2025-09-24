@@ -14,7 +14,7 @@ export const PrivateRoutes = ({ roles }: PrivateRoutesProps) => {
 	const { isUserLoaded, user } = useLoadUser();
 
 	useEffect(() => {
-		if (isAuthenticated) {
+		if (!isAuthenticated) {
 			toggleLoginModalVisibility();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
