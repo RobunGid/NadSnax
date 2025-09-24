@@ -25,7 +25,7 @@ export const ProfileMenuItem = {
 		</UIProfileMenuItem>
 	)),
 	OrderHistory: withTranslate(({ translate }: ProfileMenuItemProps) => (
-		<UIProfileMenuItem to='/account/order_history'>
+		<UIProfileMenuItem to='/account/order-history'>
 			{translate('profile_menu.order_history')}
 		</UIProfileMenuItem>
 	)),
