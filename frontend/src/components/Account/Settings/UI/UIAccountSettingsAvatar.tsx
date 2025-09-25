@@ -5,7 +5,7 @@ export const UIAccountSettingsAvatar = () => {
 	const { user, status } = useStateSelector((state) => state.user);
 	return (
 		user &&
-		status == 'success' && (
+		status.fetchUser == 'success' && (
 			<div className='w-48'>
 				<UIAvatar
 					username={user.username}

@@ -10,12 +10,11 @@ import { CartMessage } from './CartMessage';
 import { CartOrderButton } from './CartOrderButton';
 import { UICartContainer } from './UI/UICartContainer';
 import { CartLoginButton } from './CartLoginButton';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Cart = () => {
 	const cartItems = useStateSelector((state) => state.cart.productList);
-	const userStatus = useStateSelector((state) => state.user.status);
-	const user = useStateSelector((state) => state.user.user);
-	const isLoggedIn = userStatus == 'success' && user;
+	const { isAuthenticated } = useAuth();
 	const { isSuccessOrder } = useContext(CartModalContext);
 	const [pickupPoint, setPickupPoint] = useState<string>('');
 
@@ -31,7 +30,7 @@ export const Cart = () => {
 						))}
 					</UICartContainer>
 					<UICartContainer bordered count={2}>
-						{isLoggedIn ? (
+						{isAuthenticated ? (
 							<>
 								<CartOrderButton pickupPoint={pickupPoint} />
 								<CartOrderInfo

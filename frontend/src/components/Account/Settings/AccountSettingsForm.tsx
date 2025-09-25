@@ -21,7 +21,7 @@ export const AccountSettingsForm = () => {
 	const user = useStateSelector((state) => state.user.user);
 
 	const error = useStateSelector((state) => state.user.error);
-	const status = useStateSelector((state) => state.user.status);
+	const status = useStateSelector((state) => state.user.status.updateUser);
 
 	const isInit = useRef<boolean>(true);
 

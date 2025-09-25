@@ -12,7 +12,7 @@ export const AccountSettingsAvatar = () => {
 	);
 
 	const user = useStateSelector((state) => state.user.user);
-	const status = useStateSelector((state) => state.user.status);
+	const status = useStateSelector((state) => state.user.status.fetchUser);
 
 	return (
 		user &&
