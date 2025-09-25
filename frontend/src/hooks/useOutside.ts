@@ -29,5 +29,6 @@ export const useOutside = ({
 		return () => {
 			window.removeEventListener('click', handleClickOutside);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 };

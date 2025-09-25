@@ -14,7 +14,8 @@ jobs:
         key: ${{ secrets.VDS_SSH_KEY }}
         script: |
           cd /home/base/NadSnax/frontend
-          git pull
+          git fetch origin
+          git merge -X theirs origin/main
           npm run lint
     - name: Connect to VDS and deploy
       uses: appleboy/ssh-action@v1
@@ -24,5 +25,6 @@ jobs:
         key: ${{ secrets.VDS_SSH_KEY }}
         script: |
           cd /home/base/NadSnax
-          git pull
+          git fetch origin
+          git merge -X theirs origin/main
           docker compose up -d --build

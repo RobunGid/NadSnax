@@ -1,4 +1,7 @@
-export const debouncify = <T extends Function>(callback: T, delay: number) => {
+export const debouncify = <T extends (...args: unknown[]) => unknown>(
+	callback: T,
+	delay: number
+) => {
 	let timer: number;
 
 	return (...args: unknown[]) => {

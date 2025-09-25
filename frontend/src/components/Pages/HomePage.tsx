@@ -23,6 +23,7 @@ export const HomePage = () => {
 
 	useEffect(() => {
 		fetchReviews({ lang, count: 5 });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return <UIHomePage customerReviews={reviewsElements} />;
