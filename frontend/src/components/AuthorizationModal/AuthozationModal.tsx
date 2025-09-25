@@ -6,30 +6,37 @@ import { UIAuthozationModalButtonToSignup } from './UI/UIAuthozationModalButtonT
 import { UIAuthozationModalButtonToLogin } from './UI/UIAuthozationModalButtonToLogin';
 import { AuthorizationModalRegisterForm } from './AuthozationModalRegisterForm';
 import { UIAuthorizationModalTitle } from './UI/UIAuthorizationModalTitle';
+import { useStateSelector } from '../../store';
+import { UILoader } from '../UI/UILoader';
 
 export const LoginModal = () => {
 	const { loginModalVisibility, toggleLoginModalVisibility } =
 		useContext(LoginModalContext);
 
 	const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
+	const authStatus = useStateSelector((state) => state.auth.status);
 
 	return (
 		<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
 			<UIAuthorizationModalTitle type={isLoginForm ? 'login' : 'register'} />
-			{isLoginForm ? (
+			{isLoginForm && authStatus !== 'loading' && (
 				<>
 					<AuthozationModalLoginForm />
 					<UIAuthozationModalButtonToSignup
 						onClick={() => setIsLoginForm(false)}
 					/>
 				</>
-			) : (
+			)}
+			{!isLoginForm && authStatus !== 'loading' && (
 				<>
 					<AuthorizationModalRegisterForm />
 					<UIAuthozationModalButtonToLogin
 						onClick={() => setIsLoginForm(true)}
 					/>
 				</>
+			)}
+			{authStatus === 'loading' && (
+				<UILoader className='w-80 h-30 flex justify-center items-center' />
 			)}
 		</UIModal>
 	);

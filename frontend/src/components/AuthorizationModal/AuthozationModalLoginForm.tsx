@@ -30,6 +30,7 @@ export const AuthozationModalLoginForm = () => {
 
 	const loginStatus = useStateSelector((state) => state.auth.status);
 	const loginError = useStateSelector((state) => state.auth.error);
+
 	const errorMessage =
 		loginError.message === 'Request failed with status code 401' &&
 		loginStatus === 'error' &&

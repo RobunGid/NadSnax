@@ -7,13 +7,21 @@ import { isAxiosError } from 'axios';
 
 type UserState = {
 	user: User | null;
-	status: Status;
+	status: {
+		fetchUser: Status;
+		updateUser: Status;
+		deleteUSer: Status;
+	};
 	error: StoreError;
 };
 
 const initialState: UserState = {
 	user: null,
-	status: 'init',
+	status: {
+		fetchUser: 'init',
+		updateUser: 'init',
+		deleteUSer: 'init',
+	},
 	error: {},
 };
 
@@ -126,40 +134,40 @@ const slice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchUser.pending, (state) => {
-			state.status = 'loading';
+			state.status.fetchUser = 'loading';
 		});
 		builder.addCase(fetchUser.fulfilled, (state, action) => {
 			state.user = action.payload;
-			state.status = 'success';
+			state.status.fetchUser = 'success';
 			state.error = {};
 		});
 		builder.addCase(fetchUser.rejected, (state) => {
-			state.status = 'error';
+			state.status.fetchUser = 'error';
 		});
 
 		builder.addCase(updateUser.pending, (state) => {
-			state.status = 'loading';
+			state.status.updateUser = 'loading';
 		});
 		builder.addCase(updateUser.fulfilled, (state, action) => {
 			state.user = action.payload;
-			state.status = 'success';
+			state.status.updateUser = 'success';
 			state.error = {};
 		});
 		builder.addCase(updateUser.rejected, (state, action) => {
-			state.status = 'error';
+			state.status.updateUser = 'error';
 			state.error = action.payload ? action.payload : {};
 		});
 
 		builder.addCase(deleteUser.pending, (state) => {
-			state.status = 'loading';
+			state.status.deleteUSer = 'loading';
 		});
 		builder.addCase(deleteUser.fulfilled, (state) => {
 			state.user = null;
-			state.status = 'success';
+			state.status.deleteUSer = 'success';
 			state.error = {};
 		});
 		builder.addCase(deleteUser.rejected, (state, action) => {
-			state.status = 'error';
+			state.status.deleteUSer = 'error';
 			state.error = action.payload ? action.payload : {};
 		});
 	},
