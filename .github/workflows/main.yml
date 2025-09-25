@@ -5,6 +5,7 @@ on: push
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
     - name: Connect to VDS and lint
       uses: appleboy/ssh-action@v1
