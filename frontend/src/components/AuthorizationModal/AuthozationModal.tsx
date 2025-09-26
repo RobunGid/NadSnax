@@ -19,7 +19,7 @@ export const LoginModal = () => {
 	return (
 		<UIModal active={loginModalVisibility} setActive={toggleLoginModalVisibility}>
 			<UIAuthorizationModalTitle type={isLoginForm ? 'login' : 'register'} />
-			{isLoginForm && authStatus !== 'loading' && (
+			{isLoginForm && (
 				<>
 					<AuthozationModalLoginForm />
 					<UIAuthozationModalButtonToSignup
@@ -27,7 +27,7 @@ export const LoginModal = () => {
 					/>
 				</>
 			)}
-			{!isLoginForm && authStatus !== 'loading' && (
+			{!isLoginForm && (
 				<>
 					<AuthorizationModalRegisterForm />
 					<UIAuthozationModalButtonToLogin
@@ -36,7 +36,7 @@ export const LoginModal = () => {
 				</>
 			)}
 			{authStatus === 'loading' && (
-				<UILoader className='w-80 h-30 flex justify-center items-center' />
+				<UILoader className='flex justify-center items-center absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2 bg-black/40 h-full w-full cursor-progress' />
 			)}
 		</UIModal>
 	);
