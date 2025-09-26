@@ -101,7 +101,7 @@ export const refreshThunk = createAsyncThunk<
 	{ dispatch: AppDispatch; rejectValue: StoreError }
 >('auth/refresh', async (_, { rejectWithValue }) => {
 	try {
-		const response = await Axios.post(import.meta.env.VITE_API_URL + '/refresh');
+		const response = await Axios.post('/refresh');
 
 		const accessToken = response.data.accessToken;
 		return accessToken;
