@@ -6,6 +6,6 @@ export const debouncify = <T extends (...args: unknown[]) => unknown>(
 
 	return (...args: unknown[]) => {
 		clearTimeout(timer);
-		timer = setTimeout(() => callback(...args), delay);
+		timer = window.setTimeout(() => callback(...args), delay);
 	};
 };
