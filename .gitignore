@@ -13,3 +13,4 @@ resources/icons/*
 !resources/icons/.gitkeep
 resources/images/*
 !resources/images/.gitkeep
+.env
