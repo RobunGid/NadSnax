@@ -29,7 +29,7 @@ export const UIProductDetailsDropdown = ({
 					)}
 					size='20'
 				/>
-				<span className='ml-1'>{text}</span>
+				<span className='ms-1'>{text}</span>
 			</div>
 
 			<div

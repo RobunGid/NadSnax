@@ -35,7 +35,7 @@ export const UIAccountSettingsInput = ({
 						isInvalid && 'shadow-orange-800 ring-2 ring-orange-800 shadow-md'
 					)}
 				>
-					<span className='text-gray-500 mr-0.5'>@</span>
+					<span className='text-gray-500 me-0.5'>@</span>
 					<input
 						name={name}
 						value={value}
