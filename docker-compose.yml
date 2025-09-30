@@ -1,7 +1,7 @@
 services:
   postgres:
     network_mode: "host"
-    image: postgres:latest
+    image: postgres:17
     container_name: nadsnax-database
     environment:
       POSTGRES_USER: postgres
@@ -15,10 +15,10 @@ services:
     privileged: true
   backend:
     network_mode: "host"
-    build: 
+    build:
       context: ./backend
       network: host
-    ports: 
+    ports:
       - "5000:5000"
     volumes:
       - ./backend:/app
@@ -30,10 +30,10 @@ services:
       - ./backend/.env
   frontend:
     network_mode: "host"
-    build: 
+    build:
       context: ./frontend
       network: host
-    ports: 
+    ports:
       - "80:80"
     depends_on:
       - backend
