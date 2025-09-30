@@ -48,9 +48,9 @@ class MyUser(MethodView):
                 if is_username_busy and user.username != username:
                     abort(409, message="Username already exists")
                 user.username = username
-            if first_name := user_data.get("first_name", None):
+            if first_name := user_data.get("firstName", None):
                 user.first_name = first_name
-            if last_name := user_data.get("last_name", None):
+            if last_name := user_data.get("lastName", None):
                 user.last_name = last_name
             if role := user_data.get("role", None):
                 user.role = role
@@ -61,7 +61,6 @@ class MyUser(MethodView):
             db.session.commit()
         except ValueError as error:
             abort(400, message=str(error))
-
         return user
 
 @blp.route('/user/<string:user_id>')
