@@ -13,16 +13,12 @@ import { useInitTheme } from './hooks/useInitTheme';
 import { useInitLang } from './hooks/useInitLang';
 import { useInitUser } from './hooks/useInitUser';
 import { useInitCategories } from './hooks/useInitCategories';
-import { useAuth } from './hooks/useAuth';
-import { useLoadUser } from './hooks/useLoadUser';
 
 export const App = () => {
 	useInitTheme();
 	useInitLang();
 	useInitUser();
 	useInitCategories();
-	const { isAuthenticated } = useAuth();
-	const { user } = useLoadUser();
 
 	const ControlPanelPage = lazy(() =>
 		import('./components/Pages/ControlPanelPage').then((module) => ({
@@ -42,25 +38,13 @@ export const App = () => {
 						<Route path='/' element={<Navigate to='/home' />} />
 						<Route
 							element={
-								<PrivateRoutes
-									roles={['admin', 'moderator', 'user']}
-									isAuthenticated={isAuthenticated}
-									user={user}
-								/>
+								<PrivateRoutes roles={['admin', 'moderator', 'user']} />
 							}
 						>
 							<Route path='/account' element={<AccountPage />} />
 							<Route path='/account/:section' element={<AccountPage />} />
 						</Route>
-						<Route
-							element={
-								<PrivateRoutes
-									roles={['admin', 'moderator']}
-									isAuthenticated={isAuthenticated}
-									user={user}
-								/>
-							}
-						>
+						<Route element={<PrivateRoutes roles={['admin', 'moderator']} />}>
 							<Route
 								path='/control-panel/:section'
 								element={<ControlPanelPage />}
