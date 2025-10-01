@@ -1,18 +1,23 @@
 services:
-  postgres:
+  database:
     network_mode: "host"
     image: postgres:17
     container_name: nadsnax-database
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nadsnax
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data/pgdata
     privileged: true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -D $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   backend:
     network_mode: "host"
     build:
@@ -25,7 +30,8 @@ services:
       - ./resources:/resources
     privileged: true
     depends_on:
-      - postgres
+      database:
+        condition: service_healthy
     env_file:
       - ./backend/.env
   frontend:
