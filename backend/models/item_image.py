@@ -16,8 +16,8 @@ class ItemImageModel(db.Model):
     
     @hybrid_property
     def url(self):
+        from app import BASE_URL
         return request.host_url + "/" + BASE_URL + 'resources/images/' + self.name + '.png'
     
     def __repr__(self):
-        from app import BASE_URL
         return f"<ItemImageModel(id='{self.id}', name='{self.name}', title='{self.title}', is_main={self.is_main}, item_id='{self.item_id}')>"
