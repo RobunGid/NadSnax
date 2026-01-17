@@ -75,7 +75,7 @@ export const ProductItem = ({
 	return (
 		<UIProductItem pageLink={pageLink} className={className} isSmall={hideInfo}>
 			<ProductItemCover
-				imageURL={imageURL}
+				imageURL={imageURL || ''}
 				item={item}
 				onAddClick={handleAddToFavorite}
 				onDeleteClick={handleDeleteFromFavorite}

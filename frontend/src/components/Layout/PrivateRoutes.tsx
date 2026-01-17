@@ -31,4 +31,6 @@ export const PrivateRoutes = ({ roles }: PrivateRoutesProps) => {
 	if (!isAuthenticated && status !== 'init' && status !== 'loading') {
 		return <Navigate to='/home' replace />;
 	}
+
+	return <></>;
 };

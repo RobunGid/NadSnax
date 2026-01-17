@@ -16,8 +16,8 @@ export const AccountOrderItem = ({ orderItem }: AccountOrderItemProps) => {
 		<Link to={orderItem.item.name}>
 			<UIAccountOrderItem>
 				<ProductItemImage
-					imageURL={orderItem.item.images[0].url}
-					label={orderItem.item.images[0].title}
+					imageURL={orderItem.item.images[0]?.url || ''}
+					label={orderItem.item.images[0]?.title || ''}
 					className='w-16 h-16'
 				/>
 				<div className='flex flex-col justify-center p-2'>

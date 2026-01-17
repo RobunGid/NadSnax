@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useI18n } from '../../i18n/i18n';
 import { Language } from '../../types';
 import { UILanguageSelector } from './UI/UILanguageSelector';
-import { languages } from '../../logic/languages';
+import { defaultLanguage, languages } from '../../logic/languages';
 import { useOutside } from '../../hooks/useOutside';
 
 export const LanguageSelector = () => {
@@ -11,7 +11,7 @@ export const LanguageSelector = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const selectedLanguage =
-		languages.find((language) => language.key === lang) || languages[0];
+		languages.find((language) => language.key === lang) || defaultLanguage;
 
 	const languagesRef = useRef<HTMLDivElement | null>(null);
 

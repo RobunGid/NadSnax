@@ -81,6 +81,7 @@ export const registerThunk = createAsyncThunk<
 			} else {
 				return rejectWithValue(response.data);
 			}
+			return;
 		} catch (error) {
 			if (isAxiosError(error)) {
 				return rejectWithValue({
@@ -142,6 +143,7 @@ export const signoutThunk = createAsyncThunk(
 			}
 			dispatch(clearTokens());
 			dispatch(userActions.clearUser());
+			return;
 		} catch (error) {
 			if (isAxiosError(error)) {
 				return rejectWithValue({

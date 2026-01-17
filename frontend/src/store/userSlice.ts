@@ -108,6 +108,7 @@ export const deleteUser = createAsyncThunk<
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
+		return;
 	} catch (error) {
 		if (isAxiosError(error)) {
 			return rejectWithValue({

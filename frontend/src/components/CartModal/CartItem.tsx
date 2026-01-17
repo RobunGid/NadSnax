@@ -26,7 +26,7 @@ export const CartItem = ({ cartItem }: CartItemProps) => {
 	return (
 		<UICartItem
 			cartItem={cartItem}
-			mainImageUrl={mainImage.url}
+			mainImageUrl={mainImage?.url || ''}
 			totalPrice={price}
 			handleAddItemToCart={handleAddItemToCart}
 			handleRemoveProductFromCart={handleRemoveProductFromCart}

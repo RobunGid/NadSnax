@@ -154,7 +154,7 @@ export const transformFormData = (formData: RawFormData): ParsedForm => {
 
 		if (key.startsWith('images.')) {
 			const [, field, indexRaw, lang] = key.split(/[_.]/);
-			const index = parseInt(indexRaw) - 1;
+			const index = parseInt(indexRaw || '1') - 1;
 			const v = value.toString();
 
 			if (!imageGroups[index])

@@ -5,6 +5,7 @@ import { ChangeEvent, UIEventHandler, useRef, useState } from 'react';
 import { UIProductDetailsGalleryScrollButton } from './UI/UIProductDetailsGalleryScrollButton';
 import { UIProductDetailsGallery } from './UI/UIProductDetailsGallery';
 import { UIProductDetailsGalleryContainer } from './UI/UIProductDetailsGalleryContainer';
+import { UIProductDetailsErrorImage } from './UI/UIProductDetailsErrorImage';
 
 interface ProductDetailsGalleryProps {
 	images: Image[];
@@ -17,7 +18,7 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 
 	const [upButtonVisibilty, setUpButtonVisibilty] = useState<boolean>(false);
 	const [downButtonVisibilty, setDownButtonVisibilty] = useState<boolean>(true);
-	const [selectedImage, setSelectedImage] = useState<Image>(defaultImage);
+	const [selectedImage, setSelectedImage] = useState<Image | undefined>(defaultImage);
 
 	const fixedImages = [
 		defaultImage,
@@ -110,14 +111,21 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 					ref={galleryRef}
 					onScroll={handleCarouselScroll}
 				>
-					{fixedImages.map((image) => (
-						<UIProductDetailsImage
-							image={image}
-							key={image.id}
-							type='small'
-							onChange={handleChangeSelectedImage}
-						/>
-					))}
+					{fixedImages.map((image) =>
+						image ? (
+							<UIProductDetailsImage
+								image={image}
+								key={image.id}
+								type='small'
+								onChange={handleChangeSelectedImage}
+							/>
+						) : (
+							<UIProductDetailsErrorImage
+								key={Math.random()}
+								type='small'
+							/>
+						)
+					)}
 				</UIProductDetailsCarousel>
 
 				<UIProductDetailsGalleryScrollButton
@@ -126,7 +134,11 @@ export const ProductDetailsGallery = ({ images }: ProductDetailsGalleryProps) =>
 					visibility={downButtonVisibilty && hideButtons}
 				/>
 			</UIProductDetailsGalleryContainer>
-			<UIProductDetailsImage image={selectedImage} type='big' />
+			{selectedImage ? (
+				<UIProductDetailsImage image={selectedImage} type='big' />
+			) : (
+				<UIProductDetailsErrorImage type='big' />
+			)}
 		</UIProductDetailsGallery>
 	);
 };
