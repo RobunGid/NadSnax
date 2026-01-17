@@ -13,10 +13,12 @@ services:
       - ./pgdata:/var/lib/postgresql/data/pgdata
     privileged: true
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -D $${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - nadsnax-net
   backend:
     build:
       context: ./backend
@@ -32,6 +34,8 @@ services:
         condition: service_healthy
     env_file:
       - ./backend/.env
+    networks:
+      - nadsnax-net
   frontend:
     build:
       context: ./frontend
@@ -45,5 +49,7 @@ services:
     environment:
       - NODE_ENV=production
     privileged: true
+    networks:
+      - nadsnax-net
 networks:
   nadsnax-net:

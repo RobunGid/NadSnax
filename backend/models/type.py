@@ -21,4 +21,5 @@ class TypeModel(db.Model):
     
     @hybrid_property
     def icon_url(self):
-        return f'{request.host_url}resources/icons/{self.id}.svg'
+        from app import BASE_URL
+        return request.host_url + "/" + BASE_URL + "resources/icons/" + self.id + ".svg"
