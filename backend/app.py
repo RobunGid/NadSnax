@@ -26,8 +26,6 @@ from resources.icon import blp as IconBlueprint
 from resources.admin import blp as AdminBlueprint
 from resources.keysets import blp as KeysetsBlueprint
 
-BASE_URL = os.getenv("BASE_URL")
-
 def create_app(db_url = None):
     
     app = Flask(__name__)
@@ -73,6 +71,7 @@ def create_app(db_url = None):
     app.config["JWT_COOKIE_SAMESITE"] = "Strict"
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
 
+    BASE_URL = os.getenv("BASE_URL")
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     AVATAR_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/avatars")
     IMAGE_UPLOAD_FOLDER = os.path.join(BASE_DIR, "resources/images")

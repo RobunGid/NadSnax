@@ -2,7 +2,6 @@ from flask import request
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from db import db
-from app import BASE_URL
 
 class ItemImageModel(db.Model):
     __tablename__ = "item_image"
