@@ -1,7 +1,6 @@
 .venv
 pgdata/
 pgdata.bak/
-*.sql
 !insert_mock.sql
 *.dump
 *.tar
